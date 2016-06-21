@@ -1,0 +1,66 @@
+
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  return false;
+}
+
+catch (Exception e) {
+  Log.log(Log.ERROR,ServiceManager.class,e);
+}
+
+MATCHES: 0.11186829576695002
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  return false;
+}
+
+catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+MATCHES: 0.10834788107804391
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  return false;
+}
+
+try {
+  Log.log(Log.DEBUG,jEdit.class,"Loading services from " + uri);
+  ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+  XmlParser parser=new XmlParser();
+  parser.setHandler(dh);
+  in=new BufferedReader(new InputStreamReader(uri.openStream()));
+  parser.parse(null,null,in);
+  if (cache != null)   cache.cachedServices=dh.getCachedServices();
+}
+ catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+}
+catch (Exception e) {
+}
+ finally {
+  try {
+    if (in != null)     in.close();
+  }
+ catch (  IOException io) {
+  }
+}
+
+MATCHES: 0.10658689163499713
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  return false;
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,ServiceManager.class,io);
+}
+
+MATCHES: 0.10655477272489516

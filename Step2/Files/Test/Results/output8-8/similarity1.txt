@@ -1,0 +1,37 @@
+
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  name=path;
+}
+
+catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  name=path;
+}
+
+MATCHES: 1.0
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  name=path;
+}
+
+catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  return false;
+}
+
+MATCHES: 0.5650372825186414
+============================================================================
+ID: catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  name=path;
+}
+
+catch (Exception e) {
+  Log.log(Log.ERROR,this,e);
+  return false;
+}
+
+MATCHES: 0.5086071987480438

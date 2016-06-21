@@ -1,0 +1,61 @@
+
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("ACTIONS".equals(name))   return;
+  Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+}
+
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+
+MATCHES: 0.19568989800105943
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("ACTIONS".equals(name))   return;
+  Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+}
+
+if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+MATCHES: 0.1929235176593515
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("ACTIONS".equals(name))   return;
+  Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+MATCHES: 0.190606431848891
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("ACTIONS".equals(name))   return;
+  Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,t);
+}
+
+MATCHES: 0.18750530706670285

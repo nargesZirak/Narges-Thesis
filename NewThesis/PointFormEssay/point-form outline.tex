@@ -1,0 +1,414 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows, matrix}
+\newcommand{\bold}{\textbf}
+\newcommand{\itt}{\textit}
+\newcommand{\vars}{\textit}
+\newcommand{\tsc}{\textsc}
+\newcommand{\cons}{\textrm}
+\usepackage{textcomp}
+\newcommand{\nothing}{{``nothing''}}
+\long\def\RW#1{{\bf[RW: #1]}}
+
+\begin{document}
+
+\begin{titlepage}
+   \vspace*{\stretch{1.0}}
+   \begin{center}
+      \Large\textbf{Characterization of Logging Usage:\\An Application of Discovering Infrequent Patterns via Anti-unification}
+   \end{center}
+   \vspace*{\stretch{2.0}}
+\end{titlepage}
+
+\begin{itemize} [leftmargin=.1in]
+\item \bold{Chapter 1. Introduction}
+\item \RW{Finding commonalities and differences within the source code of a software system---or between the source code of different systems---is a complex problem to address well.}
+\item \RW{Being able to do so has several actual or potential industrial applications, for example: detecting changes within a procedure; determining the replacement for a method call when moving between program versions; collating usage patterns for an application programming interface (API); merging branches within a version control system; and so on.}
+
+\item \RW{As a specific application, we focus on logging.}
+\item \RW{Academically, logging has historically been considered trivial (see AOP/AOSD literature)}
+\item \RW{But several complex frameworks available, which suggests that it is both important and not straightforward}
+\item \RW{PROBLEM: We would like to understand how logging is used in practice, in a detailed way.}
+\item \RW{SOLUTION: Look automatically for commonalities and differences in its usage within a system and between systems.}
+
+%PROBLEM
+\item \RW{The rest of this is motivational stuff.} Developers must be able to understand software system behaviour for various development and maintenance tasks
+\item In practice, developers typically rely on software system's execution \emph{logs} to understand the behaviour of large systems and to diagnose their problems
+\item Logging is a conventional programming practice to record an application's state and/or actions during program's execution
+\item The importance of logging can be seen by its various applications in:
+\begin{itemize}
+\item{problem diagnosis}
+\item{system behavioural understanding}
+\item{quick debugging}
+\item{performance diagnosis}
+\item{ easy software maintenance }
+ \item{ troubleshooting}
+\end{itemize}
+
+\item Given the importance of logging, its quality can affect the quality of an application directly
+\item High quality logging is not a trivial task
+\item Developers have to make decisions about where and what to log
+\item Logging should be done in an appropriate manner to be effective
+\begin{itemize}
+\item Excessive logging:
+\begin{itemize}
+\item can generate a lot of redundant information, masking significant ones for system log analysis
+\item requires extra time and effort to write, debug, and maintain the logging code
+\item can cause system resource overhead
+\end{itemize}
+\item Bad usage of logging can affect the application's performance
+\item Insufficient logging may result in losing some necessary run-time information for software analysis
+\end{itemize}
+\item The location of log statements has a great impact on the quality of logging since it helps developers to trace the code execution path and to identify the root causes of errors in log system analysis
+\item So far, little study has been conducted on characterizing logging practices in real-world applications that would assist developers to make informed decisions about where and what to log
+\item In this research, our focus is on the study of where developers log in practice
+
+
+\item \bold{Section 1.1 Broad thesis overview}
+\item We aim to provide a concise description of where logging calls happen in the source code by constructing generalized structures representing common structural characteristics of where logging calls do occur
+\item{Our approach:}
+\begin{itemize}
+\item applies a hierarchical clustering algorithm to classify the structures containing logging calls into groups using a measure of similarity
+\item uses an anti-unification algorithm to construct a generalized structure representing common characteristics of all structures in each group
+\end{itemize}
+
+\item{Our anti-unification approach:}
+\begin{itemize}
+\item applies some constraints to avoid anti-unifying logged structures with non-logged structures
+\item determines correspondences between structures containing logging calls by greedily applying a similarity measure to find the most similar substructures
+\item develops a measure of structural similarity between structures containing logging calls
+\end{itemize}
+
+%\item Our study investigates the location of log method invocations from the point of view of code snippets which are fragments of source code enclosing the log statements.
+
+%Evaluation
+\item Our approach has been implemented as an Eclipse plug-in, which is evaluated by conducting an empirical study on 10 sample logged Java classes and then applied across the source code of three open-source software systems that make use of logging
+\item Our tool extracts all Java classes containing logging calls from these systems to construct generalized structures
+
+\item Our evaluation shows ...
+
+\item \bold{Section 1.2 Overview of related work}
+\item Yuan et al. [2012]  provides a quantitative characteristic study of log messages on four open-source software system, however, it does not study the location of logging calls in the source code
+\item So far, anti-unification has been used for various applications
+\begin{itemize}
+\item to construct a generalized correspondence view of two source code fragments (Cottrell et al. [2007])
+\item to help developers to perform small-scale reuse tasks (Cottrell
+et al. [2008])
+\item Software clone detection (Bulychev and Minea [2008])
+\end{itemize}
+\item This study makes the first attempt to characterise where logging calls occur through the application of higher-order anti-unification modulo theories on the AST structure
+
+\item \bold{Section 1.3 Thesis statement}
+\item \RW{This will need some adjustment.} The thesis of this work is to determine a concise description of where logging happens in real systems \RW{You don't want to say this next part, because you never check whether developers are better supported with your solution!  The thesis statement has to be a claim that is actually supported by the thesis document.} so that developers can be better supported to make informed decisions about where to log
+
+\item \bold{Section 1.4 Thesis Organization}
+
+\item Chapter 2: motivates the problem of characterizing the location of logging calls through an example and indicates the requirements that a potential solution must meet
+\item Chapter 3: provides background information on \RW{in the intro, the point should be on what you will say and why (if the why is not self-evident)}
+\begin{itemize}
+\item abstract syntax trees (ASTs), which are the basic structure we will use for describing software source code
+\item how ASTs are realized in the Eclipse integrated development environment, the industrial tool we will build atop
+\item anti-unification and its limitations to solve our problem context
+\item higher-order anti-unification modulo theories (HOAUMT) that can be applied on an extended form of the AST structure to address our problem
+\item the Jigsaw framework, an existing tool for a subset of HOAUMT, which we extend to address our problem
+\end{itemize}
+\item Chapter 4: describes our proposed approach and its implementation as an Eclipse plug-in
+\item Chapter 5: presents an empirical study conducted to evaluate our approach
+\item Chapter 6: describes related work to our research problem and how it
+does not adequately address the problem
+\item Chapter 7: discusses the results and findings of my work, threats to its validity, and the remaining issues.
+\item Chapter 8: concludes the dissertation and presents the contributions of this study and future work
+
+\item \bold{Chapter 2. Motivational Scenario}
+
+\item \RW{I think this fits better here.  In addition to describing this background, you can give examples and show where a concise characterization could be helpful.  Suggest some simple patterns (like, log the start and end of every method) and show what these might look like.  Avoid ASTs at this point because you have not described them yet.}
+\item Logging is a systematic way of recording the software runtime information
+\item A typical logging call is composed of a log function and its parameters including a text message and verbosity level
+\begin{itemize}
+\item A log text message consists of static text to describe the logged event
+and some optional variables related to the event
+\item The verbosity level is intended to classify the
+severity of the logged event (Fatal, error, warn, info, and debug)
+\end{itemize}
+
+\item \bold{Chapter 3. Background}
+\item \bold{Section 3.1. Abstract Syntax Tree}
+
+
+\item \RW{You need to start by describing what an AST is, abstractly.  Then the Eclipse stuff will make more sense.}
+\item The Eclipse Java Development Tools (JDT) framework provides APIs to access and manipulate Java source code via Abstract Syntax Tree (AST)
+\item AST maps Java source code in a tree structure form
+\item Structural properties of an AST node hold specific information for the Java element it represents
+\item Structural properties are stored in a map data structure that associates each property to its value
+\begin{itemize} [leftmargin=.1in]
+\item \itt{Simple Property:} where the value is an AST constant (simple value)
+\item \itt{Child Property:} where the value is a single AST node
+\item \itt{Child list property:} where the value is a list of AST nodes
+\end{itemize}
+\item AST nodes are subtrees of the tree structure and simple values are the leaves
+
+\item \bold{Section 3.2. Anti-unification}
+\item  A \itt{term} is a set of
+\begin{itemize} [leftmargin=.1in]
+\item \itt{Function symbols}:
+\begin{itemize} [leftmargin=.1in]
+\item that can take an unlimited number of arguments
+\item are represented by identifiers starting with a lowercase letter (e.g., \vars{f(a,b)})
+\end{itemize}
+\item \itt{Constants}: function symbols with no arguments (e.g., \vars{a}, \vars{b})
+\item \itt{Variables}: are represented by identifiers starting with an uppercase letter (e.g., \vars{X}, \vars{Y})
+\end{itemize}
+\item the following are terms:
+\begin{itemize}
+\item \vars{Y}
+\item \vars{a}
+\item \vars{f(X, c)}
+\item \vars{f(g(X, b),Y, g(a, Z))}
+\end{itemize}
+
+\item \itt{Ground term}: a term that does not contain any variables (e.g., \vars{f(a,b)})
+
+\item A \itt{Substitution} is defined on a term to map its variables to ground terms
+\item \itt{Applying Substitutions}: replacing all occurrences of a variable with a proper term
+\begin{itemize}
+\item For example, an application of a substitution $\ominus$ =
+\begin{tikzcd}[column sep=small] \vars{X} \arrow[r,<-,shift right,""] & \vars{a} \end{tikzcd}
+ on a term \vars{f(X,b)} is defined by replacing all occurrences of variable \vars{X} by term \vars{a} and thus\begin{tikzcd}[column sep=small] \vars{f(X,b)} \arrow[r,<-,shift right,"\ominus"] & \vars{f(a,b)} \end{tikzcd}
+\end{itemize}
+
+\item \itt{Instance \& Anti-Instance }:  \vars{a} is an instance of \vars{X} and \vars{X} is an anti-instance of \vars{a}, if there is a substitution $\ominus$ such that the application of $\ominus$ on \vars{X} results in \vars{a} (\begin{tikzcd}[column sep=small] \vars{X} \arrow[r,<-,shift right,"\ominus"] & \vars{a} \end{tikzcd})
+
+\item \itt{Unifier}: A common instance of two given terms
+\item \itt{Most General Unifier (MGU)}: \vars{U} is MGU of two structures such that for all unifiers \vars{U}${\prime}$ there exist a substitution $\ominus$ such that \begin{tikzcd}[column sep=small] \vars{U} \arrow[r,<-,shift right,"\ominus"] & \vars{U$\prime$} \end{tikzcd}
+
+\item \itt{Generalization}: \vars{X} is a generalization for \vars{a} and \vars{b}, where \vars{X} is an anti-instance for  \vars{a} and \vars{b} under substitutions $\ominus_1$ and $\ominus_2$, respectively. (\begin{tikzcd}[column sep=small] \vars{X} \arrow[r,<-,shift right,"\ominus_1"] & \vars{a} \end{tikzcd} and\begin{tikzcd}[column sep=small] \vars{Y} \arrow[r,<-,shift right,"\ominus_2"] & \vars{b} \end{tikzcd})
+
+\item \itt{Anti-unifier}: A common generalization of two given terms
+\item \itt{Most Specific Anti-unifier (MSA):} \vars{A} is MSA of two structures where there exist no anti-unifier \vars{A}${\prime}$ such that\begin{tikzcd}[column sep=small] \vars{A} \arrow[r,<-,shift right,"\ominus"] & \vars{A$\prime$} \end{tikzcd}
+\item MSA should preserve as much of structure of both original structures as possible
+\item \itt{Anti-unification}: The process of finding the MSA of two given terms
+\item \itt{First-order anti-unification}: restricts substitutions to replace only first-order variables by terms
+
+\item \tsc{Problem:} First-order anti-unification fails to capture complex structural commonalities
+	\begin{itemize}
+	\item When the terms differ in function symbols, First-order anti-unification fails to preserve common details of structures, e.g., anti-unifier of structures \vars{f(a,b)} and \vars{h(a,b)} is \vars{X}
+	\end{itemize}
+% anti-unifier always exist
+\item \tsc{Solution:} Higher-order anti-unification allow the creation of MSA by extending the set of possible substitutions such that variables can be replaced by not only constants but also functional symbols
+\begin{itemize}
+\item e.g., anti-unifier of structures \vars{f(a,b)} and \vars{h(a,b)} is \vars{X(a,b)}
+\end{itemize}
+%%%%%%%%%?????????????
+\item An instance of an AST structure can be mapped  to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
+
+\item A set of equivalence equations is defined to incorporate semantic knowledge of structural equivalences supported by the Java language specification
+\item These equational theories are applied on higher-order extended structures to allow the anti-unification of AST structures that are not identical but are semantically equivalent, e.g., for-loops and while-loops
+
+\item The NIL structure is defined to create a structure out of nothing that would allow the anti-unification of two structures when a substructure exist in one but not the other one
+
+\item Defining complex substitutions results in losing the uniqueness of MSA
+\item The complexity of finding an MSA is undecidable in general since an infinite number of substitutions can be applied on every variable in a structure
+\item Our goal is to find an MSA that is the best fit to our application using an approximation technique
+
+\item \bold{Section 3.3. Jigsaw}
+\item The Jigsaw tool is developed by Cottrell et al. [2008] to determine the structural correspondences between two Java source code fragments through anti-unification such that one fragment can be integrated to the other one for small scale code reuse
+\item The Jigsaw framework could help us to construct an anti-unifier form logged Java classes as it:
+\begin{itemize}
+\item applies higher-order anti-unification modulo theories to address the limitations of first-order syntactical anti-unification
+\item creates an augmented form of AST, called CAST (Correspondence AST), in which each node holds a list of candidate correspondence connections between the two structures, each representing an anti-unifier
+\item develops a measure of similarity to indicate how similar the nodes involved in one correspondence connection are
+
+\end{itemize}
+\item The Jigsaw similarity function:
+\begin{itemize}
+\item returns a value between 0 and 1 where indicate zero and total matching, respectively
+\item uses several semantical heuristics to improve the accuracy of similarity measurement
+
+\end{itemize}
+
+\item The Jigsaw tool does not sufficiently solve our problem since:
+\begin{itemize}
+\item it determines all potential correspondences between AST nodes, each representing an anti-unifier; however, we need to determine one single anti-unifier that is approximately the best fit to our problem
+\item it does not construct an anti-unifier of two given AST structures with a focus on logging calls, which is required to our application
+\end{itemize}
+
+
+\item \bold{Chapter 4. Anti-unification of Logged Java Classes}
+\item \bold{Goal: }Construct generalized structures describing where logging calls happen in the source code
+
+\item \bold{Approach: }Develop an algorithm that:
+\begin{itemize} [leftmargin=.1in]
+\item Classifies the structures containing logging calls into groups using a measure of similarity such that structures in each group has maximum similarity with each other and minimum similarity to other structures
+\item Abstracts commonalities of structures in each group into a generalized structure representing where logging calls do occur
+\end{itemize}
+
+\item \bold{Problem 1: }How to construct a generalization from two given logged Java classes with a special attention to logging calls?
+\item \bold{Solution: }Develop an algorithm that:
+\begin{itemize} [leftmargin=.1in]
+\item Maps source code of the two logged Java classes to AST structures via the Eclipse JDT framework
+\item Applies the higher-order anti-unification modulo theories to construct the generalized structure
+\begin{itemize}
+\item \bold{Subproblem: }the AST structure does not support the use of variables, which is required to construct an anti-unifier
+\item \bold{Solution: }Create an extension of AST structure, called AUAST, to allow the insertion of variables in place of any node in the tree structure, including both subtrees and leaves
+\end{itemize}
+\item Determines potential candidate structural correspondences between the AUAST nodes using the Jigsaw framework
+
+\item Applies some constraints to prevent the anti-unification of logging calls with anything else, which are:
+\begin{enumerate} [leftmargin=.2in]
+\item A logging call should either be anti-unified with another logging call or should be anti-unified with \nothing.
+\item A structure containing a logging call should be anti-unified with a corresponding structure containing another logging call or should be anti-unified with \nothing.
+\end{enumerate}
+\item Determines the best structural correspondences between nodes of AUASTs
+\begin{itemize}
+\item \bold{Subproblem: }Despite having multiple potential anti-unifiers, we need to construct one single anti-unifier from the two AUASTs that is an approximation of the best fit to our problem
+\item \bold{Solution: }Develop a greedy selection algorithm to approximate the best anti-unifier by determining the best correspondence for each node
+\end{itemize}
+\item Develops a measure of similarity between the two AUASTs that
+\begin{itemize}
+\item refers to the number of identical simple values over the total number of simple values of their anti-unifier
+\item calculates the similarity between simple values via the Jigsaw similarity function
+\end{itemize}
+\end{itemize}
+
+\item \bold{Problem 2: }How to classify a set of AUASTs of logged Java classes?
+\item \bold{Solution: }Develop a modified version of a hierarchical agglomerative clustering algorithm as described below:
+\begin{enumerate}
+\item Start with singleton clusters, where each cluster contains one AUAST
+\item Compute the similarity between clusters in a pairwise manner
+\item Find the closest clusters (a pair of clusters with maximum similarity)
+\item Merge the closest cluster pair and replace them with a new cluster containing anti-unifier of the AUASTs of the two clusters
+\item Compute the similarity between the new cluster and all remaining clusters
+\end{enumerate}
+\begin{itemize}
+\item Repeat Steps 4 and 5 until the similarity between closest clusters becomes below a predetermined threshold value
+\item The similarity between a pair of clusters is defined as the similarity between their AUASTs
+\item Determine the similarity threshold value through informal experimentation
+\end{itemize}
+
+\item \bold{Chapter 5. Evaluation}
+
+\RW{Look at Yang 2012 and try to extend their studies, then it would be more obvious what the novel contribution is here.}
+\item \bold{Section 5.1 Experimental Study}
+\item \bold{Section 5.2 Results}
+
+\item \bold{Chapter 6. Evaluation}
+\item \bold{Section 6.1 Logging}
+\item Logging is a systematic way of recording the software runtime information [Yuan et al., 2012]
+\item Several studies have been conducted to investigate the application of logging for various software development and maintenance tasks:
+\begin{itemize}
+\item Jiang et al. [2009a] study the effectiveness of logging in problem diagnosis
+\item Fu et al. [2013] present an approach for understanding system behaviour through contextual log analysis
+\item Yaghmour et al. [2000] provide an efficient kernel-level event logging infrastructure to record and analyze system behaviour
+\item Nagaraj et al., [2012] develop an automated tool to assist developer in diagnosis and correction of performance issues in distributed systems through analyzing system behaviours extracted from log data
+\item Bishop [1989] proposes a formal model of system’s security monitoring using logging and auditing
+\item Elnozahy et al. [2002] present a survey of log-based rollback-recovery protocols
+\item Jiang et al. [2009b] present an approach to automatically detect problems of load tests by mining the application execution logs
+\end{itemize}
+\item Yuan et al. [2012]  provides a quantitative \RW{I thought you said it was qualitative} characteristic study of log messages on four open-source software system , however, it does not study the location of logging calls in the source code  \RW{It would be smart to lean more heavily on this RW, in order to make it a clearer improvement on what they did ...}
+
+\item \bold{Section 6.2 Anti-unification}
+
+\item Anti-unification is the problem of finding the most specific generalization of two terms
+\item First-order syntactical anti-unification was introduced by Plotkin [1970] and Reynolds [1970] independently
+\item Burghardt and Heinz [1996] extend the notion of anti-unification to E-anti-unification
+\item Burghardt and Heinz [1996] introduced anti-unification
+modulo equational theories to incorporate background knowledge to syntactical anti-unification which is required for some applications
+\item Higher-order anti-unification modulo theories is formally undecidable [Burghardt, 2005]
+\item Anti-unification has various applications in program analysis:
+\begin{itemize}
+\item Bulychev and Minea [2008] suggest an anti-unification algorithm to detect software clones, however its algorithm does not suffice to our problem context since it:
+\begin{itemize}
+\item does not require to construct a generalization
+\item does not meet the requirements needed for our application to determine the best correspondences
+\end{itemize}
+\item Cottrell et al. [2007] propose Breakaway to automatically determine structural correspondences between a pair of abstract syntax trees (ASTs) to create a generalized correspondence view, however its algorithm does not suffice to our problem context since it:
+\begin{itemize}
+\item does not meet the requirements needed for our application to determine the best correspondences
+\end{itemize}
+
+\item Cottrell et al. [2008] develop Jigsaw to help developers integrate small-scale reused source code into their own code via structural correspondence through the application of higher-order antiunification modulo theories, but the algorithm does not suffice to our problem context since it:
+\begin{itemize}
+\item does not require to construct one single generalization
+\item does not require to take constraints
+\end{itemize}
+\item Sadi [2011] proposed an anti-unification algorithm to characterize the location of logging usages in the source code, however,
+\begin{itemize}
+\item he has not applied anti-unification appropriately!!! \RW{You would need to explain what that means}
+\end{itemize}
+
+\end{itemize}
+
+\item \bold{Section 6.3 Correspondence}
+\item Several approaches have been used to find correspondences between code fragments
+\begin{itemize}
+\item Baxter et al. [1998] develops an algorithm to detect code clones in source code that uses hash functions to partition subtrees of ASTs of a program source code and then find common subtrees in the same partition through a tree comparison algorithm
+\item Apiwattanapong et al. [2004] present a top-down approach to detect differences and correspondences between two versions of a Java program, through comparison of the control flow graphs created from the source code
+\item Strathcona [Holmes et al., 2006] recommends relevant code snippet examples from a source code repository for the sake of helping developers to find examples of how to use an API by heuristically matching the structure of the code under
+development with the source code in the repository
+\item Coogle [Sager et al., 2006] is developed to detect similar Java classes through converting ASTs to a normalized format and then comparing them through tree similarity algorithms
+\item However, these approaches does not to determine the detailed structural correspondences needed in our context and does not allow the creation of a generalization
+\item Umami [Bradley et al., 2014] presents a new approach, called Matching via Structural generalization (MSG), for API change recommendation called
+\begin{itemize}
+\item He used the Jigsaw tool to find structural correspondences, but the algorithm does not suffice to our problem context since it:
+\begin{itemize}
+\item does not construct a generalization
+\item does not require to take constraints
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+
+\item \bold{Section 6.4 API usages patterns}
+\item Various data mining approaches has been used to extract API usages patterns:
+\begin{itemize}
+\item Unordered pattern mining
+\begin{itemize}
+\item Association rule mining: e.g., CodeWeb [Michail, 2000] uses data mining association rules to identify reuse patterns between a source code under development and a specific library
+\item Itemset mining: e.g., PR-Miner [Li and Zhou, 2005] uses frequent itemset mining to extract implicit programming rules from source code and detect violations
+\end{itemize}
+\item Sequential pattern mining: e.g., MAPO [Xie and Pei, 2006] combines frequent subsequence mining with clustering to extract API usage patterns from the source code
+\end{itemize}
+\item However, none of these approaches suffice to our context since they:
+\begin{itemize}
+\item do not to determine the detailed structural correspondences needed in our context
+\item do not require to construct a structural generalization
+\end{itemize}
+
+
+\item \bold{Section 6.5 Clustering}
+\item Clustering is an unsupervised machine mining technique that aims to organize a collection of data into clusters, such that intra-cluster similarity is maximized and the inter-cluster similarity is minimized [Karypis, 1999] [Grira et al., 2004]
+\item Clustering methods:
+\begin{itemize}
+\item K-means [Hartigan et al., 1979]
+\begin{itemize}
+\item Not a good fit to our problem since it requires to define a fixed number of clusters
+\end{itemize}
+\item Hierarchical clustering [Rasmussen, 1992]
+\begin{itemize}
+\item The cut-off threshold value indicates the number of clusters we will come up with
+\end{itemize}
+\end{itemize}
+\item Agglomerative hierarchical clustering is one of the main stream clustering methods [Day, 1984] and has applications in:
+\begin{itemize}
+\item document retrieval [Voorhees, 1986]
+\item information retrieval from a search engine query log [Beeferman et al., 2000]
+\end{itemize}
+\item There are various techniques to measure the distance between clusters [Rasmussen, 1992]:
+\begin{itemize}
+\item Single linkage
+\item Complete linkage
+\item Average linkage
+\item Centroids
+\item Ward's method
+\end{itemize}
+\item However, in our application, the distance between clusters is defined as the distance between their AUAST nodes
+
+\item \bold{Chapter 7. Discussion}
+\item \bold{Chapter 8. Conclusion}
+%\item Characterization of logging usages in the source code can inspire further studies to provide recommendation tools for better logging practices.1
+\end{itemize} %chapters
+
+\end{document} 

@@ -1,0 +1,92 @@
+
+============================================================================
+ID: catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,"Exception " + "in work thread:");
+}
+
+MATCHES: 0.20320198291929514
+============================================================================
+ID: catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+catch (Abort a) {
+  Log.log(Log.ERROR,WorkThread.class,"Unhandled abort");
+}
+
+MATCHES: 0.20142539871175733
+============================================================================
+ID: catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,t);
+}
+
+MATCHES: 0.20142539871175733
+============================================================================
+ID: catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+MATCHES: 0.18969476776318905
+============================================================================
+ID: catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+MATCHES: 0.18737206218979297
+============================================================================
+ID: catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+}
+
+public void run(){
+  Log.log(Log.DEBUG,this,"Work request thread starting [" + getName() + "]");
+  for (; ; ) {
+    doRequests();
+  }
+}
+
+MATCHES: 0.18233305227125257

@@ -1,0 +1,102 @@
+
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+if (success == -1) {
+  Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+  throw new ClassNotFoundException(clazz);
+}
+
+MATCHES: 0.13798752530824965
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+if (entry.getValue() != NO_CLASS) {
+  Log.log(Log.DEBUG,JARClassLoader.class,entry.getKey() + " ==> " + entry.getValue());
+}
+
+MATCHES: 0.12775941218433104
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  throw new ClassNotFoundException(clazz);
+}
+
+MATCHES: 0.12233795488678706
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+public static void dump(){
+  Log.log(Log.DEBUG,JARClassLoader.class,"Total instances created: " + INDEX);
+synchronized (classHash) {
+    Iterator entries=classHash.entrySet().iterator();
+    while (entries.hasNext()) {
+      Map.Entry entry=(Map.Entry)entries.next();
+      if (entry.getValue() != NO_CLASS) {
+      }
+    }
+  }
+}
+
+MATCHES: 0.11371493381831922
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+public static void dump(){
+  Log.log(Log.DEBUG,JARClassLoader.class,"Live instances: " + live);
+synchronized (classHash) {
+    Iterator entries=classHash.entrySet().iterator();
+    while (entries.hasNext()) {
+      Map.Entry entry=(Map.Entry)entries.next();
+      if (entry.getValue() != NO_CLASS) {
+      }
+    }
+  }
+}
+
+MATCHES: 0.11371493381831922
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  return null;
+}
+
+MATCHES: 0.10240009377854724
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  return null;
+}
+
+MATCHES: 0.1018493515014337
+============================================================================
+ID: if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  return null;
+}
+
+MATCHES: 0.0864156923268718

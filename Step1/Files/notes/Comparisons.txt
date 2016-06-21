@@ -1,0 +1,74 @@
+/*
+ * This file contains 55 comparisons to determine the correspondences computed by Jigsaw between 10 logged Java Classes in a pairwise manner. 
+ * The first list contains the name of Java classes
+ * the second list contains 55 comparisons by mentioning a pair of class names and similarity value computed by Jigsaw for these classes.  
+*/
+================ The Name of Classes Containing Logging Calls ===============
+NODE
+1. BufferHistory
+2. RecentHandler
+3. JARClassLoader
+4. PluginJAR
+5. Wrapper
+6. EditBus
+7. ServiceManager
+8. Macros
+9. PerspectiveManager
+10. PerspectiveHandler
+============================= 55 Comparisons =================================
+NODE1, NODE2, SIMILARITY
+1.BufferHistory,RecentHandler,0.16112342941611235
+2.BufferHistory,JARClassLoader,0.5602365114560236
+3.BufferHistory,PluginJAR,0.24052041671204522
+4.BufferHistory,Wrapper,0.05617147080561715
+5.BufferHistory,EditBus,0.16925351071692535
+6.BufferHistory,ServiceManager,0.5018477457501848
+7.BufferHistory,Macros,0.3554341384805246
+8.BufferHistory,PerspectiveManager,0.7577044313632839
+9.BufferHistory,PerspectiveHandler,0.279696243162623
+10.RecentHandler,JARClassLoader,0.15736338517341156
+11.RecentHandler,PluginJAR,0.03500063288342244
+12.RecentHandler,Wrapper,0.3486238532110092
+13.RecentHandler,EditBus,0.4189772469554552
+14.RecentHandler,ServiceManager,0.16389043564817277
+15.RecentHandler,Macros,0.05255866277861031
+16.RecentHandler,PerspectiveManager,0.08825507580304878
+17.RecentHandler,PerspectiveHandler,0.3767301067312175
+18.JARClassLoader,PluginJAR,0.16406197835085667
+19.JARClassLoader,Wrapper,0.10026385224274406
+20.JARClassLoader,EditBus,0.3021108179419525
+21.JARClassLoader,ServiceManager,0.695767051044667
+22.JARClassLoader,Macros,0.2492672249101996
+23.JARClassLoader,PerspectiveManager,0.47538860741562977
+24.JARClassLoader,PerspectiveHandler,0.30834184446031765
+25.PluginJAR,Wrapper,0.019869281045751634
+26.PluginJAR,EditBus,0.059869281045751635
+27.PluginJAR,ServiceManager,0.17751633986928106
+28.PluginJAR,Macros,0.5242328401650583
+29.PluginJAR,PerspectiveManager,0.32052287581699346
+30.PluginJAR,PerspectiveHandler,0.09908496732026144
+31.Wrapper,EditBus,0.1971289792530539
+32.Wrapper,ServiceManager,0.07262206779006528
+33.Wrapper,Macros,0.026013125235508756
+34.Wrapper,PerspectiveManager,0.03971507847823532
+35.Wrapper,PerspectiveHandler,0.10458738882532495
+36.EditBus,ServiceManager,0.2225628797452826
+37.EditBus,Macros,0.06645681547048232
+38.EditBus,PerspectiveManager,0.1329566281788151
+39.EditBus,PerspectiveHandler,0.2097613958350585
+40.ServiceManager,Macros,0.16878938770854807
+41.ServiceManager,PerspectiveManager,0.36360322963859437
+42.ServiceManager,PerspectiveHandler,0.2427673655538665
+43.Macros,PerspectiveManager,0.46876371602885003
+44.Macros,PerspectiveHandler,0.16859430604982206
+45.PerspectiveManager,PerspectiveHandler,0.26165057114429646
+46.BufferHistory,BufferHistory,1.0
+47.RecentHandler,RecentHandler,1.0
+48.JARClassLoader,JARClassLoader,1.0
+49.PluginJAR,PluginJAR,1.0
+50.Wrapper,Wrapper,1.0
+51.EditBus,EditBus,1.0
+52.ServiceManager,ServiceManager,1.0
+53.Macros,Macros,0.8604331664457004
+54.PerspectiveManager,PerspectiveManager,0.9314845024469821
+55.PerspectiveHandler,PerspectiveHandler,0.841688654353562

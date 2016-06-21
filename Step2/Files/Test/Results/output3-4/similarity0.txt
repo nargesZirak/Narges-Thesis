@@ -1,0 +1,102 @@
+
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  throw new ClassNotFoundException(clazz);
+}
+
+MATCHES: 0.1394351306592597
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+if (success == -1) {
+  Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+  throw new ClassNotFoundException(clazz);
+}
+
+MATCHES: 0.12167973736099898
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  return null;
+}
+
+MATCHES: 0.11895009742293952
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  return null;
+}
+
+MATCHES: 0.11839786150618367
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+public static void dump(){
+  Log.log(Log.DEBUG,JARClassLoader.class,"Total instances created: " + INDEX);
+synchronized (classHash) {
+    Iterator entries=classHash.entrySet().iterator();
+    while (entries.hasNext()) {
+      Map.Entry entry=(Map.Entry)entries.next();
+      if (entry.getValue() != NO_CLASS) {
+      }
+    }
+  }
+}
+
+MATCHES: 0.11186123656345616
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+public static void dump(){
+  Log.log(Log.DEBUG,JARClassLoader.class,"Live instances: " + live);
+synchronized (classHash) {
+    Iterator entries=classHash.entrySet().iterator();
+    while (entries.hasNext()) {
+      Map.Entry entry=(Map.Entry)entries.next();
+      if (entry.getValue() != NO_CLASS) {
+      }
+    }
+  }
+}
+
+MATCHES: 0.11186123656345616
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+if (entry.getValue() != NO_CLASS) {
+  Log.log(Log.DEBUG,JARClassLoader.class,entry.getKey() + " ==> " + entry.getValue());
+}
+
+MATCHES: 0.10663863791961661
+============================================================================
+ID: catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,this,io);
+  return null;
+}
+
+MATCHES: 0.1029223455028888

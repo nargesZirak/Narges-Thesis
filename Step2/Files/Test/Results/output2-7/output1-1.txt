@@ -1,0 +1,54 @@
+********************************  NODE 1  *******************************
+static class RecentHandler extends HandlerBase {
+  public void endDocument() throws java.lang.Exception {
+    int max=jEdit.getIntegerProperty("recentFiles",50);
+    while (history.size() > max)     history.removeLast();
+  }
+  public Object resolveEntity(  String publicId,  String systemId){
+    if ("recent.dtd".equals(systemId)) {
+      return new StringReader("<!-- -->");
+    }
+    return null;
+  }
+  public void doctypeDecl(  String name,  String publicId,  String systemId) throws Exception {
+    if ("RECENT".equals(name))     return;
+    Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+  }
+  public void endElement(  String name){
+    if (name.equals("ENTRY")) {
+      history.addLast(new Entry(path,caret,selection,encoding));
+      path=null;
+      caret=0;
+      selection=null;
+      encoding=null;
+    }
+ else     if (name.equals("PATH"))     path=charData;
+ else     if (name.equals("CARET"))     caret=Integer.parseInt(charData);
+ else     if (name.equals("SELECTION"))     selection=charData;
+ else     if (name.equals("ENCODING"))     encoding=charData;
+  }
+  public void charData(  char[] ch,  int start,  int length){
+    charData=new String(ch,start,length);
+  }
+  private String path;
+  private int caret;
+  private String selection;
+  private String encoding;
+  private String charData;
+}
+********************************  NODE 2  *******************************
+public abstract class EBPlugin extends EditPlugin implements EBComponent {
+  public void handleMessage(  EBMessage message){
+    EditBus.removeFromBus(this);
+    if (seenWarning)     return;
+    seenWarning=true;
+    Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+  }
+  protected EBPlugin(){
+  }
+  private boolean seenWarning;
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD-OR-NIL[static-or-nil], KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[abstract-or-nil]] ; INTERFACE[false] ; NAME[IDENTIFIER[RecentHandler-or-EBPlugin]] ; SUPERCLASSTYPE[NAME[IDENTIFIER[HandlerBase-or-EditPlugin]]] ; SUPERINTERFACETYPES[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]] ; BODYDECLARATIONS[MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[doctypeDecl-or-handleMessage]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String-or-EBMessage]]] ; VARARGS[false] ; NAME[IDENTIFIER[name-or-message]] ; EXTRADIMENSIONS[0], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; THROWNEXCEPTIONS[IDENTIFIER-OR-NIL[Exception-or-nil]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[LEFTOPERAND-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[getClassName-or-nil]] ; ] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[" should extend"-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[ESCAPEDVALUE-OR-NIL[" EditPlugin not EBPlugin since it has an empty"-or-nil], ESCAPEDVALUE-OR-NIL[" handleMessage()"-or-nil]], ESCAPEDVALUE-OR-NIL["recent.xml: DOCTYPE must be RECENT"-or-nil], QUALIFIER[IDENTIFIER[Log]] ; NAME[IDENTIFIER[ERROR-or-WARNING]], , ]], EXPRESSION[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["RECENT"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; IDENTIFIER-OR-NIL[seenWarning-or-nil]] ; , EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[EditBus-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[removeFromBus-or-nil]] ; ], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[seenWarning-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]]]], MODIFIERS[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[protected-or-nil]] ; CONSTRUCTOR[false-or-true] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME[IDENTIFIER[charData-or-EBPlugin]] ; PARAMETERS[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[char-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ch-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[length-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[ch-or-nil], IDENTIFIER-OR-NIL[start-or-nil], IDENTIFIER-OR-NIL[length-or-nil]]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[resolveEntity-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["recent.dtd"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringReader-or-nil]]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<!-- -->"-or-nil]]]]], ]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[endElement-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; , MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[endDocument-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; THROWNEXCEPTIONS-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[java-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lang-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[max-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[jEdit-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getIntegerProperty-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["recentFiles"-or-nil], TOKEN-OR-NIL[50-or-nil]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ] ; OPERATOR-OR-NIL[>-or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[max-or-nil]] ; ] ; BODY-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[removeLast-or-nil]] ; ]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME[IDENTIFIER[encoding-or-seenWarning]] ; EXTRADIMENSIONS[0]], MODIFIERS-OR-NIL[KEYWORD[private]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS[KEYWORD[private]] ; TYPE[PRIMITIVETYPECODE[int-or-boolean]] ; ]]
+****************************** SIMILARITY *****************************
+0.1868859016227437

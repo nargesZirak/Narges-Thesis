@@ -1,0 +1,86 @@
+
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,"Exception " + "in work thread:");
+}
+
+MATCHES: 0.18025113489777617
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+catch (Abort a) {
+  Log.log(Log.ERROR,WorkThread.class,"Unhandled abort");
+}
+
+MATCHES: 0.1760472945639186
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,t);
+}
+
+MATCHES: 0.1760472945639186
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+MATCHES: 0.1757018202322905
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+MATCHES: 0.17393437894638372
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+public void run(){
+  Log.log(Log.DEBUG,this,"Work request thread starting [" + getName() + "]");
+  for (; ; ) {
+    doRequests();
+  }
+}
+
+MATCHES: 0.16692757756969703

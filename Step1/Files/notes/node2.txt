@@ -1,0 +1,139 @@
+/*
+* This file contains an example of a for statement node in a CAST and its list of correspondence elements.
+*/
+============================= NODE ===========================
+NODE: for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+==============================================================
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  while (st.hasMoreTokens()) {
+  String type=st.nextToken();
+  int start=Integer.parseInt(st.nextToken());
+  int end=Integer.parseInt(st.nextToken());
+  if (end < start) {
+    continue;
+  }
+  Selection sel;
+  if (type.equals("range"))   sel=new Selection.Range(start,end);
+ else   sel=new Selection.Rect(start,end);
+  selection.addElement(sel);
+}
+
+SIMILARITY[1]:   0.09090909090909094
+------------------------------------------------
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  while (iter.hasNext()) retVal.add(iter.next());
+
+SIMILARITY[2]:   0.12727272727272732
+------------------------------------------------
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  while (iter.hasNext()) {
+  Entry entry=(Entry)iter.next();
+  if (pathsCaseInsensitive) {
+    if (entry.path.equalsIgnoreCase(path))     return entry;
+  }
+ else {
+    if (entry.path.equals(path))     return entry;
+  }
+}
+
+SIMILARITY[3]:   0.12727272727272732
+------------------------------------------------
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  while (history.size() > max) history.removeLast();
+
+SIMILARITY[4]:   0.24054621848739488
+------------------------------------------------
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  while (iter.hasNext()) {
+  Entry entry=(Entry)iter.next();
+  if (pathsCaseInsensitive) {
+    if (entry.path.equalsIgnoreCase(path)) {
+      iter.remove();
+      return;
+    }
+  }
+ else {
+    if (entry.path.equals(path)) {
+      iter.remove();
+      return;
+    }
+  }
+}
+
+SIMILARITY[5]:   0.12727272727272732
+------------------------------------------------
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  for (int i=0; i < s.length; i++) {
+  if (i != 0)   buf.append(' ');
+  Selection sel=s[i];
+  if (sel instanceof Selection.Range)   buf.append("range ");
+ else   buf.append("rect ");
+  buf.append(sel.getStart());
+  buf.append(' ');
+  buf.append(sel.getEnd());
+}
+
+SIMILARITY[6]:   0.8653846153846154
+------------------------------------------------
+
+COPY:  for (int i=0; i < classes.length; i++) {
+  classHash.put(classes[i],this);
+}
+
+PASTE:  while (iter.hasNext()) {
+  out.write("<ENTRY>");
+  out.write(lineSep);
+  Entry entry=(Entry)iter.next();
+  out.write("<PATH>");
+  out.write(MiscUtilities.charsToEntities(entry.path));
+  out.write("</PATH>");
+  out.write(lineSep);
+  out.write("<CARET>");
+  out.write(String.valueOf(entry.caret));
+  out.write("</CARET>");
+  out.write(lineSep);
+  if (entry.selection != null && entry.selection.length() > 0) {
+    out.write("<SELECTION>");
+    out.write(entry.selection);
+    out.write("</SELECTION>");
+    out.write(lineSep);
+  }
+  if (entry.encoding != null) {
+    out.write("<ENCODING>");
+    out.write(entry.encoding);
+    out.write("</ENCODING>");
+    out.write(lineSep);
+  }
+  out.write("</ENTRY>");
+  out.write(lineSep);
+}
+
+SIMILARITY[7]:   0.12727272727272732
+------------------------------------------------

@@ -1,0 +1,101 @@
+********************************  NODE 1  *******************************
+class ActionListHandler extends HandlerBase {
+  ActionListHandler(  String path,  ActionSet actionSet){
+    this.path=path;
+    this.actionSet=actionSet;
+    stateStack=new Stack();
+  }
+  public Object resolveEntity(  String publicId,  String systemId){
+    if ("actions.dtd".equals(systemId)) {
+      return new StringReader("<!-- -->");
+    }
+    return null;
+  }
+  public void attribute(  String aname,  String value,  boolean isSpecified){
+    aname=(aname == null) ? null : aname.intern();
+    value=(value == null) ? null : value.intern();
+    if (aname == "NAME")     actionName=value;
+ else     if (aname == "NO_REPEAT")     noRepeat=(value == "TRUE");
+ else     if (aname == "NO_RECORD")     noRecord=(value == "TRUE");
+ else     if (aname == "NO_REMEMBER_LAST")     noRememberLast=(value == "TRUE");
+  }
+  public void doctypeDecl(  String name,  String publicId,  String systemId) throws Exception {
+    if ("ACTIONS".equals(name))     return;
+    Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+  }
+  public void charData(  char[] c,  int off,  int len){
+    String tag=peekElement();
+    String text=new String(c,off,len);
+    if (tag == "CODE") {
+      code=text;
+    }
+ else     if (tag == "IS_SELECTED") {
+      isSelected=text;
+    }
+  }
+  public void startElement(  String tag){
+    tag=pushElement(tag);
+    if (tag == "ACTION") {
+      code=null;
+      isSelected=null;
+    }
+  }
+  public void endElement(  String name){
+    if (name == null)     return;
+    String tag=peekElement();
+    if (name.equals(tag)) {
+      if (tag == "ACTION") {
+        actionSet.addAction(new BeanShellAction(actionName,code,isSelected,noRepeat,noRecord,noRememberLast));
+        noRepeat=noRecord=noRememberLast=false;
+      }
+      popElement();
+    }
+ else {
+      throw new InternalError();
+    }
+  }
+  public void startDocument(){
+    try {
+      pushElement(null);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+  private String path;
+  private ActionSet actionSet;
+  private String actionName;
+  private String code;
+  private String isSelected;
+  private boolean noRepeat;
+  private boolean noRecord;
+  private boolean noRememberLast;
+  private Stack stateStack;
+  private String pushElement(  String name){
+    name=(name == null) ? null : name.intern();
+    stateStack.push(name);
+    return name;
+  }
+  private String peekElement(){
+    return (String)stateStack.peek();
+  }
+  private String popElement(){
+    return (String)stateStack.pop();
+  }
+}
+********************************  NODE 2  *******************************
+public abstract class EBPlugin extends EditPlugin implements EBComponent {
+  public void handleMessage(  EBMessage message){
+    EditBus.removeFromBus(this);
+    if (seenWarning)     return;
+    seenWarning=true;
+    Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+  }
+  protected EBPlugin(){
+  }
+  private boolean seenWarning;
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[abstract-or-nil]] ; INTERFACE[false] ; NAME[IDENTIFIER[ActionListHandler-or-EBPlugin]] ; SUPERCLASSTYPE[NAME[IDENTIFIER[HandlerBase-or-EditPlugin]]] ; SUPERINTERFACETYPES[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]] ; BODYDECLARATIONS[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[char-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[c-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[off-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[len-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[text-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[c-or-nil], IDENTIFIER-OR-NIL[off-or-nil], IDENTIFIER-OR-NIL[len-or-nil]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[peekElement-or-nil]] ; ]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["CODE"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[text-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["IS_SELECTED"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[isSelected-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[text-or-nil]]]]]]]], MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[doctypeDecl-or-handleMessage]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String-or-EBMessage]]] ; VARARGS[false] ; NAME[IDENTIFIER[name-or-message]] ; EXTRADIMENSIONS[0], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; THROWNEXCEPTIONS[IDENTIFIER-OR-NIL[Exception-or-nil]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[LEFTOPERAND[IDENTIFIER-OR-NIL[path-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getClassName-or-nil]] ; ] ; OPERATOR[+] ; RIGHTOPERAND[ESCAPEDVALUE[": DOCTYPE must be ACTIONS"-or-" should extend"]] ; EXTENDEDOPERANDS[ESCAPEDVALUE-OR-NIL[" EditPlugin not EBPlugin since it has an empty"-or-nil], ESCAPEDVALUE-OR-NIL[" handleMessage()"-or-nil]], QUALIFIER[IDENTIFIER[Log]] ; NAME[IDENTIFIER[ERROR-or-WARNING]], , ]], EXPRESSION[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["ACTIONS"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; IDENTIFIER-OR-NIL[seenWarning-or-nil]] ; , EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[EditBus-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[removeFromBus-or-nil]] ; ], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[seenWarning-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[attribute-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isSpecified-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NAME"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[actionName-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NO_REPEAT"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRepeat-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["TRUE"-or-nil]] ; ]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NO_RECORD"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRecord-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["TRUE"-or-nil]] ; ]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NO_REMEMBER_LAST"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRememberLast-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["TRUE"-or-nil]] ; ]]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ]] ; ELSEEXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[intern-or-nil]] ; ]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ]] ; ELSEEXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[intern-or-nil]] ; ]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[resolveEntity-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["actions.dtd"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringReader-or-nil]]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<!-- -->"-or-nil]]]]], ]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[endElement-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[peekElement-or-nil]] ; ]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]]] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[InternalError-or-nil]]] ; ]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; ]], CONSTRUCTOR-OR-NIL[true-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ActionListHandler-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ActionSet-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Stack-or-nil]]] ; ]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[pushElement-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ]] ; ELSEEXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[intern-or-nil]] ; ]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[push-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[startElement-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["ACTION"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[isSelected-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; ]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[pushElement-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]]]]]], MODIFIERS-OR-NIL[KEYWORD[public]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[startDocument-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[pushElement-or-nil]] ; ]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[printStackTrace-or-nil]] ; ]]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[peekElement-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[peek-or-nil]] ; ]]]], MODIFIERS[KEYWORD-OR-NIL[private-or-nil], KEYWORD-OR-NIL[protected-or-nil]] ; CONSTRUCTOR[false-or-true] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME[IDENTIFIER[popElement-or-EBPlugin]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[pop-or-nil]] ; ]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ActionSet-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[actionName-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME[IDENTIFIER[code-or-seenWarning]] ; EXTRADIMENSIONS[0]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isSelected-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD[private]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Stack-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[noRepeat-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS[KEYWORD[private]] ; TYPE[PRIMITIVETYPECODE[boolean]] ; , MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[noRememberLast-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]]]]
+****************************** SIMILARITY *****************************
+0.11763184672275584

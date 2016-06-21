@@ -1,0 +1,238 @@
+********************************  NODE 1  *******************************
+public class ServiceManager {
+  public static void loadServices(  PluginJAR plugin,  URL uri,  PluginJAR.PluginCacheEntry cache){
+    Reader in=null;
+    try {
+      ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+      XmlParser parser=new XmlParser();
+      parser.setHandler(dh);
+      in=new BufferedReader(new InputStreamReader(uri.openStream()));
+      parser.parse(null,null,in);
+      if (cache != null)       cache.cachedServices=dh.getCachedServices();
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+    }
+catch (    Exception e) {
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,ServiceManager.class,io);
+      }
+    }
+  }
+  public static void unloadServices(  PluginJAR plugin){
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.plugin == plugin)       descriptors.remove();
+    }
+  }
+  public static void registerService(  String clazz,  String name,  String code,  PluginJAR plugin){
+    Descriptor d=new Descriptor(clazz,name,code,plugin);
+    serviceMap.put(d,d);
+  }
+  public static void unregisterService(  String clazz,  String name){
+    Descriptor d=new Descriptor(clazz,name);
+    serviceMap.remove(d);
+  }
+  public static String[] getServiceTypes(){
+    HashSet returnValue=new HashSet();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      returnValue.add(d.clazz);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  public static String[] getServiceNames(  String clazz){
+    ArrayList returnValue=new ArrayList();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.clazz.equals(clazz))       returnValue.add(d.name);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  public static Object getService(  String clazz,  String name){
+    Descriptor key=new Descriptor(clazz,name);
+    Descriptor value=(Descriptor)serviceMap.get(key);
+    if (value == null) {
+      return null;
+    }
+ else {
+      if (value.code == null) {
+        loadServices(value.plugin,value.plugin.getServicesURI(),null);
+        value=(Descriptor)serviceMap.get(key);
+      }
+      return value.getInstance();
+    }
+  }
+  static void registerService(  Descriptor d){
+    serviceMap.put(d,d);
+  }
+  private static Map serviceMap=new HashMap();
+static class Descriptor {
+    String clazz;
+    String name;
+    String code;
+    PluginJAR plugin;
+    Object instance;
+    boolean instanceIsNull;
+    Descriptor(    String clazz,    String name){
+      this.clazz=clazz;
+      this.name=name;
+    }
+    Descriptor(    String clazz,    String name,    String code,    PluginJAR plugin){
+      this.clazz=clazz;
+      this.name=name;
+      this.code=code;
+      this.plugin=plugin;
+    }
+    Object getInstance(){
+      if (instanceIsNull)       return null;
+ else       if (instance == null) {
+        instance=BeanShell.eval(null,BeanShell.getNameSpace(),code);
+        if (instance == null) {
+          instanceIsNull=true;
+        }
+      }
+      return instance;
+    }
+    public int hashCode(){
+      return name.hashCode();
+    }
+    public boolean equals(    Object o){
+      if (o instanceof Descriptor) {
+        Descriptor d=(Descriptor)o;
+        return d.clazz.equals(clazz) && d.name.equals(name);
+      }
+ else       return false;
+    }
+  }
+}
+********************************  NODE 2  *******************************
+public class ServiceManager {
+  public static void loadServices(  PluginJAR plugin,  URL uri,  PluginJAR.PluginCacheEntry cache){
+    Reader in=null;
+    try {
+      Log.log(Log.DEBUG,jEdit.class,"Loading services from " + uri);
+      ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+      XmlParser parser=new XmlParser();
+      parser.setHandler(dh);
+      in=new BufferedReader(new InputStreamReader(uri.openStream()));
+      parser.parse(null,null,in);
+      if (cache != null)       cache.cachedServices=dh.getCachedServices();
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+    }
+catch (    Exception e) {
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+      }
+    }
+  }
+  public static void unloadServices(  PluginJAR plugin){
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.plugin == plugin)       descriptors.remove();
+    }
+  }
+  public static void registerService(  String clazz,  String name,  String code,  PluginJAR plugin){
+    Descriptor d=new Descriptor(clazz,name,code,plugin);
+    serviceMap.put(d,d);
+  }
+  public static void unregisterService(  String clazz,  String name){
+    Descriptor d=new Descriptor(clazz,name);
+    serviceMap.remove(d);
+  }
+  public static String[] getServiceTypes(){
+    HashSet returnValue=new HashSet();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      returnValue.add(d.clazz);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  public static String[] getServiceNames(  String clazz){
+    ArrayList returnValue=new ArrayList();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.clazz.equals(clazz))       returnValue.add(d.name);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  public static Object getService(  String clazz,  String name){
+    Descriptor key=new Descriptor(clazz,name);
+    Descriptor value=(Descriptor)serviceMap.get(key);
+    if (value == null) {
+      return null;
+    }
+ else {
+      if (value.code == null) {
+        loadServices(value.plugin,value.plugin.getServicesURI(),null);
+        value=(Descriptor)serviceMap.get(key);
+      }
+      return value.getInstance();
+    }
+  }
+  static void registerService(  Descriptor d){
+    serviceMap.put(d,d);
+  }
+  private static Map serviceMap=new HashMap();
+static class Descriptor {
+    String clazz;
+    String name;
+    String code;
+    PluginJAR plugin;
+    Object instance;
+    boolean instanceIsNull;
+    Descriptor(    String clazz,    String name){
+      this.clazz=clazz;
+      this.name=name;
+    }
+    Descriptor(    String clazz,    String name,    String code,    PluginJAR plugin){
+      this.clazz=clazz;
+      this.name=name;
+      this.code=code;
+      this.plugin=plugin;
+    }
+    Object getInstance(){
+      if (instanceIsNull)       return null;
+ else       if (instance == null) {
+        instance=BeanShell.eval(null,BeanShell.getNameSpace(),code);
+        if (instance == null) {
+          instanceIsNull=true;
+        }
+      }
+      return instance;
+    }
+    public int hashCode(){
+      return name.hashCode();
+    }
+    public boolean equals(    Object o){
+      if (o instanceof Descriptor) {
+        Descriptor d=(Descriptor)o;
+        return d.clazz.equals(clazz) && d.name.equals(name);
+      }
+ else       return false;
+    }
+  }
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD[public]] ; INTERFACE[false] ; NAME[IDENTIFIER[ServiceManager]] ; BODYDECLARATIONS[MODIFIERS[KEYWORD[static]] ; INTERFACE[false] ; NAME[IDENTIFIER[Descriptor]] ; BODYDECLARATIONS[CONSTRUCTOR[true] ; NAME[IDENTIFIER[Descriptor]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[code]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[PluginJAR]]] ; VARARGS[false] ; NAME[IDENTIFIER[plugin]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[clazz]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[clazz]]], EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[name]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[name]]], EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[code]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[code]]], EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[plugin]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[plugin]]]]], MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[boolean]] ; NAME[IDENTIFIER[equals]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[Object]]] ; VARARGS[false] ; NAME[IDENTIFIER[o]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[LEFTOPERAND[IDENTIFIER[o]] ; RIGHTOPERAND[NAME[IDENTIFIER[Descriptor]]]] ; THENSTATEMENT[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; EXPRESSION[IDENTIFIER[o]]]], EXPRESSION[LEFTOPERAND[EXPRESSION[QUALIFIER[IDENTIFIER[d]] ; NAME[IDENTIFIER[clazz]]] ; NAME[IDENTIFIER[equals]] ; ARGUMENTS[IDENTIFIER[clazz]]] ; OPERATOR[&&] ; RIGHTOPERAND[EXPRESSION[QUALIFIER[IDENTIFIER[d]] ; NAME[IDENTIFIER[name]]] ; NAME[IDENTIFIER[equals]] ; ARGUMENTS[IDENTIFIER[name]]] ; ]]] ; ELSESTATEMENT[EXPRESSION[BOOLEANVALUE[false]]]]], CONSTRUCTOR[true] ; NAME[IDENTIFIER[Descriptor]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[clazz]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[clazz]]], EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[name]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[name]]]]], MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[int]] ; NAME[IDENTIFIER[hashCode]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[name]] ; NAME[IDENTIFIER[hashCode]] ; ]]], CONSTRUCTOR[false] ; RETURNTYPE2[NAME[IDENTIFIER[Object]]] ; NAME[IDENTIFIER[getInstance]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[IDENTIFIER[instanceIsNull]] ; ELSESTATEMENT[EXPRESSION[LEFTOPERAND[IDENTIFIER[instance]] ; OPERATOR[==] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION[LEFTHANDSIDE[IDENTIFIER[instance]] ; OPERATOR[=] ; RIGHTHANDSIDE[EXPRESSION[IDENTIFIER[BeanShell]] ; NAME[IDENTIFIER[eval]] ; ARGUMENTS[IDENTIFIER[code], EXPRESSION[IDENTIFIER[BeanShell]] ; NAME[IDENTIFIER[getNameSpace]] ; , ]]], EXPRESSION[LEFTOPERAND[IDENTIFIER[instance]] ; OPERATOR[==] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION[LEFTHANDSIDE[IDENTIFIER[instanceIsNull]] ; OPERATOR[=] ; RIGHTHANDSIDE[BOOLEANVALUE[true]]]]]]]], EXPRESSION[IDENTIFIER[instance]]]], TYPE[NAME[IDENTIFIER[String]]] ; FRAGMENTS[NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0]], TYPE[NAME[IDENTIFIER[String]]] ; FRAGMENTS[NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]], TYPE[NAME[IDENTIFIER[String]]] ; FRAGMENTS[NAME[IDENTIFIER[code]] ; EXTRADIMENSIONS[0]], TYPE[NAME[IDENTIFIER[PluginJAR]]] ; FRAGMENTS[NAME[IDENTIFIER[plugin]] ; EXTRADIMENSIONS[0]], TYPE[NAME[IDENTIFIER[Object]]] ; FRAGMENTS[NAME[IDENTIFIER[instance]] ; EXTRADIMENSIONS[0]], TYPE[PRIMITIVETYPECODE[boolean]] ; FRAGMENTS[NAME[IDENTIFIER[instanceIsNull]] ; EXTRADIMENSIONS[0]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[loadServices]] ; PARAMETERS[TYPE[NAME[QUALIFIER[IDENTIFIER[PluginJAR]] ; NAME[IDENTIFIER[PluginCacheEntry]]]] ; VARARGS[false] ; NAME[IDENTIFIER[cache]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[PluginJAR]]] ; VARARGS[false] ; NAME[IDENTIFIER[plugin]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[URL]]] ; VARARGS[false] ; NAME[IDENTIFIER[uri]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[ServiceListHandler]]] ; FRAGMENTS[NAME[IDENTIFIER[dh]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[ServiceListHandler]]] ; ARGUMENTS[IDENTIFIER[plugin], IDENTIFIER[uri]]]], TYPE[NAME[IDENTIFIER[XmlParser]]] ; FRAGMENTS[NAME[IDENTIFIER[parser]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[XmlParser]]] ; ]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[log-or-nil]] ; ARGUMENTS-OR-NIL[LEFTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["Loading services from "-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[uri-or-nil]] ; , QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DEBUG-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[jEdit-or-nil]]]]], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[in]] ; OPERATOR[=] ; RIGHTHANDSIDE[TYPE[NAME[IDENTIFIER[BufferedReader]]] ; ARGUMENTS[TYPE[NAME[IDENTIFIER[InputStreamReader]]] ; ARGUMENTS[EXPRESSION[IDENTIFIER[uri]] ; NAME[IDENTIFIER[openStream]] ; ]]]], EXPRESSION[LEFTOPERAND[IDENTIFIER[cache]] ; OPERATOR[!=] ; ] ; THENSTATEMENT[EXPRESSION[LEFTHANDSIDE[QUALIFIER[IDENTIFIER[cache]] ; NAME[IDENTIFIER[cachedServices]]] ; OPERATOR[=] ; RIGHTHANDSIDE[EXPRESSION[IDENTIFIER[dh]] ; NAME[IDENTIFIER[getCachedServices]] ; ]]], EXPRESSION[EXPRESSION[IDENTIFIER[parser]] ; NAME[IDENTIFIER[parse]] ; ARGUMENTS[IDENTIFIER[in], , ]], EXPRESSION[EXPRESSION[IDENTIFIER[parser]] ; NAME[IDENTIFIER[setHandler]] ; ARGUMENTS[IDENTIFIER[dh]]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[XmlException]]] ; VARARGS[false] ; NAME[IDENTIFIER[xe]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[String]]] ; FRAGMENTS[NAME[IDENTIFIER[message]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[IDENTIFIER[xe]] ; NAME[IDENTIFIER[getMessage]] ; ]], TYPE[PRIMITIVETYPECODE[int]] ; FRAGMENTS[NAME[IDENTIFIER[line]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[IDENTIFIER[xe]] ; NAME[IDENTIFIER[getLine]] ; ]]]], EXCEPTION[TYPE[NAME[IDENTIFIER[Exception]]] ; VARARGS[false] ; NAME[IDENTIFIER[e]] ; EXTRADIMENSIONS[0]] ; ] ; FINALLY[STATEMENTS[BODY[STATEMENTS[EXPRESSION[LEFTOPERAND[IDENTIFIER[in]] ; OPERATOR[!=] ; ] ; THENSTATEMENT[EXPRESSION[EXPRESSION[IDENTIFIER[in]] ; NAME[IDENTIFIER[close]] ; ]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[IOException]]] ; VARARGS[false] ; NAME[IDENTIFIER[io]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[log-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[io-or-nil], QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ERROR-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ServiceManager-or-nil]]]]]]]]]], TYPE[NAME[IDENTIFIER[Reader]]] ; FRAGMENTS[NAME[IDENTIFIER[in]] ; EXTRADIMENSIONS[0] ; ]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[registerService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[code]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[PluginJAR]]] ; VARARGS[false] ; NAME[IDENTIFIER[plugin]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; ARGUMENTS[IDENTIFIER[clazz], IDENTIFIER[name], IDENTIFIER[code], IDENTIFIER[plugin]]]], EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[put]] ; ARGUMENTS[IDENTIFIER[d], IDENTIFIER[d]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[NAME[IDENTIFIER[Object]]] ; NAME[IDENTIFIER[getService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[value]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[get]] ; ARGUMENTS[IDENTIFIER[key]]]]], TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[key]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; ARGUMENTS[IDENTIFIER[clazz], IDENTIFIER[name]]]], EXPRESSION[LEFTOPERAND[IDENTIFIER[value]] ; OPERATOR[==] ; ] ; ELSESTATEMENT[STATEMENTS[EXPRESSION[LEFTOPERAND[QUALIFIER[IDENTIFIER[value]] ; NAME[IDENTIFIER[code]]] ; OPERATOR[==] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION[NAME[IDENTIFIER[loadServices]] ; ARGUMENTS[EXPRESSION[QUALIFIER[IDENTIFIER[value]] ; NAME[IDENTIFIER[plugin]]] ; NAME[IDENTIFIER[getServicesURI]] ; , QUALIFIER[IDENTIFIER[value]] ; NAME[IDENTIFIER[plugin]], ]], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[value]] ; OPERATOR[=] ; RIGHTHANDSIDE[TYPE[NAME[IDENTIFIER[Descriptor]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[get]] ; ARGUMENTS[IDENTIFIER[key]]]]]]], EXPRESSION[EXPRESSION[IDENTIFIER[value]] ; NAME[IDENTIFIER[getInstance]] ; ]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[COMPONENTTYPE[NAME[IDENTIFIER[String]]]] ; NAME[IDENTIFIER[getServiceNames]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[hasNext]] ; ] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[next]] ; ]]], EXPRESSION[EXPRESSION[QUALIFIER[IDENTIFIER[d]] ; NAME[IDENTIFIER[clazz]]] ; NAME[IDENTIFIER[equals]] ; ARGUMENTS[IDENTIFIER[clazz]]] ; THENSTATEMENT[EXPRESSION[EXPRESSION[IDENTIFIER[returnValue]] ; NAME[IDENTIFIER[add]] ; ARGUMENTS[QUALIFIER[IDENTIFIER[d]] ; NAME[IDENTIFIER[name]]]]]]], TYPE[NAME[IDENTIFIER[Iterator]]] ; FRAGMENTS[NAME[IDENTIFIER[descriptors]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[keySet]] ; ] ; NAME[IDENTIFIER[iterator]] ; ]], TYPE[NAME[IDENTIFIER[ArrayList]]] ; FRAGMENTS[NAME[IDENTIFIER[returnValue]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[ArrayList]]] ; ]], EXPRESSION[TYPE[COMPONENTTYPE[NAME[IDENTIFIER[String]]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[returnValue]] ; NAME[IDENTIFIER[toArray]] ; ARGUMENTS[TYPE[COMPONENTTYPE[NAME[IDENTIFIER[String]]]] ; DIMENSIONS[EXPRESSION[IDENTIFIER[returnValue]] ; NAME[IDENTIFIER[size]] ; ]]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[unregisterService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[clazz]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; ARGUMENTS[IDENTIFIER[clazz], IDENTIFIER[name]]]], EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[remove]] ; ARGUMENTS[IDENTIFIER[d]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[unloadServices]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[PluginJAR]]] ; VARARGS[false] ; NAME[IDENTIFIER[plugin]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[hasNext]] ; ] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[next]] ; ]]], EXPRESSION[LEFTOPERAND[QUALIFIER[IDENTIFIER[d]] ; NAME[IDENTIFIER[plugin]]] ; OPERATOR[==] ; RIGHTOPERAND[IDENTIFIER[plugin]] ; ] ; THENSTATEMENT[EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[remove]] ; ]]]], TYPE[NAME[IDENTIFIER[Iterator]]] ; FRAGMENTS[NAME[IDENTIFIER[descriptors]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[keySet]] ; ] ; NAME[IDENTIFIER[iterator]] ; ]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[COMPONENTTYPE[NAME[IDENTIFIER[String]]]] ; NAME[IDENTIFIER[getServiceTypes]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[hasNext]] ; ] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[descriptors]] ; NAME[IDENTIFIER[next]] ; ]]], EXPRESSION[EXPRESSION[IDENTIFIER[returnValue]] ; NAME[IDENTIFIER[add]] ; ARGUMENTS[QUALIFIER[IDENTIFIER[d]] ; NAME[IDENTIFIER[clazz]]]]]], TYPE[NAME[IDENTIFIER[Iterator]]] ; FRAGMENTS[NAME[IDENTIFIER[descriptors]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[keySet]] ; ] ; NAME[IDENTIFIER[iterator]] ; ]], TYPE[NAME[IDENTIFIER[HashSet]]] ; FRAGMENTS[NAME[IDENTIFIER[returnValue]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[HashSet]]] ; ]], EXPRESSION[TYPE[COMPONENTTYPE[NAME[IDENTIFIER[String]]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[returnValue]] ; NAME[IDENTIFIER[toArray]] ; ARGUMENTS[TYPE[COMPONENTTYPE[NAME[IDENTIFIER[String]]]] ; DIMENSIONS[EXPRESSION[IDENTIFIER[returnValue]] ; NAME[IDENTIFIER[size]] ; ]]]]]], MODIFIERS[KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[registerService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[Descriptor]]] ; VARARGS[false] ; NAME[IDENTIFIER[d]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[serviceMap]] ; NAME[IDENTIFIER[put]] ; ARGUMENTS[IDENTIFIER[d], IDENTIFIER[d]]]]], MODIFIERS[KEYWORD[private], KEYWORD[static]] ; TYPE[NAME[IDENTIFIER[Map]]] ; FRAGMENTS[NAME[IDENTIFIER[serviceMap]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[HashMap]]] ; ]]]]
+****************************** SIMILARITY *****************************
+0.9826689774696707

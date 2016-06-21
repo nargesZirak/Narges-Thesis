@@ -1,0 +1,176 @@
+
+============================================================================
+ID: private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+MATCHES: 1.0
+============================================================================
+ID: private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,"Exception " + "in work thread:");
+}
+
+MATCHES: 0.8842767295597483
+============================================================================
+ID: private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+catch (Abort a) {
+  Log.log(Log.ERROR,WorkThread.class,"Unhandled abort");
+}
+
+MATCHES: 0.8839116719242902
+============================================================================
+ID: private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,t);
+}
+
+MATCHES: 0.8839116719242902
+============================================================================
+ID: private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+public void run(){
+  Log.log(Log.DEBUG,this,"Work request thread starting [" + getName() + "]");
+  for (; ; ) {
+    doRequests();
+  }
+}
+
+MATCHES: 0.8492188084024819
+============================================================================
+ID: private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+MATCHES: 0.7845272040802685

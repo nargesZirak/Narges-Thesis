@@ -1,0 +1,96 @@
+********************************  NODE 1  *******************************
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+            Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+********************************  NODE 2  *******************************
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+        Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD[public]] ; INTERFACE[false] ; NAME[IDENTIFIER[EditBus]] ; BODYDECLARATIONS[MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[send]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[EBMessage]]] ; VARARGS[false] ; NAME[IDENTIFIER[message]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[INITIALIZERS[TYPE[PRIMITIVETYPECODE[int]] ; FRAGMENTS[NAME[IDENTIFIER[i]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TOKEN[0]]]] ; EXPRESSION[LEFTOPERAND[IDENTIFIER[i]] ; OPERATOR[<] ; RIGHTOPERAND[QUALIFIER[IDENTIFIER[comps]] ; NAME[IDENTIFIER[length]]] ; ] ; UPDATERS[OPERAND[IDENTIFIER[i]] ; OPERATOR[++]] ; BODY[STATEMENTS[BODY[STATEMENTS[EXPRESSION[QUALIFIER[IDENTIFIER[Debug]] ; NAME[IDENTIFIER[EB_TIMER]]] ; THENSTATEMENT[STATEMENTS[TYPE[PRIMITIVETYPECODE[long]] ; FRAGMENTS[NAME[IDENTIFIER[time]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[LEFTOPERAND[EXPRESSION[IDENTIFIER[System]] ; NAME[IDENTIFIER[currentTimeMillis]] ; ] ; OPERATOR[-] ; RIGHTOPERAND[IDENTIFIER[start]] ; ]]], TYPE[PRIMITIVETYPECODE[long]] ; FRAGMENTS[NAME[IDENTIFIER[start]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[IDENTIFIER[System]] ; NAME[IDENTIFIER[currentTimeMillis]] ; ]], EXPRESSION[LEFTOPERAND[IDENTIFIER[time]] ; OPERATOR[!=] ; RIGHTOPERAND[TOKEN[0]] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[log-or-nil]] ; ARGUMENTS-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[comp-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[": "-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[IDENTIFIER-OR-NIL[time-or-nil], ESCAPEDVALUE-OR-NIL[" ms"-or-nil]], QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DEBUG-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EditBus-or-nil]]]]]]], EXPRESSION[EXPRESSION[IDENTIFIER[comp]] ; NAME[IDENTIFIER[handleMessage]] ; ARGUMENTS[IDENTIFIER[message]]]]] ; ELSESTATEMENT[EXPRESSION[EXPRESSION[ARRAY[IDENTIFIER[comps]] ; INDEX[IDENTIFIER[i]]] ; NAME[IDENTIFIER[handleMessage]] ; ARGUMENTS[IDENTIFIER[message]]]], TYPE[NAME[IDENTIFIER[EBComponent]]] ; FRAGMENTS[NAME[IDENTIFIER[comp]] ; EXTRADIMENSIONS[0] ; INITIALIZER[ARRAY[IDENTIFIER[comps]] ; INDEX[IDENTIFIER[i]]]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[Throwable]]] ; VARARGS[false] ; NAME[IDENTIFIER[t]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[log-or-nil]] ; ARGUMENTS-OR-NIL[LEFTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["Exception"-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[" while sending message on EditBus:"-or-nil]] ; , QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ERROR-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EditBus-or-nil]]]]]]]]]], TYPE[COMPONENTTYPE[NAME[IDENTIFIER[EBComponent]]]] ; FRAGMENTS[NAME[IDENTIFIER[comps]] ; EXTRADIMENSIONS[0] ; INITIALIZER[NAME[IDENTIFIER[getComponents]] ; ]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[addToBus]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[EBComponent]]] ; VARARGS[false] ; NAME[IDENTIFIER[comp]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[IDENTIFIER[components]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[components]] ; NAME[IDENTIFIER[add]] ; ARGUMENTS[IDENTIFIER[comp]]], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[copyComponents]] ; OPERATOR[=] ; ]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[removeFromBus]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[EBComponent]]] ; VARARGS[false] ; NAME[IDENTIFIER[comp]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[IDENTIFIER[components]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[components]] ; NAME[IDENTIFIER[remove]] ; ARGUMENTS[IDENTIFIER[comp]]], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[copyComponents]] ; OPERATOR[=] ; ]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[COMPONENTTYPE[NAME[IDENTIFIER[EBComponent]]]] ; NAME[IDENTIFIER[getComponents]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[IDENTIFIER[components]] ; BODY[STATEMENTS[EXPRESSION[LEFTOPERAND[IDENTIFIER[copyComponents]] ; OPERATOR[==] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION[LEFTHANDSIDE[IDENTIFIER[copyComponents]] ; OPERATOR[=] ; RIGHTHANDSIDE[TYPE[COMPONENTTYPE[NAME[IDENTIFIER[EBComponent]]]] ; EXPRESSION[EXPRESSION[IDENTIFIER[components]] ; NAME[IDENTIFIER[toArray]] ; ARGUMENTS[TYPE[COMPONENTTYPE[NAME[IDENTIFIER[EBComponent]]]] ; DIMENSIONS[EXPRESSION[IDENTIFIER[components]] ; NAME[IDENTIFIER[size]] ; ]]]]]]], EXPRESSION[IDENTIFIER[copyComponents]]]]]], MODIFIERS[KEYWORD[private], KEYWORD[static]] ; TYPE[NAME[IDENTIFIER[ArrayList]]] ; FRAGMENTS[NAME[IDENTIFIER[components]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[ArrayList]]] ; ]], MODIFIERS[KEYWORD[private], KEYWORD[static]] ; TYPE[COMPONENTTYPE[NAME[IDENTIFIER[EBComponent]]]] ; FRAGMENTS[NAME[IDENTIFIER[copyComponents]] ; EXTRADIMENSIONS[0]], MODIFIERS[KEYWORD[private]] ; CONSTRUCTOR[true] ; NAME[IDENTIFIER[EditBus]] ; EXTRADIMENSIONS[0] ; ]]
+****************************** SIMILARITY *****************************
+0.9272727272727272

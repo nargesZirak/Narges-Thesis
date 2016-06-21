@@ -1,0 +1,2494 @@
+/*
+* This file contains 10 example of Java classes using logging calls for JEdit 4.2 pre 15
+*/
+public class BufferHistory {
+  public static Entry getEntry(  String path){
+    Iterator iter=history.iterator();
+    while (iter.hasNext()) {
+      Entry entry=(Entry)iter.next();
+      if (pathsCaseInsensitive) {
+        if (entry.path.equalsIgnoreCase(path))         return entry;
+      }
+ else {
+        if (entry.path.equals(path))         return entry;
+      }
+    }
+    return null;
+  }
+  public static void setEntry(  String path,  int caret,  Selection[] selection,  String encoding){
+    removeEntry(path);
+    addEntry(new Entry(path,caret,selectionToString(selection),encoding));
+    EditBus.send(new DynamicMenuChanged("recent-files"));
+  }
+  /** 
+ * @since jEdit 4.2pre2
+ */
+  public static List getHistory(){
+    return history;
+  }
+  /** 
+ * @deprecated Call {@link #getHistory()} instead.
+ */
+  public static Vector getBufferHistory(){
+    Vector retVal=new Vector(history.size());
+    Iterator iter=history.iterator();
+    while (iter.hasNext())     retVal.add(iter.next());
+    return retVal;
+  }
+  public static void load(){
+    String settingsDirectory=jEdit.getSettingsDirectory();
+    if (settingsDirectory == null)     return;
+    File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+    if (!recent.exists())     return;
+    recentModTime=recent.lastModified();
+    Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+    RecentHandler handler=new RecentHandler();
+    XmlParser parser=new XmlParser();
+    Reader in=null;
+    parser.setHandler(handler);
+    try {
+      in=new BufferedReader(new FileReader(recent));
+      parser.parse(null,null,in);
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+      Log.log(Log.ERROR,BufferHistory.class,recent + ":" + line+ ": "+ message);
+    }
+catch (    FileNotFoundException fnf) {
+    }
+catch (    Exception e) {
+      Log.log(Log.ERROR,BufferHistory.class,e);
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,BufferHistory.class,io);
+      }
+    }
+  }
+  public static void save(){
+    String settingsDirectory=jEdit.getSettingsDirectory();
+    if (settingsDirectory == null)     return;
+    File file1=new File(MiscUtilities.constructPath(settingsDirectory,"#recent.xml#save#"));
+    File file2=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+    if (file2.exists() && file2.lastModified() != recentModTime) {
+      Log.log(Log.WARNING,BufferHistory.class,file2 + " changed on disk; will not save recent" + " files");
+      return;
+    }
+    jEdit.backupSettingsFile(file2);
+    Log.log(Log.MESSAGE,BufferHistory.class,"Saving " + file1);
+    String lineSep=System.getProperty("line.separator");
+    boolean ok=false;
+    BufferedWriter out=null;
+    try {
+      out=new BufferedWriter(new FileWriter(file1));
+      out.write("<?xml version=\"1.0\"?>");
+      out.write(lineSep);
+      out.write("<!DOCTYPE RECENT SYSTEM \"recent.dtd\">");
+      out.write(lineSep);
+      out.write("<RECENT>");
+      out.write(lineSep);
+      Iterator iter=history.iterator();
+      while (iter.hasNext()) {
+        out.write("<ENTRY>");
+        out.write(lineSep);
+        Entry entry=(Entry)iter.next();
+        out.write("<PATH>");
+        out.write(MiscUtilities.charsToEntities(entry.path));
+        out.write("</PATH>");
+        out.write(lineSep);
+        out.write("<CARET>");
+        out.write(String.valueOf(entry.caret));
+        out.write("</CARET>");
+        out.write(lineSep);
+        if (entry.selection != null && entry.selection.length() > 0) {
+          out.write("<SELECTION>");
+          out.write(entry.selection);
+          out.write("</SELECTION>");
+          out.write(lineSep);
+        }
+        if (entry.encoding != null) {
+          out.write("<ENCODING>");
+          out.write(entry.encoding);
+          out.write("</ENCODING>");
+          out.write(lineSep);
+        }
+        out.write("</ENTRY>");
+        out.write(lineSep);
+      }
+      out.write("</RECENT>");
+      out.write(lineSep);
+      out.close();
+      ok=true;
+    }
+ catch (    Exception e) {
+      Log.log(Log.ERROR,BufferHistory.class,e);
+    }
+ finally {
+      try {
+        if (out != null)         out.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+    if (ok) {
+      file2.delete();
+      file1.renameTo(file2);
+    }
+    recentModTime=file2.lastModified();
+  }
+  private static LinkedList history;
+  private static boolean pathsCaseInsensitive;
+  private static long recentModTime;
+static {
+    history=new LinkedList();
+    pathsCaseInsensitive=OperatingSystem.isDOSDerived() || OperatingSystem.isMacOS();
+  }
+  static void addEntry(  Entry entry){
+    history.addFirst(entry);
+    int max=jEdit.getIntegerProperty("recentFiles",50);
+    while (history.size() > max)     history.removeLast();
+  }
+  static void removeEntry(  String path){
+    Iterator iter=history.iterator();
+    while (iter.hasNext()) {
+      Entry entry=(Entry)iter.next();
+      if (pathsCaseInsensitive) {
+        if (entry.path.equalsIgnoreCase(path)) {
+          iter.remove();
+          return;
+        }
+      }
+ else {
+        if (entry.path.equals(path)) {
+          iter.remove();
+          return;
+        }
+      }
+    }
+  }
+  private static String selectionToString(  Selection[] s){
+    if (s == null)     return null;
+    StringBuffer buf=new StringBuffer();
+    for (int i=0; i < s.length; i++) {
+      if (i != 0)       buf.append(' ');
+      Selection sel=s[i];
+      if (sel instanceof Selection.Range)       buf.append("range ");
+ else       buf.append("rect ");
+      buf.append(sel.getStart());
+      buf.append(' ');
+      buf.append(sel.getEnd());
+    }
+    return buf.toString();
+  }
+  private static Selection[] stringToSelection(  String s){
+    if (s == null)     return null;
+    Vector selection=new Vector();
+    StringTokenizer st=new StringTokenizer(s);
+    while (st.hasMoreTokens()) {
+      String type=st.nextToken();
+      int start=Integer.parseInt(st.nextToken());
+      int end=Integer.parseInt(st.nextToken());
+      if (end < start) {
+        continue;
+      }
+      Selection sel;
+      if (type.equals("range"))       sel=new Selection.Range(start,end);
+ else       sel=new Selection.Rect(start,end);
+      selection.addElement(sel);
+    }
+    Selection[] returnValue=new Selection[selection.size()];
+    selection.copyInto(returnValue);
+    return returnValue;
+  }
+  /** 
+ * Recent file list entry.
+ */
+public static class Entry {
+    public String path;
+    public int caret;
+    public String selection;
+    public String encoding;
+    public Selection[] getSelection(){
+      return stringToSelection(selection);
+    }
+    public Entry(    String path,    int caret,    String selection,    String encoding){
+      this.path=path;
+      this.caret=caret;
+      this.selection=selection;
+      this.encoding=encoding;
+    }
+    public String toString(){
+      return path + ": " + caret;
+    }
+  }
+static class RecentHandler extends HandlerBase {
+    public void endDocument() throws java.lang.Exception {
+      int max=jEdit.getIntegerProperty("recentFiles",50);
+      while (history.size() > max)       history.removeLast();
+    }
+    public Object resolveEntity(    String publicId,    String systemId){
+      if ("recent.dtd".equals(systemId)) {
+        return new StringReader("<!-- -->");
+      }
+      return null;
+    }
+    public void doctypeDecl(    String name,    String publicId,    String systemId) throws Exception {
+      if ("RECENT".equals(name))       return;
+      Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+    }
+    public void endElement(    String name){
+      if (name.equals("ENTRY")) {
+        history.addLast(new Entry(path,caret,selection,encoding));
+        path=null;
+        caret=0;
+        selection=null;
+        encoding=null;
+      }
+ else       if (name.equals("PATH"))       path=charData;
+ else       if (name.equals("CARET"))       caret=Integer.parseInt(charData);
+ else       if (name.equals("SELECTION"))       selection=charData;
+ else       if (name.equals("ENCODING"))       encoding=charData;
+    }
+    public void charData(    char[] ch,    int start,    int length){
+      charData=new String(ch,start,length);
+    }
+    private String path;
+    private int caret;
+    private String selection;
+    private String encoding;
+    private String charData;
+  }
+}
+===================================================================
+static class RecentHandler extends HandlerBase {
+  public void endDocument() throws java.lang.Exception {
+    int max=jEdit.getIntegerProperty("recentFiles",50);
+    while (history.size() > max)     history.removeLast();
+  }
+  public Object resolveEntity(  String publicId,  String systemId){
+    if ("recent.dtd".equals(systemId)) {
+      return new StringReader("<!-- -->");
+    }
+    return null;
+  }
+  public void doctypeDecl(  String name,  String publicId,  String systemId) throws Exception {
+    if ("RECENT".equals(name))     return;
+    Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+  }
+  public void endElement(  String name){
+    if (name.equals("ENTRY")) {
+      history.addLast(new Entry(path,caret,selection,encoding));
+      path=null;
+      caret=0;
+      selection=null;
+      encoding=null;
+    }
+ else     if (name.equals("PATH"))     path=charData;
+ else     if (name.equals("CARET"))     caret=Integer.parseInt(charData);
+ else     if (name.equals("SELECTION"))     selection=charData;
+ else     if (name.equals("ENCODING"))     encoding=charData;
+  }
+  public void charData(  char[] ch,  int start,  int length){
+    charData=new String(ch,start,length);
+  }
+  private String path;
+  private int caret;
+  private String selection;
+  private String encoding;
+  private String charData;
+}
+===================================================================
+
+public class JARClassLoader extends ClassLoader {
+  /** 
+ * This constructor creates a class loader for loading classes from all
+ * plugins. For example BeanShell uses one of these so that scripts can
+ * use plugin classes.
+ */
+  public JARClassLoader(){
+    id=INDEX++;
+    live++;
+  }
+  /** 
+ * @exception ClassNotFoundException if the class could not be found
+ */
+  public Class loadClass(  String clazz,  boolean resolveIt) throws ClassNotFoundException {
+    Object obj=classHash.get(clazz);
+    if (obj == NO_CLASS) {
+      throw new ClassNotFoundException(clazz);
+    }
+ else     if (obj instanceof JARClassLoader) {
+      JARClassLoader classLoader=(JARClassLoader)obj;
+      return classLoader._loadClass(clazz,resolveIt);
+    }
+    try {
+      Class cls;
+      ClassLoader parentLoader=getClass().getClassLoader();
+      if (parentLoader != null)       cls=parentLoader.loadClass(clazz);
+ else       cls=findSystemClass(clazz);
+      return cls;
+    }
+ catch (    ClassNotFoundException cnf) {
+      classHash.put(clazz,NO_CLASS);
+      throw cnf;
+    }
+  }
+  public InputStream getResourceAsStream(  String name){
+    if (jar == null)     return null;
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       return getSystemResourceAsStream(name);
+ else       return zipFile.getInputStream(entry);
+    }
+ catch (    IOException io) {
+      Log.log(Log.ERROR,this,io);
+      return null;
+    }
+  }
+  public URL getResource(  String name){
+    if (jar == null)     return null;
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       return getSystemResource(name);
+ else       return new URL(getResourceAsPath(name));
+    }
+ catch (    IOException io) {
+      Log.log(Log.ERROR,this,io);
+      return null;
+    }
+  }
+  public String getResourceAsPath(  String name){
+    if (jar == null)     return null;
+    if (!name.startsWith("/"))     name="/" + name;
+    return "jeditresource:/" + MiscUtilities.getFileName(jar.getPath()) + "!"+ name;
+  }
+  /** 
+ * @deprecated Call <code>PluginJAR.getZipFile()</code> instead.
+ */
+  public ZipFile getZipFile(){
+    try {
+      return jar.getZipFile();
+    }
+ catch (    IOException io) {
+      Log.log(Log.ERROR,this,io);
+      return null;
+    }
+  }
+  /** 
+ * For debugging.
+ */
+  public static void dump(){
+    Log.log(Log.DEBUG,JARClassLoader.class,"Total instances created: " + INDEX);
+    Log.log(Log.DEBUG,JARClassLoader.class,"Live instances: " + live);
+synchronized (classHash) {
+      Iterator entries=classHash.entrySet().iterator();
+      while (entries.hasNext()) {
+        Map.Entry entry=(Map.Entry)entries.next();
+        if (entry.getValue() != NO_CLASS) {
+          Log.log(Log.DEBUG,JARClassLoader.class,entry.getKey() + " ==> " + entry.getValue());
+        }
+      }
+    }
+  }
+  public String toString(){
+    if (jar == null)     return "<anonymous>(" + id + ")";
+ else     return jar.getPath() + " (" + id+ ")";
+  }
+  protected void finalize(){
+    live--;
+  }
+  /** 
+ * @since jEdit 4.2pre1
+ */
+  JARClassLoader(  PluginJAR jar){
+    this();
+    this.jar=jar;
+  }
+  void activate(){
+    String[] classes=jar.getClasses();
+    if (classes != null) {
+      for (int i=0; i < classes.length; i++) {
+        classHash.put(classes[i],this);
+      }
+    }
+  }
+  void deactivate(){
+    String[] classes=jar.getClasses();
+    if (classes == null)     return;
+    for (int i=0; i < classes.length; i++) {
+      Object loader=classHash.get(classes[i]);
+      if (loader == this)       classHash.remove(classes[i]);
+ else       ;
+    }
+  }
+  private static final Object NO_CLASS=new Object();
+  private static int INDEX;
+  private static int live;
+  private static Hashtable classHash=new Hashtable();
+  private int id;
+  private PluginJAR jar;
+  /** 
+ * Load class from this JAR only.
+ */
+  private synchronized Class _loadClass(  String clazz,  boolean resolveIt) throws ClassNotFoundException {
+    jar.activatePlugin();
+synchronized (this) {
+      Class cls=findLoadedClass(clazz);
+      if (cls != null) {
+        if (resolveIt)         resolveClass(cls);
+        return cls;
+      }
+      String name=MiscUtilities.classToFile(clazz);
+      try {
+        ZipFile zipFile=jar.getZipFile();
+        ZipEntry entry=zipFile.getEntry(name);
+        if (entry == null)         throw new ClassNotFoundException(clazz);
+        InputStream in=zipFile.getInputStream(entry);
+        int len=(int)entry.getSize();
+        byte[] data=new byte[len];
+        int success=0;
+        int offset=0;
+        while (success < len) {
+          len-=success;
+          offset+=success;
+          success=in.read(data,offset,len);
+          if (success == -1) {
+            Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+            throw new ClassNotFoundException(clazz);
+          }
+        }
+        cls=defineClass(clazz,data,0,data.length);
+        if (resolveIt)         resolveClass(cls);
+        return cls;
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,this,io);
+        throw new ClassNotFoundException(clazz);
+      }
+    }
+  }
+}
+===================================================================
+
+public class PluginJAR {
+  /** 
+ * Returns the full path name of this plugin's JAR file.
+ */
+  public String getPath(){
+    return path;
+  }
+  /** 
+ * Returns the full path name of this plugin's summary file.
+ * The summary file is used to store certain information which allows
+ * loading of the plugin's resources and core class to be deferred
+ * until the plugin is first used. As long as a plugin is using the
+ * jEdit 4.2 plugin API, no extra effort is required to take advantage
+ * of the summary cache.
+ */
+  public String getCachePath(){
+    return cachePath;
+  }
+  /** 
+ * Returns a file pointing to the plugin JAR.
+ */
+  public File getFile(){
+    return file;
+  }
+  /** 
+ * Returns the plugin's class loader.
+ */
+  public JARClassLoader getClassLoader(){
+    return classLoader;
+  }
+  /** 
+ * Returns the plugin's JAR file, opening it if necessary.
+ * @since jEdit 4.2pre1
+ */
+  public synchronized ZipFile getZipFile() throws IOException {
+    if (zipFile == null) {
+      Log.log(Log.DEBUG,this,"Opening " + path);
+      zipFile=new ZipFile(path);
+    }
+    return zipFile;
+  }
+  /** 
+ * @deprecated Call getActionSet() instead
+ */
+  public ActionSet getActions(){
+    return getActionSet();
+  }
+  /** 
+ * Returns the plugin's action set for the jEdit action context{@link jEdit#getActionContext()}. These actions are loaded from
+ * the <code>actions.xml</code> file; see {@link ActionSet}.
+ * .
+ * @since jEdit 4.2pre1
+ */
+  public ActionSet getActionSet(){
+    return actions;
+  }
+  /** 
+ * Returns the plugin's action set for the file system browser action
+ * context {@link org.gjt.sp.jedit.browser.VFSBrowser#getActionContext()}.
+ * These actions are loaded from
+ * the <code>browser.actions.xml</code> file; see {@link ActionSet}.
+ * .
+ * @since jEdit 4.2pre1
+ */
+  public ActionSet getBrowserActionSet(){
+    return browserActions;
+  }
+  /** 
+ * Returns true if all dependencies are satisified, false otherwise.
+ * Also if dependencies are not satisfied, the plugin is marked as
+ * "broken".
+ */
+  public boolean checkDependencies(){
+    if (plugin == null)     return true;
+    int i=0;
+    boolean ok=true;
+    boolean optional=false;
+    String name=plugin.getClassName();
+    String dep;
+    while ((dep=jEdit.getProperty("plugin." + name + ".depend."+ i++)) != null) {
+      if (dep.startsWith("optional ")) {
+        optional=true;
+        dep=dep.substring("optional ".length());
+      }
+      int index=dep.indexOf(' ');
+      if (index == -1) {
+        Log.log(Log.ERROR,this,name + " has an invalid" + " dependency: "+ dep);
+        ok=false;
+        continue;
+      }
+      String what=dep.substring(0,index);
+      String arg=dep.substring(index + 1);
+      if (what.equals("jdk")) {
+        if (!optional && MiscUtilities.compareStrings(System.getProperty("java.version"),arg,false) < 0) {
+          String[] args={arg,System.getProperty("java.version")};
+          jEdit.pluginError(path,"plugin-error.dep-jdk",args);
+          ok=false;
+        }
+      }
+ else       if (what.equals("jedit")) {
+        if (arg.length() != 11) {
+          Log.log(Log.ERROR,this,"Invalid jEdit version" + " number: " + arg);
+          ok=false;
+        }
+        if (!optional && MiscUtilities.compareStrings(jEdit.getBuild(),arg,false) < 0) {
+          String needs=MiscUtilities.buildToVersion(arg);
+          String[] args={needs,jEdit.getVersion()};
+          jEdit.pluginError(path,"plugin-error.dep-jedit",args);
+          ok=false;
+        }
+      }
+ else       if (what.equals("plugin")) {
+        int index2=arg.indexOf(' ');
+        if (index2 == -1) {
+          Log.log(Log.ERROR,this,name + " has an invalid dependency: " + dep+ " (version is missing)");
+          ok=false;
+          continue;
+        }
+        String pluginName=arg.substring(0,index2);
+        String needVersion=arg.substring(index2 + 1);
+        String currVersion=jEdit.getProperty("plugin." + pluginName + ".version");
+        EditPlugin plugin=jEdit.getPlugin(pluginName);
+        if (plugin == null) {
+          if (!optional) {
+            String[] args={needVersion,pluginName};
+            jEdit.pluginError(path,"plugin-error.dep-plugin.no-version",args);
+            ok=false;
+          }
+        }
+ else         if (MiscUtilities.compareStrings(currVersion,needVersion,false) < 0) {
+          if (!optional) {
+            String[] args={needVersion,pluginName,currVersion};
+            jEdit.pluginError(path,"plugin-error.dep-plugin",args);
+            ok=false;
+          }
+        }
+ else         if (plugin instanceof EditPlugin.Broken) {
+          if (!optional) {
+            String[] args={pluginName};
+            jEdit.pluginError(path,"plugin-error.dep-plugin.broken",args);
+            ok=false;
+          }
+        }
+ else {
+          PluginJAR jar=plugin.getPluginJAR();
+          jar.theseRequireMe.add(path);
+          weRequireThese.add(jar.getPath());
+        }
+      }
+ else       if (what.equals("class")) {
+        if (!optional) {
+          try {
+            classLoader.loadClass(arg,false);
+          }
+ catch (          Exception e) {
+            String[] args={arg};
+            jEdit.pluginError(path,"plugin-error.dep-class",args);
+            ok=false;
+          }
+        }
+      }
+ else {
+        Log.log(Log.ERROR,this,name + " has unknown" + " dependency: "+ dep);
+        ok=false;
+      }
+    }
+    String jars=jEdit.getProperty("plugin." + plugin.getClassName() + ".jars");
+    if (jars != null) {
+      String dir=MiscUtilities.getParentOfPath(path);
+      StringTokenizer st=new StringTokenizer(jars);
+      while (st.hasMoreTokens()) {
+        String jarPath=MiscUtilities.constructPath(dir,st.nextToken());
+        PluginJAR jar=jEdit.getPluginJAR(jarPath);
+        if (jar == null) {
+          String[] args={jarPath};
+          jEdit.pluginError(path,"plugin-error.missing-jar",args);
+          ok=false;
+        }
+ else {
+          weRequireThese.add(jarPath);
+          jar.theseRequireMe.add(path);
+        }
+      }
+    }
+    if (!ok)     breakPlugin();
+    return ok;
+  }
+  /** 
+ * Returns an array of all plugins that depend on this one.
+ * @since jEdit 4.2pre2
+ */
+  public String[] getDependentPlugins(){
+    return (String[])theseRequireMe.toArray(new String[theseRequireMe.size()]);
+  }
+  /** 
+ * Returns the plugin core class for this JAR file. Note that if the
+ * plugin has not been activated, this will return an instance of{@link EditPlugin.Deferred}. If you need the actual plugin core
+ * class instance, call {@link #activatePlugin()} first.
+ * @since jEdit 4.2pre1
+ */
+  public EditPlugin getPlugin(){
+    return plugin;
+  }
+  /** 
+ * Loads the plugin core class. Does nothing if the plugin core class
+ * has already been loaded. This method might be called on startup,
+ * depending on what properties are set. See {@link EditPlugin#start()}.
+ * This method is thread-safe.
+ * @since jEdit 4.2pre1
+ */
+  public void activatePlugin(){
+synchronized (this) {
+      if (activated) {
+        return;
+      }
+      activated=true;
+    }
+    if (!(plugin instanceof EditPlugin.Deferred))     return;
+    String className=plugin.getClassName();
+    try {
+      Class clazz=classLoader.loadClass(className,false);
+      int modifiers=clazz.getModifiers();
+      if (Modifier.isInterface(modifiers) || Modifier.isAbstract(modifiers) || !EditPlugin.class.isAssignableFrom(clazz)) {
+        Log.log(Log.ERROR,this,"Plugin has properties but does not extend EditPlugin: " + className);
+        breakPlugin();
+        return;
+      }
+      plugin=(EditPlugin)clazz.newInstance();
+      plugin.jar=(EditPlugin.JAR)this;
+    }
+ catch (    Throwable t) {
+      breakPlugin();
+      Log.log(Log.ERROR,this,"Error while starting plugin " + className);
+      Log.log(Log.ERROR,this,t);
+      String[] args={t.toString()};
+      jEdit.pluginError(path,"plugin-error.start-error",args);
+      return;
+    }
+    if (jEdit.isMainThread() || SwingUtilities.isEventDispatchThread()) {
+      startPlugin();
+    }
+ else {
+      startPluginLater();
+    }
+    EditBus.send(new PluginUpdate(this,PluginUpdate.ACTIVATED,false));
+  }
+  /** 
+ * Should be called after a new plugin is installed.
+ * @since jEdit 4.2pre2
+ */
+  public void activatePluginIfNecessary(){
+    if (!(plugin instanceof EditPlugin.Deferred && plugin != null))     return;
+    String className=plugin.getClassName();
+    String activate=jEdit.getProperty("plugin." + className + ".activate");
+    if (activate == null) {
+      if (!jEdit.isMainThread()) {
+        breakPlugin();
+        jEdit.pluginError(path,"plugin-error.not-42",null);
+      }
+ else       activatePlugin();
+    }
+ else {
+      boolean load=false;
+      StringTokenizer st=new StringTokenizer(activate);
+      while (st.hasMoreTokens()) {
+        String prop=st.nextToken();
+        boolean value=jEdit.getBooleanProperty(prop);
+        if (value) {
+          Log.log(Log.DEBUG,this,"Activating " + className + " because of "+ prop);
+          load=true;
+          break;
+        }
+      }
+      if (load)       activatePlugin();
+    }
+  }
+  /** 
+ * Unloads the plugin core class. Does nothing if the plugin core class
+ * has not been loaded.
+ * This method can only be called from the AWT event dispatch thread!
+ * @see EditPlugin#stop()
+ * @since jEdit 4.2pre3
+ */
+  public void deactivatePlugin(  boolean exit){
+    if (!activated)     return;
+    if (!exit) {
+      Buffer buffer=jEdit.getFirstBuffer();
+      while (buffer != null) {
+        if (buffer.getFoldHandler() != null && buffer.getFoldHandler().getClass().getClassLoader() == classLoader) {
+          buffer.setFoldHandler(new DummyFoldHandler());
+        }
+        buffer=buffer.getNext();
+      }
+    }
+    if (plugin != null && !(plugin instanceof EditPlugin.Broken)) {
+      if (plugin instanceof EBPlugin)       EditBus.removeFromBus((EBPlugin)plugin);
+      try {
+        plugin.stop();
+      }
+ catch (      Throwable t) {
+        Log.log(Log.ERROR,this,"Error while " + "stopping plugin:");
+        Log.log(Log.ERROR,this,t);
+      }
+      plugin=new EditPlugin.Deferred(plugin.getClassName());
+      plugin.jar=(EditPlugin.JAR)this;
+      EditBus.send(new PluginUpdate(this,PluginUpdate.DEACTIVATED,exit));
+      if (!exit) {
+        String activate=jEdit.getProperty("plugin." + plugin.getClassName() + ".activate");
+        if (activate == null) {
+          breakPlugin();
+          jEdit.pluginError(path,"plugin-error.not-42",null);
+        }
+      }
+    }
+    activated=false;
+  }
+  /** 
+ * Returns the location of the plugin's
+ * <code>dockables.xml</code> file.
+ * @since jEdit 4.2pre1
+ */
+  public URL getDockablesURI(){
+    return dockablesURI;
+  }
+  /** 
+ * Returns the location of the plugin's
+ * <code>services.xml</code> file.
+ * @since jEdit 4.2pre1
+ */
+  public URL getServicesURI(){
+    return servicesURI;
+  }
+  public String toString(){
+    if (plugin == null)     return path;
+ else     return path + ",class=" + plugin.getClassName();
+  }
+  static PluginCacheEntry getPluginCache(  PluginJAR plugin){
+    String jarCachePath=plugin.getCachePath();
+    if (jarCachePath == null)     return null;
+    DataInputStream din=null;
+    try {
+      PluginCacheEntry cache=new PluginCacheEntry();
+      cache.plugin=plugin;
+      cache.modTime=plugin.getFile().lastModified();
+      din=new DataInputStream(new BufferedInputStream(new FileInputStream(jarCachePath)));
+      if (cache.read(din))       return cache;
+ else {
+        return null;
+      }
+    }
+ catch (    FileNotFoundException fnf) {
+      return null;
+    }
+catch (    IOException io) {
+      Log.log(Log.ERROR,PluginJAR.class,io);
+      return null;
+    }
+ finally {
+      try {
+        if (din != null)         din.close();
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,PluginJAR.class,io);
+      }
+    }
+  }
+  static void setPluginCache(  PluginJAR plugin,  PluginCacheEntry cache){
+    String jarCachePath=plugin.getCachePath();
+    if (jarCachePath == null)     return;
+    Log.log(Log.DEBUG,PluginJAR.class,"Writing " + jarCachePath);
+    DataOutputStream dout=null;
+    try {
+      dout=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(jarCachePath)));
+      cache.write(dout);
+      dout.close();
+    }
+ catch (    IOException io) {
+      Log.log(Log.ERROR,PluginJAR.class,io);
+      try {
+        if (dout != null)         dout.close();
+      }
+ catch (      IOException io2) {
+        Log.log(Log.ERROR,PluginJAR.class,io2);
+      }
+      new File(jarCachePath).delete();
+    }
+  }
+  PluginJAR(  File file){
+    this.path=file.getPath();
+    String jarCacheDir=jEdit.getJARCacheDirectory();
+    if (jarCacheDir != null) {
+      cachePath=MiscUtilities.constructPath(jarCacheDir,file.getName() + ".summary");
+    }
+    this.file=file;
+    classLoader=new JARClassLoader(this);
+    actions=new ActionSet();
+  }
+  void init(){
+    boolean initialized=false;
+    PluginCacheEntry cache=getPluginCache(this);
+    if (cache != null) {
+      loadCache(cache);
+      classLoader.activate();
+      initialized=true;
+    }
+ else {
+      try {
+        cache=generateCache();
+        if (cache != null) {
+          setPluginCache(this,cache);
+          classLoader.activate();
+          initialized=true;
+        }
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,this,"Cannot load" + " plugin " + path);
+        Log.log(Log.ERROR,this,io);
+        String[] args={io.toString()};
+        jEdit.pluginError(path,"plugin-error.load-error",args);
+        uninit(false);
+      }
+    }
+  }
+  void uninit(  boolean exit){
+    deactivatePlugin(exit);
+    if (!exit) {
+      Iterator iter=weRequireThese.iterator();
+      while (iter.hasNext()) {
+        String path=(String)iter.next();
+        PluginJAR jar=jEdit.getPluginJAR(path);
+        if (jar != null)         jar.theseRequireMe.remove(this.path);
+      }
+      classLoader.deactivate();
+      BeanShell.resetClassManager();
+      if (actions != null)       jEdit.getActionContext().removeActionSet(actions);
+      if (browserActions != null)       VFSBrowser.getActionContext().removeActionSet(browserActions);
+      DockableWindowManager.unloadDockableWindows(this);
+      ServiceManager.unloadServices(this);
+      jEdit.removePluginProps(properties);
+      try {
+        if (zipFile != null) {
+          zipFile.close();
+          zipFile=null;
+        }
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,this,io);
+      }
+    }
+  }
+  String[] getClasses(){
+    return classes;
+  }
+  private String path;
+  private String cachePath;
+  private File file;
+  private JARClassLoader classLoader;
+  private ZipFile zipFile;
+  private Properties properties;
+  private String[] classes;
+  private ActionSet actions;
+  private ActionSet browserActions;
+  private EditPlugin plugin;
+  private URL dockablesURI;
+  private URL servicesURI;
+  private boolean activated;
+  private List theseRequireMe=new LinkedList();
+  private List weRequireThese=new LinkedList();
+  private void actionsPresentButNotCoreClass(){
+    Log.log(Log.WARNING,this,getPath() + " has an actions.xml but no plugin core class");
+    actions.setLabel("MISSING PLUGIN CORE CLASS");
+  }
+  private void loadCache(  PluginCacheEntry cache){
+    classes=cache.classes;
+    if (cache.cachedProperties != null) {
+      properties=cache.cachedProperties;
+      jEdit.addPluginProps(cache.cachedProperties);
+    }
+    if (cache.actionsURI != null && cache.cachedActionNames != null) {
+      actions=new ActionSet(this,cache.cachedActionNames,cache.cachedActionToggleFlags,cache.actionsURI);
+    }
+    if (cache.browserActionsURI != null && cache.cachedBrowserActionNames != null) {
+      browserActions=new ActionSet(this,cache.cachedBrowserActionNames,cache.cachedBrowserActionToggleFlags,cache.browserActionsURI);
+      VFSBrowser.getActionContext().addActionSet(browserActions);
+    }
+    if (cache.dockablesURI != null && cache.cachedDockableNames != null && cache.cachedDockableActionFlags != null) {
+      dockablesURI=cache.dockablesURI;
+      DockableWindowManager.cacheDockableWindows(this,cache.cachedDockableNames,cache.cachedDockableActionFlags);
+    }
+    if (actions.size() != 0)     jEdit.addActionSet(actions);
+    if (cache.servicesURI != null && cache.cachedServices != null) {
+      servicesURI=cache.servicesURI;
+      for (int i=0; i < cache.cachedServices.length; i++) {
+        ServiceManager.Descriptor d=cache.cachedServices[i];
+        ServiceManager.registerService(d);
+      }
+    }
+    if (cache.pluginClass != null) {
+      if (jEdit.getPlugin(cache.pluginClass) != null) {
+        jEdit.pluginError(path,"plugin-error.already-loaded",null);
+        uninit(false);
+      }
+ else {
+        String label=jEdit.getProperty("plugin." + cache.pluginClass + ".name");
+        actions.setLabel(jEdit.getProperty("action-set.plugin",new String[]{label}));
+        plugin=new EditPlugin.Deferred(cache.pluginClass);
+        plugin.jar=(EditPlugin.JAR)this;
+      }
+    }
+ else {
+      if (actions.size() != 0)       actionsPresentButNotCoreClass();
+    }
+  }
+  private PluginCacheEntry generateCache() throws IOException {
+    properties=new Properties();
+    LinkedList classes=new LinkedList();
+    ZipFile zipFile=getZipFile();
+    List plugins=new LinkedList();
+    PluginCacheEntry cache=new PluginCacheEntry();
+    cache.modTime=file.lastModified();
+    cache.cachedProperties=new Properties();
+    Enumeration entries=zipFile.entries();
+    while (entries.hasMoreElements()) {
+      ZipEntry entry=(ZipEntry)entries.nextElement();
+      String name=entry.getName();
+      String lname=name.toLowerCase();
+      if (lname.equals("actions.xml")) {
+        cache.actionsURI=classLoader.getResource(name);
+      }
+ else       if (lname.equals("browser.actions.xml")) {
+        cache.browserActionsURI=classLoader.getResource(name);
+      }
+ else       if (lname.equals("dockables.xml")) {
+        dockablesURI=classLoader.getResource(name);
+        cache.dockablesURI=dockablesURI;
+      }
+ else       if (lname.equals("services.xml")) {
+        servicesURI=classLoader.getResource(name);
+        cache.servicesURI=servicesURI;
+      }
+ else       if (lname.endsWith(".props")) {
+        InputStream in=classLoader.getResourceAsStream(name);
+        properties.load(in);
+        in.close();
+      }
+ else       if (name.endsWith(".class")) {
+        String className=MiscUtilities.fileToClass(name);
+        if (className.endsWith("Plugin")) {
+          plugins.add(className);
+        }
+        classes.add(className);
+      }
+    }
+    cache.cachedProperties=properties;
+    jEdit.addPluginProps(properties);
+    this.classes=cache.classes=(String[])classes.toArray(new String[classes.size()]);
+    String label=null;
+    Iterator iter=plugins.iterator();
+    while (iter.hasNext()) {
+      String className=(String)iter.next();
+      String _label=jEdit.getProperty("plugin." + className + ".name");
+      String version=jEdit.getProperty("plugin." + className + ".version");
+      if (_label == null || version == null) {
+        Log.log(Log.WARNING,this,"Ignoring: " + className);
+      }
+ else {
+        cache.pluginClass=className;
+        if (jEdit.getPlugin(className) != null) {
+          jEdit.pluginError(path,"plugin-error.already-loaded",null);
+          return null;
+        }
+ else {
+          plugin=new EditPlugin.Deferred(className);
+          plugin.jar=(EditPlugin.JAR)this;
+          label=_label;
+        }
+        break;
+      }
+    }
+    if (cache.actionsURI != null) {
+      actions=new ActionSet(this,null,null,cache.actionsURI);
+      actions.load();
+      cache.cachedActionNames=actions.getCacheableActionNames();
+      cache.cachedActionToggleFlags=new boolean[cache.cachedActionNames.length];
+      for (int i=0; i < cache.cachedActionNames.length; i++) {
+        cache.cachedActionToggleFlags[i]=jEdit.getBooleanProperty(cache.cachedActionNames[i] + ".toggle");
+      }
+    }
+    if (cache.browserActionsURI != null) {
+      browserActions=new ActionSet(this,null,null,cache.browserActionsURI);
+      browserActions.load();
+      VFSBrowser.getActionContext().addActionSet(browserActions);
+      cache.cachedBrowserActionNames=browserActions.getCacheableActionNames();
+      cache.cachedBrowserActionToggleFlags=new boolean[cache.cachedBrowserActionNames.length];
+      for (int i=0; i < cache.cachedBrowserActionNames.length; i++) {
+        cache.cachedBrowserActionToggleFlags[i]=jEdit.getBooleanProperty(cache.cachedBrowserActionNames[i] + ".toggle");
+      }
+    }
+    if (dockablesURI != null) {
+      DockableWindowManager.loadDockableWindows(this,dockablesURI,cache);
+    }
+    if (actions.size() != 0) {
+      if (label != null) {
+        actions.setLabel(jEdit.getProperty("action-set.plugin",new String[]{label}));
+      }
+ else       actionsPresentButNotCoreClass();
+      jEdit.addActionSet(actions);
+    }
+    if (servicesURI != null) {
+      ServiceManager.loadServices(this,servicesURI,cache);
+    }
+    return cache;
+  }
+  private void startPlugin(){
+    try {
+      plugin.start();
+    }
+ catch (    Throwable t) {
+      breakPlugin();
+      Log.log(Log.ERROR,PluginJAR.this,"Error while starting plugin " + plugin.getClassName());
+      Log.log(Log.ERROR,PluginJAR.this,t);
+      String[] args={t.toString()};
+      jEdit.pluginError(path,"plugin-error.start-error",args);
+    }
+    if (plugin instanceof EBPlugin) {
+      if (jEdit.getProperty("plugin." + plugin.getClassName() + ".activate") == null) {
+        ((EBComponent)plugin).handleMessage(new org.gjt.sp.jedit.msg.PropertiesChanged(null));
+      }
+      EditBus.addToBus((EBPlugin)plugin);
+    }
+    Buffer buffer=jEdit.getFirstBuffer();
+    while (buffer != null) {
+      FoldHandler handler=FoldHandler.getFoldHandler(buffer.getStringProperty("folding"));
+      if (buffer.getFoldHandler() != null && handler != null && handler != buffer.getFoldHandler()) {
+        buffer.setFoldHandler(handler);
+      }
+      buffer=buffer.getNext();
+    }
+  }
+  private void startPluginLater(){
+    SwingUtilities.invokeLater(new Runnable(){
+      public void run(){
+        if (!activated)         return;
+        startPlugin();
+      }
+    }
+);
+  }
+  private void breakPlugin(){
+    plugin=new EditPlugin.Broken(plugin.getClassName());
+    plugin.jar=(EditPlugin.JAR)this;
+    uninit(false);
+    jEdit.addPluginProps(properties);
+  }
+  /** 
+ * Used by the <code>DockableWindowManager</code> and
+ * <code>ServiceManager</code> to handle caching.
+ * @since jEdit 4.2pre1
+ */
+public static class PluginCacheEntry {
+    public static final int MAGIC=0xB7A2E420;
+    public PluginJAR plugin;
+    public long modTime;
+    public String[] classes;
+    public URL actionsURI;
+    public String[] cachedActionNames;
+    public boolean[] cachedActionToggleFlags;
+    public URL browserActionsURI;
+    public String[] cachedBrowserActionNames;
+    public boolean[] cachedBrowserActionToggleFlags;
+    public URL dockablesURI;
+    public String[] cachedDockableNames;
+    public boolean[] cachedDockableActionFlags;
+    public URL servicesURI;
+    public ServiceManager.Descriptor[] cachedServices;
+    public Properties cachedProperties;
+    public String pluginClass;
+    public boolean read(    DataInputStream din) throws IOException {
+      int cacheMagic=din.readInt();
+      if (cacheMagic != MAGIC)       return false;
+      String cacheBuild=readString(din);
+      if (!cacheBuild.equals(jEdit.getBuild()))       return false;
+      long cacheModTime=din.readLong();
+      if (cacheModTime != modTime)       return false;
+      actionsURI=readURI(din);
+      cachedActionNames=readStringArray(din);
+      cachedActionToggleFlags=readBooleanArray(din);
+      browserActionsURI=readURI(din);
+      cachedBrowserActionNames=readStringArray(din);
+      cachedBrowserActionToggleFlags=readBooleanArray(din);
+      dockablesURI=readURI(din);
+      cachedDockableNames=readStringArray(din);
+      cachedDockableActionFlags=readBooleanArray(din);
+      servicesURI=readURI(din);
+      int len=din.readInt();
+      if (len == 0)       cachedServices=null;
+ else {
+        cachedServices=new ServiceManager.Descriptor[len];
+        for (int i=0; i < len; i++) {
+          ServiceManager.Descriptor d=new ServiceManager.Descriptor(readString(din),readString(din),null,plugin);
+          cachedServices[i]=d;
+        }
+      }
+      classes=readStringArray(din);
+      cachedProperties=readMap(din);
+      pluginClass=readString(din);
+      return true;
+    }
+    public void write(    DataOutputStream dout) throws IOException {
+      dout.writeInt(MAGIC);
+      writeString(dout,jEdit.getBuild());
+      dout.writeLong(modTime);
+      writeString(dout,actionsURI);
+      writeStringArray(dout,cachedActionNames);
+      writeBooleanArray(dout,cachedActionToggleFlags);
+      writeString(dout,browserActionsURI);
+      writeStringArray(dout,cachedBrowserActionNames);
+      writeBooleanArray(dout,cachedBrowserActionToggleFlags);
+      writeString(dout,dockablesURI);
+      writeStringArray(dout,cachedDockableNames);
+      writeBooleanArray(dout,cachedDockableActionFlags);
+      writeString(dout,servicesURI);
+      if (cachedServices == null)       dout.writeInt(0);
+ else {
+        dout.writeInt(cachedServices.length);
+        for (int i=0; i < cachedServices.length; i++) {
+          writeString(dout,cachedServices[i].clazz);
+          writeString(dout,cachedServices[i].name);
+        }
+      }
+      writeStringArray(dout,classes);
+      writeMap(dout,cachedProperties);
+      writeString(dout,pluginClass);
+    }
+    private String readString(    DataInputStream din) throws IOException {
+      int len=din.readInt();
+      if (len == 0)       return null;
+      char[] str=new char[len];
+      for (int i=0; i < len; i++)       str[i]=din.readChar();
+      return new String(str);
+    }
+    private URL readURI(    DataInputStream din) throws IOException {
+      String str=readString(din);
+      if (str == null)       return null;
+ else       return new URL(str);
+    }
+    private String[] readStringArray(    DataInputStream din) throws IOException {
+      int len=din.readInt();
+      if (len == 0)       return null;
+      String[] str=new String[len];
+      for (int i=0; i < len; i++) {
+        str[i]=readString(din);
+      }
+      return str;
+    }
+    private boolean[] readBooleanArray(    DataInputStream din) throws IOException {
+      int len=din.readInt();
+      if (len == 0)       return null;
+      boolean[] bools=new boolean[len];
+      for (int i=0; i < len; i++) {
+        bools[i]=din.readBoolean();
+      }
+      return bools;
+    }
+    private Properties readMap(    DataInputStream din) throws IOException {
+      Properties returnValue=new Properties();
+      int count=din.readInt();
+      for (int i=0; i < count; i++) {
+        String key=readString(din);
+        String value=readString(din);
+        if (value == null)         value="";
+        returnValue.put(key,value);
+      }
+      return returnValue;
+    }
+    private void writeString(    DataOutputStream dout,    Object obj) throws IOException {
+      if (obj == null) {
+        dout.writeInt(0);
+      }
+ else {
+        String str=obj.toString();
+        dout.writeInt(str.length());
+        dout.writeChars(str);
+      }
+    }
+    private void writeStringArray(    DataOutputStream dout,    String[] str) throws IOException {
+      if (str == null) {
+        dout.writeInt(0);
+      }
+ else {
+        dout.writeInt(str.length);
+        for (int i=0; i < str.length; i++) {
+          writeString(dout,str[i]);
+        }
+      }
+    }
+    private void writeBooleanArray(    DataOutputStream dout,    boolean[] bools) throws IOException {
+      if (bools == null) {
+        dout.writeInt(0);
+      }
+ else {
+        dout.writeInt(bools.length);
+        for (int i=0; i < bools.length; i++) {
+          dout.writeBoolean(bools[i]);
+        }
+      }
+    }
+    private void writeMap(    DataOutputStream dout,    Map map) throws IOException {
+      dout.writeInt(map.size());
+      Iterator iter=map.keySet().iterator();
+      while (iter.hasNext()) {
+        String key=(String)iter.next();
+        writeString(dout,key);
+        writeString(dout,map.get(key));
+      }
+    }
+  }
+}
+===================================================================
+/** 
+ * 'Wrap' EditActions in this class to turn them into AWT
+ * ActionListeners, that can be attached to buttons, menu items, etc.
+ */
+public static class Wrapper implements ActionListener {
+  /** 
+ * Creates a new action listener wrapper.
+ * @since jEdit 4.2pre1
+ */
+  public Wrapper(  ActionContext context,  String actionName){
+    this.context=context;
+    this.actionName=actionName;
+  }
+  /** 
+ * Called when the user selects this action from a menu.
+ * It passes the action through the{@link org.gjt.sp.jedit.gui.InputHandler#invokeAction(EditAction)}method, which performs any recording or repeating.
+ * @param evt The action event
+ */
+  public void actionPerformed(  ActionEvent evt){
+    EditAction action=context.getAction(actionName);
+    if (action == null) {
+      Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+    }
+ else     context.invokeAction(evt,action);
+  }
+  private ActionContext context;
+  private String actionName;
+}
+===================================================================
+/** 
+ * jEdit's global event notification mechanism.<p>
+ * Plugins register with the EditBus to receive messages reflecting
+ * changes in the application's state, including changes in buffers,
+ * views and edit panes, changes in the set of properties maintained
+ * by the application, and the closing of the application.<p>
+ * The EditBus maintains a list of objects that have requested to receive
+ * messages. When a message is sent using this class, all registered
+ * components receive it in turn. Classes for objects that subscribe to
+ * the EditBus must implement the {@link EBComponent} interface, which
+ * defines the single method {@link EBComponent#handleMessage(EBMessage)}.<p>
+ * A plugin core class that extends the{@link EBPlugin} abstract class (and whose name ends with
+ * <code>Plugin</code> for identification purposes) will automatically be
+ * added to the EditBus during jEdit's startup routine.  Any other
+ * class - for example, a dockable window that needs to receive
+ * notification of buffer changes - must perform its own registration by calling{@link #addToBus(EBComponent)} during its initialization.
+ * A convenient place to register in a class derived from <code>JComponent</code>
+ * would be in an implementation of the <code>JComponent</code> method
+ * <code>addNotify()</code>.<p>
+ * Message types sent by jEdit can be found in the{@link org.gjt.sp.jedit.msg} package.<p>
+ * Plugins can also send their own messages - any object can send a message to
+ * the EditBus by calling the static method {@link #send(EBMessage)}.
+ * Most plugins, however, only concern themselves with receiving, not
+ * sending, messages.
+ * @see org.gjt.sp.jedit.EBComponent
+ * @see org.gjt.sp.jedit.EBMessage
+ * @author Slava Pestov
+ * @author John Gellene (API documentation)
+ * @version $Id: Logging\040Classes.txt,v 1.1 2016/04/22 16:22:29 nziragch Exp $
+ * @since jEdit 2.2pre6
+ */
+public class EditBus {
+  /** 
+ * Adds a component to the bus. It will receive all messages sent
+ * on the bus.
+ * @param comp The component to add
+ */
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  /** 
+ * Removes a component from the bus.
+ * @param comp The component to remove
+ */
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  /** 
+ * Returns an array of all components connected to the bus.
+ */
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  /** 
+ * Sends a message to all components on the bus in turn.
+ * @param message The message
+ */
+  public static void send(  EBMessage message){
+    Log.log(Log.DEBUG,EditBus.class,message.toString());
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+            Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+        Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+        Log.log(Log.ERROR,EditBus.class,t);
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+===================================================================
+/** 
+ * A generic way for plugins to provide various API extensions.<p>
+ * Services are loaded from files named <code>services.xml</code> inside the
+ * plugin JAR. A service definition file has the following form:
+ * <pre>&lt;?xml version="1.0"?&gt;
+ * &lt;!DOCTYPE SERVICES SYSTEM "services.dtd"&gt;
+ * &lt;SERVICES&gt;
+ * &lt;SERVICE NAME="service name" CLASS="fully qualified class name"&gt;
+ * // BeanShell code evaluated when the sevice is first activated
+ * &lt;/SERVICE&gt;
+ * &lt;/SERVICES&gt;</pre>
+ * The following elements are valid:
+ * <ul>
+ * <li>
+ * <code>SERVICES</code> is the top-level element and refers
+ * to the set of services offered by the plugin.
+ * </li>
+ * <li>
+ * A <code>SERVICE</code> contains the data for a particular service
+ * activation.
+ * It has two attributes, both required: <code>NAME</code> and
+ * <code>CLASS</code>. The <code>CLASS</code> attribute must be the name of
+ * a known sevice type; see below.
+ * </li>
+ * <li>
+ * A <code>SERVICE</code> element should the BeanShell code that returns a
+ * new instance of the named class. Note that this code can return
+ * <code>null</code>.
+ * </li>
+ * </ul>
+ * The jEdit core defines the following service types:
+ * <ul>
+ * <li>{@link org.gjt.sp.jedit.buffer.FoldHandler}</li>
+ * <li>{@link org.gjt.sp.jedit.io.VFS}</li>
+ * </ul>
+ * Plugins may provide more.<p>
+ * To have your plugin accept services, no extra steps are needed other than
+ * a piece of code somewhere that calls {@link #getServiceNames(String)} and{@link #getService(String,String)}.
+ * @see BeanShell
+ * @see PluginJAR
+ * @since jEdit 4.2pre1
+ * @author Slava Pestov
+ * @version $Id: Logging\040Classes.txt,v 1.1 2016/04/22 16:22:29 nziragch Exp $
+ */
+public class ServiceManager {
+  /** 
+ * Loads a <code>services.xml</code> file.
+ * @since jEdit 4.2pre1
+ */
+  public static void loadServices(  PluginJAR plugin,  URL uri,  PluginJAR.PluginCacheEntry cache){
+    Reader in=null;
+    try {
+      Log.log(Log.DEBUG,jEdit.class,"Loading services from " + uri);
+      ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+      XmlParser parser=new XmlParser();
+      parser.setHandler(dh);
+      in=new BufferedReader(new InputStreamReader(uri.openStream()));
+      parser.parse(null,null,in);
+      if (cache != null)       cache.cachedServices=dh.getCachedServices();
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+      Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+    }
+catch (    Exception e) {
+      Log.log(Log.ERROR,ServiceManager.class,e);
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,ServiceManager.class,io);
+      }
+    }
+  }
+  /** 
+ * Removes all services belonging to the specified plugin.
+ * @param plugin The plugin
+ * @since jEdit 4.2pre1
+ */
+  public static void unloadServices(  PluginJAR plugin){
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.plugin == plugin)       descriptors.remove();
+    }
+  }
+  /** 
+ * Registers a service. Plugins should provide a 
+ * <code>services.xml</code> file instead of calling this directly.
+ * @param clazz The service class
+ * @param name The service name
+ * @param code BeanShell code to create an instance of this
+ * @param plugin The plugin JAR, or null if this is a built-in service
+ * @since jEdit 4.2pre1
+ */
+  public static void registerService(  String clazz,  String name,  String code,  PluginJAR plugin){
+    Descriptor d=new Descriptor(clazz,name,code,plugin);
+    serviceMap.put(d,d);
+  }
+  /** 
+ * Unregisters a service.
+ * @param clazz The service class
+ * @param name The service name
+ * @since jEdit 4.2pre1
+ */
+  public static void unregisterService(  String clazz,  String name){
+    Descriptor d=new Descriptor(clazz,name);
+    serviceMap.remove(d);
+  }
+  /** 
+ * Returns all known service class types.
+ * @since jEdit 4.2pre1
+ */
+  public static String[] getServiceTypes(){
+    HashSet returnValue=new HashSet();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      returnValue.add(d.clazz);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  /** 
+ * Returns the names of all registered services with the given
+ * class. For example, calling this with a parameter of
+ * "org.gjt.sp.jedit.io.VFS" returns all known virtual file
+ * systems.
+ * @param clazz The class name
+ * @since jEdit 4.2pre1
+ */
+  public static String[] getServiceNames(  String clazz){
+    ArrayList returnValue=new ArrayList();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.clazz.equals(clazz))       returnValue.add(d.name);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  /** 
+ * Returns an instance of the given service. The first time this is
+ * called for a given service, the BeanShell code is evaluated. The
+ * result is cached for future invocations, so in effect services are
+ * singletons.
+ * @param clazz The service class
+ * @param name The service name
+ * @since jEdit 4.2pre1
+ */
+  public static Object getService(  String clazz,  String name){
+    Descriptor key=new Descriptor(clazz,name);
+    Descriptor value=(Descriptor)serviceMap.get(key);
+    if (value == null) {
+      return null;
+    }
+ else {
+      if (value.code == null) {
+        loadServices(value.plugin,value.plugin.getServicesURI(),null);
+        value=(Descriptor)serviceMap.get(key);
+      }
+      return value.getInstance();
+    }
+  }
+  /** 
+ * Registers a service.
+ * @since jEdit 4.2pre1
+ */
+  static void registerService(  Descriptor d){
+    serviceMap.put(d,d);
+  }
+  private static Map serviceMap=new HashMap();
+static class Descriptor {
+    String clazz;
+    String name;
+    String code;
+    PluginJAR plugin;
+    Object instance;
+    boolean instanceIsNull;
+    Descriptor(    String clazz,    String name){
+      this.clazz=clazz;
+      this.name=name;
+    }
+    Descriptor(    String clazz,    String name,    String code,    PluginJAR plugin){
+      this.clazz=clazz;
+      this.name=name;
+      this.code=code;
+      this.plugin=plugin;
+    }
+    Object getInstance(){
+      if (instanceIsNull)       return null;
+ else       if (instance == null) {
+        instance=BeanShell.eval(null,BeanShell.getNameSpace(),code);
+        if (instance == null) {
+          instanceIsNull=true;
+        }
+      }
+      return instance;
+    }
+    public int hashCode(){
+      return name.hashCode();
+    }
+    public boolean equals(    Object o){
+      if (o instanceof Descriptor) {
+        Descriptor d=(Descriptor)o;
+        return d.clazz.equals(clazz) && d.name.equals(name);
+      }
+ else       return false;
+    }
+  }
+}
+===================================================================
+/** 
+ * This class records and runs macros.<p>
+ * It also contains a few methods useful for displaying output messages
+ * or obtaining input from a macro:
+ * <ul>
+ * <li>{@link #confirm(Component,String,int)}</li>
+ * <li>{@link #confirm(Component,String,int,int)}</li>
+ * <li>{@link #error(Component,String)}</li>
+ * <li>{@link #input(Component,String)}</li>
+ * <li>{@link #input(Component,String,String)}</li>
+ * <li>{@link #message(Component,String)}</li>
+ * </ul>
+ * Note that plugins should not use the above methods. Call
+ * the methods in the {@link GUIUtilities} class instead.
+ * @author Slava Pestov
+ * @version $Id: Logging\040Classes.txt,v 1.1 2016/04/22 16:22:29 nziragch Exp $
+ */
+public class Macros {
+  /** 
+ * Prompts for one or more files to run as macros
+ * @param view The view
+ * @since jEdit 4.0pre7
+ */
+  public static void showRunScriptDialog(  View view){
+    String[] paths=GUIUtilities.showVFSFileDialog(view,null,JFileChooser.OPEN_DIALOG,true);
+    if (paths != null) {
+      Buffer buffer=view.getBuffer();
+      try {
+        buffer.beginCompoundEdit();
+        file_loop:         for (int i=0; i < paths.length; i++)         runScript(view,paths[i],false);
+      }
+  finally {
+        buffer.endCompoundEdit();
+      }
+    }
+  }
+  /** 
+ * Runs the specified script.
+ * Unlike the {@link BeanShell#runScript(View,String,Reader,boolean)}method, this method can run scripts supported
+ * by any registered macro handler.
+ * @param view The view
+ * @param path The VFS path of the script
+ * @param ignoreUnknown If true, then unknown file types will be
+ * ignored; otherwise, a warning message will be printed and they will
+ * be evaluated as BeanShell scripts.
+ * @since jEdit 4.1pre2
+ */
+  public static void runScript(  View view,  String path,  boolean ignoreUnknown){
+    Handler handler=getHandlerForPathName(path);
+    if (handler != null) {
+      try {
+        Macro newMacro=handler.createMacro(MiscUtilities.getFileName(path),path);
+        newMacro.invoke(view);
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,Macros.class,e);
+        return;
+      }
+      return;
+    }
+    if (ignoreUnknown) {
+      Log.log(Log.NOTICE,Macros.class,path + ": Cannot find a suitable macro handler");
+    }
+ else {
+      Log.log(Log.ERROR,Macros.class,path + ": Cannot find a suitable macro handler, " + "assuming BeanShell");
+      getHandler("beanshell").createMacro(path,path).invoke(view);
+    }
+  }
+  /** 
+ * Utility method that can be used to display a message dialog in a macro.
+ * @param comp The component to show the dialog on behalf of, this
+ * will usually be a view instance
+ * @param message The message
+ * @since jEdit 2.7pre2
+ */
+  public static void message(  Component comp,  String message){
+    GUIUtilities.hideSplashScreen();
+    JOptionPane.showMessageDialog(comp,message,jEdit.getProperty("macro-message.title"),JOptionPane.INFORMATION_MESSAGE);
+  }
+  /** 
+ * Utility method that can be used to display an error dialog in a macro.
+ * @param comp The component to show the dialog on behalf of, this
+ * will usually be a view instance
+ * @param message The message
+ * @since jEdit 2.7pre2
+ */
+  public static void error(  Component comp,  String message){
+    GUIUtilities.hideSplashScreen();
+    JOptionPane.showMessageDialog(comp,message,jEdit.getProperty("macro-message.title"),JOptionPane.ERROR_MESSAGE);
+  }
+  /** 
+ * Utility method that can be used to prompt for input in a macro.
+ * @param comp The component to show the dialog on behalf of, this
+ * will usually be a view instance
+ * @param prompt The prompt string
+ * @since jEdit 2.7pre2
+ */
+  public static String input(  Component comp,  String prompt){
+    GUIUtilities.hideSplashScreen();
+    return input(comp,prompt,null);
+  }
+  /** 
+ * Utility method that can be used to prompt for input in a macro.
+ * @param comp The component to show the dialog on behalf of, this
+ * will usually be a view instance
+ * @param prompt The prompt string
+ * @since jEdit 3.1final
+ */
+  public static String input(  Component comp,  String prompt,  String defaultValue){
+    GUIUtilities.hideSplashScreen();
+    return (String)JOptionPane.showInputDialog(comp,prompt,jEdit.getProperty("macro-input.title"),JOptionPane.QUESTION_MESSAGE,null,null,defaultValue);
+  }
+  /** 
+ * Utility method that can be used to ask for confirmation in a macro.
+ * @param comp The component to show the dialog on behalf of, this
+ * will usually be a view instance
+ * @param prompt The prompt string
+ * @param buttons The buttons to display - for example,
+ * JOptionPane.YES_NO_CANCEL_OPTION
+ * @since jEdit 4.0pre2
+ */
+  public static int confirm(  Component comp,  String prompt,  int buttons){
+    GUIUtilities.hideSplashScreen();
+    return JOptionPane.showConfirmDialog(comp,prompt,jEdit.getProperty("macro-confirm.title"),buttons,JOptionPane.QUESTION_MESSAGE);
+  }
+  /** 
+ * Utility method that can be used to ask for confirmation in a macro.
+ * @param comp The component to show the dialog on behalf of, this
+ * will usually be a view instance
+ * @param prompt The prompt string
+ * @param buttons The buttons to display - for example,
+ * JOptionPane.YES_NO_CANCEL_OPTION
+ * @param type The dialog type - for example,
+ * JOptionPane.WARNING_MESSAGE
+ */
+  public static int confirm(  Component comp,  String prompt,  int buttons,  int type){
+    GUIUtilities.hideSplashScreen();
+    return JOptionPane.showConfirmDialog(comp,prompt,jEdit.getProperty("macro-confirm.title"),buttons,type);
+  }
+  /** 
+ * Rebuilds the macros list, and sends a MacrosChanged message
+ * (views update their Macros menu upon receiving it)
+ * @since jEdit 2.2pre4
+ */
+  public static void loadMacros(){
+    macroActionSet.removeAllActions();
+    macroHierarchy.removeAllElements();
+    macroHash.clear();
+    String settings=jEdit.getSettingsDirectory();
+    if (settings != null) {
+      userMacroPath=MiscUtilities.constructPath(settings,"macros");
+      loadMacros(macroHierarchy,"",new File(userMacroPath));
+    }
+    if (jEdit.getJEditHome() != null) {
+      systemMacroPath=MiscUtilities.constructPath(jEdit.getJEditHome(),"macros");
+      loadMacros(macroHierarchy,"",new File(systemMacroPath));
+    }
+    EditBus.send(new DynamicMenuChanged("macros"));
+  }
+  /** 
+ * Adds a macro handler to the handlers list
+ * @since jEdit 4.0pre6
+ */
+  public static void registerHandler(  Handler handler){
+    if (getHandler(handler.getName()) != null) {
+      Log.log(Log.ERROR,Macros.class,"Cannot register more than one macro handler with the same name");
+      return;
+    }
+    Log.log(Log.DEBUG,Macros.class,"Registered " + handler.getName() + " macro handler");
+    macroHandlers.add(handler);
+  }
+  /** 
+ * Returns an array containing the list of registered macro handlers
+ * @since jEdit 4.0pre6
+ */
+  public static Handler[] getHandlers(){
+    Handler[] handlers=new Handler[macroHandlers.size()];
+    return (Handler[])macroHandlers.toArray(handlers);
+  }
+  /** 
+ * Returns the macro handler suitable for running the specified file
+ * name, or null if there is no suitable handler.
+ * @since jEdit 4.1pre3
+ */
+  public static Handler getHandlerForPathName(  String pathName){
+    for (int i=0; i < macroHandlers.size(); i++) {
+      Handler handler=(Handler)macroHandlers.get(i);
+      if (handler.accept(pathName))       return handler;
+    }
+    return null;
+  }
+  /** 
+ * Returns the macro handler with the specified name, or null if
+ * there is no registered handler with that name.
+ * @since jEdit 4.0pre6
+ */
+  public static Handler getHandler(  String name){
+    Handler handler=null;
+    for (int i=0; i < macroHandlers.size(); i++) {
+      handler=(Handler)macroHandlers.get(i);
+      if (handler.getName().equals(name))       return handler;
+    }
+    return null;
+  }
+  /** 
+ * Returns a vector hierarchy with all known macros in it.
+ * Each element of this vector is either a macro name string,
+ * or another vector. If it is a vector, the first element is a
+ * string label, the rest are again, either macro name strings
+ * or vectors.
+ * @since jEdit 2.6pre1
+ */
+  public static Vector getMacroHierarchy(){
+    return macroHierarchy;
+  }
+  /** 
+ * Returns an action set with all known macros in it.
+ * @since jEdit 4.0pre1
+ */
+  public static ActionSet getMacroActionSet(){
+    return macroActionSet;
+  }
+  /** 
+ * Returns the macro with the specified name.
+ * @param macro The macro's name
+ * @since jEdit 2.6pre1
+ */
+  public static Macro getMacro(  String macro){
+    return (Macro)macroHash.get(macro);
+  }
+  /** 
+ * Encapsulates the macro's label, name and path.
+ * @since jEdit 2.2pre4
+ */
+public static class Macro extends EditAction {
+    public Macro(    Handler handler,    String name,    String label,    String path){
+      super(name);
+      this.handler=handler;
+      this.label=label;
+      this.path=path;
+    }
+    public Handler getHandler(){
+      return handler;
+    }
+    public String getPath(){
+      return path;
+    }
+    public void invoke(    View view){
+      if (view == null)       handler.runMacro(null,this);
+ else {
+        Buffer buffer=view.getBuffer();
+        try {
+          buffer.beginCompoundEdit();
+          handler.runMacro(view,this);
+        }
+  finally {
+          buffer.endCompoundEdit();
+        }
+      }
+    }
+    public String getCode(){
+      return "Macros.getMacro(\"" + getName() + "\").invoke(view);";
+    }
+    public static String macroNameToLabel(    String macroName){
+      int index=macroName.lastIndexOf('/');
+      return macroName.substring(index + 1).replace('_',' ');
+    }
+    private Handler handler;
+    private String path;
+    String label;
+  }
+  /** 
+ * Starts recording a temporary macro.
+ * @param view The view
+ * @since jEdit 2.7pre2
+ */
+  public static void recordTemporaryMacro(  View view){
+    String settings=jEdit.getSettingsDirectory();
+    if (settings == null) {
+      GUIUtilities.error(view,"no-settings",new String[0]);
+      return;
+    }
+    if (view.getMacroRecorder() != null) {
+      GUIUtilities.error(view,"already-recording",new String[0]);
+      return;
+    }
+    Buffer buffer=jEdit.openFile(null,settings + File.separator + "macros","Temporary_Macro.bsh",true,null);
+    if (buffer == null)     return;
+    buffer.remove(0,buffer.getLength());
+    buffer.insert(0,jEdit.getProperty("macro.temp.header"));
+    recordMacro(view,buffer,true);
+  }
+  /** 
+ * Starts recording a macro.
+ * @param view The view
+ * @since jEdit 2.7pre2
+ */
+  public static void recordMacro(  View view){
+    String settings=jEdit.getSettingsDirectory();
+    if (settings == null) {
+      GUIUtilities.error(view,"no-settings",new String[0]);
+      return;
+    }
+    if (view.getMacroRecorder() != null) {
+      GUIUtilities.error(view,"already-recording",new String[0]);
+      return;
+    }
+    String name=GUIUtilities.input(view,"record",null);
+    if (name == null)     return;
+    name=name.replace(' ','_');
+    Buffer buffer=jEdit.openFile(null,null,MiscUtilities.constructPath(settings,"macros",name + ".bsh"),true,null);
+    if (buffer == null)     return;
+    buffer.remove(0,buffer.getLength());
+    buffer.insert(0,jEdit.getProperty("macro.header"));
+    recordMacro(view,buffer,false);
+  }
+  /** 
+ * Stops a recording currently in progress.
+ * @param view The view
+ * @since jEdit 2.7pre2
+ */
+  public static void stopRecording(  View view){
+    Recorder recorder=view.getMacroRecorder();
+    if (recorder == null)     GUIUtilities.error(view,"macro-not-recording",null);
+ else {
+      view.setMacroRecorder(null);
+      if (!recorder.temporary)       view.setBuffer(recorder.buffer);
+      recorder.dispose();
+    }
+  }
+  /** 
+ * Runs the temporary macro.
+ * @param view The view
+ * @since jEdit 2.7pre2
+ */
+  public static void runTemporaryMacro(  View view){
+    String settings=jEdit.getSettingsDirectory();
+    if (settings == null) {
+      GUIUtilities.error(view,"no-settings",null);
+      return;
+    }
+    String path=MiscUtilities.constructPath(jEdit.getSettingsDirectory(),"macros","Temporary_Macro.bsh");
+    if (jEdit.getBuffer(path) == null) {
+      GUIUtilities.error(view,"no-temp-macro",null);
+      return;
+    }
+    Handler handler=getHandler("beanshell");
+    Macro temp=handler.createMacro(path,path);
+    Buffer buffer=view.getBuffer();
+    try {
+      buffer.beginCompoundEdit();
+      temp.invoke(view);
+    }
+  finally {
+      if (buffer.insideCompoundEdit())       buffer.endCompoundEdit();
+    }
+  }
+  private static String systemMacroPath;
+  private static String userMacroPath;
+  private static ArrayList macroHandlers;
+  private static ActionSet macroActionSet;
+  private static Vector macroHierarchy;
+  private static Hashtable macroHash;
+static {
+    macroHandlers=new ArrayList();
+    registerHandler(new BeanShellHandler());
+    macroActionSet=new ActionSet(jEdit.getProperty("action-set.macros"));
+    jEdit.addActionSet(macroActionSet);
+    macroHierarchy=new Vector();
+    macroHash=new Hashtable();
+  }
+  private static void loadMacros(  Vector vector,  String path,  File directory){
+    File[] macroFiles=directory.listFiles();
+    if (macroFiles == null || macroFiles.length == 0)     return;
+    for (int i=0; i < macroFiles.length; i++) {
+      File file=macroFiles[i];
+      String fileName=file.getName();
+      if (file.isHidden()) {
+        continue;
+      }
+ else       if (file.isDirectory()) {
+        String submenuName=fileName.replace('_',' ');
+        Vector submenu=null;
+        for (int j=0; j < vector.size(); j++) {
+          Object obj=vector.get(j);
+          if (obj instanceof Vector) {
+            Vector vec=(Vector)obj;
+            if (((String)vec.get(0)).equals(submenuName)) {
+              submenu=vec;
+              break;
+            }
+          }
+        }
+        if (submenu == null) {
+          submenu=new Vector();
+          submenu.addElement(submenuName);
+          vector.addElement(submenu);
+        }
+        loadMacros(submenu,path + fileName + '/',file);
+      }
+ else {
+        addMacro(file,path,vector);
+      }
+    }
+  }
+  private static void addMacro(  File file,  String path,  Vector vector){
+    String fileName=file.getName();
+    Handler handler=getHandlerForPathName(file.getPath());
+    if (handler == null)     return;
+    try {
+      String macroName=(path + fileName).replace(' ','_');
+      Macro newMacro=handler.createMacro(macroName,file.getPath());
+      if (macroHash.get(newMacro.getName()) != null)       return;
+      vector.addElement(newMacro.getName());
+      jEdit.setTemporaryProperty(newMacro.getName() + ".label",newMacro.label);
+      jEdit.setTemporaryProperty(newMacro.getName() + ".mouse-over",handler.getLabel() + " - " + file.getPath());
+      macroActionSet.addAction(newMacro);
+      macroHash.put(newMacro.getName(),newMacro);
+    }
+ catch (    Exception e) {
+      Log.log(Log.ERROR,Macros.class,e);
+      macroHandlers.remove(handler);
+    }
+  }
+  /** 
+ * Starts recording a macro.
+ * @param view The view
+ * @param buffer The buffer to record to
+ * @param temporary True if this is a temporary macro
+ * @since jEdit 3.0pre5
+ */
+  private static void recordMacro(  View view,  Buffer buffer,  boolean temporary){
+    view.setMacroRecorder(new Recorder(view,buffer,temporary));
+    view.getStatus().setMessage(null);
+  }
+  /** 
+ * Handles macro recording.
+ */
+public static class Recorder implements EBComponent {
+    View view;
+    Buffer buffer;
+    boolean temporary;
+    boolean lastWasInput;
+    boolean lastWasOverwrite;
+    int overwriteCount;
+    public Recorder(    View view,    Buffer buffer,    boolean temporary){
+      this.view=view;
+      this.buffer=buffer;
+      this.temporary=temporary;
+      EditBus.addToBus(this);
+    }
+    public void record(    String code){
+      flushInput();
+      append("\n");
+      append(code);
+    }
+    public void record(    int repeat,    String code){
+      if (repeat == 1)       record(code);
+ else {
+        record("for(int i = 1; i <= " + repeat + "; i++)\n"+ "{\n"+ code+ "\n"+ "}");
+      }
+    }
+    /** 
+ * @since jEdit 4.2pre5
+ */
+    public void recordInput(    int repeat,    char ch,    boolean overwrite){
+      if (ch == '\n')       record(repeat,"textArea.userInput(\'\\n\');");
+ else       if (ch == '\t')       record(repeat,"textArea.userInput(\'\\t\');");
+ else {
+        StringBuffer buf=new StringBuffer();
+        for (int i=0; i < repeat; i++)         buf.append(ch);
+        recordInput(buf.toString(),overwrite);
+      }
+    }
+    /** 
+ * @since jEdit 4.2pre5
+ */
+    public void recordInput(    String str,    boolean overwrite){
+      String charStr=MiscUtilities.charsToEscapes(str);
+      if (overwrite) {
+        if (lastWasOverwrite) {
+          overwriteCount++;
+          append(charStr);
+        }
+ else {
+          flushInput();
+          overwriteCount=1;
+          lastWasOverwrite=true;
+          append("\ntextArea.setSelectedText(\"" + charStr);
+        }
+      }
+ else {
+        if (lastWasInput)         append(charStr);
+ else {
+          flushInput();
+          lastWasInput=true;
+          append("\ntextArea.setSelectedText(\"" + charStr);
+        }
+      }
+    }
+    public void handleMessage(    EBMessage msg){
+      if (msg instanceof BufferUpdate) {
+        BufferUpdate bmsg=(BufferUpdate)msg;
+        if (bmsg.getWhat() == BufferUpdate.CLOSED) {
+          if (bmsg.getBuffer() == buffer)           stopRecording(view);
+        }
+      }
+    }
+    private void append(    String str){
+      buffer.insert(buffer.getLength(),str);
+    }
+    private void dispose(){
+      flushInput();
+      for (int i=0; i < buffer.getLineCount(); i++) {
+        buffer.indentLine(i,true);
+      }
+      EditBus.removeFromBus(this);
+      view.getStatus().setMessage(null);
+    }
+    /** 
+ * We try to merge consecutive inputs. This helper method is
+ * called when something other than input is to be recorded.
+ */
+    private void flushInput(){
+      if (lastWasInput) {
+        lastWasInput=false;
+        append("\");");
+      }
+      if (lastWasOverwrite) {
+        lastWasOverwrite=false;
+        append("\");\n");
+        append("offset = buffer.getLineEndOffset(" + "textArea.getCaretLine()) - 1;\n");
+        append("buffer.remove(textArea.getCaretPosition()," + "Math.min(" + overwriteCount + ",offset - "+ "textArea.getCaretPosition()));");
+      }
+    }
+  }
+  /** 
+ * Encapsulates creating and invoking macros in arbitrary scripting languages
+ * @since jEdit 4.0pre6
+ */
+public static abstract class Handler {
+    public String getName(){
+      return name;
+    }
+    public String getLabel(){
+      return label;
+    }
+    public boolean accept(    String path){
+      return filter.isMatch(MiscUtilities.getFileName(path));
+    }
+    public abstract Macro createMacro(    String macroName,    String path);
+    /** 
+ * Runs the specified macro.
+ * @param view The view - may be null.
+ * @param macro The macro.
+ */
+    public abstract void runMacro(    View view,    Macro macro);
+    /** 
+ * Runs the specified macro. This method is optional; it is
+ * called if the specified macro is a startup script. The
+ * default behavior is to simply call {@link #runMacro(View,Macros.Macro)}.
+ * @param view The view - may be null.
+ * @param macro The macro.
+ * @param ownNamespace  A hint indicating whenever functions and
+ * variables defined in the script are to be self-contained, or
+ * made available to other scripts. The macro handler may ignore
+ * this parameter.
+ * @since jEdit 4.1pre3
+ */
+    public void runMacro(    View view,    Macro macro,    boolean ownNamespace){
+      runMacro(view,macro);
+    }
+    protected Handler(    String name){
+      this.name=name;
+      label=jEdit.getProperty("macro-handler." + name + ".label",name);
+      try {
+        filter=new RE(MiscUtilities.globToRE(jEdit.getProperty("macro-handler." + name + ".glob")));
+      }
+ catch (      Exception e) {
+        throw new InternalError("Missing or invalid glob for handler " + name);
+      }
+    }
+    private String name;
+    private String label;
+    private RE filter;
+  }
+static class BeanShellHandler extends Handler {
+    BeanShellHandler(){
+      super("beanshell");
+    }
+    public Macro createMacro(    String macroName,    String path){
+      macroName=macroName.substring(0,macroName.length() - 4);
+      return new Macro(this,macroName,Macro.macroNameToLabel(macroName),path);
+    }
+    public void runMacro(    View view,    Macro macro){
+      BeanShell.runScript(view,macro.getPath(),null,true);
+    }
+    public void runMacro(    View view,    Macro macro,    boolean ownNamespace){
+      BeanShell.runScript(view,macro.getPath(),null,ownNamespace);
+    }
+  }
+}
+===================================================================
+/** 
+ * Manages persistence of open buffers and views across jEdit sessions.
+ * @since jEdit 4.2pre1
+ * @author Slava Pestov
+ * @version $Id: Logging\040Classes.txt,v 1.1 2016/04/22 16:22:29 nziragch Exp $
+ */
+public class PerspectiveManager {
+  /** 
+ * We only autosave the perspective if it has changed, to avoid spinning
+ * up the disk on laptops.
+ * @since jEdit 4.2pre13
+ */
+  public static boolean isPerspectiveDirty(){
+    return dirty;
+  }
+  /** 
+ * We only autosave the perspective if it has changed, to avoid spinning
+ * up the disk on laptops.
+ * @since jEdit 4.2pre13
+ */
+  public static void setPerspectiveDirty(  boolean dirty){
+    PerspectiveManager.dirty=dirty;
+  }
+  public static View loadPerspective(  boolean restoreFiles){
+    String settingsDirectory=jEdit.getSettingsDirectory();
+    if (settingsDirectory == null)     return null;
+    File perspective=new File(MiscUtilities.constructPath(settingsDirectory,"perspective.xml"));
+    if (!perspective.exists())     return null;
+    Log.log(Log.MESSAGE,PerspectiveManager.class,"Loading " + perspective);
+    PerspectiveHandler handler=new PerspectiveHandler(restoreFiles);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(handler);
+    Reader in=null;
+    try {
+      in=new BufferedReader(new FileReader(perspective));
+      parser.parse(null,null,in);
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+      Log.log(Log.ERROR,PerspectiveManager.class,perspective + ":" + line+ ": "+ message);
+    }
+catch (    FileNotFoundException fnf) {
+    }
+catch (    Exception e) {
+      Log.log(Log.ERROR,PerspectiveManager.class,e);
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,PerspectiveManager.class,io);
+      }
+    }
+    return handler.view;
+  }
+  public static void savePerspective(  boolean autosave){
+    String settingsDirectory=jEdit.getSettingsDirectory();
+    if (settingsDirectory == null)     return;
+    if (jEdit.getBufferCount() == 0)     return;
+    if (!autosave)     Log.log(Log.MESSAGE,PerspectiveManager.class,"Saving perspective.xml");
+    File file1=new File(MiscUtilities.constructPath(settingsDirectory,"#perspective.xml#save#"));
+    File file2=new File(MiscUtilities.constructPath(settingsDirectory,"perspective.xml"));
+    String lineSep=System.getProperty("line.separator");
+    BufferedWriter out=null;
+    try {
+      out=new BufferedWriter(new FileWriter(file1));
+      out.write("<?xml version=\"1.0\"?>");
+      out.write(lineSep);
+      out.write("<!DOCTYPE PERSPECTIVE SYSTEM \"perspective.dtd\">");
+      out.write(lineSep);
+      out.write("<PERSPECTIVE>");
+      out.write(lineSep);
+      Buffer[] buffers=jEdit.getBuffers();
+      for (int i=0; i < buffers.length; i++) {
+        Buffer buffer=buffers[i];
+        if (buffer.isNewFile())         continue;
+        out.write("<BUFFER>");
+        out.write(MiscUtilities.charsToEntities(buffer.getPath()));
+        out.write("</BUFFER>");
+        out.write(lineSep);
+      }
+      View[] views=jEdit.getViews();
+      for (int i=0; i < views.length; i++) {
+        View view=views[i];
+        if (view == jEdit.getActiveView() && i != views.length - 1) {
+          View last=views[views.length - 1];
+          views[i]=last;
+          views[views.length - 1]=view;
+          view=last;
+        }
+        View.ViewConfig config=views[i].getViewConfig();
+        out.write("<VIEW PLAIN=\"");
+        out.write(config.plainView ? "TRUE" : "FALSE");
+        out.write("\">");
+        out.write("<PANES>");
+        out.write(lineSep);
+        out.write(MiscUtilities.charsToEntities(config.splitConfig));
+        out.write(lineSep);
+        out.write("</PANES>");
+        out.write(lineSep);
+        out.write("<GEOMETRY X=\"");
+        out.write(String.valueOf(config.x));
+        out.write("\" Y=\"");
+        out.write(String.valueOf(config.y));
+        out.write("\" WIDTH=\"");
+        out.write(String.valueOf(config.width));
+        out.write("\" HEIGHT=\"");
+        out.write(String.valueOf(config.height));
+        out.write("\" EXT_STATE=\"");
+        out.write(String.valueOf(config.extState));
+        out.write("\" />");
+        out.write(lineSep);
+        out.write("<DOCKING LEFT=\"");
+        out.write(config.left == null ? "" : config.left);
+        out.write("\" TOP=\"");
+        out.write(config.top == null ? "" : config.top);
+        out.write("\" RIGHT=\"");
+        out.write(config.right == null ? "" : config.right);
+        out.write("\" BOTTOM=\"");
+        out.write(config.bottom == null ? "" : config.bottom);
+        out.write("\" LEFT_POS=\"");
+        out.write(String.valueOf(config.leftPos));
+        out.write("\" TOP_POS=\"");
+        out.write(String.valueOf(config.topPos));
+        out.write("\" RIGHT_POS=\"");
+        out.write(String.valueOf(config.rightPos));
+        out.write("\" BOTTOM_POS=\"");
+        out.write(String.valueOf(config.bottomPos));
+        out.write("\" />");
+        out.write(lineSep);
+        out.write("</VIEW>");
+        out.write(lineSep);
+      }
+      out.write("</PERSPECTIVE>");
+      out.write(lineSep);
+    }
+ catch (    IOException io) {
+      Log.log(Log.ERROR,PerspectiveManager.class,"Error saving " + file1);
+      Log.log(Log.ERROR,PerspectiveManager.class,io);
+    }
+ finally {
+      try {
+        if (out != null)         out.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+    file2.delete();
+    file1.renameTo(file2);
+  }
+  private static boolean dirty;
+static class PerspectiveHandler extends HandlerBase {
+    View view;
+    String charData;
+    View.ViewConfig config;
+    boolean restoreFiles;
+    PerspectiveHandler(    boolean restoreFiles){
+      this.restoreFiles=restoreFiles;
+      config=new View.ViewConfig();
+    }
+    public Object resolveEntity(    String publicId,    String systemId){
+      if ("perspective.dtd".equals(systemId)) {
+        return new StringReader("<!-- -->");
+      }
+      return null;
+    }
+    public void doctypeDecl(    String name,    String publicId,    String systemId) throws Exception {
+      if ("PERSPECTIVE".equals(name))       return;
+      Log.log(Log.ERROR,this,"perspective.xml: DOCTYPE must be PERSPECTIVE");
+    }
+    public void attribute(    String aname,    String value,    boolean specified){
+      if (!specified)       return;
+      if (aname.equals("X"))       config.x=Integer.parseInt(value);
+ else       if (aname.equals("Y"))       config.y=Integer.parseInt(value);
+ else       if (aname.equals("WIDTH"))       config.width=Integer.parseInt(value);
+ else       if (aname.equals("HEIGHT"))       config.height=Integer.parseInt(value);
+ else       if (aname.equals("EXT_STATE"))       config.extState=Integer.parseInt(value);
+ else       if (aname.equals("PLAIN"))       config.plainView=("TRUE".equals(value));
+ else       if (aname.equals("TOP"))       config.top=value;
+ else       if (aname.equals("LEFT"))       config.left=value;
+ else       if (aname.equals("BOTTOM"))       config.bottom=value;
+ else       if (aname.equals("RIGHT"))       config.right=value;
+ else       if (aname.equals("TOP_POS"))       config.topPos=Integer.parseInt(value);
+ else       if (aname.equals("LEFT_POS"))       config.leftPos=Integer.parseInt(value);
+ else       if (aname.equals("BOTTOM_POS"))       config.bottomPos=Integer.parseInt(value);
+ else       if (aname.equals("RIGHT_POS"))       config.rightPos=Integer.parseInt(value);
+    }
+    public void endElement(    String name){
+      if (name.equals("BUFFER")) {
+        if (restoreFiles)         jEdit.openFile(null,charData);
+      }
+ else       if (name.equals("PANES"))       config.splitConfig=charData;
+ else       if (name.equals("VIEW")) {
+        view=jEdit.newView(view,null,config);
+        config=new View.ViewConfig();
+      }
+    }
+    public void charData(    char[] ch,    int start,    int length){
+      charData=new String(ch,start,length);
+    }
+  }
+}
+===================================================================
+static class PerspectiveHandler extends HandlerBase {
+  View view;
+  String charData;
+  View.ViewConfig config;
+  boolean restoreFiles;
+  PerspectiveHandler(  boolean restoreFiles){
+    this.restoreFiles=restoreFiles;
+    config=new View.ViewConfig();
+  }
+  public Object resolveEntity(  String publicId,  String systemId){
+    if ("perspective.dtd".equals(systemId)) {
+      return new StringReader("<!-- -->");
+    }
+    return null;
+  }
+  public void doctypeDecl(  String name,  String publicId,  String systemId) throws Exception {
+    if ("PERSPECTIVE".equals(name))     return;
+    Log.log(Log.ERROR,this,"perspective.xml: DOCTYPE must be PERSPECTIVE");
+  }
+  public void attribute(  String aname,  String value,  boolean specified){
+    if (!specified)     return;
+    if (aname.equals("X"))     config.x=Integer.parseInt(value);
+ else     if (aname.equals("Y"))     config.y=Integer.parseInt(value);
+ else     if (aname.equals("WIDTH"))     config.width=Integer.parseInt(value);
+ else     if (aname.equals("HEIGHT"))     config.height=Integer.parseInt(value);
+ else     if (aname.equals("EXT_STATE"))     config.extState=Integer.parseInt(value);
+ else     if (aname.equals("PLAIN"))     config.plainView=("TRUE".equals(value));
+ else     if (aname.equals("TOP"))     config.top=value;
+ else     if (aname.equals("LEFT"))     config.left=value;
+ else     if (aname.equals("BOTTOM"))     config.bottom=value;
+ else     if (aname.equals("RIGHT"))     config.right=value;
+ else     if (aname.equals("TOP_POS"))     config.topPos=Integer.parseInt(value);
+ else     if (aname.equals("LEFT_POS"))     config.leftPos=Integer.parseInt(value);
+ else     if (aname.equals("BOTTOM_POS"))     config.bottomPos=Integer.parseInt(value);
+ else     if (aname.equals("RIGHT_POS"))     config.rightPos=Integer.parseInt(value);
+  }
+  public void endElement(  String name){
+    if (name.equals("BUFFER")) {
+      if (restoreFiles)       jEdit.openFile(null,charData);
+    }
+ else     if (name.equals("PANES"))     config.splitConfig=charData;
+ else     if (name.equals("VIEW")) {
+      view=jEdit.newView(view,null,config);
+      config=new View.ViewConfig();
+    }
+  }
+  public void charData(  char[] ch,  int start,  int length){
+    charData=new String(ch,start,length);
+  }
+}
+===================================================================

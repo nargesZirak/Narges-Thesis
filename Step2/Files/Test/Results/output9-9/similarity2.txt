@@ -1,0 +1,80 @@
+
+============================================================================
+ID: catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+MATCHES: 1.0
+============================================================================
+ID: catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+public void run(){
+  Log.log(Log.DEBUG,this,"Work request thread starting [" + getName() + "]");
+  for (; ; ) {
+    doRequests();
+  }
+}
+
+MATCHES: 0.8214587670340617
+============================================================================
+ID: catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+private void doRequest(WorkThreadPool.Request request){
+  Log.log(Log.DEBUG,WorkThread.class,"Running in work thread: " + request);
+  try {
+    request.run.run();
+  }
+ catch (  Abort a) {
+  }
+catch (  Throwable t) {
+  }
+ finally {
+synchronized (abortLock) {
+      aborted=abortable=false;
+    }
+    status=null;
+    progressValue=progressMaximum=0;
+    pool.requestDone();
+    pool.fireStatusChanged(this);
+  }
+}
+
+MATCHES: 0.7845272040802684
+============================================================================
+ID: catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+catch (Abort a) {
+  Log.log(Log.ERROR,WorkThread.class,"Unhandled abort");
+}
+
+MATCHES: 0.7508549503711736
+============================================================================
+ID: catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,t);
+}
+
+MATCHES: 0.7508549503711736
+============================================================================
+ID: catch (InterruptedException ie) {
+  Log.log(Log.ERROR,this,ie);
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,WorkThread.class,"Exception " + "in work thread:");
+}
+
+MATCHES: 0.7484825808597323

@@ -1,0 +1,110 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Anti-unification of Logged Java Classes}{26}{chapter.4}}
+\@writefile{lof}{\addvspace {10pt}}
+\@writefile{lot}{\addvspace {10pt}}
+\newlabel{ch4}{{4}{26}{Anti-unification of Logged Java Classes}{chapter.4}{}}
+\newlabel{methodology}{{4}{26}{Anti-unification of Logged Java Classes}{chapter.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.1}{\ignorespaces \textsc  {Determine-Best-Correspondences}(\textit  {auastA},\textit  {auastB}) determines best correspondences between the two AUAST nodes \textit  {auastA} and \textit  {auastB}\relax }}{27}{algorithm.4.1}}
+\newlabel{overview}{{4.1}{27}{\func {Determine-Best-Correspondences}(\vars {auastA},\vars {auastB}) determines best correspondences between the two AUAST nodes \vars {auastA} and \vars {auastB}\relax }{algorithm.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the system.\relax }}{28}{figure.caption.25}}
+\newlabel{fig:meth_overview}{{4.1}{28}{Overview of the system.\relax }{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Constructing the AUAST}{28}{section.4.1}}
+\newlabel{meth-constructAUAST}{{4.1}{28}{Constructing the AUAST}{section.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces The AUASTs of log Method Invocation nodes from the Java classes in Figure\nobreakspace  {}\ref  {ch3-ex1} and Figure\nobreakspace  {}\ref  {ch3-ex2}.\relax }}{30}{figure.caption.26}}
+\newlabel{fig:constructAUast}{{4.2}{30}{The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref {ch3-ex1} and Figure~\ref {ch3-ex2}.\relax }{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Deteremining Correspondences Using Jigsaw}{30}{section.4.2}}
+\newlabel{meth-CAST}{{4.2}{30}{Deteremining Correspondences Using Jigsaw}{section.4.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.2}{\ignorespaces \textsc  {Jigsaw-Correspondence}(\textit  {auastA},\textit  {auastB}) determines all the potential correspondences between nodes of two given AUASTs\relax }}{30}{algorithm.4.2}}
+\newlabel{overview}{{4.2}{30}{\func {Jigsaw-Correspondence}(\vars {auastA},\vars {auastB}) determines all the potential correspondences between nodes of two given AUASTs\relax }{algorithm.4.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Constraints in Determining Correspondences}{30}{section.4.3}}
+\newlabel{meth-constraints}{{4.3}{30}{Constraints in Determining Correspondences}{section.4.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Determining Correspondences}{32}{section.4.4}}
+\newlabel{meth-correspondence}{{4.4}{32}{Determining Correspondences}{section.4.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.3}{\ignorespaces \textsc  {Determine-Correspondence}(\textit  {auastA}) takes in an AUAST node and create a list of correspondence connections containing the best correspondence to each node in the AUAST.\relax }}{33}{algorithm.4.3}}
+\newlabel{alg-determine}{{4.3}{33}{\func {Determine-Correspondence}(\vars {auastA}) takes in an AUAST node and create a list of correspondence connections containing the best correspondence to each node in the AUAST.\relax }{algorithm.4.3}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.4}{\ignorespaces \textsc  {Remove-Other-Correspondences}(\textit  {ce},\textit  {list}) Remove all other correspondences involving nodes of a particular correspondence connection or element (ce) from lists of correspondence connections.\relax }}{33}{algorithm.4.4}}
+\newlabel{removeOtherCEs}{{4.4}{33}{\func {Remove-Other-Correspondences}(\vars {ce},\vars {list}) Remove all other correspondences involving nodes of a particular correspondence connection or element (ce) from lists of correspondence connections.\relax }{algorithm.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Simple AUAST structures constructed from the ASTs in Figure\nobreakspace  {}\ref  {fig:meth-ast-1}. Links between AUAST nodes indicate structural correspondences selected as the best fit\relax }}{34}{figure.caption.27}}
+\newlabel{fig:AUASTs}{{4.3}{34}{Simple AUAST structures constructed from the ASTs in Figure~\ref {fig:meth-ast-1}. Links between AUAST nodes indicate structural correspondences selected as the best fit\relax }{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Computing Similarity}{34}{section.4.5}}
+\newlabel{meth-similarity}{{4.5}{34}{Computing Similarity}{section.4.5}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.5}{\ignorespaces \textsc  {Compute-Matches}(\textit  {auastA}, \textit  {auastB}), determines the matches between two AUASTs via a recursive traversal of structural properties\relax }}{35}{algorithm.4.5}}
+\newlabel{computeMatches}{{4.5}{35}{\func {Compute-Matches}(\vars {auastA}, \vars {auastB}), determines the matches between two AUASTs via a recursive traversal of structural properties\relax }{algorithm.4.5}{}}
+\newlabel{eq1}{{4.1}{36}{Computing Similarity}{equation.4.5.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Constructing the Anti-unifier}{36}{section.4.6}}
+\newlabel{meth-antiUnifier}{{4.6}{36}{Constructing the Anti-unifier}{section.4.6}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.6}{\ignorespaces Input into \textsc  {Anti-unify}(\textit  {auastA}, \textit  {auastB}) are two AUAST nodes; this algorithm construct an anti-unified AUAST node through anti-unification of input node's structural properties\relax }}{37}{algorithm.4.6}}
+\newlabel{antiUnify}{{4.6}{37}{Input into \func {Anti-unify}(\vars {auastA}, \vars {auastB}) are two AUAST nodes; this algorithm construct an anti-unified AUAST node through anti-unification of input node's structural properties\relax }{algorithm.4.6}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.7}{\ignorespaces \textsc  {Anti-unify-Property}(\textit  {propA}, \textit  {propB}) takes two structural properties and creates an anti-unified structural property.\relax }}{38}{algorithm.4.7}}
+\newlabel{antiUnify}{{4.7}{38}{\func {Anti-unify-Property}(\vars {propA}, \vars {propB}) takes two structural properties and creates an anti-unified structural property.\relax }{algorithm.4.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces The anti-unifier (AUAST3) constructed from log Method Invocation AUAST nodes in Figure\nobreakspace  {}\ref  {fig:constructAUast} \relax }}{39}{figure.caption.28}}
+\newlabel{fig:AUAUAST}{{4.4}{39}{The anti-unifier (AUAST3) constructed from log Method Invocation AUAST nodes in Figure~\ref {fig:constructAUast} \relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Simple anti-unified AUAST structure of the two AUASTs in Figure\nobreakspace  {}\ref  {fig:AUASTs}\relax }}{40}{figure.caption.29}}
+\newlabel{fig:meth-anti-unifier}{{4.5}{40}{Simple anti-unified AUAST structure of the two AUASTs in Figure~\ref {fig:AUASTs}\relax }{figure.caption.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Multiple logging calls}{41}{section.4.7}}
+\newlabel{meth-multipleLogs}{{4.7}{41}{Multiple logging calls}{section.4.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces A Java class that utilizes multiple logging calls. This will be referred to as Example 1.\relax }}{41}{figure.caption.30}}
+\newlabel{multiple1}{{4.6}{41}{A Java class that utilizes multiple logging calls. This will be referred to as Example 1.\relax }{figure.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces A Java class that utilizes multiple logging calls. This will be referred to as Example 2.\relax }}{41}{figure.caption.31}}
+\newlabel{multiple2}{{4.7}{41}{A Java class that utilizes multiple logging calls. This will be referred to as Example 2.\relax }{figure.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace  {}\ref  {multiple1} and\nobreakspace  {}\ref  {multiple2}. Links between AUAST nodes indicate potential candidate structural correspondences detected by the Jigsaw framework.\relax }}{42}{figure.caption.32}}
+\newlabel{mast_1}{{4.8}{42}{Simple AUAST structure of examples in Figures~\ref {multiple1} and~\ref {multiple2}. Links between AUAST nodes indicate potential candidate structural correspondences detected by the Jigsaw framework.\relax }{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace  {}\ref  {multiple1} and\nobreakspace  {}\ref  {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }}{43}{figure.caption.33}}
+\newlabel{m_ast2}{{4.9}{43}{Simple AUAST structure of examples in Figures~\ref {multiple1} and~\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Create multiple copies of Example 1 for each logging call.\relax }}{44}{figure.caption.34}}
+\newlabel{multiple1-one}{{4.10}{44}{Create multiple copies of Example 1 for each logging call.\relax }{figure.caption.34}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Create multiple copies of Example 2 for each logging call.\relax }}{45}{figure.caption.35}}
+\newlabel{multiple2-one}{{4.11}{45}{Create multiple copies of Example 2 for each logging call.\relax }{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Anti-unifying a set of AUASTs}{45}{section.4.8}}
+\newlabel{meth-clustering}{{4.8}{45}{Anti-unifying a set of AUASTs}{section.4.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Anti-unification of 4 AUAST nodes using an agglomerative hierarchical clustering algorithm. The threshold value indicates the number of clusters we will come up with.\relax }}{46}{figure.caption.36}}
+\newlabel{fig:overview2}{{4.12}{46}{Anti-unification of 4 AUAST nodes using an agglomerative hierarchical clustering algorithm. The threshold value indicates the number of clusters we will come up with.\relax }{figure.caption.36}{}}
+\@setckpt{chapter4}{
+\setcounter{page}{47}
+\setcounter{equation}{1}
+\setcounter{enumi}{5}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{4}
+\setcounter{section}{8}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{12}
+\setcounter{table}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{KVtest}{0}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{lstnumber}{19}
+\setcounter{Item}{7}
+\setcounter{Hfootnote}{0}
+\setcounter{bookmark@seq@number}{28}
+\setcounter{float@type}{16}
+\setcounter{algorithm}{7}
+\setcounter{nlinenum}{0}
+\setcounter{ALG@line}{21}
+\setcounter{ALG@rem}{0}
+\setcounter{ALG@nested}{0}
+\setcounter{ALG@Lnr}{2}
+\setcounter{ALG@blocknr}{10}
+\setcounter{ALG@storecount}{0}
+\setcounter{ALG@tmpcounter}{0}
+\setcounter{parentequation}{0}
+\setcounter{theorem}{0}
+\setcounter{defn}{0}
+\setcounter{principle}{0}
+\setcounter{constraint}{2}
+\setcounter{lstlisting}{0}
+\setcounter{section@level}{1}
+}

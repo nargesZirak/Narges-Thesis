@@ -1,0 +1,15 @@
+
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("ACTIONS".equals(name))   return;
+  Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+}
+
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+
+MATCHES: 0.11763184672275584

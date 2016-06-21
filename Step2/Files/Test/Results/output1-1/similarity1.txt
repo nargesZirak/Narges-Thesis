@@ -1,0 +1,364 @@
+
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+MATCHES: 1.0
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+catch (IOException io) {
+  Log.log(Log.ERROR,BufferHistory.class,io);
+}
+
+MATCHES: 0.9523689030267978
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+catch (Exception e) {
+  Log.log(Log.ERROR,BufferHistory.class,e);
+}
+
+MATCHES: 0.9522243107769424
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+catch (XmlException xe) {
+  int line=xe.getLine();
+  String message=xe.getMessage();
+  Log.log(Log.ERROR,BufferHistory.class,recent + ":" + line+ ": "+ message);
+}
+
+MATCHES: 0.9499921862791061
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+public static void save(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File file1=new File(MiscUtilities.constructPath(settingsDirectory,"#recent.xml#save#"));
+  File file2=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (file2.exists() && file2.lastModified() != recentModTime) {
+    return;
+  }
+  jEdit.backupSettingsFile(file2);
+  Log.log(Log.MESSAGE,BufferHistory.class,"Saving " + file1);
+  String lineSep=System.getProperty("line.separator");
+  boolean ok=false;
+  BufferedWriter out=null;
+  try {
+    out=new BufferedWriter(new FileWriter(file1));
+    out.write("<?xml version=\"1.0\"?>");
+    out.write(lineSep);
+    out.write("<!DOCTYPE RECENT SYSTEM \"recent.dtd\">");
+    out.write(lineSep);
+    out.write("<RECENT>");
+    out.write(lineSep);
+    Iterator iter=history.iterator();
+    while (iter.hasNext()) {
+      out.write("<ENTRY>");
+      out.write(lineSep);
+      Entry entry=(Entry)iter.next();
+      out.write("<PATH>");
+      out.write(MiscUtilities.charsToEntities(entry.path));
+      out.write("</PATH>");
+      out.write(lineSep);
+      out.write("<CARET>");
+      out.write(String.valueOf(entry.caret));
+      out.write("</CARET>");
+      out.write(lineSep);
+      if (entry.selection != null && entry.selection.length() > 0) {
+        out.write("<SELECTION>");
+        out.write(entry.selection);
+        out.write("</SELECTION>");
+        out.write(lineSep);
+      }
+      if (entry.encoding != null) {
+        out.write("<ENCODING>");
+        out.write(entry.encoding);
+        out.write("</ENCODING>");
+        out.write(lineSep);
+      }
+      out.write("</ENTRY>");
+      out.write(lineSep);
+    }
+    out.write("</RECENT>");
+    out.write(lineSep);
+    out.close();
+    ok=true;
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (out != null)       out.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+  if (ok) {
+    file2.delete();
+    file1.renameTo(file2);
+  }
+  recentModTime=file2.lastModified();
+}
+
+MATCHES: 0.759332696515795
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+if (file2.exists() && file2.lastModified() != recentModTime) {
+  Log.log(Log.WARNING,BufferHistory.class,file2 + " changed on disk; will not save recent" + " files");
+  return;
+}
+
+MATCHES: 0.7581719182845414
+============================================================================
+ID: public static void load(){
+  String settingsDirectory=jEdit.getSettingsDirectory();
+  if (settingsDirectory == null)   return;
+  File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+  if (!recent.exists())   return;
+  recentModTime=recent.lastModified();
+  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml");
+  RecentHandler handler=new RecentHandler();
+  XmlParser parser=new XmlParser();
+  Reader in=null;
+  parser.setHandler(handler);
+  try {
+    in=new BufferedReader(new FileReader(recent));
+    parser.parse(null,null,in);
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+  }
+catch (  FileNotFoundException fnf) {
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+
+catch (Exception e) {
+  Log.log(Log.ERROR,BufferHistory.class,e);
+}
+
+MATCHES: 0.7495390408781223

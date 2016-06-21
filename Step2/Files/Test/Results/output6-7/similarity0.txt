@@ -1,0 +1,15 @@
+
+============================================================================
+ID: if (action == null) {
+  Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+}
+ else context.invokeAction(evt,action);
+
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+
+MATCHES: 0.3726039616948708

@@ -1,0 +1,134 @@
+********************************  NODE 1  *******************************
+static class RootsEntry extends VFS.DirectoryEntry {
+  RootsEntry(  File file){
+    this.path=this.deletePath=this.symlinkPath=file.getPath();
+    if (isFloppy(file)) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      name=path;
+    }
+ else     if (isDrive(file)) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      if (getSystemDisplayName != null) {
+        try {
+          name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+        }
+ catch (        Exception e) {
+          Log.log(Log.ERROR,this,e);
+          name=path;
+        }
+      }
+    }
+ else     if (file.isDirectory()) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      if (isFileSystemRoot != null) {
+        try {
+          if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+            type=VFS.DirectoryEntry.DIRECTORY;
+          }
+        }
+ catch (        Exception e) {
+        }
+      }
+      if (OperatingSystem.isMacOS())       name=MiscUtilities.getFileName(path);
+ else       name=path;
+    }
+ else     type=VFS.DirectoryEntry.FILE;
+  }
+  public String getExtendedAttribute(  String name){
+    if (name.equals(EA_TYPE))     return super.getExtendedAttribute(name);
+ else {
+      return null;
+    }
+  }
+  private boolean isFloppy(  File file){
+    if (isFloppyDrive != null) {
+      try {
+        return Boolean.TRUE.equals(isFloppyDrive.invoke(fsView,new Object[]{file}));
+      }
+ catch (      Exception e) {
+        return false;
+      }
+    }
+ else     return path.startsWith("A:") || path.startsWith("B:");
+  }
+  private boolean isDrive(  File file){
+    if (isDrive != null) {
+      try {
+        return Boolean.TRUE.equals(isDrive.invoke(fsView,new Object[]{file}));
+      }
+ catch (      Exception e) {
+        return false;
+      }
+    }
+ else     return true;
+  }
+}
+********************************  NODE 2  *******************************
+static class RootsEntry extends VFS.DirectoryEntry {
+  RootsEntry(  File file){
+    this.path=this.deletePath=this.symlinkPath=file.getPath();
+    if (isFloppy(file)) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      name=path;
+    }
+ else     if (isDrive(file)) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      if (getSystemDisplayName != null) {
+        try {
+          name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+        }
+ catch (        Exception e) {
+          name=path;
+        }
+      }
+    }
+ else     if (file.isDirectory()) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      if (isFileSystemRoot != null) {
+        try {
+          if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+            type=VFS.DirectoryEntry.DIRECTORY;
+          }
+        }
+ catch (        Exception e) {
+        }
+      }
+      if (OperatingSystem.isMacOS())       name=MiscUtilities.getFileName(path);
+ else       name=path;
+    }
+ else     type=VFS.DirectoryEntry.FILE;
+  }
+  public String getExtendedAttribute(  String name){
+    if (name.equals(EA_TYPE))     return super.getExtendedAttribute(name);
+ else {
+      return null;
+    }
+  }
+  private boolean isFloppy(  File file){
+    if (isFloppyDrive != null) {
+      try {
+        return Boolean.TRUE.equals(isFloppyDrive.invoke(fsView,new Object[]{file}));
+      }
+ catch (      Exception e) {
+        return false;
+      }
+    }
+ else     return path.startsWith("A:") || path.startsWith("B:");
+  }
+  private boolean isDrive(  File file){
+    if (isDrive != null) {
+      try {
+        return Boolean.TRUE.equals(isDrive.invoke(fsView,new Object[]{file}));
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        return false;
+      }
+    }
+ else     return true;
+  }
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD[static]] ; INTERFACE[false] ; NAME[IDENTIFIER[RootsEntry]] ; SUPERCLASSTYPE[NAME[QUALIFIER[IDENTIFIER[VFS]] ; NAME[IDENTIFIER[DirectoryEntry]]]] ; BODYDECLARATIONS[MODIFIERS[KEYWORD[private]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[boolean]] ; NAME[IDENTIFIER[isFloppy]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[File]]] ; VARARGS[false] ; NAME[IDENTIFIER[file]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[LEFTOPERAND[IDENTIFIER[isFloppyDrive]] ; OPERATOR[!=] ; ] ; THENSTATEMENT[STATEMENTS[BODY[STATEMENTS[EXPRESSION[EXPRESSION[QUALIFIER[IDENTIFIER[Boolean]] ; NAME[IDENTIFIER[TRUE]]] ; NAME[IDENTIFIER[equals]] ; ARGUMENTS[EXPRESSION[IDENTIFIER[isFloppyDrive]] ; NAME[IDENTIFIER[invoke]] ; ARGUMENTS[IDENTIFIER[fsView], TYPE[COMPONENTTYPE[NAME[IDENTIFIER[Object]]]] ; INITIALIZER[EXPRESSIONS[IDENTIFIER[file]]]]]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[Exception]]] ; VARARGS[false] ; NAME[IDENTIFIER[e]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION[BOOLEANVALUE[false]]]]]]] ; ELSESTATEMENT[EXPRESSION[LEFTOPERAND[EXPRESSION[IDENTIFIER[path]] ; NAME[IDENTIFIER[startsWith]] ; ARGUMENTS[ESCAPEDVALUE["A:"]]] ; OPERATOR[||] ; RIGHTOPERAND[EXPRESSION[IDENTIFIER[path]] ; NAME[IDENTIFIER[startsWith]] ; ARGUMENTS[ESCAPEDVALUE["B:"]]] ; ]]]], MODIFIERS[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR[false-or-true] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; NAME[IDENTIFIER[isDrive-or-RootsEntry]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[File]]] ; VARARGS[false] ; NAME[IDENTIFIER[file]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isFloppy-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[getSystemDisplayName-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[" "-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[getSystemDisplayName-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]]]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isDirectory-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[LEFTOPERAND[IDENTIFIER[isFileSystemRoot-or-isDrive]] ; OPERATOR[!=] ; ] ; THENSTATEMENT[STATEMENTS[BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FALSE-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[isFileSystemRoot-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DIRECTORY-or-nil]]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[TRUE-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[Exception]]] ; VARARGS[false] ; NAME[IDENTIFIER[e]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[OperatingSystem-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isMacOS-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getFileName-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILE-or-nil]]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[deletePath-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[symlinkPath-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getPath-or-nil]] ; ]]]]]], MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[NAME[IDENTIFIER[String]]] ; NAME[IDENTIFIER[getExtendedAttribute]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[name]] ; NAME[IDENTIFIER[equals]] ; ARGUMENTS[IDENTIFIER[EA_TYPE]]] ; THENSTATEMENT[EXPRESSION[NAME[IDENTIFIER[getExtendedAttribute]] ; ARGUMENTS[IDENTIFIER[name]]]] ; ]], MODIFIERS[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR[true-or-false] ; NAME[IDENTIFIER[RootsEntry-or-isDrive]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[File]]] ; VARARGS[false] ; NAME[IDENTIFIER[file]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isFloppy-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[getSystemDisplayName-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[BODY[STATEMENTS[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[" "-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[getSystemDisplayName-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[TRUE-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[Exception]]] ; VARARGS[false] ; NAME[IDENTIFIER[e]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[IDENTIFIER[e], QUALIFIER[IDENTIFIER[Log]] ; NAME[IDENTIFIER[ERROR]], ]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]], EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isDirectory-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[LEFTOPERAND[IDENTIFIER[isFileSystemRoot-or-isDrive]] ; OPERATOR[!=] ; ] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[OperatingSystem-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isMacOS-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getFileName-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILE-or-nil]]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[deletePath-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[symlinkPath-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getPath-or-nil]] ; ]]]]]] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]]]]
+****************************** SIMILARITY *****************************
+0.5650372825186414

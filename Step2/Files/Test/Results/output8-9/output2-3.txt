@@ -1,0 +1,174 @@
+********************************  NODE 1  *******************************
+static class RootsEntry extends VFS.DirectoryEntry {
+  RootsEntry(  File file){
+    this.path=this.deletePath=this.symlinkPath=file.getPath();
+    if (isFloppy(file)) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      name=path;
+    }
+ else     if (isDrive(file)) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      if (getSystemDisplayName != null) {
+        try {
+          name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+        }
+ catch (        Exception e) {
+          Log.log(Log.ERROR,this,e);
+          name=path;
+        }
+      }
+    }
+ else     if (file.isDirectory()) {
+      type=VFS.DirectoryEntry.FILESYSTEM;
+      if (isFileSystemRoot != null) {
+        try {
+          if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+            type=VFS.DirectoryEntry.DIRECTORY;
+          }
+        }
+ catch (        Exception e) {
+        }
+      }
+      if (OperatingSystem.isMacOS())       name=MiscUtilities.getFileName(path);
+ else       name=path;
+    }
+ else     type=VFS.DirectoryEntry.FILE;
+  }
+  public String getExtendedAttribute(  String name){
+    if (name.equals(EA_TYPE))     return super.getExtendedAttribute(name);
+ else {
+      return null;
+    }
+  }
+  private boolean isFloppy(  File file){
+    if (isFloppyDrive != null) {
+      try {
+        return Boolean.TRUE.equals(isFloppyDrive.invoke(fsView,new Object[]{file}));
+      }
+ catch (      Exception e) {
+        return false;
+      }
+    }
+ else     return path.startsWith("A:") || path.startsWith("B:");
+  }
+  private boolean isDrive(  File file){
+    if (isDrive != null) {
+      try {
+        return Boolean.TRUE.equals(isDrive.invoke(fsView,new Object[]{file}));
+      }
+ catch (      Exception e) {
+        return false;
+      }
+    }
+ else     return true;
+  }
+}
+********************************  NODE 2  *******************************
+public class WorkThread extends Thread {
+  public WorkThread(  WorkThreadPool pool,  ThreadGroup group,  String name){
+    super(group,name);
+    setPriority(Thread.MIN_PRIORITY);
+    this.pool=pool;
+  }
+  public void setAbortable(  boolean abortable){
+synchronized (abortLock) {
+      this.abortable=abortable;
+      if (aborted)       stop(new Abort());
+    }
+  }
+  public boolean isRequestRunning(){
+    return requestRunning;
+  }
+  public String getStatus(){
+    return status;
+  }
+  public void setStatus(  String status){
+    this.status=status;
+    pool.fireProgressChanged(this);
+  }
+  public int getProgressValue(){
+    return progressValue;
+  }
+  public void setProgressValue(  int progressValue){
+    this.progressValue=progressValue;
+    pool.fireProgressChanged(this);
+  }
+  public int getProgressMaximum(){
+    return progressMaximum;
+  }
+  public void setProgressMaximum(  int progressMaximum){
+    this.progressMaximum=progressMaximum;
+    pool.fireProgressChanged(this);
+  }
+  public void abortCurrentRequest(){
+synchronized (abortLock) {
+      if (abortable && !aborted)       stop(new Abort());
+      aborted=true;
+    }
+  }
+  public void run(){
+    for (; ; ) {
+      doRequests();
+    }
+  }
+  private WorkThreadPool pool;
+  private Object abortLock=new Object();
+  private boolean requestRunning;
+  private boolean abortable;
+  private boolean aborted;
+  private String status;
+  private int progressValue;
+  private int progressMaximum;
+  private void doRequests(){
+    WorkThreadPool.Request request;
+    for (; ; ) {
+      request=pool.getNextRequest();
+      if (request == null)       break;
+ else {
+        requestRunning=true;
+        pool.fireStatusChanged(this);
+        doRequest(request);
+        requestRunning=false;
+      }
+    }
+    pool.fireStatusChanged(this);
+synchronized (pool.waitForAllLock) {
+      pool.waitForAllLock.notifyAll();
+    }
+synchronized (pool.lock) {
+      try {
+        pool.lock.wait();
+      }
+ catch (      InterruptedException ie) {
+        Log.log(Log.ERROR,this,ie);
+      }
+    }
+  }
+  private void doRequest(  WorkThreadPool.Request request){
+    try {
+      request.run.run();
+    }
+ catch (    Abort a) {
+    }
+catch (    Throwable t) {
+    }
+ finally {
+synchronized (abortLock) {
+        aborted=abortable=false;
+      }
+      status=null;
+      progressValue=progressMaximum=0;
+      pool.requestDone();
+      pool.fireStatusChanged(this);
+    }
+  }
+public static class Abort extends Error {
+    public Abort(){
+      super("Work request aborted");
+    }
+  }
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD-OR-NIL[static-or-nil], KEYWORD-OR-NIL[public-or-nil]] ; INTERFACE[false] ; NAME[IDENTIFIER[RootsEntry-or-WorkThread]] ; SUPERCLASSTYPE[NAME[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]] ; IDENTIFIER-OR-NIL[Thread-or-nil]]] ; BODYDECLARATIONS[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[true-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[WorkThread-or-nil]] ; PARAMETERS-OR-NIL[TYPE[NAME[IDENTIFIER[WorkThreadPool-or-File]]] ; VARARGS[false] ; NAME[IDENTIFIER[pool-or-file]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[ThreadGroup-or-File]]] ; VARARGS[false] ; NAME[IDENTIFIER[group-or-file]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[group-or-nil], IDENTIFIER-OR-NIL[name-or-nil]], EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[setPriority-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Thread-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[MIN_PRIORITY-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[static-or-nil]] ; INTERFACE-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Abort-or-nil]] ; SUPERCLASSTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Error-or-nil]]] ; BODYDECLARATIONS-OR-NIL[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[true-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Abort-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["Work request aborted"-or-nil]]]]], MODIFIERS[KEYWORD-OR-NIL[private-or-nil], KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[boolean]] ; NAME[IDENTIFIER[isFloppy-or-isRequestRunning]] ; PARAMETERS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[isFloppyDrive-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[TRUE-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[isFloppyDrive-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[BOOLEANVALUE-OR-NIL[false-or-nil] ; IDENTIFIER-OR-NIL[requestRunning-or-nil]]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[startsWith-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["A:"-or-nil]]] ; OPERATOR-OR-NIL[||-or-nil] ; RIGHTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[startsWith-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["B:"-or-nil]]] ; ]]]], MODIFIERS[KEYWORD[private]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[boolean-or-void]] ; NAME[IDENTIFIER[isDrive-or-doRequest]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[TRUE-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[request-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[run-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[run-or-nil]] ; ]]] ; CATCHCLAUSES[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Abort-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[a-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; , EXCEPTION[TYPE[NAME[IDENTIFIER[Throwable-or-Exception]]] ; VARARGS[false] ; NAME[IDENTIFIER[t-or-e]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]]]] ; FINALLY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[abortLock-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[aborted-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[abortable-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[progressValue-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[progressMaximum-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TOKEN-OR-NIL[0-or-nil]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fireStatusChanged-or-nil]] ; ], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[status-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; ], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[requestDone-or-nil]] ; ]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[setAbortable-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[abortable-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[abortLock-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[abortable-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[abortable-or-nil]]]]]]], MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[NAME[IDENTIFIER[String]]] ; NAME[IDENTIFIER[getExtendedAttribute-or-getStatus]] ; PARAMETERS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[EA_TYPE-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[getExtendedAttribute-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]]] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[IDENTIFIER-OR-NIL[status-or-nil]]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[setStatus-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[status-or-path]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER-OR-NIL[status-or-nil] ; LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[deletePath-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[symlinkPath-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getPath-or-nil]] ; ]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fireProgressChanged-or-nil]] ; ]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[setProgressValue-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[progressValue-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[progressValue-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[progressValue-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fireProgressChanged-or-nil]] ; ]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[setProgressMaximum-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[progressMaximum-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[progressMaximum-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[progressMaximum-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fireProgressChanged-or-nil]] ; ]]], MODIFIERS[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR[true-or-false] ; NAME[IDENTIFIER[RootsEntry-or-doRequests]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE-OR-NIL[NAME-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[WorkThreadPool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Request-or-nil]]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[request-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isFloppy-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isDrive-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[getSystemDisplayName-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[BODY[STATEMENTS[EXPRESSION[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[" "-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[getSystemDisplayName-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]]] ; EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lock-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[wait-or-nil]] ; ]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[Exception-or-InterruptedException]]] ; VARARGS[false] ; NAME[IDENTIFIER[e-or-ie]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[IDENTIFIER[e-or-ie], QUALIFIER[IDENTIFIER[Log]] ; NAME[IDENTIFIER[ERROR]], , ]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isDirectory-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[isFileSystemRoot-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FALSE-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[isFileSystemRoot-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[invoke-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[fsView-or-nil], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]]] ; INITIALIZER-OR-NIL[EXPRESSIONS-OR-NIL[IDENTIFIER-OR-NIL[file-or-nil]]]]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DIRECTORY-or-nil]]]]]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[OperatingSystem-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isMacOS-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getFileName-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILESYSTEM-or-nil]]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[VFS-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[DirectoryEntry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[FILE-or-nil]]]]]]], BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[request-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fireStatusChanged-or-nil]] ; ], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[requestRunning-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]], EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[doRequest-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[request-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[requestRunning-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]]]]]], EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lock-or-nil]]] ; , EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[waitForAllLock-or-nil]]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[waitForAllLock-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[notifyAll-or-nil]] ; ]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fireStatusChanged-or-nil]] ; ]]] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[abortCurrentRequest-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[abortLock-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[aborted-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]]]]]], CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[run-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[doRequests-or-nil]] ; ]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getProgressValue-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; , MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getProgressMaximum-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; , MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[abortLock-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; ]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[WorkThreadPool-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[pool-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[status-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[requestRunning-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[abortable-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[aborted-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[progressValue-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[progressMaximum-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]]]]
+****************************** SIMILARITY *****************************
+0.1344307426860521

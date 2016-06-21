@@ -1,0 +1,43 @@
+\chapter{Evaluation}  \label{eval}
+\begin{itemize} [leftmargin=.01in]
+\item Two empirical studies were conducted
+\section{Experiment 1}  \label{expr1}
+\item First experiment is conducted to evaluate the accuracy of our approach and tool
+\item It addresses the following research questions:
+\begin{itemize} [leftmargin=.3in]
+\item \textsc{RQ1: }can our tool determine the structural similarities and differences between logged Java classes correctly?
+\item \textsc{RQ2: }can our tool compute the similarity between logged Java classes correctly?
+\end{itemize}
+\item To do so, 10 logged Java classes were selected randomly from jEdit v4.2 pre 15 (2004), as our test set
+\item We apply our tool on the test set to create generalizations  and to compute the similarity value between logged Java classes in a pairwise manner
+\item To address the first research question we compute the following measurements for each test case:
+\begin{itemize} [leftmargin=.3in]
+\item the number of correspondences that our tool detects correctly
+\item the total number of correspondences
+\end{itemize}
+\item To determine the correct correspondences we performed a manual investigation
+\item To address the second research question we compute:
+\begin{itemize} [leftmargin=.3in]
+\item the number of similarity values between logged Java classes that are computed correctly by our tool
+\item the total number of comparisons
+\end{itemize}
+\item The correct similarity value for each comparison is calculated manually by
+%\begin{itemize} [leftmargin=.3in]
+%\item counting common simple values based on the selection of corresponding AUAST nodes
+%\item counting total number of simple values of AUAST nodes
+%\end{itemize}
+\item The results taken form our tool are compared with the results taken by manual investigation using the JUnit testing framework
+
+\section{Experiment 2}  \label{expr2}
+\item Second experiment is conducted to address the following research questions:
+\begin{itemize} [leftmargin=.3in]
+\item \textsc{RQ3: }what structural similarities and differences do logged Java classes have?
+\item \textsc{RQ4: }Is it possible to find common patterns in where logging calls do occur?
+\end{itemize}
+\item To do so, we applied our tool on the source code of three open-source full systems that make use of logging to determine the patterns on a per-system class-granularity basis analysis
+\item These systems are different from the system that the test set is selected from
+\section{Results}  \label{results2}
+\item I will describe the results taken form the second experiment
+\section{Lessons learned}  \label{lessons}
+\item I will describe our findings
+\end{itemize}

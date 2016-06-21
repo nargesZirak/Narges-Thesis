@@ -1,0 +1,45 @@
+\chapter{Conclusion}  \label{conc}
+\begin{itemize} [leftmargin=.01in]
+\item Determining the detailed structural similarities and differences between source code fragments is a complex task
+\item It can be applied to solve several source code analysis problems, for example, characterizing logging practices
+\item logging is a pervasive practice and has various applications in software development and maintenance
+\item However, it is a challenging task for developers to understand how to use logging calls in the source code
+\item We have presented an approach to characterize where logging calls happen in the source code by means of structural generalization
+\item We have developed a prototype tool that:
+\begin{itemize} [leftmargin=.3in]
+\item detects potential structural correspondences using anti-unification
+\item uses several constraint to remove the correspondences that are not suited to our application
+\item determines the best correspondences with the highest similarity
+\item constructs the structural generalizations using anti-unification
+\item classifies the entities using a measure of similarity
+\end{itemize} 
+\item An experiment is conducted to evaluate our approach and tool
+\item Our experiment found that ...
+\item An experiment is conducted to characterize logging usage in three software systems
+\item In summary, our study makes the following contributions:
+\begin{itemize} [leftmargin=.3in]
+\item …
+\item …
+\end{itemize}
+
+\section{Future Work}  \label{fw}
+\item Future extensions could be applied to resolve the pitfalls of this study:
+\begin{itemize} [leftmargin=.3in]
+\item Data flow analysis techniques: to resolve the problem of inaccurate statement ordering
+\item Further analysis: to detect and resolve all the conflicts happen in deciding the best correspondences
+\end{itemize}
+\item To further validate our findings from the source code analysis:
+\begin{itemize} [leftmargin=.3in]
+\item a survey can be conducted to ask developers on the factors they consider when they want to decide on where to log
+\end{itemize}
+\item Characterizing logging usage could be a huge step towards
+\begin{itemize} [leftmargin=.3in]
+\item improving logging practices by providing some guidelines that might help developers in making decisions about where to
+log.
+\item developing recommendation support tools:
+\begin{itemize} [leftmargin=.3in]
+\item to save developers\textquotesingle time and effort
+\item to improve the quality of logging practices
+\end{itemize}
+\end{itemize}
+\end{itemize}

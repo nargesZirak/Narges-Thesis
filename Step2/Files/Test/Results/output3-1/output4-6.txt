@@ -1,0 +1,297 @@
+********************************  NODE 1  *******************************
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+        Log.log(Log.ERROR,EditBus.class,t);
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+********************************  NODE 2  *******************************
+public class BufferHistory {
+  public static Entry getEntry(  String path){
+    Iterator iter=history.iterator();
+    while (iter.hasNext()) {
+      Entry entry=(Entry)iter.next();
+      if (pathsCaseInsensitive) {
+        if (entry.path.equalsIgnoreCase(path))         return entry;
+      }
+ else {
+        if (entry.path.equals(path))         return entry;
+      }
+    }
+    return null;
+  }
+  public static void setEntry(  String path,  int caret,  Selection[] selection,  String encoding){
+    removeEntry(path);
+    addEntry(new Entry(path,caret,selectionToString(selection),encoding));
+    EditBus.send(new DynamicMenuChanged("recent-files"));
+  }
+  public static List getHistory(){
+    return history;
+  }
+  public static Vector getBufferHistory(){
+    Vector retVal=new Vector(history.size());
+    Iterator iter=history.iterator();
+    while (iter.hasNext())     retVal.add(iter.next());
+    return retVal;
+  }
+  public static void load(){
+    String settingsDirectory=jEdit.getSettingsDirectory();
+    if (settingsDirectory == null)     return;
+    File recent=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+    if (!recent.exists())     return;
+    recentModTime=recent.lastModified();
+    RecentHandler handler=new RecentHandler();
+    XmlParser parser=new XmlParser();
+    Reader in=null;
+    parser.setHandler(handler);
+    try {
+      in=new BufferedReader(new FileReader(recent));
+      parser.parse(null,null,in);
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+    }
+catch (    FileNotFoundException fnf) {
+    }
+catch (    Exception e) {
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+        Log.log(Log.ERROR,BufferHistory.class,io);
+      }
+    }
+  }
+  public static void save(){
+    String settingsDirectory=jEdit.getSettingsDirectory();
+    if (settingsDirectory == null)     return;
+    File file1=new File(MiscUtilities.constructPath(settingsDirectory,"#recent.xml#save#"));
+    File file2=new File(MiscUtilities.constructPath(settingsDirectory,"recent.xml"));
+    if (file2.exists() && file2.lastModified() != recentModTime) {
+      return;
+    }
+    jEdit.backupSettingsFile(file2);
+    String lineSep=System.getProperty("line.separator");
+    boolean ok=false;
+    BufferedWriter out=null;
+    try {
+      out=new BufferedWriter(new FileWriter(file1));
+      out.write("<?xml version=\"1.0\"?>");
+      out.write(lineSep);
+      out.write("<!DOCTYPE RECENT SYSTEM \"recent.dtd\">");
+      out.write(lineSep);
+      out.write("<RECENT>");
+      out.write(lineSep);
+      Iterator iter=history.iterator();
+      while (iter.hasNext()) {
+        out.write("<ENTRY>");
+        out.write(lineSep);
+        Entry entry=(Entry)iter.next();
+        out.write("<PATH>");
+        out.write(MiscUtilities.charsToEntities(entry.path));
+        out.write("</PATH>");
+        out.write(lineSep);
+        out.write("<CARET>");
+        out.write(String.valueOf(entry.caret));
+        out.write("</CARET>");
+        out.write(lineSep);
+        if (entry.selection != null && entry.selection.length() > 0) {
+          out.write("<SELECTION>");
+          out.write(entry.selection);
+          out.write("</SELECTION>");
+          out.write(lineSep);
+        }
+        if (entry.encoding != null) {
+          out.write("<ENCODING>");
+          out.write(entry.encoding);
+          out.write("</ENCODING>");
+          out.write(lineSep);
+        }
+        out.write("</ENTRY>");
+        out.write(lineSep);
+      }
+      out.write("</RECENT>");
+      out.write(lineSep);
+      out.close();
+      ok=true;
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      try {
+        if (out != null)         out.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+    if (ok) {
+      file2.delete();
+      file1.renameTo(file2);
+    }
+    recentModTime=file2.lastModified();
+  }
+  private static LinkedList history;
+  private static boolean pathsCaseInsensitive;
+  private static long recentModTime;
+static {
+    history=new LinkedList();
+    pathsCaseInsensitive=OperatingSystem.isDOSDerived() || OperatingSystem.isMacOS();
+  }
+  static void addEntry(  Entry entry){
+    history.addFirst(entry);
+    int max=jEdit.getIntegerProperty("recentFiles",50);
+    while (history.size() > max)     history.removeLast();
+  }
+  static void removeEntry(  String path){
+    Iterator iter=history.iterator();
+    while (iter.hasNext()) {
+      Entry entry=(Entry)iter.next();
+      if (pathsCaseInsensitive) {
+        if (entry.path.equalsIgnoreCase(path)) {
+          iter.remove();
+          return;
+        }
+      }
+ else {
+        if (entry.path.equals(path)) {
+          iter.remove();
+          return;
+        }
+      }
+    }
+  }
+  private static String selectionToString(  Selection[] s){
+    if (s == null)     return null;
+    StringBuffer buf=new StringBuffer();
+    for (int i=0; i < s.length; i++) {
+      if (i != 0)       buf.append(' ');
+      Selection sel=s[i];
+      if (sel instanceof Selection.Range)       buf.append("range ");
+ else       buf.append("rect ");
+      buf.append(sel.getStart());
+      buf.append(' ');
+      buf.append(sel.getEnd());
+    }
+    return buf.toString();
+  }
+  private static Selection[] stringToSelection(  String s){
+    if (s == null)     return null;
+    Vector selection=new Vector();
+    StringTokenizer st=new StringTokenizer(s);
+    while (st.hasMoreTokens()) {
+      String type=st.nextToken();
+      int start=Integer.parseInt(st.nextToken());
+      int end=Integer.parseInt(st.nextToken());
+      if (end < start) {
+        continue;
+      }
+      Selection sel;
+      if (type.equals("range"))       sel=new Selection.Range(start,end);
+ else       sel=new Selection.Rect(start,end);
+      selection.addElement(sel);
+    }
+    Selection[] returnValue=new Selection[selection.size()];
+    selection.copyInto(returnValue);
+    return returnValue;
+  }
+public static class Entry {
+    public String path;
+    public int caret;
+    public String selection;
+    public String encoding;
+    public Selection[] getSelection(){
+      return stringToSelection(selection);
+    }
+    public Entry(    String path,    int caret,    String selection,    String encoding){
+      this.path=path;
+      this.caret=caret;
+      this.selection=selection;
+      this.encoding=encoding;
+    }
+    public String toString(){
+      return path + ": " + caret;
+    }
+  }
+static class RecentHandler extends HandlerBase {
+    public void endDocument() throws java.lang.Exception {
+      int max=jEdit.getIntegerProperty("recentFiles",50);
+      while (history.size() > max)       history.removeLast();
+    }
+    public Object resolveEntity(    String publicId,    String systemId){
+      if ("recent.dtd".equals(systemId)) {
+        return new StringReader("<!-- -->");
+      }
+      return null;
+    }
+    public void doctypeDecl(    String name,    String publicId,    String systemId) throws Exception {
+      if ("RECENT".equals(name))       return;
+    }
+    public void endElement(    String name){
+      if (name.equals("ENTRY")) {
+        history.addLast(new Entry(path,caret,selection,encoding));
+        path=null;
+        caret=0;
+        selection=null;
+        encoding=null;
+      }
+ else       if (name.equals("PATH"))       path=charData;
+ else       if (name.equals("CARET"))       caret=Integer.parseInt(charData);
+ else       if (name.equals("SELECTION"))       selection=charData;
+ else       if (name.equals("ENCODING"))       encoding=charData;
+    }
+    public void charData(    char[] ch,    int start,    int length){
+      charData=new String(ch,start,length);
+    }
+    private String path;
+    private int caret;
+    private String selection;
+    private String encoding;
+    private String charData;
+  }
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD[public]] ; INTERFACE[false] ; NAME[IDENTIFIER[EditBus-or-BufferHistory]] ; BODYDECLARATIONS[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[static-or-nil]] ; INTERFACE-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[RecentHandler-or-nil]] ; SUPERCLASSTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[HandlerBase-or-nil]]] ; BODYDECLARATIONS-OR-NIL[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[doctypeDecl-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; THROWNEXCEPTIONS-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["RECENT"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; ]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[char-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ch-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[length-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[ch-or-nil], IDENTIFIER-OR-NIL[start-or-nil], IDENTIFIER-OR-NIL[length-or-nil]]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[resolveEntity-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["recent.dtd"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringReader-or-nil]]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<!-- -->"-or-nil]]]]], ]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[endElement-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["ENTRY"-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[addLast-or-nil]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil], IDENTIFIER-OR-NIL[caret-or-nil], IDENTIFIER-OR-NIL[selection-or-nil], IDENTIFIER-OR-NIL[encoding-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; ], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TOKEN-OR-NIL[0-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; ], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; ]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["PATH"-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["CARET"-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Integer-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[parseInt-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["SELECTION"-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["ENCODING"-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]]]]]]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[endDocument-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; THROWNEXCEPTIONS-OR-NIL[QUALIFIER-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[java-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lang-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[max-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[jEdit-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getIntegerProperty-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["recentFiles"-or-nil], TOKEN-OR-NIL[50-or-nil]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ] ; OPERATOR-OR-NIL[>-or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[max-or-nil]] ; ] ; BODY-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[removeLast-or-nil]] ; ]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[charData-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[static-or-nil]] ; INTERFACE-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]] ; BODYDECLARATIONS-OR-NIL[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[true-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getSelection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[stringToSelection-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[toString-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[": "-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]]], MODIFIERS-OR-NIL[KEYWORD[private], KEYWORD[static]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[stringToSelection-or-nil]] ; PARAMETERS-OR-NIL[TYPE[NAME[IDENTIFIER[String-or-EBMessage]]] ; VARARGS[false] ; NAME[IDENTIFIER[s-or-message]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[st-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasMoreTokens-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Integer-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[parseInt-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[st-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[nextToken-or-nil]] ; ]]], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[end-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[Integer-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[parseInt-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[st-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[nextToken-or-nil]] ; ]]], TYPE[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]] ; COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]]] ; FRAGMENTS[NAME[IDENTIFIER[type-or-comps]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[st-or-nil]] ; NAME[IDENTIFIER[nextToken-or-getComponents]] ; ]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[type-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["range"-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Range-or-nil]]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil], IDENTIFIER-OR-NIL[end-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Rect-or-nil]]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil], IDENTIFIER-OR-NIL[end-or-nil]]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[end-or-nil]] ; OPERATOR-OR-NIL[<-or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil]] ; ] ; , EXPRESSION[EXPRESSION[IDENTIFIER[selection-or-components]] ; NAME[IDENTIFIER[addElement-or-add]] ; ARGUMENTS[IDENTIFIER-OR-NIL[sel-or-nil], IDENTIFIER-OR-NIL[comp-or-nil]]]]], TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]]] ; DIMENSIONS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringTokenizer-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[st-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringTokenizer-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[s-or-nil]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Vector-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Vector-or-nil]]] ; ]], EXPRESSION[LEFTOPERAND[IDENTIFIER[s-or-copyComponents]] ; OPERATOR[==] ; ] ; THENSTATEMENT[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[copyComponents-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[components-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[toArray-or-nil]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]]] ; DIMENSIONS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[components-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ]]]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[copyInto-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]]]], MODIFIERS-OR-NIL[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[save-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[LEFTOPERAND-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; OPERATOR-OR-NIL[&&-or-nil] ; RIGHTOPERAND-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[length-or-nil]] ; ] ; OPERATOR-OR-NIL[>-or-nil] ; RIGHTOPERAND-OR-NIL[TOKEN-OR-NIL[0-or-nil]] ; ] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<SELECTION>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["</SELECTION>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[encoding-or-nil]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<ENCODING>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["</ENCODING>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[charsToEntities-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[valueOf-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<ENTRY>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<PATH>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["</PATH>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<CARET>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["</CARET>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["</ENTRY>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Iterator-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[iterator-or-nil]] ; ]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[BufferedWriter-or-nil]]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[FileWriter-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file1-or-nil]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<?xml version=\"1.0\"?>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<!DOCTYPE RECENT SYSTEM \"recent.dtd\">"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<RECENT>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["</RECENT>"-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[write-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[close-or-nil]] ; ], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[ok-or-copyComponents]] ; OPERATOR[=] ; RIGHTHANDSIDE[BOOLEANVALUE-OR-NIL[true-or-nil]]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ] ; FINALLY-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[close-or-nil]] ; ]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[IOException-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[file1-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[constructPath-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[settingsDirectory-or-nil], ESCAPEDVALUE-OR-NIL["#recent.xml#save#"-or-nil]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[constructPath-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[settingsDirectory-or-nil], ESCAPEDVALUE-OR-NIL["recent.xml"-or-nil]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[lineSep-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[System-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getProperty-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["line.separator"-or-nil]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[settingsDirectory-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[jEdit-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getSettingsDirectory-or-nil]] ; ]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[BufferedWriter-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[out-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; ], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ok-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[exists-or-nil]] ; ] ; OPERATOR-OR-NIL[&&-or-nil] ; RIGHTOPERAND-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lastModified-or-nil]] ; ] ; OPERATOR-OR-NIL[!=-or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[recentModTime-or-nil]] ; ] ; ] ; , EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[ok-or-nil]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file1-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[renameTo-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[delete-or-nil]] ; ]]], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[recentModTime-or-copyComponents]] ; OPERATOR[=] ; RIGHTHANDSIDE[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lastModified-or-nil]] ; ]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[settingsDirectory-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; , EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[jEdit-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[backupSettingsFile-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[file2-or-nil]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[send-or-load]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[INITIALIZERS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TOKEN-OR-NIL[0-or-nil]]]] ; EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; OPERATOR-OR-NIL[<-or-nil] ; RIGHTOPERAND-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[comps-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[length-or-nil]]] ; ] ; UPDATERS-OR-NIL[OPERAND-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; OPERATOR-OR-NIL[++-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[BODY[STATEMENTS[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Debug-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[EB_TIMER-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[long-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[time-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[System-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[currentTimeMillis-or-nil]] ; ] ; OPERATOR-OR-NIL[--or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil]] ; ]]], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[long-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[start-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[System-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[currentTimeMillis-or-nil]] ; ]], EXPRESSION[EXPRESSION[IDENTIFIER[comp-or-in]] ; NAME[IDENTIFIER[handleMessage-or-close]] ; ARGUMENTS[IDENTIFIER-OR-NIL[message-or-nil]]], EXPRESSION[LEFTOPERAND[IDENTIFIER[time-or-in]] ; OPERATOR[!=] ; RIGHTOPERAND[TOKEN-OR-NIL[0-or-nil]] ; ] ; THENSTATEMENT[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[close-or-nil]] ; ]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ARRAY-OR-NIL[IDENTIFIER-OR-NIL[comps-or-nil]] ; INDEX-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[handleMessage-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[message-or-nil]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[comp-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[ARRAY-OR-NIL[IDENTIFIER-OR-NIL[comps-or-nil]] ; INDEX-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]]]]]] ; CATCHCLAUSES[EXCEPTION[TYPE[NAME[IDENTIFIER[Throwable-or-IOException]]] ; VARARGS[false] ; NAME[IDENTIFIER[t-or-io]] ; EXTRADIMENSIONS[0]] ; BODY[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[IDENTIFIER-OR-NIL[t-or-nil], IDENTIFIER-OR-NIL[io-or-nil], QUALIFIER[IDENTIFIER[Log]] ; NAME[IDENTIFIER[ERROR]], TYPE[NAME[IDENTIFIER[EditBus-or-BufferHistory]]]]]]]]]], BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[BufferedReader-or-nil]]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[FileReader-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[recent-or-nil]]]]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[XmlException-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[xe-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; , EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[FileNotFoundException-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[fnf-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; , EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ] ; , TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[recent-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[File-or-nil]]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[MiscUtilities-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[constructPath-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[settingsDirectory-or-nil], ESCAPEDVALUE-OR-NIL["recent.xml"-or-nil]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[RecentHandler-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[handler-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[RecentHandler-or-nil]]] ; ]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[XmlParser-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[parser-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[XmlParser-or-nil]]] ; ]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Reader-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; ], EXPRESSION-OR-NIL[OPERATOR-OR-NIL[!-or-nil] ; OPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[recent-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[exists-or-nil]] ; ]] ; , EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[recentModTime-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[recent-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[lastModified-or-nil]] ; ]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[settingsDirectory-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; , EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[parser-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[setHandler-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[handler-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil], KEYWORD[static]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[selectionToString-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[s-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[INITIALIZERS-OR-NIL[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TOKEN-OR-NIL[0-or-nil]]]] ; EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; OPERATOR-OR-NIL[<-or-nil] ; RIGHTOPERAND-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[s-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[length-or-nil]]] ; ] ; UPDATERS-OR-NIL[OPERAND-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; OPERATOR-OR-NIL[++-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[ARRAY-OR-NIL[IDENTIFIER-OR-NIL[s-or-nil]] ; INDEX-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; RIGHTOPERAND-OR-NIL[NAME-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Range-or-nil]]]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[append-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["range "-or-nil]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[append-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["rect "-or-nil]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[i-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; RIGHTOPERAND-OR-NIL[TOKEN-OR-NIL[0-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[append-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL[' '-or-nil]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[append-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getStart-or-nil]] ; ]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[append-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[sel-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getEnd-or-nil]] ; ]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[append-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL[' '-or-nil]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringBuffer-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringBuffer-or-nil]]] ; ]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[s-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; , EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[buf-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[toString-or-nil]] ; ]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getEntry-or-nil]] ; PARAMETERS-OR-NIL[TYPE[NAME[IDENTIFIER[String-or-EBComponent]]] ; VARARGS[false] ; NAME[IDENTIFIER[path-or-comp]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ]]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pathsCaseInsensitive-or-nil]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equalsIgnoreCase-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]]]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Iterator-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[iterator-or-nil]] ; ]], ]], MODIFIERS-OR-NIL[KEYWORD[static]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[removeEntry-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ]]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[pathsCaseInsensitive-or-nil]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equalsIgnoreCase-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[remove-or-nil]] ; ], ]]]] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[entry-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[EXPRESSION[IDENTIFIER[iter-or-components]] ; NAME[IDENTIFIER[remove]] ; ARGUMENTS[IDENTIFIER-OR-NIL[comp-or-nil]]], ]]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Iterator-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[iterator-or-nil]] ; ]]]], MODIFIERS[KEYWORD-OR-NIL[public-or-nil], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[addToBus-or-addEntry]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[max-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[jEdit-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getIntegerProperty-or-nil]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["recentFiles"-or-nil], TOKEN-OR-NIL[50-or-nil]]]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[components-or-nil]] ; , EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ] ; OPERATOR-OR-NIL[>-or-nil] ; RIGHTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[max-or-nil]] ; ] ; BODY-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[removeLast-or-nil]] ; ]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[removeFromBus-or-setEntry]] ; PARAMETERS[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Selection-or-nil]]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE[NAME[IDENTIFIER[EBComponent-or-String]]] ; VARARGS[false] ; NAME[IDENTIFIER[comp-or-encoding]] ; EXTRADIMENSIONS[0], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[caret-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[components-or-nil]] ; , EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[addEntry-or-nil]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Entry-or-nil]]] ; ARGUMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[selectionToString-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[selection-or-nil]], IDENTIFIER-OR-NIL[path-or-nil], IDENTIFIER-OR-NIL[caret-or-nil], IDENTIFIER-OR-NIL[encoding-or-nil]]]]]], MODIFIERS[KEYWORD[public], KEYWORD[static]] ; CONSTRUCTOR[false] ; RETURNTYPE2[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Vector-or-nil]]] ; NAME[IDENTIFIER[getComponents-or-getBufferHistory]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Vector-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[retVal-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Vector-or-nil]]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Iterator-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[iterator-or-nil]] ; ]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[components-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[IDENTIFIER[copyComponents-or-retVal]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[retVal-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[add-or-nil]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[iter-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ]]]]], MODIFIERS[KEYWORD[private], KEYWORD[static]] ; TYPE[NAME[IDENTIFIER[ArrayList-or-LinkedList]]] ; FRAGMENTS[NAME[IDENTIFIER[components-or-history]] ; EXTRADIMENSIONS[0] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ArrayList-or-nil]]] ; ]], MODIFIERS[KEYWORD[private], KEYWORD[static]] ; TYPE[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[EBComponent-or-nil]]] ; PRIMITIVETYPECODE-OR-NIL[long-or-nil]] ; FRAGMENTS[NAME[IDENTIFIER[copyComponents-or-recentModTime]] ; EXTRADIMENSIONS[0]], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; , MODIFIERS[KEYWORD-OR-NIL[private-or-nil], KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[true-or-false] ; NAME[IDENTIFIER[EditBus-or-getHistory]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]]]] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[List-or-nil]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[static-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[pathsCaseInsensitive-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[OperatingSystem-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isDOSDerived-or-nil]] ; ] ; OPERATOR-OR-NIL[||-or-nil] ; RIGHTOPERAND-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[OperatingSystem-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[isMacOS-or-nil]] ; ] ; ]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[history-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[LinkedList-or-nil]]] ; ]]]]]]
+****************************** SIMILARITY *****************************
+0.1087470581474557

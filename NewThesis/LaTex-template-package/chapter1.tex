@@ -1,0 +1,112 @@
+\chapter{Introduction}  \label{intro}
+\begin{itemize} [leftmargin=.01in]
+\item Determining the detailed structural similarities and differences between entities of the source code of a software system, or between the source code of different software systems, is a potentially complex problem
+\item Being able to do so has various actual or potential applications:
+\begin{itemize} [leftmargin=.3in]
+\item code clone detection [Bulychev et al. , 2008]
+\item semi-automating source code reuse [Cottrell et al. ,2008]
+\item recommending replacements for an API between various versions of a software library [Cossette et al., 2014]
+\item collating API usage patterns
+\item automating the merge operation of various branches in a version control system
+\end{itemize}
+\item As a specific application, our focus is on the study of where logging is used in the source code
+\item Logging is a conventional programming practice to record an application's state and/or actions during the program's execution
+\item Logging is a pervasive practice during software development [Yuan et al., 2012]
+
+\item The importance of logging has been identified by its various applications in:
+\begin{itemize} [leftmargin=.3in]
+\item problem diagnosis
+\item system behavioural understanding
+\item quick debugging
+\item performance diagnosis
+\item easy software maintenance 
+\item troubleshooting
+\end{itemize}
+\item Researches have often considered logging as a trivial task (AOP/AOSD literature) %???
+\item However, some evidence suggest that it is not a straightforward task to perform high quality logging in practice, such as:
+\begin{itemize} [leftmargin=.3in]
+\item availability of several complex frameworks to help developers to log  
+\item the significant amount of effort developers spend to modify logging calls as after-thoughts [Yuan et al., 2012]
+\end{itemize}
+%\item In practice, developers typically rely on software system's execution \emph{logs} to understand the behaviour of large systems and to diagnose their problems
+%\item Given the importance of logging, its quality can affect the quality of an application directly
+%\item High quality logging is not a trivial task
+\item Developers have to make decisions about where and what to log
+\item Logging should be done in an appropriate manner to be effective
+\begin{itemize} [leftmargin=.3in]
+\item Excessive logging:
+\begin{itemize} [leftmargin=.3in]
+\item can generate a lot of redundant information, masking significant ones for system log analysis
+\item requires extra time and effort to write, debug, and maintain the logging code
+\item can cause system resource overhead
+\end{itemize}
+\item Bad usage of logging can affect the application's performance
+\item Insufficient logging may result in losing some necessary run-time information for software analysis
+\end{itemize}
+
+\item So far, little study has been conducted on characterizing the usage of logging in real-world systems% that would assist developers to make informed decisions about where and what to log
+
+\item \textsc{PROBLEM: }In this research, we would like to understand
+where developers log in practice, in a detailed way
+
+\item The location of log statements has a great impact on the quality of logging since it helps developers to trace the code execution path to identify the root causes of errors in log system analysis
+\item \textsc{SOLUTION: }Develop an automated approach to detect the detailed structural similarities and differences in the usage of logging within a system and between systems
+
+\item \NZ{I am a little confused about how to find commonalities and differences of logging usage between systems? do you mean that I should compare the results taken from clustering of all Java classes in one system to another one?} \RW{The process of locating commonalities and differences can be applied within a single version of one system, across multiple versions of one system, across single versions of multiple systems, or across multiple versions of multiple systems.  It would be useful to understand the differences and similarities between different systems.  Is there some reason that this would be harder to achieve?} \NZ{I should think about it more. I can answer to this question after per-system analysis with more confidence}
+%\item \RW{The rest of this is motivational stuff.}
+%\item Developers must be able to understand software system behaviour for various development and maintenance tasks
+%\item The location of log statements has a great impact on the quality of logging since it helps developers to trace the code execution path and to identify the root causes of errors in log system analysis
+%\item In practice, developers typically rely on software system's execution \emph{logs} to understand the behaviour of large systems and to diagnose their problems
+\section{Broad thesis overview} \label{intro-overview}
+\item We aim to provide a concise description of where logging calls are used in the source code through creating generalizations that represents the detailed structural similarities and differences between LJCs
+
+\item{Our approach:}
+\begin{itemize} [leftmargin=.3in]
+\item applies a hierarchical clustering algorithm to classify LJCs into groups using a measure of similarity
+\item uses an anti-unification algorithm to construct a structural generalization representing the similarities and differences of all LJCs in each group
+\end{itemize}
+
+\item{Our anti-unification approach:}
+\begin{itemize} [leftmargin=.3in]
+\item uses the Jigsaw framework to determine all potential correspondences between a pair of LJCs
+\item applies some constraints to avoid anti-unifying logged Java classes with non-logged Java classes
+\item determines correspondences between structures containing logging calls by greedily applying a similarity measure to find the most similar substructures
+\item constructs an anti-unifier
+\item develops a measure of structural similarity between LJCs
+\end{itemize}
+%\item Our study investigates the location of log method invocations from the point of view of code snippets which are fragments of source code enclosing the log statements.
+\item Our approach has been implemented as an Eclipse plug-in, which is evaluated by conducting an empirical study on 10 sample logged Java classes
+\item Our tool has been applied on the source code of three open-source software systems that make use of logging
+\item Our tool extracts all logged Java classes from these systems to construct the structural generalizations
+\item Our evaluation shows ...
+
+\section{Overview of related work} \label{intro-ov-re}
+\item Yuan et al. [2012]  provides a quantitative characteristic study of log messages on four open-source software system, however, it does not study the location of logging calls in the source code
+\item So far, anti-unification has been used for various applications:
+\begin{itemize} [leftmargin=.3in]
+\item to construct a generalized correspondence view of two source code fragments [Cottrell et al., 2007]
+\item to help developers to perform small-scale reuse tasks semi-automatically[Cottrell et al., 2008]
+\item Software clone detection [Bulychev and Minea, 2008]
+\end{itemize}
+\item This study makes the first attempt to characterize where logging calls occur in the source code through finding the detailed structural similarities and differences using HOAUMT
+
+\section{Thesis Statement} \label{intro-stmt}
+The thesis of this work is to determine the detailed structural similarities and differences between entities of the source code that make use of logging to provide a concise description of where logging do occur in real systems
+
+\section{Thesis Organization} \label{intro-org}
+\item Chapter~\ref{ch2} : motivates the problem of understanding where to use logging calls in the source code through an example% and indicates the requirements that a potential solution must meet
+\item Chapter~\ref{background}: provides background information on:
+\begin{itemize} [leftmargin=.3in]
+\item abstract syntax trees (ASTs), which are the basic structure we will use for describing software source code
+\item how ASTs are realized in the Eclipse integrated development environment, the industrial tool we will build atop
+\item anti-unification and its limitations to solve our problem context
+\item higher-order anti-unification modulo theories (HOAUMT) that can be applied on an extended form of the AST structure to address our problem
+\item the Jigsaw framework, an existing tool for a subset of HOAUMT, which we extend to address our problem
+\end{itemize}
+\item Chapter~\ref{methodology}: describes our proposed approach and its implementation as an Eclipse plug-in
+\item Chapter~\ref{eval}: presents an empirical study conducted to evaluate our approach and its application to characterize logging usage
+\item Chapter~\ref{diss}: discusses the results and findings of my work, threats to its validity, and the remaining issues.
+\item Chapter~\ref{rw}: describes related work to our research problem and how it does not adequately address the problem
+\item Chapter~\ref{conc}: concludes the dissertation and presents the contributions of this study and future work
+
+\end{itemize}

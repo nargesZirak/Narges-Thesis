@@ -1,0 +1,301 @@
+/*
+* This file contains an example of a log method invocation node in a CAST and its list of correspondence elements.
+*/
+============================= NODE ===========================
+NODE: Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+==============================================================
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  retVal.add(iter.next())
+SIMILARITY[1]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  file1.renameTo(file2)
+SIMILARITY[2]:   0.16883116883116883
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  parser.parse(null,null,in)
+SIMILARITY[3]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  removeEntry(path)
+SIMILARITY[4]:   0.30612244897959184
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  file2.delete()
+SIMILARITY[5]:   0.17460317460317462
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  buf.append(' ')
+SIMILARITY[6]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  buf.append(' ')
+SIMILARITY[7]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[8]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[9]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<ENTRY>")
+SIMILARITY[10]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  addEntry(new Entry(path,caret,selectionToString(selection),encoding))
+SIMILARITY[11]:   0.2
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(MiscUtilities.charsToEntities(entry.path))
+SIMILARITY[12]:   0.2592592592592593
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  buf.append("range ")
+SIMILARITY[13]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  buf.append(sel.getEnd())
+SIMILARITY[14]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<?xml version=\"1.0\"?>")
+SIMILARITY[15]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("</SELECTION>")
+SIMILARITY[16]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<!DOCTYPE RECENT SYSTEM \"recent.dtd\">")
+SIMILARITY[17]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("</ENCODING>")
+SIMILARITY[18]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<RECENT>")
+SIMILARITY[19]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[20]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[21]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.close()
+SIMILARITY[22]:   0.40476190476190477
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[23]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  EditBus.send(new DynamicMenuChanged("recent-files"))
+SIMILARITY[24]:   0.2857142857142857
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  iter.remove()
+SIMILARITY[25]:   0.3174603174603175
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  history.removeLast()
+SIMILARITY[26]:   0.1934065934065934
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  buf.append("rect ")
+SIMILARITY[27]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  parser.setHandler(handler)
+SIMILARITY[28]:   0.16483516483516483
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  selection.addElement(sel)
+SIMILARITY[29]:   0.3315018315018315
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[30]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<SELECTION>")
+SIMILARITY[31]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(entry.selection)
+SIMILARITY[32]:   0.4761904761904762
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.ERROR,BufferHistory.class,recent + ":" + line+ ": "+ message)
+SIMILARITY[33]:   0.4666666666666667
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[34]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<ENCODING>")
+SIMILARITY[35]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.ERROR,BufferHistory.class,e)
+SIMILARITY[36]:   0.7
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(entry.encoding)
+SIMILARITY[37]:   0.4761904761904762
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[38]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("</ENTRY>")
+SIMILARITY[39]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.MESSAGE,BufferHistory.class,"Loading recent.xml")
+SIMILARITY[40]:   0.6166666666666667
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("</RECENT>")
+SIMILARITY[41]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  in.close()
+SIMILARITY[42]:   0.35714285714285715
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.close()
+SIMILARITY[43]:   0.40476190476190477
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.ERROR,BufferHistory.class,e)
+SIMILARITY[44]:   0.7
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.ERROR,BufferHistory.class,io)
+SIMILARITY[45]:   0.7
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<PATH>")
+SIMILARITY[46]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[47]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.WARNING,BufferHistory.class,file2 + " changed on disk; will not save recent" + " files")
+SIMILARITY[48]:   0.4743589743589744
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  history.addFirst(entry)
+SIMILARITY[49]:   0.31428571428571433
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("</PATH>")
+SIMILARITY[50]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  iter.remove()
+SIMILARITY[51]:   0.3174603174603175
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(lineSep)
+SIMILARITY[52]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  jEdit.backupSettingsFile(file2)
+SIMILARITY[53]:   0.29931972789115646
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("<CARET>")
+SIMILARITY[54]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  buf.append(sel.getStart())
+SIMILARITY[55]:   0.14285714285714285
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  Log.log(Log.MESSAGE,BufferHistory.class,"Saving " + file1)
+SIMILARITY[56]:   0.513888888888889
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write(String.valueOf(entry.caret))
+SIMILARITY[57]:   0.2592592592592593
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  out.write("</CARET>")
+SIMILARITY[58]:   0.33333333333333337
+------------------------------------------------
+
+COPY:  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT")
+PASTE:  selection.copyInto(returnValue)
+SIMILARITY[59]:   0.33549783549783546
+------------------------------------------------

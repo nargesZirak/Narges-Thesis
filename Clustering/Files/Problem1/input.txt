@@ -1,0 +1,219 @@
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+        Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+
+-----------------------------LOGGED CLASS-------------------------
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+        Log.log(Log.ERROR,EditBus.class,t);
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+
+-----------------------------LOGGED CLASS-------------------------
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    Log.log(Log.DEBUG,EditBus.class,message.toString());
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+
+-----------------------------LOGGED CLASS-------------------------
+public class EditBus {
+  public static void addToBus(  EBComponent comp){
+synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+            Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+          }
+        }
+ else         comps[i].handleMessage(message);
+      }
+ catch (      Throwable t) {
+      }
+    }
+  }
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+}
+
+-----------------------------LOGGED CLASS-------------------------
+public abstract class EBPlugin extends EditPlugin implements EBComponent {
+  public void handleMessage(  EBMessage message){
+    EditBus.removeFromBus(this);
+    if (seenWarning)     return;
+    seenWarning=true;
+    Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+  }
+  protected EBPlugin(){
+  }
+  private boolean seenWarning;
+}
+
+-----------------------------LOGGED CLASS-------------------------
+public static class Wrapper implements ActionListener {
+  public Wrapper(  ActionContext context,  String actionName){
+    this.context=context;
+    this.actionName=actionName;
+  }
+  public void actionPerformed(  ActionEvent evt){
+    EditAction action=context.getAction(actionName);
+    if (action == null) {
+      Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+    }
+ else     context.invokeAction(evt,action);
+  }
+  private ActionContext context;
+  private String actionName;
+}
+
+
+

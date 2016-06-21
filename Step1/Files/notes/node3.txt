@@ -1,0 +1,52 @@
+/*
+* This file contains an example of a statement node in a CAST and its list of correspondence elements.
+*/
+============================= NODE ===========================
+NODE: action == null
+==============================================================
+
+COPY:  action == null
+PASTE:  end < start
+SIMILARITY[1]:   0.07407407407407407
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  i != 0
+SIMILARITY[2]:   0.09523809523809523
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  entry.encoding != null
+SIMILARITY[3]:   0.22000000000000003
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  out != null
+SIMILARITY[4]:   0.40740740740740744
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  in != null
+SIMILARITY[5]:   0.4166666666666667
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  settingsDirectory == null
+SIMILARITY[6]:   0.7246376811594203
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  s == null
+SIMILARITY[7]:   0.6666666666666666
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  settingsDirectory == null
+SIMILARITY[8]:   0.7246376811594203
+------------------------------------------------
+
+COPY:  action == null
+PASTE:  s == null
+SIMILARITY[9]:   0.6666666666666666
+------------------------------------------------
+

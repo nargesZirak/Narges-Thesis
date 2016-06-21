@@ -1,0 +1,126 @@
+\chapter{Motivational Scenario}  \label{ch2}
+\begin{itemize} [leftmargin=.01in]
+\item Logging is a systematic way of recording the software runtime information
+\item A typical logging call is composed of a log function and its parameters including a text message and verbosity level
+\begin{itemize} [leftmargin=.3in]
+\item A log text message consists of static text to describe the logged event
+and some optional variables related to the event
+\item The verbosity level is intended to classify the
+severity of the logged event (Fatal, error, warn, info, and debug)
+\end{itemize}
+\item Consider a developer is given the task of logging the Java class in Figure~\ref{ch2-ex1}
+%\item She decides to use log4j framework for logging
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public class EditBus {
+  private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  
+  public static void addToBus(  EBComponent comp){
+    synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+    synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+    synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+        }
+        else  comps[i].handleMessage(message);
+    }
+  }
+}
+\end{lstlisting}
+\caption{A Java class without the usage of logging\label{ch2-ex1}}
+\end{figure}
+
+\item She has to make several decisions about
+\begin{itemize} [leftmargin=.3in]
+\item what events need to be logged?
+\item where to use logging calls?
+\item how to decide on the log message and verbosity level of each logging call?
+\end{itemize}
+\item It is recommended to simply log at the start and end of every method
+\item However, for example, logging at the start and end of the method \vars{addToBus} is useless, producing redundant information
+\item She needs more information to perform logging appropriately
+\item Having a characterization  of how usually developers use logging calls in similar situations would assist her in making decisions
+\item For example, knowing that developers use logging calls inside of if statements to log a potential error when a variable contains an incorrect value, she adds an if statement to log an error when the value of the variable \vars{time} is \vars{null} (shown in Lines~36-38 of Figure~\ref{ch2-ex2})
+\item For example, knowing that developers use logging calls inside catch blocks to record an exception, she creates a try/catch block to capture the potential failure in sending messages and uses a logging call in the catch block (Lines~41-43 of Figure~\ref{ch2-ex2})
+
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public class EditBus {
+ private static ArrayList components=new ArrayList();
+  private static EBComponent[] copyComponents;
+  private EditBus(){
+  }
+  public static void addToBus(  EBComponent comp){
+    synchronized (components) {
+      components.add(comp);
+      copyComponents=null;
+    }
+  }
+  public static void removeFromBus(  EBComponent comp){
+    synchronized (components) {
+      components.remove(comp);
+      copyComponents=null;
+    }
+  }
+  public static EBComponent[] getComponents(){
+    synchronized (components) {
+      if (copyComponents == null) {
+        copyComponents=(EBComponent[])components.toArray(new EBComponent[components.size()]);
+      }
+      return copyComponents;
+    }
+  }
+  public static void send(  EBMessage message){
+    Log.log(Log.DEBUG,EditBus.class,message.toString());
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try {
+        EBComponent comp=comps[i];
+        if (Debug.EB_TIMER) {
+          long start=System.currentTimeMillis();
+          comp.handleMessage(message);
+          long time=(System.currentTimeMillis() - start);
+          if (time != 0) {
+             Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+          }
+        }
+        else  comps[i].handleMessage(message);
+      }catch (Throwable t) {
+         Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+      }
+    }
+  }
+}
+\end{lstlisting}
+\caption{A Java class after the usage of logging calls\label{ch2-ex2}}
+\end{figure}
+
+\item Using a concise characterization she would be able to make informed decisions about where to use logging calls more easily and quickly
+\item With taking appropriate decisions about where to use logging calls, she can spend more time and energy to write the context of log functions% and even other development and maintenance tasks
+\end{itemize}

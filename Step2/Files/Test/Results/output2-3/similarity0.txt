@@ -1,0 +1,61 @@
+
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,t);
+}
+
+MATCHES: 0.24453238364363686
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+
+MATCHES: 0.24434693410665953
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+
+catch (Throwable t) {
+  Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+}
+
+MATCHES: 0.24310236970420038
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+
+if (time != 0) {
+  Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+}
+
+MATCHES: 0.23703782104312945

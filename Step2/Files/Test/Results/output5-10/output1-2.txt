@@ -1,0 +1,206 @@
+********************************  NODE 1  *******************************
+class ActionListHandler extends HandlerBase {
+  ActionListHandler(  String path,  ActionSet actionSet){
+    this.path=path;
+    this.actionSet=actionSet;
+    stateStack=new Stack();
+  }
+  public Object resolveEntity(  String publicId,  String systemId){
+    if ("actions.dtd".equals(systemId)) {
+      return new StringReader("<!-- -->");
+    }
+    return null;
+  }
+  public void attribute(  String aname,  String value,  boolean isSpecified){
+    aname=(aname == null) ? null : aname.intern();
+    value=(value == null) ? null : value.intern();
+    if (aname == "NAME")     actionName=value;
+ else     if (aname == "NO_REPEAT")     noRepeat=(value == "TRUE");
+ else     if (aname == "NO_RECORD")     noRecord=(value == "TRUE");
+ else     if (aname == "NO_REMEMBER_LAST")     noRememberLast=(value == "TRUE");
+  }
+  public void doctypeDecl(  String name,  String publicId,  String systemId) throws Exception {
+    if ("ACTIONS".equals(name))     return;
+    Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+  }
+  public void charData(  char[] c,  int off,  int len){
+    String tag=peekElement();
+    String text=new String(c,off,len);
+    if (tag == "CODE") {
+      code=text;
+    }
+ else     if (tag == "IS_SELECTED") {
+      isSelected=text;
+    }
+  }
+  public void startElement(  String tag){
+    tag=pushElement(tag);
+    if (tag == "ACTION") {
+      code=null;
+      isSelected=null;
+    }
+  }
+  public void endElement(  String name){
+    if (name == null)     return;
+    String tag=peekElement();
+    if (name.equals(tag)) {
+      if (tag == "ACTION") {
+        actionSet.addAction(new BeanShellAction(actionName,code,isSelected,noRepeat,noRecord,noRememberLast));
+        noRepeat=noRecord=noRememberLast=false;
+      }
+      popElement();
+    }
+ else {
+      throw new InternalError();
+    }
+  }
+  public void startDocument(){
+    try {
+      pushElement(null);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+  private String path;
+  private ActionSet actionSet;
+  private String actionName;
+  private String code;
+  private String isSelected;
+  private boolean noRepeat;
+  private boolean noRecord;
+  private boolean noRememberLast;
+  private Stack stateStack;
+  private String pushElement(  String name){
+    name=(name == null) ? null : name.intern();
+    stateStack.push(name);
+    return name;
+  }
+  private String peekElement(){
+    return (String)stateStack.peek();
+  }
+  private String popElement(){
+    return (String)stateStack.pop();
+  }
+}
+********************************  NODE 2  *******************************
+public class ServiceManager {
+  public static void loadServices(  PluginJAR plugin,  URL uri,  PluginJAR.PluginCacheEntry cache){
+    Reader in=null;
+    try {
+      ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+      XmlParser parser=new XmlParser();
+      parser.setHandler(dh);
+      in=new BufferedReader(new InputStreamReader(uri.openStream()));
+      parser.parse(null,null,in);
+      if (cache != null)       cache.cachedServices=dh.getCachedServices();
+    }
+ catch (    XmlException xe) {
+      int line=xe.getLine();
+      String message=xe.getMessage();
+      Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+    }
+catch (    Exception e) {
+    }
+ finally {
+      try {
+        if (in != null)         in.close();
+      }
+ catch (      IOException io) {
+      }
+    }
+  }
+  public static void unloadServices(  PluginJAR plugin){
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.plugin == plugin)       descriptors.remove();
+    }
+  }
+  public static void registerService(  String clazz,  String name,  String code,  PluginJAR plugin){
+    Descriptor d=new Descriptor(clazz,name,code,plugin);
+    serviceMap.put(d,d);
+  }
+  public static void unregisterService(  String clazz,  String name){
+    Descriptor d=new Descriptor(clazz,name);
+    serviceMap.remove(d);
+  }
+  public static String[] getServiceTypes(){
+    HashSet returnValue=new HashSet();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      returnValue.add(d.clazz);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  public static String[] getServiceNames(  String clazz){
+    ArrayList returnValue=new ArrayList();
+    Iterator descriptors=serviceMap.keySet().iterator();
+    while (descriptors.hasNext()) {
+      Descriptor d=(Descriptor)descriptors.next();
+      if (d.clazz.equals(clazz))       returnValue.add(d.name);
+    }
+    return (String[])returnValue.toArray(new String[returnValue.size()]);
+  }
+  public static Object getService(  String clazz,  String name){
+    Descriptor key=new Descriptor(clazz,name);
+    Descriptor value=(Descriptor)serviceMap.get(key);
+    if (value == null) {
+      return null;
+    }
+ else {
+      if (value.code == null) {
+        loadServices(value.plugin,value.plugin.getServicesURI(),null);
+        value=(Descriptor)serviceMap.get(key);
+      }
+      return value.getInstance();
+    }
+  }
+  static void registerService(  Descriptor d){
+    serviceMap.put(d,d);
+  }
+  private static Map serviceMap=new HashMap();
+static class Descriptor {
+    String clazz;
+    String name;
+    String code;
+    PluginJAR plugin;
+    Object instance;
+    boolean instanceIsNull;
+    Descriptor(    String clazz,    String name){
+      this.clazz=clazz;
+      this.name=name;
+    }
+    Descriptor(    String clazz,    String name,    String code,    PluginJAR plugin){
+      this.clazz=clazz;
+      this.name=name;
+      this.code=code;
+      this.plugin=plugin;
+    }
+    Object getInstance(){
+      if (instanceIsNull)       return null;
+ else       if (instance == null) {
+        instance=BeanShell.eval(null,BeanShell.getNameSpace(),code);
+        if (instance == null) {
+          instanceIsNull=true;
+        }
+      }
+      return instance;
+    }
+    public int hashCode(){
+      return name.hashCode();
+    }
+    public boolean equals(    Object o){
+      if (o instanceof Descriptor) {
+        Descriptor d=(Descriptor)o;
+        return d.clazz.equals(clazz) && d.name.equals(name);
+      }
+ else       return false;
+    }
+  }
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD-OR-NIL[public-or-nil]] ; INTERFACE[false] ; NAME[IDENTIFIER[ActionListHandler-or-ServiceManager]] ; SUPERCLASSTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[HandlerBase-or-nil]]] ; BODYDECLARATIONS[MODIFIERS-OR-NIL[KEYWORD-OR-NIL[static-or-nil]] ; INTERFACE-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]] ; BODYDECLARATIONS-OR-NIL[CONSTRUCTOR-OR-NIL[true-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[PluginJAR-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[o-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[o-or-nil]] ; RIGHTOPERAND-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[o-or-nil]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]] ; OPERATOR-OR-NIL[&&-or-nil] ; RIGHTOPERAND-OR-NIL[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; ]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]]]], CONSTRUCTOR-OR-NIL[true-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]] ; PARAMETERS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[public-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hashCode-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hashCode-or-nil]] ; ]]], CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getInstance-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[instanceIsNull-or-nil]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[instance-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[instance-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[BeanShell-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[eval-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[BeanShell-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getNameSpace-or-nil]] ; , ]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[instance-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[instanceIsNull-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[true-or-nil]]]]]]]], EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[instance-or-nil]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[PluginJAR-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[instance-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[instanceIsNull-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]]], MODIFIERS[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[charData-or-unloadServices]] ; PARAMETERS[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[char-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[c-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[off-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE[PRIMITIVETYPECODE-OR-NIL[int-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[PluginJAR-or-nil]]] ; VARARGS[false] ; NAME[IDENTIFIER[len-or-plugin]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE[NAME[IDENTIFIER[Descriptor-or-String]]] ; FRAGMENTS[NAME[IDENTIFIER[d-or-text]] ; EXTRADIMENSIONS[0] ; INITIALIZER[TYPE[NAME[IDENTIFIER[Descriptor-or-String]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[c-or-nil], IDENTIFIER-OR-NIL[off-or-nil], IDENTIFIER-OR-NIL[len-or-nil]]]], EXPRESSION[LEFTOPERAND[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]] ; IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR[==] ; RIGHTOPERAND[IDENTIFIER-OR-NIL[plugin-or-nil] ; ESCAPEDVALUE-OR-NIL["CODE"-or-nil]] ; ] ; THENSTATEMENT[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[remove-or-nil]] ; ] ; STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[text-or-nil]]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["IS_SELECTED"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[isSelected-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[text-or-nil]]]]]]]], TYPE[NAME[IDENTIFIER[String-or-Iterator]]] ; FRAGMENTS[NAME[IDENTIFIER[tag-or-descriptors]] ; EXTRADIMENSIONS[0] ; INITIALIZER[NAME[IDENTIFIER[peekElement-or-iterator]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[keySet-or-nil]] ; ]]]]], MODIFIERS[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[doctypeDecl-or-loadServices]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String-or-PluginJAR]]] ; VARARGS[false] ; NAME[IDENTIFIER[name-or-plugin]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String-or-URL]]] ; VARARGS[false] ; NAME[IDENTIFIER[publicId-or-uri]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER-OR-NIL[String-or-nil] ; QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[PluginJAR-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[PluginCacheEntry-or-nil]]]] ; VARARGS[false] ; NAME[IDENTIFIER[systemId-or-cache]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; THROWNEXCEPTIONS[IDENTIFIER-OR-NIL[Exception-or-nil]] ; BODY[STATEMENTS[BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ServiceListHandler-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[dh-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ServiceListHandler-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil], IDENTIFIER-OR-NIL[uri-or-nil]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[XmlParser-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[parser-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[XmlParser-or-nil]]] ; ]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[BufferedReader-or-nil]]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[InputStreamReader-or-nil]]] ; ARGUMENTS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[uri-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[openStream-or-nil]] ; ]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[cache-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[cache-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[cachedServices-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[dh-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getCachedServices-or-nil]] ; ]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[parser-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[parse-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil], , ]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[parser-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[setHandler-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[dh-or-nil]]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[XmlException-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[xe-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[message-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[xe-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getMessage-or-nil]] ; ]], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[int-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[line-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[xe-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getLine-or-nil]] ; ]], EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[uri-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[":"-or-nil]] ; EXTENDEDOPERANDS-OR-NIL[IDENTIFIER-OR-NIL[line-or-nil], ESCAPEDVALUE-OR-NIL[": "-or-nil], IDENTIFIER-OR-NIL[message-or-nil]], LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; OPERATOR-OR-NIL[+-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL[": DOCTYPE must be ACTIONS"-or-nil]] ; , QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ERROR-or-nil]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ServiceManager-or-nil]]], QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[Log-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[ERROR-or-nil]], ]]]], EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ] ; FINALLY-OR-NIL[STATEMENTS-OR-NIL[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; OPERATOR-OR-NIL[!=-or-nil] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[close-or-nil]] ; ]]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[IOException-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[io-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Reader-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[in-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; ], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["ACTIONS"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; ]], MODIFIERS[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE-OR-NIL[void-or-nil] ; COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]]] ; NAME[IDENTIFIER[attribute-or-getServiceNames]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String-or-ArrayList]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ArrayList-or-nil]]] ; ]], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[value-or-clazz]] ; EXTRADIMENSIONS[0], TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; VARARGS-OR-NIL[false-or-nil] ; NAME[IDENTIFIER[isSpecified-or-d]] ; EXTRADIMENSIONS[0] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ]]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; , EXPRESSION[EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]] ; LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NAME"-or-nil]] ; ] ; THENSTATEMENT[EXPRESSION[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[add-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]]] ; LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[actionName-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NO_REPEAT"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRepeat-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["TRUE"-or-nil]] ; ]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NO_RECORD"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRecord-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["TRUE"-or-nil]] ; ]]]] ; ELSESTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["NO_REMEMBER_LAST"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRememberLast-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["TRUE"-or-nil]] ; ]]]]]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Iterator-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[keySet-or-nil]] ; ] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[iterator-or-nil]] ; ]], EXPRESSION-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[toArray-or-nil]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]]] ; DIMENSIONS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ]] ; ELSEEXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[aname-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[intern-or-nil]] ; ]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; ]] ; ELSEEXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[intern-or-nil]] ; ]]]]], MODIFIERS[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]] ; COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]]] ; NAME[IDENTIFIER[resolveEntity-or-getServiceTypes]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String-or-Descriptor]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[publicId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[next-or-nil]] ; ]]], TYPE[NAME[IDENTIFIER[String-or-HashSet]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[HashSet-or-nil]]] ; ]]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[hasNext-or-nil]] ; ] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[add-or-nil]] ; ARGUMENTS-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]]]]]], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Iterator-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[descriptors-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[keySet-or-nil]] ; ] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[iterator-or-nil]] ; ]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[ESCAPEDVALUE-OR-NIL["actions.dtd"-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[systemId-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[StringReader-or-nil]]] ; ARGUMENTS-OR-NIL[ESCAPEDVALUE-OR-NIL["<!-- -->"-or-nil]]]]], EXPRESSION[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[toArray-or-nil]] ; ARGUMENTS-OR-NIL[TYPE-OR-NIL[COMPONENTTYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]]] ; DIMENSIONS-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[returnValue-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[size-or-nil]] ; ]]]]]], MODIFIERS[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE-OR-NIL[void-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[Object-or-nil]]] ; NAME[IDENTIFIER[endElement-or-getService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[key-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil], IDENTIFIER-OR-NIL[name-or-nil]]]], TYPE[NAME[IDENTIFIER[String-or-Descriptor]]] ; FRAGMENTS[NAME[IDENTIFIER[tag-or-value]] ; EXTRADIMENSIONS[0] ; INITIALIZER[NAME-OR-NIL[IDENTIFIER-OR-NIL[peekElement-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[get-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[key-or-nil]]]]], EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[name-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[equals-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]]] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[LEFTOPERAND[IDENTIFIER-OR-NIL[tag-or-nil] ; QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]]] ; OPERATOR[==] ; RIGHTOPERAND[ESCAPEDVALUE-OR-NIL["ACTION"-or-nil]] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]] ; NAME[IDENTIFIER[addAction-or-loadServices]] ; ARGUMENTS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[BeanShellAction-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[actionName-or-nil], IDENTIFIER-OR-NIL[code-or-nil], IDENTIFIER-OR-NIL[isSelected-or-nil], IDENTIFIER-OR-NIL[noRepeat-or-nil], IDENTIFIER-OR-NIL[noRecord-or-nil], IDENTIFIER-OR-NIL[noRememberLast-or-nil]], EXPRESSION-OR-NIL[QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getServicesURI-or-nil]] ; , QUALIFIER-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]], ]], EXPRESSION[LEFTHANDSIDE[IDENTIFIER[noRepeat-or-value]] ; OPERATOR[=] ; RIGHTHANDSIDE[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRecord-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[noRememberLast-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[BOOLEANVALUE-OR-NIL[false-or-nil]]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[get-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[key-or-nil]]]]]]], EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[popElement-or-nil]] ; ]]] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[InternalError-or-nil]]] ; ]]], EXPRESSION[LEFTOPERAND[IDENTIFIER[name-or-value]] ; OPERATOR[==] ; ] ; ELSESTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[value-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[getInstance-or-nil]] ; ]]]]], MODIFIERS[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[true-or-false] ; NAME[IDENTIFIER[ActionListHandler-or-unregisterService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[path-or-name]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[ActionSet-or-String]]] ; VARARGS[false] ; NAME[IDENTIFIER[actionSet-or-clazz]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil], IDENTIFIER-OR-NIL[name-or-nil]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]]], EXPRESSION[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Stack-or-nil]]] ; ] ; EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[remove-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]]]]] ; RETURNTYPE2-OR-NIL[PRIMITIVETYPECODE-OR-NIL[void-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[pushElement-or-nil]] ; PARAMETERS-OR-NIL[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[name]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION[EXPRESSION[IDENTIFIER[stateStack-or-serviceMap]] ; NAME[IDENTIFIER[push-or-put]] ; ARGUMENTS[IDENTIFIER-OR-NIL[name-or-nil], IDENTIFIER-OR-NIL[d-or-nil], IDENTIFIER-OR-NIL[d-or-nil]]]]], MODIFIERS[KEYWORD[public], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[startElement-or-registerService]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[tag-or-name]] ; EXTRADIMENSIONS[0], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil], TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[PluginJAR-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[plugin-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[clazz-or-nil], IDENTIFIER-OR-NIL[name-or-nil], IDENTIFIER-OR-NIL[code-or-nil], IDENTIFIER-OR-NIL[plugin-or-nil]]]], EXPRESSION-OR-NIL[LEFTOPERAND-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[==-or-nil] ; RIGHTOPERAND-OR-NIL[ESCAPEDVALUE-OR-NIL["ACTION"-or-nil]] ; ] ; THENSTATEMENT-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[code-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; ], EXPRESSION[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[isSelected-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; EXPRESSION-OR-NIL[IDENTIFIER-OR-NIL[serviceMap-or-nil]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[put-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil], IDENTIFIER-OR-NIL[d-or-nil]]]]], EXPRESSION-OR-NIL[LEFTHANDSIDE-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]] ; OPERATOR-OR-NIL[=-or-nil] ; RIGHTHANDSIDE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[pushElement-or-nil]] ; ARGUMENTS-OR-NIL[IDENTIFIER-OR-NIL[tag-or-nil]]]]]], MODIFIERS[KEYWORD-OR-NIL[public-or-nil], KEYWORD-OR-NIL[static-or-nil]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[startDocument-or-registerService]] ; PARAMETERS[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Descriptor-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[d-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[BODY-OR-NIL[STATEMENTS-OR-NIL[EXPRESSION-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[pushElement-or-nil]] ; ]]] ; CATCHCLAUSES-OR-NIL[EXCEPTION-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Exception-or-nil]]] ; VARARGS-OR-NIL[false-or-nil] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[e-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]] ; ]]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[peekElement-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; , MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; CONSTRUCTOR-OR-NIL[false-or-nil] ; RETURNTYPE2-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; NAME-OR-NIL[IDENTIFIER-OR-NIL[popElement-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil] ; , MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[path-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[ActionSet-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[actionSet-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[actionName-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS[KEYWORD[private], KEYWORD-OR-NIL[static-or-nil]] ; TYPE[NAME[IDENTIFIER[String-or-Map]]] ; FRAGMENTS[NAME[IDENTIFIER[code-or-serviceMap]] ; EXTRADIMENSIONS[0] ; INITIALIZER-OR-NIL[TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[HashMap-or-nil]]] ; ]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[String-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[isSelected-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD[private]] ; TYPE-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[Stack-or-nil]]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[stateStack-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[noRepeat-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; FRAGMENTS-OR-NIL[NAME-OR-NIL[IDENTIFIER-OR-NIL[noRecord-or-nil]] ; EXTRADIMENSIONS-OR-NIL[0-or-nil]], MODIFIERS-OR-NIL[KEYWORD-OR-NIL[private-or-nil]] ; TYPE-OR-NIL[PRIMITIVETYPECODE-OR-NIL[boolean-or-nil]] ; ]]
+****************************** SIMILARITY *****************************
+0.21096952378187483

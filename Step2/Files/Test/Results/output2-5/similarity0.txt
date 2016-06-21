@@ -1,0 +1,13 @@
+
+============================================================================
+ID: public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("ACTIONS".equals(name))   return;
+  Log.log(Log.ERROR,this,path + ": DOCTYPE must be ACTIONS");
+}
+
+MATCHES: 0.421924017049136

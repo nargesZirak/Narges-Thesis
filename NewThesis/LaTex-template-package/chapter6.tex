@@ -1,0 +1,46 @@
+\chapter{Discussion}  \label{diss}
+\begin{itemize} [leftmargin=.01in]
+\section{Threats to validity}  \label{threads}
+\item Our goal is to recognize the limitations and pitfalls of our approach and its developed tool support
+\item The first potential thread to validity of our characterization study is the degree to which our sample set of software systems is a good representation of all real-world logging practices. To address this issue we selected software systems that:
+\begin{itemize} [leftmargin=.3in]
+\item are different in terms of application
+\item are among the most popular applications in their own product category
+\item has long history in software development
+\end{itemize}
+\item Secondly, our manual investigation to find the correct correspondences might be biased due to human errors. To limit the bias
+\begin{itemize} [leftmargin=.3in] 
+\item other people can be involved to double check the accuracy of manual work in the future work
+\end{itemize}
+\item However, these results are still promising
+
+\section{Our tool output}  \label{output}
+\item We investigated the cases where our tool fails and we found that the failures are due to:
+\begin{itemize} [leftmargin=.3in]
+\item the assumptions taken in developing the algorithms
+\item the fundamental limitations and complexities in determining the detailed structural similarities and differences
+\end{itemize}
+
+\item The are some issues that our tool is not able to handle perfectly during generalization:
+\begin{itemize} [leftmargin=.3in]
+\item maintaining the correct ordering of statements inside the method bodies
+\item resolving all the conflicts that happen in determining the best correspondences
+\item producing executable generalizations
+\end{itemize}
+%\item Our tool does not guarantee the correctness of determining the best correspondences due to
+%\begin{itemize} [leftmargin=.3in]
+%\item the various conflicts that happen
+%\item limited typing information to determine correspondences by %Jigsaw
+%\end{itemize}
+%\item Structural generalizations constructed by our tool are not in %the form of executable code
+%[leftmargin=.3in]\end{itemize}
+\section{Theoretical foundation}  \label{theory}
+\item Anti-unification and its extensions has several theoretical and practical applications:
+\begin{itemize} [leftmargin=.3in]
+\item analogy making [Schmidt, 2010]
+\item determining lemma generation in equational inductive proofs [Burghardt, 2005]
+\item detecting the construction laws for a sequence of structures [Burghardt, 2005]
+\end{itemize}
+\item Using higher-order anti-unification modulo theories in our application, which is undecidable in general, leads us to take approximations suitable to our context
+\item The set of equational theories should be developed particularly for the structure used in each problem context
+\end{itemize}

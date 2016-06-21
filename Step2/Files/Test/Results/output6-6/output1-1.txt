@@ -1,0 +1,36 @@
+********************************  NODE 1  *******************************
+public static class Wrapper implements ActionListener {
+  public Wrapper(  ActionContext context,  String actionName){
+    this.context=context;
+    this.actionName=actionName;
+  }
+  public void actionPerformed(  ActionEvent evt){
+    EditAction action=context.getAction(actionName);
+    if (action == null) {
+      Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+    }
+ else     context.invokeAction(evt,action);
+  }
+  private ActionContext context;
+  private String actionName;
+}
+********************************  NODE 2  *******************************
+public static class Wrapper implements ActionListener {
+  public Wrapper(  ActionContext context,  String actionName){
+    this.context=context;
+    this.actionName=actionName;
+  }
+  public void actionPerformed(  ActionEvent evt){
+    EditAction action=context.getAction(actionName);
+    if (action == null) {
+      Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+    }
+ else     context.invokeAction(evt,action);
+  }
+  private ActionContext context;
+  private String actionName;
+}
+*****************************  ANTIUNIFIER  ****************************
+TYPES[MODIFIERS[KEYWORD[public], KEYWORD[static]] ; INTERFACE[false] ; NAME[IDENTIFIER[Wrapper]] ; SUPERINTERFACETYPES[NAME[IDENTIFIER[ActionListener]]] ; BODYDECLARATIONS[MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[true] ; NAME[IDENTIFIER[Wrapper]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[ActionContext]]] ; VARARGS[false] ; NAME[IDENTIFIER[context]] ; EXTRADIMENSIONS[0], TYPE[NAME[IDENTIFIER[String]]] ; VARARGS[false] ; NAME[IDENTIFIER[actionName]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[context]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[context]]], EXPRESSION[LEFTHANDSIDE[NAME[IDENTIFIER[actionName]]] ; OPERATOR[=] ; RIGHTHANDSIDE[IDENTIFIER[actionName]]]]], MODIFIERS[KEYWORD[public]] ; CONSTRUCTOR[false] ; RETURNTYPE2[PRIMITIVETYPECODE[void]] ; NAME[IDENTIFIER[actionPerformed]] ; PARAMETERS[TYPE[NAME[IDENTIFIER[ActionEvent]]] ; VARARGS[false] ; NAME[IDENTIFIER[evt]] ; EXTRADIMENSIONS[0]] ; EXTRADIMENSIONS[0] ; BODY[STATEMENTS[TYPE[NAME[IDENTIFIER[EditAction]]] ; FRAGMENTS[NAME[IDENTIFIER[action]] ; EXTRADIMENSIONS[0] ; INITIALIZER[EXPRESSION[IDENTIFIER[context]] ; NAME[IDENTIFIER[getAction]] ; ARGUMENTS[IDENTIFIER[actionName]]]], EXPRESSION[LEFTOPERAND[IDENTIFIER[action]] ; OPERATOR[==] ; ] ; THENSTATEMENT[STATEMENTS[EXPRESSION[EXPRESSION[IDENTIFIER[Log]] ; NAME[IDENTIFIER[log]] ; ARGUMENTS[LEFTOPERAND[ESCAPEDVALUE["Unknown action: "]] ; OPERATOR[+] ; RIGHTOPERAND[IDENTIFIER[actionName]] ; , QUALIFIER[IDENTIFIER[Log]] ; NAME[IDENTIFIER[WARNING]], ]]]] ; ELSESTATEMENT[EXPRESSION[EXPRESSION[IDENTIFIER[context]] ; NAME[IDENTIFIER[invokeAction]] ; ARGUMENTS[IDENTIFIER[evt], IDENTIFIER[action]]]]]], MODIFIERS[KEYWORD[private]] ; TYPE[NAME[IDENTIFIER[ActionContext]]] ; FRAGMENTS[NAME[IDENTIFIER[context]] ; EXTRADIMENSIONS[0]], MODIFIERS[KEYWORD[private]] ; TYPE[NAME[IDENTIFIER[String]]] ; FRAGMENTS[NAME[IDENTIFIER[actionName]] ; EXTRADIMENSIONS[0]]]]
+****************************** SIMILARITY *****************************
+1.0
