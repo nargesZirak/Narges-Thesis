@@ -52,7 +52,7 @@ public class EditBus {
   }
 }
 \end{lstlisting}
-\caption{A Java class without the usage of logging.\label{ch2-ex1}}
+\caption{A Java class without the usage of logging\label{ch2-ex1}}
 \end{figure}
 
 \item She has to make several decisions about
@@ -65,8 +65,8 @@ public class EditBus {
 \item However, for example, logging at the start and end of the method \code{addToBus} is useless, producing redundant information
 \item She needs more information to perform logging appropriately
 \item Having a characterization  of how usually developers use logging calls in similar situations would assist her in making decisions
-\item For example, knowing that developers use logging calls inside of \code{if}-statements to log a potential error when a variable contains an incorrect value, she adds an if statement to log an error when the value of the variable \code{time} is \code{null} (shown in Lines~36-38 of Figure~\ref{ch2-ex2})
-\item For example, knowing that developers use logging calls inside catch blocks to record an exception, she creates a \code{try}/\code{catch} block to capture the potential failure in sending messages and uses a logging call in the \code{catch} block (Lines~41-43 of Figure~\ref{ch2-ex2})
+\item For example, knowing that developers use logging calls inside of if statements to log a potential error when a variable contains an incorrect value, she adds an if statement to log an error when the value of the variable \code{time} is \code{null} (shown in Lines~36-38 of Figure~\ref{ch2-ex2})
+\item For example, knowing that developers use logging calls inside catch blocks to record an exception, she creates a try/catch block to capture the potential failure in sending messages and uses a logging call in the catch block (Lines~41-43 of Figure~\ref{ch2-ex2})
 
 \begin{figure}[H]
 \def\baselinestretch{1}
@@ -118,7 +118,7 @@ public class EditBus {
   }
 }
 \end{lstlisting}
-\caption{A Java class after the usage of logging calls.\label{ch2-ex2}}
+\caption{A Java class after the usage of logging calls\label{ch2-ex2}}
 \end{figure}
 
 \item Using a concise characterization she would be able to make informed decisions about where to use logging calls more easily and quickly

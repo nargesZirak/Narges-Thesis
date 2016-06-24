@@ -11,21 +11,21 @@
 \BOOKMARK [1][-]{section.1.4}{Thesis Organization}{chapter.1}% 11
 \BOOKMARK [0][-]{chapter.2}{Motivational Scenario}{}% 12
 \BOOKMARK [0][-]{chapter.3}{Background}{}% 13
-\BOOKMARK [1][-]{section.3.1}{Anti-unification}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.1}{Antiunification}{chapter.3}% 14
 \BOOKMARK [1][-]{section.3.2}{Abstract Syntax Tree}{chapter.3}% 15
 \BOOKMARK [1][-]{section.3.3}{Constructing the AUAST}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.4}{Higher-order anti-unification modulo theories}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.4}{Higher-order antiunification modulo theories}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.5}{The Jigsaw framework}{chapter.3}% 18
 \BOOKMARK [1][-]{section.3.6}{Summary}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter.4}{Anti-unification of Logged Java Classes}{}% 20
+\BOOKMARK [0][-]{chapter.4}{Antiunification of Logged Java Classes}{}% 20
 \BOOKMARK [1][-]{section.4.1}{Constructing the AUAST}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.2}{Deteremining Correspondences Using Jigsaw}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.2}{Determining Correspondences Using Jigsaw}{chapter.4}% 22
 \BOOKMARK [1][-]{section.4.3}{Constraints in Determining Correspondences}{chapter.4}% 23
 \BOOKMARK [1][-]{section.4.4}{Determining Correspondences}{chapter.4}% 24
 \BOOKMARK [1][-]{section.4.5}{Computing Similarity}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.6}{Constructing the Anti-unifier}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.6}{Constructing the antiunifier}{chapter.4}% 26
 \BOOKMARK [1][-]{section.4.7}{Multiple logging calls}{chapter.4}% 27
-\BOOKMARK [1][-]{section.4.8}{Anti-unifying a set of AUASTs}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.8}{Antiunifying a set of AUASTs}{chapter.4}% 28
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 29
 \BOOKMARK [1][-]{section.5.1}{Experiment 1}{chapter.5}% 30
 \BOOKMARK [1][-]{section.5.2}{Experiment 2}{chapter.5}% 31
@@ -39,7 +39,7 @@
 \BOOKMARK [1][-]{section.7.1}{Usage of logging}{chapter.7}% 39
 \BOOKMARK [1][-]{section.7.2}{Correspondence}{chapter.7}% 40
 \BOOKMARK [1][-]{section.7.3}{API usages patterns}{chapter.7}% 41
-\BOOKMARK [1][-]{section.7.4}{Anti-unification}{chapter.7}% 42
+\BOOKMARK [1][-]{section.7.4}{Antiunification}{chapter.7}% 42
 \BOOKMARK [1][-]{section.7.5}{Clustering}{chapter.7}% 43
 \BOOKMARK [1][-]{section.7.6}{Summary}{chapter.7}% 44
 \BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 45

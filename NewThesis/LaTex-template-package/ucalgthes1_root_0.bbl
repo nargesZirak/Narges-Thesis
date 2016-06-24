@@ -1,0 +1,49 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bulychev and Minea(2008)]{2008:syrcose:bulychev}
+Peter Bulychev and Marius Minea.
+\newblock Duplicate code detection using anti-unification.
+\newblock In \emph{Proceedings of the Spring Young Researchers Colloquium on
+  Software Engineering}, pages 51--54, 2008.
+\newblock URL
+  \url{http://www-cad.eecs.berkeley.edu/~marius/papers/syrcose08.pdf}.
+
+\bibitem[Cossette and Walker(2012)]{2012:fse:cossette}
+Bradley~E. Cossette and Robert~J. Walker.
+\newblock Seeking the ground truth: A retroactive study on the evolution and
+  migration of software libraries.
+\newblock In \emph{Proceedings of the ACM SIGSOFT International Symposium on
+  Foundations of Software Engineering}, pages 55:1--55:11, 2012.
+\newblock \doi{10.1145/2393596.2393661}.
+
+\bibitem[Cottrell et~al.(2007)Cottrell, Chang, Walker, and
+  Denzinger]{2007:esec_fse:cottrell}
+Rylan Cottrell, Joseph J.~C. Chang, Robert~J. Walker, and J\"org Denzinger.
+\newblock Determining detailed structural correspondence for generalization
+  tasks.
+\newblock In \emph{Proceedings of the European Software Engineering
+  Conference/ACM SIGSOFT International Symposium on Foundations of Software
+  Engineering}, pages 165--174, 2007.
+\newblock \doi{10.1145/1287624.1287649}.
+
+\bibitem[Cottrell et~al.(2008)Cottrell, Walker, and
+  Denzinger]{2008:fse:cottrell}
+Rylan Cottrell, Robert~J. Walker, and J\"org Denzinger.
+\newblock Semi-automating small-scale source code reuse via structural
+  correspondence.
+\newblock In \emph{Proceedings of the ACM SIGSOFT International Symposium on
+  Foundations of Software Engineering}, pages 214--225, 2008.
+\newblock \doi{10.1145/1453101.1453130}.
+
+\bibitem[Yuan et~al.(2012)Yuan, Park, and Zhou]{2012:icse:yuan}
+Ding Yuan, Soyeon Park, and Yuanyuan Zhou.
+\newblock Characterizing logging practices in open-source software.
+\newblock In \emph{Proceedings of the ACM/IEEE International Conference on
+  Software Engineering}, pages 102--112, 2012.
+
+\end{thebibliography}

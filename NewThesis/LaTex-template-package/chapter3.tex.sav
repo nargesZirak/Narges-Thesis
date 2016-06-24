@@ -12,13 +12,13 @@ Afterwards we discuss the Jigsaw framework and its application in determining po
 
 \RW{This section needs to come after the section on ASTs.}
 
-To describe unification theory and its dual antiunification theory, we first introduce a formal definition of terms, the application of a substitution on a term, and the definition of instance and anti-instance of a term, as the requirements needed to understand the theories.
+To describe unification theory and its dual antiunification theory, we first introduce a formal definition of term, the application of a substitution on a term, and the definition of instance and anti-instance of a term, as the requirements needed to understand the theories.
 
 \begin{defn}[Term]\label{def:term}
-A term is a set of function symbols, variables, and constants, such that function symbols can come up with unlimited number of arguments. \RW{``Set'' implies no order and that these items cannot repeat.  This is wrong.  ``Come up with'' doesn't make much sense here.}
+A term is a set of function symbols, variables, and constants, such that function symbols can come up with unlimited number of arguments.
 \end{defn}
 
-We represent function symbols by identifiers starting with a lowercase letter (e.g., $f(a,b)$), variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$), and constants are function symbols with no arguments (e.g., $a$, $b$). the followings are examples of term:
+In the definition of a term, function symbols are represented by identifiers starting with a lowercase letter (e.g., $f(a,b)$), variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$), and constants are function symbols with no arguments (e.g., $a$, $b$). the followings are examples of term:
 \begin{itemize} [leftmargin=0.7in]
 \item $Y$
 \item $a$

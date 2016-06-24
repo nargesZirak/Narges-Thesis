@@ -24,7 +24,7 @@
 \usepackage{amsthm}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
-\usepackage{natbib}
+%\usepackage{natbib}
 %\newtheorem{definition}{Definition}[section]
 \theoremstyle{definition}
 \newtheorem{defn}{Definition} [section]
@@ -35,7 +35,6 @@
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows, matrix}
 
-\let\cite\citep
 \newcommand{\id}{\mathit}
 \newcommand{\vars}{\textit}
 \newcommand{\func}{\textsc}
@@ -194,7 +193,7 @@ Department of  Computer Science \\
 
 \bibliographystyle{plainnat}
 \global\def\newblock{\hskip .11em plus .33em minus -.07em} %Avoids a latex complaint
-\bibliography{../../../../workspace/bibtex/full,../../../../workspace/bibtex/references,../../../../workspace/bibtex/lsmr,mybiblio}
+\bibliography{../../bibtex/full,../../bibtex/references,../../bibtex/lsmr,mybiblio}
 
 
 

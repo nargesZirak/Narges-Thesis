@@ -3,15 +3,15 @@
 \item Determining the detailed structural similarities and differences between entities of the source code of a software system, or between the source code of different software systems, is a potentially complex problem
 \item Being able to do so has various actual or potential applications:
 \begin{itemize} [leftmargin=.3in]
-\item code clone detection \cite{2008:syrcose:bulychev}
-\item semi-automating source code reuse \cite{2008:fse:cottrell}
-\item recommending replacements for an API between various versions of a software library \cite{2012:fse:cossette}
+\item code clone detection [Bulychev et al. , 2008]
+\item semi-automating source code reuse [Cottrell et al. ,2008]
+\item recommending replacements for an API between various versions of a software library [Cossette et al., 2014]
 \item collating API usage patterns
 \item automating the merge operation of various branches in a version control system
 \end{itemize}
 \item As a specific application, our focus is on the study of where logging is used in the source code
 \item Logging is a conventional programming practice to record an application's state and/or actions during the program's execution
-\item Logging is a pervasive practice during software development \cite{2012:icse:yuan}
+\item Logging is a pervasive practice during software development [Yuan et al., 2012]
 
 \item The importance of logging has been identified by its various applications in:
 \begin{itemize} [leftmargin=.3in]
@@ -26,7 +26,7 @@
 \item However, some evidence suggest that it is not a straightforward task to perform high quality logging in practice, such as:
 \begin{itemize} [leftmargin=.3in]
 \item availability of several complex frameworks to help developers to log
-\item the significant amount of effort developers spend to modify logging calls as after-thoughts \cite{2012:icse:yuan}
+\item the significant amount of effort developers spend to modify logging calls as after-thoughts [Yuan et al., 2012]
 \end{itemize}
 %\item In practice, developers typically rely on software system's execution \emph{logs} to understand the behaviour of large systems and to diagnose their problems
 %\item Given the importance of logging, its quality can affect the quality of an application directly
@@ -53,7 +53,7 @@ where developers log in practice, in a detailed way
 \item \textsc{SOLUTION: }Develop an automated approach to detect the detailed structural similarities and differences in the usage of logging within a system and between systems
 
 \item \NZ{I am a little confused about how to find commonalities and differences of logging usage between systems? do you mean that I should compare the results taken from clustering of all Java classes in one system to another one?} \RW{The process of locating commonalities and differences can be applied within a single version of one system, across multiple versions of one system, across single versions of multiple systems, or across multiple versions of multiple systems.  It would be useful to understand the differences and similarities between different systems.  Is there some reason that this would be harder to achieve?} \NZ{I should think about it more. I can answer to this question after per-system analysis with more confidence}
-
+    
     \RW{I AM WORRIED ABOUT WHAT YOU HAVE BEEN SAYING HERE.  THE FACT THAT TWO LOGGING STATEMENTS COME FROM TWO SYSTEMS INSTEAD OF FROM ONE SYSTEM SHOULD MAKE ZERO DIFFERENCE FROM THE ALGORITHMIC PERSPECTIVE.  THAT YOU THINK OTHERWISE MAKES ME WONDER IF YOU HAVE MISUNDERSTOOD SOMETHING.}
 %\item \RW{The rest of this is motivational stuff.}
 %\item Developers must be able to understand software system behaviour for various development and maintenance tasks
@@ -83,12 +83,12 @@ where developers log in practice, in a detailed way
 \item Our evaluation shows ...
 
 \section{Overview of related work} \label{intro-ov-re}
-\item \citet{2012:icse:yuan} provide a quantitative characteristic study of log messages on four open-source software system, however, it does not study the location of logging calls in the source code
+\item Yuan et al. [2012]  provides a quantitative characteristic study of log messages on four open-source software system, however, it does not study the location of logging calls in the source code
 \item So far, antiunification has been used for various applications:
 \begin{itemize} [leftmargin=.3in]
-\item to construct a generalized correspondence view of two source code fragments \cite{2007:esec_fse:cottrell}
-\item to help developers to perform small-scale reuse tasks semi-automatically \cite{2008:fse:cottrell}
-\item Software clone detection \cite{2008:syrcose:bulychev}
+\item to construct a generalized correspondence view of two source code fragments [Cottrell et al., 2007]
+\item to help developers to perform small-scale reuse tasks semi-automatically[Cottrell et al., 2008]
+\item Software clone detection [Bulychev and Minea, 2008]
 \end{itemize}
 \item This study makes the first attempt to characterize where logging calls occur in the source code through finding the detailed structural similarities and differences using HOAUMT
 
