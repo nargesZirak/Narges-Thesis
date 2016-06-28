@@ -1,0 +1,45 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public,static),returntype2(void),name(send),parameters(type(name(EBMessage)),name(message)),body(statements(for-or-nil(initializers-or-nil(type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-i),initializer-or-nil(0-or-nil))),expression-or-nil(leftoperand-or-nil(nil-or-i),nil-or-<,rightoperand-or-nil(qualifier-or-nil(nil-or-comps),name-or-nil(nil-or-length))),updaters-or-nil(operand-or-nil(nil-or-i),nil-or-++),body-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER)),thenstatement-or-nil(statements-or-nil(type-or-nil(nil-or-long),fragments-or-nil(name-or-nil(nil-or-time),initializer-or-nil(expression-or-nil(leftoperand-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis)),nil-or--,rightoperand-or-nil(nil-or-start)))),type-or-nil(nil-or-long),fragments-or-nil(name-or-nil(nil-or-start),initializer-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis))),expression-or-nil(expression-or-nil(nil-or-comp),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-time),nil-or-!=,rightoperand-or-nil(0-or-nil)),thenstatement-or-nil()))),elsestatement-or-nil(expression-or-nil(expression-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i)),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)))),type-or-nil(name-or-nil(nil-or-EBComponent)),fragments-or-nil(name-or-nil(nil-or-comp),initializer-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Throwable)),name-or-nil(nil-or-t)),body-or-nil(statements-or-nil(expression(expression(Log),name(log),arguments(leftoperand-or-nil(nil-or-"Exception"),nil-or-+,rightoperand-or-nil(nil-or-" while sending message on EditBus:"),qualifier(Log),name(ERROR-or-DEBUG),methodinvocation-or-nil(expression-or-nil(nil-or-message),name-or-nil(nil-or-toString)),type(name(EditBus))))))))))),for-or-nil(initializers-or-nil(type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-i),initializer-or-nil(0-or-nil))),expression-or-nil(leftoperand-or-nil(nil-or-i),nil-or-<,rightoperand-or-nil(qualifier-or-nil(nil-or-comps),name-or-nil(nil-or-length))),updaters-or-nil(operand-or-nil(nil-or-i),nil-or-++),body-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER)),thenstatement-or-nil(statements-or-nil(type-or-nil(nil-or-long),fragments-or-nil(name-or-nil(nil-or-time),initializer-or-nil(expression-or-nil(leftoperand-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis)),nil-or--,rightoperand-or-nil(nil-or-start)))),type-or-nil(nil-or-long),fragments-or-nil(name-or-nil(nil-or-start),initializer-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis))),expression-or-nil(expression-or-nil(nil-or-comp),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-time),nil-or-!=,rightoperand-or-nil(0-or-nil)),thenstatement-or-nil()))),elsestatement-or-nil(expression-or-nil(expression-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i)),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)))),type-or-nil(name-or-nil(nil-or-EBComponent)),fragments-or-nil(name-or-nil(nil-or-comp),initializer-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Throwable)),name-or-nil(nil-or-t)),body-or-nil()))))),type(componenttype(name(EBComponent))),fragments(name(comps),initializer(name(getComponents))))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.28 

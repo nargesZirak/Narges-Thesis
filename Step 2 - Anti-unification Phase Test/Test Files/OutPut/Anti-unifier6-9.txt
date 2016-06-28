@@ -1,0 +1,47 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers-or-nil(nil-or-public),returntype2-or-nil(nil-or-void),name(RootsEntry-or-handleMessage),parameters(type(name(EBMessage-or-File)),name(file-or-message)),body(statements(if-or-nil(expression-or-nil(name-or-nil(nil-or-isFloppy),arguments-or-nil(nil-or-file)),thenstatement-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))),expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path)))),elsestatement-or-nil(expression-or-nil(name-or-nil(nil-or-isDrive),arguments-or-nil(nil-or-file)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-getSystemDisplayName),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(leftoperand-or-nil(nil-or-path),nil-or-+,rightoperand-or-nil(nil-or-" "),extendedoperands-or-nil(type-or-nil(name-or-nil(nil-or-String)),expression-or-nil(expression-or-nil(nil-or-getSystemDisplayName),name-or-nil(nil-or-invoke),arguments-or-nil(type-or-nil(componenttype-or-nil(name-or-nil(nil-or-Object))),initializer-or-nil(expressions-or-nil(nil-or-file)),nil-or-fsView))))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Exception)),name-or-nil(nil-or-e)),body-or-nil(statements-or-nil(expression(expression(Log),name(log),arguments(qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR),nil-or-e)),expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path))))))))),expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-file),name-or-nil(nil-or-isDirectory)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-isFileSystemRoot),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Boolean),name-or-nil(nil-or-FALSE)),name-or-nil(nil-or-equals),arguments-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-isFileSystemRoot),name-or-nil(nil-or-invoke),arguments-or-nil(type-or-nil(componenttype-or-nil(name-or-nil(nil-or-Object))),initializer-or-nil(expressions-or-nil(nil-or-file)),nil-or-fsView)))),thenstatement-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-DIRECTORY)))))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Exception)),name-or-nil(nil-or-e)),body-or-nil()))))),if-or-nil(expression-or-nil(expression-or-nil(OperatingSystem-or-nil),name-or-nil(nil-or-isMacOS)),thenstatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-MiscUtilities),name-or-nil(nil-or-getFileName),arguments-or-nil(nil-or-path)))),elsestatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path)))),expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))))),elsestatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILE))))))),expression-or-nil(expression(Log),name(log),arguments-or-nil(leftoperand-or-nil(name-or-nil(nil-or-getClassName)),nil-or-+,rightoperand-or-nil(nil-or-" should extend"),extendedoperands-or-nil(nil-or-" EditPlugin not EBPlugin since it has an empty",nil-or-" handleMessage()"),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-WARNING))),expression-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-path)),nil-or-=,righthandside-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-deletePath)),nil-or-=,righthandside-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-symlinkPath)),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-file),name-or-nil(nil-or-getPath)))),lefthandside-or-nil(nil-or-seenWarning),nil-or-=,righthandside-or-nil(nil-or-true)),expression-or-nil(lefthandside-or-nil(nil-or-seenWarning),nil-or-=,righthandside-or-nil(nil-or-true)),expression-or-nil(expression-or-nil(nil-or-EditBus),name-or-nil(nil-or-removeFromBus),arguments-or-nil()),if-or-nil(expression-or-nil(nil-or-seenWarning),thenstatement-or-nil()))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.08 

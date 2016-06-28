@@ -1,0 +1,51 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public,static),returntype2(void),name(send-or-loadServices),parameters(type-or-nil(name-or-nil(qualifier-or-nil(PluginJAR-or-nil),name-or-nil(nil-or-PluginCacheEntry))),name(cache-or-comps),type(name(PluginJAR-or-EBMessage)),name(plugin-or-message),type-or-nil(name-or-nil(nil-or-URL)),name-or-nil(nil-or-uri)),body(statements(try(body(statements(if-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER)),thenstatement-or-nil(statements-or-nil(type-or-nil(nil-or-long),fragments-or-nil(name-or-nil(nil-or-time),initializer-or-nil(expression-or-nil(leftoperand-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis)),--or-nil,rightoperand-or-nil(nil-or-start)))),type(nil-or-long,name-or-nil(nil-or-ServiceListHandler)),fragments(name(dh-or-start),initializer(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis),type-or-nil(name-or-nil(nil-or-ServiceListHandler)),arguments-or-nil(nil-or-plugin,nil-or-uri))),expression(expression(comp-or-parser),name(setHandler-or-handleMessage),arguments(nil-or-message,nil-or-dh)),if(expression(leftoperand(cache-or-time),!=,rightoperand(0-or-nil)),thenstatement(expression-or-nil(lefthandside-or-nil(qualifier-or-nil(nil-or-cache),name-or-nil(nil-or-cachedServices)),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-dh),name-or-nil(nil-or-getCachedServices))))))),elsestatement(expression(expression(array-or-nil(nil-or-comps),index-or-nil(nil-or-i),nil-or-parser),name(handleMessage-or-parse),arguments(nil-or-message,nil-or-in,nullliteral-or-nil(),nullliteral-or-nil())))),expression-or-nil(lefthandside-or-nil(nil-or-in),nil-or-=,righthandside-or-nil(type-or-nil(name-or-nil(nil-or-BufferedReader)),arguments-or-nil(type-or-nil(name-or-nil(nil-or-InputStreamReader)),arguments-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-uri),name-or-nil(nil-or-openStream)))))),type(name(XmlParser-or-EBComponent)),fragments(name(comp-or-parser),initializer(type-or-nil(name-or-nil(nil-or-XmlParser)),array-or-nil(nil-or-comps),index-or-nil(nil-or-i))))),catchclauses(exception(type(name(XmlException-or-Throwable)),name(t-or-xe)),body(statements(expression(expression(Log),name(log),arguments(leftoperand(nil-or-uri,nil-or-"Exception"),+,rightoperand(":"-or-" while sending message on EditBus:"),extendedoperands-or-nil(nil-or-line,nil-or-": ",nil-or-message),qualifier(Log),name(ERROR),type(name(ServiceManager-or-EditBus)))),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-line),initializer-or-nil(expression-or-nil(nil-or-xe),name-or-nil(nil-or-getLine))),type-or-nil(name-or-nil(nil-or-String)),fragments-or-nil(name-or-nil(nil-or-message),initializer-or-nil(expression-or-nil(nil-or-xe),name-or-nil(nil-or-getMessage))))),exception(type(name(Throwable-or-Exception)),name(t-or-e)),body-or-nil()),finally-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-in),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(expression-or-nil(expression-or-nil(nil-or-in),name-or-nil(nil-or-close)))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-IOException)),name-or-nil(nil-or-io)),body-or-nil()))))),for-or-nil(initializers-or-nil(type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-i),initializer-or-nil(0-or-nil))),expression-or-nil(leftoperand-or-nil(nil-or-i),nil-or-<,rightoperand-or-nil(qualifier-or-nil(nil-or-comps),name-or-nil(nil-or-length))),updaters-or-nil(operand-or-nil(nil-or-i),nil-or-++),body-or-nil(statements-or-nil())),type(componenttype-or-nil(name-or-nil(nil-or-EBComponent)),name-or-nil(nil-or-Reader)),fragments(name(comps-or-in),initializer(name-or-nil(nil-or-getComponents))))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.24 

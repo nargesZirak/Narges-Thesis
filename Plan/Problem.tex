@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows, matrix}
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\pmark}{\ding{59}}%
+\newcommand{\bld}{\textbf}
+\newcommand{\itt}{\textit}
+\newcommand{\tsc}{\textsc}
+\newcommand{\vars}{\textit}
+\newcommand{\cons}{\textrm}
+\usepackage{textcomp}
+\newcommand{\nothing}{{``nothing''}}
+
+\long\def\TM#1{{\sc[ #1]}}
+
+\begin{document}
+
+
+
+\begin{itemize} [leftmargin=.1in]
+\item \bld{Problem} 
+\begin{itemize}
+\item Determining the detailed structural similarities and differences between source code fragments is a complex task 
+\item It can be applied to solve several source code analysis problems
+\item As a specific application, our focus is on the study of where logging is used in the source code 
+\item logging is a pervasive practice and has various applications in software development and maintenance
+\item It is a challenging task for developers to understand how to use logging calls in the source code 
+\item In this research, we would like to understand  where developers log in practice, in a detailed way
+\end{itemize}
+\item \bld{A proposed Solution to the Problem} 
+\begin{itemize}
+\item Develop an automated approach to detect the detailed structural similarities and differences of Java classes that use logging calls
+\item Our solution would: 
+\begin{itemize} [leftmargin=.1in]
+\item classify logged Java methods into groups using a measure of similarity such that entities in each group has maximum similarity with each other and minimum similarity to other ones 
+\item construct a structural generalization of each group that represent the detailed structural similarities and differences of all logged Java methods in the group
+\end{itemize}
+\end{itemize}
+
+\item \bld{Required Background Information}  
+\begin{itemize}
+\item Abstract Syntax Tree (AST), which is the basic structure we will use for describing software source code
+%\item how ASTs are realized in the Eclipse integrated development environment, the industrial tool we will build atop
+\item First-order anti-unification, which is a technique used to construct the structural generalizations% and its limitations to solve our problem context
+\item Higher-order anti-unification modulo theories (HOAUMT), which is used to address the limitations of first-order anti-unification 
+%that can be applied on an extended form of the AST structure to address our problem
+\item The Jigsaw framework, an existing tool for a subset of HOAUMT, which we extend to determine potential correspondences between logged Java methods
+\item Agglomerative hierarchical clustering, which is a clustering algorithm used for classifying logged Java methods into groups using a measure of similarity
+\end{itemize}
+
+\end{itemize}
+\end{document} 

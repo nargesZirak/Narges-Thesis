@@ -1,0 +1,74 @@
+------------------------- NODE A ---------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+------------------------- NODE B ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+--------------------------- JIGSAW SIMILARITY ----------------------------
+0.28071190425271425

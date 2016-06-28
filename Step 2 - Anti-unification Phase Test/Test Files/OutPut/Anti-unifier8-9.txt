@@ -1,0 +1,77 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers-or-nil(nil-or-private,nil-or-synchronized),returntype2-or-nil(name-or-nil(nil-or-Class)),name(RootsEntry-or-_loadClass),parameters(type-or-nil(name-or-nil(nil-or-String)),name-or-nil(nil-or-clazz),type-or-nil(nil-or-boolean),name-or-nil(nil-or-resolveIt),type(name-or-nil(nil-or-File,nil-or-EditAction,nil-or-EBMessage,nil-or-String,nil-or-String),name-or-nil(nil-or-String,nil-or-EditAction,nil-or-EBMessage,nil-or-String),name-or-nil(nil-or-String,nil-or-EditAction,nil-or-EBMessage),name-or-nil(nil-or-EBMessage,nil-or-EditAction),componenttype-or-nil(name-or-nil(nil-or-EBComponent)),name-or-nil(nil-or-EditAction,nil-or-EBMessage,nil-or-String,nil-or-String,nil-or-File)),name(evt-or-file-or-name-or-message-or-clazz)),thrownexceptions-or-nil(nil-or-ClassNotFoundException),body(statements(synchronized-or-nil(expression-or-nil(),body-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(while-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-success),nil-or-<,rightoperand-or-nil(nil-or-len)),body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-success),nil-or-==,rightoperand-or-nil(nil-or--,operand-or-nil(nil-or-1))),thenstatement-or-nil(statements-or-nil(expression-or-nil(expression-or-nil(nil-or-Log),name-or-nil(nil-or-log),arguments-or-nil(leftoperand-or-nil(nil-or-"Failed to load class "),nil-or-+,rightoperand-or-nil(nil-or-clazz),extendedoperands-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getName)),nil-or-" from "),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR))),throw-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz)))))),expression-or-nil(lefthandside-or-nil(nil-or-success),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-in),name-or-nil(nil-or-read),arguments-or-nil(nil-or-data,nil-or-offset,nil-or-len))),expression-or-nil(lefthandside-or-nil(nil-or-len),nil-or--=,righthandside-or-nil(nil-or-success)),expression-or-nil(lefthandside-or-nil(nil-or-offset),+=-or-nil,righthandside-or-nil(nil-or-success))))),expression-or-nil(lefthandside-or-nil(nil-or-cls),nil-or-=,righthandside-or-nil(name-or-nil(nil-or-defineClass),arguments-or-nil(qualifier-or-nil(nil-or-data),name-or-nil(nil-or-length),nil-or-clazz,nil-or-data,0-or-nil))),type-or-nil(name-or-nil(nil-or-ZipEntry)),fragments-or-nil(name-or-nil(nil-or-entry),initializer-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getEntry),arguments-or-nil(nil-or-name))),type-or-nil(name-or-nil(nil-or-InputStream)),fragments-or-nil(name-or-nil(nil-or-in),initializer-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getInputStream),arguments-or-nil(nil-or-entry))),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-len),initializer-or-nil(type-or-nil(nil-or-int),expression-or-nil(expression-or-nil(nil-or-entry),name-or-nil(nil-or-getSize)))),type-or-nil(name-or-nil(nil-or-ZipFile)),fragments-or-nil(name-or-nil(nil-or-zipFile),initializer-or-nil(expression-or-nil(nil-or-jar),name-or-nil(nil-or-getZipFile))),type-or-nil(componenttype-or-nil(nil-or-byte)),fragments-or-nil(name-or-nil(nil-or-data),initializer-or-nil(type-or-nil(componenttype-or-nil(nil-or-byte)),dimensions-or-nil(nil-or-len))),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-entry),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz)))),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-success),initializer-or-nil(0-or-nil)),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-offset),initializer-or-nil(0-or-nil)),if-or-nil(expression-or-nil(nil-or-resolveIt),thenstatement-or-nil(expression-or-nil(name-or-nil(nil-or-resolveClass),arguments-or-nil(nil-or-cls)))),return-or-nil(expression-or-nil(nil-or-cls)))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-IOException)),name-or-nil(nil-or-io)),body-or-nil(statements-or-nil(throw-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz))))))),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-cls),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(nil-or-resolveIt),thenstatement-or-nil(expression-or-nil(name-or-nil(nil-or-resolveClass),arguments-or-nil(nil-or-cls)))),return-or-nil(expression-or-nil(nil-or-cls))))),type-or-nil(name-or-nil(nil-or-String)),fragments-or-nil(name-or-nil(nil-or-name),initializer-or-nil(expression-or-nil(nil-or-MiscUtilities),name-or-nil(nil-or-classToFile),arguments-or-nil(nil-or-clazz))),type-or-nil(name-or-nil(nil-or-Class)),fragments-or-nil(name-or-nil(nil-or-cls),initializer-or-nil(name-or-nil(nil-or-findLoadedClass),arguments-or-nil(nil-or-clazz)))))),if-or-nil(expression-or-nil(name-or-nil(nil-or-isFloppy),arguments-or-nil(nil-or-file)),thenstatement-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))),expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path)))),elsestatement-or-nil(expression-or-nil(name-or-nil(nil-or-isDrive),arguments-or-nil(nil-or-file)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-getSystemDisplayName,nil-or-entry),nil-or-!=,rightoperand-or-nil(),leftoperand-or-nil(nil-or-entry,nil-or-getSystemDisplayName),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(leftoperand-or-nil(nil-or-path),nil-or-+,rightoperand-or-nil(nil-or-" "),extendedoperands-or-nil(type-or-nil(name-or-nil(nil-or-String)),expression-or-nil(expression-or-nil(nil-or-getSystemDisplayName),name-or-nil(nil-or-invoke),arguments-or-nil(type-or-nil(componenttype-or-nil(name-or-nil(nil-or-Object))),initializer-or-nil(expressions-or-nil(nil-or-file)),nil-or-fsView))))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Exception)),name-or-nil(nil-or-e)),body-or-nil(statements-or-nil(expression(expression(Log),name(log),arguments(qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR),nil-or-e)),expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path),lefthandside-or-nil(nil-or-len,nil-or-type),nil-or--=,righthandside-or-nil(nil-or-success,qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-DIRECTORY)))))))))),expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-file),name-or-nil(nil-or-isDirectory)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-isFileSystemRoot,nil-or-cls),nil-or-!=,rightoperand-or-nil(),leftoperand-or-nil(nil-or-cls,nil-or-isFileSystemRoot),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Boolean),name-or-nil(nil-or-FALSE)),name-or-nil(nil-or-equals),arguments-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-isFileSystemRoot),name-or-nil(nil-or-invoke),arguments-or-nil(type-or-nil(componenttype-or-nil(name-or-nil(nil-or-Object))),initializer-or-nil(expressions-or-nil(nil-or-file)),nil-or-fsView)))),thenstatement-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-DIRECTORY),nil-or-success))))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Exception,nil-or-IOException),name-or-nil(nil-or-IOException,nil-or-Exception)),name-or-nil(nil-or-e),type-or-nil(name-or-nil(nil-or-IOException,nil-or-Exception),name-or-nil(nil-or-Exception,nil-or-IOException)),name-or-nil(nil-or-io)),body-or-nil(statements-or-nil())))))),if-or-nil(expression-or-nil(expression-or-nil(OperatingSystem-or-nil),name-or-nil(nil-or-isMacOS)),thenstatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name,nil-or-success),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-MiscUtilities,nil-or-in),name-or-nil(nil-or-getFileName,nil-or-read),arguments-or-nil(nil-or-path),expression-or-nil(nil-or-in,nil-or-MiscUtilities),name-or-nil(nil-or-read,nil-or-getFileName),arguments-or-nil()),lefthandside-or-nil(nil-or-success,nil-or-name),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-in,nil-or-MiscUtilities),name-or-nil(nil-or-read,nil-or-getFileName),arguments-or-nil(),expression-or-nil(nil-or-MiscUtilities,nil-or-in),name-or-nil(nil-or-getFileName,nil-or-read),arguments-or-nil())),expression-or-nil(lefthandside-or-nil(nil-or-success,nil-or-name),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-in,nil-or-MiscUtilities),name-or-nil(nil-or-read,nil-or-getFileName),arguments-or-nil(),expression-or-nil(nil-or-MiscUtilities,nil-or-in),name-or-nil(nil-or-getFileName,nil-or-read),arguments-or-nil()),lefthandside-or-nil(nil-or-name,nil-or-success),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-MiscUtilities,nil-or-in),name-or-nil(nil-or-getFileName,nil-or-read),arguments-or-nil(),expression-or-nil(nil-or-in,nil-or-MiscUtilities),name-or-nil(nil-or-read,nil-or-getFileName),arguments-or-nil()))),elsestatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name,nil-or-offset),nil-or-=,righthandside-or-nil(nil-or-path),lefthandside-or-nil(nil-or-offset,nil-or-name),+=-or-nil,righthandside-or-nil(nil-or-success,qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILE))),expression-or-nil(lefthandside-or-nil(nil-or-offset,nil-or-name),+=-or-nil,righthandside-or-nil(nil-or-success,qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILE)),lefthandside-or-nil(nil-or-name,nil-or-offset),nil-or-=,righthandside-or-nil(nil-or-path)))),expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))))),elsestatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type,nil-or-len),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILE),nil-or-success),lefthandside-or-nil(nil-or-cls),nil-or-=,righthandside-or-nil(name-or-nil(nil-or-defineClass),arguments-or-nil())),expression-or-nil(lefthandside-or-nil(nil-or-cls),nil-or-=,righthandside-or-nil(name-or-nil(nil-or-defineClass),arguments-or-nil()),lefthandside-or-nil(nil-or-type,nil-or-len),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILE),nil-or-success)))))),expression-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-path)),nil-or-=,righthandside-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-deletePath)),nil-or-=,righthandside-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-symlinkPath)),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-file),name-or-nil(nil-or-getPath))))),expression-or-nil(expression-or-nil(nil-or-jar),name-or-nil(nil-or-activatePlugin)))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.01 

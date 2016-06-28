@@ -1,0 +1,63 @@
+------------------------- NODE A ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+------------------------- NODE B ---------------------------
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+--------------------------- JIGSAW SIMILARITY ----------------------------
+0.40833377870414905

@@ -1,0 +1,17 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public),returntype2(void),name(doctypeDecl-or-handleMessage),parameters(type-or-nil(name-or-nil(nil-or-EBMessage)),name-or-nil(nil-or-message),type-or-nil(name-or-nil(nil-or-String)),name(evt-or-name-or-message),type-or-nil(name-or-nil(nil-or-String)),name-or-nil(nil-or-publicId),type(name-or-nil(nil-or-String,nil-or-EditAction,nil-or-EBMessage),name-or-nil(nil-or-EBMessage,nil-or-EditAction),componenttype-or-nil(name-or-nil(nil-or-EBComponent)),name-or-nil(nil-or-EditAction,nil-or-EBMessage,nil-or-String)),name-or-nil(nil-or-systemId)),body(statements(expression-or-nil(expression-or-nil(nil-or-Log),name-or-nil(nil-or-log),arguments-or-nil(leftoperand-or-nil(name-or-nil(nil-or-getClassName)),nil-or-+,rightoperand-or-nil(nil-or-" should extend"),extendedoperands-or-nil(nil-or-" EditPlugin not EBPlugin since it has an empty",nil-or-" handleMessage()"),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-WARNING))),expression(expression(Log),name(log),arguments(qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR),nil-or-"recent.xml: DOCTYPE must be RECENT")),expression-or-nil(lefthandside-or-nil(nil-or-seenWarning),nil-or-=,righthandside-or-nil(nil-or-true)),if-or-nil(expression-or-nil(expression-or-nil(nil-or-"RECENT"),name-or-nil(nil-or-equals),arguments-or-nil(nil-or-name)),thenstatement-or-nil()),expression-or-nil(expression-or-nil(nil-or-EditBus),name-or-nil(nil-or-removeFromBus),arguments-or-nil()),if-or-nil(expression-or-nil(nil-or-seenWarning),thenstatement-or-nil()))),thrownexceptions-or-nil(nil-or-Exception))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.16 

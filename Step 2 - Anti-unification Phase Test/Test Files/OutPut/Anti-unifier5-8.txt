@@ -1,0 +1,50 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+ else   context.invokeAction(evt,action);
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(nil-or-public,nil-or-private,nil-or-synchronized),returntype2(nil-or-void,name-or-nil(nil-or-Class)),name(actionPerformed-or-_loadClass),parameters(type-or-nil(name-or-nil(nil-or-ActionEvent)),name-or-nil(nil-or-evt),type(name(EBComponent-or-EditAction-or-String)),name(start-or-action-or-clazz),type-or-nil(nil-or-boolean),name(evt-or-resolveIt-or-message)),body(statements(synchronized-or-nil(expression-or-nil(),body-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(while-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-success),nil-or-<,rightoperand-or-nil(nil-or-len)),body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-success),nil-or-==,rightoperand-or-nil(nil-or--,operand-or-nil(nil-or-1))),thenstatement-or-nil(statements-or-nil(expression(expression(Log),name(log),arguments(leftoperand-or-nil(nil-or-"Failed to load class "),nil-or-+,rightoperand-or-nil(nil-or-clazz,nil-or-actionName),extendedoperands-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getName)),nil-or-" from "),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR))),throw-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz)))))),expression-or-nil(lefthandside-or-nil(nil-or-success),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-in),name-or-nil(nil-or-read),arguments-or-nil(nil-or-data,nil-or-offset,nil-or-len))),expression-or-nil(lefthandside-or-nil(nil-or-len),nil-or--=,righthandside-or-nil(nil-or-success)),expression-or-nil(lefthandside-or-nil(nil-or-offset),nil-or-+=,righthandside-or-nil(nil-or-success))))),expression-or-nil(lefthandside-or-nil(nil-or-cls),nil-or-=,righthandside-or-nil(name-or-nil(nil-or-defineClass),arguments-or-nil(qualifier-or-nil(nil-or-data),name-or-nil(nil-or-length),nil-or-clazz,nil-or-data,0-or-nil))),type-or-nil(name-or-nil(nil-or-ZipEntry)),fragments-or-nil(name-or-nil(nil-or-entry),initializer-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getEntry),arguments-or-nil(nil-or-name))),type-or-nil(name-or-nil(nil-or-InputStream)),fragments-or-nil(name-or-nil(nil-or-in),initializer-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getInputStream),arguments-or-nil(nil-or-entry))),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-len),initializer-or-nil(type-or-nil(nil-or-int),expression-or-nil(expression-or-nil(nil-or-entry),name-or-nil(nil-or-getSize)))),type-or-nil(name-or-nil(nil-or-ZipFile)),fragments-or-nil(name-or-nil(nil-or-zipFile),initializer-or-nil(expression-or-nil(nil-or-jar),name-or-nil(nil-or-getZipFile))),type-or-nil(componenttype-or-nil(nil-or-byte)),fragments-or-nil(name-or-nil(nil-or-data),initializer-or-nil(type-or-nil(componenttype-or-nil(nil-or-byte)),dimensions-or-nil(nil-or-len))),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-entry),nil-or-==,rightoperand-or-nil(),leftoperand-or-nil(nil-or-action,nil-or-cls),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz)))),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-success),initializer-or-nil(0-or-nil)),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-offset),initializer-or-nil(0-or-nil)),if-or-nil(expression-or-nil(nil-or-resolveIt),thenstatement-or-elsestatement-or-nil(expression-or-nil(name-or-nil(nil-or-resolveClass,nil-or-invokeAction),arguments-or-nil(nil-or-cls),expression-or-nil(nil-or-context),name-or-nil(nil-or-invokeAction,nil-or-resolveClass),arguments-or-nil()),expression-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-invokeAction,nil-or-resolveClass),arguments-or-nil(),name-or-nil(nil-or-resolveClass,nil-or-invokeAction),arguments-or-nil()))),return-or-nil(expression-or-nil(nil-or-cls)))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-IOException)),name-or-nil(nil-or-io)),body-or-nil(statements-or-nil(throw-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz))))))),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-cls,nil-or-action),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(nil-or-resolveIt),thenstatement-or-nil(expression-or-nil(name-or-nil(nil-or-resolveClass),arguments-or-nil(nil-or-cls)))),return-or-nil(expression-or-nil(nil-or-cls))))),type-or-nil(name-or-nil(nil-or-String)),fragments-or-nil(name-or-nil(nil-or-name),initializer-or-nil(expression-or-nil(nil-or-MiscUtilities),name-or-nil(nil-or-classToFile),arguments-or-nil(nil-or-clazz))),type-or-nil(name-or-nil(nil-or-Class)),fragments-or-nil(name-or-nil(nil-or-cls),initializer-or-nil(name-or-nil(nil-or-findLoadedClass),arguments-or-nil(nil-or-clazz)))))),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-action),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(expression-or-nil(expression-or-nil(nil-or-Log),name-or-nil(nil-or-log),arguments-or-nil(leftoperand-or-nil(nil-or-"Unknown action: "),nil-or-+,rightoperand-or-nil(nil-or-actionName),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-WARNING))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-invokeAction),arguments-or-nil(nil-or-evt,nil-or-action)))),type-or-nil(name-or-nil(nil-or-EditAction)),fragments-or-nil(name-or-nil(nil-or-action),initializer-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-getAction),arguments-or-nil(nil-or-actionName))),expression-or-nil(expression-or-nil(nil-or-jar),name-or-nil(nil-or-activatePlugin)))),thrownexceptions-or-nil(nil-or-ClassNotFoundException))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.03 
