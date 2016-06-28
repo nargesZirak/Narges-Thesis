@@ -1,0 +1,42 @@
+------------------------- NODE A ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+    }
+  }
+}
+------------------------- NODE B ---------------------------
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+--------------------------- JIGSAW SIMILARITY ----------------------------
+1.0

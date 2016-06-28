@@ -1,0 +1,20 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+ else   context.invokeAction(evt,action);
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public),returntype2(void),name(actionPerformed-or-handleMessage),parameters(type-or-nil(name-or-nil(nil-or-ActionEvent)),name-or-nil(nil-or-evt),type(name-or-nil(nil-or-EBMessage,nil-or-EditAction),componenttype-or-nil(name-or-nil(nil-or-EBComponent)),name-or-nil(nil-or-EditAction,nil-or-EBMessage)),name(evt-or-message)),body(statements(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-action),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(expression-or-nil(expression-or-nil(nil-or-Log),name-or-nil(nil-or-log),arguments-or-nil(leftoperand-or-nil(nil-or-"Unknown action: "),nil-or-+,rightoperand-or-nil(nil-or-actionName),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-WARNING))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-invokeAction),arguments-or-nil(nil-or-evt,nil-or-action)))),expression(expression(Log),name(log),arguments(leftoperand-or-nil(name-or-nil(nil-or-getClassName)),nil-or-+,rightoperand-or-nil(nil-or-" should extend"),extendedoperands-or-nil(nil-or-" EditPlugin not EBPlugin since it has an empty",nil-or-" handleMessage()"),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-WARNING))),type-or-nil(name-or-nil(nil-or-EditAction)),fragments-or-nil(name-or-nil(nil-or-action),initializer-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-getAction),arguments-or-nil(nil-or-actionName))),expression-or-nil(lefthandside-or-nil(nil-or-seenWarning),nil-or-=,righthandside-or-nil(nil-or-true)),expression-or-nil(expression-or-nil(nil-or-EditBus),name-or-nil(nil-or-removeFromBus),arguments-or-nil()),if-or-nil(expression-or-nil(nil-or-seenWarning),thenstatement-or-nil()))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.15 

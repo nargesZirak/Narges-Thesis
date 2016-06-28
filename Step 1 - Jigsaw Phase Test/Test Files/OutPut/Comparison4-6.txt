@@ -1,0 +1,29 @@
+------------------------- NODE A ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,t);
+    }
+  }
+}
+------------------------- NODE B ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+--------------------------- JIGSAW SIMILARITY ----------------------------
+0.23282826495829592

@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows, matrix}
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\pmark}{\ding{59}}%
+\newcommand{\bld}{\textbf}
+\newcommand{\itt}{\textit}
+\newcommand{\tsc}{\textsc}
+\newcommand{\vars}{\textit}
+\newcommand{\cons}{\textrm}
+\usepackage{textcomp}
+\newcommand{\nothing}{{``nothing''}}
+
+\long\def\TM#1{{\sc[ #1]}}
+
+\begin{document}
+
+
+
+\begin{titlepage}
+   \vspace*{\stretch{1.0}}
+   \begin{center}
+      \Large\textbf{The Academic Plan}
+   \end{center}
+   \vspace*{\stretch{2.0}}
+\end{titlepage}
+
+\begin{itemize} [leftmargin=.1in]
+\item \bld{Methodology} \pmark \TM{7 days}
+%Proposing an algorithm,implementing, and testing the tool 
+\begin{itemize} [leftmargin=.1in]
+
+\item \bld{Step 1: demonstrate what Jigsaw does and how to use it, to the extent that is pertinent for this study}
+%. The higher-order part of Jigsaw must be used.}
+\begin{enumerate}
+\item Select 10 Java methods that use logging calls, as a test set \cmark
+\item Map source code of logged Java methods in the test set to AST structure via the Eclipse JDT framework \cmark 
+\item Use Jigsaw to determine the correspondences between the ASTs in a pairwise manner comparison \cmark  %(55 cases in total, including self-comparisons).
+\item  Check that the Jigsaw similarity measure makes intuitive sense \cmark 
+% Measure the Jigsaw similarity in each of these cases. For aninteresting subset (say 3 cases), examine the CAST that it produces, noting the choice points andwhere the correspondence is fully specified. Note that the logging calls will have non-zero similarities with other elements that are not logging calls. Check that an AST that is compared with itself has a similarity of 1. Check that an AST that is compared with another AST that is utterly dissimilar has a similarity of 0, if such a scenario is practical. Check that the similarity measure makes intuitive sense. 
+\item Visualize the comparison results using Gephi (a graphing tool) \cmark 
+\end{enumerate}
+
+% Use some sort of graphing tool (like Graphviz) to visualize the results so that these do not need to be hand-drawn incorrectly. 
+
+ 
+\item \bld{Step 2: construct an anti-unifier (structural generalization) from two given logged Java methods with a special  attention to logging calls} \cmark
+\begin{enumerate}
+\item Developing an Algorithm that:
+\begin{itemize} [leftmargin=.1in]
+\item maps the source code of two logged Java methods to the AST structure via the Eclipse JDT framework \cmark
+\item creates an extension of AST structures, called AUAST, to allow the application of higher-order anti-unification modulo theories \cmark
+\item determines potential candidate structural correspondences between AUAST nodes using the Jigsaw framework \cmark
+\item applies some constraints to prevent the anti-unification of logging calls with anything else \cmark
+\item develops a greedy selection algorithm to approximate the best anti-unifier to our problem by determining the best structural correspondences for each node % AUAST nodes to handle the problem of having multiple potential anti-unifiers
+
+%, we need to construct one single anti-unifier from the two AUASTs that is an approximation of the best fit to our problem
+%\item \tsc{Solution: }Developing a greedy selection algorithm to approximate the best anti-unifier by determining the best correspondence (correspondence with the highest Jigsaw similarity) for each node
+\item develops a measure of similarity between two AUASTs \cmark
+\item constructs an anti-unifier \cmark
+\end{itemize}
+\item Implement our approach as an Eclipse plug-in, building atop Jigsaw \cmark
+%\item Test and debug using the Java method of the test set. Measure the test coverage of the code, and add additional (artificial) cases to cover missing lines. 
+\item Test our approach and tool on logged Java methods of the test set \cmark
+\item Measure the test coverage \pmark \TM{1 days}
+\end{enumerate}
+
+ 
+
+\item \bld{Step 3: anti-unify a set of AUASTs of logged Java methods}
+\begin{enumerate}
+\item Develop a modified version of a hierarchical agglomerative clustering algorithm suited to our application \cmark 
+\item Implement our approach  as an Eclipse plug-in, building atop the Step 2.2 extension of Jigsaw \cmark 
+\item Test our approach and tool on logged Java methods of the test set \cmark   %Test them on the ASTs from 1a. 
+
+
+\end{enumerate} 
+
+\item \bld{Step 4: conduct an empirical study to characterize where logging calls are used in the source code} \pmark \TM{7 days}
+\begin{itemize} 
+\item Select three open-source software systems that make use of logging \cmark 
+\item Extract all logged Java methods from the source code of these systems and anti-unify them to determine the patterns on a per-system method-granularity basis via the tool developed in Step 3.2
+\pmark \TM{5 days}
+\end{itemize}
+\end{itemize}
+
+
+\item \bld{Writing the thesis} \pmark \TM{21 days}
+\begin{itemize}
+\item Writing chapters of thesis, including:
+\begin{itemize}
+\item \tsc{Chapter 1:} Introduces the problem and why it matters, outlines the idea of our proposed solution, and some key related work to argue that the problem has not been solved and the idea of solution is novel \pmark \TM{3 days}
+\item \tsc{Chapter 2:} motivates the problem of understanding where to use logging calls in the source code through an example \pmark \TM{2 days}
+\item \tsc{Chapter 3:} provides the background information  \cmark 
+\item \tsc{Chapter 4:} describes our proposed approach and its implementation as an Eclipse plug-in \cmark 
+\item \tsc{Chapter 5:} presents an empirical study conducted to evaluate our approach and its application to characterize logging usage \pmark \TM{4 days}
+\item \tsc{Chapter 6:} discusses the results and findings of my work, threats to its validity, and the remaining issues. \pmark \TM{3 days}
+\item \tsc{Chapter 7:} describes related work to our research problem and how it does not adequately address the problem \cmark 
+\item \tsc{Chapter 8:} concludes the dissertation, presents the contributions of our study, and future work \pmark \TM{2 days}
+\item Appendix \pmark \TM{2 days}
+\item Corrections and Revisions \pmark \TM{5 days}
+\end{itemize}
+\end{itemize}
+
+\end{itemize} %chapters
+\end{document} 

@@ -1,0 +1,14 @@
+------------------------- NODE A ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+------------------------- NODE B ---------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+--------------------------- JIGSAW SIMILARITY ----------------------------
+0.5855823863636365

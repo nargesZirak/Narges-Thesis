@@ -1,0 +1,62 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+          Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public-or-nil,nil-or-static,nil-or-private,nil-or-synchronized),returntype2(nil-or-void,name-or-nil(nil-or-Class)),name(_loadClass-or-send),parameters(type(name(EBMessage-or-String)),name(message-or-clazz),type-or-nil(nil-or-boolean),name(comps-or-resolveIt),initializer-or-nil(name-or-nil(nil-or-getComponents))),body(statements(synchronized-or-nil(expression-or-nil(),body-or-nil(statements-or-nil(try(body(statements(if-or-nil(expression(qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER),nil-or-resolveIt),thenstatement-or-nil(statements-or-nil(if(expression(leftoperand(success-or-time),==-or-!=,rightoperand(0-or-nil,nil-or--,operand-or-nil(nil-or-1))),thenstatement(statements(expression(expression(Log),name(log),arguments(leftoperand(nil-or-comp,nil-or-"Failed to load class "),+,rightoperand(nil-or-": ",nil-or-clazz),extendedoperands(methodinvocation-or-nil(expression-or-nil(nil-or-zipFile),name-or-nil(nil-or-getName)),nil-or-time,nil-or-" ms",nil-or-" from "),qualifier(Log),name(ERROR-or-DEBUG),type-or-nil(name-or-nil(nil-or-EditBus)))),throw-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz)))))),type(int-or-long),fragments(name(in-or-time),initializer(expression(leftoperand-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis)),nil-or--,rightoperand-or-nil(nil-or-start),nil-or-zipFile),name-or-nil(nil-or-getInputStream),arguments-or-nil(nil-or-entry)),name(comp-or-offset),initializer(0-or-nil,array-or-nil(nil-or-comps),index-or-nil(nil-or-i))),type(int-or-long),fragments(name-or-nil(nil-or-len),initializer-or-nil(type-or-nil(nil-or-int),expression-or-initializer(expression(entry-or-System),name(getSize-or-currentTimeMillis))),name(start-or-zipFile),initializer(expression(jar-or-System),name(currentTimeMillis-or-getZipFile))),thenstatement(expression(expression-or-nil(nil-or-comp),name(resolveClass-or-handleMessage),arguments(nil-or-message))))),elsestatement(expression(expression-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i)),name(resolveClass-or-handleMessage),arguments-or-nil(cls-or-message),lefthandside-or-nil(nil-or-offset),+=-or-nil,righthandside-or-nil(nil-or-success)))),while-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-success),nil-or-<,rightoperand-or-nil(nil-or-len)),body-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-success),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-in),name-or-nil(nil-or-read),arguments-or-nil(nil-or-data,nil-or-offset,nil-or-len))),expression-or-nil(lefthandside-or-nil(nil-or-len),-=-or-nil,righthandside-or-nil(nil-or-success))))),expression-or-nil(lefthandside-or-nil(nil-or-cls),nil-or-=,righthandside-or-nil(name-or-nil(nil-or-defineClass),arguments-or-nil(qualifier-or-nil(nil-or-data),name-or-nil(nil-or-length),nil-or-clazz,nil-or-data,0-or-nil))),type-or-nil(name(EBComponent-or-ZipEntry)),fragments-or-nil(name-or-nil(nil-or-entry),initializer-or-nil(expression-or-nil(nil-or-zipFile),name(currentTimeMillis-or-getEntry),arguments-or-nil(nil-or-name))),type(name(EBComponent-or-InputStream)),fragments-or-nil(),type(name(ZipFile-or-EBComponent)),fragments(),type-or-nil(componenttype-or-nil(nil-or-byte)),fragments-or-nil(name(data-or-start),initializer-or-nil(type-or-nil(componenttype-or-nil(nil-or-byte)),dimensions-or-nil(nil-or-len))),if-or-nil(expression(leftoperand(entry-or-time),==-or-!=,rightoperand(0-or-nil)),thenstatement-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz)))),type(int-or-long),fragments-or-nil(name-or-nil(nil-or-success),initializer-or-nil(0-or-nil)),if-or-nil(expression(nil-or-resolveIt,qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER)),thenstatement(expression(name(resolveClass-or-handleMessage),arguments(),expression-or-nil(nil-or-comp)))),return-or-nil(expression-or-nil(nil-or-cls)))),catchclauses(exception(type(name(Throwable-or-IOException)),name(t-or-io)),body(statements-or-nil(throw-or-nil(expression-or-nil(type-or-nil(name-or-nil(nil-or-ClassNotFoundException)),arguments-or-nil(nil-or-clazz))))))),if-or-nil(expression(leftoperand(cls-or-time),!=,rightoperand(0-or-nil)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(nil-or-resolveIt),thenstatement-or-elsestatement(expression(name(resolveClass-or-handleMessage),arguments(nil-or-cls),expression-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i))))),return-or-nil(expression-or-nil(nil-or-cls))))),type-or-nil(name-or-nil(nil-or-String)),fragments-or-nil(name(name-or-time),initializer-or-nil(expression-or-nil(nil-or-MiscUtilities),name-or-nil(nil-or-classToFile),arguments-or-nil(nil-or-clazz))),type-or-nil(name-or-nil(nil-or-Class)),fragments-or-nil(name(comp-or-cls),initializer-or-nil(name-or-nil(nil-or-findLoadedClass),arguments-or-nil(nil-or-clazz)))))),for-or-nil(initializers-or-nil(type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-i),initializer-or-nil(0-or-nil))),expression(leftoperand(success-or-i),<,rightoperand(qualifier-or-nil(nil-or-comps),name-or-nil(nil-or-length),nil-or-len)),updaters-or-nil(operand-or-nil(nil-or-i),nil-or-++),body-or-nil(statements-or-nil())),type-or-nil(componenttype-or-nil(name-or-nil(nil-or-EBComponent))),fragments-or-nil(),expression-or-nil(expression-or-nil(nil-or-jar),name-or-nil(nil-or-activatePlugin)))),thrownexceptions-or-nil(nil-or-ClassNotFoundException))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.09 

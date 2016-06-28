@@ -1,0 +1,17 @@
+------------------------- NODE A ---------------------------
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+ else   context.invokeAction(evt,action);
+}
+------------------------- NODE B ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+--------------------------- JIGSAW SIMILARITY ----------------------------
+0.49674355572188394

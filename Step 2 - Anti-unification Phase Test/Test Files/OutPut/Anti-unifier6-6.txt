@@ -1,0 +1,19 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public),returntype2(void),name(handleMessage),parameters(type(name(EBMessage)),name(message)),body(statements(expression(expression(Log),name(log),arguments(leftoperand(name(getClassName)),+,rightoperand(" should extend"),extendedoperands(" EditPlugin not EBPlugin since it has an empty"," handleMessage()"),qualifier(Log),name(WARNING))),expression(lefthandside(seenWarning),=,righthandside(true)),expression(expression(EditBus),name(removeFromBus),arguments()),if(expression(seenWarning),thenstatement()))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 1.00 

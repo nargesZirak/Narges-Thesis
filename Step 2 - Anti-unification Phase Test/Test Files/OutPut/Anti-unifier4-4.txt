@@ -1,0 +1,45 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,t);
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,t);
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public,static),returntype2(void),name(send),parameters(type(name(EBMessage)),name(message)),body(statements(for(initializers(type(int),fragments(name(i),initializer(0))),expression(leftoperand(i),<,rightoperand(qualifier(comps),name(length))),updaters(operand(i),++),body(statements(try(body(statements(if(expression(qualifier(Debug),name(EB_TIMER)),thenstatement(statements(type(long),fragments(name(time),initializer(expression(leftoperand(expression(System),name(currentTimeMillis)),-,rightoperand(start)))),type(long),fragments(name(start),initializer(expression(System),name(currentTimeMillis))),expression(expression(comp),name(handleMessage),arguments(message)),if(expression(leftoperand(time),!=,rightoperand(0)),thenstatement()))),elsestatement(expression(expression(array(comps),index(i)),name(handleMessage),arguments(message)))),type(name(EBComponent)),fragments(name(comp),initializer(array(comps),index(i))))),catchclauses(exception(type(name(Throwable)),name(t)),body(statements(expression(expression(Log),name(log),arguments(qualifier(Log),name(ERROR),type(name(EditBus)),t))))))))),type(componenttype(name(EBComponent))),fragments(name(comps),initializer(name(getComponents))))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 1.00

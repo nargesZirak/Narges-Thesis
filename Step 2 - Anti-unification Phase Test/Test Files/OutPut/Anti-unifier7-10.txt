@@ -1,0 +1,36 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public,nil-or-static),returntype2(void),name(doctypeDecl-or-loadServices),parameters(type-or-nil(name(qualifier-or-nil(PluginJAR-or-nil),name-or-nil(nil-or-PluginCacheEntry),nil-or-EBMessage-or-String)),name(cache-or-systemId-or-comps),type-or-nil(name-or-nil(nil-or-String)),name-or-nil(nil-or-name),type-or-nil(name-or-nil(nil-or-String)),name-or-nil(nil-or-publicId),type-or-nil(name-or-nil(nil-or-String)),name-or-nil(nil-or-systemId),type(name(PluginJAR-or-EBMessage-or-String),name-or-nil(nil-or-String,nil-or-Reader),componenttype-or-nil(name-or-nil(nil-or-EBComponent))),name-or-nil(nil-or-plugin),type(name(EBMessage-or-String-or-URL)),name-or-nil(nil-or-uri,nil-or-publicId)),thrownexceptions-or-nil(nil-or-Exception),body(statements(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-cache),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(expression-or-nil(lefthandside-or-nil(qualifier-or-nil(nil-or-cache),name-or-nil(nil-or-cachedServices)),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-dh),name-or-nil(nil-or-getCachedServices))))),type-or-nil(name-or-nil(nil-or-ServiceListHandler)),fragments-or-nil(name-or-nil(nil-or-dh),initializer-or-nil(type-or-nil(name-or-nil(nil-or-ServiceListHandler)),arguments-or-nil(nil-or-plugin,nil-or-uri))),expression-or-nil(lefthandside-or-nil(nil-or-in),nil-or-=,righthandside-or-nil(type-or-nil(name-or-nil(nil-or-BufferedReader)),arguments-or-nil(type-or-nil(name-or-nil(nil-or-InputStreamReader)),arguments-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-uri),name-or-nil(nil-or-openStream)))))),type-or-nil(name-or-nil(nil-or-XmlParser)),fragments-or-nil(name-or-nil(nil-or-parser),initializer-or-nil(type-or-nil(name-or-nil(nil-or-XmlParser)))),expression-or-nil(expression-or-nil(nil-or-parser),name-or-nil(nil-or-setHandler),arguments-or-nil(nil-or-dh)),expression-or-nil(expression-or-nil(nil-or-parser),name-or-nil(nil-or-parse),arguments-or-nil(nil-or-in,nullliteral-or-nil(),nullliteral-or-nil())))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-XmlException)),name-or-nil(nil-or-xe)),body-or-nil(statements-or-nil(expression(expression(Log),name(log),arguments(leftoperand-or-nil(nil-or-uri),nil-or-+,rightoperand-or-nil(nil-or-":"),extendedoperands-or-nil(nil-or-line,nil-or-": ",nil-or-message),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR),type-or-nil(name-or-nil(nil-or-ServiceManager)))),type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-line),initializer-or-nil(expression-or-nil(nil-or-xe),name-or-nil(nil-or-getLine))),type-or-nil(name-or-nil(nil-or-String)),fragments-or-nil(name-or-nil(nil-or-message),initializer-or-nil(expression-or-nil(nil-or-xe),name-or-nil(nil-or-getMessage))))),exception-or-nil(type-or-nil(name-or-nil(nil-or-Exception)),name-or-nil(nil-or-e)),body-or-nil()),finally-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-in),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(expression-or-nil(expression-or-nil(nil-or-in),name-or-nil(nil-or-close)))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-IOException)),name-or-nil(nil-or-io)),body-or-nil()))))),expression-or-nil(expression-or-nil(nil-or-Log),name-or-nil(nil-or-log),arguments-or-nil(qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR),nil-or-"recent.xml: DOCTYPE must be RECENT")),if-or-nil(expression-or-nil(expression-or-nil(nil-or-"RECENT"),name-or-nil(nil-or-equals),arguments-or-nil(nil-or-name)),thenstatement-or-nil()),type-or-nil(name-or-nil(nil-or-Reader)),fragments-or-nil(name-or-nil(nil-or-in),initializer-or-nil()))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.07 

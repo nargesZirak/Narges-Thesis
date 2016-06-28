@@ -1,0 +1,57 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public,static),returntype2(void),name(loadServices),parameters(type(name(qualifier(PluginJAR),name(PluginCacheEntry))),name(cache),type(name(PluginJAR)),name(plugin),type(name(URL)),name(uri)),body(statements(try(body(statements(if(expression(leftoperand(cache),!=,rightoperand()),thenstatement(expression(lefthandside(qualifier(cache),name(cachedServices)),=,righthandside(expression(dh),name(getCachedServices))))),type(name(ServiceListHandler)),fragments(name(dh),initializer(type(name(ServiceListHandler)),arguments(plugin,uri))),expression(lefthandside(in),=,righthandside(type(name(BufferedReader)),arguments(type(name(InputStreamReader)),arguments(methodinvocation(expression(uri),name(openStream)))))),type(name(XmlParser)),fragments(name(parser),initializer(type(name(XmlParser)))),expression(expression(parser),name(setHandler),arguments(dh)),expression(expression(parser),name(parse),arguments(in,nullliteral(),nullliteral())))),catchclauses(exception(type(name(XmlException)),name(xe)),body(statements(expression(expression(Log),name(log),arguments(leftoperand(uri),+,rightoperand(":"),extendedoperands(line,": ",message),qualifier(Log),name(ERROR),type(name(ServiceManager)))),type(int),fragments(name(line),initializer(expression(xe),name(getLine))),type(name(String)),fragments(name(message),initializer(expression(xe),name(getMessage))))),exception(type(name(Exception)),name(e)),body()),finally(statements(try(body(statements(if(expression(leftoperand(in),!=,rightoperand()),thenstatement(expression(expression(in),name(close)))))),catchclauses(exception(type(name(IOException)),name(io)),body()))))),type(name(Reader)),fragments(name(in),initializer()))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 1.00 

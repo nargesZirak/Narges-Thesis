@@ -1,0 +1,33 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+ else   context.invokeAction(evt,action);
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public,nil-or-static),returntype2(void),name(actionPerformed-or-send),parameters(type(name(ActionEvent-or-EBMessage)),name(evt-or-message)),body(statements(for-or-nil(initializers-or-nil(type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-i),initializer-or-nil(0-or-nil))),expression-or-nil(leftoperand-or-nil(nil-or-i),nil-or-<,rightoperand-or-nil(qualifier-or-nil(nil-or-comps),name-or-nil(nil-or-length))),updaters-or-nil(operand-or-nil(nil-or-i),nil-or-++),body-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER)),thenstatement-or-nil(statements-or-nil(type-or-nil(nil-or-long),fragments-or-nil(name(action-or-time),initializer-or-nil(expression-or-nil(leftoperand-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis)),nil-or--,rightoperand-or-nil(nil-or-start)))),type(nil-or-long,name(EBComponent-or-EditAction)),fragments(name(start-or-action),initializer(expression(context-or-System),name(currentTimeMillis-or-getAction),arguments-or-nil(nil-or-actionName))),expression-or-nil(expression-or-nil(nil-or-comp),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-time),nil-or-!=,rightoperand-or-nil(0-or-nil)),thenstatement-or-nil()))),elsestatement-or-nil(expression-or-nil(expression-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i)),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)))),type(name(EBComponent-or-EditAction)),fragments-or-nil(name-or-nil(nil-or-comp),initializer-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i))))),catchclauses-or-nil(exception-or-nil(type-or-nil(name-or-nil(nil-or-Throwable)),name-or-nil(nil-or-t)),body-or-nil()))))),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-action),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(expression(expression(Log),name(log),arguments(leftoperand-or-nil(nil-or-"Unknown action: "),nil-or-+,rightoperand-or-nil(nil-or-actionName),qualifier(Log),name(WARNING-or-DEBUG),methodinvocation-or-nil(expression-or-nil(nil-or-message),name-or-nil(nil-or-toString)),type-or-nil(name-or-nil(nil-or-EditBus)))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-invokeAction),arguments-or-nil(nil-or-evt,nil-or-action)))),type-or-nil(componenttype-or-nil(name-or-nil(nil-or-EBComponent))),fragments-or-nil(name-or-nil(nil-or-comps),initializer-or-nil(name(getComponents-or-getAction))))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.22 

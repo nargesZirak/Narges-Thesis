@@ -1,0 +1,18 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+ else   context.invokeAction(evt,action);
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public),returntype2(void),name(actionPerformed-or-doctypeDecl),parameters(type-or-nil(name-or-nil(nil-or-ActionEvent)),name-or-nil(nil-or-evt),type-or-nil(name-or-nil(nil-or-String)),name(evt-or-name-or-message),type(name(ActionEvent-or-EBMessage-or-String)),name-or-nil(nil-or-publicId),type(name-or-nil(nil-or-String,nil-or-EditAction),componenttype-or-nil(name-or-nil(nil-or-EBComponent)),name-or-nil(nil-or-EditAction,nil-or-String)),name(systemId-or-comps-or-action)),body(statements(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-action),nil-or-==,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(expression-or-nil(expression-or-nil(nil-or-Log),name-or-nil(nil-or-log),arguments-or-nil(leftoperand-or-nil(nil-or-"Unknown action: "),nil-or-+,rightoperand-or-nil(nil-or-actionName),qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-WARNING))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-invokeAction),arguments-or-nil(nil-or-evt,nil-or-action)))),type-or-nil(name-or-nil(nil-or-EditAction)),fragments-or-nil(name-or-nil(nil-or-action),initializer-or-nil(expression-or-nil(nil-or-context),name-or-nil(nil-or-getAction),arguments-or-nil(nil-or-actionName))),expression-or-nil(expression-or-nil(nil-or-Log,nil-or-Log,nil-or-Log),name-or-nil(nil-or-log,nil-or-log,nil-or-log),arguments-or-nil(qualifier-or-nil(nil-or-Log),name-or-nil(nil-or-ERROR),nil-or-"recent.xml: DOCTYPE must be RECENT"),expression-or-nil(nil-or-Log,nil-or-Log),name-or-nil(nil-or-log,nil-or-log),arguments-or-nil(),expression-or-nil(nil-or-Log,nil-or-Log,nil-or-Log),name-or-nil(nil-or-log,nil-or-log,nil-or-log),arguments-or-nil()),if-or-nil(expression-or-nil(expression-or-nil(nil-or-"RECENT"),name-or-nil(nil-or-equals),arguments-or-nil(nil-or-name)),thenstatement-or-nil()))),thrownexceptions-or-nil(nil-or-Exception))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.15 

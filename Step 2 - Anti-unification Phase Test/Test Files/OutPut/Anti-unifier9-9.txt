@@ -1,0 +1,75 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(name(RootsEntry),parameters(type(name(File)),name(file)),body(statements(if(expression(name(isFloppy),arguments(file)),thenstatement(statements(expression(lefthandside(type),=,righthandside(qualifier(qualifier(VFS),name(DirectoryEntry)),name(FILESYSTEM))),expression(lefthandside(name),=,righthandside(path)))),elsestatement(expression(name(isDrive),arguments(file)),thenstatement(statements(if(expression(leftoperand(getSystemDisplayName),!=,rightoperand()),thenstatement(statements(try(body(statements(expression(lefthandside(name),=,righthandside(leftoperand(path),+,rightoperand(" "),extendedoperands(type(name(String)),expression(expression(getSystemDisplayName),name(invoke),arguments(type(componenttype(name(Object))),initializer(expressions(file)),fsView))))))),catchclauses(exception(type(name(Exception)),name(e)),body(statements(expression(expression(Log),name(log),arguments(qualifier(Log),name(ERROR),e)),expression(lefthandside(name),=,righthandside(path))))))))),expression(lefthandside(type),=,righthandside(qualifier(qualifier(VFS),name(DirectoryEntry)),name(FILESYSTEM))))),elsestatement(expression(expression(file),name(isDirectory)),thenstatement(statements(if(expression(leftoperand(isFileSystemRoot),!=,rightoperand()),thenstatement(statements(try(body(statements(if(expression(expression(qualifier(Boolean),name(FALSE)),name(equals),arguments(methodinvocation(expression(isFileSystemRoot),name(invoke),arguments(type(componenttype(name(Object))),initializer(expressions(file)),fsView)))),thenstatement(statements(expression(lefthandside(type),=,righthandside(qualifier(qualifier(VFS),name(DirectoryEntry)),name(DIRECTORY)))))))),catchclauses(exception(type(name(Exception)),name(e)),body()))))),if(expression(expression(OperatingSystem),name(isMacOS)),thenstatement(expression(lefthandside(name),=,righthandside(expression(MiscUtilities),name(getFileName),arguments(path)))),elsestatement(expression(lefthandside(name),=,righthandside(path)))),expression(lefthandside(type),=,righthandside(qualifier(qualifier(VFS),name(DirectoryEntry)),name(FILESYSTEM))))),elsestatement(expression(lefthandside(type),=,righthandside(qualifier(qualifier(VFS),name(DirectoryEntry)),name(FILE))))))),expression(lefthandside(expression(),name(path)),=,righthandside(lefthandside(expression(),name(deletePath)),=,righthandside(lefthandside(expression(),name(symlinkPath)),=,righthandside(expression(file),name(getPath))))))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 1.00 

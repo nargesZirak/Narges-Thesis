@@ -1,0 +1,60 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers-or-nil(nil-or-public,nil-or-static),returntype2-or-nil(nil-or-void),name(RootsEntry-or-send),parameters(type(name(EBMessage-or-File)),name(file-or-message)),body(statements(if-or-nil(expression-or-nil(name-or-nil(nil-or-isFloppy),arguments-or-nil(nil-or-file)),thenstatement-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))),expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path)))),elsestatement-or-nil(expression-or-nil(name-or-nil(nil-or-isDrive),arguments-or-nil(nil-or-file)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression(leftoperand(getSystemDisplayName-or-time),!=,rightoperand(0-or-nil)),thenstatement-or-nil(statements-or-nil(try(body(statements(if-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Debug),name-or-nil(nil-or-EB_TIMER)),thenstatement-or-nil(statements-or-nil(type-or-nil(long-or-nil),fragments-or-nil(name-or-nil(nil-or-time),initializer-or-nil(expression-or-nil(leftoperand-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis)),--or-nil,rightoperand-or-nil(nil-or-start)))),type-or-nil(long-or-nil),fragments-or-nil(name-or-nil(nil-or-start),initializer-or-nil(expression-or-nil(nil-or-System),name-or-nil(nil-or-currentTimeMillis))),expression-or-nil(expression-or-nil(nil-or-comp),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message)),if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-time),nil-or-!=,rightoperand-or-nil(0-or-nil)),thenstatement-or-nil()))),elsestatement(expression(expression-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i)),name-or-nil(nil-or-handleMessage),arguments-or-nil(nil-or-message),lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(leftoperand-or-nil(nil-or-path),nil-or-+,rightoperand-or-nil(nil-or-" "),extendedoperands-or-nil(type-or-nil(name-or-nil(nil-or-String)),expression-or-nil(expression-or-nil(nil-or-getSystemDisplayName),name-or-nil(nil-or-invoke),arguments-or-nil(type-or-nil(componenttype-or-nil(name-or-nil(nil-or-Object))),initializer-or-nil(expressions-or-nil(nil-or-file)),nil-or-fsView))))))),type-or-nil(name-or-nil(nil-or-EBComponent)),fragments-or-nil(name-or-nil(nil-or-comp),initializer-or-nil(array-or-nil(nil-or-comps),index-or-nil(nil-or-i))))),catchclauses(exception(type(name(Throwable-or-Exception)),name(t-or-e)),body(statements(expression(expression(Log),name(log),arguments(leftoperand-or-nil(nil-or-"Exception"),nil-or-+,rightoperand-or-nil(nil-or-" while sending message on EditBus:"),qualifier(Log),name(ERROR),nil-or-e,type-or-nil(name-or-nil(nil-or-EditBus)))),expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path))))))))),expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))))),elsestatement-or-nil(expression-or-nil(expression-or-nil(nil-or-file),name-or-nil(nil-or-isDirectory)),thenstatement-or-nil(statements-or-nil(if-or-nil(expression-or-nil(leftoperand-or-nil(nil-or-isFileSystemRoot),nil-or-!=,rightoperand-or-nil()),thenstatement-or-nil(statements-or-nil(try-or-nil(body-or-nil(statements-or-nil(if-or-nil(expression-or-nil(expression-or-nil(qualifier-or-nil(nil-or-Boolean),name-or-nil(nil-or-FALSE)),name-or-nil(nil-or-equals),arguments-or-nil(methodinvocation-or-nil(expression-or-nil(nil-or-isFileSystemRoot),name-or-nil(nil-or-invoke),arguments-or-nil(type-or-nil(componenttype-or-nil(name-or-nil(nil-or-Object))),initializer-or-nil(expressions-or-nil(nil-or-file)),nil-or-fsView)))),thenstatement-or-nil(statements-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-DIRECTORY)))))))),catchclauses-or-nil(exception(type(name(Throwable-or-Exception)),name(t-or-e)),body-or-nil()))))),if-or-nil(expression-or-nil(expression-or-nil(OperatingSystem-or-nil),name-or-nil(nil-or-isMacOS)),thenstatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-MiscUtilities),name-or-nil(nil-or-getFileName),arguments-or-nil(nil-or-path)))),elsestatement(expression(lefthandside-or-nil(nil-or-name),nil-or-=,righthandside-or-nil(nil-or-path),expression-or-nil(nil-or-comp),name-or-nil(nil-or-handleMessage),arguments-or-nil()))),expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILESYSTEM))))),elsestatement-or-nil(expression-or-nil(lefthandside-or-nil(nil-or-type),nil-or-=,righthandside-or-nil(qualifier-or-nil(qualifier-or-nil(nil-or-VFS),name-or-nil(nil-or-DirectoryEntry)),name-or-nil(nil-or-FILE))))))),for-or-nil(initializers-or-nil(type-or-nil(nil-or-int),fragments-or-nil(name-or-nil(nil-or-i),initializer-or-nil(0-or-nil))),expression-or-nil(leftoperand-or-nil(nil-or-i),nil-or-<,rightoperand-or-nil(qualifier-or-nil(nil-or-comps),name-or-nil(nil-or-length))),updaters-or-nil(operand-or-nil(nil-or-i),nil-or-++),body-or-nil(statements-or-nil())),expression-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-path)),nil-or-=,righthandside-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-deletePath)),nil-or-=,righthandside-or-nil(lefthandside-or-nil(expression-or-nil(),name-or-nil(nil-or-symlinkPath)),nil-or-=,righthandside-or-nil(expression-or-nil(nil-or-file),name-or-nil(nil-or-getPath))))),type-or-nil(componenttype-or-nil(name-or-nil(nil-or-EBComponent))),fragments-or-nil(name-or-nil(nil-or-comps),initializer-or-nil(name-or-nil(nil-or-getComponents))))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 0.11 

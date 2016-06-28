@@ -1,0 +1,15 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(public),returntype2(void),name(doctypeDecl),parameters(type(name(String)),name(name),type(name(String)),name(publicId),type(name(String)),name(systemId)),thrownexceptions(Exception),body(statements(expression(expression(Log),name(log),arguments(qualifier(Log),name(ERROR),"recent.xml: DOCTYPE must be RECENT")),if(expression(expression("RECENT"),name(equals),arguments(name)),thenstatement()))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 1.00 

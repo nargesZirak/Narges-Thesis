@@ -1,0 +1,198 @@
+-----------------------------LOGGED METHOD-------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+    }
+  }
+}
+-----------------------------LOGGED METHOD-------------------------
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+-----------------------------LOGGED METHOD-------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+          Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+    }
+  }
+}
+-----------------------------LOGGED METHOD-------------------------
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }
+ else       comps[i].handleMessage(message);
+    }
+ catch (    Throwable t) {
+      Log.log(Log.ERROR,EditBus.class,t);
+    }
+  }
+}
+-----------------------------LOGGED METHOD-------------------------
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+ else   context.invokeAction(evt,action);
+}
+-----------------------------LOGGED METHOD-------------------------
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+-----------------------------LOGGED METHOD-------------------------
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+-----------------------------LOGGED METHOD-------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+-----------------------------LOGGED METHOD-------------------------
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+ else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+ catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+  }
+ else   if (file.isDirectory()) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+ else     name=path;
+  }
+ else   type=VFS.DirectoryEntry.FILE;
+}
+-----------------------------LOGGED METHOD-------------------------
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+ catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+catch (  Exception e) {
+  }
+ finally {
+    try {
+      if (in != null)       in.close();
+    }
+ catch (    IOException io) {
+    }
+  }
+}

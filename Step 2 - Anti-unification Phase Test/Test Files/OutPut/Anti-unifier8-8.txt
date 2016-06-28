@@ -1,0 +1,79 @@
+------------------------- LOGGED METHOD 1 ---------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+------------------------- LOGGED METHOD 2 ---------------------------
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+ catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+--------------------------- ANTI-UNIFIER ----------------------------
+method(modifiers(private,synchronized),returntype2(name(Class)),name(_loadClass),parameters(type(name(String)),name(clazz),type(boolean),name(resolveIt)),thrownexceptions(ClassNotFoundException),body(statements(synchronized(expression(),body(statements(try(body(statements(while(expression(leftoperand(success),<,rightoperand(len)),body(statements(if(expression(leftoperand(success),==,rightoperand(-,operand(1))),thenstatement(statements(expression(expression(Log),name(log),arguments(leftoperand("Failed to load class "),+,rightoperand(clazz),extendedoperands(methodinvocation(expression(zipFile),name(getName))," from "),qualifier(Log),name(ERROR))),throw(expression(type(name(ClassNotFoundException)),arguments(clazz)))))),expression(lefthandside(success),=,righthandside(expression(in),name(read),arguments(data,offset,len))),expression(lefthandside(len),-=,righthandside(success)),expression(lefthandside(offset),+=,righthandside(success))))),expression(lefthandside(cls),=,righthandside(name(defineClass),arguments(qualifier(data),name(length),clazz,data,0))),type(name(ZipEntry)),fragments(name(entry),initializer(expression(zipFile),name(getEntry),arguments(name))),type(name(InputStream)),fragments(name(in),initializer(expression(zipFile),name(getInputStream),arguments(entry))),type(int),fragments(name(len),initializer(type(int),expression(expression(entry),name(getSize)))),type(name(ZipFile)),fragments(name(zipFile),initializer(expression(jar),name(getZipFile))),type(componenttype(byte)),fragments(name(data),initializer(type(componenttype(byte)),dimensions(len))),if(expression(leftoperand(entry),==,rightoperand()),thenstatement(expression(type(name(ClassNotFoundException)),arguments(clazz)))),type(int),fragments(name(success),initializer(0)),type(int),fragments(name(offset),initializer(0)),if(expression(resolveIt),thenstatement(expression(name(resolveClass),arguments(cls)))),return(expression(cls)))),catchclauses(exception(type(name(IOException)),name(io)),body(statements(throw(expression(type(name(ClassNotFoundException)),arguments(clazz))))))),if(expression(leftoperand(cls),!=,rightoperand()),thenstatement(statements(if(expression(resolveIt),thenstatement(expression(name(resolveClass),arguments(cls)))),return(expression(cls))))),type(name(String)),fragments(name(name),initializer(expression(MiscUtilities),name(classToFile),arguments(clazz))),type(name(Class)),fragments(name(cls),initializer(name(findLoadedClass),arguments(clazz)))))),expression(expression(jar),name(activatePlugin)))))
+--------------------------- SIMILARITY ---------------------------
+
+SIMILARITY: 1.00 
