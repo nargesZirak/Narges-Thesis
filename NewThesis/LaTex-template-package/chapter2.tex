@@ -1,15 +1,15 @@
+
+
 \chapter{Motivational Scenario}  \label{ch2}
-\begin{itemize} [leftmargin=.01in]
-\item Logging is a systematic way of recording the software runtime information
-\item A typical logging call is composed of a log function and its parameters including a text message and verbosity level
-\begin{itemize} [leftmargin=.3in]
-\item A log text message consists of static text to describe the logged event
-and some optional variables related to the event
-\item The verbosity level is intended to classify the
-severity of the logged event (Fatal, error, warn, info, and debug)
-\end{itemize}
-\item Consider a developer is given the task of logging the Java class in Figure~\ref{ch2-ex1}
-%\item She decides to use log4j framework for logging
+
+Printing messages to the console or to a log file is an integral part of a software development that can be used to test, debug, and understand what’s going on inside an application. In Java programming language, \name{print()} statements
+are commonly used to print something on console. However, the availability of tools, frameworks and APIs for logging that offers more powerful and advanced Java logging features, flexibility, and improvement on logging quality suggests that using the \name{print()} statements is not sufficient for real-world applications. 
+
+
+The logging framework offers a lot more features, which is not possible using the \name{print()} statements. In most logging frameworks (e.g., \name{Log4j} or \name{SLF4j}, \name{java.util.logging}) , different verbosity levels of logging are available for use. That is, by logging at a particular log level, messages will get logged for that level and all levels above it and not for the levels below. As an example, \name{debug} log level messages can be used in test environment, while \name{error} log level messages can be used in production environment. This feature not only produces fewer log messages but also improves the performance of an application. In addition, most logging frameworks allow the production of formatted log messages, which makes it easier to monitor the behaviour of a system by a developer. Furthermore, in case of working on a server side application then only way to know what is going on inside the server is by monitoring log file. Although logging is a precious practice for software development and maintenance, it imposes extra time and energy on developers to write, test, and run the code, while affecting the application performance. Since latency and speed is major concerns for most software systems, it becomes necessary to understand and learn logging in great details in order to perform logging in an efficient manner.
+
+To illustrate the challenges that lie in effectively performing logging practices in software systems, consider a scenario in which a developer is asked to log an event based mechanism of a text editor tool written in Java programming language. Consider the developer trying to log a Java class of this system shown in Figure~\ref{ch2-ex} using the \name{log4j} logging framework. She knows that components of this application register with the \name{EditBus} class to receive messages reflecting changes in the application's state, and the \name{EditBus} class maintains a list of components that have requested to receive messages. That is, when a message is sent using this class, all registered components receive it in turn. Furthermore, any classes that subscribes to the \name{EditBus} and implements the \name{EBComponent} interface defines the method \name{EBComponent.handleMessage(EBMessage)} to handle a message sent on the \name{EditBus}. To perform this logging task several fundamental questions might appears in her mind which are mostly related to where and what to log.
+
 \begin{figure}[H]
 \def\baselinestretch{1}
 \begin{lstlisting}
@@ -17,14 +17,14 @@ public class EditBus {
   private static ArrayList components=new ArrayList();
   private static EBComponent[] copyComponents;
   private EditBus(){
-
-  public static void addToBus(  EBComponent comp){
+  }
+  public static void addToBus(EBComponent comp){
     synchronized (components) {
       components.add(comp);
       copyComponents=null;
     }
   }
-  public static void removeFromBus(  EBComponent comp){
+  public static void removeFromBus(EBComponent comp){
     synchronized (components) {
       components.remove(comp);
       copyComponents=null;
@@ -38,35 +38,111 @@ public class EditBus {
       return copyComponents;
     }
   }
-  public static void send(  EBMessage message){
+  public static void send(EBMessage message){
     EBComponent[] comps=getComponents();
     for (int i=0; i < comps.length; i++) {
         EBComponent comp=comps[i];
-        if (Debug.EB_TIMER) {
-          long start=System.currentTimeMillis();
-          comp.handleMessage(message);
-          long time=(System.currentTimeMillis() - start);
-        }
-        else  comps[i].handleMessage(message);
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
     }
   }
 }
+
+
 \end{lstlisting}
-\caption{A Java class without the usage of logging.\label{ch2-ex1}}
+\caption{The \name{org.gjt.sp.jedit.EditBus} class\label{ch2-ex}}
+\end{figure}
+%Developer’s logging task context on
+
+The first solution she can come up with is to simply log at the start and end of every method. However, she believes that logging at the start and end of the \name{addToBus(EBComponent)}, \name{removeFromBus(EBComponent)}, and \name{getComponents()} methods are useless, producing redundant information. She assumes that the more she logs, the more she performs file IO which slows down the application. Therefore, she decides to log only important information which is necessary to debug or troubleshoot potential problems if they happen. She proceeds to identify the information needed to be logged and then decides on where to use logging calls. She thinks that it is important to log the information related to a message sent to a registered component, including the message content and the transmission time, to troubleshoot the potential problems that might happen in sending messages. She simply wants to begin with using a logging call at the start of the \name{send} method (Line~2 of Figure~\ref{ch2-ex-logged-m1}) to log the information. However, she realizes that this logging call does not allow her to log the information she wants as the \name{time} variable is not initialized in the beginning of this method, thus she proceeds to examine the body of the \name{send} method line-by-line and uses another logging call after the \name{time} variable is initialized inside an \code{if} statement that checks the value of the variable \name{time} is not invalid (shown in Lines~9-11 of Figure~\ref{ch2-ex-logged-m2}). 
+
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public static void send(EBMessage message){
+   //logging call
+   EBComponent[] comps=getComponents();
+   for (int i=0; i < comps.length; i++) {
+       EBComponent comp=comps[i];
+       long start=System.currentTimeMillis();
+       comp.handleMessage(message);
+       long time=(System.currentTimeMillis() - start);
+   }
+}
+\end{lstlisting}
+\caption{The developer’s determination of the usage of logging calls for the \name{EditBus.send(EBMessage)} method.\label{ch2-ex-logged-m1}}
 \end{figure}
 
-\item She has to make several decisions about
-\begin{itemize} [leftmargin=.3in]
-\item what events need to be logged?
-\item where to use logging calls?
-\item how to decide on the log message and verbosity level of each logging call?
-\end{itemize}
-\item It is recommended to simply log at the start and end of every method
-\item However, for example, logging at the start and end of the method \code{addToBus} is useless, producing redundant information
-\item She needs more information to perform logging appropriately
-\item Having a characterization  of how usually developers use logging calls in similar situations would assist her in making decisions
-\item For example, knowing that developers use logging calls inside of \code{if}-statements to log a potential error when a variable contains an incorrect value, she adds an if statement to log an error when the value of the variable \code{time} is \code{null} (shown in Lines~36-38 of Figure~\ref{ch2-ex2})
-\item For example, knowing that developers use logging calls inside catch blocks to record an exception, she creates a \code{try}/\code{catch} block to capture the potential failure in sending messages and uses a logging call in the \code{catch} block (Lines~41-43 of Figure~\ref{ch2-ex2})
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public static void send(EBMessage message){
+   //logging call
+   EBComponent[] comps=getComponents();
+   for (int i=0; i < comps.length; i++) {
+       EBComponent comp=comps[i];
+       long start=System.currentTimeMillis();
+       comp.handleMessage(message);
+       long time=(System.currentTimeMillis() - start);
+       if (time != 0){
+          //logging call
+       }
+   }
+}
+\end{lstlisting}
+\caption{The developer’s determination of the usage of logging calls for the \name{EditBus.send(EBMessage)} method.\label{ch2-ex-logged-m2}}
+\end{figure}
+
+She also believes that it is important to log an error if any problems happen in sending messages to the components. She decides to use a \code{try}/\code{catch} statement as it is a common way to handle exceptions in the Java programming language. She creates a \code{try}/\code{catch} block to capture the potential failure in sending messages and uses a logging call inside the \code{catch} block to log the exception (shown in Lines~2-16 of Figure~\ref{ch2-ex-logged-m3}). However, she realizes that using this logging call would not allow her to reach to the desired functionality as it does not reveal that the problem is related to which component. Thus, she decides to re-locate the \code{try}/\code{catch} block inside the \code{for} statement to log an error in case of a problem in sending messages to any components (shown in Lines~5-15 of Figure~\ref{ch2-ex-logged-m4}).
+
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public static void send(EBMessage message){
+   try{   
+      //logging call
+      EBComponent[] comps=getComponents();
+      for (int i=0; i < comps.length; i++) {
+         EBComponent comp=comps[i];
+         long start=System.currentTimeMillis();
+         comp.handleMessage(message);
+         long time=(System.currentTimeMillis() - start);
+         if (time != 0){
+            //logging call
+         }
+      }
+   }catch (Throwable t) {
+      // logging call
+   }
+}
+\end{lstlisting}
+\caption{The developer’s determination of the usage of logging calls for the \name{EditBus.send(EBMessage)} method.\label{ch2-ex-logged-m3}}
+\end{figure}
+
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public static void send(EBMessage message){
+    //logging call
+    EBComponent[] comps=getComponents();
+    for (int i=0; i < comps.length; i++) {
+      try{
+        EBComponent comp=comps[i];
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+           //logging call
+        }
+      }catch (Throwable t) {
+         // logging call
+      }
+   }
+}
+\end{lstlisting}
+\caption{The developer’s determination of the usage of logging calls for the \name{EditBus.send(EBMessage)} method.\label{ch2-ex-logged-m4}}
+\end{figure}
 
 \begin{figure}[H]
 \def\baselinestretch{1}
@@ -76,13 +152,13 @@ public class EditBus {
   private static EBComponent[] copyComponents;
   private EditBus(){
   }
-  public static void addToBus(  EBComponent comp){
+  public static void addToBus(EBComponent comp){
     synchronized (components) {
       components.add(comp);
       copyComponents=null;
     }
   }
-  public static void removeFromBus(  EBComponent comp){
+  public static void removeFromBus(EBComponent comp){
     synchronized (components) {
       components.remove(comp);
       copyComponents=null;
@@ -96,31 +172,39 @@ public class EditBus {
       return copyComponents;
     }
   }
-  public static void send(  EBMessage message){
-    Log.log(Log.DEBUG,EditBus.class,message.toString());
+  public static void send(EBMessage message){
+    //logging call
     EBComponent[] comps=getComponents();
     for (int i=0; i < comps.length; i++) {
-      try {
+      try{
         EBComponent comp=comps[i];
-        if (Debug.EB_TIMER) {
-          long start=System.currentTimeMillis();
-          comp.handleMessage(message);
-          long time=(System.currentTimeMillis() - start);
-          if (time != 0) {
-             Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
-          }
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+           //logging call
         }
-        else  comps[i].handleMessage(message);
       }catch (Throwable t) {
-         Log.log(Log.ERROR,EditBus.class,"Exception" + " while sending message on EditBus:");
+         // logging call
       }
-    }
+   }
   }
 }
 \end{lstlisting}
-\caption{A Java class after the usage of logging calls.\label{ch2-ex2}}
+\caption{The developer’s determination of the usage of logging calls for the \name{org.gjt.sp.jedit.EditBus} class.\label{ch2-ex-logged}}
 \end{figure}
 
-\item Using a concise characterization she would be able to make informed decisions about where to use logging calls more easily and quickly
-\item With taking appropriate decisions about where to use logging calls, she can spend more time and energy to write the context of log functions% and even other development and maintenance tasks
-\end{itemize} 
+Figure~\ref{ch2-ex-logged} shows the developer’s determination of the usage of logging calls to perform logging task of the \name{org.gjt.sp.jedit.EditBus} class. With taking proper decisions about where to use logging calls, the developer is in good position to proceed to write the logging messages by examining the remaining conceptually complex questions. Which information should I log? How to choose the format of log message? Which information goes to which level of logging? If she had reached this point more easily and quickly, she would have had more time and energy to make decisions about the remaining issues to complete the logging practice in a timely and appropriate manner.
+
+
+To sum up, this scenario involves the developer to make a large collection of decisions and then act on them. Her attention is split between both the detailed and the high-level decision. In addition, time constraints and performing tedious tasks can cause the developer to make bad decisions. However, having a vision of where usually developers use logging calls in similar situations could guide her to make informed decision about where to use logging calls and thus perform the logging task in a faster and less error-prone manner.
+
+
+\section{Summary}  \label{ch2-summary}
+
+This motivational scenario highlights the problems a developer may encounter to perform a logging task. 
+The core problem she faces in this scenario is the difficulty in understanding where to use logging calls that enables her to log the desired information. However, having an understanding of how usually developers log in similar situations might assist her to make informed decisions about where to use logging calls more quickly, and so she could pay more attention to the remaining conceptually complex issues to complete the logging task.
+
+
+
+

@@ -1,49 +1,116 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{15}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Bulychev and Minea(2008)]{2008:syrcose:bulychev}
+\bibitem[Bulychev and Minea(2009)]{bulychev2009evaluation}
 Peter Bulychev and Marius Minea.
-\newblock Duplicate code detection using anti-unification.
-\newblock In \emph{Proceedings of the Spring Young Researchers Colloquium on
-  Software Engineering}, pages 51--54, 2008.
-\newblock URL
-  \url{http://www-cad.eecs.berkeley.edu/~marius/papers/syrcose08.pdf}.
+\newblock An evaluation of duplicate code detection using anti-unification.
+\newblock In \emph{Proc. 3rd International Workshop on Software Clones}.
+  Citeseer, 2009.
 
-\bibitem[Cossette and Walker(2012)]{2012:fse:cossette}
-Bradley~E. Cossette and Robert~J. Walker.
-\newblock Seeking the ground truth: A retroactive study on the evolution and
-  migration of software libraries.
-\newblock In \emph{Proceedings of the ACM SIGSOFT International Symposium on
-  Foundations of Software Engineering}, pages 55:1--55:11, 2012.
-\newblock \doi{10.1145/2393596.2393661}.
+\bibitem[Clarke et~al.(1999{\natexlab{a}})Clarke, Harrison, Ossher, and
+  Tarr]{clarke1999dimension}
+Siobh{\'a}n Clarke, William Harrison, Harold Ossher, and Peri Tarr.
+\newblock The dimension of separating requirements concerns for the duration of
+  the development lifecycle.
+\newblock In \emph{First Workshop on Multi-Dimensional Separation of Concerns
+  in Object-oriented Systems (at OOPSLA)}, 1999{\natexlab{a}}.
+
+\bibitem[Clarke et~al.(1999{\natexlab{b}})Clarke, Harrison, Ossher, and
+  Tarr]{clarke1999subject}
+Siobh{\'a}n Clarke, William Harrison, Harold Ossher, and Peri Tarr.
+\newblock Subject-oriented design: towards improved alignment of requirements,
+  design, and code.
+\newblock \emph{ACM SIGPLAN Notices}, 34\penalty0 (10):\penalty0 325--339,
+  1999{\natexlab{b}}.
+
+\bibitem[Cossette et~al.(2014)Cossette, Walker, and
+  Cottrell]{cossette2014using}
+Bradley Cossette, Robert Walker, and Rylan Cottrell.
+\newblock Using structural generalization to discover replacement functionality
+  for api evolution.
+\newblock 2014.
 
 \bibitem[Cottrell et~al.(2007)Cottrell, Chang, Walker, and
-  Denzinger]{2007:esec_fse:cottrell}
-Rylan Cottrell, Joseph J.~C. Chang, Robert~J. Walker, and J\"org Denzinger.
+  Denzinger]{cottrell2007determining}
+Rylan Cottrell, Joseph~JC Chang, Robert~J Walker, and J{\"o}rg Denzinger.
 \newblock Determining detailed structural correspondence for generalization
   tasks.
-\newblock In \emph{Proceedings of the European Software Engineering
-  Conference/ACM SIGSOFT International Symposium on Foundations of Software
-  Engineering}, pages 165--174, 2007.
-\newblock \doi{10.1145/1287624.1287649}.
+\newblock In \emph{Proceedings of the the 6th joint meeting of the European
+  software engineering conference and the ACM SIGSOFT symposium on The
+  foundations of software engineering}, pages 165--174. ACM, 2007.
 
 \bibitem[Cottrell et~al.(2008)Cottrell, Walker, and
-  Denzinger]{2008:fse:cottrell}
-Rylan Cottrell, Robert~J. Walker, and J\"org Denzinger.
+  Denzinger]{cottrell2008semi}
+Rylan Cottrell, Robert~J Walker, and J{\"o}rg Denzinger.
 \newblock Semi-automating small-scale source code reuse via structural
   correspondence.
-\newblock In \emph{Proceedings of the ACM SIGSOFT International Symposium on
-  Foundations of Software Engineering}, pages 214--225, 2008.
-\newblock \doi{10.1145/1453101.1453130}.
+\newblock In \emph{Proceedings of the 16th ACM SIGSOFT International Symposium
+  on Foundations of software engineering}, pages 214--225. ACM, 2008.
 
-\bibitem[Yuan et~al.(2012)Yuan, Park, and Zhou]{2012:icse:yuan}
+\bibitem[Cottrell et~al.(2009)Cottrell, Goyette, Holmes, Walker, and
+  Denzinger]{cottrell2009compare}
+Rylan Cottrell, Brina Goyette, Reid Holmes, Robert~J Walker, and Jorg
+  Denzinger.
+\newblock Compare and contrast: Visual exploration of source code examples.
+\newblock In \emph{Visualizing Software for Understanding and Analysis, 2009.
+  VISSOFT 2009. 5th IEEE International Workshop on}, pages 29--32. IEEE, 2009.
+
+\bibitem[Fu et~al.(2009)Fu, Lou, Wang, and Li]{fu2009execution}
+Qiang Fu, Jian-Guang Lou, Yi~Wang, and Jiang Li.
+\newblock Execution anomaly detection in distributed systems through
+  unstructured log analysis.
+\newblock In \emph{ICDM}, volume~9, pages 149--158, 2009.
+
+\bibitem[Fu et~al.(2013)Fu, Lou, Lin, Ding, Zhang, and Xie]{fu2013contextual}
+Qiang Fu, Jian-Guang Lou, Qingwei Lin, Rui Ding, Dongmei Zhang, and Tao Xie.
+\newblock Contextual analysis of program logs for understanding system
+  behaviors.
+\newblock In \emph{Proceedings of the 10th Working Conference on Mining
+  Software Repositories}, pages 397--400. IEEE Press, 2013.
+
+\bibitem[Gupta(2005)]{gupta2005pro}
+Samudra Gupta.
+\newblock Pro apache log4j: Java application logging using the open source
+  apache log4j api.
+\newblock \emph{Apress{\textregistered}, USA}, 2005.
+
+\bibitem[Lou et~al.(2010)Lou, Fu, Yang, Xu, and Li]{lou2010mining}
+Jian-Guang Lou, Qiang Fu, Shengqi Yang, Ye~Xu, and Jiang Li.
+\newblock Mining invariants from console logs for system problem detection.
+\newblock In \emph{USENIX Annual Technical Conference}, 2010.
+
+\bibitem[Nagaraj et~al.(2012)Nagaraj, Killian, and
+  Neville]{nagaraj2012structured}
+Karthik Nagaraj, Charles Killian, and Jennifer Neville.
+\newblock Structured comparative analysis of systems logs to diagnose
+  performance problems.
+\newblock In \emph{Presented as part of the 9th USENIX Symposium on Networked
+  Systems Design and Implementation (NSDI 12)}, pages 353--366, 2012.
+
+\bibitem[Yuan et~al.(2010)Yuan, Mai, Xiong, Tan, Zhou, and
+  Pasupathy]{yuan2010sherlog}
+Ding Yuan, Haohui Mai, Weiwei Xiong, Lin Tan, Yuanyuan Zhou, and Shankar
+  Pasupathy.
+\newblock Sherlog: error diagnosis by connecting clues from run-time logs.
+\newblock In \emph{ACM SIGARCH computer architecture news}, volume~38, pages
+  143--154. ACM, 2010.
+
+\bibitem[Yuan et~al.(2012{\natexlab{a}})Yuan, Park, and
+  Zhou]{yuan2012characterizing}
 Ding Yuan, Soyeon Park, and Yuanyuan Zhou.
 \newblock Characterizing logging practices in open-source software.
-\newblock In \emph{Proceedings of the ACM/IEEE International Conference on
-  Software Engineering}, pages 102--112, 2012.
+\newblock In \emph{Proceedings of the 34th International Conference on Software
+  Engineering}, pages 102--112. IEEE Press, 2012{\natexlab{a}}.
+
+\bibitem[Yuan et~al.(2012{\natexlab{b}})Yuan, Zheng, Park, Zhou, and
+  Savage]{yuan2012improving}
+Ding Yuan, Jing Zheng, Soyeon Park, Yuanyuan Zhou, and Stefan Savage.
+\newblock Improving software diagnosability via log enhancement.
+\newblock \emph{ACM Transactions on Computer Systems (TOCS)}, 30\penalty0
+  (1):\penalty0 4, 2012{\natexlab{b}}.
 
 \end{thebibliography}

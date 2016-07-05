@@ -1,0 +1,108 @@
+307 Patch Control
+
+0
+0
+1
+test.tex
+29
+1
+0
+
+
+
+
+
+
+test.tex
+TeX
+269496315 0 -1 0 -1 25 0 0 918 249 0 25 17 -1 -1 0 0 23 -1 -1 23 1 0 25 -1   0
+:\Users\walker\workspace\icsm12rylan\Manuscript.tex
+TeX
+286273531 0 -1 9010 -1 9006 25 25 1098 275 0 369 289 -1 -1 0 0 85 -1 -1 85 1 0 9006 -1   0
+:\Users\walker\workspace\icsm12rylan\relatedwork.tex
+TeX
+1060859 1 -1 0 -1 10454 50 50 1123 300 0 25 272 -1 -1 0 0 22 -1 -1 22 1 0 10454 -1   0
+:\Users\walker\workspace\icsm12rylan\elsarticle-num-names.bst
+BST:UNIX
+1147890 0 29 4 29 2 0 0 1208 240 0 33 136 -1 -1 0 0 3 0 0 3 1 0 2 29   0
+:\Users\walker\workspace\icsm12rylan\elsarticle.cls
+TeX:STY:UNIX
+1159154 2 642 31 642 37 0 0 1008 263 0 313 170 -1 -1 0 0 3 0 0 3 1 0 37 642   0
+:\Users\walker\workspace\icsm12rylan\paper.bbl
+TeX:TOC
+1060850 1 0 1 468 1 100 100 1173 350 0 25 272 -1 -1 0 0 57 0 0 57 1 0 1 468   0
+:\Users\walker\workspace\icsm12rylan\introduction.tex
+TeX
+17838075 1 -1 0 -1 7028 125 125 1198 375 0 25 255 -1 -1 0 0 22 -1 -1 22 1 0 7028 -1   0
+:\Users\walker\workspace\icsm12rylan\experiment.tex
+TeX
+17838075 1 -1 0 -1 29320 100 100 1173 350 0 25 255 -1 -1 0 0 20 -1 -1 20 1 0 29320 -1   0
+:\Users\walker\workspace\icsm12rylan\discussion.tex
+TeX
+17838075 1 -1 0 -1 7086 75 75 1148 325 0 25 272 -1 -1 0 0 20 -1 -1 20 1 0 7086 -1   0
+:\Users\walker\workspace\icsm12rylan\conclusion.tex
+TeX
+1060859 1 -1 0 -1 2983 50 50 1123 300 0 25 272 -1 -1 0 0 20 -1 -1 20 1 0 2983 -1   0
+:\Users\walker\workspace\icsm12rylan\analysis.tex
+TeX:UNIX
+17838075 1 -1 0 -1 64360 0 0 1073 250 0 25 272 -1 -1 0 0 18 -1 -1 18 1 0 64360 -1   0
+:\Users\walker\workspace\icsm12rylan\mybib.bib
+BibTeX
+1049586 0 3 1 3 4 50 50 929 308 0 49 51 -1 -1 0 0 1 0 0 1 1 0 4 3   0
+:\Users\walker\workspace\icsm12rylan\abstract.tex
+TeX
+1060859 1 -1 24 -1 1287 125 125 1198 375 0 129 187 -1 -1 0 0 18 -1 -1 18 1 0 1287 -1   0
+:\Users\walker\workspace\icsm12rylan\paper.tex
+TeX
+420491259 0 -1 41 -1 41 25 25 1098 275 0 353 0 -1 -1 0 0 85 -1 -1 85 1 0 41 -1   0
+:\Users\walker\workspace\icsm12rylan\bib.bib
+BibTeX
+269485042 0 0 1 0 1 25 25 1098 275 0 25 0 -1 -1 0 0 1 0 0 1 1 0 1 0   0
+:\Users\walker\workspace\bibtex\references.bib
+BibTeX
+269485042 2 5851 32 5851 38 75 75 954 333 0 345 119 -1 -1 0 0 43 0 0 43 1 0 38 5851   0
+:\Users\walker\workspace\icse11mehrdad\experiment.tex
+TeX
+286273531 5 -1 25013 -1 25014 100 100 1003 418 0 1105 612 -1 -1 0 0 20 -1 -1 20 1 0 25014 -1   0
+:\Users\walker\workspace\icse11mehrdad\paper.bbl
+TeX:TOC
+1060850 0 0 1 0 1 25 25 928 343 0 25 0 -1 -1 0 0 56 0 0 56 1 0 1 0   0
+:\Users\walker\workspace\icse11mehrdad\paper.tex
+TeX
+1060859 0 -1 13234 -1 13082 0 0 800 373 0 177 255 -1 -1 0 0 0 -1 -1 0 1 0 13082 -1   0
+:\Users\walker\workspace\icse11mehrdad\motivation.tex
+TeX
+17838075 0 -1 8453 -1 42 176 176 976 549 0 185 17 -1 -1 0 0 20 -1 -1 20 1 0 42 -1   0
+:\Users\walker\workspace\icse11mehrdad\bib.bib
+BibTeX
+1049586 0 9 1 1 36 50 50 953 368 0 305 17 -1 -1 0 0 53 0 0 53 1 0 36 1   0
+:\Users\walker\workspace\icse11mehrdad\analysis.tex
+TeX:UNIX
+1159163 0 -1 8749 -1 484 100 100 977 356 0 441 170 -1 -1 0 0 18 -1 -1 18 1 0 484 -1   0
+:\Users\walker\workspace\icse11mehrdad\introduction.tex
+TeX
+1060859 0 -1 1287 -1 46 154 154 954 527 0 201 17 -1 -1 0 0 22 -1 -1 22 1 0 46 -1   0
+:\Users\walker\workspace\icse11mehrdad\discussion.tex
+TeX
+1060859 0 110 60 -1 3863 110 110 910 483 0 441 51 -1 -1 0 0 20 -1 -1 20 1 0 3863 -1   0
+:\Users\walker\workspace\icse11mehrdad\conclusion.tex
+TeX
+1060859 0 -1 898 -1 87 88 88 888 461 0 353 51 -1 -1 0 0 20 -1 -1 20 1 0 87 -1   0
+:\Users\walker\workspace\icse11mehrdad\abstract.tex
+TeX
+1060859 0 -1 851 -1 18 66 66 866 439 0 169 0 -1 -1 0 0 18 -1 -1 18 1 0 18 -1   0
+:\Users\walker\workspace\icse11mehrdad\relatedwork.tex
+TeX
+1060859 0 -1 4554 -1 46 44 44 844 417 0 201 17 -1 -1 0 0 22 -1 -1 22 1 0 46 -1   0
+:\Users\walker\workspace\icse11mehrdad\validity.tex
+TeX
+269496315 0 -1 0 -1 0 125 125 1002 381 0 25 0 -1 -1 0 0 0 -1 -1 0 1 0 0 -1   0
+:\Users\walker\workspace\icse11mehrdad\IEEEtran.cls
+TeX:STY
+269496306 2 87 29 87 38 75 75 978 393 0 321 170 -1 -1 0 0 3 0 0 3 1 0 38 87   0
+
+*test.tex
+>
+*../full.bib
+*../references.bib
+<
