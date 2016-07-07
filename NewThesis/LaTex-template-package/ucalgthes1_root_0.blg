@@ -12,6 +12,13 @@ Database file #1: ../../../../bibtex/full.bib
 Database file #2: ../../../../bibtex/references.bib
 Database file #3: ../../../../bibtex/lsmr.bib
 Database file #4: mybiblio.bib
+Repeated entry---line 115 of file mybiblio.bib
+ : @inproceedings{fu2013contextual
+ :                                ,
+I'm skipping whatever remains of this entry
 Warning--empty journal in cossette2014using
+Warning--can't use both volume and number fields in holmes2005strathcona
+Warning--can't use both volume and number fields in li2005pr
+Warning--empty journal in yaghmour2000measuringandcharacter
 Warning--can't use both volume and number fields in yuan2010sherlog
-(There were 2 warnings)
+(There was 1 error message)

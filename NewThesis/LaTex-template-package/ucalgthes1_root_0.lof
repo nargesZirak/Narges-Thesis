@@ -11,9 +11,9 @@
 \contentsline {figure}{\numberline {2.6}{\ignorespaces The developer’s determination of the usage of logging calls for the \texttt {org.gjt.sp.jedit.EditBus} class.\relax }}{13}{figure.caption.18}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {3.1}{\ignorespaces The unification and antiunification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{18}{figure.caption.19}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces The antiunification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{18}{figure.caption.20}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The antiunification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{19}{figure.caption.20}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces The higher-order antiunification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{19}{figure.caption.21}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 1.\relax }}{19}{figure.caption.22}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 1.\relax }}{20}{figure.caption.22}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 2.\relax }}{20}{figure.caption.23}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Simple AST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.\relax }}{21}{figure.caption.24}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces The antiunification of AUASTs of logging calls in the Examples 1 and 2.\relax }}{23}{figure.caption.25}
