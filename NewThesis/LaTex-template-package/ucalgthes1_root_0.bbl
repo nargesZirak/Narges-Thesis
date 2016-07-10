@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{41}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -110,14 +110,6 @@ Rylan Cottrell, Robert~J Walker, and J{\"o}rg Denzinger.
   correspondence.
 \newblock In \emph{Proceedings of the 16th ACM SIGSOFT International Symposium
   on Foundations of software engineering}, pages 214--225. ACM, 2008.
-
-\bibitem[Cottrell et~al.(2009)Cottrell, Goyette, Holmes, Walker, and
-  Denzinger]{cottrell2009compare}
-Rylan Cottrell, Brina Goyette, Reid Holmes, Robert~J Walker, and Jorg
-  Denzinger.
-\newblock Compare and contrast: Visual exploration of source code examples.
-\newblock In \emph{Visualizing Software for Understanding and Analysis, 2009.
-  VISSOFT 2009. 5th IEEE International Workshop on}, pages 29--32. IEEE, 2009.
 
 \bibitem[Day and Edelsbrunner(1984)]{day1984efficient}
 William~HE Day and Herbert Edelsbrunner.

@@ -41,7 +41,7 @@
 \newcommand{\func}{\textsc}
 \newcommand{\cons}{\textrm}
 \newcommand{\bold}{\textbf}
-\newcommand{\name}{\texttt}
+\newcommand{\name}[1]{\textsf{\small #1}}
 \let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}
 \algnewcommand\And{\textbf{and}}
@@ -69,7 +69,17 @@
 
 \lstset{language=Java,
 escapeinside={{(*@}{@*)}},
-columns=flexible,basicstyle=\small\sffamily,numberstyle=\tiny,numbers=left,stepnumber=1,showspaces=false,showstringspaces=false,numbersep=0.1cm,breaklines=true,xleftmargin=2em,xrightmargin=0em}
+columns=flexible,
+basicstyle=\small\sffamily,
+numberstyle=\tiny,
+numbers=left,
+stepnumber=1,
+showspaces=false,
+showstringspaces=false,
+numbersep=0.1cm,
+breaklines=true,
+xleftmargin=2em,
+xrightmargin=0em}
 
 \long\def\RW#1{ \begin{bfseries}[RW: #1]\end{bfseries} }
 \long\def\NZ#1{ \begin{scshape}[NZ: #1]\end{scshape} }
@@ -78,7 +88,7 @@ columns=flexible,basicstyle=\small\sffamily,numberstyle=\tiny,numbers=left,stepn
 \newtheorem{principle}{Principle}
 \newtheorem{constraint}{Constraint}
 \newcommand{\NIL}[1]{\textsf{NIL}}
-\newcommand{\code}[2][Java]{\ifthenelse{\equal{#1}{AspectJ}}{\lstinline[language={[AspectJ]Java}]!#2!}{\lstinline[language={#1}]!#2!}}
+\newcommand{\code}{\lstinline}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
@@ -195,7 +205,13 @@ Department of  Computer Science \\
 
 \bibliographystyle{plainnat}
 \global\def\newblock{\hskip .11em plus .33em minus -.07em} %Avoids a latex complaint
-\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
+
+% When you are working on the document, comment out Rob's line and uncomment out Narges's line, but don't delete either...
+
+% NZ:
+%\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
+% RW:
+\bibliography{../../../../workspace/bibtex/full,../../../../workspace/bibtex/references,../../../../workspace/bibtex/lsmr,mybiblio}
 
 
 

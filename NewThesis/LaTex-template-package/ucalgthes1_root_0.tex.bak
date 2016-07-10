@@ -24,7 +24,7 @@
 \usepackage{amsthm}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
-%\usepackage{natbib}
+\usepackage{natbib}
 %\newtheorem{definition}{Definition}[section]
 \theoremstyle{definition}
 \newtheorem{defn}{Definition} [section]
@@ -35,11 +35,13 @@
 \usepackage{tikz-cd}
 \usetikzlibrary{arrows, matrix}
 
+\let\cite\citep
 \newcommand{\id}{\mathit}
 \newcommand{\vars}{\textit}
 \newcommand{\func}{\textsc}
 \newcommand{\cons}{\textrm}
 \newcommand{\bold}{\textbf}
+\newcommand{\name}[1]{\textsf{\small #1}}
 \let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}
 \algnewcommand\And{\textbf{and}}
@@ -67,10 +69,19 @@
 
 \lstset{language=Java,
 escapeinside={{(*@}{@*)}},
-columns=flexible,basicstyle=\small\sffamily,numberstyle=\tiny,numbers=left,stepnumber=1,showspaces=false,showstringspaces=false,numbersep=0.1cm,breaklines=true,xleftmargin=2em,xrightmargin=0em}
+columns=flexible,basicstyle=\small\sffamily,
+numberstyle=\tiny,
+numbers=left,
+stepnumber=1,
+showspaces=false,
+showstringspaces=false,
+numbersep=0.1cm,
+breaklines=true,
+xleftmargin=2em,
+xrightmargin=0em}
 
 \long\def\RW#1{ \begin{bfseries}[RW: #1]\end{bfseries} }
-\long\def\NZ#1{ \begin{bfseries}[NZ: #1]\end{bfseries} }
+\long\def\NZ#1{ \begin{scshape}[NZ: #1]\end{scshape} }
 
 \newcommand{\nothing}{{``nothing''}}
 \newtheorem{principle}{Principle}
@@ -193,7 +204,13 @@ Department of  Computer Science \\
 
 \bibliographystyle{plainnat}
 \global\def\newblock{\hskip .11em plus .33em minus -.07em} %Avoids a latex complaint
-\bibliography{../../bibtex/full,../../bibtex/references,../../bibtex/lsmr,mybiblio}
+
+% When you are working on the document, comment out Rob's line and uncomment out Narges's line, but don't delete either...
+
+% NZ:
+%\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
+% RW:
+\bibliography{../../../../workspace/bibtex/full,../../../../workspace/bibtex/references,../../../../workspace/bibtex/lsmr,mybiblio}
 
 
 

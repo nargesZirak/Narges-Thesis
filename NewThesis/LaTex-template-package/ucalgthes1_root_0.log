@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.8.12)  7 JUL 2016 00:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  10 JUL 2016 18:10
 entering extended mode
-**ucalgthes1_root_0.tex
+**C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucal
+gthes1_root_0.tex
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.tex"
+(C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucalg
+thes1_root_0.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -16,14 +17,14 @@ ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1.cls"
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1.cls
 Document Class: ucalgthes1 1998/03/01 v1.0 University of Calgary Thesis Class
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\doublespace.sty")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\thes12.clo")
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\doubl
+espace.sty)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\thes1
+2.clo)
 \descriptionmargin=\dimen102
 \signwidth=\skip41
 \c@part=\count79
@@ -36,9 +37,8 @@ age\thes12.clo")
 \c@figure=\count86
 \c@table=\count87
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\thesistitlepage.sty"))
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\thesi
+stitlepage.sty)) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
@@ -73,7 +73,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks15
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
 \fancy@headwidth=\skip42
 \f@ncyO@elh=\skip43
 \f@ncyO@erh=\skip44
@@ -112,7 +112,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\subfig\subfig.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\subfig\subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
 
@@ -137,10 +137,10 @@ Package subfig Warning: Your document class has a bad definition
  can't take effect on \endtable.
  Please complain to your document class author.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
 \captionmargin=\dimen113
@@ -178,7 +178,7 @@ else \hbox to\hsize {\hfil \box \@tempboxa \hfil } \fi .
 \c@lotdepth=\count99
 \sf@top=\skip56
 \sf@bottom=\skip57
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
+) (C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
 \lst@mode=\count100
 \lst@gtempboxa=\box26
 \lst@token=\toks16
@@ -192,16 +192,16 @@ else \hbox to\hsize {\hfil \box \@tempboxa \hfil } \fi .
 \lst@lineno=\count105
 \lst@maxwidth=\dimen124
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
 \c@lstnumber=\count106
 \lst@skipnumbers=\count107
 \lst@framebox=\box27
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
-File: listings.cfg 2015/06/04 1.6 listings configuration
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
+File: listings.cfg 2014/03/04 1.5c listings configuration
 ))
-Package: listings 2015/06/04 1.6 (Carsten Heinz)
+Package: listings 2014/03/04 1.5c (Carsten Heinz)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
@@ -280,7 +280,7 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count111
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -317,7 +317,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip58
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\algorithms\algorithm.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
@@ -335,7 +335,7 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 \@float@every@algorithm=\toks19
 \c@algorithm=\count119
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\makecell\makecell.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\makecell\makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
@@ -350,10 +350,12 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \c@nlinenum=\count120
 \TeXr@lab=\toks21
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algpseudocod
+e.sty
 Package: algpseudocode 
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algorithmicx.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algorithmicx
+.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
@@ -369,7 +371,7 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip63
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
+) (C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \heavyrulewidth=\dimen132
 \lightrulewidth=\dimen133
@@ -450,7 +452,7 @@ LaTeX Info: Redefining \] on input line 2666.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
 \bigstrutjot=\dimen154
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\enumitem\enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip67
 \enit@outerparindent=\dimen155
@@ -563,7 +565,7 @@ Package: amsthm 2004/08/06 v2.20
 )
 \c@theorem=\count146
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\natbib\natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip71
 \bibsep=\skip72
@@ -572,35 +574,43 @@ LaTeX Info: Redefining \cite on input line 694.
 )
 \c@defn=\count148
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgf.sty
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfrcs.sty
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-c
+ommon.tex
 \pgfutil@everybye=\toks35
 \pgfutil@tempdima=\dimen161
 \pgfutil@tempdimb=\dimen162
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-lists.te
-x")) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-c
+ommon-lists.tex))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-l
+atex.def
 \pgfutil@abb=\box33
-("C:\Program Files\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
+ (C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfrcs.code.tex"
-Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfrcs.co
+de.tex
+Package: pgfrcs 2013/12/20 v3.0.0 (rcs-revision 1.28)
 ))
-Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+Package: pgf 2013/12/18 v3.0.0 (rcs-revision 1.14)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty"
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\systemlayer\pgfsys.sty"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex"
-Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgfcore.st
+y
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\systemlayer\pgfsys.st
+y
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys.
+code.tex
+Package: pgfsys 2013/11/30 v3.0.0 (rcs-revision 1.47)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.c
+ode.tex
 \pgfkeys@pathtoks=\toks36
 \pgfkeys@temptoks=\toks37
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.te
-x"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeysfi
+ltered.code.tex
 \pgfkeys@tmptoks=\toks38
 ))
 \pgf@x=\dimen163
@@ -620,28 +630,31 @@ x"
 \t@pgf@toka=\toks39
 \t@pgf@tokb=\toks40
 \t@pgf@tokc=\toks41
- ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg"
+
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-pdftex.def"
-File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys-
+pdftex.def
+File: pgfsys-pdftex.def 2013/07/18  (rcs-revision 1.33)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
-"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys-
+common-pdf.def
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.t
-ex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsyss
+oftpath.code.tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
 \pgfsyssoftpath@smallbuffer@items=\count153
 \pgfsyssoftpath@bigbuffer@items=\count154
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.t
-ex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsysp
+rotocol.code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-)) ("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
@@ -658,13 +671,18 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcore.code.tex"
-Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore.
+code.tex
+Package: pgfcore 2010/04/11 v3.0.0 (rcs-revision 1.7)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.t
+ex
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathcalc.co
+de.tex
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathutil.co
+de.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathparser.
+code.tex
 \pgfmath@dimen=\dimen171
 \pgfmath@count=\count155
 \pgfmath@box=\box34
@@ -672,28 +690,30 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 \pgfmath@stack@operand=\toks43
 \pgfmath@stack@operation=\toks44
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.
-tex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.trigonometr
-ic.code.tex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.random.code
-.tex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.comparison.
-code.tex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.base.code.t
-ex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.round.code.
-tex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.misc.code.t
-ex")
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarit
-hmetics.code.tex")))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.code.tex
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.basic.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.trigonometric.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.random.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.comparison.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.base.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.round.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.misc.code.tex)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctio
+ns.integerarithmetics.code.tex)))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfloat.c
+ode.tex
 \c@pgfmathroundto@lastzeros=\count156
 ))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
-"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorep
+oints.code.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@picminx=\dimen172
 \pgf@picmaxx=\dimen173
@@ -710,115 +730,129 @@ File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@zx=\dimen184
 \pgf@zy=\dimen185
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.c
-ode.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorep
+athconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
 \pgf@path@lastx=\dimen186
 \pgf@path@lasty=\dimen187
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.
-tex"
-File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorep
+athusage.code.tex
+File: pgfcorepathusage.code.tex 2013/12/13  (rcs-revision 1.23)
 \pgf@shorten@end@additional=\dimen188
 \pgf@shorten@start@additional=\dimen189
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
-"
-File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcores
+copes.code.tex
+File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
 \pgfpic=\box35
 \pgf@hbox=\box36
 \pgf@layerbox@main=\box37
 \pgf@picture@serial@count=\count157
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.co
-de.tex"
-File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreg
+raphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2013/09/19  (rcs-revision 1.11)
 \pgflinewidth=\dimen190
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransformations
-.code.tex"
-File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoret
+ransformations.code.tex
+File: pgfcoretransformations.code.tex 2013/10/10  (rcs-revision 1.17)
 \pgf@pt@x=\dimen191
 \pgf@pt@y=\dimen192
 \pgf@pt@temp=\dimen193
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreq
+uick.code.tex
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreobjects.code.te
-x"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreo
+bjects.code.tex
 File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathprocessing.
-code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorep
+athprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
-"
-File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorea
+rrows.code.tex
+File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
 \pgfarrowsep=\dimen194
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcores
+hade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen195
 \pgf@sys@shading@range@num=\count158
-) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.te
-x"
+)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorei
+mage.code.tex
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.t
-ex"
-File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoree
+xternal.code.tex
+File: pgfcoreexternal.code.tex 2013/07/15  (rcs-revision 1.20)
 \pgfexternal@startupbox=\box38
 ))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
-"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorel
+ayers.code.tex
 File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransparency.co
-de.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoret
+ransparency.code.tex
 File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepatterns.code.t
-ex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorep
+atterns.code.tex
 File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 )))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex"
-File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodulesh
+apes.code.tex
+File: pgfmoduleshapes.code.tex 2013/10/31  (rcs-revision 1.34)
 \pgfnodeparttextbox=\box39
-) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
-File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.
-sty"
-Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodulepl
+ot.code.tex
+File: pgfmoduleplot.code.tex 2013/07/31  (rcs-revision 1.12)
+)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfcomp
+-version-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.0 (rcs-revision 1.7)
 \pgf@nodesepstart=\dimen196
 \pgf@nodesepend=\dimen197
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.
-sty"
-Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
-)) ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\frontendlayer\tikz.sty"
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgffor.sty"
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfkeys.sty"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"))
-("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\math\pgfmath.sty"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex"))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgffor.code.tex"
-Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfcomp
+-version-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.0 (rcs-revision 1.1)
+))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\frontendlayer\tikz.st
+y
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgffor.sty
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfkeys.sty
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex")
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.c
+ode.tex))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\math\pgfmath.sty
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.t
+ex))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgffor.co
+de.tex
+Package: pgffor 2013/12/13 v3.0.0 (rcs-revision 1.25)
+
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.t
+ex)
 \pgffor@iter=\dimen198
 \pgffor@skip=\dimen199
 \pgffor@stack=\toks45
 \pgffor@toks=\toks46
 ))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex"
-Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\
+tikz.code.tex
+Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.
-code.tex"
-File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflibrar
+yplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
 \pgf@plot@mark@count=\count159
 \pgfplotmarksize=\dimen200
 )
@@ -837,7 +871,8 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \tikznumberofcurrentchild=\count162
 \tikz@fig@count=\count163
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodulema
+trix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 \pgfmatrixcurrentrow=\count164
 \pgfmatrixcurrentcolumn=\count165
@@ -845,58 +880,60 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 )
 \tikz@expandcount=\count167
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
-librarytopaths.code.tex"
-File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\
+libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
 )))
-("C:\Program Files\MiKTeX 2.9\tex\latex\tikz-cd\tikz-cd.sty"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\tikz-cd\tikz-cd.sty
 Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\tikz-cd\tikzlibrarycd.code.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
-librarymatrix.code.tex"
-File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\tikz-cd\tikzlibrarycd.c
+ode.tex
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\
+libraries\tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.0 (rcs-revision 1.4)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
-libraryquotes.code.tex"
-File: tikzlibraryquotes.code.tex 2014/03/21 v3.0.1a (rcs-revision 1.4)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\
+libraries\tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2013/08/28 v3.0.0 (rcs-revision 1.3)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.c
-ode.tex"
-File: pgflibraryarrows.meta.code.tex 2015/05/13 v3.0.1a (rcs-revision 1.13)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflibrar
+yarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
 \pgfarrowinset=\dimen207
 \pgfarrowlength=\dimen208
 \pgfarrowwidth=\dimen209
 \pgfarrowlinewidth=\dimen210
 )))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
-libraryarrows.code.tex"
-File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\
+libraries\tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.t
-ex"
-File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflibrar
+yarrows.code.tex
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.0 (rcs-revision 1.16)
 \arrowsize=\dimen211
-)) ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
+))
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
+File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
 \c@principle=\count168
 \c@constraint=\count169
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.aux"
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter1.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter2.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter3.aux"
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.aux
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er1.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er2.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3.aux
 
 LaTeX Warning: Label `def:substitution' multiply defined.
 
 )
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter4.aux"
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er4.aux
 
 LaTeX Warning: Label `overview' multiply defined.
 
@@ -904,36 +941,36 @@ LaTeX Warning: Label `overview' multiply defined.
 LaTeX Warning: Label `AntiUnify' multiply defined.
 
 )
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter5.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter6.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter7.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter8.aux"))
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 102.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 102.
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er5.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er6.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er7.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er8.aux))
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 112.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 102.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 112.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
@@ -973,7 +1010,7 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\walker\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count170
 \scratchdimen=\dimen212
@@ -995,7 +1032,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count176
 \AtBeginShipoutBox=\box45
-Package hyperref Info: Link coloring OFF on input line 102.
+Package hyperref Info: Link coloring OFF on input line 112.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1004,28 +1041,28 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count177
 )
-LaTeX Info: Redefining \ref on input line 102.
-LaTeX Info: Redefining \pageref on input line 102.
-LaTeX Info: Redefining \nameref on input line 102.
+LaTeX Info: Redefining \ref on input line 112.
+LaTeX Info: Redefining \pageref on input line 112.
+LaTeX Info: Redefining \nameref on input line 112.
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.out")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.out")
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.out)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.out)
 \@outlinefile=\write4
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 103.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 113.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1ptm.fd"
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+{C:/Users/walker/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 108.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 118.
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--115
+Underfull \hbox (badness 10000) in paragraph at lines 120--125
 
  []
 
@@ -1040,72 +1077,22 @@ Acknowledgements
 [3
 
 ]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.toc" [4
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.toc [4
 
 ])
 \tf@toc=\write5
  [5]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.lot")
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.lot)
 \tf@lot=\write6
  [6
 
 ]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.lof"
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 4.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Overfull \hbox (83.25034pt too wide) in paragraph at lines 7--7
- [][] [][]\OT1/ptm/m/n/12 The de-vel-op-ers de-ter-mi-na-tion of the us-age of 
-log-ging calls for the \OT1/pcr/m/n/12 EditBus.send(EBMessage) 
- []
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Overfull \hbox (83.25034pt too wide) in paragraph at lines 8--8
- [][] [][]\OT1/ptm/m/n/12 The de-vel-op-ers de-ter-mi-na-tion of the us-age of 
-log-ging calls for the \OT1/pcr/m/n/12 EditBus.send(EBMessage) 
- []
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Overfull \hbox (83.25034pt too wide) in paragraph at lines 9--9
- [][] [][]\OT1/ptm/m/n/12 The de-vel-op-ers de-ter-mi-na-tion of the us-age of 
-log-ging calls for the \OT1/pcr/m/n/12 EditBus.send(EBMessage) 
- []
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Overfull \hbox (83.25034pt too wide) in paragraph at lines 10--10
- [][] [][]\OT1/ptm/m/n/12 The de-vel-op-ers de-ter-mi-na-tion of the us-age of 
-log-ging calls for the \OT1/pcr/m/n/12 EditBus.send(EBMessage) 
- []
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Overfull \hbox (90.45033pt too wide) in paragraph at lines 11--11
- [][] [][]\OT1/ptm/m/n/12 The de-vel-op-ers de-ter-mi-na-tion of the us-age of 
-log-ging calls for the \OT1/pcr/m/n/12 org.gjt.sp.jedit.EditBus 
- []
-
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 21.
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.lof
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 4.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
@@ -1122,18 +1109,15 @@ LaTeX Font Info:    Font shape `OML/phv/m/n' in size <10.95> not available
 ])
 \tf@lof=\write7
  [8]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\symbols.tex") [9
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\symbo
+ls.tex) [9
 
 
 
 ]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter1.tex"
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er1.tex
 Chapter \bf {1}.
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
@@ -1144,124 +1128,52 @@ l.12
 
 
 
-] [2] [3] [4] [5]) [6]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter2.tex"
+] [2] [3]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+ [4]) [5]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er2.tex
 Chapter \bf {2}.
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Overfull \hbox (6.55951pt too wide) in paragraph at lines 11--12
-\OT1/pcr/m/n/12 EBComponent \OT1/ptm/m/n/12 in-ter-face de-fines the method \OT
-1/pcr/m/n/12 EBComponent.handleMessage(EBMessage)
- []
-
-[7
+[6
 
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 16.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 14.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsphv.fd"
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 16.
- [8] [9]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 64.
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 67.
+ [7] [8] [9]
 
-Underfull \hbox (badness 7168) in paragraph at lines 74--74
-[]\OT1/ptm/m/n/12 Figure 2.2: |The de-vel-op-ers de-ter-mi-na-tion of the us-ag
-e of log-ging calls for the
- []
+LaTeX Warning: Float too large for page by 11.61732pt on input line 205.
 
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Underfull \hbox (badness 7168) in paragraph at lines 94--94
-[]\OT1/ptm/m/n/12 Figure 2.3: |The de-vel-op-ers de-ter-mi-na-tion of the us-ag
-e of log-ging calls for the
- []
-
-[10]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Underfull \hbox (badness 7168) in paragraph at lines 120--120
-[]\OT1/ptm/m/n/12 Figure 2.4: |The de-vel-op-ers de-ter-mi-na-tion of the us-ag
-e of log-ging calls for the
- []
-
-[11]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Underfull \hbox (badness 7168) in paragraph at lines 144--144
-[]\OT1/ptm/m/n/12 Figure 2.5: |The de-vel-op-ers de-ter-mi-na-tion of the us-ag
-e of log-ging calls for the
- []
-
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
-
-Underfull \hbox (badness 7168) in paragraph at lines 194--194
-[]\OT1/ptm/m/n/12 Figure 2.6: |The de-vel-op-ers de-ter-mi-na-tion of the us-ag
-e of log-ging calls for the
- []
-
-[12]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ™ in font ptmr7t!
- [13]) [14]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter3.tex"
+) [10] [11] [12]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3.tex
 Chapter \bf {3}.
-[15
+[13
 
 
 
-]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
- [16] [17] [18] [19] <Drawing4/AST.pdf, id=719, 1228.59pt x 975.645pt>
+] [14] [15] [16] [17] <Drawing4/AST.pdf, id=700, 1228.59pt x 975.645pt>
 File: Drawing4/AST.pdf Graphic file (type pdf)
 
 <use Drawing4/AST.pdf>
-Package pdftex.def Info: Drawing4/AST.pdf used on input line 184.
+Package pdftex.def Info: Drawing4/AST.pdf used on input line 187.
 (pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
- [20] [21 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-temp
-late-package/Drawing4/AST.pdf>] [22]
-Overfull \hbox (102.72386pt too wide) detected at line 232
+ [18] [19 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
+kage/Drawing4/AST.pdf>] [20] [21]
+Overfull \hbox (1.53755pt too wide) detected at line 282
 []
  []
 
-[23] [24]
-Overfull \hbox (1.36475pt too wide) in paragraph at lines 288--289
+[22] [23]
+Overfull \hbox (1.36475pt too wide) in paragraph at lines 338--339
 \OT1/ptm/m/n/12 in los-ing the unique-ness of MSA. For ex-am-ple, con-sider the
  terms $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 (\
 OML/cmm/m/it/12 a; e\OT1/cmr/m/n/12 ))$ \OT1/ptm/m/n/12 and $\OML/cmm/m/it/12 f
@@ -1270,20 +1182,20 @@ mr/m/n/12 )\OML/cmm/m/it/12 ; g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 d; e\OT1/cmr/m
 /n/12 ))$\OT1/ptm/m/n/12 .
  []
 
-[25] [26] <Drawing4/FirstCorr.pdf, id=805, 1228.59pt x 975.645pt>
+[24] [25] <Drawing4/FirstCorr.pdf, id=795, 1228.59pt x 975.645pt>
 File: Drawing4/FirstCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FirstCorr.pdf>
-Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 333.
+Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 383.
 (pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
- [27]
+ [26]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ƒ in font ptmr7t!
- [28 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template-
-package/Drawing4/FirstCorr.pdf>]) [29]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter4.tex"
+ [27 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/FirstCorr.pdf>]) [28]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er4.tex
 Chapter \bf {4}.
 
 Overfull \hbox (6.83365pt too wide) in paragraph at lines 5--6
@@ -1291,7 +1203,7 @@ Overfull \hbox (6.83365pt too wide) in paragraph at lines 5--6
 gher-order an-tiu-ni-fi-ca-tion mod-ulo theories---
  []
 
-[30
+[29
 
 
 
@@ -1300,46 +1212,50 @@ Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 28.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 31.
- <Drawing4/overview1.pdf, id=845, 1373.13pt x 1084.05pt>
+ <Drawing4/overview1.pdf, id=835, 1373.13pt x 1084.05pt>
 File: Drawing4/overview1.pdf Graphic file (type pdf)
 
 <use Drawing4/overview1.pdf>
 Package pdftex.def Info: Drawing4/overview1.pdf used on input line 56.
 (pdftex.def)             Requested size: 469.75502pt x 370.85481pt.
- [31]
+ [30]
 
-LaTeX Warning: Reference `ch3-AU' on page 32 undefined on input line 64.
+LaTeX Warning: Reference `ch3-AU' on page 31 undefined on input line 64.
 
-[32 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template-p
-ackage/Drawing4/overview1.pdf>]
+[31 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/D
+rawing4/overview1.pdf>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 74.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 74.
 
 
-LaTeX Warning: Reference `back-str' on page 33 undefined on input line 74.
+LaTeX Warning: Reference `back-str' on page 32 undefined on input line 74.
 
-<Drawing4/structure1.pdf, id=874, 1806.75pt x 794.97pt>
+<Drawing4/structure1.pdf, id=864, 1806.75pt x 794.97pt>
 File: Drawing4/structure1.pdf Graphic file (type pdf)
 
 <use Drawing4/structure1.pdf>
 Package pdftex.def Info: Drawing4/structure1.pdf used on input line 81.
 (pdftex.def)             Requested size: 469.74393pt x 260.1696pt.
- [33] [34 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-temp
-late-package/Drawing4/structure1.pdf>] [35]
-[36] [37] <Drawing4/FinalCorr.pdf, id=931, 1228.59pt x 975.645pt>
+ [32] [33 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
+kage/Drawing4/structure1.pdf>] [34] [35] [36]
+<Drawing4/FinalCorr.pdf, id=922, 1228.59pt x 975.645pt>
 File: Drawing4/FinalCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FinalCorr.pdf>
 Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 184.
 (pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
- [38 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template-
-package/Drawing4/FinalCorr.pdf>]
+ [37 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/FinalCorr.pdf>]
 Overfull \hbox (1.36371pt too wide) in paragraph at lines 222--223
 []\OT1/ptm/m/n/12 The num-ber of matches be-tween $[]$ and $[]$ is com-puted vi
 a the \OT1/ptm/m/sc/12 Compute-Matches
  []
 
-[39] [40]
+[38] [39]
 Overfull \hbox (26.57796pt too wide) in paragraph at lines 249--250
 [] $[]\OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ([]\OML/cmm/m/it/
 12 ; []\OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ))$ 
@@ -1351,75 +1267,74 @@ Overfull \hbox (5.44478pt too wide) in paragraph at lines 299--300
 n/12 ]], ARGUMENTS[QUALIFIER[IDENTI 
  []
 
-[41] [42] <Drawing4/structureAU.pdf, id=973, 939.51pt x 794.97pt>
+[40] [41] <Drawing4/structureAU.pdf, id=964, 939.51pt x 794.97pt>
 File: Drawing4/structureAU.pdf Graphic file (type pdf)
 
 <use Drawing4/structureAU.pdf>
 Package pdftex.def Info: Drawing4/structureAU.pdf used on input line 303.
 (pdftex.def)             Requested size: 234.87692pt x 227.64839pt.
 
-<Drawing4/anti-unifier.pdf, id=978, 882.05536pt x 1280.38347pt>
+<Drawing4/anti-unifier.pdf, id=969, 882.05536pt x 1280.38347pt>
 File: Drawing4/anti-unifier.pdf Graphic file (type pdf)
 
 <use Drawing4/anti-unifier.pdf>
 Package pdftex.def Info: Drawing4/anti-unifier.pdf used on input line 312.
 (pdftex.def)             Requested size: 375.80397pt x 585.3692pt.
- [43 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template-
-package/Drawing4/structureAU.pdf>] [44 <C:/Users/Narges/Desktop/Thesis 5 JULY/N
-ewThesis/NewThesis/LaTex-template-package/Drawing4/anti-unifier.pdf>]
-<Drawing4/multipleLogging.pdf, id=1024, 1589.94pt x 939.51pt>
+ [42 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/structureAU.pdf>] [43 <C:/Users/walker/Documents/Narges-Thesis/NewThes
+is/LaTex-template-package/Drawing4/anti-unifier.pdf>] <Drawing4/multipleLogging
+.pdf, id=1015, 1589.94pt x 939.51pt>
 File: Drawing4/multipleLogging.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging.pdf>
 Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 357.
 (pdftex.def)             Requested size: 469.75502pt x 277.58311pt.
- [45]
-<Drawing4/multipleLogging2.pdf, id=1056, 1589.94pt x 939.51pt>
+ [44]
+<Drawing4/multipleLogging2.pdf, id=1046, 1589.94pt x 939.51pt>
 File: Drawing4/multipleLogging2.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging2.pdf>
 Package pdftex.def Info: Drawing4/multipleLogging2.pdf used on input line 364.
 (pdftex.def)             Requested size: 469.75502pt x 277.58311pt.
- [46 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template-
-package/Drawing4/multipleLogging.pdf>]
-[47 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template-p
-ackage/Drawing4/multipleLogging2.pdf>] [48] [49]
-<Drawing4/overview2.pdf, id=1149, 1084.05pt x 650.43pt>
+ [45 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/multipleLogging.pdf>] [46 <C:/Users/walker/Documents/Narges-Thesis/New
+Thesis/LaTex-template-package/Drawing4/multipleLogging2.pdf>] [47] [48]
+<Drawing4/overview2.pdf, id=1140, 1084.05pt x 650.43pt>
 File: Drawing4/overview2.pdf Graphic file (type pdf)
 
 <use Drawing4/overview2.pdf>
 Package pdftex.def Info: Drawing4/overview2.pdf used on input line 453.
 (pdftex.def)             Requested size: 469.75502pt x 281.85297pt.
-) [50 <C:/Users/Narges/Desktop/Thesis 5 JULY/NewThesis/NewThesis/LaTex-template
--package/Drawing4/overview2.pdf>]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter5.tex"
+) [49 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
+/Drawing4/overview2.pdf>]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er5.tex
 Chapter \bf {5}.
-[51
+[50
 
 
 
-]) [52]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter6.tex"
+]) [51]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er6.tex
 Chapter \bf {6}.
-[53
+[52
 
 
 
-]) [54]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter7.tex"
+]) [53]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er7.tex
 Chapter \bf {7}.
-[55
+[54
 
 
 
-] [56] [57] [58] [59] [60]) [61]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter8.tex"
+] [55] [56] [57] [58] [59]) [60]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er8.tex
 Chapter \bf {8}.
-[62
+[61
 
 
 
@@ -1430,37 +1345,37 @@ Missing character: There is no ¦ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ¦ in font ptmr7t!
-) [63]
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.bbl" [64
+) [62]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.bbl [63
 
 
-] [65] [66] [67]) [68]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+] [64] [65] [66]) [67]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 221.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 221.
 
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\ucalgthes1_root_0.aux"
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter1.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter2.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter3.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter4.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter5.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter6.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter7.aux")
-("C:\Users\Narges\Desktop\Thesis 5 JULY\NewThesis\NewThesis\LaTex-template-pack
-age\chapter8.aux"))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
+thes1_root_0.aux
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er1.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er2.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er4.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er5.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er6.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er7.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er8.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 221.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 221.
 Package rerunfilecheck Info: File `ucalgthes1_root_0.out' has not changed.
-(rerunfilecheck)             Checksum: 51B78436814462684E5DD79898B83D7E;3026.
+(rerunfilecheck)             Checksum: 8A0EB62C99C04491B1307D4C038B94C8;2954.
 
 
 LaTeX Warning: There were undefined references.
@@ -1468,16 +1383,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 221.
  ) 
 Here is how much of TeX's memory you used:
- 23403 strings out of 493921
- 442490 string characters out of 3147279
- 640404 words of memory out of 3000000
- 25741 multiletter control sequences out of 15000+200000
- 35889 words of font info for 71 fonts, out of 3000000 for 9000
+ 23373 strings out of 493921
+ 443631 string characters out of 3147279
+ 678136 words of memory out of 3000000
+ 25689 multiletter control sequences out of 15000+200000
+ 48150 words of font info for 86 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,28n,84p,1860b,1385s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,28n,84p,1933b,1943s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -1495,9 +1410,9 @@ Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on ucalgthes1_root_0.pdf (78 pages, 2321478 bytes).
+Output written on ucalgthes1_root_0.pdf (77 pages, 2310198 bytes).
 PDF statistics:
- 1523 PDF objects out of 1728 (max. 8388607)
- 468 named destinations out of 1000 (max. 500000)
- 447 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1521 PDF objects out of 1728 (max. 8388607)
+ 483 named destinations out of 1000 (max. 500000)
+ 439 words of extra memory for PDF output out of 10000 (max. 10000000)
 
