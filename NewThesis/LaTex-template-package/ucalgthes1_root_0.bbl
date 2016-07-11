@@ -1,4 +1,4 @@
-\begin{thebibliography}{41}
+\begin{thebibliography}{42}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -88,28 +88,31 @@ Siobh{\'a}n Clarke, William Harrison, Harold Ossher, and Peri Tarr.
   1999{\natexlab{b}}.
 
 \bibitem[Cossette et~al.(2014)Cossette, Walker, and
-  Cottrell]{cossette2014using}
+  Cottrell]{2014:uofc:cossette}
 Bradley Cossette, Robert Walker, and Rylan Cottrell.
 \newblock Using structural generalization to discover replacement functionality
-  for api evolution.
-\newblock 2014.
+  for {API} evolution.
+\newblock Technical Report 2014-745-10, Department of Computer Science,
+  University of Calgary, Calgary, Canada, May 2014.
 
 \bibitem[Cottrell et~al.(2007)Cottrell, Chang, Walker, and
-  Denzinger]{cottrell2007determining}
-Rylan Cottrell, Joseph~JC Chang, Robert~J Walker, and J{\"o}rg Denzinger.
+  Denzinger]{2007:esec_fse:cottrell}
+Rylan Cottrell, Joseph J.~C. Chang, Robert~J. Walker, and J\"org Denzinger.
 \newblock Determining detailed structural correspondence for generalization
   tasks.
-\newblock In \emph{Proceedings of the the 6th joint meeting of the European
-  software engineering conference and the ACM SIGSOFT symposium on The
-  foundations of software engineering}, pages 165--174. ACM, 2007.
+\newblock In \emph{Proceedings of the European Software Engineering
+  Conference/ACM SIGSOFT International Symposium on Foundations of Software
+  Engineering}, pages 165--174, 2007.
+\newblock \doi{10.1145/1287624.1287649}.
 
 \bibitem[Cottrell et~al.(2008)Cottrell, Walker, and
-  Denzinger]{cottrell2008semi}
-Rylan Cottrell, Robert~J Walker, and J{\"o}rg Denzinger.
+  Denzinger]{2008:fse:cottrell}
+Rylan Cottrell, Robert~J. Walker, and J\"org Denzinger.
 \newblock Semi-automating small-scale source code reuse via structural
   correspondence.
-\newblock In \emph{Proceedings of the 16th ACM SIGSOFT International Symposium
-  on Foundations of software engineering}, pages 214--225. ACM, 2008.
+\newblock In \emph{Proceedings of the ACM SIGSOFT International Symposium on
+  Foundations of Software Engineering}, pages 214--225, 2008.
+\newblock \doi{10.1145/1453101.1453130}.
 
 \bibitem[Day and Edelsbrunner(1984)]{day1984efficient}
 William~HE Day and Herbert Edelsbrunner.
@@ -130,6 +133,14 @@ Qiang Fu, Jian-Guang Lou, Qingwei Lin, Rui Ding, Dongmei Zhang, and Tao Xie.
   behaviors.
 \newblock In \emph{Proceedings of the 10th Working Conference on Mining
   Software Repositories}, pages 397--400. IEEE Press, 2013.
+
+\bibitem[Gosling et~al.(2012)Gosling, Joy, Steele, Bracha, and
+  Buckley]{2012:book:gosling}
+James Gosling, Bill Joy, Guy Steele, Gilad Bracha, and Alex Buckley.
+\newblock \emph{The Java Language Specification}.
+\newblock Addison-Wesley, {Java SE 7} edition, 2012.
+\newblock URL
+  \url{http://docs.oracle.com/javase/specs/jls/se7/html/index.html}.
 
 \bibitem[Grira et~al.(2004)Grira, Crucianu, and
   Boujemaa]{grira2004unsupervised}

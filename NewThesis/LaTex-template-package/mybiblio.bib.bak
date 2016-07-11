@@ -1,9 +1,43 @@
-﻿@article{schmidt2010restricted,
+﻿@inproceedings{cottrell2007determining,
+  title={Determining detailed structural correspondence for generalization tasks},
+  author={Cottrell, Rylan and Chang, Joseph JC and Walker, Robert J and Denzinger, J{\"o}rg},
+  booktitle={Proceedings of the the 6th joint meeting of the European software engineering conference and the ACM SIGSOFT symposium on The foundations of software engineering},
+  pages={165--174},
+  year={2007},
+  organization={ACM}
+}
+@inproceedings{cottrell2008semi,
+  title={Semi-automating small-scale source code reuse via structural correspondence},
+  author={Cottrell, Rylan and Walker, Robert J and Denzinger, J{\"o}rg},
+  booktitle={Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of software engineering},
+  pages={214--225},
+  year={2008},
+  organization={ACM}
+}
+
+
+@article{schmidt2010restricted,
   title={Restricted higher-order anti-unification for heuristic-driven theory projection},
   author={Schmidt, Martin},
   journal={Publications of the Institute of Cognitive Science},
   volume={31},
   year={2010}
+}
+
+@inproceedings{fu2013contextual,
+  title={Contextual analysis of program logs for understanding system behaviors},
+  author={Fu, Qiang and Lou, Jian-Guang and Lin, Qingwei and Ding, Rui and Zhang, Dongmei and Xie, Tao},
+  booktitle={Proceedings of the 10th Working Conference on Mining Software Repositories},
+  pages={397--400},
+  year={2013},
+  organization={IEEE Press}
+}
+
+@article{cossette2014using,
+  title={Using Structural Generalization to Discover Replacement Functionality for API Evolution},
+  author={Cossette, Bradley and Walker, Robert and Cottrell, Rylan},
+  year={2014},
+  publisher={University of Calgary}
 }
 
 
@@ -13,6 +47,15 @@
   booktitle={Proc. 3rd International Workshop on Software Clones},
   year={2009},
   organization={Citeseer}
+}
+
+@inproceedings{cottrell2009compare,
+  title={Compare and contrast: Visual exploration of source code examples},
+  author={Cottrell, Rylan and Goyette, Brina and Holmes, Reid and Walker, Robert J and Denzinger, Jorg},
+  booktitle={Visualizing Software for Understanding and Analysis, 2009. VISSOFT 2009. 5th IEEE International Workshop on},
+  pages={29--32},
+  year={2009},
+  organization={IEEE}
 }
 
 

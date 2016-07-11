@@ -150,7 +150,7 @@ public abstract class EBPlugin extends EditPlugin implements EBComponent {
     public void handleMessage(EBMessage message) {
         if(seenWarning) return;
         seenWarning = true;
-        Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin since it has an empty" + handleMessage());
+        Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin since it has an empty " + handleMessage());
     }
 }
 \end{lstlisting}
@@ -196,10 +196,10 @@ In the JDT framework, structural properties of each AST node can be used to obta
 \item \textit{Child list structural properties}: where the value is a list of child nodes (e.g., body declarations property of a class declaration node whose value is a list of body declaration nodes, including method declaration and field declaration nodes.)
 \end{itemize}
 %AST is made up of AST nodes as subtrees and simple values as leaves.
-An instance of an AST structure can be represented in an abstract form that can be mapped to the definition of a term described in Section~\ref{AU}. As an example, the ASTs of the logging calls at line~10 of Figure~\ref{ch3-ex1} and line~13 of Figure~\ref{ch3-ex2} can be represented respectively as:
-%\RW{These ASTs were messed up.  I fixed them according to what the code says, picking some meaningful names for the AST nodes.}
+An instance of an AST can be represented in an abstract form that can be mapped to the definition of a term described in Section~\ref{AU}, utilizing names from typical grammar productions \cite[e.g.,][]{2012:book:gosling} as names for the nodes. As an example, the ASTs of the logging calls at line~10 of Figure~\ref{ch3-ex1} and line~13 of Figure~\ref{ch3-ex2} can be represented respectively as:
 \begin{itemize} [leftmargin=0.7in]
-%\item expr(expr(\code{Log}), name(\code{log}), args(leftop(\code{message}), +, \\rightop(\code{" is empty"}), qual(\code{Log}), name(\code{WARNING})))
+%\RW{These ASTs were messed up.  I fixed them according to what the code says.}
+%\item \textit{expression(expression(Log), name(log), arguments(leftoperand(message), +, rightoperand(" is empty"), qualifier(Log), name(WARNING)))}
 %\item \textit{expression(expression(Log), name(log), arguments(leftoperand(actionName),\\+, rightoperand("is an unknown action"), qualifier(Log), name(WARNING)))}
 \item \textit{methodCall}(\\
 \hspace*{1em}\textit{qualifiedName}(\code{Log}, \textit{simpleName}(\code{log})),\\
@@ -208,23 +208,16 @@ An instance of an AST structure can be represented in an abstract form that can 
 \hspace*{2em}\textit{thisExpression}(),\\
 \hspace*{2em}\textit{additionExpression}(\\
 \hspace*{3em}\textit{methodCall}(\textit{simpleName}(\code{getClassName}), \textit{arguments}()),\\
-\hspace*{3em}\textit{stringLiteral}(..),\\
-\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\code{handleMessage}), \textit{arguments}())\\
-\hspace*{2em})\\
-\hspace*{1em})\\
-)
+\hspace*{3em}\textit{stringLiteral}(\code{" should extend EditPlugin not EBPlugin since it has an empty "}),\\
+\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\code{handleMessage}), \textit{arguments}()))))\\
 \item \textit{methodCall}(\\
 \hspace*{1em}\textit{qualifiedName}(\code{Log}, \textit{simpleName}(\code{log})),\\
 \hspace*{1em}\textit{arguments}(\\
 \hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{simpleName}(\code{ERROR})}),\\
 \hspace*{2em}\textit{thisExpression}(),\\
-\hspace*{2em}\textit{concatenationExpression}(\\
-\hspace*{3em}\textit{stringLiteral}(..),\\
-\hspace*{3em}\textit{simpleName}(\code{actionName})\\
-\hspace*{2em})\\
-\hspace*{1em})\\
-)
-%\item methodCall(qualifiedName(\code{Log}, simpleName(\code{log})), args(qualifiedName(Log, simpleName(ERROR)), thisExpr(), concatExpr(stringLiteral(..), simpleName(\code{actionName}))))
+\hspace*{2em}\textit{additionExpression}(\\
+\hspace*{3em}\textit{stringLiteral}(\code{"Unknown action: "}),\\
+\hspace*{3em}\textit{simpleName}(\code{actionName}))))\\
 \end{itemize}
 (Details of the specific string literals are elided for this presentation.)
 
@@ -241,48 +234,59 @@ An antiunifier AST (AUAST) is an extended form of AST that allows the insertion 
 \begin{itemize} [leftmargin=.4in]
 \item \textit{Child Variable Property}: an extension of child property referring to two child AST nodes to allow the insertion of variables in place of subtrees.
 \end{itemize}
-The antiunification of AUASTs of logging calls in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The new variables $X$ and $Y$ are created to abstract away the structural variations.
+The antiunification of AUASTs of logging calls in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The structural variables $W$, $X$, $Y$, and $Z$ are used to abstract away the structural variations.  The substitutions are defined in Equation
+
+\begin{align}
+\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
+X &\rightarrow \text{ \textit{additionExpression}(..)},\nonumber\\
+Y &\rightarrow \text{ \textsf{\small "Unknown action: "}},\nonumber\\
+Z &\rightarrow \text{ \textit{simpleName}(\textsf{\small actionName})})\\
+\Theta_2 = (W &\rightarrow \text{ \textsf{\small ERROR}},\nonumber\\
+X &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
+Y &\rightarrow \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
+Z &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})
+\end{align}
+
 %\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
 
-
-\begin{figure} [H]
+\begin{sidewaysfigure}[p]
 \begin{small}
-\[
-\begin{tikzcd}[column sep=small]
-&\makebox[1in][c]{\makecell[l]{%
+\setlength{\unitlength}{1cm}
+\begin{picture}(10,10)(0,0)
+\put(7.5,8){\fbox{\parbox[b][][b]{3in}{%
 \text{\textit{methodCall}(}\\
 \text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
 \text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \mbox{\textit{simpleName}(\textit{X})}),}\\
+\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textit{W})),}\\
 \text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{Y}))}\\*[1em]
-%\text{\hspace*{1em})}\\
-%\text{)}\\
-}}
-\arrow{dr}{\Theta_2 = (X \rightarrow \text{ \code[basicstyle=\scriptsize\sffamily]{ERROR}}, Y \rightarrow \text{ \textit{additionExpression}(..)})}
-\arrow[->,swap]{dl}{\Theta_1 = (X \rightarrow \text{ \code[basicstyle=\scriptsize\sffamily]{WARNING}}, Y \rightarrow \text{ \textit{concatenationExpression}(..)})} % <-- reflect the direction of the hook
-\\
-\makebox[1in][l]{\makecell[l]{\vspace*{1em}\\%
+\text{\hspace*{2em}\textit{additionExpression}(\textit{X}, \textit{stringLiteral}(\textit{Y}), \textit{Z})))}}}}
+%\arrow{dr}{\Theta_2}
+%\arrow[->,swap]{dl}{\Theta_1} % <-- reflect the direction of the hook
+\put(0,5){\fbox{\parbox[t][][b]{4.05in}{%
 \text{\textit{methodCall}(}\\
 \text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
 \text{\hspace*{1em}\textit{arguments}(}\\
 \text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize WARNING})}),}\\
 \text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{additionExpression}(..)))}\\
-}}&&
-\makebox[1in][l]{\makecell[l]{\vspace*{1em}\\%
+\text{\hspace*{2em}\textit{additionExpression}(}\\
+\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize getClassName}), \textit{arguments}()),}\\
+\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize " should extend ... "}),}\\
+\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize handleMessage}), \textit{arguments}()))))}}}}%
+%
+%
+\put(15,5){\fbox{\parbox[t][][b]{2.55in}{%
 \text{\textit{methodCall}(}\\
 \text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
 \text{\hspace*{1em}\textit{arguments}(}\\
 \text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize ERROR})}),}\\
 \text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{concatenationExpression}(..)))}\\
-}}
-\end{tikzcd}
-\]
+\text{\hspace*{2em}\textit{additionExpression}(}\\
+\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize "Unknown action: "}),}\\
+\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}}
+\end{picture}
 \end{small}
-\caption{The antiunification of AUASTs of logging calls in Examples 1 and 2.\label{fig:logging-anti}}
-\end{figure}
+\caption{The antiunification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
+\end{sidewaysfigure}
 %The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2}.
 
 Applying higher-order antiunification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of antiunification, higher-order antiunification modulo theories, and how it can sufficiently address the limitations of antiunification in our context.
@@ -375,7 +379,7 @@ Despite having multiple potential MSAs, we need to determine one single MSA that
 
 
 \section{The Jigsaw framework}  \label{Jigsaw}
-The Jigsaw tool is developed by \citet{cottrell2008semi} to determine the structural correspondences between two Java source code fragments through the application of higher-order antiunification modulo theories such that one fragment can be integrated to the other one for small scale code reuse. Jigsaw could help determine potential candidate structural correspondences between AST nodes of logged Java classes by producing an augmented form of AST, called CAST (Correspondence AST), where each node holds a list of candidate correspondence connections between the two structures, each representing an antiunifier. It also develops a measure of similarity to indicate how similar the nodes involved in each correspondence connection are. The Jigsaw similarity function relies on structural correspondence along with a simple knowledge of semantic equivalences supported by the Java language specification. It returns a value between 0 and 1 that indicates zero and total structural matching, respectively. In addition, several semantical heuristics are used to improve the accuracy of similarity measurement by allowing the comparison of AST nodes that are not syntactically identical but are semantically related to each other.
+The Jigsaw tool is developed by \citet{2008:fse:cottrell} to determine the structural correspondences between two Java source code fragments through the application of higher-order antiunification modulo theories such that one fragment can be integrated to the other one for small scale code reuse. Jigsaw could help determine potential candidate structural correspondences between AST nodes of logged Java classes by producing an augmented form of AST, called CAST (Correspondence AST), where each node holds a list of candidate correspondence connections between the two structures, each representing an antiunifier. It also develops a measure of similarity to indicate how similar the nodes involved in each correspondence connection are. The Jigsaw similarity function relies on structural correspondence along with a simple knowledge of semantic equivalences supported by the Java language specification. It returns a value between 0 and 1 that indicates zero and total structural matching, respectively. In addition, several semantical heuristics are used to improve the accuracy of similarity measurement by allowing the comparison of AST nodes that are not syntactically identical but are semantically related to each other.
 
 For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of longest common substring. The comparison of \code{int} and \code{long} variable types is another example, where an arbitrary value of 0.5 is defined as the similarity value as they are not syntactically identical but are not semantically unrelated. In addition, the Jigsaw framework also detects the structural correspondence between  for-, enhanced-for-, while-, and do- loop statements; and if- and switch- conditional statements. As an example, Figure~\ref{fig:meth-ast-1} shows the structural correspondence connections created by Jigsaw between the AST nodes of Examples 1 and 2 along with the similarity value for each correspondence connection.
 

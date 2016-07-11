@@ -1,0 +1,418 @@
+% This file was created with JabRef 2.10.
+% Encoding: Cp1252
+
+
+@InProceedings{acharya2007mining,
+  Title                    = {Mining API patterns as partial orders from source code: from usage scenarios to specifications},
+  Author                   = {Acharya, Mithun and Xie, Tao and Pei, Jian and Xu, Jun},
+  Booktitle                = {Proceedings of the the 6th joint meeting of the European software engineering conference and the ACM SIGSOFT symposium on The foundations of software engineering},
+  Year                     = {2007},
+  Organization             = {ACM},
+  Pages                    = {25--34}
+}
+
+@InProceedings{agrawal1994fast,
+  Title                    = {Fast algorithms for mining association rules},
+  Author                   = {Agrawal, Rakesh and Srikant, Ramakrishnan and others},
+  Booktitle                = {Proc. 20th int. conf. very large data bases, VLDB},
+  Year                     = {1994},
+  Pages                    = {487--499},
+  Volume                   = {1215}
+}
+
+@InProceedings{apiwattanapong2004differencing,
+  Title                    = {A differencing algorithm for object-oriented programs},
+  Author                   = {Apiwattanapong, Taweesup and Orso, Alessandro and Harrold, Mary Jean},
+  Booktitle                = {Proceedings of the 19th IEEE international conference on Automated software engineering},
+  Year                     = {2004},
+  Organization             = {IEEE Computer Society},
+  Pages                    = {2--13}
+}
+
+@InProceedings{baxter1998clone,
+  Title                    = {Clone detection using abstract syntax trees},
+  Author                   = {Baxter, Ira D and Yahin, Andrew and Moura, Leonardo and Sant'Anna, Marcelo and Bier, Lorraine},
+  Booktitle                = {Software Maintenance, 1998. Proceedings., International Conference on},
+  Year                     = {1998},
+  Organization             = {IEEE},
+  Pages                    = {368--377}
+}
+
+@InProceedings{beeferman2000agglomerative,
+  Title                    = {Agglomerative clustering of a search engine query log},
+  Author                   = {Beeferman, Doug and Berger, Adam},
+  Booktitle                = {Proceedings of the sixth ACM SIGKDD international conference on Knowledge discovery and data mining},
+  Year                     = {2000},
+  Organization             = {ACM},
+  Pages                    = {407--416}
+}
+
+@InProceedings{bishop1989model,
+  Title                    = {A model of security monitoring},
+  Author                   = {Bishop, Matt},
+  Booktitle                = {Computer Security Applications Conference, 1989., Fifth Annual},
+  Year                     = {1989},
+  Organization             = {IEEE},
+  Pages                    = {46--52}
+}
+
+@Article{bouguettaya2015efficient,
+  Title                    = {Efficient agglomerative hierarchical clustering},
+  Author                   = {Bouguettaya, Athman and Yu, Qi and Liu, Xumin and Zhou, Xiangmin and Song, Andy},
+  Journal                  = {Expert Systems with Applications},
+  Year                     = {2015},
+  Number                   = {5},
+  Pages                    = {2785--2797},
+  Volume                   = {42},
+
+  Publisher                = {Elsevier}
+}
+
+@InProceedings{bulychev2009evaluation,
+  Title                    = {An evaluation of duplicate code detection using anti-unification},
+  Author                   = {Bulychev, Peter and Minea, Marius},
+  Booktitle                = {Proc. 3rd International Workshop on Software Clones},
+  Year                     = {2009},
+  Organization             = {Citeseer}
+}
+
+@Misc{burghardt1996implementing,
+  Title                    = {Implementing anti-unification modulo equational theory. Arbeitspapier 1006},
+
+  Author                   = {Burghardt, Jochen and Heinz, Birgit},
+  Year                     = {1996},
+
+  Publisher                = {GMD, Jun}
+}
+
+@InProceedings{cantrill2004dynamic,
+  Title                    = {Dynamic Instrumentation of Production Systems.},
+  Author                   = {Cantrill, Bryan and Shapiro, Michael W and Leventhal, Adam H and others},
+  Booktitle                = {USENIX Annual Technical Conference, General Track},
+  Year                     = {2004},
+  Pages                    = {15--28}
+}
+
+@InProceedings{clarke1999dimension,
+  Title                    = {The dimension of separating requirements concerns for the duration of the development lifecycle},
+  Author                   = {Clarke, Siobh{\'a}n and Harrison, William and Ossher, Harold and Tarr, Peri},
+  Booktitle                = {First Workshop on Multi-Dimensional Separation of Concerns in Object-oriented Systems (at OOPSLA)},
+  Year                     = {1999}
+}
+
+@Article{clarke1999subject,
+  Title                    = {Subject-oriented design: towards improved alignment of requirements, design, and code},
+  Author                   = {Clarke, Siobh{\'a}n and Harrison, William and Ossher, Harold and Tarr, Peri},
+  Journal                  = {ACM SIGPLAN Notices},
+  Year                     = {1999},
+  Number                   = {10},
+  Pages                    = {325--339},
+  Volume                   = {34}
+}
+
+@Article{cossette2014using,
+  Title                    = {Using Structural Generalization to Discover Replacement Functionality for API Evolution},
+  Author                   = {Cossette, Bradley and Walker, Robert and Cottrell, Rylan},
+  Year                     = {2014},
+
+  Publisher                = {University of Calgary}
+}
+
+@InProceedings{cottrell2007determining,
+  Title                    = {Determining detailed structural correspondence for generalization tasks},
+  Author                   = {Cottrell, Rylan and Chang, Joseph JC and Walker, Robert J and Denzinger, J{\"o}rg},
+  Booktitle                = {Proceedings of the the 6th joint meeting of the European software engineering conference and the ACM SIGSOFT symposium on The foundations of software engineering},
+  Year                     = {2007},
+  Organization             = {ACM},
+  Pages                    = {165--174}
+}
+
+@InProceedings{cottrell2009compare,
+  Title                    = {Compare and contrast: Visual exploration of source code examples},
+  Author                   = {Cottrell, Rylan and Goyette, Brina and Holmes, Reid and Walker, Robert J and Denzinger, Jorg},
+  Booktitle                = {Visualizing Software for Understanding and Analysis, 2009. VISSOFT 2009. 5th IEEE International Workshop on},
+  Year                     = {2009},
+  Organization             = {IEEE},
+  Pages                    = {29--32}
+}
+
+@InProceedings{cottrell2008semi,
+  Title                    = {Semi-automating small-scale source code reuse via structural correspondence},
+  Author                   = {Cottrell, Rylan and Walker, Robert J and Denzinger, J{\"o}rg},
+  Booktitle                = {Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of software engineering},
+  Year                     = {2008},
+  Organization             = {ACM},
+  Pages                    = {214--225}
+}
+
+@Article{day1984efficient,
+  Title                    = {Efficient algorithms for agglomerative hierarchical clustering methods},
+  Author                   = {Day, William HE and Edelsbrunner, Herbert},
+  Journal                  = {Journal of classification},
+  Year                     = {1984},
+  Number                   = {1},
+  Pages                    = {7--24},
+  Volume                   = {1},
+
+  Publisher                = {Springer}
+}
+
+@InProceedings{Fu2013,
+  Title                    = {Contextual analysis of program logs for understanding system behaviors},
+  Author                   = {Fu, Qiang and Lou, Jian-Guang and Lin, Qingwei and Ding, Rui and Zhang, Dongmei and Xie, Tao},
+  Booktitle                = {Proceedings of the 10th Working Conference on Mining Software Repositories},
+  Year                     = {2013},
+  Organization             = {IEEE Press},
+  Pages                    = {397--400}
+}
+
+@InProceedings{fu2013contextual,
+  Title                    = {Contextual analysis of program logs for understanding system behaviors},
+  Author                   = {Fu, Qiang and Lou, Jian-Guang and Lin, Qingwei and Ding, Rui and Zhang, Dongmei and Xie, Tao},
+  Booktitle                = {Proceedings of the 10th Working Conference on Mining Software Repositories},
+  Year                     = {2013},
+  Organization             = {IEEE Press},
+  Pages                    = {397--400}
+}
+
+@InProceedings{fu2009execution,
+  Title                    = {Execution Anomaly Detection in Distributed Systems through Unstructured Log Analysis.},
+  Author                   = {Fu, Qiang and Lou, Jian-Guang and Wang, Yi and Li, Jiang},
+  Booktitle                = {ICDM},
+  Year                     = {2009},
+  Pages                    = {149--158},
+  Volume                   = {9}
+}
+
+@Article{grira2004unsupervised,
+  Title                    = {Unsupervised and semi-supervised clustering: a brief survey},
+  Author                   = {Grira, Nizar and Crucianu, Michel and Boujemaa, Nozha},
+  Journal                  = {A review of machine learning techniques for processing multimedia content},
+  Year                     = {2004},
+  Pages                    = {9--16},
+  Volume                   = {1}
+}
+
+@Article{gupta2005pro,
+  Title                    = {Pro Apache Log4j: Java application logging using the open source Apache Log4j API},
+  Author                   = {Gupta, Samudra},
+  Journal                  = {Apress{\textregistered}, USA},
+  Year                     = {2005}
+}
+
+@InProceedings{holmes2008newbie,
+  Title                    = {A newbie's guide to eclipse APIs},
+  Author                   = {Holmes, Reid and Walker, Robert J},
+  Booktitle                = {Proceedings of the 2008 international working conference on Mining software repositories},
+  Year                     = {2008},
+  Organization             = {ACM},
+  Pages                    = {149--152}
+}
+
+@InProceedings{holmes2005strathcona,
+  Title                    = {Strathcona example recommendation tool},
+  Author                   = {Holmes, Reid and Walker, Robert J and Murphy, Gail C},
+  Booktitle                = {ACM SIGSOFT Software Engineering Notes},
+  Year                     = {2005},
+  Number                   = {5},
+  Organization             = {ACM},
+  Pages                    = {237--240},
+  Volume                   = {30}
+}
+
+@Article{jacobsen1991unification,
+  Title                    = {Unification and anti-unification},
+  Author                   = {Jacobsen, Erik},
+  Year                     = {1991}
+}
+
+@InProceedings{jiang2009understanding,
+  Title                    = {Understanding Customer Problem Troubleshooting from Storage System Logs.},
+  Author                   = {Jiang, Weihang and Hu, Chongfeng and Pasupathy, Shankar and Kanevsky, Arkady and Li, Zhenmin and Zhou, Yuanyuan},
+  Booktitle                = {FAST},
+  Year                     = {2009},
+  Pages                    = {43--56},
+  Volume                   = {9}
+}
+
+@Article{karypis1999chameleon,
+  Title                    = {Chameleon: Hierarchical clustering using dynamic modeling},
+  Author                   = {Karypis, George and Han, Eui-Hong and Kumar, Vipin},
+  Journal                  = {Computer},
+  Year                     = {1999},
+  Number                   = {8},
+  Pages                    = {68--75},
+  Volume                   = {32},
+
+  Publisher                = {IEEE}
+}
+
+@InProceedings{li2005pr,
+  Title                    = {PR-Miner: automatically extracting implicit programming rules and detecting violations in large software code},
+  Author                   = {Li, Zhenmin and Zhou, Yuanyuan},
+  Booktitle                = {ACM SIGSOFT Software Engineering Notes},
+  Year                     = {2005},
+  Number                   = {5},
+  Organization             = {ACM},
+  Pages                    = {306--315},
+  Volume                   = {30}
+}
+
+@InProceedings{lou2010mining,
+  Title                    = {Mining Invariants from Console Logs for System Problem Detection.},
+  Author                   = {Lou, Jian-Guang and Fu, Qiang and Yang, Shengqi and Xu, Ye and Li, Jiang},
+  Booktitle                = {USENIX Annual Technical Conference},
+  Year                     = {2010}
+}
+
+@InProceedings{michail2000data,
+  Title                    = {Data mining library reuse patterns using generalized association rules},
+  Author                   = {Michail, Amir},
+  Booktitle                = {Proceedings of the 22nd international conference on Software engineering},
+  Year                     = {2000},
+  Organization             = {ACM},
+  Pages                    = {167--176}
+}
+
+@InProceedings{nagaraj2012structured,
+  Title                    = {Structured comparative analysis of systems logs to diagnose performance problems},
+  Author                   = {Nagaraj, Karthik and Killian, Charles and Neville, Jennifer},
+  Booktitle                = {Presented as part of the 9th USENIX Symposium on Networked Systems Design and Implementation (NSDI 12)},
+  Year                     = {2012},
+  Pages                    = {353--366}
+}
+
+@InProceedings{peisert2007toward,
+  Title                    = {Toward models for forensic analysis},
+  Author                   = {Peisert, Sean and Bishop, Matt and Karin, Sidney and Marzullo, Keith},
+  Booktitle                = {Systematic Approaches to Digital Forensic Engineering, 2007. SADFE 2007. Second International Workshop on},
+  Year                     = {2007},
+  Organization             = {IEEE},
+  Pages                    = {3--15}
+}
+
+@Article{plotkin1970note,
+  Title                    = {A note on inductive generalization},
+  Author                   = {Plotkin, Gordon D},
+  Journal                  = {Machine intelligence},
+  Year                     = {1970},
+  Number                   = {1},
+  Pages                    = {153--163},
+  Volume                   = {5}
+}
+
+@Article{reynolds1970transformational,
+  Title                    = {Transformational systems and the algebraic structure of atomic formulas},
+  Author                   = {Reynolds, John C},
+  Journal                  = {Machine intelligence},
+  Year                     = {1970},
+  Number                   = {1},
+  Pages                    = {135--151},
+  Volume                   = {5}
+}
+
+@Article{robillard2013automated,
+  Title                    = {Automated API property inference techniques},
+  Author                   = {Robillard, Martin P and Bodden, Eric and Kawrykow, David and Mezini, Mira and Ratchford, Tristan},
+  Journal                  = {Software Engineering, IEEE Transactions on},
+  Year                     = {2013},
+  Number                   = {5},
+  Pages                    = {613--637},
+  Volume                   = {39},
+
+  Publisher                = {IEEE}
+}
+
+@InProceedings{sager2006detecting,
+  Title                    = {Detecting similar Java classes using tree algorithms},
+  Author                   = {Sager, Tobias and Bernstein, Abraham and Pinzger, Martin and Kiefer, Christoph},
+  Booktitle                = {Proceedings of the 2006 international workshop on Mining software repositories},
+  Year                     = {2006},
+  Organization             = {ACM},
+  Pages                    = {65--71}
+}
+
+@Article{schmidt2010restricted,
+  Title                    = {Restricted higher-order anti-unification for heuristic-driven theory projection},
+  Author                   = {Schmidt, Martin},
+  Journal                  = {Publications of the Institute of Cognitive Science},
+  Year                     = {2010},
+  Volume                   = {31}
+}
+
+@Article{voorhees1986implementing,
+  Title                    = {Implementing agglomerative hierarchic clustering algorithms for use in document retrieval},
+  Author                   = {Voorhees, Ellen M},
+  Journal                  = {Information Processing \& Management},
+  Year                     = {1986},
+  Number                   = {6},
+  Pages                    = {465--476},
+  Volume                   = {22},
+
+  Publisher                = {Elsevier}
+}
+
+@InProceedings{xie2006mapo,
+  Title                    = {MAPO: Mining API usages from open source repositories},
+  Author                   = {Xie, Tao and Pei, Jian},
+  Booktitle                = {Proceedings of the 2006 international workshop on Mining software repositories},
+  Year                     = {2006},
+  Organization             = {ACM},
+  Pages                    = {54--57}
+}
+
+@InProceedings{xu2009detecting,
+  Title                    = {Detecting large-scale system problems by mining console logs},
+  Author                   = {Xu, Wei and Huang, Ling and Fox, Armando and Patterson, David and Jordan, Michael I},
+  Booktitle                = {Proceedings of the ACM SIGOPS 22nd symposium on Operating systems principles},
+  Year                     = {2009},
+  Organization             = {ACM},
+  Pages                    = {117--132}
+}
+
+@Article{yaghmour2000measuringandcharacter,
+  Title                    = {MEASURINGANDCHARACTER IZING SYSTEMBEH AV IOR USINGKERNEL-LEVELEVENTLOGGING},
+  Author                   = {Yaghmour, Karim and Dagenais, Michel R},
+  Year                     = {2000}
+}
+
+@InProceedings{yuan2010sherlog,
+  Title                    = {SherLog: error diagnosis by connecting clues from run-time logs},
+  Author                   = {Yuan, Ding and Mai, Haohui and Xiong, Weiwei and Tan, Lin and Zhou, Yuanyuan and Pasupathy, Shankar},
+  Booktitle                = {ACM SIGARCH computer architecture news},
+  Year                     = {2010},
+  Number                   = {1},
+  Organization             = {ACM},
+  Pages                    = {143--154},
+  Volume                   = {38}
+}
+
+@InProceedings{yuan2012conservative,
+  Title                    = {Be conservative: enhancing failure diagnosis with proactive logging},
+  Author                   = {Yuan, Ding and Park, Soyeon and Huang, Peng and Liu, Yang and Lee, Michael M and Tang, Xiaoming and Zhou, Yuanyuan and Savage, Stefan},
+  Booktitle                = {Presented as part of the 10th USENIX Symposium on Operating Systems Design and Implementation (OSDI 12)},
+  Year                     = {2012},
+  Pages                    = {293--306}
+}
+
+@InProceedings{yuan2012characterizing,
+  Title                    = {Characterizing logging practices in open-source software},
+  Author                   = {Yuan, Ding and Park, Soyeon and Zhou, Yuanyuan},
+  Booktitle                = {Proceedings of the 34th International Conference on Software Engineering},
+  Year                     = {2012},
+  Organization             = {IEEE Press},
+  Pages                    = {102--112}
+}
+
+@Article{yuan2012improving,
+  Title                    = {Improving software diagnosability via log enhancement},
+  Author                   = {Yuan, Ding and Zheng, Jing and Park, Soyeon and Zhou, Yuanyuan and Savage, Stefan},
+  Journal                  = {ACM Transactions on Computer Systems (TOCS)},
+  Year                     = {2012},
+  Number                   = {1},
+  Pages                    = {4},
+  Volume                   = {30},
+
+  Publisher                = {ACM}
+}
+
