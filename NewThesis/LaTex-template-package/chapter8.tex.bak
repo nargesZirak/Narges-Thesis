@@ -7,12 +7,12 @@
 \item We have presented an approach to characterize where logging calls happen in the source code by means of structural generalization
 \item We have developed a prototype tool that:
 \begin{itemize} [leftmargin=.3in]
-\item detects potential structural correspondences using anti-unification
+\item detects potential structural correspondences using antiunification
 \item uses several constraint to remove the correspondences that are not suited to our application
 \item determines the best correspondences with the highest similarity
-\item constructs the structural generalizations using anti-unification
+\item constructs the structural generalizations using antiunification
 \item classifies the entities using a measure of similarity
-\end{itemize} 
+\end{itemize}
 \item An experiment is conducted to evaluate our approach and tool
 \item Our experiment found that ...
 \item An experiment is conducted to characterize logging usage in three software systems
@@ -42,4 +42,4 @@ log.
 \item to improve the quality of logging practices
 \end{itemize}
 \end{itemize}
-\end{itemize}
+\end{itemize} 

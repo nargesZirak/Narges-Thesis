@@ -14,20 +14,20 @@
 \contentsline {section}{\numberline {2.1}Summary}{10}{section.2.1}
 \addvspace {10pt}
 \contentsline {chapter}{\numberline {3}Background}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Antiunification}{14}{section.3.1}
+\contentsline {section}{\numberline {3.1}First-order anti-unification}{14}{section.3.1}
 \contentsline {section}{\numberline {3.2}Abstract Syntax Tree}{17}{section.3.2}
 \contentsline {section}{\numberline {3.3}Constructing the AUAST}{21}{section.3.3}
-\contentsline {section}{\numberline {3.4}Higher-order antiunification modulo theories}{22}{section.3.4}
+\contentsline {section}{\numberline {3.4}Higher-order anti-unification modulo theories}{22}{section.3.4}
 \contentsline {section}{\numberline {3.5}The Jigsaw framework}{26}{section.3.5}
 \contentsline {section}{\numberline {3.6}Summary}{29}{section.3.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {4}Antiunification of Logged Java Classes}{30}{chapter.4}
+\contentsline {chapter}{\numberline {4}Anti-unification of Logged Java Classes}{30}{chapter.4}
 \contentsline {section}{\numberline {4.1}Constructing the AUAST}{32}{section.4.1}
 \contentsline {section}{\numberline {4.2}Determining Correspondences Using Jigsaw}{34}{section.4.2}
 \contentsline {section}{\numberline {4.3}Constraints in Determining Correspondences}{34}{section.4.3}
 \contentsline {section}{\numberline {4.4}Determining Correspondences}{36}{section.4.4}
 \contentsline {section}{\numberline {4.5}Computing Similarity}{38}{section.4.5}
-\contentsline {section}{\numberline {4.6}Constructing the antiunifier}{40}{section.4.6}
+\contentsline {section}{\numberline {4.6}Constructing the anti-unifier}{40}{section.4.6}
 \contentsline {section}{\numberline {4.7}Multiple logging calls}{45}{section.4.7}
 \contentsline {section}{\numberline {4.8}Antiunifying a set of AUASTs}{49}{section.4.8}
 \addvspace {10pt}
@@ -46,7 +46,7 @@
 \contentsline {section}{\numberline {7.1}Usage of logging}{55}{section.7.1}
 \contentsline {section}{\numberline {7.2}Correspondence}{57}{section.7.2}
 \contentsline {section}{\numberline {7.3}API usages patterns}{57}{section.7.3}
-\contentsline {section}{\numberline {7.4}Antiunification}{58}{section.7.4}
+\contentsline {section}{\numberline {7.4}Anti-unification}{58}{section.7.4}
 \contentsline {section}{\numberline {7.5}Clustering}{59}{section.7.5}
 \contentsline {section}{\numberline {7.6}Summary}{60}{section.7.6}
 \addvspace {10pt}

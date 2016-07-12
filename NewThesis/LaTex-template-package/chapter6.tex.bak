@@ -9,7 +9,7 @@
 \item has long history in software development
 \end{itemize}
 \item Secondly, our manual investigation to find the correct correspondences might be biased due to human errors. To limit the bias
-\begin{itemize} [leftmargin=.3in] 
+\begin{itemize} [leftmargin=.3in]
 \item other people can be involved to double check the accuracy of manual work in the future work
 \end{itemize}
 \item However, these results are still promising
@@ -35,12 +35,12 @@
 %\item Structural generalizations constructed by our tool are not in %the form of executable code
 %[leftmargin=.3in]\end{itemize}
 \section{Theoretical foundation}  \label{theory}
-\item Anti-unification and its extensions has several theoretical and practical applications:
+\item antiunification and its extensions has several theoretical and practical applications:
 \begin{itemize} [leftmargin=.3in]
 \item analogy making [Schmidt, 2010]
 \item determining lemma generation in equational inductive proofs [Burghardt, 2005]
 \item detecting the construction laws for a sequence of structures [Burghardt, 2005]
 \end{itemize}
-\item Using higher-order anti-unification modulo theories in our application, which is undecidable in general, leads us to take approximations suitable to our context
+\item Using higher-order antiunification modulo theories in our application, which is undecidable in general, leads us to take approximations suitable to our context
 \item The set of equational theories should be developed particularly for the structure used in each problem context
-\end{itemize}
+\end{itemize} 
