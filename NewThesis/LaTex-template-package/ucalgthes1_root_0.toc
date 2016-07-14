@@ -17,7 +17,7 @@
 \contentsline {section}{\numberline {3.1}Concrete syntax trees and abstract syntax trees}{13}{section.3.1}
 \contentsline {section}{\numberline {3.2}First-order anti-unification}{18}{section.3.2}
 \contentsline {section}{\numberline {3.3}Higher-Order Anti-unification Modulo Equational Theories}{21}{section.3.3}
-\contentsline {section}{\numberline {3.4}Summary}{24}{section.3.4}
+\contentsline {section}{\numberline {3.4}Summary}{23}{section.3.4}
 \addvspace {10pt}
 \contentsline {chapter}{\numberline {4}Background: Eclipse JDT and Jigsaw}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}Eclipse JDT}{25}{section.4.1}

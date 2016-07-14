@@ -3,20 +3,18 @@
 
 A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which we represent and analyze source code, we need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences.  The theoretical framework of anti-unification is presented as that means.
 
-In this chapter, ASTs are described briefly in Section~\ref{AST}. Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that we will make use of, higher-order anti-unification modulo equational theories.
+In this chapter, ASTs are described briefly in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that we will make use of, higher-order anti-unification modulo equational theories.
 
-\section{Abstract syntax trees}\label{AST}
+\section{Concrete syntax trees and abstract syntax trees}\label{AST}
 
-An abstract syntax tree is a tree (i.e., a kind of graph) $T=(V,E)$ whose vertices $V$ (equivalently, nodes) represent the syntactic structures (equivalently, syntactic elements) of a specific program written in a specific programming language and whose directed edges $E$ represent the nesting relationships amongst those syntactic structures.  Nodes in an abstract syntax tree are typically typed to differentiate different kinds of syntactic structure.  A given node type constraints the kinds and numbers of child nodes that it possesses.
+A concrete syntax tree is a tree (i.e., a kind of graph) $T=(V,E)$ whose vertices $V$ (equivalently, nodes) represent the syntactic structures (equivalently, syntactic elements) of a specific program written in a specific programming language and whose directed edges $E$ represent the nesting relationships amongst those syntactic structures.  Non-leaf nodes in a concrete syntax tree (also called a parse tree) represent the grammar productions that were satisfied in parsing the program it represents; leaf nodes represent the concrete lexemes, such as literals and keywords.
 
-It is common to select the set of node types for a language to correspond directly to productions of a grammar for that language; however, this is not essential. The grammar must disambiguate syntactic structures while supporting efficient parsing of programs in practice, while the AST can represent the disambiguated structures themselves.
-
-We focus on the Java programming language \cite{2012:book:gosling} and we make use of the standard grammar productions in the language specification in selecting the node types in our examples.  Node types are represented by names in ``camel-case'' written in italics.  Consider the trivial program in Figure~\ref{fig:java-example}; its AST is represented in Figure~\ref{fig:java-example-ast}.
+We focus on the Java programming language and we make use of the grammar in the language specification \cite[][Chapter 18]{2012:book:gosling} to determine the form of the concrete syntax trees.  Non-leaf node names are represented by names in ``camel-case'' written in italics.  Consider the trivial program in Figure~\ref{fig:java-example}; its concrete syntax tree is represented in Figure~\ref{fig:java-example-cst}.
 
 \begin{figure}
 \begin{lstlisting}
 public class HelloWorld {
-    public void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("Hello world!");
     }
 }
@@ -24,48 +22,382 @@ public class HelloWorld {
 \caption{A simple example Java program.\label{fig:java-example}}
 \end{figure}
 
-\begin{figure}
+\begin{sidewaysfigure}
+\centering\resizebox{!}{0.65\textheight}{%
 \begin{tikzpicture}
-\node(cd) at (0,0) {\textit{classDeclaration}}
-\node(cbody) at (0,0) {\textit{classBody}}
-\node(modifiers1) at (0,0) {\textit{modifiers}}
-\node(keyword1) at (0,0) {\textit{keyword}}
-\node(public1) at (0,0) {\textsf{\small public}}
-\node(keyword2) at (0,0) {\textit{keyword}}
-\node(class) at (0,0) {\textsf{\small class}}
-\node(sn1) at (0,0) {\textit{simpleName}}
-\node(HelloWorld) at (0,0) {\textsf{\small HelloWorld}}
-\node(ob1) at (0,0) {\textsf{\small \{}}
-\node(cb1) at (0,0) {\textsf{\small \}}}
-\node(md) at (0,0) {\textit{methodDeclaration}}
-\node(modifiers1) at (0,0) {\textit{modifiers}}
-\node(keyword3) at (0,0) {\textit{keyword}}
-\node(public2) at (0,0) {\textsf{\small public}}
-\node(keyword4) at (0,0) {\textit{keyword}}
-\node(void) at (0,0) {\textsf{\small void}}
-\node(sn2) at (0,0) {\textit{simpleName}}
-\node(main) at (0,0) {\textsf{\small main}}
-\node(type1) at (0,0) {\textit{type}}
-\node(type2) at (0,0) {\textit{arrayType}}
-\node(type3) at (0,0) {\textit{nestedType}}
-\node(sn3) at (0,0) {\textit{simpleName}}
-\node(ob) at (0,0) {\textsf{\small [}}
-\node(cb) at (0,0) {\textsf{\small ]}}
-\node(String) at (0,0) {\textsf{\small String}}
-\node(sn4) at (0,0) {\textit{simpleName}}
-\node(args) at (0,0) {\textsf{\small args}}
-\node(ob2) at (0,0) {\textsf{\small \{}}
-\node(cb2) at (0,0) {\textsf{\small \}}}
-\end{tikzpicture}
-\caption{The AST for the program of Figure~\ref{fig:java-example}.\label{fig:java-example-ast}}
-\end{figure}
+\node(cu) at (-14,20) {\textit{CompilationUnit}};
+%
+\node(td) at (-14,19) {\textit{TypeDeclaration}};
+\draw[->](cu) -- (td) {};
+%
+\node(cid) at (-14,18) {\textit{ClassOrInterfaceDeclaration}};
+\draw[->](td) -- (cid) {};
+%
+\node(mod2) at (-16,17) {\textit{Modifier}};
+\draw[->](cid) -- (mod2) {};
+%
+\node(public2) at (-16,16) {\textsf{\small public}};
+\draw[->](mod2) -- (public2) {};
+%
+\node(cd) at (-12,17) {\textit{ClassDeclaration}};
+\draw[->](cid) -- (cd) {};
+%
+\node(ncd) at (-12,16) {\textit{NormalClassDeclaration}};
+\draw[->](cd) -- (ncd) {};
+%
+\node(class) at (-16,15) {\textsf{\small class}};
+\node(id7) at (-14,15) {\textit{Identifier}};
+\node(cbody) at (-8,15) {\textit{ClassBody}};
+\draw[->](ncd) -- (class) {};
+\draw[->](ncd) -- (id7) {};
+\draw[->](ncd) -- (cbody) {};
+%
+\node(HelloWorld) at (-14,14) {\textsf{\small HelloWorld}};
+\draw[->](id7) -- (HelloWorld) {};
+%
+\node(obr2) at (-12,14) {\textsf{\small \{}};
+\node(cbd) at (-8,14) {\textit{ClassBodyDeclaration}};
+\node(cbr2) at (-4,14) {\textsf{\small \}}};
+\draw[->](cbody) -- (obr2) {};
+\draw[->](cbody) -- (cbd) {};
+\draw[->](cbody) -- (cbr2) {};
+%
+\node(mod1) at (-12,13) {\textit{Modifier}};
+\node(mod2) at (-10,13) {\textit{Modifier}};
+\node(md) at (-4,13) {\textit{MemberDecl}};
+\draw[->](cbd) -- (mod1) {};
+\draw[->](cbd) -- (mod2) {};
+\draw[->](cbd) -- (md) {};
+%
+\node(public1) at (-12,12) {\textsf{\small public}};
+\draw[->](mod1) -- (public1) {};
+%
+\node(static) at (-10,12) {\textsf{\small static}};
+\draw[->](mod2) -- (static) {};
+%
+\node(void) at (-8,12) {\textsf{\small void}};
+\node(id6) at (-6,12) {\textit{Identifier}};
+\node(vmdr) at (2,12) {\textit{VoidMethodDeclaratorRest}};
+\draw[->](md) -- (void) {};
+\draw[->](md) -- (id6) {};
+\draw[->](md) -- (vmdr) {};
+%
+\node(main) at (-6,11) {\textsf{\small main}};
+\draw[->](id6) -- (main) {};
+%
+\node(formals) at (-2,11) {\textit{FormalParameters}};
+\draw[->](vmdr) -- (formals) {};
+%
+\node(op2) at (-5,10) {\textsf{\small (}};
+\node(fpd) at (-2,10) {\textit{FormalParameterDecls}};
+\node(cp2) at (1,10) {\textsf{\small )}};
+\draw[->](formals) -- (op2) {};
+\draw[->](formals) -- (fpd) {};
+\draw[->](formals) -- (cp2) {};
+%
+\node(type) at (-4,9) {\textit{Type}};
+\node(fpdr) at (0,9) {\textit{FormalParameterDeclsRest}};
+\draw[->](fpd) -- (type) {};
+\draw[->](fpd) -- (fpdr) {};
+%
+\node(rt) at (-6,8) {\textit{ReferenceType}};
+\node(obt) at (-4,8) {\textsf{\small [}};
+\node(cbt) at (-3,8) {\textsf{\small ]}};
+\draw[->](type) -- (rt) {};
+\draw[->](type) -- (obt) {};
+\draw[->](type) -- (cbt) {};
+%
+\node(id5) at (-6,7) {\textit{Identifier}};
+\draw[->](rt) -- (id5) {};
+%
+\node(String) at (-6,6) {\textsf{\small String}};
+\draw[->](rt) -- (String) {};
+%
+\node(vdi) at (0,8) {\textit{VariableDeclaratorId}};
+\draw[->](fpdr) -- (vdi) {};
+%
+\node(id4) at (0,7) {\textit{Identifier}};
+\draw[->](vdi) -- (id4) {};
+%
+\node(args) at (0,6) {\textsf{\small args}};
+\draw[->](id4) -- (args) {};
+%
+\node(block) at (6,11) {\textit{Block}};
+\draw[->](vmdr) -- (block) {};
+%
+\node(obrace1) at (4,10) {\textsf{\small \{}};
+\node(bs1) at (6,10) {\textit{BlockStatements}};
+\node(cbrace1) at (8,10) {\textsf{\small \}}};
+\draw[->](block) -- (obrace1) {};
+\draw[->](block) -- (bs1) {};
+\draw[->](block) -- (cbrace1) {};
+%
+\node(bs2) at (6,9) {\textit{BlockStatement}};
+\draw[->](bs1) -- (bs2) {};
+%
+\node(stat) at (6,8) {\textit{Statement}};
+\draw[->](bs2) -- (stat) {};
+%
+\node(se) at (5,7) {\textit{StatementExpression}};
+\node(sc) at (7.5,7) {\textsf{\small ;}};
+\draw[->](stat) -- (se) {};
+\draw[->](stat) -- (sc) {};
+%
+\node(expr) at (5,6) {\textit{Expression}};
+\draw[->](se) -- (expr) {};
+%
+\node(e1) at (5,5) {\textit{Expression1}};
+\draw[->](expr) -- (e1) {};
+%
+\node(e2) at (5,4) {\textit{Expression2}};
+\draw[->](e1) -- (e2) {};
+%
+\node(e3) at (5,3) {\textit{Expression3}};
+\draw[->](e2) -- (e3) {};
+%
+\node(prim1) at (2,2) {\textit{Primary}};
+\node(sel) at (8,2) {\textit{Selector}};
+\draw[->](e3) -- (prim1) {};
+\draw[->](e3) -- (sel) {};
+%
+\node(id1) at (0,1) {\textit{Identifier}};
+\node(dot1) at (2,1) {\textsf{\small .}};
+\node(id2) at (4,1) {\textit{Identifier}};
+\draw[->](prim1) -- (id1) {};
+\draw[->](prim1) -- (dot1) {};
+\draw[->](prim1) -- (id2) {};
+%
+\node(dot2) at (6,1) {\textsf{\small .}};
+\node(id3) at (8,1) {\textit{Identifier}};
+\node(arguments) at (10,1) {\textit{Arguments}};
+\draw[->](sel) -- (dot2) {};
+\draw[->](sel) -- (id3) {};
+\draw[->](sel) -- (arguments) {};
+%
+\node(System) at (0,0) {\textsf{\small System}};
+\draw[->](id1) -- (System) {};
+%
+\node(out) at (4,0) {\textsf{\small out}};
+\draw[->](id2) -- (out) {};
+%
+\node(println) at (8,0) {\textsf{\small println}};
+\draw[->](id3) -- (println) {};
+%
+\node(op) at (8.5,0) {\textsf{\small (}};
+\node(sl) at (10,0) {\textsf{\small "Hello world!"}};
+\node(cp) at (11.5,0) {\textsf{\small )}};
+\draw[->](arguments) -- (op) {};
+\draw[->](arguments) -- (sl) {};
+\draw[->](arguments) -- (cp) {};
+\end{tikzpicture}%
+}
+\caption{The concrete syntax tree for the program of Figure~\ref{fig:java-example}.\label{fig:java-example-cst}}
+\end{sidewaysfigure}
+
+Beyond the fact that the concrete syntax tree is rather verbose and thus occupies a lot of space even for a trivial example, we can see two key problems with it: (1)~there are a multitude of redundant nodes such as \textit{Expression1}, \textit{Expression2}, and \textit{Expression3} that are present solely for purposes of creating an unambiguous grammar; and (2)~there are no nodes that express the concepts of ``method declaration'' and ``method invocation'' that should be obviously present in the example program.
+
+To address these problems, concrete syntax trees are converted to abstract syntax trees (ASTs). An AST is similar in concept to a concrete syntax tree but it does not generally represent the parsing steps typed to differentiate different kinds of syntactic structure.  The node types are chosen to represent syntactical concepts; we use the grammar presented for exposition by \citet{2012:book:gosling}, which differs markedly from the grammar they propose in Chapter~18 for efficient parsing. Note that a given node type constrains the kinds and numbers of child nodes that it possesses.  The AST derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst} is shown in Figure~\ref{fig:java-example-ast}.  Note that, although we know that (for any normal program), \code{System} refers to the class \code{java.lang.System} and \code{out} is a static field on that class; however, non-normal programs can occur and a pure syntactic analysis cannot rule out that \code{System} is a package and that \code{out} is a class therein declaring a static method \code{println(String)}.
+
+\begin{sidewaysfigure}
+\centering\resizebox{!}{0.4\textheight}{%
+\begin{tikzpicture}
+\node(cu) at (-12,11) {\textit{CompilationUnit}};
+%
+\node(cd) at (-12,10) {\textit{ClassDeclaration}};
+\draw[->](cu) -- (cd) {};
+%
+\node(mod3) at (-16,9) {\textit{Modifier}};
+\node(class) at (-14,9) {\textsf{\small class}};
+\node(id7) at (-12,9) {\textit{Identifier}};
+\node(cbody) at (-4,9) {\textit{ClassBody}};
+\draw[->](cd) -- (mod3) {};
+\draw[->](cd) -- (class) {};
+\draw[->](cd) -- (id7) {};
+\draw[->](cd) -- (cbody) {};
+%
+\node(public2) at (-16,8) {\textsf{\small public}};
+\draw[->](mod3) -- (public2) {};
+%
+\node(HelloWorld) at (-12,8) {\textsf{\small HelloWorld}};
+\draw[->](id7) -- (HelloWorld) {};
+%
+\node(obr2) at (-8,8) {\textsf{\small \{}};
+\node(md) at (-4,8) {\textit{MethodDeclaration}};
+\node(cbr2) at (0,8) {\textsf{\small \}}};
+\draw[->](cbody) -- (obr2) {};
+\draw[->](cbody) -- (md) {};
+\draw[->](cbody) -- (cbr2) {};
+%
+\node(mod1) at (-12,6) {\textit{Modifier}};
+\node(mod2) at (-10,6) {\textit{Modifier}};
+\node(result) at (-8,6) {\textit{Result}};
+\node(id6) at (-6,6) {\textit{Identifier}};
+\node(fps) at (-2,6) {\textit{FormalParameters}};
+\node(mbody) at (6,6) {\textit{MethodBody}};
+\draw[->](md) -- (mod1) {};
+\draw[->](md) -- (mod2) {};
+\draw[->](md) -- (result) {};
+\draw[->](md) -- (id6) {};
+\draw[->](md) -- (fps) {};
+\draw[->](md) -- (mbody) {};
+%
+\node(public1) at (-12,5) {\textsf{\small public}};
+\draw[->](mod1) -- (public1) {};
+%
+\node(static) at (-10,5) {\textsf{\small static}};
+\draw[->](mod2) -- (static) {};
+%
+\node(void) at (-8,5) {\textsf{\small void}};
+\draw[->](result) -- (void) {};
+%
+\node(main) at (-6,5) {\textsf{\small main}};
+\draw[->](id6) -- (main) {};
+%
+\node(op2) at (-4,5) {\textsf{\small (}};
+\node(fp) at (-2,5) {\textit{FormalParameter}};
+\node(cp2) at (0,5) {\textsf{\small )}};
+\draw[->](fps) -- (op2) {};
+\draw[->](fps) -- (fp) {};
+\draw[->](fps) -- (cp2) {};
+%
+\node(type) at (-4,4) {\textit{ArrayType}};
+\node(id5) at (0,4) {\textit{Identifier}};
+\draw[->](fp) -- (type) {};
+\draw[->](fp) -- (id5) {};
+%
+\node(id4) at (-6,3) {\textit{Identifier}};
+\node(obt) at (-4,3) {\textsf{\small [}};
+\node(cbt) at (-2,3) {\textsf{\small ]}};
+\node(args) at (0,3) {\textsf{\small args}};
+\draw[->](type) -- (id4) {};
+\draw[->](type) -- (obt) {};
+\draw[->](type) -- (cbt) {};
+\draw[->](id5) -- (args) {};
+%
+\node(String) at (-6,2) {\textsf{\small String}};
+\draw[->](id4) -- (String) {};
+%
+\node(obrace1) at (4,5) {\textsf{\small \{}};
+\node(stat) at (6,5) {\textit{Statement}};
+\node(cbrace1) at (8,5) {\textsf{\small \}}};
+\draw[->](mbody) -- (obrace1) {};
+\draw[->](mbody) -- (stat) {};
+\draw[->](mbody) -- (cbrace1) {};
+%
+\node(mi) at (6,4) {\textit{MethodInvocation}};
+\node(sc) at (8,4) {\textsf{\small ;}};
+\draw[->](stat) -- (mi) {};
+\draw[->](stat) -- (sc) {};
+%
+%
+\node(qual) at (3,3) {\textit{Qualifier}};
+\node(id3) at (6,3) {\textit{Identifier}};
+\node(arguments) at (10,3) {\textit{Arguments}};
+\draw[->](mi) -- (qual) {};
+\draw[->](mi) -- (id3) {};
+\draw[->](mi) -- (arguments) {};
+%
+\node(qn) at (2,2) {\textit{QualifiedName}};
+\node(dot2) at (4,2) {\textsf{\small .}};
+\node(println) at (6,2) {\textsf{\small println}};
+\node(op) at (8,2) {\textsf{\small (}};
+\node(sl) at (10,2) {\textsf{\small "Hello world!"}};
+\node(cp) at (12,2) {\textsf{\small )}};
+\draw[->](qual) -- (qn) {};
+\draw[->](qual) -- (dot2) {};
+\draw[->](id3) -- (println) {};
+\draw[->](arguments) -- (op) {};
+\draw[->](arguments) -- (sl) {};
+\draw[->](arguments) -- (cp) {};
+%
+\node(id1) at (0,1) {\textit{Identifier}};
+\node(dot1) at (2,1) {\textsf{\small .}};
+\node(id2) at (4,1) {\textit{Identifier}};
+\draw[->](qn) -- (id1) {};
+\draw[->](qn) -- (dot1) {};
+\draw[->](qn) -- (id2) {};
+%
+\node(System) at (0,0) {\textsf{\small System}};
+\draw[->](id1) -- (System) {};
+%
+\node(out) at (4,0) {\textsf{\small out}};
+\draw[->](id2) -- (out) {};
+\end{tikzpicture}%
+}
+\caption{The abstract syntax tree derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst}.\label{fig:java-example-ast}}
+\end{sidewaysfigure}
+
+This is still verbose, so in practice we elide details that are implied or otherwise trivial, to arrive at a more abstract AST as shown in Figure~\ref{fig:java-example-ast2}.
+
+\begin{sidewaysfigure}
+\centering\resizebox{!}{0.4\textheight}{%
+\begin{tikzpicture}
+\node(cu) at (-12,11) {\textit{CompilationUnit}};
+%
+\node(cd) at (-12,10) {\textit{ClassDeclaration}};
+\draw[->](cu) -- (cd) {};
+%
+\node(HelloWorld) at (-12,8) {\textsf{\small HelloWorld}};
+\draw[->](cd) -- (HelloWorld) {};
+%
+\node(md) at (-4,8) {\textit{MethodDeclaration}};
+\draw[->](cd) -- (md) {};
+%
+\node(result) at (-8,6) {\textit{Result}};
+\node(fps) at (-2,6) {\textit{FormalParameters}};
+\node(mbody) at (6,6) {\textit{MethodBody}};
+\draw[->](md) -- (result) {};
+\draw[->](md) -- (fps) {};
+\draw[->](md) -- (mbody) {};
+%
+\node(void) at (-8,5) {\textsf{\small void}};
+\draw[->](result) -- (void) {};
+%
+\node(main) at (-6,5) {\textsf{\small main}};
+\draw[->](md) -- (main) {};
+%
+\node(fp) at (-2,5) {\textit{FormalParameter}};
+\draw[->](fps) -- (fp) {};
+%
+\node(type) at (-4,4) {\textit{ArrayType}};
+\draw[->](fp) -- (type) {};
+%
+\node(args) at (0,3) {\textsf{\small args}};
+\draw[->](fp) -- (args) {};
+%
+\node(String) at (-6,2) {\textsf{\small String}};
+\draw[->](type) -- (String) {};
+%
+\node(mi) at (6,4) {\textit{MethodInvocation}};
+\draw[->](mbody) -- (mi) {};
+%
+\node(arguments) at (10,3) {\textit{Arguments}};
+\draw[->](mi) -- (arguments) {};
+%
+\node(qn) at (2,2) {\textit{QualifiedName}};
+\node(dot2) at (4,2) {\textsf{\small .}};
+\node(println) at (6,2) {\textsf{\small println}};
+\node(sl) at (10,2) {\textsf{\small "Hello world!"}};
+\draw[->](mi) -- (qn) {};
+\draw[->](mi) -- (println) {};
+\draw[->](arguments) -- (sl) {};
+%
+\node(System) at (0,0) {\textsf{\small System}};
+\draw[->](qn) -- (System) {};
+%
+\node(out) at (4,0) {\textsf{\small out}};
+\draw[->](qn) -- (out) {};
+\end{tikzpicture}%
+}
+\caption{A more abstract, abstract syntax tree derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst}.\label{fig:java-example-ast2}}
+\end{sidewaysfigure}
 
 \section{First-order anti-unification}   \label{AU}
 
 This section defines terms, substitutions, applying a substitution to a term, and instances and anti-instances of a term, as the requirements needed  to describe anti-unification theory (and its dual, unification theory).
 
 \begin{defn}[Term]\label{def:term}
-A term is defined to be a variable, a constant, or a function symbol followed by a list of terms as the arguments of the function.
+A term is defined to be a variable, a constant, or a function symbol followed by a list of terms as the arguments of the function.  [Note that function symbols without the subsequent list of terms do not constitute terms.]
 \end{defn}
 
 Function symbols taking $n$ arguments are called $n$-ary function symbols; 0-ary function symbols are called constants. The identifiers starting with a lowercase letter are used to represent function symbols (e.g., $f(a,b)$, $g(a,b)$) and constants (e.g., $a$, $b$), while variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$). The following are examples of a term:
@@ -76,6 +408,31 @@ Function symbols taking $n$ arguments are called $n$-ary function symbols; 0-ary
 \item $f(g(X, b),Y, g(a, Z))$
 \end{itemize}
 %A term is called grounded if it does not contain any variables (e.g., $f(a,b)}), and
+Note that for any term there is a unique, equivalent tree and vice versa: constants and (first-order) variables are leaf nodes, while function symbols are non-leaf nodes; a function with given arguments is represented by a non-leaf node (representing the function symbol) with directed edges pointing to leaf nodes representing each argument.  For example:
+\begin{itemize} [leftmargin=0.7in]
+\item $Y$
+\item $a$
+\item $X \leftarrow f \rightarrow c$
+\item \begin{tikzpicture}
+\node(f) at (3,2) {$f$};
+\node(g1) at (1,1) {$g$};
+\node(Y) at (3,1) {$Y$};
+\node(g2) at (5,1) {$g$};
+\node(X) at (0,0) {$X$};
+\node(b) at (2,0) {$b$};
+\node(a) at (4,0) {$a$};
+\node(Z) at (6,0) {$Z$};
+%
+\draw[->](f) -- (g1) {};
+\draw[->](f) -- (Y) {};
+\draw[->](f) -- (g2) {};
+\draw[->](g1) -- (X) {};
+\draw[->](g1) -- (b) {};
+\draw[->](g2) -- (a) {};
+\draw[->](g2) -- (Z) {};
+\end{tikzpicture}
+\end{itemize}
+
 \begin{defn}[Substitution]\label{def:substitution}
 A substitution is a set of mappings, each from a variable to a term.
 \end{defn}
@@ -95,18 +452,13 @@ $a$ is an instance of a term $X$ and $X$ is an anti-instance of $a$, if there is
 A unifier is a common instance of two given terms.
 \end{defn}
 
-Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\Theta$ such that $U\xrightarrow{\Theta}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification. \RW{This is a bit funny.  Just tell us what AU is and then mention unification in passing.}
+Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\Theta$ such that $U\xrightarrow{\Theta}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification, called \emph{anti-unification}.
 
-\begin{defn}[Generalization]\label{def:generalization}
-$X$ is a generalization for $a$ and $b$, if $X$ is an anti-instance for $a$ and $b$ under substitutions $\Theta_1$ and $\Theta_2$, respectively ($X\xrightarrow{\Theta_1}a$ and $X\xrightarrow{\Theta_2}b$).
-\end{defn}
-To create a generalization of two given terms, the inverse of unification should be used, which is called \emph{anti-unification}, where the two original terms are the instances of the new anti-unified term.
-
-\begin{defn}[Anti-unifier]\label{def:anti-unifier}
-An anti-unifier is a common generalization of two given terms.
+\begin{defn}[Anti-unifier]\label{def:generalization}
+$X$ is an anti-unifier (or generalization) for $a$ and $b$, if $X$ is an anti-instance for $a$ and an anti-instance for $b$ under substitutions $\Theta_1$ and $\Theta_2$, respectively ($X\xrightarrow{\Theta_1}a$ and $X\xrightarrow{\Theta_2}b$).
 \end{defn}
 
-An anti-unifier contains common pieces of the original terms, while the differences are abstracted away using variables. An anti-unifier for a pair of terms always exists since we can anti-unify any two terms by creating a variable $X$. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is , $A$ is the MSA of two structures where there exists no anti-unifier $A'$ such that $A\xrightarrow{\Theta}A'$.
+An anti-unifier contains common pieces of the original terms, while the differences are abstracted away using variables. An anti-unifier for a pair of terms always exists since we can anti-unify any two terms by the anti-instance $X$, i.e., a single variable. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is, $A$ is the MSA of two structures where there exists no anti-unifier $A'$ such that $A\xrightarrow{\Theta}A'$.
 
 As an example, the anti-unifier of two given terms $f(X,b)$ and $f(a,Y)$ is the new term $f(X,Y)$, containing common pieces of the two original terms. The variable $Y$ in the anti-unifier $f(X,Y)$ can be substituted by the term $b$ to re-create $f(X,b)$ (with $\Theta_1 = Y\xrightarrow{}b$) and the variable $X$ in the anti-unifier can be substituted by the term $a$ to re-create $f(a,Y)$
 (with $\Theta_2 = X\xrightarrow{\Theta}a$), as depicted in Figure~\ref{fig:uni-anti-uni}.
@@ -135,7 +487,7 @@ f(a, Y)
   \label{fig:uni-anti-uni}
 \end{figure}
 
-MSA should preserve as much of common pieces of both original terms as possible; however, first-order anti-unification fails to capture complex commonalities as it restricts substitutions to only replace first-order variables by terms. That is, when two terms differ in function symbols, first-order anti-unification fails to capture common details of them. For example, the first-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ as depicted in Figure~\ref{fig:first-anti-uni}.
+The MSA should preserve as much of common pieces of both original terms as possible; however, first-order anti-unification fails to capture complex commonalities as it restricts substitutions to only replace first-order variables by terms. That is, when two terms differ in function symbols, first-order anti-unification fails to capture common details of them. For example, the first-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ as depicted in Figure~\ref{fig:first-anti-uni}.
 
 \begin{figure}[t]
 \[
@@ -154,7 +506,7 @@ g(a,b)
   \label{fig:first-anti-uni}
 \end{figure}
 
-Higher-order anti-unification would allow us to create MSA by extending the set of possible substitutions such that variables can be replaced by not only terms but also function symbols in order to retain the detailed commonalities. For example, the higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.
+Higher-order anti-unification would allow us to create the MSA by extending the set of possible substitutions such that variables can be replaced not only by terms but also by function symbols in order to retain the detailed commonalities. For example, the higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.
 \begin{figure}[t]
 \[
 \begin{tikzcd}[column sep=small]
@@ -168,242 +520,20 @@ f(a,b)
 g(a,b)
 \end{tikzcd}
 \]
+%\centering\begin{tikzpicture}
+%\node(au) at (5,2) {\fbox{\mbox{$X(Y,b)$}}};
+%\node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
+%\node(right) at (8,0) {\fbox{\mbox{$\NIL{}(\NIL{},b) =_E  b$}}};
+%%
+%\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X \rightarrow f, Y \rightarrow a)$\hspace*{3cm}}};
+%\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{3.5cm}\scriptsize $\Theta_2 = ( X \rightarrow \NIL{}, Y \rightarrow \NIL{})$}};
+%\end{tikzpicture}
+
   \caption{Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.}
   \label{fig:higher-anti-uni}
 \end{figure}
 
-In the following sections, a brief description of the AST structure and the application of anti-unification on its extended form to construct structural generalizations will be provided.
-
-\section{Abstract Syntax Tree}   \label{AST}
-% JDT
-\RW{Explain what an AST is before talking about details of the JDT.  Show us tree-based representations of code.  Then show us JDT-based representations. In my reworked example, I have used production names as per the standard JLS grammar (as the function symbols).  This stuff about child node properties belongs later.}
-
-The Eclipse Java Development Tools (JDT) framework provides APIs to access and manipulate Java source code via Abstract Syntax Tree (AST). AST maps Java source code in a tree structure form and thus every Java source code can be represented as tree of AST nodes, where each represents an element of the Java Programming Language. AST helps developers to modify and analyze the Java program in a more convenient way than text-bases source code by providing a language parser of the Java source code, determining the bindings between name and type references, and providing specific information of each Java element. For example, the simple AST structure of two sample logged Java classes in Figures~\ref{ch3-ex1} an~\ref{ch3-ex2} is shown in Figure~\ref{fig:ast}
-
-%We introduce an example to illustrate the anti-unification process over two ASTs, and so
-
-\begin{figure}[t]
-\def\baselinestretch{1}
-\begin{lstlisting}
-public abstract class EBPlugin extends EditPlugin implements EBComponent {
-    private Boolean seenWarning;
-
-    protected EBPlugin() {
-    }
-
-    public void handleMessage(EBMessage message) {
-        if(seenWarning) return;
-        seenWarning = true;
-        Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin since it has an empty " + handleMessage());
-    }
-}
-\end{lstlisting}
-\caption{A Java class that uses a logging call. This will be referred to as Example 1.\label{ch3-ex1}}
-\end{figure}
-
-
-\begin{figure}[t]
-\def\baselinestretch{1}
-\begin{lstlisting}
-public static class Wrapper implements ActionListener {
-    private ActionContext context;
-    private String actionName;
-
-    public Wrapper(ActionContext context,  String actionName) {
-        this.context = context;
-        this.actionName = actionName;
-    }
-
-    public void actionPerformed(ActionEvent evt) {
-        EditAction action = context.getAction(actionName);
-        if(action == null) {
-            Log.log(Log.ERROR, this, "Unknown action: " + actionName);
-        }
-        else
-            context.invokeAction(evt, action);
-    }
-}
-\end{lstlisting}
-\caption{A Java class that uses a logging call. This will be referred to as Example 2.\label{ch3-ex2}}
-\end{figure}
-
-\begin{figure} [p]
-  \centering\includegraphics[width = \textwidth]{Drawing4/AST.pdf}
-  \caption{Simple AST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.}
-  \label{fig:ast}
-\end{figure}
-
-In the JDT framework, structural properties of each AST node can be used to obtain specific information of the Java element that it represents. These properties are stored in a map data structure that associates each property to its value and are divided into three types:
-\begin{itemize} [leftmargin=0.7in]
-\item \textit{Simple structural properties:} that contain a simple value which has a primitive or simple type or a basic AST constant (e.g., identifier property of a name node whose value is a String)
-\item \textit{Child structural properties:} where the value is a single AST node (e.g., name property of a method declaration node)
-\item \textit{Child list structural properties}: where the value is a list of child nodes (e.g., body declarations property of a class declaration node whose value is a list of body declaration nodes, including method declaration and field declaration nodes.)
-\end{itemize}
-%AST is made up of AST nodes as subtrees and simple values as leaves.
-An instance of an AST can be represented in an abstract form that can be mapped to the definition of a term described in Section~\ref{AU}, utilizing names from typical grammar productions \cite[e.g.,][]{2012:book:gosling} as names for the nodes. As an example, the ASTs of the logging calls at line~10 of Figure~\ref{ch3-ex1} and line~13 of Figure~\ref{ch3-ex2} can be represented respectively as:
-\begin{itemize} [leftmargin=0.7in]
-%\RW{These ASTs were messed up.  I fixed them according to what the code says.}
-%\item \textit{expression(expression(Log), name(log), arguments(leftoperand(message), +, rightoperand(" is empty"), qualifier(Log), name(WARNING)))}
-%\item \textit{expression(expression(Log), name(log), arguments(leftoperand(actionName),\\+, rightoperand("is an unknown action"), qualifier(Log), name(WARNING)))}
-\item \textit{methodCall}(\\
-\hspace*{1em}\textit{qualifiedName}(\code{Log}, \textit{simpleName}(\code{log})),\\
-\hspace*{1em}\textit{arguments}(\\
-\hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{simpleName}(\code{WARNING})}),\\
-\hspace*{2em}\textit{thisExpression}(),\\
-\hspace*{2em}\textit{additionExpression}(\\
-\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\code{getClassName}), \textit{arguments}()),\\
-\hspace*{3em}\textit{stringLiteral}(\code{" should extend EditPlugin not EBPlugin since it has an empty "}),\\
-\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\code{handleMessage}), \textit{arguments}()))))\\
-\item \textit{methodCall}(\\
-\hspace*{1em}\textit{qualifiedName}(\code{Log}, \textit{simpleName}(\code{log})),\\
-\hspace*{1em}\textit{arguments}(\\
-\hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{simpleName}(\code{ERROR})}),\\
-\hspace*{2em}\textit{thisExpression}(),\\
-\hspace*{2em}\textit{additionExpression}(\\
-\hspace*{3em}\textit{stringLiteral}(\code{"Unknown action: "}),\\
-\hspace*{3em}\textit{simpleName}(\code{actionName}))))\\
-\end{itemize}
-(Details of the specific string literals are elided for this presentation.)
-
-Here, the non-leaf AST nodes (e.g., \textit{methodCall}, \textit{simpleName}, \textit{thisExpression}) can be viewed as function symbols while leaf nodes (e.g., \code{log}, \code{WARNING}) can be viewed as constants in the term definition. As described in Section~\ref{AU}, anti-unification utilizes variables that must be substituted with proper structures to re-create original structures. However, the AST structure does not contain any variables and so we need to construct an extended form of AST, which will be described in the following section.
-
-% In order to map an instance of an AST to that form of structure, first we should understand how an AST structure holds its subtrees and leaves
-%The goal of this phase is to construct an extension of the AST structure that would allow the creation of an antiunified structure.
-
-\section{Constructing the AUAST} \label{AUAST}
-\RW{This is a concrete implementation, not a generic idea, at least not the way it is described.  I strongly suggest that you give a generic description of your assumptions about ASTs then relate AUASTs to those, then talk about implementation details.  But the reality is that the AUAST is *your* idea, not Cottrell's---take credit for it.  It should be another short chapter after the background.  You can add ``experiments'' (description of test suite and its results) there that shows that your approach works.}
-An anti-unifier AST (AUAST) is an extended form of AST that allows the insertion of variables in place of any node in the tree structure, including both subtrees and leaves, to indicate variations between original structures. The AUAST addresses the limitations of AST to construct an anti-unifier by adding the following structural properties:
-\begin{itemize} [leftmargin=.4in]
-\item \textit{Simple Variable Property}: an extension of simple property referring to two simple values to allow the insertion of variables in place of leaves.
-\end{itemize}
-\begin{itemize} [leftmargin=.4in]
-\item \textit{Child Variable Property}: an extension of child property referring to two child AST nodes to allow the insertion of variables in place of subtrees.
-\end{itemize}
-The anti-unification of AUASTs of logging calls in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The structural variables $X$ and $Y$ are used to abstract away the structural variations.  The substitutions are defined in Equations~\ref{eq:theta1} and~\ref{eq:theta2}.
-
-\begin{align}
-\Theta_1 = (X \rightarrow \text{ \textsf{\small WARNING}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
-\text{\textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}()),}\nonumber\\
-\text{\textit{stringLiteral}(\textsf{\small "should extend ..."}),}\hspace*{4cm}\nonumber\\ 
-\text{\textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}()))})\hspace*{-1em}\label{eq:theta1}
-\end{align}
-
-\begin{align}
-\Theta_2 = (X \rightarrow \text{ \textsf{\small ERROR}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
-\text{\textit{stringLiteral}(\textsf{\small "Unknown action: "})},\nonumber\\
-\text{ \textit{simpleName}(\textsf{\small actionName}))})\hspace*{-1cm}\label{eq:theta2}
-\end{align}
-
-%\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
-
-\begin{figure}[p]
-\begin{small}
-\begin{tikzpicture}
-\node(a) at (4.25,10) {%
-\fbox{\parbox[b][][b]{3in}{%
-\text{\textit{methodCall}(}\\
-\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-\text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textit{X})),}\\
-\text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}Y))}}}%
-};
-\node(b) at (0,0) {%
-\fbox{\parbox[t][][b]{3.1in}{%
-\text{\textit{methodCall}(}\\
-\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-\text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize WARNING})}),}\\
-\text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{additionExpression}(}\\
-\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize getClassName}),}\\ \text{\hspace*{4em}\textit{arguments}()),}\\
-\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize " should extend ... "}),}\\
-\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize handleMessage}),}\\ \text{\hspace*{4em}\textit{arguments}()))))}}}%
-};
-\node(c) at (8.5,0.7) {%
-\fbox{\parbox[t][][b]{2.55in}{%
-\text{\textit{methodCall}(}\\
-\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-\text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize ERROR})}),}\\
-\text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{additionExpression}(}\\
-\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize "Unknown action: "}),}\\
-\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
-};
-
-\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
-\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
-\end{tikzpicture}
-\end{small}
-\caption{Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
-\end{figure}
-%The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2}.
-
-Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
-
-
-%\begin{align}
-%\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
-%X &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
-%Y &\rightarrow \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
-%Z &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
-%\Theta_2 = (W &\rightarrow \text{ \textsf{\small ERROR}},\nonumber\\
-%X &\rightarrow \text{ \NIL{}},\nonumber\\
-%Y &\rightarrow \text{ \textsf{\small "Unknown action: "}},\nonumber\\
-%Z &\rightarrow \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
-%\end{align}
-%
-%%\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
-%
-%\begin{figure}[p]
-%\begin{small}
-%\begin{tikzpicture}
-%\node(a) at (4.25,10) {%
-%\fbox{\parbox[b][][b]{3in}{%
-%\text{\textit{methodCall}(}\\
-%\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-%\text{\hspace*{1em}\textit{arguments}(}\\
-%\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textit{W})),}\\
-%\text{\hspace*{2em}\textit{thisExpression}(),}\\
-%\text{\hspace*{2em}\textit{additionExpression}(\textit{X}, \textit{stringLiteral}(\textit{Y}), \textit{Z})))}}}%
-%};
-%\node(b) at (0,0) {%
-%\fbox{\parbox[t][][b]{3.1in}{%
-%\text{\textit{methodCall}(}\\
-%\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-%\text{\hspace*{1em}\textit{arguments}(}\\
-%\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize WARNING})}),}\\
-%\text{\hspace*{2em}\textit{thisExpression}(),}\\
-%\text{\hspace*{2em}\textit{additionExpression}(}\\
-%\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize getClassName}),}\\ \text{\hspace*{4em}\textit{arguments}()),}\\
-%\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize " should extend ... "}),}\\
-%\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize handleMessage}),}\\ \text{\hspace*{4em}\textit{arguments}()))))}}}%
-%};
-%\node(c) at (8.5,0.7) {%
-%\fbox{\parbox[t][][b]{2.55in}{%
-%\text{\textit{methodCall}(}\\
-%\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-%\text{\hspace*{1em}\textit{arguments}(}\\
-%\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize ERROR})}),}\\
-%\text{\hspace*{2em}\textit{thisExpression}(),}\\
-%\text{\hspace*{2em}\textit{additionExpression}(}\\
-%\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize "Unknown action: "}),}\\
-%\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
-%};
-%
-%\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
-%\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
-%\end{tikzpicture}
-%\end{small}
-%\caption{The anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
-%\end{figure}
-%%The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2}.
-
-%Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
-
-
-\section{Higher-order anti-unification modulo theories}   \label{HOAUMT}
+\section{Higher-Order Anti-unification Modulo Equational Theories}\label{HOAUMT}
 
 %\begin{align}
 %\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
@@ -465,104 +595,77 @@ Applying higher-order anti-unification on AUAST structures could help to constru
 %Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
 
 %anti-unification cannot incorporate any background knowledge such as sematic knowledge required to solve our problem, and we should apply an extended form of anti-unification, called higher-order anti-unification modulo theories, where a set of equivalence equations is defined to incorporate semantic knowledge of structural equivalences supported by the Java language specification. An equivalence equation $=_E$ determines which terms are considered equal, and the set of equivalence equations must be applied on higher-order extended structures to allow the anti-unification of AST structures that are not identical but are semantically equivalent.
-In higher-order anti-unification modulo theories, a set of equivalence equations is defined to incorporate background knowledge. Each equivalence equation $=_E$ determines which terms are considered equal and a set of these equations can be applied on higher-order extended structures to determine structural equivalences. For example, we have introduced an equivalence equation $=_E$, such that $f(X,Y) =_E f(Y,X)$ to indicate that the ordering of arguments does not matter in our context.
+In higher-order anti-unification modulo (equational) theories, a set of equational theories, which treat different structures as equivalent, is defined to incorporate background knowledge. Each equational theory $=_E$ determines which terms are considered equal and a set of these equations can be applied on higher-order extended structures to determine structural equivalences. For example, we have introduced an equivalence equation $=_E$, such that $f(X,Y) =_E f(Y,X)$ to indicate that the ordering of arguments does not matter in our context.
 
 % nil restriction!!!!
-We have also introduced a theory, called NIL-theory, that adds the concept of NIL structure, which is defined to create a structure out of nothing, and defines an equivalence equation $=_E$ for it. The NIL structure can be used to anti-unify two structures when a substructure exists in one but is missing from the other. However, some requirements should be taken to avoid the overuse of NIL structures such that the original structures must have common substructures but vary in the size for dissimilar substructures. For example, we can anti-unify the two structures $b$ and $f(a,b)$ through the application of NIL-theory by creating the term $nil(nil,b)$ which is $=_E$ to $f(b)$ and anti-unifying $nil(nil,b)$ with $f(a,b)$ as depicted in Figure~\ref{fig:anti-nil}.
+We have also introduced a theory, called \NIL{}-theory, that adds the concept of a \NIL{} structure, which permits a structure to be equated with nothing, and defines an equivalence equation $=_E$ for it. The \NIL{} structure can be used to anti-unify two structures when a substructure exists in one but is missing from the other. However, some requirements should be taken to avoid the overuse of \NIL{} structures such that the original structures must have common substructures but vary in the size for dissimilar substructures. For example, we can anti-unify the two structures $b$ and $f(a,b)$ through the application of \NIL{}-theory by creating the term $\NIL{}(\NIL{},b)$ which is $=_E$ to $f(b)$ and anti-unifying $\NIL{}(\NIL{},b)$ with $f(a,b)$ as depicted in Figure~\ref{fig:anti-nil}.
 % to introduce an equivalence equation =E for the NIL structure
 % it should be modified
 % should it be different?
-\begin{figure} [H]
-\[
-\begin{tikzcd}[column sep=small]
-&
-  X(Y,b)
-  \arrow{dr}{\Theta_2 = ( X \rightarrow nil, Y \rightarrow nil) }
-  \arrow[->,swap]{dl}{\Theta_1 = ( X \rightarrow f, Y \rightarrow a)} % <-- reflect the direction of the hook
-\\
-f(a,b)
-&&
-nil(nil,b) =_E  b
-\end{tikzcd}
-\]
-  \caption{ The anti-unification of the terms f(a, b) and nil(nil,b).}
-  \label{fig:anti-nil}
+\begin{figure}[t]
+\centering\begin{tikzpicture}
+\node(au) at (5,2) {\fbox{\mbox{$X(Y,b)$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
+\node(right) at (8,0) {\fbox{\mbox{$\NIL{}(\NIL{},b) =_E  b$}}};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X \rightarrow f, Y \rightarrow a)$\hspace*{3cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{3.5cm}\scriptsize $\Theta_2 = ( X \rightarrow \NIL{}, Y \rightarrow \NIL{})$}};
+\end{tikzpicture}
+\caption{Anti-unification of the terms $f(a, b)$ and $\NIL{}(\NIL{},b)$.\label{fig:anti-nil}}
 \end{figure}
 
 
-We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the Java language specification as it provides various ways to define the same language specifications. These theories should be applies on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. For example, consider for- and while- statements that are two types of looping structure in Java programming language that have different syntax but semantically cover the same concept. Let us look at the \code{for(i=0;i<10;i++)} and \code{while(i<10)} code snippets, whose AST structures can be represented as \code{for(initializer(i,=,0),expression(i,<,10), updaters(i,++))} and \code{while(expression(i,<,10))}, respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of for- and while- statements which are semantically similar structures. We also need to utilize the NIL-theory to handle varying number of arguments as the for- loop has three arguments whereas the while- loop only has one. Using the NIL-theory we can create the structure \code{while(nil(nil,nil,nil),expression(i,<,10), nil(nil,nil))} that is $=_E$ to \code{while(expression(i,<,10))} and construct the anti-unifier, \code{V_0(V_1(V_2,V_3,V_4),expression(i,<,10), V_5(V_2,V_6))} as depicted in Figure~\ref{fig:for-while}.
+We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the Java language specification as it provides various ways to define the same language specifications. These theories should be applied on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. For example, consider \code{for}- and \code{while}-statements that are two types of looping structure in Java programming language: they have different syntax but semantically cover the same concept. Let us look at the code snippets \code{for(i=0;i<10;i++)} and \code{while(i<10)}, whose ASTs can be represented as \code{for(}\textit{Initializer}(\code{i}, \code{0})\code{;} \textit{LessThanExpression}(\code{i}, \code{10})\code{;} \textit{Updaters}(\textit{PostIncrementExpression}(\code{i}))) and \code{while}(\textit{LessThanExpression}(\code{i}, \code{10})), respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of \code{for}- and \code{while}-statements. We also need to utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}, \NIL{}), \textit{LessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_E$ to \code{while}(\textit{LessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{LessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
 
-\begin{figure} [H]
-\[
-\begin{tikzcd}[column sep=small]
-&
-  \makecell[l]{V_0(V_1(V_2,V_3,V_4),\\expression(i,<,10),\\ V_5(V_2,V_6)) }
-  \arrow{dr}{\Theta_2 = \makecell[l]{ V_0 \rightarrow while, V_1 \rightarrow nil,\\ V_2 \rightarrow nil, V_3 \rightarrow nil,\\ V_4 \rightarrow nil, V_5 \rightarrow nil, V_6 \rightarrow nil} }
-  \arrow[->,swap]{dl}{\Theta_1 = \makecell[l]{V_0 \rightarrow for, V_1 \rightarrow initializer, \\V_2 \rightarrow i, V_3 \rightarrow =, V_4 \rightarrow 0, \\V_5 \rightarrow updaters, V_6 \rightarrow ++ }} % <-- reflect the direction of the hook
-\\
-  \makecell[l]{for(initializer(i,=,0),\\expression(i,<,10),\\ updaters(i,++))}
-&&
-  \makecell[l]{while(nil(nil,nil,nil),\\expression(i,<,10),\\ nil(nil,nil)) }
-\end{tikzcd}
-\]
-  \  \caption{ The anti-unification of the structures \code{for(initializer(i,=,0),expression(i,<,10), updater(i,++))} and \code{while(nil(nil,nil,nil),expression(i,<,10), nil(nil,nil))}.}
-  \label{fig:for-while}
+\begin{figure}[t]
+\centering\begin{tikzpicture}
+\node(au) at (5,5) {\fbox{\parbox{2in}{$V_0(V_1(V_2,V_3),$\\$\text{\quad\textit{LessThanExpression}(\textsf{\small i}, \textsf{\small 10})}$,\\ \mbox{$\quad V_4(V_5(V_2)))$}}}};
+%
+\node(left) at (0,0) {\fbox{\parbox{2.75in}{%
+\textsf{\small for}(\textit{Initializer}(\textsf{\small i}, \textsf{\small 0}),\\\mbox{\quad\textit{LessThanExpression}}(\textsf{\small i}, \textsf{\small 10}),\\ \mbox{\quad\textit{Updater}}(\textit{PostIncrementExpression}(\textsf{\small i})))}}};
+%
+\node(right) at (10,0) {\fbox{\parbox{2in}{%
+\textsf{\small while}(\NIL{}(\NIL{}, \NIL{}),\\ \mbox{\quad\textit{LessThanExpression}}(\textsf{\small i}, \textsf{\small 10}),\\ \mbox{\quad\NIL{}}(\NIL{}(\NIL{})))}}};
+%
+\draw[->](au) -- (right) node[pos=0.5, above]{$\qquad\Theta_2$};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{$\Theta_1\qquad$};
+\end{tikzpicture}
+\caption{The anti-unification of the structures \code{for}(\textit{Initializer}(\code{i}, \code{0}), \mbox{\textit{LessThanExpression}(\code{i}, \code{10}),} \textit{Updater}(\textit{PostIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}, \NIL{}), \mbox{\textit{LessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\Theta_1 = (V_0 \rightarrow \text{ \textsf{\small for}}, V_1 \rightarrow \text{ \textit{Initializer}}, V_2 \rightarrow \text{ \textsf{\small i}}, V_3 \rightarrow 0, V_4 \rightarrow \text{ \textit{Updater}}, V_5 \rightarrow \text{ \textit{PostIncrementExpression}})$; and $\Theta_2 = (V_0 \rightarrow \text{ \textsf{\small while}}, V_1 \rightarrow \text{ \NIL{}}, V_2 \rightarrow \text{ \NIL{}}, V_3 \rightarrow \text{ \NIL{}}, V_4 \rightarrow \text{ \NIL{}}, V_5 \rightarrow \text{ \NIL{}})$\label{fig:for-while}}
 \end{figure}
 % higher-order extension and the equational theories
 % provide a better example
-However, defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of MSA. For example, consider the terms $f(g(a,e))$ and $f(g(a,b),g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can anti-unify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and anti-unify $g(d,e)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$; or we can anti-unify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and anti-unify $g(a,b)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$.
 
-\begin{figure} [H]
-\[
-\begin{tikzcd}[column sep=small]
-&
-  f(g(X_0,e),Y(Z,X_1))
-  \arrow{dr}{\Theta_2 = ( X_0 \rightarrow a, Y \rightarrow nil, Z \rightarrow nil, X_1 \rightarrow nil) }
-  \arrow[->,swap]{dl}{\Theta_1 = ( X_0 \rightarrow d, Y \rightarrow g, Z \rightarrow a, X_1 \rightarrow b)} % <-- reflect the direction of the hook
-\\
-f(g(a,b), g(d,e))
-&&
-f(g(a,e))
-\end{tikzcd}
-\]	
+However, defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of MSA. For example, consider the terms $f(g(a,e))$ and $f(g(a,b),$\linebreak$g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can anti-unify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and anti-unify $g(d,e)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$; or we can anti-unify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and anti-unify $g(a,b)$ with the \NIL{} structure to create the anti-unifier $Y(Z,X_1)$.
 
-\[
-\begin{tikzcd}[column sep=small]
-&
-  f(g(a,X_0),Y(Z,X_1))
-  \arrow{dr}{\Theta_2 = ( X_0 \rightarrow e, Y \rightarrow nil, Z \rightarrow nil, X_1 \rightarrow nil) }
-  \arrow[->,swap]{dl}{\Theta_1 = ( X_0 \rightarrow b, Y \rightarrow g, Z \rightarrow d, X_1 \rightarrow e)} % <-- reflect the direction of the hook
-\\
-f(g(a,b), g(d,e))
-&&
-f(g(a,e))
-\end{tikzcd}
-\]
-  \caption{The anti-unification of the terms $f(g(a,b), g(d,e))$
-and $f(g(a,e))$ that creates multiple MSAs.}
+\begin{figure}[t]
+\centering\begin{tikzpicture}
+\node(au) at (5,2) {\fbox{\mbox{$f(g(X_0,e),Y(Z,X_1))$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f(g(a,b), g(d,e))$}}};
+\node(right) at (8,0) {\fbox{\mbox{$f(g(a,e))$}}};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X_0 \rightarrow d, Y \rightarrow g, Z \rightarrow a, X_1 \rightarrow b)$\hspace*{5cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{6cm}\scriptsize $\Theta_2 = ( X_0 \rightarrow a, Y \rightarrow \NIL{}, Z \rightarrow \NIL{}, X_1 \rightarrow \NIL{})$}};
+\end{tikzpicture}
+\vspace*{1em}
+
+\centering\begin{tikzpicture}
+\node(au) at (5,2) {\fbox{\mbox{$f(g(a,X_0),Y(Z,X_1))$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f(g(a,b), g(d,e))$}}};
+\node(right) at (8,0) {\fbox{\mbox{$f(g(a,e))$}}};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X_0 \rightarrow b, Y \rightarrow g, Z \rightarrow d, X_1 \rightarrow e)$\hspace*{5cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{6cm}\scriptsize $\Theta_2 = ( X_0 \rightarrow e, Y \rightarrow \NIL{}, Z \rightarrow \NIL{}, X_1 \rightarrow \NIL{})$}};
+\end{tikzpicture}
+\caption{Higher-order anti-unification modulo theories of the terms $f(g(a,b), g(d,e))$
+and $f(g(a,e))$, creating multiple MSAs.}
   \label{fig:multipleMSA}
 \end{figure}
 
 
-Despite having multiple potential MSAs, we need to determine one single MSA that is the most appropriate in our context. However, the complexity of finding an optimal MSA is undecidable in general [Cottrell et al., 2008] since an infinite number of possible substitutions can be applied to every variable. Therefore, we need to use an approximation technique to construct one of the best MSAs that can sufficiently solve our problem.
+Despite having multiple potential MSAs, we need to determine one single MSA that is the most appropriate in our context. However, the complexity of finding an optimal MSA is undecidable in general \cite{2008:fse:cottrell} since an infinite number of possible substitutions can be applied to every variable. Therefore, we need to use an approximation technique to construct one of the best MSAs that can sufficiently solve our problem.
 % reason since?
 %Our goal is to find an MSA that is an approximation of the best fit to our application
 
-
-\section{The Jigsaw framework}  \label{Jigsaw}
-The Jigsaw tool is developed by \citet{2008:fse:cottrell} to determine the structural correspondences between two Java source code fragments through the application of higher-order anti-unification modulo theories such that one fragment can be integrated to the other one for small scale code reuse. Jigsaw could help determine potential candidate structural correspondences between AST nodes of logged Java classes by producing an augmented form of AST, called CAST (Correspondence AST), where each node holds a list of candidate correspondence connections between the two structures, each representing an anti-unifier. It also develops a measure of similarity to indicate how similar the nodes involved in each correspondence connection are. The Jigsaw similarity function relies on structural correspondence along with a simple knowledge of semantic equivalences supported by the Java language specification. It returns a value between 0 and 1 that indicates zero and total structural matching, respectively. In addition, several semantical heuristics are used to improve the accuracy of similarity measurement by allowing the comparison of AST nodes that are not syntactically identical but are semantically related to each other.
-
-For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of longest common substring. The comparison of \code{int} and \code{long} variable types is another example, where an arbitrary value of 0.5 is defined as the similarity value as they are not syntactically identical but are not semantically unrelated. In addition, the Jigsaw framework also detects the structural correspondence between  for-, enhanced-for-, while-, and do- loop statements; and if- and switch- conditional statements. As an example, Figure~\ref{fig:meth-ast-1} shows the structural correspondence connections created by Jigsaw between the AST nodes of Examples 1 and 2 along with the similarity value for each correspondence connection.
-
-\begin{figure} [H]
-  \centering\includegraphics [width = \textwidth]{Drawing4/FirstCorr.pdf}
-  \caption{Simple CAST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework along with the similarity value.}
-  \label{fig:meth-ast-1}
-\end{figure}
-
-However, the Jigsaw tool does not suffice to construct an anti-unifier that is the best fit to our application. In addition, the Jigsaw similarity function does not measure the similarity of two logged Java classes with a focus on logging calls, which is needed in our context. To address these issues, we should develop a greedy selection algorithm to approximate the best anti-unifier by determining the best correspondence for each node. In the following chapter, we will discuss our approach to construct structural generalizations and our implementation by means of the higher-order anti-unification modulo theories and the Jigsaw framework.
-
- 
 \section{Summary}  \label{summary}
-In this chapter, we described anti-unification as a technique to construct a common generalization of two given terms. We have also introduced an extended form of anti-unification, which is called higher-order anti-unification modulo theories, where a set of equivalence equations can be applied on higher-order extended structures to incorporate background knowledge. In addition,
-we provided a brief description of AST that maps Java source code in a tree structure form, and why an extended form of it, named AUAST, is required to create higher-order structures specific to our problem context. Finally, we discuss the Jigsaw framework and how it could assist us in determining the potential structural correspondences.
+We described abstract syntax trees (ASTs) as a standard syntactic representation of source code.  Every AST can also be represented in a function format (and vice versa) which constitute the standard theoretical concept of terms.  We demonstrated how the theoretical framework of anti-unification as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permit substitution relative to function symbols as well as terms.  A further extension allows for insertion and deletion by declaring equivalence with the \NIL{} structure, as well as other arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this higher-order anti-unification modulo theories approach leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weakness, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice.
