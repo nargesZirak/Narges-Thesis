@@ -1,7 +1,5 @@
-%\fancyhead[RO,LE]{\thepage}
-%\fancyfoot{}
-
 \chapter{Anti-unification of Logged Java Classes} \label{ch4} \label{methodology}
+\RW{Lots of this stuff is now moved to earlier chapters.  This chapter needs to be reworked as a result.  It's not clear to me that "chapter3-2.tex" needs to be separate from this.}
 In Chapter~\ref{background} we provided background information on higher-order anti-unification modulo theories---a theoretical framework for constructing a generalization from two given structures---and we described how the Jigsaw tool applies this framework on AST structures of two given Java classes to determine potential structural correspondences between them. We now consider how these frameworks could help us (1)~to generalize ASTs of two Java classes containing logging calls and (2)~to develop a similarity measure with a focus on logging calls that can provide us with useful information for clustering LJCs in a later phase.
 
 Recall the general point of this study: we aim to provide a concise description of where logging calls happen in the source code through constructing structural generalizations that represent the detailed structural similarities and differences of LJCs. To this end, we should develop an algorithm that:

@@ -10,30 +10,38 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces The developer's fourth determination of the usage of logging calls for the \lstinline {send(EBMessage)} method.\relax }}{11}{figure.caption.17}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces The developer's final determination of the usage of logging calls for the \lstinline {EditBus} class.\relax }}{12}{figure.caption.18}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{16}{figure.caption.19}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{16}{figure.caption.20}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{17}{figure.caption.21}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 1.\relax }}{18}{figure.caption.22}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 2.\relax }}{19}{figure.caption.23}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Simple AST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.\relax }}{20}{figure.caption.24}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }}{23}{figure.caption.25}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces The anti-unification of the terms f(a, b) and nil(nil,b).\relax }}{24}{figure.caption.26}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces The anti-unification of the structures \lstinline {for(initializer(i,=,0),expression(i,<,10), updater(i,++))} and \lstinline {while(nil(nil,nil,nil),expression(i,<,10), nil(nil,nil))}.\relax }}{25}{figure.caption.27}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces The anti-unification of the terms $f(g(a,b), g(d,e))$ and $f(g(a,e))$ that creates multiple MSAs.\relax }}{26}{figure.caption.28}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Simple CAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework along with the similarity value.\relax }}{28}{figure.caption.29}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A simple example Java program.\relax }}{14}{figure.caption.19}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The concrete syntax tree for the program of Figure\nobreakspace {}\ref {fig:java-example}.\relax }}{15}{figure.caption.20}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The abstract syntax tree derived from the concrete syntax tree of Figure\nobreakspace {}\ref {fig:java-example-cst}.\relax }}{16}{figure.caption.21}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A more abstract, abstract syntax tree derived from the concrete syntax tree of Figure\nobreakspace {}\ref {fig:java-example-cst}.\relax }}{17}{figure.caption.22}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{20}{figure.caption.23}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{20}{figure.caption.24}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{21}{figure.caption.25}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces The anti-unification of the terms f(a, b) and nil(nil,b).\relax }}{22}{figure.caption.26}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces The anti-unification of the structures \lstinline {for(initializer(i,=,0),expression(i,<,10), updater(i,++))} and \lstinline {while(nil(nil,nil,nil),expression(i,<,10), nil(nil,nil))}.\relax }}{23}{figure.caption.27}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces The anti-unification of the terms $f(g(a,b), g(d,e))$ and $f(g(a,e))$ that creates multiple MSAs.\relax }}{23}{figure.caption.28}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of the system.\relax }}{32}{figure.caption.30}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces The AUASTs of log Method Invocation nodes from the Java classes in Figure\nobreakspace {}\ref {ch3-ex1} and Figure\nobreakspace {}\ref {ch3-ex2}.\relax }}{34}{figure.caption.31}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Simple AUAST structures constructed from the ASTs in Figure\nobreakspace {}\ref {fig:meth-ast-1}. Links between AUAST nodes indicate structural correspondences selected as the best fit\relax }}{38}{figure.caption.32}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces The anti-unifier (AUAST3) constructed from log Method Invocation AUAST nodes in Figure\nobreakspace {}\ref {fig:constructAUast} \relax }}{43}{figure.caption.33}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Simple antiunified AUAST structure of the two AUASTs in Figure\nobreakspace {}\ref {fig:AUASTs}\relax }}{44}{figure.caption.34}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces A Java class that utilizes multiple logging calls. This will be referred to as Example 1.\relax }}{45}{figure.caption.35}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces A Java class that utilizes multiple logging calls. This will be referred to as Example 2.\relax }}{45}{figure.caption.36}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate potential candidate structural correspondences detected by the Jigsaw framework.\relax }}{46}{figure.caption.37}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }}{47}{figure.caption.38}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Create multiple copies of Example 1 for each logging call.\relax }}{48}{figure.caption.39}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Create multiple copies of Example 2 for each logging call.\relax }}{49}{figure.caption.40}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Anti-unification of 4 AUAST nodes using an agglomerative hierarchical clustering algorithm. The threshold value indicates the number of clusters we will come up with.\relax }}{50}{figure.caption.41}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 1.\relax }}{26}{figure.caption.29}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A Java class that uses a logging call. This will be referred to as Example 2.\relax }}{26}{figure.caption.30}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Simple AST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.\relax }}{27}{figure.caption.31}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Simple CAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework along with the similarity value.\relax }}{30}{figure.caption.32}
+\addvspace {10pt}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }}{35}{figure.caption.33}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Simple CAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework along with the similarity value.\relax }}{36}{figure.caption.34}
+\addvspace {10pt}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Overview of the system.\relax }}{40}{figure.caption.35}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces The AUASTs of log Method Invocation nodes from the Java classes in Figure\nobreakspace {}\ref {ch3-ex1} and Figure\nobreakspace {}\ref {ch3-ex2}.\relax }}{42}{figure.caption.36}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Simple AUAST structures constructed from the ASTs in Figure\nobreakspace {}\ref {fig:meth-ast-1}. Links between AUAST nodes indicate structural correspondences selected as the best fit\relax }}{46}{figure.caption.37}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces The anti-unifier (AUAST3) constructed from log Method Invocation AUAST nodes in Figure\nobreakspace {}\ref {fig:constructAUast} \relax }}{51}{figure.caption.38}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Simple antiunified AUAST structure of the two AUASTs in Figure\nobreakspace {}\ref {fig:AUASTs}\relax }}{52}{figure.caption.39}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces A Java class that utilizes multiple logging calls. This will be referred to as Example 1.\relax }}{53}{figure.caption.40}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces A Java class that utilizes multiple logging calls. This will be referred to as Example 2.\relax }}{53}{figure.caption.41}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate potential candidate structural correspondences detected by the Jigsaw framework.\relax }}{54}{figure.caption.42}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }}{55}{figure.caption.43}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Create multiple copies of Example 1 for each logging call.\relax }}{56}{figure.caption.44}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Create multiple copies of Example 2 for each logging call.\relax }}{57}{figure.caption.45}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Anti-unification of 4 AUAST nodes using an agglomerative hierarchical clustering algorithm. The threshold value indicates the number of clusters we will come up with.\relax }}{58}{figure.caption.46}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

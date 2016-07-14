@@ -1,23 +1,71 @@
 %\chapter{Background}  \label{background}
-\chapter{Background}  \label{background}
+\chapter{Background: Abstract Syntax Trees and Anti-unification}  \label{background1}
 
-A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. In order to construct structural generalizations describing the commonalities and differences between logged Java methods (LJMs), it is important to first understand what AST is and how specific information about each Java element is held in an AST\@. An investigation of the application of anti-unification and its extensions on this structure to produce structural generalizations is also needed. In addition, it is necessary to figure out how the Jigsaw framework could be used to determine potential candidate structural correspondences.
-\RW{This paragraph could use a bit of expansion.  I would phrase it more in terms of why you will be telling the reader about these things.  This chapter explains some key ideas and background research that are necessary to understand the extensions being made in this thesis.  I changed my mind about the order: the theory of anti-unification does not need ASTs.  I would explain that a term can be represented as a tree or vice versa.}
+A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which we represent and analyze source code, we need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences.  The theoretical framework of anti-unification is presented as that means.
 
-In this chapter, anti-unification is summarized in section~\ref{AU}, starting with an introduction to unification and its dual anti-unification, followed by a discussion regarding to limitations of anti-unification to address our problem.
-Sections~\ref{AST} and~\ref{AUAST} will provide a brief description of the AST structure and its extended form, both are necessary to understand the requirements that guide the development of an anti-unification algorithm for our application.
-Section~\ref{HOAUMT} is dedicated to explaining higher-order anti-unification modulo theories (HOAUMT), which is an extension to anti-unification, where a set of equivalence theories are defined and applied on higher-order extended structures to incorporate background knowledge.
-Lastly, this chapter will discuss the Jigsaw framework and its application in determining potential candidate structural correspondences in Section~\ref{Jigsaw}.
+In this chapter, ASTs are described briefly in Section~\ref{AST}. Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that we will make use of, higher-order anti-unification modulo equational theories.
 
-\section{Anti-unification}   \label{AU}
+\section{Abstract syntax trees}\label{AST}
 
-\RW{This section is so-so.  You don't draw a distinction between basic anti-unification, higher-order anti-unification, and higher-order anti-unification modulo [equational] theories.  Basic anti-unification permits substitution of entire terms.  Higher-order anti-unification permits substitution of function symbols. HOAUMT permits the introduction of \NIL{} (saying that nothing and something are equal) as well as other equational theories (like for-loops and while-loops being equal).  I would prefer to see all these things defined formally, then explained with simple examples, ideally the same example with minimal details changed. Perhaps you want separate sections for the different kinds of AU.  Why distract the reader with unification?  Focus on anti-unification; mention unification in passing.}
+An abstract syntax tree is a tree (i.e., a kind of graph) $T=(V,E)$ whose vertices $V$ (equivalently, nodes) represent the syntactic structures (equivalently, syntactic elements) of a specific program written in a specific programming language and whose directed edges $E$ represent the nesting relationships amongst those syntactic structures.  Nodes in an abstract syntax tree are typically typed to differentiate different kinds of syntactic structure.  A given node type constraints the kinds and numbers of child nodes that it possesses.
 
-This section will introduce a formal definition of a term, the application of a substitution on a term, and the definition of an instance and an anti-instance of a term, as the requirements needed  to describe unification theory and its dual anti-unification theory.
-%to understand the theories in order
+It is common to select the set of node types for a language to correspond directly to productions of a grammar for that language; however, this is not essential. The grammar must disambiguate syntactic structures while supporting efficient parsing of programs in practice, while the AST can represent the disambiguated structures themselves.
+
+We focus on the Java programming language \cite{2012:book:gosling} and we make use of the standard grammar productions in the language specification in selecting the node types in our examples.  Node types are represented by names in ``camel-case'' written in italics.  Consider the trivial program in Figure~\ref{fig:java-example}; its AST is represented in Figure~\ref{fig:java-example-ast}.
+
+\begin{figure}
+\begin{lstlisting}
+public class HelloWorld {
+    public void main(String[] args) {
+        System.out.println("Hello world!");
+    }
+}
+\end{lstlisting}
+\caption{A simple example Java program.\label{fig:java-example}}
+\end{figure}
+
+\begin{figure}
+\begin{tikzpicture}
+\node(cd) at (0,0) {\textit{classDeclaration}}
+\node(cbody) at (0,0) {\textit{classBody}}
+\node(modifiers1) at (0,0) {\textit{modifiers}}
+\node(keyword1) at (0,0) {\textit{keyword}}
+\node(public1) at (0,0) {\textsf{\small public}}
+\node(keyword2) at (0,0) {\textit{keyword}}
+\node(class) at (0,0) {\textsf{\small class}}
+\node(sn1) at (0,0) {\textit{simpleName}}
+\node(HelloWorld) at (0,0) {\textsf{\small HelloWorld}}
+\node(ob1) at (0,0) {\textsf{\small \{}}
+\node(cb1) at (0,0) {\textsf{\small \}}}
+\node(md) at (0,0) {\textit{methodDeclaration}}
+\node(modifiers1) at (0,0) {\textit{modifiers}}
+\node(keyword3) at (0,0) {\textit{keyword}}
+\node(public2) at (0,0) {\textsf{\small public}}
+\node(keyword4) at (0,0) {\textit{keyword}}
+\node(void) at (0,0) {\textsf{\small void}}
+\node(sn2) at (0,0) {\textit{simpleName}}
+\node(main) at (0,0) {\textsf{\small main}}
+\node(type1) at (0,0) {\textit{type}}
+\node(type2) at (0,0) {\textit{arrayType}}
+\node(type3) at (0,0) {\textit{nestedType}}
+\node(sn3) at (0,0) {\textit{simpleName}}
+\node(ob) at (0,0) {\textsf{\small [}}
+\node(cb) at (0,0) {\textsf{\small ]}}
+\node(String) at (0,0) {\textsf{\small String}}
+\node(sn4) at (0,0) {\textit{simpleName}}
+\node(args) at (0,0) {\textsf{\small args}}
+\node(ob2) at (0,0) {\textsf{\small \{}}
+\node(cb2) at (0,0) {\textsf{\small \}}}
+\end{tikzpicture}
+\caption{The AST for the program of Figure~\ref{fig:java-example}.\label{fig:java-example-ast}}
+\end{figure}
+
+\section{First-order anti-unification}   \label{AU}
+
+This section defines terms, substitutions, applying a substitution to a term, and instances and anti-instances of a term, as the requirements needed  to describe anti-unification theory (and its dual, unification theory).
 
 \begin{defn}[Term]\label{def:term}
-A term is defined to be a variable, a constant, or a function symbol followed by a list of terms as the arguments of the function. \RW{I don't know that this is correct.  I had understood that a term was equivalent to a subtree.  Do you have references for these definitions?  Otherwise, expect Joerg to get upset about wrong definitions.}
+A term is defined to be a variable, a constant, or a function symbol followed by a list of terms as the arguments of the function.
 \end{defn}
 
 Function symbols taking $n$ arguments are called $n$-ary function symbols; 0-ary function symbols are called constants. The identifiers starting with a lowercase letter are used to represent function symbols (e.g., $f(a,b)$, $g(a,b)$) and constants (e.g., $a$, $b$), while variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$). The following are examples of a term:
@@ -29,15 +77,15 @@ Function symbols taking $n$ arguments are called $n$-ary function symbols; 0-ary
 \end{itemize}
 %A term is called grounded if it does not contain any variables (e.g., $f(a,b)}), and
 \begin{defn}[Substitution]\label{def:substitution}
-A substitution is a set of pairs of variables and terms, each denotes a mapping from a variable to a term. \RW{Note that this doesn't work for higher-order AU, as function symbols are not terms.}
+A substitution is a set of mappings, each from a variable to a term.
 \end{defn}
 
 \begin{defn}[Applying a substitution]\label{def:substitution}
-Applying a substitution to a term results in the replacement of all occurrences of each variable of the term defined in the substitution set by its corresponding term.
+Applying a substitution to a term results in the replacement of all occurrences of each variable in the term, by its corresponding term as defined in the substitution.
 \end{defn}
 
-As an example, an application of a substitution $\Theta$ = ({$X \rightarrow a, Y \rightarrow b $})
-on a term $f(X,Y)$ results in the replacement of all occurrences of the variable $X$ by the term $a$ and all occurrences of the variable $Y$ by the term $b$, and thus $f(X,Y)\xrightarrow{\Theta} f(a,b)$.
+As an example, applying the substitution $\Theta$ = ({$X \rightarrow a, Y \rightarrow b $})
+to the term $f(X,Y)$ results in the replacement of all occurrences of the variable $X$ by the term $a$ and all occurrences of the variable $Y$ by the term $b$, and thus $f(X,Y)\xrightarrow{\Theta} f(a,b)$.
 
 \begin{defn}[Instance \& anti-instance]\label{def:instance}
 $a$ is an instance of a term $X$ and $X$ is an anti-instance of $a$, if there is a substitution $\Theta$ such that the application of $\Theta$ on $X$ results in $a$ ($X\xrightarrow{\Theta}a$).
@@ -47,18 +95,18 @@ $a$ is an instance of a term $X$ and $X$ is an anti-instance of $a$, if there is
 A unifier is a common instance of two given terms.
 \end{defn}
 
-Unification usually aims to create the \emph{most general unifier} (MGU), that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\Theta$ such that $U\xrightarrow{\Theta}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification.
+Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\Theta$ such that $U\xrightarrow{\Theta}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification. \RW{This is a bit funny.  Just tell us what AU is and then mention unification in passing.}
 
 \begin{defn}[Generalization]\label{def:generalization}
-$X$ is a generalization for $a$ and $b$, where $X$ is an anti-instance for $a$ and $b$ under substitutions $\Theta_1$ and $\Theta_2$, respectively ($X\xrightarrow{\Theta_1}a$ and$X\xrightarrow{\Theta_2}b$).
+$X$ is a generalization for $a$ and $b$, if $X$ is an anti-instance for $a$ and $b$ under substitutions $\Theta_1$ and $\Theta_2$, respectively ($X\xrightarrow{\Theta_1}a$ and $X\xrightarrow{\Theta_2}b$).
 \end{defn}
-To create a generalization of two given terms, the inverse of unification should be used, which is called \emph{anti-unification}, where the two original terms are the instances of the new antiunified term.
+To create a generalization of two given terms, the inverse of unification should be used, which is called \emph{anti-unification}, where the two original terms are the instances of the new anti-unified term.
 
 \begin{defn}[Anti-unifier]\label{def:anti-unifier}
 An anti-unifier is a common generalization of two given terms.
 \end{defn}
 
-An anti-unifier contains common pieces of the original terms, while the differences are abstracted away using variables. An anti-unifier for a pair of terms always exists since we can antiunify any two terms by creating a variable $X$. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is , $A$ is the MSA of two structures where there exists no anti-unifier $A'$ such that $A\xrightarrow{\Theta}A'$.
+An anti-unifier contains common pieces of the original terms, while the differences are abstracted away using variables. An anti-unifier for a pair of terms always exists since we can anti-unify any two terms by creating a variable $X$. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is , $A$ is the MSA of two structures where there exists no anti-unifier $A'$ such that $A\xrightarrow{\Theta}A'$.
 
 As an example, the anti-unifier of two given terms $f(X,b)$ and $f(a,Y)$ is the new term $f(X,Y)$, containing common pieces of the two original terms. The variable $Y$ in the anti-unifier $f(X,Y)$ can be substituted by the term $b$ to re-create $f(X,b)$ (with $\Theta_1 = Y\xrightarrow{}b$) and the variable $X$ in the anti-unifier can be substituted by the term $a$ to re-create $f(a,Y)$
 (with $\Theta_2 = X\xrightarrow{\Theta}a$), as depicted in Figure~\ref{fig:uni-anti-uni}.
@@ -83,11 +131,11 @@ f(a, Y)
 {\makecell[l]{f(a,b)\\\text{unifier}}}
 \end{tikzcd}
 \]
-  \caption{The unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.}
+  \caption{Unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.}
   \label{fig:uni-anti-uni}
 \end{figure}
 
-MSA should preserve as much of common pieces of both original terms as possible; however, anti-unification fails to capture complex commonalities as it restricts substitutions to only replace first-order variables by terms. That is, when two terms differ in function symbols, anti-unification fails to capture common details of them. For example, the anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ using anti-unification as depicted in Figure~\ref{fig:first-anti-uni}.
+MSA should preserve as much of common pieces of both original terms as possible; however, first-order anti-unification fails to capture complex commonalities as it restricts substitutions to only replace first-order variables by terms. That is, when two terms differ in function symbols, first-order anti-unification fails to capture common details of them. For example, the first-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ as depicted in Figure~\ref{fig:first-anti-uni}.
 
 \begin{figure}[t]
 \[
@@ -102,11 +150,11 @@ f(a,b)
 g(a,b)
 \end{tikzcd}
 \]
-  \caption{Anti-unification of the terms $f(X,b)$ and $f(a,Y)$. \protect\RW{Wrong!}}
+  \caption{First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.}
   \label{fig:first-anti-uni}
 \end{figure}
 
-An extended form of anti-unification, which is called higher-order anti-unification, would allow us to create MSA by extending the set of possible substitutions such that variables can be replaced by not only constants \RW{But this is wrong! In your example, you substitute an entire subtree for the variable, not just a constant!} but also functional symbols to retain the detailed commonalities. For example, the anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X(a,b)$ using higher-order anti-unification as depicted in Figure~\ref{fig:higher-anti-uni}.
+Higher-order anti-unification would allow us to create MSA by extending the set of possible substitutions such that variables can be replaced by not only terms but also function symbols in order to retain the detailed commonalities. For example, the higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.
 \begin{figure}[t]
 \[
 \begin{tikzcd}[column sep=small]
@@ -120,7 +168,7 @@ f(a,b)
 g(a,b)
 \end{tikzcd}
 \]
-  \caption{Higher-order anti-unification of the terms $f(X,b)$ and $f(a,Y)$. \protect\RW{Wrong!}}
+  \caption{Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.}
   \label{fig:higher-anti-uni}
 \end{figure}
 
@@ -128,7 +176,7 @@ In the following sections, a brief description of the AST structure and the appl
 
 \section{Abstract Syntax Tree}   \label{AST}
 % JDT
-\RW{Explain what an AST is before talking about details of the JDT.  Show us tree-based representations of code.  Then show us JDT-based representations.}
+\RW{Explain what an AST is before talking about details of the JDT.  Show us tree-based representations of code.  Then show us JDT-based representations. In my reworked example, I have used production names as per the standard JLS grammar (as the function symbols).  This stuff about child node properties belongs later.}
 
 The Eclipse Java Development Tools (JDT) framework provides APIs to access and manipulate Java source code via Abstract Syntax Tree (AST). AST maps Java source code in a tree structure form and thus every Java source code can be represented as tree of AST nodes, where each represents an element of the Java Programming Language. AST helps developers to modify and analyze the Java program in a more convenient way than text-bases source code by providing a language parser of the Java source code, determining the bindings between name and type references, and providing specific information of each Java element. For example, the simple AST structure of two sample logged Java classes in Figures~\ref{ch3-ex1} an~\ref{ch3-ex2} is shown in Figure~\ref{fig:ast}
 
@@ -223,6 +271,7 @@ Here, the non-leaf AST nodes (e.g., \textit{methodCall}, \textit{simpleName}, \t
 %The goal of this phase is to construct an extension of the AST structure that would allow the creation of an antiunified structure.
 
 \section{Constructing the AUAST} \label{AUAST}
+\RW{This is a concrete implementation, not a generic idea, at least not the way it is described.  I strongly suggest that you give a generic description of your assumptions about ASTs then relate AUASTs to those, then talk about implementation details.  But the reality is that the AUAST is *your* idea, not Cottrell's---take credit for it.  It should be another short chapter after the background.  You can add ``experiments'' (description of test suite and its results) there that shows that your approach works.}
 An anti-unifier AST (AUAST) is an extended form of AST that allows the insertion of variables in place of any node in the tree structure, including both subtrees and leaves, to indicate variations between original structures. The AUAST addresses the limitations of AST to construct an anti-unifier by adding the following structural properties:
 \begin{itemize} [leftmargin=.4in]
 \item \textit{Simple Variable Property}: an extension of simple property referring to two simple values to allow the insertion of variables in place of leaves.
@@ -231,21 +280,19 @@ An anti-unifier AST (AUAST) is an extended form of AST that allows the insertion
 \item \textit{Child Variable Property}: an extension of child property referring to two child AST nodes to allow the insertion of variables in place of subtrees.
 \end{itemize}
 The anti-unification of AUASTs of logging calls in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The structural variables $X$ and $Y$ are used to abstract away the structural variations.  The substitutions are defined in Equations~\ref{eq:theta1} and~\ref{eq:theta2}.
-\RW{This needs to be aligned better, but TBD.}
 
-\begin{gather}
-\Theta_1 = (X \rightarrow \text{ \textsf{\small WARNING}},\qquad\nonumber\\
-Y \rightarrow \text{ \textit{additionExpression}(}\nonumber\\
-\text{\textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
-\text{\textit{stringLiteral}(\textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "})},\nonumber\\
-\text{\textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())}\nonumber\\
-)\label{eq:theta1}\\
-\Theta_2 = (X \rightarrow \text{ \textsf{\small ERROR}},\qquad\nonumber\\
-Y \rightarrow \text{ \textit{additionExpression}(}\nonumber\\
+\begin{align}
+\Theta_1 = (X \rightarrow \text{ \textsf{\small WARNING}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
+\text{\textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}()),}\nonumber\\
+\text{\textit{stringLiteral}(\textsf{\small "should extend ..."}),}\hspace*{4cm}\nonumber\\ 
+\text{\textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}()))})\hspace*{-1em}\label{eq:theta1}
+\end{align}
+
+\begin{align}
+\Theta_2 = (X \rightarrow \text{ \textsf{\small ERROR}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
 \text{\textit{stringLiteral}(\textsf{\small "Unknown action: "})},\nonumber\\
-\text{ \textit{simpleName}(\textsf{\small actionName}))}\nonumber\\
-)\label{eq:theta2}
-\end{gather}
+\text{ \textit{simpleName}(\textsf{\small actionName}))})\hspace*{-1cm}\label{eq:theta2}
+\end{align}
 
 %\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
 
@@ -358,70 +405,70 @@ Applying higher-order anti-unification on AUAST structures could help to constru
 
 \section{Higher-order anti-unification modulo theories}   \label{HOAUMT}
 
-\begin{align}
-\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
-X &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
-Y &\rightarrow \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
-Z &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
-\Theta_2 = (W &\rightarrow \text{ \textsf{\small ERROR}},\nonumber\\
-X &\rightarrow \text{ \NIL{}},\nonumber\\
-Y &\rightarrow \text{ \textsf{\small "Unknown action: "}},\nonumber\\
-Z &\rightarrow \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
-\end{align}
-
-%\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
-
-\begin{figure}[p]
-\begin{small}
-\begin{tikzpicture}
-\node(a) at (4.25,10) {%
-\fbox{\parbox[b][][b]{3in}{%
-\text{\textit{methodCall}(}\\
-\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-\text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textit{W})),}\\
-\text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{additionExpression}(\textit{X}, \textit{stringLiteral}(\textit{Y}), \textit{Z})))}}}%
-};
-\node(b) at (0,0) {%
-\fbox{\parbox[t][][b]{3.1in}{%
-\text{\textit{methodCall}(}\\
-\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-\text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize WARNING})}),}\\
-\text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{additionExpression}(}\\
-\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize getClassName}),}\\ \text{\hspace*{4em}\textit{arguments}()),}\\
-\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize " should extend ... "}),}\\
-\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize handleMessage}),}\\ \text{\hspace*{4em}\textit{arguments}()))))}}}%
-};
-\node(c) at (8.5,0.7) {%
-\fbox{\parbox[t][][b]{2.55in}{%
-\text{\textit{methodCall}(}\\
-\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
-\text{\hspace*{1em}\textit{arguments}(}\\
-\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize ERROR})}),}\\
-\text{\hspace*{2em}\textit{thisExpression}(),}\\
-\text{\hspace*{2em}\textit{additionExpression}(}\\
-\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize "Unknown action: "}),}\\
-\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
-};
-
-\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
-\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
-\end{tikzpicture}
-\end{small}
-\caption{The anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
-\end{figure}
-%The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2}.
-
-Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
+%\begin{align}
+%\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
+%X &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
+%Y &\rightarrow \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
+%Z &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
+%\Theta_2 = (W &\rightarrow \text{ \textsf{\small ERROR}},\nonumber\\
+%X &\rightarrow \text{ \NIL{}},\nonumber\\
+%Y &\rightarrow \text{ \textsf{\small "Unknown action: "}},\nonumber\\
+%Z &\rightarrow \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
+%\end{align}
+%
+%%\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
+%
+%\begin{figure}[p]
+%\begin{small}
+%\begin{tikzpicture}
+%\node(a) at (4.25,10) {%
+%\fbox{\parbox[b][][b]{3in}{%
+%\text{\textit{methodCall}(}\\
+%\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
+%\text{\hspace*{1em}\textit{arguments}(}\\
+%\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textit{W})),}\\
+%\text{\hspace*{2em}\textit{thisExpression}(),}\\
+%\text{\hspace*{2em}\textit{additionExpression}(\textit{X}, \textit{stringLiteral}(\textit{Y}), \textit{Z})))}}}%
+%};
+%\node(b) at (0,0) {%
+%\fbox{\parbox[t][][b]{3.1in}{%
+%\text{\textit{methodCall}(}\\
+%\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
+%\text{\hspace*{1em}\textit{arguments}(}\\
+%\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize WARNING})}),}\\
+%\text{\hspace*{2em}\textit{thisExpression}(),}\\
+%\text{\hspace*{2em}\textit{additionExpression}(}\\
+%\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize getClassName}),}\\ \text{\hspace*{4em}\textit{arguments}()),}\\
+%\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize " should extend ... "}),}\\
+%\text{\hspace*{3em}\textit{methodCall}(\textit{simpleName}(\textsf{\footnotesize handleMessage}),}\\ \text{\hspace*{4em}\textit{arguments}()))))}}}%
+%};
+%\node(c) at (8.5,0.7) {%
+%\fbox{\parbox[t][][b]{2.55in}{%
+%\text{\textit{methodCall}(}\\
+%\text{\hspace*{1em}\textit{qualifiedName}(\textsf{\footnotesize Log}, \textit{simpleName}(\textsf{\footnotesize log})),}\\
+%\text{\hspace*{1em}\textit{arguments}(}\\
+%\text{\hspace*{2em}\textit{qualifiedName}(\textsf{\footnotesize Log},}\\ \text{\hspace*{3em}\mbox{\textit{simpleName}(\textsf{\footnotesize ERROR})}),}\\
+%\text{\hspace*{2em}\textit{thisExpression}(),}\\
+%\text{\hspace*{2em}\textit{additionExpression}(}\\
+%\text{\hspace*{3em}\textit{stringLiteral}(\textsf{\footnotesize "Unknown action: "}),}\\
+%\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
+%};
+%
+%\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
+%\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
+%\end{tikzpicture}
+%\end{small}
+%\caption{The anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
+%\end{figure}
+%%The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2}.
+%
+%Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
 
 %anti-unification cannot incorporate any background knowledge such as sematic knowledge required to solve our problem, and we should apply an extended form of anti-unification, called higher-order anti-unification modulo theories, where a set of equivalence equations is defined to incorporate semantic knowledge of structural equivalences supported by the Java language specification. An equivalence equation $=_E$ determines which terms are considered equal, and the set of equivalence equations must be applied on higher-order extended structures to allow the anti-unification of AST structures that are not identical but are semantically equivalent.
 In higher-order anti-unification modulo theories, a set of equivalence equations is defined to incorporate background knowledge. Each equivalence equation $=_E$ determines which terms are considered equal and a set of these equations can be applied on higher-order extended structures to determine structural equivalences. For example, we have introduced an equivalence equation $=_E$, such that $f(X,Y) =_E f(Y,X)$ to indicate that the ordering of arguments does not matter in our context.
 
 % nil restriction!!!!
-We have also introduced a theory, called NIL-theory, that adds the concept of NIL structure, which is defined to create a structure out of nothing, and defines an equivalence equation $=_E$ for it. The NIL structure can be used to antiunify two structures when a substructure exists in one but is missing from the other. However, some requirements should be taken to avoid the overuse of NIL structures such that the original structures must have common substructures but vary in the size for dissimilar substructures. For example, we can antiunify the two structures $b$ and $f(a,b)$ through the application of NIL-theory by creating the term $nil(nil,b)$ which is $=_E$ to $f(b)$ and antiunifying $nil(nil,b)$ with $f(a,b)$ as depicted in Figure~\ref{fig:anti-nil}.
+We have also introduced a theory, called NIL-theory, that adds the concept of NIL structure, which is defined to create a structure out of nothing, and defines an equivalence equation $=_E$ for it. The NIL structure can be used to anti-unify two structures when a substructure exists in one but is missing from the other. However, some requirements should be taken to avoid the overuse of NIL structures such that the original structures must have common substructures but vary in the size for dissimilar substructures. For example, we can anti-unify the two structures $b$ and $f(a,b)$ through the application of NIL-theory by creating the term $nil(nil,b)$ which is $=_E$ to $f(b)$ and anti-unifying $nil(nil,b)$ with $f(a,b)$ as depicted in Figure~\ref{fig:anti-nil}.
 % to introduce an equivalence equation =E for the NIL structure
 % it should be modified
 % should it be different?
@@ -443,7 +490,7 @@ nil(nil,b) =_E  b
 \end{figure}
 
 
-We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the Java language specification as it provides various ways to define the same language specifications. These theories should be applies on higher-order extended structures to antiunify AST structures that are not identical but are semantically equivalent. For example, consider for- and while- statements that are two types of looping structure in Java programming language that have different syntax but semantically cover the same concept. Let us look at the \code{for(i=0;i<10;i++)} and \code{while(i<10)} code snippets, whose AST structures can be represented as \code{for(initializer(i,=,0),expression(i,<,10), updaters(i,++))} and \code{while(expression(i,<,10))}, respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of for- and while- statements which are semantically similar structures. We also need to utilize the NIL-theory to handle varying number of arguments as the for- loop has three arguments whereas the while- loop only has one. Using the NIL-theory we can create the structure \code{while(nil(nil,nil,nil),expression(i,<,10), nil(nil,nil))} that is $=_E$ to \code{while(expression(i,<,10))} and construct the anti-unifier, \code{V_0(V_1(V_2,V_3,V_4),expression(i,<,10), V_5(V_2,V_6))} as depicted in Figure~\ref{fig:for-while}.
+We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the Java language specification as it provides various ways to define the same language specifications. These theories should be applies on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. For example, consider for- and while- statements that are two types of looping structure in Java programming language that have different syntax but semantically cover the same concept. Let us look at the \code{for(i=0;i<10;i++)} and \code{while(i<10)} code snippets, whose AST structures can be represented as \code{for(initializer(i,=,0),expression(i,<,10), updaters(i,++))} and \code{while(expression(i,<,10))}, respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of for- and while- statements which are semantically similar structures. We also need to utilize the NIL-theory to handle varying number of arguments as the for- loop has three arguments whereas the while- loop only has one. Using the NIL-theory we can create the structure \code{while(nil(nil,nil,nil),expression(i,<,10), nil(nil,nil))} that is $=_E$ to \code{while(expression(i,<,10))} and construct the anti-unifier, \code{V_0(V_1(V_2,V_3,V_4),expression(i,<,10), V_5(V_2,V_6))} as depicted in Figure~\ref{fig:for-while}.
 
 \begin{figure} [H]
 \[
@@ -463,7 +510,7 @@ We have also defined a set of equivalence equations to incorporate semantic know
 \end{figure}
 % higher-order extension and the equational theories
 % provide a better example
-However, defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of MSA. For example, consider the terms $f(g(a,e))$ and $f(g(a,b),g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can antiunify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and antiunify $g(d,e)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$; or we can antiunify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and antiunify $g(a,b)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$.
+However, defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of MSA. For example, consider the terms $f(g(a,e))$ and $f(g(a,b),g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can anti-unify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and anti-unify $g(d,e)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$; or we can anti-unify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and anti-unify $g(a,b)$ with the NIL structure to create the anti-unifier $Y(Z,X_1)$.
 
 \begin{figure} [H]
 \[

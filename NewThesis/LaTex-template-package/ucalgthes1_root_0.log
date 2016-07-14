@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  12 JUL 2016 16:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  14 JUL 2016 12:42
 entering extended mode
 **C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucal
 gthes1_root_0.tex
@@ -941,6 +941,26 @@ LaTeX Warning: Label `def:substitution' multiply defined.
 
 )
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-1.aux
+
+LaTeX Warning: Label `summary' multiply defined.
+
+)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-1-1.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-2.aux
+
+LaTeX Warning: Label `AUAST' multiply defined.
+
+
+LaTeX Warning: Label `fig:meth-ast-1' multiply defined.
+
+
+LaTeX Warning: Label `summary' multiply defined.
+
+)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4.aux
 
 LaTeX Warning: Label `overview' multiply defined.
@@ -1113,15 +1133,15 @@ File: omlphv.fd
 )
 LaTeX Font Info:    Font shape `OML/phv/m/n' in size <10.95> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 21.
+ [7
 
-Overfull \hbox (0.56993pt too wide) in paragraph at lines 28--28
+]
+Overfull \hbox (0.56993pt too wide) in paragraph at lines 36--36
  [][] [][]\OT1/ptm/m/n/12 The anti-unifier (AUAST3) con-structed from log Metho
 d In-vo-ca-tion AUAST nodes 
  []
 
-[7
-
-])
+)
 \tf@lof=\write7
  [8]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\symbo
@@ -1146,7 +1166,11 @@ l.12
 ] [2] [3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
- [4]) [5]
+ [4]
+
+LaTeX Warning: Reference `background' on page 5 undefined on input line 79.
+
+) [5]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er2.tex
 Chapter \bf {2}.
@@ -1175,8 +1199,8 @@ Chapter \bf {3}.
 
 
 
-] [14]
-Overfull \hbox (0.55852pt too wide) in paragraph at lines 62--65
+] [14] [15] [16] [17] [18]
+Overfull \hbox (0.55852pt too wide) in paragraph at lines 463--466
 []\OT1/ptm/m/n/12 As an ex-am-ple, the anti-unifier of two given terms $\OML/cm
 m/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 X; b\OT1/cmr/m/n/12 )$ \OT1/ptm/m/
 n/12 and $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a; Y\OT1/cmr/m/n/
@@ -1184,31 +1208,8 @@ n/12 and $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a; Y\OT1/cmr/m/n/
 cmm/m/it/12 X; Y\OT1/cmr/m/n/12 )$\OT1/ptm/m/n/12 ,
  []
 
-[15] [16] <Drawing4/AST.pdf, id=696, 1228.59pt x 975.645pt>
-File: Drawing4/AST.pdf Graphic file (type pdf)
-
-<use Drawing4/AST.pdf>
-Package pdftex.def Info: Drawing4/AST.pdf used on input line 182.
-(pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
- [17]
-Overfull \hbox (2.20827pt too wide) in paragraph at lines 199--208
-| \OT1/ptm/m/it/12 stringLit-eral\OT1/ptm/m/n/12 ([][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]), 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--208
-
- []
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 208--216
-
- []
-
-[19] [20 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
-age/Drawing4/AST.pdf>] [21] [22] [23] [24]
-Overfull \hbox (25.65228pt too wide) in paragraph at lines 464--465
+[19] [20] [21] [22]
+Overfull \hbox (25.65228pt too wide) in paragraph at lines 636--637
 \OT1/ptm/m/n/12 sults in los-ing the unique-ness of MSA. For ex-am-ple, con-sid
 er the terms $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 g\OT1/cmr/m/n
 /12 (\OML/cmm/m/it/12 a; e\OT1/cmr/m/n/12 ))$ \OT1/ptm/m/n/12 and $\OML/cmm/m/i
@@ -1217,159 +1218,204 @@ t/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a; b
 /cmr/m/n/12 ))$\OT1/ptm/m/n/12 .
  []
 
-[25] [26] <Drawing4/FirstCorr.pdf, id=808, 1228.59pt x 975.645pt>
+[23]) [24]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-1.tex
+Chapter \bf {4}.
+<Drawing4/AST.pdf, id=806, 1228.59pt x 975.645pt>
+File: Drawing4/AST.pdf Graphic file (type pdf)
+ <use Drawing4/AST.pdf>
+Package pdftex.def Info: Drawing4/AST.pdf used on input line 56.
+(pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
+
+[25
+
+
+
+] [26] [27 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pa
+ckage/Drawing4/AST.pdf>]
+Overfull \hbox (3.54039pt too wide) in paragraph at lines 73--82
+| \OT1/ptm/m/it/12 StringLit-eral\OT1/ptm/m/n/12 ([][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]), 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--82
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--90
+
+ []
+
+[28] [29] <Drawing4/FirstCorr.pdf, id=884, 1228.59pt x 975.645pt>
 File: Drawing4/FirstCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FirstCorr.pdf>
-Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 509.
+Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 98.
 (pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
- [27]
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no ƒ in font ptmr7t!
- [28 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
-Drawing4/FirstCorr.pdf>]) [29]
+ [30 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/FirstCorr.pdf>]) [31]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-1-1.tex
+Chapter \bf {5}.
+) [32
+
+
+
+]
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-2.tex
+Chapter \bf {6}.
+[33
+
+
+
+]
+File: Drawing4/FirstCorr.pdf Graphic file (type pdf)
+ <use Drawing4/FirstCorr.pdf>
+Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 143.
+(pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
+ [34] [35] [36]) [37]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4.tex
-Chapter \bf {4}.
+Chapter \bf {7}.
 
-Overfull \hbox (10.8296pt too wide) in paragraph at lines 5--6
-\OT1/ptm/m/n/12 In Chap-ter []3[] we pro-vided back-ground in-for-ma-tion on hi
-gher-order anti-unification mod-ulo theories---
- []
+LaTeX Warning: Reference `background' on page 38 undefined on input line 3.
 
-[30
+[38
 
 
 
 ]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 28.
+put line 26.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 31.
- <Drawing4/overview1.pdf, id=848, 1373.13pt x 1084.05pt>
+(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 29.
+ <Drawing4/overview1.pdf, id=956, 1373.13pt x 1084.05pt>
 File: Drawing4/overview1.pdf Graphic file (type pdf)
 
 <use Drawing4/overview1.pdf>
-Package pdftex.def Info: Drawing4/overview1.pdf used on input line 56.
+Package pdftex.def Info: Drawing4/overview1.pdf used on input line 54.
 (pdftex.def)             Requested size: 469.75502pt x 370.85481pt.
- [31]
+ [39]
 
-LaTeX Warning: Reference `ch3-AU' on page 32 undefined on input line 64.
+LaTeX Warning: Reference `ch3-AU' on page 40 undefined on input line 62.
 
-[32 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/D
+[40 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/D
 rawing4/overview1.pdf>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 74.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 72.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 74.
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 72.
 
 
-LaTeX Warning: Reference `back-str' on page 33 undefined on input line 74.
+LaTeX Warning: Reference `back-str' on page 41 undefined on input line 72.
 
-<Drawing4/structure1.pdf, id=877, 1806.75pt x 794.97pt>
+<Drawing4/structure1.pdf, id=986, 1806.75pt x 794.97pt>
 File: Drawing4/structure1.pdf Graphic file (type pdf)
 
 <use Drawing4/structure1.pdf>
-Package pdftex.def Info: Drawing4/structure1.pdf used on input line 81.
+Package pdftex.def Info: Drawing4/structure1.pdf used on input line 79.
 (pdftex.def)             Requested size: 469.74393pt x 260.1696pt.
- [33] [34 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
-kage/Drawing4/structure1.pdf>] [35] [36] [37]
-<Drawing4/FinalCorr.pdf, id=935, 1228.59pt x 975.645pt>
+ [41] [42 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
+kage/Drawing4/structure1.pdf>] [43] [44] [45]
+<Drawing4/FinalCorr.pdf, id=1044, 1228.59pt x 975.645pt>
 File: Drawing4/FinalCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FinalCorr.pdf>
-Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 184.
+Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 182.
 (pdftex.def)             Requested size: 469.75502pt x 373.04156pt.
- [38 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+ [46 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
 Drawing4/FinalCorr.pdf>]
-Overfull \hbox (1.36371pt too wide) in paragraph at lines 222--223
+Overfull \hbox (1.36371pt too wide) in paragraph at lines 220--221
 []\OT1/ptm/m/n/12 The num-ber of matches be-tween $[]$ and $[]$ is com-puted vi
 a the \OT1/ptm/m/sc/12 Compute-Matches
  []
 
-[39] [40]
-Overfull \hbox (42.44536pt too wide) in paragraph at lines 249--250
+[47] [48]
+Overfull \hbox (42.44536pt too wide) in paragraph at lines 247--248
 [] $[]\OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ([]\OML/cmm/m/it/
 12 ; []\OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ))$ 
  []
 
 
-Overfull \hbox (5.44478pt too wide) in paragraph at lines 299--300
+Overfull \hbox (5.44478pt too wide) in paragraph at lines 297--298
 \OT1/pcr/m/n/12 EXPRESSION[EXPRESSION[IDENTIFIER[\OT1/pcr/b/n/12 Log\OT1/pcr/m/
 n/12 ]], ARGUMENTS[QUALIFIER[IDENTI 
  []
 
-[41] [42] <Drawing4/structureAU.pdf, id=977, 939.51pt x 794.97pt>
+[49] [50] <Drawing4/structureAU.pdf, id=1085, 939.51pt x 794.97pt>
 File: Drawing4/structureAU.pdf Graphic file (type pdf)
 
 <use Drawing4/structureAU.pdf>
-Package pdftex.def Info: Drawing4/structureAU.pdf used on input line 303.
+Package pdftex.def Info: Drawing4/structureAU.pdf used on input line 301.
 (pdftex.def)             Requested size: 234.87692pt x 227.64839pt.
 
-<Drawing4/anti-unifier.pdf, id=982, 882.05536pt x 1280.38347pt>
+<Drawing4/anti-unifier.pdf, id=1090, 882.05536pt x 1280.38347pt>
 File: Drawing4/anti-unifier.pdf Graphic file (type pdf)
 
 <use Drawing4/anti-unifier.pdf>
-Package pdftex.def Info: Drawing4/anti-unifier.pdf used on input line 312.
+Package pdftex.def Info: Drawing4/anti-unifier.pdf used on input line 310.
 (pdftex.def)             Requested size: 375.80397pt x 585.3692pt.
- [43 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
-Drawing4/structureAU.pdf>] [44 <C:/Users/walker/Documents/Narges-Thesis/NewThes
+ [51 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/structureAU.pdf>] [52 <C:/Users/walker/Documents/Narges-Thesis/NewThes
 is/LaTex-template-package/Drawing4/anti-unifier.pdf>] <Drawing4/multipleLogging
-.pdf, id=1028, 1589.94pt x 939.51pt>
+.pdf, id=1137, 1589.94pt x 939.51pt>
 File: Drawing4/multipleLogging.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging.pdf>
-Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 357.
+Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 355.
 (pdftex.def)             Requested size: 469.75502pt x 277.58311pt.
- [45]
-<Drawing4/multipleLogging2.pdf, id=1060, 1589.94pt x 939.51pt>
+ [53]
+<Drawing4/multipleLogging2.pdf, id=1168, 1589.94pt x 939.51pt>
 File: Drawing4/multipleLogging2.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging2.pdf>
-Package pdftex.def Info: Drawing4/multipleLogging2.pdf used on input line 364.
+Package pdftex.def Info: Drawing4/multipleLogging2.pdf used on input line 362.
 (pdftex.def)             Requested size: 469.75502pt x 277.58311pt.
- [46 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
-Drawing4/multipleLogging.pdf>] [47 <C:/Users/walker/Documents/Narges-Thesis/New
-Thesis/LaTex-template-package/Drawing4/multipleLogging2.pdf>] [48] [49]
-<Drawing4/overview2.pdf, id=1153, 1084.05pt x 650.43pt>
+ [54 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/multipleLogging.pdf>] [55 <C:/Users/walker/Documents/Narges-Thesis/New
+Thesis/LaTex-template-package/Drawing4/multipleLogging2.pdf>] [56] [57]
+<Drawing4/overview2.pdf, id=1262, 1084.05pt x 650.43pt>
 File: Drawing4/overview2.pdf Graphic file (type pdf)
 
 <use Drawing4/overview2.pdf>
-Package pdftex.def Info: Drawing4/overview2.pdf used on input line 453.
+Package pdftex.def Info: Drawing4/overview2.pdf used on input line 451.
 (pdftex.def)             Requested size: 469.75502pt x 281.85297pt.
-) [50 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
+) [58 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
 /Drawing4/overview2.pdf>]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er5.tex
-Chapter \bf {5}.
-[51
+Chapter \bf {8}.
+[59
 
 
 
-]) [52]
+]) [60]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er6.tex
-Chapter \bf {6}.
-[53
+Chapter \bf {9}.
+[61
 
 
 
-]) [54]
+]) [62]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er7.tex
-Chapter \bf {7}.
-[55
+Chapter \bf {10}.
+[63
 
 
 
-] [56] [57] [58] [59] [60]) [61]
+] [64] [65] [66] [67] [68]) [69]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er8.tex
-Chapter \bf {8}.
-[62
+Chapter \bf {11}.
+[70
 
 
 
@@ -1380,14 +1426,14 @@ Missing character: There is no ¦ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ¦ in font ptmr7t!
-) [63]
+) [71]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
-thes1_root_0.bbl [64
+thes1_root_0.bbl [72
 
 
-] [65] [66] [67]) [68]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
+] [73] [74] [75]) [76]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 228.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 228.
 
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
 thes1_root_0.aux
@@ -1398,6 +1444,12 @@ er2.aux)
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er3.aux)
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-1.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-1-1.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
+er3-2.aux)
+(C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4.aux)
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er5.aux)
@@ -1407,10 +1459,10 @@ er6.aux)
 er7.aux)
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er8.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 228.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 228.
 Package rerunfilecheck Info: File `ucalgthes1_root_0.out' has not changed.
-(rerunfilecheck)             Checksum: 60EBEDEDCB13F730C7B910211AE7CA09;2971.
+(rerunfilecheck)             Checksum: 3F25AFDE68C5BF1C2E43E4D1C04A9B73;3485.
 
 
 LaTeX Warning: There were undefined references.
@@ -1418,13 +1470,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 222.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 228.
  ) 
 Here is how much of TeX's memory you used:
- 23428 strings out of 493921
- 444185 string characters out of 3147279
- 679276 words of memory out of 3000000
- 25738 multiletter control sequences out of 15000+200000
+ 24028 strings out of 493921
+ 454059 string characters out of 3147279
+ 708921 words of memory out of 3000000
+ 26292 multiletter control sequences out of 15000+200000
  46239 words of font info for 84 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  56i,28n,84p,1943b,1302s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1446,9 +1498,9 @@ iles/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ur
 w/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.p
 fb>
-Output written on ucalgthes1_root_0.pdf (78 pages, 2328534 bytes).
+Output written on ucalgthes1_root_0.pdf (86 pages, 2360650 bytes).
 PDF statistics:
- 1541 PDF objects out of 1728 (max. 8388607)
- 487 named destinations out of 1000 (max. 500000)
- 439 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1655 PDF objects out of 1728 (max. 8388607)
+ 512 named destinations out of 1000 (max. 500000)
+ 495 words of extra memory for PDF output out of 10000 (max. 10000000)
 
