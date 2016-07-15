@@ -41,25 +41,37 @@
 \contentsline {section}{\numberline {7.7}Multiple logging calls}{53}{section.7.7}
 \contentsline {section}{\numberline {7.8}Antiunifying a set of AUASTs}{57}{section.7.8}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {8}Evaluation}{59}{chapter.8}
-\contentsline {section}{\numberline {8.1}Experiment 1}{59}{section.8.1}
-\contentsline {section}{\numberline {8.2}Experiment 2}{60}{section.8.2}
-\contentsline {section}{\numberline {8.3}Results}{60}{section.8.3}
-\contentsline {section}{\numberline {8.4}Lessons learned}{60}{section.8.4}
+\contentsline {chapter}{\numberline {8}Experimental Studies}{59}{chapter.8}
+\contentsline {section}{\numberline {8.1}Experimental Setup}{59}{section.8.1}
+\contentsline {section}{\numberline {8.2}Study 1: Jigsaw}{60}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Setup}{61}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Results}{61}{subsection.8.2.2}
+\contentsline {section}{\numberline {8.3}Study 2: Detailed anti-unifier view}{63}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}Setup}{63}{subsection.8.3.1}
+\contentsline {subsection}{\numberline {8.3.2}Results}{64}{subsection.8.3.2}
+\contentsline {section}{\numberline {8.4}Study 3: Clustering}{66}{section.8.4}
+\contentsline {subsection}{\numberline {8.4.1}Setup}{67}{subsection.8.4.1}
+\contentsline {subsection}{\numberline {8.4.2}Results}{67}{subsection.8.4.2}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {9}Discussion}{61}{chapter.9}
-\contentsline {section}{\numberline {9.1}Threats to validity}{61}{section.9.1}
-\contentsline {section}{\numberline {9.2}Our tool output}{61}{section.9.2}
-\contentsline {section}{\numberline {9.3}Theoretical foundation}{62}{section.9.3}
+\contentsline {chapter}{\numberline {9}Evaluation}{68}{chapter.9}
+\contentsline {section}{\numberline {9.1}Experiment 1}{68}{section.9.1}
+\contentsline {section}{\numberline {9.2}Experiment 2}{69}{section.9.2}
+\contentsline {section}{\numberline {9.3}Results}{69}{section.9.3}
+\contentsline {section}{\numberline {9.4}Lessons learned}{69}{section.9.4}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {10}Related Work}{63}{chapter.10}
-\contentsline {section}{\numberline {10.1}Usage of logging}{63}{section.10.1}
-\contentsline {section}{\numberline {10.2}Correspondence}{65}{section.10.2}
-\contentsline {section}{\numberline {10.3}API usages patterns}{65}{section.10.3}
-\contentsline {section}{\numberline {10.4}Anti-unification}{66}{section.10.4}
-\contentsline {section}{\numberline {10.5}Clustering}{67}{section.10.5}
-\contentsline {section}{\numberline {10.6}Summary}{68}{section.10.6}
+\contentsline {chapter}{\numberline {10}Discussion}{70}{chapter.10}
+\contentsline {section}{\numberline {10.1}Threats to validity}{70}{section.10.1}
+\contentsline {section}{\numberline {10.2}Our tool output}{70}{section.10.2}
+\contentsline {section}{\numberline {10.3}Theoretical foundation}{71}{section.10.3}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {11}Conclusion}{70}{chapter.11}
-\contentsline {section}{\numberline {11.1}Future Work}{71}{section.11.1}
+\contentsline {chapter}{\numberline {11}Related Work}{72}{chapter.11}
+\contentsline {section}{\numberline {11.1}Usage of logging}{72}{section.11.1}
+\contentsline {section}{\numberline {11.2}Correspondence}{74}{section.11.2}
+\contentsline {section}{\numberline {11.3}API usages patterns}{74}{section.11.3}
+\contentsline {section}{\numberline {11.4}Anti-unification}{75}{section.11.4}
+\contentsline {section}{\numberline {11.5}Clustering}{76}{section.11.5}
+\contentsline {section}{\numberline {11.6}Summary}{77}{section.11.6}
+\addvspace {10pt}
+\contentsline {chapter}{\numberline {12}Conclusion}{79}{chapter.12}
+\contentsline {section}{\numberline {12.1}Future Work}{80}{section.12.1}
 \addvspace {10pt}

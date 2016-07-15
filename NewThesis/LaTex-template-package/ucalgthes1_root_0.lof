@@ -43,6 +43,14 @@
 \contentsline {figure}{\numberline {7.11}{\ignorespaces Create multiple copies of Example 2 for each logging call.\relax }}{57}{figure.caption.45}
 \contentsline {figure}{\numberline {7.12}{\ignorespaces Anti-unification of 4 AUAST nodes using an agglomerative hierarchical clustering algorithm. The threshold value indicates the number of clusters we will come up with.\relax }}{58}{figure.caption.46}
 \addvspace {10pt}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Logged Java methods used as our test suit; all are contained in the \textsf {\fontsize 10.95{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \belowdisplayskip \abovedisplayskip \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini {\parsep 4.5\p@ plus 2\p@ minus 1\p@ \itemsep \parsep \topsep 9\p@ plus 3\p@ minus 5\p@ }org.gjt.sp.jedit} package.\relax }}{60}{figure.caption.47}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LJMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{62}{figure.caption.48}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }}{63}{figure.caption.49}
+\contentsline {figure}{\numberline {8.4}{\ignorespaces 10 sample logged Java method pairs used as test cases.\relax }}{65}{figure.caption.50}
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Results of constructing anti-unifiers with a focus on logging calls for the 55 test cases.\relax }}{65}{figure.caption.51}
+\contentsline {figure}{\numberline {8.6}{\ignorespaces A similarity graph representing pairwise similarities calculated by our tool between LJMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{66}{figure.caption.52}
+\contentsline {figure}{\numberline {8.7}{\ignorespaces Results from applying the clustering tool to the test suite.\relax }}{67}{figure.caption.53}
+\addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

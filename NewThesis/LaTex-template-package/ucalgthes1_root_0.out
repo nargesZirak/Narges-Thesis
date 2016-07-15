@@ -34,21 +34,32 @@
 \BOOKMARK [1][-]{section.7.6}{Constructing the anti-unifier}{chapter.7}% 34
 \BOOKMARK [1][-]{section.7.7}{Multiple logging calls}{chapter.7}% 35
 \BOOKMARK [1][-]{section.7.8}{Antiunifying a set of AUASTs}{chapter.7}% 36
-\BOOKMARK [0][-]{chapter.8}{Evaluation}{}% 37
-\BOOKMARK [1][-]{section.8.1}{Experiment 1}{chapter.8}% 38
-\BOOKMARK [1][-]{section.8.2}{Experiment 2}{chapter.8}% 39
-\BOOKMARK [1][-]{section.8.3}{Results}{chapter.8}% 40
-\BOOKMARK [1][-]{section.8.4}{Lessons learned}{chapter.8}% 41
-\BOOKMARK [0][-]{chapter.9}{Discussion}{}% 42
-\BOOKMARK [1][-]{section.9.1}{Threats to validity}{chapter.9}% 43
-\BOOKMARK [1][-]{section.9.2}{Our tool output}{chapter.9}% 44
-\BOOKMARK [1][-]{section.9.3}{Theoretical foundation}{chapter.9}% 45
-\BOOKMARK [0][-]{chapter.10}{Related Work}{}% 46
-\BOOKMARK [1][-]{section.10.1}{Usage of logging}{chapter.10}% 47
-\BOOKMARK [1][-]{section.10.2}{Correspondence}{chapter.10}% 48
-\BOOKMARK [1][-]{section.10.3}{API usages patterns}{chapter.10}% 49
-\BOOKMARK [1][-]{section.10.4}{Anti-unification}{chapter.10}% 50
-\BOOKMARK [1][-]{section.10.5}{Clustering}{chapter.10}% 51
-\BOOKMARK [1][-]{section.10.6}{Summary}{chapter.10}% 52
-\BOOKMARK [0][-]{chapter.11}{Conclusion}{}% 53
-\BOOKMARK [1][-]{section.11.1}{Future Work}{chapter.11}% 54
+\BOOKMARK [0][-]{chapter.8}{Experimental Studies}{}% 37
+\BOOKMARK [1][-]{section.8.1}{Experimental Setup}{chapter.8}% 38
+\BOOKMARK [1][-]{section.8.2}{Study 1: Jigsaw}{chapter.8}% 39
+\BOOKMARK [2][-]{subsection.8.2.1}{Setup}{section.8.2}% 40
+\BOOKMARK [2][-]{subsection.8.2.2}{Results}{section.8.2}% 41
+\BOOKMARK [1][-]{section.8.3}{Study 2: Detailed anti-unifier view}{chapter.8}% 42
+\BOOKMARK [2][-]{subsection.8.3.1}{Setup}{section.8.3}% 43
+\BOOKMARK [2][-]{subsection.8.3.2}{Results}{section.8.3}% 44
+\BOOKMARK [1][-]{section.8.4}{Study 3: Clustering}{chapter.8}% 45
+\BOOKMARK [2][-]{subsection.8.4.1}{Setup}{section.8.4}% 46
+\BOOKMARK [2][-]{subsection.8.4.2}{Results}{section.8.4}% 47
+\BOOKMARK [0][-]{chapter.9}{Evaluation}{}% 48
+\BOOKMARK [1][-]{section.9.1}{Experiment 1}{chapter.9}% 49
+\BOOKMARK [1][-]{section.9.2}{Experiment 2}{chapter.9}% 50
+\BOOKMARK [1][-]{section.9.3}{Results}{chapter.9}% 51
+\BOOKMARK [1][-]{section.9.4}{Lessons learned}{chapter.9}% 52
+\BOOKMARK [0][-]{chapter.10}{Discussion}{}% 53
+\BOOKMARK [1][-]{section.10.1}{Threats to validity}{chapter.10}% 54
+\BOOKMARK [1][-]{section.10.2}{Our tool output}{chapter.10}% 55
+\BOOKMARK [1][-]{section.10.3}{Theoretical foundation}{chapter.10}% 56
+\BOOKMARK [0][-]{chapter.11}{Related Work}{}% 57
+\BOOKMARK [1][-]{section.11.1}{Usage of logging}{chapter.11}% 58
+\BOOKMARK [1][-]{section.11.2}{Correspondence}{chapter.11}% 59
+\BOOKMARK [1][-]{section.11.3}{API usages patterns}{chapter.11}% 60
+\BOOKMARK [1][-]{section.11.4}{Anti-unification}{chapter.11}% 61
+\BOOKMARK [1][-]{section.11.5}{Clustering}{chapter.11}% 62
+\BOOKMARK [1][-]{section.11.6}{Summary}{chapter.11}% 63
+\BOOKMARK [0][-]{chapter.12}{Conclusion}{}% 64
+\BOOKMARK [1][-]{section.12.1}{Future Work}{chapter.12}% 65
