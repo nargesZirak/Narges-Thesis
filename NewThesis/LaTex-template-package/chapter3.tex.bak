@@ -465,24 +465,32 @@ As an example, the anti-unifier of two given terms $f(X,b)$ and $f(a,Y)$ is the 
 In addition, the unifier $f(a,b)$ of the two terms can be instantiated by applying the substitutions $\Theta_1'=X\xrightarrow{\Theta}a$ and $\Theta_2'=Y\xrightarrow{\Theta}b$ on the terms $f(X,b)$ and $f(a,Y)$, respectively.
 
 \begin{figure} [t]
-  \[
-\begin{tikzcd}[column sep=small]
-&
-  {\makecell[l]{\hspace{0.4cm}f(X,Y)\\\text{anti-unifier}}}
-  \arrow{dr}{\Theta_2 = X \rightarrow a}
-  \arrow[->,swap]{dl}{\Theta_1 = Y \rightarrow b} % <-- reflect the direction of the hook
-\\
-f(X,b)
- \arrow[->,swap]{dr}{\Theta_1' = X \rightarrow a}
- %\arrow{dr}
-&&
-f(a, Y)
-  \arrow{dl}{\Theta_2' = Y \rightarrow b}
-  \\
-&
-{\makecell[l]{f(a,b)\\\text{unifier}}}
-\end{tikzcd}
-\]
+\centering\begin{tikzpicture}
+\node(au) at (5,2) {\parbox{2cm}{\begin{center}\fbox{$f(X,Y)$}\\*[3pt]\text{anti-unifier}\end{center}}};
+\node(left) at (2,0) {\fbox{\mbox{$f(X,b)$}}};
+\node(right) at (8,0) {\fbox{\mbox{$g(a,Y)$}}};
+\node(u) at (5,-2) {\parbox{2cm}{\begin{center}\fbox{$f(a,b)$}\\*[3pt]\text{unifier}\end{center}}};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = Y \rightarrow b$\hspace*{2cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2 = X \rightarrow a$}};
+\draw[->](left) -- (u) node[pos=0.5, below]{\mbox{\scriptsize $\Theta_1' = X \rightarrow a$\hspace*{2cm}}};
+\draw[->](right) -- (u) node[pos=0.5, below]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2' = Y \rightarrow b$}};
+\end{tikzpicture}
+%  {\makecell[l]{\hspace{0.4cm}f(X,Y)\\\text{anti-unifier}}}
+%  \arrow{dr}{\Theta_2 = X \rightarrow a}
+%  \arrow[->,swap]{dl}{\Theta_1 = Y \rightarrow b} % <-- reflect the direction of the hook
+%\\
+%f(X,b)
+% \arrow[->,swap]{dr}{\Theta_1' = X \rightarrow a}
+% %\arrow{dr}
+%&&
+%f(a, Y)
+%  \arrow{dl}{\Theta_2' = Y \rightarrow b}
+%  \\
+%&
+%{\makecell[l]{f(a,b)\\\text{unifier}}}
+%\end{tikzcd}
+%\]
   \caption{Unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.}
   \label{fig:uni-anti-uni}
 \end{figure}
@@ -490,38 +498,28 @@ f(a, Y)
 The MSA should preserve as much of common pieces of both original terms as possible; however, first-order anti-unification fails to capture complex commonalities as it restricts substitutions to only replace first-order variables by terms. That is, when two terms differ in function symbols, first-order anti-unification fails to capture common details of them. For example, the first-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ as depicted in Figure~\ref{fig:first-anti-uni}.
 
 \begin{figure}[t]
-\[
-\begin{tikzcd}[column sep=small]
-&
-  X
-  \arrow{dr}{\Theta_2 = X \rightarrow g(a,b)}
-  \arrow[->,swap]{dl}{\Theta_1 = X \rightarrow f(a,b)} % <-- reflect the direction of the hook
-\\
-f(a,b)
-&&
-g(a,b)
-\end{tikzcd}
-\]
-  \caption{First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.}
-  \label{fig:first-anti-uni}
+\centering\begin{tikzpicture}
+\node(au) at (5,2) {\fbox{\mbox{$X$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
+\node(right) at (8,0) {\fbox{\mbox{$g(a,b)$}}};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = X \rightarrow f(a,b)$\hspace*{2cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2 = X \rightarrow g(a,b)$}};
+\end{tikzpicture}
+\caption{First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\label{fig:first-anti-uni}}
 \end{figure}
 
 Higher-order anti-unification would allow us to create the MSA by extending the set of possible substitutions such that variables can be replaced not only by terms but also by function symbols in order to retain the detailed commonalities. For example, the higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.
 \begin{figure}[t]
-\[
-\begin{tikzcd}[column sep=small]
-&
-  X(a,b)
-  \arrow{dr}{\Theta_2 = X \rightarrow g}
-  \arrow[->,swap]{dl}{\Theta_1 = X \rightarrow f} % <-- reflect the direction of the hook
-\\
-f(a,b)
-&&
-g(a,b)
-\end{tikzcd}
-\]
-  \caption{Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.}
-  \label{fig:higher-anti-uni}
+\centering\begin{tikzpicture}
+\node(au) at (5,2) {\fbox{\mbox{$X(a,b)$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
+\node(right) at (8,0) {\fbox{\mbox{$g(a,b)$}}};
+%
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = X \rightarrow f$\hspace*{2cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2 = X \rightarrow g$}};
+\end{tikzpicture}
+\caption{Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\label{fig:higher-anti-uni}}
 \end{figure}
 
 \section{Higher-Order Anti-unification Modulo Equational Theories}\label{HOAUMT}
@@ -601,14 +599,12 @@ We have also introduced a theory, called \NIL{}-theory, that adds the concept of
 %
 \draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X \rightarrow f, Y \rightarrow a)$\hspace*{3cm}}};
 \draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{3.5cm}\scriptsize $\Theta_2 = ( X \rightarrow \NIL{}, Y \rightarrow \NIL{})$}};
-%  \arrow{dr}{\Theta_2 = ( X \rightarrow \NIL{}, Y \rightarrow \NIL{}) }
-%  \arrow[->,swap]{dl}{\Theta_1 = ( X \rightarrow f, Y \rightarrow a)} % <-- reflect the direction of the hook
 \end{tikzpicture}
 \caption{Anti-unification of the terms $f(a, b)$ and $\NIL{}(\NIL{},b)$.\label{fig:anti-nil}}
 \end{figure}
 
 
-We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the Java language specification as it provides various ways to define the same language specifications. These theories should be applied on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. For example, consider \code{for}- and \code{while}-statements that are two types of looping structure in Java programming language: they have different syntax but semantically cover the same concept. Let us look at the code snippets \code{for(i=0;i<10;i++)} and \code{while(i<10)}, whose ASTs can be represented as \code{for(}\textit{Initializer}(\code{i}, \code{0})\code{;} \textit{LessThanExpression}(\code{i}, \code{10})\code{;} \textit{Updaters}(\textit{PostIncrementExpression}(\code{i}))) and \code{while}(\textit{LessThanExpression}(\code{i}, \code{10})), respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of \code{for}- and \code{while}-statements. We also need to utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}, \NIL{}), \textit{LessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_E$ to \code{while}(\textit{LessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{LessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
+We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the Java language specification as it provides various ways to define the same language specifications. These theories should be applied on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. For example, consider \code{for}- and \code{while}-statements that are two types of looping structure in Java programming language: they have different syntax but semantically cover the same concept. Let us look at the code snippets \code{for(i=0;i<10;i++)} and \code{while(i<10)}, whose ASTs can be represented as \code{for(}\textit{Initializer}(\code{i}, \code{0})\code{;} \textit{LessThanExpression}(\code{i}, \code{10})\code{;} \textit{Updaters}(\textit{PostIncrementExpression}(\code{i}))) and \code{while}(\textit{LessThanExpression}(\code{i}, \code{10})), respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of \code{for}- and \code{while}-statements. We also need to utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}), \textit{LessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_E$ to \code{while}(\textit{LessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{LessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
 
 \begin{figure}[t]
 \centering\begin{tikzpicture}
