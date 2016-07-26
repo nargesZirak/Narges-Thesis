@@ -1,45 +1,38 @@
+
 \chapter{Conclusion}  \label{conc}
-\begin{itemize} [leftmargin=.01in]
-\item Determining the detailed structural similarities and differences between source code fragments is a complex task
-\item It can be applied to solve several source code analysis problems, for example, characterizing logging practices
-\item logging is a pervasive practice and has various applications in software development and maintenance
-\item However, it is a challenging task for developers to understand how to use logging calls in the source code
-\item We have presented an approach to characterize where logging calls happen in the source code by means of structural generalization
-\item We have developed a prototype tool that:
-\begin{itemize} [leftmargin=.3in]
-\item detects potential structural correspondences using anti-unification
-\item uses several constraint to remove the correspondences that are not suited to our application
-\item determines the best correspondences with the highest similarity
-\item constructs the structural generalizations using anti-unification
-\item classifies the entities using a measure of similarity
-\end{itemize}
-\item An experiment is conducted to evaluate our approach and tool
-\item Our experiment found that ...
-\item An experiment is conducted to characterize logging usage in three software systems
-\item In summary, our study makes the following contributions:
-\begin{itemize} [leftmargin=.3in]
-\item …
-\item …
+Determining the detailed structural similarities and differences between a set of source code fragments is a complex task, and it can be applied to solve several source code analysis problems. As a specific application, the focus of this study is on detecting usage patterns of logging calls in source code via structural generalization and clustering.
+
+Logging is a pervasive practice and has various applications in software development and maintenance. However, it is a challenging task for developers to understand how to use logging calls in source code. We have presented an approach to characterize where logging calls happen in source code by means of structural generalization and clustering. 
+I have developed a prototype tool implementing my proposed approach that proceeds in three steps. First, it extracts the ASTs of logged Java methods using the Eclipse JDT framework and determines potential structural correspondences between the AST nodes via the Jigsaw framework. Second, it constructs an anti-unifier form ASTs of two given LJMs with a focus on logging calls through the implementation of higher-order anti-unification modulo theories. Due to the problem of undecidability of HOAUMT, it employs an approximation technique which greedily determines the best correspondence for each node with the highest similarity. It applies several constraints prior to determining the best correspondences to prevent the anti-unification of logging calls with anything else. It also develops a measure of structural similarity that determines how similar is the usage of logging calls in these Java methods.  Third, it classifies a set of logged Java methods via a hierarchical clustering algorithm suited to our application.
+
+% uses several constraints to remove the correspondences that are not suited to our application
+%it is a challenging task for developers to decide where, when, and what to log and their decisions can mainly affect the quality of logging.
+
+We have conducted three experiments to evaluate the effectiveness of our approach in constructing structural generalizations and classifying Java methods that use logging calls.
+I found that my tool was successful in determining correct correspondences for my application in \% of test cases. It was also successful in classifying logged Java methods into separate clusters using a similarity measure that indicates how similar logged Java methods are with a focus on the usage of logging calls. Furthermore, An study was conducted to describe the commonalities and differences between the usage of logging calls in the source code of three software systems via our tool that describes logging usage patterns on a per system and between systems method-granularity basis. Our characterization study shows …
+
+
+In summary, our study makes the following contributions:
+\begin{itemize} [leftmargin=.4in]
+\item An approach to construct a structural generalization from AST structures of two logged Java methods with special attention to logging usage by determining structural correspondences between the ASTs via the Jigsaw framework and an approximated higher-order anti-unification modulo theories algorithm. 
+\item An approach to develop a similarity measure that determines how similar two logged Java methods are with a focus on logging usage. 
+\item An approach for classifying a set of ASTs via a hierarchical clustering algorithm. 
+\item An approach for detecting usage patterns of logging calls in source code via structural generalization and clustering.
 \end{itemize}
 
+
 \section{Future Work}  \label{fw}
-\item Future extensions could be applied to resolve the pitfalls of this study:
-\begin{itemize} [leftmargin=.3in]
-\item Data flow analysis techniques: to resolve the problem of inaccurate statement ordering
-\item Further analysis: to detect and resolve all the conflicts happen in deciding the best correspondences
+Future extensions could be applied to resolve the remaining problems of this study:
+\begin{itemize} [leftmargin=.4in]
+\item Data flow analysis techniques: to resolve the problem of inaccurate node ordering. 
+\item Further analysis: to detect and resolve all the conflicts happen in deciding the best correspondences. 
 \end{itemize}
-\item To further validate our findings from the source code analysis:
-\begin{itemize} [leftmargin=.3in]
-\item a survey can be conducted to ask developers on the factors they consider when they want to decide on where to log
-\end{itemize}
-\item Characterizing logging usage could be a huge step towards
-\begin{itemize} [leftmargin=.3in]
-\item improving logging practices by providing some guidelines that might help developers in making decisions about where to
-log.
-\item developing recommendation support tools:
-\begin{itemize} [leftmargin=.3in]
-\item to save developers\textquotesingle time and effort
-\item to improve the quality of logging practices
-\end{itemize}
-\end{itemize}
-\end{itemize} 
+
+Characterizing logging usage could be a huge step towards improving logging practices through the provision of some guidelines that might help developers in making decisions about where to log. We believe that further studies could be conducted to investigate the feasibility of predicting the location of logging calls based on the detected usage patterns. Future work can also be done to develop recommendation tool supports that not only save developers’ time and effort for making decisions about where to log, but also improve the quality of logging practices. 
+
+To further validate the findings of our characterization study, the source code analysis can be performed on more software systems. In addition, a survey can be conducted to ask developers on the factors they consider to decide on where to log. It might also be helpful to recognize important structural and semantic information that should be taken into account for characterizing logging usage.
+
+%Future studies can reduce our doubts about the accuracy of our characterization study by source code analysis of more software systems or by conducting a survey to ask developers about how they decide on where to log. 
+% We believe that further studies to extract contextual characteristics of logged code snippets
+%??
+

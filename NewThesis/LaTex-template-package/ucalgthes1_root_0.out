@@ -19,47 +19,44 @@
 \BOOKMARK [0][-]{chapter.4}{Background: Eclipse JDT and Jigsaw}{}% 19
 \BOOKMARK [1][-]{section.4.1}{Eclipse JDT}{chapter.4}% 20
 \BOOKMARK [1][-]{section.4.2}{The Jigsaw framework}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.3}{Summary}{chapter.4}% 22
-\BOOKMARK [0][-]{chapter.5}{An Assessment of Jigsaw}{}% 23
-\BOOKMARK [0][-]{chapter.6}{Anti-unification ASTs}{}% 24
-\BOOKMARK [1][-]{section.6.1}{Constructing the AUAST}{chapter.6}% 25
-\BOOKMARK [1][-]{section.6.2}{Evaluation}{chapter.6}% 26
-\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 27
-\BOOKMARK [0][-]{chapter.7}{Anti-unification of Logged Java Classes}{}% 28
-\BOOKMARK [1][-]{section.7.1}{Constructing the AUAST}{chapter.7}% 29
-\BOOKMARK [1][-]{section.7.2}{Determining Correspondences Using Jigsaw}{chapter.7}% 30
-\BOOKMARK [1][-]{section.7.3}{Constraints in Determining Correspondences}{chapter.7}% 31
-\BOOKMARK [1][-]{section.7.4}{Determining Correspondences}{chapter.7}% 32
-\BOOKMARK [1][-]{section.7.5}{Computing Similarity}{chapter.7}% 33
-\BOOKMARK [1][-]{section.7.6}{Constructing the anti-unifier}{chapter.7}% 34
-\BOOKMARK [1][-]{section.7.7}{Multiple logging calls}{chapter.7}% 35
-\BOOKMARK [1][-]{section.7.8}{Antiunifying a set of AUASTs}{chapter.7}% 36
-\BOOKMARK [0][-]{chapter.8}{Experimental Studies}{}% 37
-\BOOKMARK [1][-]{section.8.1}{Experimental Setup}{chapter.8}% 38
-\BOOKMARK [1][-]{section.8.2}{Study 1: Jigsaw}{chapter.8}% 39
-\BOOKMARK [2][-]{subsection.8.2.1}{Setup}{section.8.2}% 40
-\BOOKMARK [2][-]{subsection.8.2.2}{Results}{section.8.2}% 41
-\BOOKMARK [1][-]{section.8.3}{Study 2: Detailed anti-unifier view}{chapter.8}% 42
-\BOOKMARK [2][-]{subsection.8.3.1}{Setup}{section.8.3}% 43
-\BOOKMARK [2][-]{subsection.8.3.2}{Results}{section.8.3}% 44
-\BOOKMARK [1][-]{section.8.4}{Study 3: Clustering}{chapter.8}% 45
-\BOOKMARK [2][-]{subsection.8.4.1}{Setup}{section.8.4}% 46
-\BOOKMARK [2][-]{subsection.8.4.2}{Results}{section.8.4}% 47
-\BOOKMARK [0][-]{chapter.9}{Evaluation}{}% 48
-\BOOKMARK [1][-]{section.9.1}{Experiment 1}{chapter.9}% 49
-\BOOKMARK [1][-]{section.9.2}{Experiment 2}{chapter.9}% 50
-\BOOKMARK [1][-]{section.9.3}{Results}{chapter.9}% 51
-\BOOKMARK [1][-]{section.9.4}{Lessons learned}{chapter.9}% 52
-\BOOKMARK [0][-]{chapter.10}{Discussion}{}% 53
-\BOOKMARK [1][-]{section.10.1}{Threats to validity}{chapter.10}% 54
-\BOOKMARK [1][-]{section.10.2}{Our tool output}{chapter.10}% 55
-\BOOKMARK [1][-]{section.10.3}{Theoretical foundation}{chapter.10}% 56
-\BOOKMARK [0][-]{chapter.11}{Related Work}{}% 57
-\BOOKMARK [1][-]{section.11.1}{Usage of logging}{chapter.11}% 58
-\BOOKMARK [1][-]{section.11.2}{Correspondence}{chapter.11}% 59
-\BOOKMARK [1][-]{section.11.3}{API usages patterns}{chapter.11}% 60
-\BOOKMARK [1][-]{section.11.4}{Anti-unification}{chapter.11}% 61
-\BOOKMARK [1][-]{section.11.5}{Clustering}{chapter.11}% 62
-\BOOKMARK [1][-]{section.11.6}{Summary}{chapter.11}% 63
-\BOOKMARK [0][-]{chapter.12}{Conclusion}{}% 64
-\BOOKMARK [1][-]{section.12.1}{Future Work}{chapter.12}% 65
+\BOOKMARK [1][-]{section.4.3}{An Assessment of Jigsaw}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.4}{Summary}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Anti-unification of a pair of AUASTs}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Constructing the AUAST}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.2}{Determining potential correspondences using the Jigsaw framework}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.3}{Constraints in Determining Correspondences}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.4}{Determining Correspondences}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.5}{Constructing the anti-unifier}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.6}{Computing Similarity}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.7}{Multiple logging calls}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.8}{An assessment of the anti-unifier-building tool}{chapter.5}% 32
+\BOOKMARK [2][-]{subsection.5.8.1}{Setup}{section.5.8}% 33
+\BOOKMARK [2][-]{subsection.5.8.2}{Results}{section.5.8}% 34
+\BOOKMARK [1][-]{section.5.9}{Summary}{chapter.5}% 35
+\BOOKMARK [0][-]{chapter.6}{Anti-unification of a set of AUASTs}{}% 36
+\BOOKMARK [1][-]{section.6.1}{Anti-unifying a set of AUASTs}{chapter.6}% 37
+\BOOKMARK [1][-]{section.6.2}{An Assessment of Clustering tool}{chapter.6}% 38
+\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 39
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 40
+\BOOKMARK [1][-]{section.7.1}{Experiment 1}{chapter.7}% 41
+\BOOKMARK [1][-]{section.7.2}{Experiment 2}{chapter.7}% 42
+\BOOKMARK [1][-]{section.7.3}{Results}{chapter.7}% 43
+\BOOKMARK [1][-]{section.7.4}{Lessons learned}{chapter.7}% 44
+\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 45
+\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 46
+\BOOKMARK [1][-]{section.8.2}{Our tool output}{chapter.8}% 47
+\BOOKMARK [2][-]{subsection.8.2.1}{Node ordering mismatch}{section.8.2}% 48
+\BOOKMARK [2][-]{subsection.8.2.2}{handle conflicts in constructing the anti-unifiers}{section.8.2}% 49
+\BOOKMARK [1][-]{section.8.3}{Other applications}{chapter.8}% 50
+\BOOKMARK [1][-]{section.8.4}{Anti-Unification}{chapter.8}% 51
+\BOOKMARK [1][-]{section.8.5}{Comparison with the Jigsaw tool}{chapter.8}% 52
+\BOOKMARK [1][-]{section.8.6}{Summary}{chapter.8}% 53
+\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 54
+\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 55
+\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 56
+\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 57
+\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 58
+\BOOKMARK [1][-]{section.9.5}{Clustering}{chapter.9}% 59
+\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 60
+\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 61
+\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 62
