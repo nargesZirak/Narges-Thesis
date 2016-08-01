@@ -1,0 +1,67 @@
+\BOOKMARK [0][-]{section*.2}{Abstract}{}% 1
+\BOOKMARK [0][-]{section*.3}{Acknowledgements}{}% 2
+\BOOKMARK [0][-]{chapter*.5}{Table of Contents}{}% 3
+\BOOKMARK [0][-]{chapter*.7}{List of Tables}{}% 4
+\BOOKMARK [0][-]{chapter*.9}{List of Figures}{}% 5
+\BOOKMARK [0][-]{chapter*.11}{List of Symbols}{}% 6
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 7
+\BOOKMARK [1][-]{section.1.1}{Programmatic support for logging}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Broad thesis overview}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{Thesis Statement}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{Thesis Organization}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{Motivational Scenario}{}% 12
+\BOOKMARK [1][-]{section.2.1}{Summary}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Background: Abstract Syntax Trees and Anti-unification}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Concrete syntax trees and abstract syntax trees}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{First-order anti-unification}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{Higher-Order anti-unification modulo equational theories}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.4}{Summary}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{Determining Structural Correspondences}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Eclipse JDT}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{The Correspondence tool}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.2.1}{Constructing the AUAST}{section.4.2}% 22
+\BOOKMARK [2][-]{subsection.4.2.2}{The Jigsaw framework}{section.4.2}% 23
+\BOOKMARK [2][-]{subsection.4.2.3}{Determining structural correspondences}{section.4.2}% 24
+\BOOKMARK [1][-]{section.4.3}{An Assessment of the Correspondence tool}{chapter.4}% 25
+\BOOKMARK [2][-]{subsection.4.3.1}{Setup}{section.4.3}% 26
+\BOOKMARK [2][-]{subsection.4.3.2}{Results}{section.4.3}% 27
+\BOOKMARK [1][-]{section.4.4}{Summary}{chapter.4}% 28
+\BOOKMARK [0][-]{chapter.5}{Costructing Structural Generalizations}{}% 29
+\BOOKMARK [1][-]{section.5.1}{The Anti-unifier building tool}{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.1.1}{Applying constraints in determining correspondences}{section.5.1}% 31
+\BOOKMARK [2][-]{subsection.5.1.2}{Determining best correspondences}{section.5.1}% 32
+\BOOKMARK [2][-]{subsection.5.1.3}{Constructing the anti-unifier}{section.5.1}% 33
+\BOOKMARK [2][-]{subsection.5.1.4}{Computing similarity between AUASTs}{section.5.1}% 34
+\BOOKMARK [2][-]{subsection.5.1.5}{Java methods containing multiple logging calls}{section.5.1}% 35
+\BOOKMARK [1][-]{section.5.2}{An assessment of the anti-unifier-building tool}{chapter.5}% 36
+\BOOKMARK [2][-]{subsection.5.2.1}{Setup}{section.5.2}% 37
+\BOOKMARK [2][-]{subsection.5.2.2}{Results}{section.5.2}% 38
+\BOOKMARK [1][-]{section.5.3}{Summary}{chapter.5}% 39
+\BOOKMARK [0][-]{chapter.6}{Clustering}{}% 40
+\BOOKMARK [1][-]{section.6.1}{The Clustering tool}{chapter.6}% 41
+\BOOKMARK [1][-]{section.6.2}{An Assessment of the Clustering tool}{chapter.6}% 42
+\BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 43
+\BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 44
+\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 45
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 46
+\BOOKMARK [1][-]{section.7.1}{Experiment 1}{chapter.7}% 47
+\BOOKMARK [1][-]{section.7.2}{Experiment 2}{chapter.7}% 48
+\BOOKMARK [1][-]{section.7.3}{Results}{chapter.7}% 49
+\BOOKMARK [1][-]{section.7.4}{Lessons learned}{chapter.7}% 50
+\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 51
+\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 52
+\BOOKMARK [1][-]{section.8.2}{Our tool output}{chapter.8}% 53
+\BOOKMARK [2][-]{subsection.8.2.1}{Node ordering mismatch}{section.8.2}% 54
+\BOOKMARK [2][-]{subsection.8.2.2}{handle conflicts in constructing the anti-unifiers}{section.8.2}% 55
+\BOOKMARK [1][-]{section.8.3}{Other applications}{chapter.8}% 56
+\BOOKMARK [1][-]{section.8.4}{Applications of anti-Unification}{chapter.8}% 57
+\BOOKMARK [1][-]{section.8.5}{Summary}{chapter.8}% 58
+\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 59
+\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 60
+\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 61
+\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 62
+\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 63
+\BOOKMARK [1][-]{section.9.5}{Clustering}{chapter.9}% 64
+\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 65
+\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 66
+\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 67
