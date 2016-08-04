@@ -4,6 +4,7 @@ Printing messages to the console or to a log file is an integral part of softwar
 are commonly used to print something on console. However, the availability of tools, frameworks, and APIs for logging that offers more powerful and advanced Java logging features, flexibility, and improvement in logging quality suggests that using \name{print} statements is not sufficient for real-world applications.
 %?
 
+
 The logging framework offers many more features that are not possible using \name{print} statements. In most logging frameworks (e.g., \name{log4j}, \name{SLF4j}, \name{java.util.logging}), different verbosity levels of logging are available for use. That is, by logging at a particular log level, messages will get logged for that level and all levels above it and not for the levels below. As an example, \name{debug} log level messages can be used in a test environment, while \name{error} log level messages can be used in a production environment. This feature not only produces fewer log messages for each level, but also improves the performance of an application. In addition, most logging frameworks allow the production of formatted log messages, which makes it easier for a developer to monitor the behaviour of a system. Furthermore, when one is working on a server side application, the only way to know what is going on inside the server is by monitoring the log file. Although logging is a valuable practice for software development and maintenance, it imposes extra time and energy on developers to write, test, and run the code, while affecting the application performance. As latency and speed are major concerns for most software systems, it is necessary  for a developer to understand and learn logging in great detail in order to perform it in an efficient manner.
 
 To illustrate the inherent challenges of effectively performing logging practices in software systems, one may consider a scenario in which a developer is asked to log an event-based mechanism of a text editor tool written in the Java programming language. In this scenario, the developer is trying to log a Java class of this system (Figure~\ref{ch2-ex}) using the \name{log4j} logging framework. She knows that components of this application register with the \code{EditBus} class to receive messages that reflect changes in the application's state, and that the \code{EditBus} class maintains a list of components that have requested to receive messages. That is, when a message is sent using this class, all registered components receive it in turn. Furthermore, any classes that subscribe to the \code{EditBus} and implement the \code{EBComponent} interface define the method \code{EBComponent.handleMessage(EBMessage)} to handle a message sent on the \code{EditBus}. To perform this logging task, the developer might ask herself several fundamental questions, mostly related to where and what to log.
@@ -16,10 +17,10 @@ To illustrate the inherent challenges of effectively performing logging practice
 public class EditBus {
     private static ArrayList components = new ArrayList();
     private static EBComponent[] copyComponents;
-
+  
     private EditBus() {
     }
-
+  
     public static void addToBus(EBComponent comp) {
         synchronized(components) {
             components.add(comp);
@@ -38,13 +39,13 @@ public class EditBus {
         synchronized(components) {
             if(copyComponents == null) {
                 EBComponent[] arr = new EBComponent[components.size()];
-                copyComponents =
+                copyComponents = 
                     (EBComponent[])components.toArray(arr);
             }
         }
         return copyComponents;
     }
-
+  
     public static void send(EBMessage message) {
         EBComponent[] comps = getComponents();
         for(int i = 0; i < comps.length; i++) {
@@ -76,7 +77,7 @@ public static void send(EBMessage message){
    }
 }
 \end{lstlisting}
-\caption[The developer's initial determination of the usage of logging calls.]{The developer's initial determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m1}}
+\caption{The developer's initial determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m1}}
 \end{figure}
 
 \begin{figure}[p]
@@ -96,7 +97,7 @@ public static void send(EBMessage message) {
     }
 }
 \end{lstlisting}
-\caption[The developer's second determination of the usage of logging calls.]{The developer's second determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m2}}
+\caption{The developer's second determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m2}}
 \end{figure}
 
 \begin{figure}[p]
@@ -120,7 +121,7 @@ public static void send(EBMessage message){
     }
 }
 \end{lstlisting}
-\caption[The developer's third determination of the usage of logging calls.]{The developer's third determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m3}}
+\caption{The developer's third determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m3}}
 \end{figure}
 
 She also believes that it is important to log an error if any problems occur in sending messages to the components. She decides to use a \code{try}/\code{catch} statement, as it is a common way to handle exceptions in the Java programming language. She creates a \code{try}/\code{catch} block to capture the potential failure in sending messages, and uses a logging call inside the \code{catch} block to log the exception (shown in lines~2--16 of Figure~\ref{ch2-ex-logged-m3}). However, she realizes that using this logging call will not allow her to reach the desired functionality, as it does not reveal to which component the problem is related. Thus, she decides to relocate the \code{try}/\code{catch} block inside the \code{for} statement to log an error in case of a problem in sending messages to any components (shown in lines~5--15 of Figure~\ref{ch2-ex-logged-m4}).
@@ -147,7 +148,7 @@ public static void send(EBMessage message) {
     }
 }
 \end{lstlisting}
-\caption[The developer's fourth determination of the usage of logging calls.]{The developer's fourth determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m4}}
+\caption{The developer's fourth determination of the usage of logging calls for the \code{send(EBMessage)} method.\label{ch2-ex-logged-m4}}
 \end{figure}
 
 \begin{figure}[p]
@@ -166,7 +167,7 @@ public class EditBus {
             copyComponents = null;
         }
     }
-
+  
     public static void removeFromBus(EBComponent comp) {
         synchronized(components) {
             components.remove(comp);
@@ -183,7 +184,7 @@ public class EditBus {
         }
         return copyComponents;
     }
-
+  
     public static void send(EBMessage message) {
         // logging call
         EBComponent[] comps = getComponents();
@@ -203,7 +204,7 @@ public class EditBus {
     }
 }
 \end{lstlisting}
-\caption[[The developer's final determination of the usage of logging calls.]]{The developer's final determination of the usage of logging calls for the \code{EditBus} class.\label{ch2-ex-logged}}
+\caption{The developer's final determination of the usage of logging calls for the \code{EditBus} class.\label{ch2-ex-logged}}
 \end{figure}
 
 %which information or what?

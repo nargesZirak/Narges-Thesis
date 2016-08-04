@@ -179,7 +179,6 @@ Department of  Computer Science \\
 \newpage
 \phantomsection
 \chapter*{\bf{List of Symbols, Abbreviations and Nomenclature}\hfill} \addcontentsline{toc}{chapter}{List of Symbols}
-\addtocontents{toc}{\protect\addvspace{10pt}}
 \listofsymbols
 \pagestyle{plain}
 \clearpage
@@ -221,7 +220,7 @@ Department of  Computer Science \\
 % NZ:
 %\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
 % RW:
-\bibliography{../../../../../workspace/bibtex/full,../../../../../workspace/bibtex/references,../../../../../workspace/bibtex/lsmr,mybiblio}
+\bibliography{../../../../workspace/bibtex/full,../../../../workspace/bibtex/references,../../../../workspace/bibtex/lsmr,mybiblio}
 
 
 

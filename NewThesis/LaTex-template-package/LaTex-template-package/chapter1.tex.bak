@@ -1,8 +1,9 @@
+
 \chapter{Introduction}  \label{Introduction}
 %\section{Introduction}  \label{Introduction}
 
 Understanding the similarities and differences of a set of source code fragments is a potentially complex problem that has various actual or potential applications in various areas of software engineering, such as detecting code clones \cite{bulychev2009evaluation}, automating source code reuse \cite{2008:fse:cottrell}, recommending replacements for APIs among various versions of a software library \cite{2014:uofc:cossette}, collating application programming interface (API) usage patterns, and automating the merge operation of various branches in a version control system. As a specific application, the focus of this study is on characterizing where logging is used in source code via the determination of structural commonalities and differences of a set of source code fragments enclosing logging calls within a software system or from different software systems.
-% in program analysis, such as collating application programming interface (API) usage patterns,
+% in program analysis, such as collating application programming interface (API) usage patterns, 
 
 Logging is a conventional programming practice of recording an application's state and/or actions during the program's execution \cite{gupta2005pro}, and log system analysis assist developers in diagnosing the presence or absence of a particular event, understanding the state of an application, and following a program's execution flow to find the root causes of an error. The importance of logging is notable in its various applications in software development and maintenance tasks such as problem diagnosis \cite{lou2010mining}, system behavioural understanding \cite{fu2013contextual}, quick debugging \cite{gupta2005pro}, performance diagnosis \cite{nagaraj2012structured}, easy software maintenance \cite{gupta2005pro}, and troubleshooting \cite{fu2009execution}.
 %root causes of an error?
@@ -29,9 +30,9 @@ Research on the problem of characterizing logging practices can be divided into 
 
 
 \section{Programmatic support for logging} \label{background Logging}
-% including or include?
+% including or include? 
 A typical logging call takes parameters including a log text message and a verbosity level. A log text message consists of static text to describe the logged event and some optional variables related to the event. The verbosity level is intended to classify the severity of a logged event such as a debugging note, a minor issue, or a fatal error. Figure~\ref{fig:log-call-examples} provides examples of logging calls from the \name{log4j} framework in descending order of severity. The \name{fatal} level designates a very severe error event that will likely lead the application to terminate. The \name{error} level indicates that a non-fatal but clearly erroneous situation has occurred. The \name{warn} level indicates that the application has encountered a potentially harmful situation. The \name{info} level designates important information that might be helpful in detecting root causes of an error or in understanding the application behaviour. The \name{debug} level provides useful information for debugging an application, and it is usually used by developers only during the development phase. In general, verbosity level is used for classification, in order to avoid the overhead of creating large log files in high performance code.
-% , and is usually
+% , and is usually 
 
 
 \begin{figure}[H]
@@ -46,7 +47,7 @@ log.info("Info Message %s", variable);
 log.debug("Debug Message %s", variable);
 \end{lstlisting}
 \end{minipage}
-\caption{Logging call examples from the \protect\name{log4j} framework.\label{fig:chap1_logCode}\label{fig:log-call-examples}}
+\caption{Logging call examples from the \name{log4j} framework.\label{fig:chap1_logCode}\label{fig:log-call-examples}}
 \end{center}
 \end{figure}
 
@@ -57,7 +58,7 @@ log.debug("Debug Message %s", variable);
 %A few studies have been conducted on characterizing log message modifications \cite{yuan2012characterizing} and developing tools to automatically enhance existing log messages \cite{yuan2012improving, yuan2010sherlog}. However, no research has been conducted on studying the location of logging calls in real-world software systems.
 %
 %
-%Various applications have used an understanding of the commonalities and differences between source code fragments
+%Various applications have used an understanding of the commonalities and differences between source code fragments 
 %Understanding the commonalities and differences between source code fragments has been used for various applications (e.g., \cite{2007:esec_fse:cottrell, 2008:fse:cottrell, 2009:vissoft:cottrell, 2014:uofc:cossette, bulychev2009evaluation}). However, my study makes the first attempt to characterize the usage of logging calls by automatically detecting the detailed structural correspondences and differences of a set of  source code fragments enclosing them.
 
 
@@ -73,15 +74,15 @@ In this study, I aim to provide a concise description of where logging is used i
 
 
 My approach to implementing a tool for characterizing logging usage in a Java program proceed in four steps (as shown in Figure~\ref{fig:system_overview}). First, the potential structural correspondences are determined between the abstract syntax trees (ASTs) of LJMs in a pairwise manner. In the first step, the Eclipse JDT framework is used to extract ASTs of LJMs from a Java program and then the correspondence tool (Section~\ref{correspondenceTool}) is employed to create an extended form of AST, called AUAST (Anti-unifier AST), which allows the application of anti-unification on AST structures, and the Jigsaw framework is applied to find potential correspondence connections between AUAST nodes.
-%use the Jigsaw framework that relies on structural correspondences along with a simple knowledge of semantic equivalences in the Java language specifications to determine potential correspondence connections between AUASTs of the two LJMs and measure the similarity between the nodes involved in each connection.
+%use the Jigsaw framework that relies on structural correspondences along with a simple knowledge of semantic equivalences in the Java language specifications to determine potential correspondence connections between AUASTs of the two LJMs and measure the similarity between the nodes involved in each connection. 
 In the second step, I used an approximated anti-unification algorithm to construct a structural generalization representing the commonalities and differences between AUAST pairs using the anti-unifier building tool (Section~\ref{antiunifierTool}), which employs a greedy selection algorithm to approximate the best anti-unifier for the problem by determining the most similar correspondence for each node. The anti-unification algorithm applied some constraints prior to determining the best correspondences to prevent the anti-unification of logging calls with any other types of nodes in the tree structure. The anti-unifier is constructed through the anti-unification of each AUAST node with its best correspondences and then a measure of structural similarity is developed between the two AUASTs.
-In the third step, the clustering tool (Section~\ref{clusteringTool}) employs a hierarchical clustering algorithm to group the AUASTs into clusters using the similarity measure and creates a structural generalization from each cluster. The last step involves analyzing the structural generalizations to extract logging usage schemas that represent the structural commonalities of the set of LJMs within each cluster.
+In the third step, the clustering tool (Section~\ref{clusteringTool}) employs a hierarchical clustering algorithm to group the AUASTs into clusters using the similarity measure and creates a structural generalization from each cluster. The last step involves analyzing the structural generalizations to extract logging usage schemas that represent the structural commonalities of the set of LJMs within each cluster. 
  %create a generalization hierarchy from a set of LJMs using a measure of similarity.
 
 
 \begin{figure} [H]
   \centering\includegraphics [width = \textwidth]{Drawing4/SystemOverview.pdf}
-  \caption{Overview of the system.}
+  \caption{Overview of the System.}
   \label{fig:system_overview}
 \end{figure}
 
@@ -93,24 +94,20 @@ In the third step, the clustering tool (Section~\ref{clusteringTool}) employs a 
 %My tool has been applied on the source code of these systems and extracts all logged Java methods from these systems to construct the structural generalizations.
 %My evaluation shows ...
 
-\section{Thesis statement} \label{intro-stmt}
-The thesis of this work is that the detailed structural similarities and differences between source code that makes use of logging calls can be determined via higher-order anti-unification modulo theories, providing a concise and accurate description of where logging calls do occur in real-world software systems.
+\section{Thesis Statement} \label{intro-stmt}
+The thesis of this work is to determine the detailed structural similarities and differences between entities of the source code that make use of logging calls to provide a concise description of where logging calls do occur in real-world software systems.
 %via HOAUMT and clustering???
 
-\section{Thesis organization} \label{intro-org}
+\section{Thesis Organization} \label{intro-org}
 The remainder of the thesis is organized as follows. Chapter~\ref{ch2} motivates the problem of understanding where to use logging calls in source code through a scenario in which a developer attempts to perform a logging task. This scenario outlines the potential problems she may encounter and illustrates that the current logging practice is insufficiently supported.
 
-Chapter~\ref{background} provides background information that I build atop: abstract syntax trees (ASTs), which are the basic structure I will use for describing software source code; anti-unification, which is a theoretical approach for determining similarities and differences in tree structures; the Eclipse JDT, an industrial framework for producing and manipulating ASTs for source code written in the Java programming language; and on Jigsaw, a research tool based on the Eclipse JDT for performing anti-unification. \RW{I rewrote this to explain what the chapter needs to say.  Put all the background here; don't mix it in with later chapters.  This means that sections on the Eclipse JDT and Jigsaw need to move in here.}
+Chapter~\ref{background1} provides background information on important concepts that are key to my work. I described abstract syntax trees (ASTs), which are the basic structure I will use for describing software source code. I provide a definition of anti-unification and explain why its basic forms do not adequately address my problem, and then I define higher-order anti-unification modulo theories (HOAUMT), an extension to anti-unification that can be applied on an extended form of AST to solve my problem. 
 
-\RW{One thing that is not obvious to me at this point is: to what extent was Jigsaw ``not good enough''.  Jigsaw is the related work.  The implementation of the Jigsaw framework was not quite sufficient: this is an engineering matter.  But the CONCEPTS in the Jigsaw framework did not suffice, or so you have talked about in the past.  You need to DEMONSTRATE this latter point. Why is the AUAST necessary?  Why wouldn't the CAST suffice?  You see, there would then be a flow from the background (including Jigsaw) to the current problem and your novel contributions thereon.}
-\RW{This chapter needs to be clearer about what is new and what is not. By moving all background to the earlier chapter, this is better but not quite good enough.  You can then have this chapter be explicit about what you added and you can have the reader be less lost in the details.  Currently, you start the chapter with an algorithm that they cannot possibly understand because you have not yet explained the background.  That's bad.  With the structure I specified above, the background will all be in the previous chapter.  Now, the reader will be able to appreciate what you are trying to do.  The following description will need to be modified.} 
-Chapter~\ref{background2} describes the approach I used to determine structural correspondences and its supporting tool. In this Chapter, I provide background information on the Eclipse JDT as a framework to access and manipulate Java program via ASTs, and the Jigsaw as an existing framework to find potential structural correspondences. This Chapter also describes my experimental study on a set of LJMs selected form a real software system to validate the effectiveness of Jigsaw for my application.
-
-Chapter~\ref{methodology} presents my anti-unification approach as a set of novel algorithms, and its implementation as a plug-in to the Eclipse integrated development environment (IDE). Furthermore, it describes my experimental study to assess the effectiveness of my approach and the tool support in constructing structural generalizations and computing similarity between structures.
+Chapter~\ref{background2} describes the approach I used to determine structural correspondences and its supporting tool. In this Chapter, I provide background information on the Eclipse JDT as a framework to access and manipulate Java program via ASTs, and the Jigsaw as an existing framework to find potential structural correspondences. This Chapter also describes my experimental study on a set of LJMs selected form a real software system to validate the effectiveness of Jigsaw for my application. Chapter~\ref{methodology} presents my anti-unification approach as a set of novel algorithms, and its implementation as a plug-in to the Eclipse integrated development environment (IDE). Furthermore, it describes my experimental study to assess the effectiveness of my approach and the tool support in constructing structural generalizations and computing similarity between structures.
 Chapter~\ref{methodology} describes the clustering algorithm, its tool support, and an experimental study I conducted to assess its effectiveness.
 
 %\RW{This may need some modification to introduce the fact that you do some studies to validate Jigsaw, etc.}
-
+ 
 %The first study is conducted to evaluate the accuracy of my approach and its implemented tool by conducting an experiment on 10 sample logged Java methods.
 Chapter~\ref{eval} presents an empirical study I conducted to characterize the location of logging usage in three open-source software systems. Chapter~\ref{diss} discusses the results and findings of my work, threats to its validity, and the remaining issues. Chapter~\ref{rw} describes work related to my research problem and how it does not adequately address the problem. Chapter~\ref{conc} concludes the dissertation and presents the contributions of this study and future work. %Additional materials appended this dissertation are provided in Appendix A.
 
