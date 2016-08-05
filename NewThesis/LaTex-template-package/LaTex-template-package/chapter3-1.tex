@@ -1,5 +1,5 @@
 \chapter{Determining Structural Correspondences}\label{background2}
-In order to construct structural generalizations describing the commonalities and differences between logged Java methods (LJMs), we need to find structural correspondences between their ASTs. Therefore, we first need a concrete framework for constructing and manipulating ASTs. The Eclipse integrated development environment provides such a framework in its Java Development Tools (JDT) component. The details of our implementation will depend on certain details of Eclipse JDT, so we describe those in Section~\ref{JDT}.
+In order to construct structural generalizations describing the commonalities and differences between logged methods (LMs), we need to find structural correspondences between their ASTs. Therefore, we first need a concrete framework for constructing and manipulating ASTs. The Eclipse integrated development environment provides such a framework in its Java Development Tools (JDT) component. The details of our implementation will depend on certain details of Eclipse JDT, so we describe those in Section~\ref{JDT}.
 %constructing?
 
 The correspondence tool, is an Eclipse plug-in I used to determine structural correspondences between nodes in the tree structures. As AST structure does not allows the insertion of variables, I first created an extended form of AST, called AUAST (Anti-unifier AST) that addresses this issue (see Section~\ref{AUAST}), and then applied Jigsaw \cite{2008:fse:cottrell} on these structures, which is a framework exists for determining structural correspondences and measuring similarity between the nodes involved in each correspondence (described in Section~\ref{Jigsaw}). We build atop that work in order to create our anti-unifiers. In addition, an experimental study was conducted to validate the effectiveness of Jigsaw for our application.
@@ -46,7 +46,7 @@ To provide an example to demonstrate this structure, the anti-unified AUAST cons
 
 %\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
 
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{small}
 \begin{tikzpicture}
 \node(a) at (4.25,10) {%
