@@ -1,5 +1,5 @@
 \chapter{Determining Structural Correspondences}\label{background2}
-In order to construct structural generalizations describing the commonalities and differences between logged Java methods (LJMs), we need to find structural correspondences between their ASTs. Therefore, we first need a concrete framework for constructing and manipulating ASTs. The Eclipse integrated development environment provides such a framework in its Java Development Tools (JDT) component. The details of our implementation will depend on certain details of Eclipse JDT, so we describe those in Section~\ref{JDT}. 
+In order to construct structural generalizations describing the commonalities and differences between logged Java methods (LJMs), we need to find structural correspondences between their ASTs. Therefore, we first need a concrete framework for constructing and manipulating ASTs. The Eclipse integrated development environment provides such a framework in its Java Development Tools (JDT) component. The details of our implementation will depend on certain details of Eclipse JDT, so we describe those in Section~\ref{JDT}.
 %constructing?
 
 The correspondence tool, is an Eclipse plug-in I used to determine structural correspondences between nodes in the tree structures. As AST structure does not allows the insertion of variables, I first created an extended form of AST, called AUAST (Anti-unifier AST) that addresses this issue (see Section~\ref{AUAST}), and then applied Jigsaw \cite{2008:fse:cottrell} on these structures, which is a framework exists for determining structural correspondences and measuring similarity between the nodes involved in each correspondence (described in Section~\ref{Jigsaw}). We build atop that work in order to create our anti-unifiers. In addition, an experimental study was conducted to validate the effectiveness of Jigsaw for our application.
@@ -18,7 +18,7 @@ public void handleMessage(EBMessage message) {
 	Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin since it has an empty " + handleMessage());
     }
 \end{lstlisting}
-\caption{A Java method that uses a logging call. This will be referred to as Example 1.\label{ch3-ex1}}
+\caption[Example 1: A Java method that uses a logging call.]{A Java method that uses a logging call. This will be referred to as Example 1.\label{ch3-ex1}}
 \end{figure}
 
 \begin{figure}[H]
@@ -33,12 +33,12 @@ public void actionPerformed(ActionEvent evt) {
 		context.invokeAction(evt, action);
 	}
 \end{lstlisting}
-\caption{A Java method that uses a logging call. This will be referred to as Example 2.\label{ch3-ex2}}
+\caption[Example 2: A Java method that uses a logging call.]{A Java method that uses a logging call. This will be referred to as Example 2.\label{ch3-ex2}}
 \end{figure}
 
 \begin{figure} [H]
   \centering\includegraphics[width = \textwidth]{Drawing4/AST.pdf}
-  \caption{Simple AST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.}
+  \caption{Simple AST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.}
   \label{fig:ast}
 \end{figure}
 
@@ -56,7 +56,7 @@ As an example, the ASTs of the logging calls at line~4 of Figure~\ref{ch3-ex1} a
 %\RW{These ASTs were messed up.  I fixed them according to what the code says.}
 %\item \textit{expression(expression(Log), name(log), arguments(leftoperand(message), +, rightoperand(" is empty"), qualifier(Log), name(WARNING)))}
 %\item \textit{expression(expression(Log), name(log), arguments(leftoperand(actionName),\\+, rightoperand("is an unknown action"), qualifier(Log), name(WARNING)))}
-\item \textit{MethodCall}(\\
+\item \textit{MethodInvocation}(\\
 \hspace*{1em}\textit{QualifiedName}(\code{Log}, \textit{Identifier}(\code{log})),\\
 \hspace*{1em}\textit{Arguments}(\\
 \hspace*{2em}\textit{QualifiedName}(\code{Log}, \mbox{\textit{Identifier}(\code{WARNING})}),\\
@@ -243,7 +243,7 @@ For example, the similarity between names of AST nodes is measured using a norma
 
 \begin{figure} [H]
   \centering\includegraphics [width = \textwidth]{Drawing4/FirstCorr.pdf}
-  \caption{Simple CAST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework.}
+  \caption[Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.]{Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework.}
   \label{fig:meth-ast-1}
 \end{figure}
 
@@ -257,23 +257,23 @@ Our correspondence tool applies a part of the implementation of Jigsaw to identi
 
 \section{An Assessment of the Correspondence tool}\label{jigsaw-assessment}
 
-\RW{Describe here the procedure you used to select the examples, etc., how you tested Jigsaw, and what your findings were. At some point, you complained that Cottrell had not done something right ... do you have any evidence to demonstrate it?  How does this affect your work?  Such points can go in a discussion section towards the end of this chapter if they don't fit otherwise.  Full details of examples can go in an appendix; here, just describe enough so people can get the point.} 
+\RW{Describe here the procedure you used to select the examples, etc., how you tested Jigsaw, and what your findings were. At some point, you complained that Cottrell had not done something right ... do you have any evidence to demonstrate it?  How does this affect your work?  Such points can go in a discussion section towards the end of this chapter if they don't fit otherwise.  Full details of examples can go in an appendix; here, just describe enough so people can get the point.}
 
-\NZ{I think this experiment is not much about evaluating Jigsaw (The evaluation was conducted by Cottrell), but it is more about understanding what Jigsaw does and how to use it for my application . What I have mentioned was about detecting relevance links which is not related to my work. During my development, I added some statements to Jigsaw for the cases that was not covered in his work completely (e.g, Jigsaw did not detect the correspondence between inner type declarations of two nested type declarations when comparing the two upper type declarations } 
+\NZ{I think this experiment is not much about evaluating Jigsaw (The evaluation was conducted by Cottrell), but it is more about understanding what Jigsaw does and how to use it for my application . What I have mentioned was about detecting relevance links which is not related to my work. During my development, I added some statements to Jigsaw for the cases that was not covered in his work completely (e.g, Jigsaw did not detect the correspondence between inner type declarations of two nested type declarations when comparing the two upper type declarations }
 
 %chapter{Experimental Studies}  \label{studies}
-%To evaluate our approach, we have implemented a tool, and conducted three empirical studies on a set of LJMs extracted from a real-world software system. In this section, we describe our experimental setup, present our studies, and discuss the results. 
+%To evaluate our approach, we have implemented a tool, and conducted three empirical studies on a set of LJMs extracted from a real-world software system. In this section, we describe our experimental setup, present our studies, and discuss the results.
 
 We have conducted an experiment on a set of LJMs extracted from a real-world software system to assess how Jigsaw could effectively help us determine potential correspondences between AST nodes and measure similarity between them.
-We implemented a plug-in to the Eclipse integrated development environment (IDE), which uses the \name{JDT} framework to extract ASTs of a pair of LJMs and applies the \name{Jigsaw} framework to generate correspondence connections between AST nodes. 
+We implemented a plug-in to the Eclipse integrated development environment (IDE), which uses the \name{JDT} framework to extract ASTs of a pair of LJMs and applies the \name{Jigsaw} framework to generate correspondence connections between AST nodes.
 
 %the correspondence tool as
 %\subsubsection{Experimental Setup}  \label{study1_setup}
 \subsection{Setup}  \label{study1_setup}
-%Our tool is a plug-in to the Eclipse integrated development environment (IDE) that implements our algorithm. The tool consists of three main components: a correspondence tool, an antiunifier-building tool, and a clustering tool. The correspondence tool inputs a pair of LJMs, uses the Jigsaw framework to determine potential correspondences between their AST nodes, and outputs the generated CASTs and the Jigsaw similarity between them. The antiunifier-building tool inputs a pair of LJMs, applies our anti-unification algorithm to construct an anti-unifier with a special attention to logging calls, and outputs the detailed view of anti-unifier and similarity measure (as described in Section~\ref{meth-antiUnifier}). The clustering tool inputs a set of LJMs, applies a hierarchical clustering algorithm to classify them based on the similarity measurement, and outputs the detailed view of the generated anti-unifier for each cluster (as described in Section~\ref{meth-clustering}). 
+%Our tool is a plug-in to the Eclipse integrated development environment (IDE) that implements our algorithm. The tool consists of three main components: a correspondence tool, an antiunifier-building tool, and a clustering tool. The correspondence tool inputs a pair of LJMs, uses the Jigsaw framework to determine potential correspondences between their AST nodes, and outputs the generated CASTs and the Jigsaw similarity between them. The antiunifier-building tool inputs a pair of LJMs, applies our anti-unification algorithm to construct an anti-unifier with a special attention to logging calls, and outputs the detailed view of anti-unifier and similarity measure (as described in Section~\ref{meth-antiUnifier}). The clustering tool inputs a set of LJMs, applies a hierarchical clustering algorithm to classify them based on the similarity measurement, and outputs the detailed view of the generated anti-unifier for each cluster (as described in Section~\ref{meth-clustering}).
 % figure of architecture?
 
-As a subject for our study, we used \name{jEdit}, a programmer’s text editor tool written in Java programming language. We chose this subject because it is a real program that has been used constantly by many developers, and it employs real usage of logging calls. Our tool extracts all LJMs within the source code of this program. However, a subset of them was selected containing 9 LJMs that showed varying levels of similarity on manual examination, and it has been used as a test suite throughout this study (see Table~\ref{table:ljms}). The org.gjt.sp.jedit.EditBus.send(...) method contains two logging calls. To handle this case we split it into two cases: case 3 contained the first logging call while the second one was removed; case 4 contained only the second logging call. We will describe our approach for LJMs containing multiple logging calls in details in Section~\ref{meth-multipleLogs}. The last three LJMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates the addition of an \code{if- }statement that formed a nested \code{if- }statement enclosing a logging call. Cases 9 and 10 simulate the addition of statements to improve the test coverage. 
+As a subject for our study, we used \name{jEdit}, a programmer’s text editor tool written in Java programming language. We chose this subject because it is a real program that has been used constantly by many developers, and it employs real usage of logging calls. Our tool extracts all LJMs within the source code of this program. However, a subset of them was selected containing 9 LJMs that showed varying levels of similarity on manual examination, and it has been used as a test suite throughout this study (see Table~\ref{table:ljms}). The org.gjt.sp.jedit.EditBus.send(...) method contains two logging calls. To handle this case we split it into two cases: case 3 contained the first logging call while the second one was removed; case 4 contained only the second logging call. We will describe our approach for LJMs containing multiple logging calls in details in Section~\ref{meth-multipleLogs}. The last three LJMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates the addition of an \code{if- }statement that formed a nested \code{if- }statement enclosing a logging call. Cases 9 and 10 simulate the addition of statements to improve the test coverage.
 
 
 \begin{figure} [H]
@@ -282,28 +282,28 @@ As a subject for our study, we used \name{jEdit}, a programmer’s text editor t
     \hline
     Case & Logged Java methods & Size(LOC)\\
     \hline
-    1& org.gjt.sp.jedit.PluginJAR.generateCache() &104\\   
+    1& org.gjt.sp.jedit.PluginJAR.generateCache() &104\\
    \hline
-    2& org.gjt.sp.jedit.MiscUtilities.isSupportedEncoding(...) &9\\   
+    2& org.gjt.sp.jedit.MiscUtilities.isSupportedEncoding(...) &9\\
    \hline
-    3& org.gjt.sp.jedit.EditBus.send(...) &14\\   
+    3& org.gjt.sp.jedit.EditBus.send(...) &14\\
    \hline
-    4& org.gjt.sp.jedit.EditBus.send(...)* &14\\   
+    4& org.gjt.sp.jedit.EditBus.send(...)* &14\\
    \hline
-    5& org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...) &5\\   
+    5& org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...) &5\\
    \hline
-    6& org.gjt.sp.jedit.EBPlugin.handleMessage(...) &6\\   
+    6& org.gjt.sp.jedit.EBPlugin.handleMessage(...) &6\\
    \hline
-    7& org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(...) &3\\   
+    7& org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(...) &3\\
    \hline
-    8& org.gjt.sp.jedit.JARClassLoader.loadClass(...) &32\\   
+    8& org.gjt.sp.jedit.JARClassLoader.loadClass(...) &32\\
    \hline
-    9& org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(...) &36\\   
+    9& org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(...) &36\\
    \hline
-    10& org.gjt.sp.jedit.ServiceManager.loadServices(...) &20\\   
+    10& org.gjt.sp.jedit.ServiceManager.loadServices(...) &20\\
     \hline
   \end{tabular}
-  \caption{Logged Java methods used as our test suite; all are contained in the \name{org.gjt.sp.jedit} package.}
+  \caption[Logged Java methods used as our test suite.]{Logged Java methods used as our test suite; all are contained in the \protect\name{org.gjt.sp.jedit} package.}
   \label{table:ljms}
 \end{figure}
 
@@ -322,7 +322,7 @@ The results of the pairwise comparison between LJMs of the test suite is visuali
 \end{figure}
 
 
-The analysis of the 4 test cases is shown in Table~\ref{jigsaw_4_test_cases}. Test Case 1 shows that a Java element that is compared with itself has a Jigsaw similarity of 1. Test Case 2 indicates that no correspondence connection is created when a Java element is compared with another Java element that is utterly dissimilar. Test Case 3 indicates that the similarity between a \code{for-} statement and a \code{while-} statement is non-zero, and that Jigsaw is able to detect semantic correspondences between Java elements. Test Case 4 shows that a logging call has non-zero similarity with another Java element that is not a logging call but is syntactically relevant. This case will be handled via the removal of this kind of correspondence connection, as will be described in Section~\ref{meth-constraints}. 
+The analysis of the 4 test cases is shown in Table~\ref{jigsaw_4_test_cases}. Test Case 1 shows that a Java element that is compared with itself has a Jigsaw similarity of 1. Test Case 2 indicates that no correspondence connection is created when a Java element is compared with another Java element that is utterly dissimilar. Test Case 3 indicates that the similarity between a \code{for-} statement and a \code{while-} statement is non-zero, and that Jigsaw is able to detect semantic correspondences between Java elements. Test Case 4 shows that a logging call has non-zero similarity with another Java element that is not a logging call but is syntactically relevant. This case will be handled via the removal of this kind of correspondence connection, as will be described in Section~\ref{meth-constraints}.
 
 \begin{figure}
   \centering
@@ -330,40 +330,40 @@ The analysis of the 4 test cases is shown in Table~\ref{jigsaw_4_test_cases}. Te
     \hline
     \shortstack{Test\\case} & Java source code fragment & \shortstack{Jigsaw\\similarity}\\
     \hline
-    
+
     \multirow{2}{*}{{1}}&Log.log(Log.WARNING,this,"Unknown action: " + actionName);& \multirow{2}{*}{1}\\
     \cline{2-2}
                          &Log.log(Log.WARNING,this,"Unknown action: " + actionName);\\
     \hline
-    
+
        \multirow{2}{*}{2}&return entry& \multirow{2}{*}{\shortstack{No\\correspondence \\connection}}\\
     \cline{2-2}
        &int i=0;\\
     \hline
-  
-    
+
+
  \multirow{2}{*}{3}&
  for (int i=0; i < comps.length; i++) {...} \\
-  
+
 
     \cline{2-2}
-      & 
-while (entries.hasMoreElements())  { ...}    
+      &
+while (entries.hasMoreElements())  { ...}
       \\
-    \hline    
-    
+    \hline
+
     \multirow{2}{*}{4}&Log.log(Log.WARNING,this,"Unknown action: " + actionName);& \multirow{2}{*}{0.33}\\
     \cline{2-2}
       &EditBus.removeFromBus(this);\\
     \hline
-    
+
   \end{tabular}
   \caption{Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.}
   \label{jigsaw_4_test_cases}
 \end{figure}
- 
+
 %\section{Comparison with the Jigsaw tool}  \label{comparison-Jigsaw}
- 
+
 
 
 \section{Summary}  \label{summary}
@@ -375,4 +375,4 @@ We described Eclipse JDT as a concrete framework that can be used  to manipulate
 
 
 
-%In this chapter, we described anti-unification as a technique to construct a common generalization of two given terms. We have also introduced an extended form of anti-unification, which is called higher-order anti-unification modulo theories, where a set of equivalence equations can be applied on higher-order extended structures to incorporate background knowledge. In addition, we provided a brief description of AST that maps Java source code in a tree structure form, and why an extended form of it, named AUAST, is required to create higher-order structures specific to our problem context. Finally, we discuss the Jigsaw framework and how it could assist us in determining the potential structural correspondences.
+%In this chapter, we described anti-unification as a technique to construct a common generalization of two given terms. We have also introduced an extended form of anti-unification, which is called higher-order anti-unification modulo theories, where a set of equivalence equations can be applied on higher-order extended structures to incorporate background knowledge. In addition, we provided a brief description of AST that maps Java source code in a tree structure form, and why an extended form of it, named AUAST, is required to create higher-order structures specific to our problem context. Finally, we discuss the Jigsaw framework and how it could assist us in determining the potential structural correspondences. 

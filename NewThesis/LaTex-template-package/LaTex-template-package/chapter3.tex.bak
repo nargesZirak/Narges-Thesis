@@ -1,5 +1,5 @@
 %\chapter{Background}  \label{background}
-\chapter{Background: Abstract Syntax Trees and Anti-unification}  \label{background1}
+\chapter{Background}  \label{background}
 A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which we represent and analyze source code, we need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences. The theoretical framework of anti-unification is presented as that means.
 
 In this chapter, ASTs are described briefly in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that we will make use of, higher-order anti-unification modulo equational theories.
@@ -388,7 +388,7 @@ This is still verbose, so in practice we elide details that are implied or other
 \draw[->](qn) -- (out) {};
 \end{tikzpicture}%
 }
-\caption{A more abstract, abstract syntax tree derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst}.\label{fig:java-example-ast2}}
+\caption{A more abstract AST derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst}.\label{fig:java-example-ast2}}
 \end{sidewaysfigure}
 
 \section{First-order anti-unification}   \label{AU}
@@ -524,7 +524,7 @@ Higher-order anti-unification would allow us to create the MSA by extending the 
 
 %Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
 
-\section{Higher-Order anti-unification modulo equational theories}\label{HOAUMT}
+\section{Higher-order anti-unification modulo equational theories}\label{HOAUMT}
 
 %\begin{align}
 %\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
@@ -605,7 +605,7 @@ We have also introduced a theory, called \NIL{}-theory, that adds the concept of
 \draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X \rightarrow f, Y \rightarrow a)$\hspace*{3cm}}};
 \draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{3.5cm}\scriptsize $\Theta_2 = ( X \rightarrow \NIL{}, Y \rightarrow \NIL{})$}};
 \end{tikzpicture}
-\caption{Anti-unification of the terms $f(a, b)$ and $\NIL{}(\NIL{},b)$.\label{fig:anti-nil}}
+\caption{Higher-order anti-unification modulo theories of the terms $f(a, b)$ and $b$.\label{fig:anti-nil}}
 \end{figure}
 
 
@@ -625,7 +625,7 @@ We have also defined a set of equivalence equations to incorporate semantic know
 %
 \draw[->](au) -- (left) node[pos=0.5, above]{$\Theta_1\qquad$};
 \end{tikzpicture}
-\caption{The anti-unification of the structures \code{for}(\textit{Initializer}(\code{i}, \code{0}), \mbox{\textit{LessThanExpression}(\code{i}, \code{10}),} \textit{Updater}(\textit{PostIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}), \mbox{\textit{LessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\Theta_1 = (V_0 \rightarrow \text{ \textsf{\small for}}, V_1 \rightarrow \text{ \textit{Initializer}}, V_2 \rightarrow \text{ \textsf{\small i}}, V_3 \rightarrow 0, V_4 \rightarrow \text{ \textit{Updater}}, V_5 \rightarrow \text{ \textit{PostIncrementExpression}})$; and $\Theta_2 = (V_0 \rightarrow \text{ \textsf{\small while}}, V_1 \rightarrow \text{ \NIL{}}, V_2 \rightarrow \text{ \NIL{}}, V_3 \rightarrow \text{ \NIL{}}, V_4 \rightarrow \text{ \NIL{}}, V_5 \rightarrow \text{ \NIL{}})$\label{fig:for-while}}
+\caption[Complex anti-unification of two structures demonstrating a \protect\NIL{}-theory.]{Anti-unification of the structures \code{for}(\textit{Initializer}(\code{i}, \code{0}), \mbox{\textit{LessThanExpression}(\code{i}, \code{10}),} \textit{Updater}(\textit{PostIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}), \mbox{\textit{LessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\Theta_1 = (V_0 \rightarrow \text{ \textsf{\small for}}, V_1 \rightarrow \text{ \textit{Initializer}}, V_2 \rightarrow \text{ \textsf{\small i}}, V_3 \rightarrow 0, V_4 \rightarrow \text{ \textit{Updater}}, V_5 \rightarrow \text{ \textit{PostIncrementExpression}})$; and $\Theta_2 = (V_0 \rightarrow \text{ \textsf{\small while}}, V_1 \rightarrow \text{ \NIL{}}, V_2 \rightarrow \text{ \NIL{}}, V_3 \rightarrow \text{ \NIL{}}, V_4 \rightarrow \text{ \NIL{}}, V_5 \rightarrow \text{ \NIL{}})$\label{fig:for-while}}
 \end{figure}
 % higher-order extension and the equational theories
 % provide a better example
@@ -651,7 +651,7 @@ However, defining complex substitutions in higher-order anti-unification modulo 
 \draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X_0 \rightarrow b, Y \rightarrow g, Z \rightarrow d, X_1 \rightarrow e)$\hspace*{5cm}}};
 \draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{6cm}\scriptsize $\Theta_2 = ( X_0 \rightarrow e, Y \rightarrow \NIL{}, Z \rightarrow \NIL{}, X_1 \rightarrow \NIL{})$}};
 \end{tikzpicture}
-\caption{Higher-order anti-unification modulo theories of the terms $f(g(a,b), g(d,e))$
+\caption[Ambiguous higher-order anti-unification modulo theories of two terms.]{Ambiguous higher-order anti-unification modulo theories of the terms $f(g(a,b), g(d,e))$
 and $f(g(a,e))$, creating multiple MSAs.}
   \label{fig:multipleMSA}
 \end{figure}
@@ -661,5 +661,95 @@ Despite having multiple potential MSAs, we need to determine one single MSA that
 % reason, infinite number??? ever variable???
 %Our goal is to find an MSA that is an approximation of the best fit to our application
 
+\section{Eclipse JDT}\label{JDT}
+The Eclipse Java Development Tools (JDT) framework provides APIs to access and manipulate Java source code via ASTs. An AST represents Java source code in a tree form, where the typed nodes represent instances of certain syntactic structures from the Java programming language.  Each node type (in general) takes a set of child nodes, also typed and with certain constraints on their properties.  Groups of children are named on the basis of the conceptual purpose of those groups; optional groups can be empty, which we can represent with the \NIL{} element. Thus, any Java source code can be represented as a tree of AST nodes. For example, the simple AST structure of two sample LJMs in Figures~\ref{ch3-ex1} an~\ref{ch3-ex2} is shown in Figure~\ref{fig:ast}.
+
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public void handleMessage(EBMessage message) {
+	if(seenWarning) return;
+	seenWarning = true;
+	Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin since it has an empty " + handleMessage());
+    }
+\end{lstlisting}
+\caption[Example 1: A Java method that uses a logging call.]{A Java method that uses a logging call. This will be referred to as Example 1.\label{ch3-ex1}}
+\end{figure}
+
+\begin{figure}[H]
+\def\baselinestretch{1}
+\begin{lstlisting}
+public void actionPerformed(ActionEvent evt) {
+	EditAction action = context.getAction(actionName);
+	if(action == null) {
+		Log.log(Log.ERROR, this, "Unknown action: " + actionName);
+	}
+	else
+		context.invokeAction(evt, action);
+	}
+\end{lstlisting}
+\caption[Example 2: A Java method that uses a logging call.]{A Java method that uses a logging call. This will be referred to as Example 2.\label{ch3-ex2}}
+\end{figure}
+
+\begin{figure} [H]
+  \centering\includegraphics[width = \textwidth]{Drawing4/AST.pdf}
+  \caption{Simple AST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.}
+  \label{fig:ast}
+\end{figure}
+
+In the JDT framework, structural properties of each AST node can be used to obtain specific information of the Java element that it represents. These properties are stored in a map data structure that associates each property to its value; this data is divided into three types:
+%property identifier???
+
+\begin{itemize} [leftmargin=0.7in]
+\item \textit{Simple structural properties:} These contain a simple value which has a primitive or simple type or a basic AST constant (e.g., identifier property of a name node whose value is a String).  For example, all the \textit{Identifier} nodes in Figure~\ref{fig:java-example-ast} fall in this case; each references an instance of \code{String} representing the string that constitutes the identifier.
+\item \textit{Child structural properties:} These involve situations where the value is a single AST node (e.g., name property of a method declaration node).  For example, the \textit{ClassDeclaration} node in Figure~\ref{fig:java-example-ast} has a single child that represents its name as an \textit{Identifier} node; this would be a child structural property.
+\item \textit{Child list structural properties}: These involve situations where the value is a list of child nodes.  For example, the \textit{ClassDeclaration} node in Figure~\ref{fig:java-example-ast} can possess multiple \textit{Modifier}s; these are recorded in the \textit{ClassDeclaration} as a child list structural property.
+\end{itemize}
+
+As an example, the ASTs of the logging calls at line~4 of Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2} can be represented respectively as:
+\begin{itemize} [leftmargin=0.7in]
+%\RW{These ASTs were messed up.  I fixed them according to what the code says.}
+%\item \textit{expression(expression(Log), name(log), arguments(leftoperand(message), +, rightoperand(" is empty"), qualifier(Log), name(WARNING)))}
+%\item \textit{expression(expression(Log), name(log), arguments(leftoperand(actionName),\\+, rightoperand("is an unknown action"), qualifier(Log), name(WARNING)))}
+\item \textit{MethodInvocation}(\\
+\hspace*{1em}\textit{QualifiedName}(\code{Log}, \textit{Identifier}(\code{log})),\\
+\hspace*{1em}\textit{Arguments}(\\
+\hspace*{2em}\textit{QualifiedName}(\code{Log}, \mbox{\textit{Identifier}(\code{WARNING})}),\\
+\hspace*{2em}\textit{ThisExpression}(),\\
+\hspace*{2em}\textit{AdditionExpression}(\\
+\hspace*{3em}\textit{MethodInvocation}(\textit{Identifier}(\code{getClassName}), \textit{Arguments}()),\\
+\hspace*{3em}\textit{StringLiteral}(\code{" should extend EditPlugin not EBPlugin since it has an empty "}),\\
+\hspace*{3em}\textit{MethodInvocation}(\textit{Identifier}(\code{handleMessage}), \textit{Arguments}()))))\\
+\item \textit{MethodInvocation}(\\
+\hspace*{1em}\textit{QualifiedName}(\code{Log}, \textit{Identifier}(\code{log})),\\
+\hspace*{1em}\textit{Arguments}(\\
+\hspace*{2em}\textit{QualifiedName}(\code{Log}, \mbox{\textit{Identifier}(\code{ERROR})}),\\
+\hspace*{2em}\textit{ThisExpression}(),\\
+\hspace*{2em}\textit{AdditionExpression}(\\
+\hspace*{3em}\textit{StringLiteral}(\code{"Unknown action: "}),\\
+\hspace*{3em}\textit{Identifier}(\code{actionName}))))\\
+\end{itemize}
+
+\subsection{The Jigsaw framework}\label{Jigsaw}
+The Jigsaw tool was developed by \citet{2008:fse:cottrell} to support small-scale source code reuse via structural correspondence. Small-scale reuse task can be divided into two phases. The first phase involves the developer identifying a source code snippet that implements a functionality that is missing within a target system. The second phase involves modifying the source code snippet to fit in the target system. To perform a reuse task, developers mostly copy and paste the reused code snippet and then fit it to the hole of the target context by performing some modifications. Jigsaw support the small scale reuse task by identifying structural correspondences between the copied code snippet and the context in which the code wants to be pasted into, in order to suggest to developers what parts already exist within the target system, what parts are missing, and what parts need to be modified to fit into the context. Jigsaw determines the structural correspondences between two Java source code fragments through the application of higher-order anti-unification modulo equational theories such that one fragment can be integrated to the other one for small-scale code reuse.
+%HOAUMT?
+
+%determines potential candidate structural correspondences between AST nodes of LJMs by
+
+%AUAST,CAST,AST????
+Jigsaw generates an augmented form of AST, called a \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections between the nodes of two AUASTs, each implicitly representing an anti-unifier. Jigsaw also provides a measure of structural similarity to indicate how similar the nodes involved in each correspondence connection are. The Jigsaw similarity function relies on structural correspondence along with simple knowledge of semantic equivalences supported by the Java language specification. It returns a value in $[0, 1]$ where zero indicates complete lack of similarity and one indicates perfect similarity. In addition, several semantical heuristics are used to improve the accuracy of similarity measurement by allowing the comparison of AST nodes that are not syntactically identical but are semantically related to each other.
+
+
+For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of the longest common substring. The comparison of \code{int} and \code{long} types is another example, where an arbitrary value of 0.5 is defined as the similarity value, since they are not syntactically identical but are semantically related. In addition, the Jigsaw framework also detects the structural correspondence between \code{for}-, \code{enhanced-for}-, \code{while}-, and \code{do}-loop statements; and \code{if} and \code{switch} conditional statements. As an example, Figure~\ref{fig:meth-ast-1} shows the structural correspondence connections created by Jigsaw between the AUAST nodes of Examples 1 and 2. %along with the similarity value for each correspondence connection.
+
+\begin{figure} [H]
+  \centering\includegraphics [width = \textwidth]{Drawing4/FirstCorr.pdf}
+  \caption[Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.]{Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AST nodes indicate structural correspondence connections created by the Jigsaw framework.}
+  \label{fig:meth-ast-1}
+\end{figure}
+
+%CAST OR AUAST??????
+%along with the similarity value.
+
 \section{Summary}  \label{summary}
-We described abstract syntax trees (ASTs) as a standard syntactic representation of source code.  Every AST can also be represented in a function format (and vice versa) which constitute the standard theoretical concept of terms.  We demonstrated how the theoretical framework of anti-unification as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permit substitution relative to function symbols as well as terms.  A further extension allows for insertion and deletion by declaring equivalence with the \NIL{} structure, as well as other arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this higher-order anti-unification modulo theories approach leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weakness, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice.
+We described abstract syntax trees (ASTs) as a standard syntactic representation of source code.  Every AST can also be represented in a function format (and vice versa) which constitute the standard theoretical concept of terms.  We demonstrated how the theoretical framework of anti-unification as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permit substitution relative to function symbols as well as terms.  A further extension allows for insertion and deletion by declaring equivalence with the \NIL{} structure, as well as other arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this higher-order anti-unification modulo theories approach leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weakness, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice. \RW{Expand to cover new sections.}
