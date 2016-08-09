@@ -19,49 +19,45 @@
 \BOOKMARK [1][-]{section.3.5}{The Jigsaw framework}{chapter.3}% 19
 \BOOKMARK [1][-]{section.3.6}{Summary}{chapter.3}% 20
 \BOOKMARK [0][-]{chapter.4}{Determining Structural Correspondences}{}% 21
-\BOOKMARK [1][-]{section.4.1}{The Correspondence tool}{chapter.4}% 22
-\BOOKMARK [2][-]{subsection.4.1.1}{Constructing the AUAST}{section.4.1}% 23
-\BOOKMARK [2][-]{subsection.4.1.2}{Determining structural correspondences}{section.4.1}% 24
-\BOOKMARK [1][-]{section.4.2}{An Assessment of the Correspondence tool}{chapter.4}% 25
-\BOOKMARK [2][-]{subsection.4.2.1}{Setup}{section.4.2}% 26
-\BOOKMARK [2][-]{subsection.4.2.2}{Results}{section.4.2}% 27
-\BOOKMARK [1][-]{section.4.3}{Summary}{chapter.4}% 28
-\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalizations}{}% 29
-\BOOKMARK [1][-]{section.5.1}{The Anti-unifier building tool}{chapter.5}% 30
-\BOOKMARK [2][-]{subsection.5.1.1}{Applying constraints in determining correspondences}{section.5.1}% 31
-\BOOKMARK [2][-]{subsection.5.1.2}{Determining best correspondences}{section.5.1}% 32
-\BOOKMARK [2][-]{subsection.5.1.3}{Constructing the anti-unifier}{section.5.1}% 33
-\BOOKMARK [2][-]{subsection.5.1.4}{Computing similarity between AUASTs}{section.5.1}% 34
-\BOOKMARK [2][-]{subsection.5.1.5}{Java methods containing multiple logging calls}{section.5.1}% 35
-\BOOKMARK [1][-]{section.5.2}{An assessment of the anti-unifier-building tool}{chapter.5}% 36
-\BOOKMARK [2][-]{subsection.5.2.1}{Setup}{section.5.2}% 37
-\BOOKMARK [2][-]{subsection.5.2.2}{Results}{section.5.2}% 38
-\BOOKMARK [1][-]{section.5.3}{Summary}{chapter.5}% 39
-\BOOKMARK [0][-]{chapter.6}{Clustering}{}% 40
-\BOOKMARK [1][-]{section.6.1}{The Clustering tool}{chapter.6}% 41
-\BOOKMARK [1][-]{section.6.2}{An Assessment of the Clustering tool}{chapter.6}% 42
-\BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 43
-\BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 44
-\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 45
-\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 46
-\BOOKMARK [1][-]{section.7.1}{Experiment 1}{chapter.7}% 47
-\BOOKMARK [1][-]{section.7.2}{Experiment 2}{chapter.7}% 48
-\BOOKMARK [1][-]{section.7.3}{Results}{chapter.7}% 49
-\BOOKMARK [1][-]{section.7.4}{Lessons learned}{chapter.7}% 50
-\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 51
-\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 52
-\BOOKMARK [1][-]{section.8.2}{Our tool output}{chapter.8}% 53
-\BOOKMARK [2][-]{subsection.8.2.1}{Node ordering mismatch}{section.8.2}% 54
-\BOOKMARK [2][-]{subsection.8.2.2}{Handling conflicts in constructing the anti-unifiers}{section.8.2}% 55
-\BOOKMARK [1][-]{section.8.3}{Other applications}{chapter.8}% 56
-\BOOKMARK [1][-]{section.8.4}{Applications of anti-unification}{chapter.8}% 57
-\BOOKMARK [1][-]{section.8.5}{Summary}{chapter.8}% 58
-\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 59
-\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 60
-\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 61
-\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 62
-\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 63
-\BOOKMARK [1][-]{section.9.5}{Clustering}{chapter.9}% 64
-\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 65
-\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 66
-\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 67
+\BOOKMARK [1][-]{section.4.1}{Computing similarity}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.2}{Determining potential correspondences}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.3}{Constructing the AUAST}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.4}{The corrsepondence tool}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.5}{Evaluation}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.5.1}{Setup}{section.4.5}% 27
+\BOOKMARK [2][-]{subsection.4.5.2}{Results}{section.4.5}% 28
+\BOOKMARK [2][-]{subsection.4.5.3}{discussion}{section.4.5}% 29
+\BOOKMARK [1][-]{section.4.6}{Summary}{chapter.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalization}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Determining best correspondences}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{Computing similarity between AUASTs}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.3}{Constructing the anti-unifier}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.4}{The Anti-unifier building tool}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.4.1}{Constrcting the detailed generalization view}{section.5.4}% 36
+\BOOKMARK [2][-]{subsection.5.4.2}{Java methods containing multiple logging calls}{section.5.4}% 37
+\BOOKMARK [1][-]{section.5.5}{Evaluation}{chapter.5}% 38
+\BOOKMARK [2][-]{subsection.5.5.1}{Setup}{section.5.5}% 39
+\BOOKMARK [2][-]{subsection.5.5.2}{Results}{section.5.5}% 40
+\BOOKMARK [1][-]{section.5.6}{Summary}{chapter.5}% 41
+\BOOKMARK [0][-]{chapter.6}{Clustering}{}% 42
+\BOOKMARK [1][-]{section.6.1}{The hierarchical clustering algorithm}{chapter.6}% 43
+\BOOKMARK [1][-]{section.6.2}{Evaluaton}{chapter.6}% 44
+\BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 45
+\BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 46
+\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 47
+\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 48
+\BOOKMARK [1][-]{section.7.1}{Threats to validity}{chapter.7}% 49
+\BOOKMARK [1][-]{section.7.2}{The pitfalls of my tool}{chapter.7}% 50
+\BOOKMARK [2][-]{subsection.7.2.1}{Inaccurate node ordering}{section.7.2}% 51
+\BOOKMARK [2][-]{subsection.7.2.2}{Conflict resolution}{section.7.2}% 52
+\BOOKMARK [1][-]{section.7.3}{Applications of anti-unification}{chapter.7}% 53
+\BOOKMARK [1][-]{section.7.4}{Summary}{chapter.7}% 54
+\BOOKMARK [0][-]{chapter.8}{Related Work}{}% 55
+\BOOKMARK [1][-]{section.8.1}{Usage of logging}{chapter.8}% 56
+\BOOKMARK [1][-]{section.8.2}{Correspondence}{chapter.8}% 57
+\BOOKMARK [1][-]{section.8.3}{API usages patterns}{chapter.8}% 58
+\BOOKMARK [1][-]{section.8.4}{Anti-unification}{chapter.8}% 59
+\BOOKMARK [1][-]{section.8.5}{Clustering}{chapter.8}% 60
+\BOOKMARK [1][-]{section.8.6}{Summary}{chapter.8}% 61
+\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 62
+\BOOKMARK [1][-]{section.9.1}{Future Work}{chapter.9}% 63

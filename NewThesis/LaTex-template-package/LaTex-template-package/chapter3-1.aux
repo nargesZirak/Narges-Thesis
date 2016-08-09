@@ -1,36 +1,50 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
 \citation{2008:fse:cottrell}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Determining Structural Correspondences}{33}{chapter.4}}
+\citation{2008:fse:cottrell}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Determining Structural Correspondences}{31}{chapter.4}}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\newlabel{background2}{{4}{33}{Determining Structural Correspondences}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}The Correspondence tool}{33}{section.4.1}}
-\newlabel{correspondenceTool}{{4.1}{33}{The Correspondence tool}{section.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Constructing the AUAST}{34}{subsection.4.1.1}}
-\newlabel{AUAST}{{4.1.1}{34}{Constructing the AUAST}{subsection.4.1.1}{}}
-\newlabel{eq:theta1}{{4.1}{35}{Constructing the AUAST}{equation.4.1.1}{}}
-\newlabel{eq:theta2}{{4.2}{35}{Constructing the AUAST}{equation.4.1.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Determining structural correspondences}{35}{subsection.4.1.2}}
-\newlabel{Jigsaw_usage}{{4.1.2}{35}{Determining structural correspondences}{subsection.4.1.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}An Assessment of the Correspondence tool}{35}{section.4.2}}
-\newlabel{jigsaw-assessment}{{4.2}{35}{An Assessment of the Correspondence tool}{section.4.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }}{36}{figure.caption.34}}
-\newlabel{fig:logging-anti}{{4.1}{36}{Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }{figure.caption.34}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Setup}{37}{subsection.4.2.1}}
-\newlabel{study1_setup}{{4.2.1}{37}{Setup}{subsection.4.2.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Logged Java methods used as our test suite.}}{38}{figure.caption.35}}
-\newlabel{table:ljms}{{4.2}{38}{Logged Java methods used as our test suite}{figure.caption.35}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Results}{39}{subsection.4.2.2}}
-\newlabel{study1-results}{{4.2.2}{39}{Results}{subsection.4.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LJMs shown in Table\nobreakspace  {}\ref  {table:ljms}.\relax }}{39}{figure.caption.36}}
-\newlabel{fig:jigsaw_graph}{{4.3}{39}{A similarity graph representing pairwise Jigsaw similarities between LJMs shown in Table~\ref {table:ljms}.\relax }{figure.caption.36}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }}{40}{figure.caption.37}}
-\newlabel{jigsaw_4_test_cases}{{4.4}{40}{Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }{figure.caption.37}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Summary}{40}{section.4.3}}
-\newlabel{summary}{{4.3}{40}{Summary}{section.4.3}{}}
+\newlabel{background2}{{4}{31}{Determining Structural Correspondences}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Computing similarity}{31}{section.4.1}}
+\newlabel{jigsaw-similarity}{{4.1}{31}{Computing similarity}{section.4.1}{}}
+\citation{2008:fse:cottrell}
+\citation{2008:fse:cottrell}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.1}{\ignorespaces \textsc  {Non-Leaf-Node-Similarity}($\mathit  {astA}$,$\mathit  {astB}$) computes the similarity between two non-leaf nodes.\relax }}{32}{algorithm.4.1}}
+\newlabel{computeMatches}{{4.1}{32}{\func {Non-Leaf-Node-Similarity}($\id {astA}$,$\id {astB}$) computes the similarity between two non-leaf nodes.\relax }{algorithm.4.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Determining potential correspondences}{33}{section.4.2}}
+\newlabel{jigsaw-corr}{{4.2}{33}{Determining potential correspondences}{section.4.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4.2}{\ignorespaces \textsc  {Determine-Potential-Correspondences}($\mathit  {astA}$,$\mathit  {astB}$) determines the candidate correspondence connections between the nodes of $\mathit  {astA}$ and $\mathit  {astB}$.\relax }}{33}{algorithm.4.2}}
+\newlabel{computeMatches}{{4.2}{33}{\func {Determine-Potential-Correspondences}($\id {astA}$,$\id {astB}$) determines the candidate correspondence connections between the nodes of $\id {astA}$ and $\id {astB}$.\relax }{algorithm.4.2}{}}
+\citation{2008:fse:cottrell}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Simple CAST structure of the examples in Figures\nobreakspace  {}\ref  {ch3-ex1} and\nobreakspace  {}\ref  {ch3-ex2}.}}{34}{figure.caption.33}}
+\newlabel{fig:meth-ast-1}{{4.1}{34}{Simple CAST structure of the examples in Figures~\ref {ch3-ex1} and~\ref {ch3-ex2}}{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Constructing the AUAST}{34}{section.4.3}}
+\newlabel{jigsaw-corr}{{4.3}{34}{Constructing the AUAST}{section.4.3}{}}
+\newlabel{eq:theta1}{{4.1}{35}{Constructing the AUAST}{equation.4.3.1}{}}
+\newlabel{eq:theta2}{{4.2}{35}{Constructing the AUAST}{equation.4.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}The corrsepondence tool}{35}{section.4.4}}
+\newlabel{corr-tool}{{4.4}{35}{The corrsepondence tool}{section.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }}{36}{figure.caption.34}}
+\newlabel{fig:logging-anti}{{4.2}{36}{Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Evaluation}{37}{section.4.5}}
+\newlabel{jigsaw-assessment}{{4.5}{37}{Evaluation}{section.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Setup}{38}{subsection.4.5.1}}
+\newlabel{study1_setup}{{4.5.1}{38}{Setup}{subsection.4.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Logged Java methods used as our test suite.}}{39}{figure.caption.35}}
+\newlabel{table:ljms}{{4.3}{39}{Logged Java methods used as our test suite}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Results}{40}{subsection.4.5.2}}
+\newlabel{study1-results}{{4.5.2}{40}{Results}{subsection.4.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LJMs shown in Table\nobreakspace  {}\ref  {table:ljms}.\relax }}{40}{figure.caption.36}}
+\newlabel{fig:jigsaw_graph}{{4.4}{40}{A similarity graph representing pairwise Jigsaw similarities between LJMs shown in Table~\ref {table:ljms}.\relax }{figure.caption.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }}{41}{figure.caption.37}}
+\newlabel{jigsaw_4_test_cases}{{4.5}{41}{Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.3}discussion}{41}{subsection.4.5.3}}
+\newlabel{study2-results}{{4.5.3}{41}{discussion}{subsection.4.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Summary}{42}{section.4.6}}
+\newlabel{summary}{{4.6}{42}{Summary}{section.4.6}{}}
 \@setckpt{chapter3-1}{
-\setcounter{page}{41}
+\setcounter{page}{43}
 \setcounter{equation}{2}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
@@ -40,12 +54,12 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{4}
-\setcounter{section}{3}
+\setcounter{section}{6}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{4}
+\setcounter{figure}{5}
 \setcounter{table}{0}
 \setcounter{ContinuedFloat}{0}
 \setcounter{KVtest}{0}
@@ -58,11 +72,11 @@
 \setcounter{lstnumber}{1}
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{28}
+\setcounter{bookmark@seq@number}{30}
 \setcounter{float@type}{16}
-\setcounter{algorithm}{0}
+\setcounter{algorithm}{2}
 \setcounter{nlinenum}{0}
-\setcounter{ALG@line}{0}
+\setcounter{ALG@line}{10}
 \setcounter{ALG@rem}{0}
 \setcounter{ALG@nested}{0}
 \setcounter{ALG@Lnr}{2}

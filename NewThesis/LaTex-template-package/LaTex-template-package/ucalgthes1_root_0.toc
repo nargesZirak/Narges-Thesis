@@ -4,77 +4,72 @@
 \contentsline {chapter}{List of Tables}{vi}{chapter*.7}
 \contentsline {chapter}{List of Figures}{vii}{chapter*.9}
 \contentsline {chapter}{List of Symbols}{ix}{chapter*.11}
-\addvspace {10pt}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Programmatic support for logging}{3}{section.1.1}
 \contentsline {section}{\numberline {1.2}Broad thesis overview}{3}{section.1.2}
 \contentsline {section}{\numberline {1.3}Thesis statement}{5}{section.1.3}
 \contentsline {section}{\numberline {1.4}Thesis organization}{5}{section.1.4}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {2}Motivational Scenario}{9}{chapter.2}
-\contentsline {section}{\numberline {2.1}Summary}{13}{section.2.1}
+\contentsline {chapter}{\numberline {2}Motivational Scenario}{8}{chapter.2}
+\contentsline {section}{\numberline {2.1}Summary}{12}{section.2.1}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {3}Background}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}Concrete syntax trees and abstract syntax trees}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}First-order anti-unification}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Higher-order anti-unification modulo equational theories}{24}{section.3.3}
-\contentsline {section}{\numberline {3.4}Eclipse JDT}{27}{section.3.4}
-\contentsline {section}{\numberline {3.5}The Jigsaw framework}{30}{section.3.5}
-\contentsline {section}{\numberline {3.6}Summary}{31}{section.3.6}
+\contentsline {chapter}{\numberline {3}Background}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Concrete syntax trees and abstract syntax trees}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}First-order anti-unification}{18}{section.3.2}
+\contentsline {section}{\numberline {3.3}Higher-order anti-unification modulo equational theories}{23}{section.3.3}
+\contentsline {section}{\numberline {3.4}Eclipse JDT}{26}{section.3.4}
+\contentsline {section}{\numberline {3.5}The Jigsaw framework}{29}{section.3.5}
+\contentsline {section}{\numberline {3.6}Summary}{29}{section.3.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {4}Determining Structural Correspondences}{33}{chapter.4}
-\contentsline {section}{\numberline {4.1}The Correspondence tool}{33}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Constructing the AUAST}{34}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Determining structural correspondences}{35}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}An Assessment of the Correspondence tool}{35}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Setup}{37}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Results}{39}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Summary}{40}{section.4.3}
+\contentsline {chapter}{\numberline {4}Determining Structural Correspondences}{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}Computing similarity}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}Determining potential correspondences}{33}{section.4.2}
+\contentsline {section}{\numberline {4.3}Constructing the AUAST}{34}{section.4.3}
+\contentsline {section}{\numberline {4.4}The corrsepondence tool}{35}{section.4.4}
+\contentsline {section}{\numberline {4.5}Evaluation}{37}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Setup}{38}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Results}{40}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}discussion}{41}{subsection.4.5.3}
+\contentsline {section}{\numberline {4.6}Summary}{42}{section.4.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {5}Constructing Structural Generalizations}{41}{chapter.5}
-\contentsline {section}{\numberline {5.1}The Anti-unifier building tool}{42}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Applying constraints in determining correspondences}{43}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Determining best correspondences}{44}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Constructing the anti-unifier}{47}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Computing similarity between AUASTs}{50}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}Java methods containing multiple logging calls}{52}{subsection.5.1.5}
-\contentsline {section}{\numberline {5.2}An assessment of the anti-unifier-building tool}{55}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Setup}{55}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Results}{56}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Summary}{58}{section.5.3}
+\contentsline {chapter}{\numberline {5}Constructing Structural Generalization}{43}{chapter.5}
+\contentsline {section}{\numberline {5.1}Determining best correspondences}{45}{section.5.1}
+\contentsline {section}{\numberline {5.2}Computing similarity between AUASTs}{49}{section.5.2}
+\contentsline {section}{\numberline {5.3}Constructing the anti-unifier}{50}{section.5.3}
+\contentsline {section}{\numberline {5.4}The Anti-unifier building tool}{50}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Constrcting the detailed generalization view}{50}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Java methods containing multiple logging calls}{53}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}Evaluation}{57}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Setup}{57}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Results}{58}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}Summary}{60}{section.5.6}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {6}Clustering}{60}{chapter.6}
-\contentsline {section}{\numberline {6.1}The Clustering tool}{61}{section.6.1}
-\contentsline {section}{\numberline {6.2}An Assessment of the Clustering tool}{63}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Setup}{63}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Results}{63}{subsection.6.2.2}
-\contentsline {section}{\numberline {6.3}Summary}{64}{section.6.3}
+\contentsline {chapter}{\numberline {6}Clustering}{62}{chapter.6}
+\contentsline {section}{\numberline {6.1}The hierarchical clustering algorithm}{63}{section.6.1}
+\contentsline {section}{\numberline {6.2}Evaluaton}{65}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Setup}{65}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Results}{65}{subsection.6.2.2}
+\contentsline {section}{\numberline {6.3}Summary}{66}{section.6.3}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {7}Evaluation}{65}{chapter.7}
-\contentsline {section}{\numberline {7.1}Experiment 1}{65}{section.7.1}
-\contentsline {section}{\numberline {7.2}Experiment 2}{66}{section.7.2}
-\contentsline {section}{\numberline {7.3}Results}{66}{section.7.3}
-\contentsline {section}{\numberline {7.4}Lessons learned}{66}{section.7.4}
+\contentsline {chapter}{\numberline {7}Discussion}{67}{chapter.7}
+\contentsline {section}{\numberline {7.1}Threats to validity}{67}{section.7.1}
+\contentsline {section}{\numberline {7.2}The pitfalls of my tool}{68}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Inaccurate node ordering}{68}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Conflict resolution}{69}{subsection.7.2.2}
+\contentsline {section}{\numberline {7.3}Applications of anti-unification}{69}{section.7.3}
+\contentsline {section}{\numberline {7.4}Summary}{70}{section.7.4}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {8}Discussion}{67}{chapter.8}
-\contentsline {section}{\numberline {8.1}Threats to validity}{67}{section.8.1}
-\contentsline {section}{\numberline {8.2}Our tool output}{68}{section.8.2}
-\contentsline {subsection}{\numberline {8.2.1}Node ordering mismatch}{68}{subsection.8.2.1}
-\contentsline {subsection}{\numberline {8.2.2}Handling conflicts in constructing the anti-unifiers}{69}{subsection.8.2.2}
-\contentsline {section}{\numberline {8.3}Other applications}{69}{section.8.3}
-\contentsline {section}{\numberline {8.4}Applications of anti-unification}{69}{section.8.4}
-\contentsline {section}{\numberline {8.5}Summary}{70}{section.8.5}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {9}Related Work}{72}{chapter.9}
-\contentsline {section}{\numberline {9.1}Usage of logging}{72}{section.9.1}
-\contentsline {section}{\numberline {9.2}Correspondence}{74}{section.9.2}
-\contentsline {section}{\numberline {9.3}API usages patterns}{74}{section.9.3}
-\contentsline {section}{\numberline {9.4}Anti-unification}{75}{section.9.4}
-\contentsline {section}{\numberline {9.5}Clustering}{76}{section.9.5}
-\contentsline {section}{\numberline {9.6}Summary}{77}{section.9.6}
+\contentsline {chapter}{\numberline {8}Related Work}{71}{chapter.8}
+\contentsline {section}{\numberline {8.1}Usage of logging}{71}{section.8.1}
+\contentsline {section}{\numberline {8.2}Correspondence}{73}{section.8.2}
+\contentsline {section}{\numberline {8.3}API usages patterns}{73}{section.8.3}
+\contentsline {section}{\numberline {8.4}Anti-unification}{74}{section.8.4}
+\contentsline {section}{\numberline {8.5}Clustering}{75}{section.8.5}
+\contentsline {section}{\numberline {8.6}Summary}{76}{section.8.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {10}Conclusion}{79}{chapter.10}
-\contentsline {section}{\numberline {10.1}Future Work}{80}{section.10.1}
+\contentsline {chapter}{\numberline {9}Conclusion}{78}{chapter.9}
+\contentsline {section}{\numberline {9.1}Future Work}{79}{section.9.1}
 \addvspace {10pt}
