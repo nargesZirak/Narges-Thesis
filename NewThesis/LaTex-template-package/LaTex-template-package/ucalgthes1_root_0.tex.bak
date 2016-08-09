@@ -8,7 +8,10 @@
 \usepackage[bookmarksopen=false,colorlinks=false,pdfborder={0 0 0},plainpages=false,pdfpagelabels]{hyperref}
 \usepackage[chapter]{algorithm}
 
-
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 \usepackage{listings}
 \usepackage{makecell}
 %\usepackage{lstlinebgrd}
@@ -41,7 +44,7 @@
 \newcommand{\vars}{\textit}
 \newcommand{\func}{\textsc}
 \newcommand{\cons}{\textrm}
-\newcommand{\bold}{\textbf}
+%\newcommand{\bold}{\textbf}
 \newcommand{\name}[1]{\textsf{\small #1}}
 \let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}
@@ -49,19 +52,29 @@
 \algnewcommand\Instanceof{\textbf{ instanceof }}
 \algnewcommand\ori{\textbf{ or }}
 
+
+\algnewcommand{\ComputeSimilarity}{\Statex \textbf{\func{Compute-Similarity}($\id{nodeA}$,$\id{nodeB}$)}}
+
+\algnewcommand{\ApplyConstraints}{\Statex \textbf{\func{Apply-Constraints}($\id{list}$)}}
+
+\algnewcommand{\DeterminePotentialCorrespondences}{\Statex \textbf{\func{Determine-Potential-Correspondence}($\id{astA}$,$\id{astB}$)}}
+
+\algnewcommand{\DetermineBest}{\Statex \textbf{\func{Determine-Best-Correspondences}($\id{auastA}$)}}
+\algnewcommand{\Determine}{\Statex \textbf{\func{Determine-Correspondences}($\id{auastA}$, $\id{auastB}$)}}
+
+\algnewcommand{\ComputeSimilarityy}{\Statex \textbf{\func{Compute-Similarity}($\id{auastA}$,$\id{auastB}$)}}
+
 \algnewcommand{\antiunification}{\Statex \textbf{\func{AntiUnification}($\id{auastA}$, $\id{auastB}$)}}
 
-\algnewcommand{\Compute-similarity}{\Statex \textbf{\func{Compute-Similarity}($\id{auastA}$)}}
+\algnewcommand{\Non-Leaf-Node-Similarity}{\Statex \textbf{\func{Non-Leaf-Node-Similarity}($\id{astA}$,$\id{astB}$)}}
+
 
 \algnewcommand{\AntiUnify}{\Statex \textbf{\func{Antiunify}($\id{auastA}$, $\id{auastB}$)}}
 
-\algnewcommand{\ComputeMatch}{\Statex \textbf{\func{Compute-Matches}($\id{auastA}$)}}
-\algnewcommand{\CreateList}{\Statex \textbf{\func{Determine-Correspondence}($\id{auastA}$)}}
-\algnewcommand{\JigsawCorr}{\Statex \textbf{\func{Jigsaw-Correspondence}($\id{auastA}$, $\id{auastB}$)}}
-\algnewcommand{\DetermineBest}{\Statex \textbf{\func{Determine-Best-Correspondence}($\id{auastA}$, $\id{auastB}$)}}
-\algnewcommand{\RemoveOtherCEs}{\Statex \textbf{\func{Remove-Other-Correspondences}($\id{ce}$, $\id{list}$)}}
-\algnewcommand{\AntiUnifyProperty}{\Statex \textbf{\func{Antiunify-Property}($\id{propA}$, $\id{propB}$)}}
+\algnewcommand{\ComputeMatch}{\Statex \textbf{\func{Compute-Matches}($\id{antiunifier}$)}}
+\algnewcommand{\AntiUnifyProperty}{\Statex \textbf{\func{Antiunify-Properties}($\id{propA}$, $\id{propB}$)}}
 
+\algnewcommand{\RemoveOtherCEs}{\Statex \textbf{\func{Remove-Other-Correspondences}($\id{corr}$, $\id{list}$)}}
 
 \let\cite\citep
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
@@ -204,7 +217,7 @@ Department of  Computer Science \\
 \addtocontents{toc}{\protect\addvspace{10pt}}
 \include{chapter4-1}
 \addtocontents{toc}{\protect\addvspace{10pt}}
-\include{chapter5}
+%\include{chapter5}
 \addtocontents{toc}{\protect\addvspace{10pt}}
 \include{chapter6}
 \addtocontents{toc}{\protect\addvspace{10pt}}
@@ -220,7 +233,7 @@ Department of  Computer Science \\
 % NZ:
 %\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
 % RW:
-\bibliography{../../../../workspace/bibtex/full,../../../../workspace/bibtex/references,../../../../workspace/bibtex/lsmr,mybiblio}
+\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
 
 
 

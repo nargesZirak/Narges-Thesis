@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{44}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -58,6 +58,13 @@ Peter Bulychev and Marius Minea.
 \newblock An evaluation of duplicate code detection using anti-unification.
 \newblock In \emph{Proc. 3rd International Workshop on Software Clones}.
   Citeseer, 2009.
+
+\bibitem[Burghardt(2005)]{2005:aij:burghardt}
+J.~Burghardt.
+\newblock {E}-generalization using grammars.
+\newblock \emph{Artificial Intelligence Journal}, 165\penalty0 (1):\penalty0
+  1--35, June 2005.
+\newblock \doi{10.1016/j.artint.2005.01.008}.
 
 \bibitem[Burghardt and Heinz(1996)]{burghardt1996implementing}
 Jochen Burghardt and Birgit Heinz.
@@ -239,6 +246,12 @@ Tobias Sager, Abraham Bernstein, Martin Pinzger, and Christoph Kiefer.
 \newblock Detecting similar java classes using tree algorithms.
 \newblock In \emph{Proceedings of the 2006 international workshop on Mining
   software repositories}, pages 65--71. ACM, 2006.
+
+\bibitem[Schmidt(2010)]{schmidt2010restricted}
+Martin Schmidt.
+\newblock Restricted higher-order anti-unification for heuristic-driven theory
+  projection.
+\newblock \emph{Publications of the Institute of Cognitive Science}, 31, 2010.
 
 \bibitem[Voorhees(1986)]{voorhees1986implementing}
 Ellen~M Voorhees.

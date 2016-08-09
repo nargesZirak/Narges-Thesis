@@ -45,19 +45,20 @@
 \BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 45
 \BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 46
 \BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 47
-\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 48
-\BOOKMARK [1][-]{section.7.1}{Threats to validity}{chapter.7}% 49
-\BOOKMARK [1][-]{section.7.2}{The pitfalls of my tool}{chapter.7}% 50
-\BOOKMARK [2][-]{subsection.7.2.1}{Inaccurate node ordering}{section.7.2}% 51
-\BOOKMARK [2][-]{subsection.7.2.2}{Conflict resolution}{section.7.2}% 52
-\BOOKMARK [1][-]{section.7.3}{Applications of anti-unification}{chapter.7}% 53
-\BOOKMARK [1][-]{section.7.4}{Summary}{chapter.7}% 54
-\BOOKMARK [0][-]{chapter.8}{Related Work}{}% 55
-\BOOKMARK [1][-]{section.8.1}{Usage of logging}{chapter.8}% 56
-\BOOKMARK [1][-]{section.8.2}{Correspondence}{chapter.8}% 57
-\BOOKMARK [1][-]{section.8.3}{API usages patterns}{chapter.8}% 58
-\BOOKMARK [1][-]{section.8.4}{Anti-unification}{chapter.8}% 59
-\BOOKMARK [1][-]{section.8.5}{Clustering}{chapter.8}% 60
-\BOOKMARK [1][-]{section.8.6}{Summary}{chapter.8}% 61
-\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 62
-\BOOKMARK [1][-]{section.9.1}{Future Work}{chapter.9}% 63
+\BOOKMARK [0][-]{chapter.7}{Discovering logging usage schemas}{}% 48
+\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 49
+\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 50
+\BOOKMARK [1][-]{section.8.2}{The pitfalls of my tool}{chapter.8}% 51
+\BOOKMARK [2][-]{subsection.8.2.1}{Inaccurate node ordering}{section.8.2}% 52
+\BOOKMARK [2][-]{subsection.8.2.2}{Conflict resolution}{section.8.2}% 53
+\BOOKMARK [1][-]{section.8.3}{Applications of anti-unification}{chapter.8}% 54
+\BOOKMARK [1][-]{section.8.4}{Summary}{chapter.8}% 55
+\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 56
+\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 57
+\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 58
+\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 59
+\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 60
+\BOOKMARK [1][-]{section.9.5}{Clustering}{chapter.9}% 61
+\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 62
+\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 63
+\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 64

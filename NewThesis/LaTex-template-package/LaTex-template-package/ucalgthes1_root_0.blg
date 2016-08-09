@@ -14,8 +14,9 @@ Database file #1: ../../../../../workspace/bibtex/full.bib
 Database file #2: ../../../../../workspace/bibtex/references.bib
 Database file #3: ../../../../../workspace/bibtex/lsmr.bib
 Database file #4: mybiblio.bib
+Warning--I didn't find a database entry for "jain1999data"
 Warning--can't use both volume and number fields in holmes2005strathcona
 Warning--can't use both volume and number fields in li2005pr
 Warning--empty journal in yaghmour2000measuringandcharacter
 Warning--can't use both volume and number fields in yuan2010sherlog
-(There were 4 warnings)
+(There were 5 warnings)

@@ -2,7 +2,7 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Logging call examples from the \name {log4j} framework.\relax }}{3}{figure.caption.12}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Overview of the approach. \RW {I don't want to see mention of tools here. This should be focused on the concepts.}\relax }}{6}{figure.caption.13}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Overview of the approach. \relax }}{5}{figure.caption.13}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {2.1}{\ignorespaces The \lstinline {EditBus} class.\relax }}{10}{figure.caption.14}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces The developer's initial determination of the usage of logging calls.}}{11}{figure.caption.15}
@@ -47,6 +47,7 @@
 \contentsline {figure}{\numberline {6.1}{\ignorespaces The similarity matrix for a sample set of 5 AUASTs.\relax }}{64}{figure.caption.50}
 \contentsline {figure}{\numberline {6.2}{\ignorespaces The agglomerative hierarchical clustering process on a sample set of 5 AUASTs using the initial similarity matrix shown in Figure\nobreakspace {}\ref {matrix}. The threshold value indicates the number of clusters we will come up with.\relax }}{64}{figure.caption.51}
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Results from applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{66}{figure.caption.52}
+\addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
