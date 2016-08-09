@@ -27,26 +27,26 @@
 \addvspace {10pt}
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Simple CAST structure of the examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.}}{34}{figure.caption.33}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\relax }}{36}{figure.caption.34}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Logged Java methods used as our test suite.}}{39}{figure.caption.35}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LJMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{40}{figure.caption.36}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }}{41}{figure.caption.37}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Logged Java methods used as our test suite.}}{38}{figure.caption.35}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{39}{figure.caption.36}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample Java source code fragment pairs.\relax }}{40}{figure.caption.37}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Overview of the anti-unification process.\relax }}{44}{figure.caption.38}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \textsc {Determine-Best-Correspondences} algorithm.\relax }}{48}{figure.caption.39}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Simple detailed view of the anti-unifier constructed from the AUASTs of the LJMs in Examples 1 and 2.\relax }}{52}{figure.caption.40}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces A Java method that utilizes multiple logging calls.\relax }}{54}{figure.caption.41}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces A Java method that utilizes multiple logging calls.\relax }}{54}{figure.caption.42}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate candidate structural correspondences detected by the Jigsaw framework.\relax }}{55}{figure.caption.43}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }}{55}{figure.caption.44}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Create multiple copies of the LJM in Figure\nobreakspace {}\ref {multiple1} for each logging call.\relax }}{56}{figure.caption.45}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Create multiple copies of the LJM in Figure\nobreakspace {}\ref {multiple2} for each logging call.\relax }}{57}{figure.caption.46}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces 10 sample logged Java method pairs used as test cases.\relax }}{59}{figure.caption.47}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Results of constructing anti-unifiers with a focus on logging calls for the 55 test cases.\relax }}{59}{figure.caption.48}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces A similarity graph representing pairwise similarities calculated by our tool between LJMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{60}{figure.caption.49}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Overview of the anti-unification process.\relax }}{43}{figure.caption.38}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \textsc {Determine-Best-Correspondences} algorithm.\relax }}{47}{figure.caption.39}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Simple detailed view of the anti-unifier constructed from the AUASTs of the LMs in Examples 1 and 2.\relax }}{50}{figure.caption.40}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces A Java method that utilizes multiple logging calls.\relax }}{52}{figure.caption.41}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces A Java method that utilizes multiple logging calls.\relax }}{52}{figure.caption.42}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate candidate structural correspondences detected by the Jigsaw framework.\relax }}{53}{figure.caption.43}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }}{53}{figure.caption.44}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Create multiple copies of the LJM in Figure\nobreakspace {}\ref {multiple1} for each logging call.\relax }}{54}{figure.caption.45}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Create multiple copies of the LJM in Figure\nobreakspace {}\ref {multiple2} for each logging call.\relax }}{55}{figure.caption.46}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces 10 sample logged Java method pairs used as test cases.\relax }}{57}{figure.caption.47}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Results of constructing anti-unifiers with a focus on logging calls for the 55 test cases.\relax }}{57}{figure.caption.48}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces A similarity graph representing pairwise similarities calculated by our tool between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{58}{figure.caption.49}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {6.1}{\ignorespaces The similarity matrix for a sample set of 5 AUASTs.\relax }}{64}{figure.caption.50}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces The agglomerative hierarchical clustering process on a sample set of 5 AUASTs using the initial similarity matrix shown in Figure\nobreakspace {}\ref {matrix}. The threshold value indicates the number of clusters we will come up with.\relax }}{64}{figure.caption.51}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Results from applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{66}{figure.caption.52}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces The similarity matrix for a sample set of 5 AUASTs.\relax }}{62}{figure.caption.50}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces The agglomerative hierarchical clustering process on a sample set of 5 AUASTs using the initial similarity matrix shown in Figure\nobreakspace {}\ref {matrix}. The threshold value indicates the number of clusters we will come up with.\relax }}{62}{figure.caption.51}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Results from applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{64}{figure.caption.52}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

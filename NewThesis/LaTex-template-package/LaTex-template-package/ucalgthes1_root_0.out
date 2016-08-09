@@ -22,13 +22,13 @@
 \BOOKMARK [1][-]{section.4.1}{Computing similarity}{chapter.4}% 22
 \BOOKMARK [1][-]{section.4.2}{Determining potential correspondences}{chapter.4}% 23
 \BOOKMARK [1][-]{section.4.3}{Constructing the AUAST}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.4}{The corrsepondence tool}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.4}{The correspondence tool}{chapter.4}% 25
 \BOOKMARK [1][-]{section.4.5}{Evaluation}{chapter.4}% 26
 \BOOKMARK [2][-]{subsection.4.5.1}{Setup}{section.4.5}% 27
 \BOOKMARK [2][-]{subsection.4.5.2}{Results}{section.4.5}% 28
 \BOOKMARK [2][-]{subsection.4.5.3}{discussion}{section.4.5}% 29
 \BOOKMARK [1][-]{section.4.6}{Summary}{chapter.4}% 30
-\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalization}{}% 31
+\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalizations}{}% 31
 \BOOKMARK [1][-]{section.5.1}{Determining best correspondences}{chapter.5}% 32
 \BOOKMARK [1][-]{section.5.2}{Computing similarity between AUASTs}{chapter.5}% 33
 \BOOKMARK [1][-]{section.5.3}{Constructing the anti-unifier}{chapter.5}% 34

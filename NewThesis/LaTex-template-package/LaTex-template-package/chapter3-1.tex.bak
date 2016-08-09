@@ -1,35 +1,99 @@
 \chapter{Determining Structural Correspondences}\label{background2}
-In order to construct structural generalizations describing the commonalities and differences between logged Java methods (LJMs), we need to find structural correspondences between their ASTs. Therefore, we first need a concrete framework for constructing and manipulating ASTs. The Eclipse integrated development environment provides such a framework in its Java Development Tools (JDT) component. The details of our implementation will depend on certain details of Eclipse JDT, so we describe those in Section~\ref{JDT}.
-%constructing?
+In order to construct a structural generalization describing the commonalities and differences between ASTs of two given logged methods (LMs), we first need to find structural correspondences between their nodes. My approach to determining correspondences proceeds in three steps: first, computing similarity between AST nodes (Section~\ref{jigsaw-similarity}); second, determining potential structural correspondences between AST nodes (Section~\ref{jigsaw-corr}); third, constructing an extended form of ASTs, called AUASTs (anti-unifier ASTs) to allow the creation of an anti-unified structure (Section~\ref{jigsaw-corr}) in a later phase. To evaluate my approach, I implemented it as an Eclipse plug-in, named the correspondence tool, which is built atop Jigsaw. Then I conducted an experimental study to validate its effectiveness for my application. Section~\ref{jigsaw-assessment} describes my experimental setup, present my study, and discuss the results.
+% first, the ASTs of Java methods are extracted from source code;
 
-The correspondence tool, is an Eclipse plug-in I used to determine structural correspondences between nodes in the tree structures. As AST structure does not allows the insertion of variables, I first created an extended form of AST, called AUAST (Anti-unifier AST) that addresses this issue (see Section~\ref{AUAST}), and then applied Jigsaw \cite{2008:fse:cottrell} on these structures, which is a framework exists for determining structural correspondences and measuring similarity between the nodes involved in each correspondence (described in Section~\ref{Jigsaw}). We build atop that work in order to create our anti-unifiers. In addition, an experimental study was conducted to validate the effectiveness of Jigsaw for our application.
+To develop the correspondence tool, I first needed a concrete framework for constructing and manipulating ASTs. The Eclipse integrated development environment provides such a framework in its Java Development Tools (JDT) component (as explained in Section~\ref{JDT-impl}). I also utilized Jigsaw \cite{2008:fse:cottrell}, which is an existing framework for creating structural correspondence connections among ASTs based on the structural similarity between their nodes (Section~\ref{Jigsaw-impl}). I then constructed the AUAST structure to allow the insertion of variables in place of any nodes. I built atop this work in order to create anti-unifiers.
 %we or I???
 % and a comparison of our tool with Jigsaw (Section~\ref{comparison-Jigsaw}).
+%jEdit v4.2 pre 15 (2004)
 
 
-\section{The Correspondence tool} \label{correspondenceTool}
-The correspondence tool is an Eclipse plug-in that inputs ASTs of LJMs of a Java program, creates an extended form of AST structure, called AUAST, to allow the application of HOAUMT, and determines structural correspondences between AUASTs using the Jigsaw framework in a pairwise manner. This process will be described in the following sections.
+%\subsection{Extracting the ASTs of LMs}\label{Jigsaw_usage}
+%In order to describe the structure of Java methods that make use of logging calls in a program, we need to extract their ASTs (as described in Section~\ref{AST}).
 
-\subsection{Constructing the AUAST} \label{AUAST}
+
+
+\section{Computing similarity}  \label{jigsaw-similarity}
+To compute similarity between AST nodes, I re-used a function developed by \citet{2008:fse:cottrell} that relies on syntactic similarity along simple knowledge of semantic equivalences supported by a program language specifications. It returns a value in $[0, 1]$ where zero indicates complete lack of similarity and one indicates perfect similarity. In general, this function returns a value above zero if the compared nodes are of identical type, and thus it returns a similarity of 0 for nodes of different types.
+However, it uses several heuristics to improve the accuracy of similarity measurement by defining an arbitrary value for the nodes that are syntactically different but are semantically relevant. For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of the longest common substring. The comparison of the \code{int} and \code{long} nodes is another example, where an arbitrary value of 0.5 is defined as the similarity, since they are not of syntactically identical types but have semantic equivalences. The function also detects the structural correspondence between \code{for}-, \code{enhanced-for}-, \code{while}-, and \code{do}-loop statements; and \code{if} and \code{switch} conditional statements.
+%bradly citation ????
+
+\citet{2008:fse:cottrell} computed the similarity between non-leaf nodes not only based on the node types, but also pairwise similarities of their children nodes, as described via the \func{Non-Leaf-Node-Similarity} algorithm. In this algorithm, the children of the subtrees $\id{astA}$ and $\id{astB}$ are compared exhaustively in a pairwise manner (Lines~1--10). For each child node of the subtree $\id{astA}$, the highest similarity with any child node of the subtree $\id{astB}$ is determined (Lines~4--9) . All these maximum similarities are summed up and divided by the size of the largest subtree (Lines~11--12).
+
+% should be modified???
+\begin{algorithm}
+  \caption{\func{Non-Leaf-Node-Similarity}($\id{astA}$,$\id{astB}$) computes the similarity between two non-leaf nodes.}
+  \label{computeMatches}
+  \begin{algorithmic}[1]
+  \Non-Leaf-Node-Similarity
+  	 %  \State{$ \func{Determine-Best-Correspondence}(\id{auastA}, \id{auastB})$}
+  	  % \EndIf
+         \State $\id{sum} \gets 0$
+      \For {$\id{childA} \in \id{children}[\id{astA}]$}
+		\State $\id{max} \gets 0$
+     		
+		\For {$\id{childB} \in \id{children}[\id{astB}]$}	
+ 			\State $\id{sim} \gets  \func{Similarity}(childA,childB)$	
+ 		\If {$\id{sim} > \id{max}$ }	
+ 		\State $\id{max} \gets \id{sim}$	
+		\EndIf 		
+ \EndFor 	
+	  \EndFor 	
+	 	
+	    \State $\id{sum} \gets  \id{sum} +  \id{max}$
+	
+%       \EndFor 	
+	\Return $\id{sum} / \id{max}{|\id{auastA}| + |\id{auastB}|}$
+
+  \end{algorithmic}
+\end{algorithm}
+
+
+
+\section{Determining potential correspondences}  \label{jigsaw-corr}
+
+%The goal of this phase is to determine potential correspondences between AST nodes, for use in the generalization phase.
+The similarity function can be used to determine potential structural correspondences amongst nodes of two given ASTs. To find correspondences, I used an algorithm proposed by \citet{2008:fse:cottrell} that generates an augmented form of AST, called \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections, each implicitly representing an anti-unifier. The \func{Determine-Potential-Correspondences} algorithm computes the similarity for all pairs of nodes in the two ASTs (Lines~1--3). If similarity value for a pair is above zero, a correspondence connection will be created and added to the list of correspondence connections of the two corresponding nodes (Lines~4--8). As an example, Figure~\ref{fig:meth-ast-1} shows candidate structural correspondence connections created via the \func{Determine-Potential-Correspondences} algorithm on ASTs of Examples 1 and 2.
+
+
+\begin{algorithm}
+  \caption{\func{Determine-Potential-Correspondences}($\id{astA}$,$\id{astB}$) determines the candidate correspondence connections between the nodes of $\id{astA}$ and $\id{astB}$.}
+  \label{computeMatches}
+  \begin{algorithmic}[1]
+  \DeterminePotentialCorrespondences
+      \For {$\id{nodeA} \in \id{astA}$}
+ 		%\State $\id{corrsA} \gets \cons{Null}$	
+		
+		\For {$\id{nodeB} \in \id{astB}$}
+		\State $\id{sim} \gets \func{Similarity}(nodeA,nodeB)$	
+ 			\If {$sim > 0$}	
+ 		\State $\id{corr} \gets \func{create-correspondence-connection}(\id{nodeA},\id{nodeB},\id{sim})$	
+ \State $\func{Append}(\id{corrs}[\id{nodeA}],corr)$	
+ \State $\func{Append}(\id{corrs}[\id{nodeB}],corr)$
+ 		\EndIf 		
+ \EndFor 	
+	  \EndFor 	
+	
+  \end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{figure} [H]  \centering\includegraphics [width = \textwidth]{Drawing4/FirstCorr.pdf}
+  \caption[Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.]{Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between CAST nodes indicate structural correspondence connections created using the \func{Determine-Potential-Correspondences} algorithm.}
+  \label{fig:meth-ast-1}
+\end{figure}
+
+\section{Constructing the AUAST}  \label{jigsaw-corr}
 \RW{This is a concrete implementation, not a generic idea, at least not the way it is described. I strongly suggest that you give a generic description of your assumptions about ASTs then relate AUASTs to those, then talk about implementation details.}
-\NZ{I explained it as a part of the implementation of my tool.}
+\NZ{I tried to explain the concept.}
 
-%An anti-unifier AST (AUAST) is an extended form of AST that allows the insertion of variables in place of any node in the tree structure, including both subtrees and leaves, to indicate variations between original structures. The AUAST addresses the limitations of AST to construct an anti-unifier by adding the following structural properties:
-
-
-The goal of this phase is to construct an extended form of AST structure that would allow the creation of an anti-unified structure. As described in Section~\ref{HOAUMT}, an anti-unified structure utilizes variables that must be substituted with proper substructures to regain original structures. However, an AST structure does not contain any variables, and therefore an extended form of it is required, namely the AUAST (anti-unifier AST), that would allow the insertion of variables in place of any node in the tree structure, including both subtrees and leaves, to indicate variations between the original structures. The AUAST structure addresses the limitations of AST to construct an anti-unifier by adding the following structural properties:
+As described in Section~\ref{HOAUMT}, an anti-unified structure utilizes variables that must be substituted with proper substructures to regain original structures. However, the CAST structure presented by \citet{2008:fse:cottrell} would allow the creation of an anti-unified structure, as it does not contain any variables. Therefore, an extended form of it is required, namely the AUAST (anti-unifier AST), that would allow the insertion of variables in place of any node in the tree structure, including both subtrees and leaves, to indicate variations between the original structures.
 %namely?
 
-\begin{itemize} [leftmargin=.5in]
-\item \textit{Simple structural variable Properties}: an extension of simple structural properties referring to two simple values to allow the insertion of variables in place of leaves.
-\end{itemize}
-\begin{itemize} [leftmargin=.5in]
-\item \textit{Child structural variable properties}: an extension of child structural properties referring to two child AST nodes to allow the insertion of variables in place of subtrees.
-\end{itemize}
+To provide an example to demonstrate this structure, the anti-unified AUAST constructed from the AUASTs of logging calls in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The structural variables $X$ and $Y$ are used to indicate the structural variations, where the $X$ structural variable refers to two simple names and the $Y$ structural variable refers to two subtrees. The substitutions are defined in Equations~\ref{eq:theta1} and~\ref{eq:theta2}.
 
-%%???
-
-To provide an example to demonstrate this structure, the anti-unified AUAST constructed from the AUASTs of logging calls in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The structural variables $X$ and $Y$ are used to indicate the structural variations, where the $X$ structural variable refers to two simple values and the $Y$ structural variable refers to two child nodes. The substitutions are defined in Equations~\ref{eq:theta1} and~\ref{eq:theta2}.
+% leaf- non leaf refer???
 
 \begin{align}
 \Theta_1 = (X \rightarrow \text{ \textsf{\small WARNING}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
@@ -46,7 +110,7 @@ To provide an example to demonstrate this structure, the anti-unified AUAST cons
 
 %\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
 
-\begin{figure}[H]
+\begin{figure}[p]
 \begin{small}
 \begin{tikzpicture}
 \node(a) at (4.25,10) {%
@@ -88,7 +152,8 @@ To provide an example to demonstrate this structure, the anti-unified AUAST cons
 \end{small}
 \caption{Anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
 \end{figure}
-%The AUASTs of log Method Invocation nodes from the Java classes in Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2}.
+
+
 
 
 
@@ -162,22 +227,49 @@ To provide an example to demonstrate this structure, the anti-unified AUAST cons
 %\end{figure}
 
 
-\subsection{Determining structural correspondences}\label{Jigsaw_usage}
-
-Our correspondence tool applies a part of the implementation of Jigsaw to identify structural correspondences between AUASTs and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection. However, the Jigsaw tool does not suffice to construct an anti-unifier that is the best fit to our application, as the problem of this study is different. In addition, the Jigsaw similarity function does not measure the similarity of two LJMs with a focus on logging calls, which is needed in our context. To address these issues, we should develop a greedy selection algorithm to approximate the best anti-unifier for our problem by determining the best correspondence for each node. In the following chapter, we will discuss our approach to construct structural generalization and our implementation by means of the higher-order anti-unification modulo theories and the Jigsaw framework.
 %to construct structural generalizations?
 
-\section{An Assessment of the Correspondence tool}\label{jigsaw-assessment}
+
+
+
+\section{The correspondence tool}\label{corr-tool}
+
+%I implemented a plug-in to the Eclipse integrated development environment (IDE), which uses the \name{JDT} framework to extract ASTs of a pair of LJMs and applies the \name{Jigsaw} framework to generate correspondence connections between AST nodes.
+
+The correspondence tool is a proof-of-concept implementation of the proposed approach to determining potential structural correspondences, which is an Eclipse plug-in that inputs a Java program, extracts ASTs of logged methods in it using the Eclipse JDT framework, applies a part of the implementation of Jigsaw to identify structural correspondences between ASTs in a pairwise manner and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection. It also creates an extended form of CAST, called AUAST, which  addresses the limitations of the CAST structure to constructing an anti-unifier by adding the following structural properties:
+%namely?
+
+\begin{itemize} [leftmargin=.5in]
+\item \textit{Simple structural variable Properties}: an extension of simple structural properties referring to two simple values to allow the insertion of variables in place of leaves.
+\end{itemize}
+\begin{itemize} [leftmargin=.5in]
+\item \textit{Child structural variable properties}: an extension of child structural properties referring to two child AST nodes to allow the insertion of variables in place of subtrees.
+\end{itemize}
+
+%%change???
+
+
+
+
+
+\section{Evaluation}\label{jigsaw-assessment}
+%\section{An Assessment of the Correspondence tool}\label{jigsaw-assessment}
+%\section{The Correspondence tool} \label{correspondenceTool}
 
 \RW{Describe here the procedure you used to select the examples, etc., how you tested Jigsaw, and what your findings were. At some point, you complained that Cottrell had not done something right ... do you have any evidence to demonstrate it?  How does this affect your work?  Such points can go in a discussion section towards the end of this chapter if they don't fit otherwise.  Full details of examples can go in an appendix; here, just describe enough so people can get the point.}
 
 \NZ{I think this experiment is not much about evaluating Jigsaw (The evaluation was conducted by Cottrell), but it is more about understanding what Jigsaw does and how to use it for my application . What I have mentioned was about detecting relevance links which is not related to my work. During my development, I added some statements to Jigsaw for the cases that was not covered in his work completely (e.g, Jigsaw did not detect the correspondence between inner type declarations of two nested type declarations when comparing the two upper type declarations }
 
+
+To evaluate the proposed approach and the tool support, I conducted an experiment on a set of LJMs extracted from a real-world software system to assess how Jigsaw could effectively help us determine potential correspondences between AST nodes and measure similarity between them.
+
+%Jigsaw or correspondence???
+
+
 %chapter{Experimental Studies}  \label{studies}
 %To evaluate our approach, we have implemented a tool, and conducted three empirical studies on a set of LJMs extracted from a real-world software system. In this section, we describe our experimental setup, present our studies, and discuss the results.
 
-We have conducted an experiment on a set of LJMs extracted from a real-world software system to assess how Jigsaw could effectively help us determine potential correspondences between AST nodes and measure similarity between them.
-We implemented a plug-in to the Eclipse integrated development environment (IDE), which uses the \name{JDT} framework to extract ASTs of a pair of LJMs and applies the \name{Jigsaw} framework to generate correspondence connections between AST nodes.
+
 
 %the correspondence tool as
 %\subsubsection{Experimental Setup}  \label{study1_setup}
@@ -190,30 +282,21 @@ As a subject for our study, we used \name{jEdit}, a programmer’s text editor t
 
 \begin{figure} [H]
   \centering
-  \begin{tabular}{|c|l|c|}
-    \hline
+  \begin{tabular}{clc}
+    \toprule
     Case & Logged Java methods & Size(LOC)\\
-    \hline
+    \midrule
     1& org.gjt.sp.jedit.PluginJAR.generateCache() &104\\
-   \hline
     2& org.gjt.sp.jedit.MiscUtilities.isSupportedEncoding(...) &9\\
-   \hline
     3& org.gjt.sp.jedit.EditBus.send(...) &14\\
-   \hline
     4& org.gjt.sp.jedit.EditBus.send(...)* &14\\
-   \hline
     5& org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...) &5\\
-   \hline
     6& org.gjt.sp.jedit.EBPlugin.handleMessage(...) &6\\
-   \hline
     7& org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(...) &3\\
-   \hline
     8& org.gjt.sp.jedit.JARClassLoader.loadClass(...) &32\\
-   \hline
     9& org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(...) &36\\
-   \hline
     10& org.gjt.sp.jedit.ServiceManager.loadServices(...) &20\\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption[Logged Java methods used as our test suite.]{Logged Java methods used as our test suite; all are contained in the \protect\name{org.gjt.sp.jedit} package.}
   \label{table:ljms}
@@ -277,11 +360,21 @@ while (entries.hasMoreElements())  { ...}
 %\section{Comparison with the Jigsaw tool}  \label{comparison-Jigsaw}
 
 
+\subsection{discussion}  \label{study2-results}
+Though the results of this experiment validates Jigsaw's functionality in determining potential correspondences between ASTs nodes, it does not suffice to construct structural generalizations needed in my context. As the problem of this study is different, I should build atop this tool to address the following issues:
+
+\begin{itemize} [leftmargin=.5in]
+\item The CAST structure does not allow the creation of an anti-unified structure, as it does not allow the insertion of variables in place of any nodes in the tree structure.
+\item The Jigsaw tool does not create a detailed view of the anti-unifier describing the commonalities and differences between logged Java methods.
+\item The Jigsaw tool does not determine the best correspondences with special attention to logging calls to construct an approximation of the best anti-unifier for my problem.
+\item The Jigsaw similarity function does not measure the similarity among the usage of logging calls in Java methods.
+% To address these issues, I have developed a greedy selection algorithm to approximate the best anti-unifier for our problem by determining the best correspondence for each node.
+\end{itemize}
+
+In the following chapter, I will discuss my approach to construct structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
 
 \section{Summary}  \label{summary}
 We described Eclipse JDT as a concrete framework that can be used  to manipulate ASTs of a source code written in the Java programming language. We also introduced Jigsaw, an existing framework for determining structural correspondences between AST nodes and measuring similarity between them. Furthermore, we assess the Jigsaw functionality to address our problem through an empirical study on a set of LJMs selected from a real- world software system.
-
-
 
 
 
