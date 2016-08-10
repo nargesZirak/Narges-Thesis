@@ -1,11 +1,4 @@
-\chapter{Constructing Structural Generalization} \label{ch4} \label{methodology}
-
-\RW{Lots of this stuff is now moved to earlier chapters.  This chapter needs to be reworked as a result.  It's not clear to me that "chapter3-2.tex" needs to be separate from this.}
-\RW{New intro blurb needed. Basically, you need to point out how Jigsaw does not suffice, which hopefully you will have demonstrated in the previous chapter.  It's not clear to me why this is separate from the next chapter.  Perhaps combine them?}
-\NZ{I combined them.}
-
-\NZ{In the previous sections I explained why Jigsaw does not sufficiently address our problem.}
-
+\chapter{Constructing Structural Generalizations} \label{ch4} \label{methodology}
 
 In Chapter~\ref{background}, I provided background information on higher-order anti-unification modulo theories, a theoretical framework that can be used to construct a generalization from two given ASTs. I also presented the algorithm proposed by \citet{2008:fse:cottrell} to construct an extended form of AST, where each node holds a list of candidate structural correspondences, implicitly representing an anti-unifier. We now consider how these frameworks could help us (1)~to construct an approximation of the best anti-unifier to my problem from AUASTs of two given logged methods with special attention to logging calls and (2)~to develop a similarity measure between the two AUASTs, which can provide us with useful information for clustering a set of AUASTs in a later phase. The constructed anti-unifier can be viewed as a structural generalization that represents the commonalities and differences between the two AUASTs.
 
@@ -62,7 +55,7 @@ To evaluate my approach, I developed the anti-unifier-building tool atop the cor
 
 %\section{Anti-unification ASTs} \label{anti-unification pairs}
 
-\section{Determining best correspondences}  \label{jigsaw-corr}
+\section{Determining best correspondences}  \label{best-corr}
 %As described in Section~\ref{Jigsaw}, through the application of Jigsaw, each AUAST node will hold a list of candidate correspondence connections, each implicitly representing an anti-unifier. However, despite having multiple potential anti-unifiers, we need to determine one single anti-unifier that is helpful to solve our problem using the greedy selection algorithm discussed in Section~\ref{}.
 
 

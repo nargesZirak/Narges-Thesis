@@ -100,21 +100,12 @@ The remainder of the thesis is organized as follows.
 
 Chapter~\ref{ch2} motivates the problem of understanding where to use logging calls in source code through a scenario in which a developer attempts to perform a logging task. This scenario outlines the potential problems she may encounter and illustrates that the current logging practice is insufficiently supported.
 
-Chapter~\ref{background} provides background information that I build atop: abstract syntax trees (ASTs), which are the basic structure I will use for describing software source code; anti-unification, which is a theoretical approach for determining similarities and differences in tree structures; the Eclipse JDT, an industrial framework for producing and manipulating ASTs for source code written in the Java programming language; and on Jigsaw, a research tool based on the Eclipse JDT for performing anti-unification.
+Chapter~\ref{background} provides background information that I build atop: abstract syntax trees (ASTs), which are the basic structure I will use for describing software source code; the Eclipse JDT, an industrial framework for producing and manipulating ASTs for source code written in the Java programming language; anti-unification, which is a theoretical approach for determining similarities and differences in tree structures; and on Jigsaw, a research tool based on the Eclipse JDT for performing anti-unification.
 
-%\RW{This chapter needs to be clearer about what is new and what is not. By moving all background to the earlier chapter, this is better but not quite good enough.  You can then have this chapter be explicit about what you added and you can have the reader be less lost in the details.  Currently, you start the chapter with an algorithm that they cannot possibly understand because you have not yet explained the background.  That's bad.  With the structure I specified above, the background will all be in the previous chapter.  Now, the reader will be able to appreciate what you are trying to do.  The following description will need to be modified.}
-
-
-Chapters~\ref{background2},~\ref{methodology}, and~\ref{clustering} present the first three steps of my approach to determining structural correspondences between AUASTs, constructing structural generalizations from an AUAST pair, and classifying a set of AUASTs into separate clusters, respectively. In each chapter, I discuss the implementation of my approach as an Eclipse plug-in, and conduct an experimental study to assess the effectiveness of my approach through the application of its tool support on a sample test suite extracted from a real software system.
+Chapters~\ref{background2},~\ref{methodology}, and~\ref{clustering} present the first three steps of my approach. Determining structural correspondences between AUASTs; constructing structural generalizations from an AUAST pair; and classifying a set of AUASTs into separate clusters, respectively. In each chapter, I discuss the implementation of my approach as an Eclipse plug-in, and conduct an experimental study to assess the effectiveness of my approach through the application of its tool support on a sample test suite extracted from a real software system.
 
 
-%. Chapters~\ref{background2} described my approach to determining candidate structural correspondences, its supporting tool built atop Jigsaw, and the experimental study on a set of LMs selected form a real software system to validate the effectiveness of Jigsaw for my application.
 
-%Chapter~\ref{methodology} presents my anti-unification approach as a set of novel algorithms, and its implementation as a plug-in to the Eclipse integrated development environment (IDE),and my experimental study to assess the effectiveness of my approach and the tool support in constructing structural generalizations and computing similarity between structures.
-%Chapter~\ref{methodology} describes the clustering algorithm, its tool support, and an . \RW{This paragraph needs modification.}
-
-
-%The first study is conducted to evaluate the accuracy of my approach and its implemented tool by conducting an experiment on 10 sample logged Java methods.
 Chapter~\ref{eval} presents an empirical study I conducted to characterize the location of logging usage in three open-source software systems. Chapter~\ref{diss} discusses the results and findings of my work, threats to its validity, and remaining issues. Chapter~\ref{rw} describes work related to my research problem and how it does not adequately address the problem. Chapter~\ref{conc} concludes the dissertation and presents the contributions of this study and future work. %Additional materials appended this dissertation are provided in Appendix A.
 
 

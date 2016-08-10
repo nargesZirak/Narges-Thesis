@@ -217,7 +217,7 @@ Department of  Computer Science \\
 \addtocontents{toc}{\protect\addvspace{10pt}}
 \include{chapter4-1}
 \addtocontents{toc}{\protect\addvspace{10pt}}
-%\include{chapter5}
+\include{chapter5}
 \addtocontents{toc}{\protect\addvspace{10pt}}
 \include{chapter6}
 \addtocontents{toc}{\protect\addvspace{10pt}}
@@ -233,7 +233,8 @@ Department of  Computer Science \\
 % NZ:
 %\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
 % RW:
-\bibliography{../../../../bibtex/full,../../../../bibtex/references,../../../../bibtex/lsmr,mybiblio}
+%\bibliography{../../../../../workspace/bibtex/full,../../../../../workspace/bibtex/references,../../../../../workspace/bibtex/lsmr,mybiblio}
+\bibliography{../../../../../workspace/bibtex/full,../../../../../workspace/bibtex/references,../../../../../workspace/bibtex/lsmr,mybiblio}
 
 
 

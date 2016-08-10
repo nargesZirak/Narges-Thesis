@@ -7,7 +7,7 @@ Our tool is a a plug-in to the Eclipse integrated development environment (IDE) 
 % figure of architecture?
 
 As a subject for our studies, we use \name{jEdit}, a programmer’s text editor tool written in Java programming language. We chose this subject because it is a real program that has been used constantly by many developers, and it makes real usage of logging calls.
-Our tool extracts all LMs within the source code of this program. However, a subset of them was selected containing 9 LMs that showed varying levels of similarity on manual examination and has been used as a test suite throughout this study (see Table~\ref{table:ljms}). The org.gjt.sp.jedit.EditBus.send(...) method contains two logging calls. Therefore, we split it into two cases: case 3 contained the first logging call while the second one was removed; case 4 that only contained the second logging call. The last three LMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates an addition of an \code{if- }statement that formed a nested \code{if- }statement enclosing a logging call. Cases 9 and 10 simulate the addition of some statements to improve the test coverage.
+Our tool extracts all LMs within the source code of this program. However, a subset of them was selected containing 9 LMs that showed varying levels of similarity on manual examination and has been used as a test suite throughout this study (see Table~\ref{table:ljms}). The org.gjt.sp.jedit.EditBus.send(..) method contains two logging calls. Therefore, we split it into two cases: case 3 contained the first logging call while the second one was removed; case 4 that only contained the second logging call. The last three LMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates an addition of an \code{if- }statement that formed a nested \code{if- }statement enclosing a logging call. Cases 9 and 10 simulate the addition of some statements to improve the test coverage.
 We only used one test suite in this study, while different test suits may generate different results.
 
 
@@ -19,23 +19,23 @@ We only used one test suite in this study, while different test suits may genera
     \hline
     1& org.gjt.sp.jedit.PluginJAR.generateCache() &104\\
    \hline
-    2& org.gjt.sp.jedit.MiscUtilities.isSupportedEncoding(...) &9\\
+    2& org.gjt.sp.jedit.MiscUtilities.isSupportedEncoding(..) &9\\
    \hline
-    3& org.gjt.sp.jedit.EditBus.send(...) &14\\
+    3& org.gjt.sp.jedit.EditBus.send(..) &14\\
    \hline
-    4& org.gjt.sp.jedit.EditBus.send(...)* &14\\
+    4& org.gjt.sp.jedit.EditBus.send(..)* &14\\
    \hline
-    5& org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...) &5\\
+    5& org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(..) &5\\
    \hline
-    6& org.gjt.sp.jedit.EBPlugin.handleMessage(...) &6\\
+    6& org.gjt.sp.jedit.EBPlugin.handleMessage(..) &6\\
    \hline
-    7& org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(...) &3\\
+    7& org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(..) &3\\
    \hline
-    8& org.gjt.sp.jedit.JARClassLoader.loadClass(...) &32\\
+    8& org.gjt.sp.jedit.JARClassLoader.loadClass(..) &32\\
    \hline
-    9& org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(...) &36\\
+    9& org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(..) &36\\
    \hline
-    10& org.gjt.sp.jedit.ServiceManager.loadServices(...) &20\\
+    10& org.gjt.sp.jedit.ServiceManager.loadServices(..) &20\\
     \hline
   \end{tabular}
   \caption{Logged Java methods used as our test suit; all are contained in the \name{org.gjt.sp.jedit} package.}
@@ -116,61 +116,61 @@ We also ran the antiunifier-building tool on each pair of LJM to construct the d
 We present the results of our analysis for a subset of 10 test cases (see Table~\ref{study2_test_cases}) in Table~\ref{study2_test_cases_results}. The analysis of the output has been divided into two categories: correspondence and similarity. "Correspondence" refers to the number of corresponding lines-of-code (LOC) detected by our tool that were found to be corresponded by our manual examination as well, and the number of LOC detected as corresponded by our tool but were not found to be corresponded in our manual inspection. We also present the percentage of the correct corresponding LOC to the total number of LOC of the two LMs. "Similarity" refers to the similarity that is computed based on the the detected correspondences. It is calculated using both our tool and manual experiment.
 
 
-In case 8, the \code{rootEntry} method contains a nested \code{if}-statement enclosing a logging call and the \code{actionPerformed} method contains an \code{if}-statement enclosing another logging call. The analysis showed that a correct correspondence was detected between the inner \code{if}-statement inside the nested \code{if}- and the single \code{if}-statement. Cases 3 and 10 contains statements that are not found to be corresponded by our tool even though correspondences exist. For example, in case 3, \name{isSupportedEncoding} method contains an assignment statement enclosed by an \code{if}-statement that does not have any correspondences and a \code{send} method that contains another assignment statement inside a \code{for}-statement without any correspondences as well. However, no correspondence was detected between the two assignment statements since their parent node are not corresponded.
+In case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement enclosing a logging call and the \code{actionPerformed(..)} method contains an \code{if}-statement enclosing another logging call. The analysis showed that a correct correspondence was detected between the inner \code{if}-statement inside the nested \code{if}- and the single \code{if}-statement. Cases 3 and 10 contain statements that are not found to correspond by our tool even though correspondences exist. For example, in case 3, the \code{isSupportedEncoding(..)} method contains an assignment statement enclosed by an \code{if}-statement that does not have any correspondences and a \code{send(..)} method that contains another assignment statement inside a \code{for}-statement without any correspondences as well. However, no correspondence was detected between the two assignment statements since their parent node did not correspond.
 
 
 
 \begin{figure}
   \centering
-  \begin{tabular}{|c|l|}
+  \begin{tabular}{cl}
     \hline
-    Test case & Logged Java methods \\
-    \hline
-
-    \multirow{2}{*}{{1}}&org.gjt.sp.jedit.PluginJAR.generateCache()\\
-    \cline{2-2}
-                         &org.gjt.sp.jedit.PluginJAR.generateCache()\\
+    Case & Logged methods \\
     \hline
 
-    \multirow{2}{*}{2}&org.gjt.sp.jedit.PluginJAR.generateCache()\\
+    \multirow{2}{*}{{1}}&\code{PluginJAR.generateCache()}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.EditBus.send(...)*\\
+                         &\code{PluginJAR.generateCache()}\\
     \hline
-    \multirow{2}{*}{3}&oorg.gjt.sp.jedit.MiscUtilities.isSupportedEncoding(...)\\
+
+    \multirow{2}{*}{2}&\code{PluginJAR.generateCache()}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.EditBus.send(...)\\
+                         &\code{EditBus.send(..)}*\\
     \hline
-    \multirow{2}{*}{4}&org.gjt.sp.jedit.EditBus.send(...)\\
+    \multirow{2}{*}{3}&o\code{MiscUtilities.isSupportedEncoding(..)}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.EditBus.send(...)*\\
+                         &\code{EditBus.send(..)}\\
+    \hline
+    \multirow{2}{*}{4}&\code{EditBus.send(..)}\\
+    \cline{2-2}
+                         &\code{EditBus.send(..)}*\\
    \hline
-   \multirow{2}{*}{5}&org.gjt.sp.jedit.EditBus.send(...)*\\
+   \multirow{2}{*}{5}&\code{EditBus.send(..)}*\\
    \cline{2-2}
-                         &org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...)\\
+                         &\code{EditAction.Wrapper.actionPerformed(..)}\\
  \hline
-    \multirow{2}{*}{6}&org.gjt.sp.jedit.EditBus.send(...)*\\
+    \multirow{2}{*}{6}&\code{EditBus.send(..)}*\\
    \cline{2-2}
-                         &org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(...)\\
+                         &\code{BufferHistory.RecentHandler.doctypeDecl(..)}\\
  \hline
-    \multirow{2}{*}{7}&org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...) \\
+    \multirow{2}{*}{7}&\code{EditAction.Wrapper.actionPerformed(..)}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.JARClassLoader.loadClass(...)\\
+                         &\code{JARClassLoader.loadClass(..)}\\
  \hline
-    \multirow{2}{*}{8}&org.gjt.sp.jedit.EditAction.Wrapper.actionPerformed(...) \\
+    \multirow{2}{*}{8}&\code{EditAction.Wrapper.actionPerformed(..)}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(...)\\
+                         &\code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)}\\
  \hline
-    \multirow{2}{*}{9}&org.gjt.sp.jedit.PluginJAR.generateCache()\\
+    \multirow{2}{*}{9}&\code{PluginJAR.generateCache()}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.BufferHistory.RecentHandler.doctypeDecl(...)\\
+                         &\code{BufferHistory.RecentHandler.doctypeDecl(..)}\\
  \hline
-    \multirow{2}{*}{10}&org.gjt.sp.jedit.io.VFS.DirectoryEntry.RootsEntry.rootEntry(...)\\
+    \multirow{2}{*}{10}&\code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)}\\
     \cline{2-2}
-                         &org.gjt.sp.jedit.ServiceManager.loadServices(...) \\
+                         &\code{ServiceManager.loadServices(..)}\\
   \hline
 
   \end{tabular}
-  \caption{10 sample logged Java method pairs used as test cases.}
+  \caption{10 sample logged Java method pairs used as test cases; all are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of cases 8 and 10 that are in the \protect\name{org.gjt.sp.jedit.io} package.}}
   \label{study2_test_cases}
 \end{figure}
 
