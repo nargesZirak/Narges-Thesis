@@ -1,0 +1,63 @@
+\BOOKMARK [0][-]{section*.2}{Abstract}{}% 1
+\BOOKMARK [0][-]{section*.3}{Acknowledgements}{}% 2
+\BOOKMARK [0][-]{chapter*.5}{Table of Contents}{}% 3
+\BOOKMARK [0][-]{chapter*.7}{List of Tables}{}% 4
+\BOOKMARK [0][-]{chapter*.9}{List of Figures}{}% 5
+\BOOKMARK [0][-]{chapter*.11}{List of Symbols}{}% 6
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 7
+\BOOKMARK [1][-]{section.1.1}{Programmatic support for logging}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Broad thesis overview}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{Thesis statement}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{Thesis organization}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{Motivational Scenario}{}% 12
+\BOOKMARK [1][-]{section.2.1}{Summary}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Background}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Concrete syntax trees and abstract syntax trees}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Eclipse JDT}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{First-order anti-unification}{chapter.3}% 17
+\BOOKMARK [2][-]{subsection.3.3.1}{Higher-order anti-unification}{section.3.3}% 18
+\BOOKMARK [1][-]{section.3.4}{Higher-order anti-unification modulo equational theories}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.5}{The Jigsaw Tool}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.6}{Summary}{chapter.3}% 21
+\BOOKMARK [0][-]{chapter.4}{Determining Structural Correspondences}{}% 22
+\BOOKMARK [1][-]{section.4.1}{Computing similarity between nodes}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.2}{Determining potential correspondences}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.3}{Constructing the AUAST}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.4}{An Assessment of the Jigsaw framework}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.4.1}{Setup}{section.4.4}% 27
+\BOOKMARK [2][-]{subsection.4.4.2}{Results}{section.4.4}% 28
+\BOOKMARK [1][-]{section.4.5}{Summary}{chapter.4}% 29
+\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalizations}{}% 30
+\BOOKMARK [1][-]{section.5.1}{Determining the best correspondences}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.2}{Computing similarity between AUASTs}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.3}{Constructing the anti-unifier}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.4}{The Anti-unifier building tool}{chapter.5}% 34
+\BOOKMARK [2][-]{subsection.5.4.1}{Constrcting the detailed generalization view}{section.5.4}% 35
+\BOOKMARK [2][-]{subsection.5.4.2}{Java methods containing multiple logging calls}{section.5.4}% 36
+\BOOKMARK [1][-]{section.5.5}{Evaluation}{chapter.5}% 37
+\BOOKMARK [2][-]{subsection.5.5.1}{Setup}{section.5.5}% 38
+\BOOKMARK [2][-]{subsection.5.5.2}{Results}{section.5.5}% 39
+\BOOKMARK [1][-]{section.5.6}{Summary}{chapter.5}% 40
+\BOOKMARK [0][-]{chapter.6}{Clustering}{}% 41
+\BOOKMARK [1][-]{section.6.1}{The hierarchical clustering algorithm}{chapter.6}% 42
+\BOOKMARK [1][-]{section.6.2}{Evaluaton}{chapter.6}% 43
+\BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 44
+\BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 45
+\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 46
+\BOOKMARK [0][-]{chapter.7}{Discovering logging usage schemas}{}% 47
+\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 48
+\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 49
+\BOOKMARK [1][-]{section.8.2}{The pitfalls of my tool}{chapter.8}% 50
+\BOOKMARK [2][-]{subsection.8.2.1}{Inaccurate node ordering}{section.8.2}% 51
+\BOOKMARK [2][-]{subsection.8.2.2}{Conflict resolution}{section.8.2}% 52
+\BOOKMARK [1][-]{section.8.3}{Applications of anti-unification}{chapter.8}% 53
+\BOOKMARK [1][-]{section.8.4}{Summary}{chapter.8}% 54
+\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 55
+\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 56
+\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 57
+\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 58
+\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 59
+\BOOKMARK [1][-]{section.9.5}{Clustering}{chapter.9}% 60
+\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 61
+\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 62
+\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 63
