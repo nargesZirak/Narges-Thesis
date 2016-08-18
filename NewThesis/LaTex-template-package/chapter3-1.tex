@@ -16,15 +16,15 @@ To implement the approach, I needed a concrete framework for constructing and ma
 
 
 \section{Computing similarity between nodes}  \label{jigsaw-similarity}
-To compute similarity between AST nodes, I re-used a function developed by \citet{2008:fse:cottrell}, which first computes the number of common elements between the two nodes and then divides it by the size of the largest node, as described by the Equation~\ref{eq-jigsaw-sim} .
+To compute similarity between AST nodes, I re-used a function developed by \citet{2008:fse:cottrell}, which first computes the number of common elements between the two nodes and then divides it by the size of the largest node, as described by the Equation~\ref{eq-jigsaw-sim}. \RW{I changed the formula because it made no sense before.}
 
 
 \begin{equation}\label{eq-jigsaw-sim}
-\id{similarity} = \frac{\id{matches}}{max(|\id{a}| + |\id{b}|)}
+\id{similarity} = \frac{\id{matches}}{\max\{|\id{a}|, |\id{b}|\}}
 \end{equation}
 
 
-They compute the number of matched elements between the two ATS nodes $\id{a}$ and $\id{b}$ via the \func{Determine-Matches} algorithm. As mentioned in Section~\ref{Jigsaw}, their approach only compares the nodes of identical or semantically equivalent types, thus the both input nodes are either leaf nodes or non-leaf nodes (Line~2). If they are of leaf nodes, the number of matches will be computed using the heuristics described in Section~\ref{Jigsaw} (Lines~3--4). If they are of non-leaf nodes, the children of the two subtrees $\id{a}$ and $\id{b}$ are compared exhaustively in a pairwise manner (Lines~5--16). For each child node of the subtree $\id{a}$, the highest similarity with any child node of the subtree $\id{b}$ is determined (Lines~6--14). All these maximum matches are summed up and returned as the number of common elements, which can be used to determine a potential structural correspondence between the two nodes (Line~15--19) as will be described in the following section.
+They compute the number of matched elements between the two AST nodes $\id{a}$ and $\id{b}$ via the \func{Determine-Matches} algorithm. As mentioned in Section~\ref{Jigsaw}, their approach only compares the nodes of identical or semantically equivalent types, thus the both input nodes are either leaf nodes or non-leaf nodes (Line~2). If they are of leaf nodes, the number of matches will be computed using the heuristics described in Section~\ref{Jigsaw} (Lines~3--4). If they are of non-leaf nodes, the children of the two subtrees $\id{a}$ and $\id{b}$ are compared exhaustively in a pairwise manner (Lines~5--16). For each child node of the subtree $\id{a}$, the highest similarity with any child node of the subtree $\id{b}$ is determined (Lines~6--14). All these maximum matches are summed up and returned as the number of common elements, which can be used to determine a potential structural correspondence between the two nodes (Line~15--19) as will be described in the following section.
 %with a comparable type
 
 \begin{algorithm}
@@ -50,7 +50,7 @@ They compute the number of matched elements between the two ATS nodes $\id{a}$ a
  \EndIf
  \State \func{Create-Correspondence-Connection}($\id{a}$,$\id{b}$,$\id{matches}$)
  		\EndIf 		
-  
+
 
  \Return $matches$
 \end{algorithmic}
@@ -61,7 +61,7 @@ They compute the number of matched elements between the two ATS nodes $\id{a}$ a
 \section{Determining potential correspondences}  \label{jigsaw-corr}
 
 As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:cottrell} generates an augmented form of AST, called \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections. The \func{Create-Correspondence-Connection}($\id{a}$,$\id{b}$,$\id{matches}$) algorithm is used to create the CAST structure, which computes similarity between the two AST nodes using the Equation~\ref{eq-jigsaw-sim} (Line~1). If the similarity value is above a pre-determined threshold, a correspondence connection will be created and added to the list of correspondence connections of the corresponding nodes (Lines~2--6). As an example, Figure~\ref{fig:meth-ast-1} shows potential structural correspondence connections created via the application of \func{Determine-Matches} algorithm on the ASTs of Examples 1 and 2.
- 
+
 
 \begin{algorithm}
   \caption{\func{Create-Correspondence-Connection}($\id{a}$,$\id{b}$,$\id{matches}$) creates a candidate correspondence connection between the two AST nodes.}
@@ -71,7 +71,7 @@ As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:c
       %\For {$\id{nodeA} \in \id{a}$}
  	%	\For {$\id{nodeB} \in \id{b}$}
 %\If{$\func{Lookup-Comparator}(\id{type}[\id{a}],\id{type}[\id{b}]) $}		
-\State $\id{sim} \gets \id{matches} /\id{max}({|\id{a}| + |\id{b}|})$	
+\State $\id{sim} \gets \id{matches} /\max\{{|\id{a}|, |\id{b}|}\}$	
  			\If {$sim > \cons{Threshold}$}	
  		\State $\id{corr} \gets \func{New-Correspondence-Connection}(\id{nodeA},\id{nodeB},\id{sim})$	
  \State $\func{Append}(\id{corrs}[\id{nodeA}],corr)$	
@@ -257,7 +257,7 @@ To provide an example to demonstrate the structure, the anti-unified AUAST const
 %
 %
 
-%\name{Jigsaw} is a proof-of-concept implementation of the proposed approach to determining potential structural correspondences, which takes two AST nodes is an Eclipse plug-in that inputs a \name{Java} program, extracts ASTs of logged methods in it using the Eclipse JDT framework, applies a part of the implementation of Jigsaw to identify structural correspondences between ASTs in a pairwise manner and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection. 
+%\name{Jigsaw} is a proof-of-concept implementation of the proposed approach to determining potential structural correspondences, which takes two AST nodes is an Eclipse plug-in that inputs a \name{Java} program, extracts ASTs of logged methods in it using the Eclipse JDT framework, applies a part of the implementation of Jigsaw to identify structural correspondences between ASTs in a pairwise manner and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection.
 
 
 To validate the effectiveness of the proposed approach by \citet{2008:fse:cottrell}, I applied the Jigsaw framework to compare the ASTs of a sample set of logged methods selected from a real-world software system in a pairwise manner and construct the CASTs of each pair.
@@ -317,7 +317,7 @@ I examined the generated CASTs of these test cases and selected a subset of 4 ca
     \midrule
 
     \multirow{2}{*}{{1}}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
-    
+
                          &\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
     \midrule
 
