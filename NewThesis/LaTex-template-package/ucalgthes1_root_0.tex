@@ -53,25 +53,23 @@
 \algnewcommand\ori{\textbf{ or }}
 
 
-\algnewcommand{\ComputeSimilarity}{\Statex \textbf{\func{Compute-Similarity}($\id{nodeA}$, $\id{nodeB}$)}}
+\algnewcommand{\ComputeSimilarity}{\Statex \textbf{\func{Compute-Similarity}($\id{nodeA}$,$\id{nodeB}$)}}
+
 
 \algnewcommand{\ApplyConstraints}{\Statex \textbf{\func{Apply-Constraints}($\id{list}$)}}
 
-\algnewcommand{\DeterminePotentialCorrespondences}{\Statex \textbf{\func{Determine-Potential-Correspondence}($\id{astA}$, $\id{astB}$)}}
+\algnewcommand{\DeterminePotentialCorrespondences}{\Statex \textbf{\func{Create-Correspondence-Connection}($\id{a}$,$\id{b}$, $\id{matches}$)}}
 
-\algnewcommand{\DetermineBest}{\Statex \textbf{\func{Determine-Best-Correspondences}($\id{auastA}$)}}
+\algnewcommand{\DetermineBest}{\Statex \textbf{\func{Determine-Best-Correspondences}($\id{a}$)}}
 \algnewcommand{\Determine}{\Statex \textbf{\func{Determine-Correspondences}($\id{auastA}$, $\id{auastB}$)}}
 
-\algnewcommand{\ComputeSimilarityy}{\Statex \textbf{\func{Compute-Similarity}($\id{auastA}$, $\id{auastB}$)}}
+\algnewcommand{\AntiUnify}{\Statex \textbf{\func{Antiunify}($\id{a}$, $\id{b}$)}}
 
-\algnewcommand{\antiunification}{\Statex \textbf{\func{AntiUnification}($\id{auastA}$, $\id{auastB}$)}}
+\algnewcommand{\CreateAntiunifier}{\Statex \textbf{\func{Construct-Antiunifier}($\id{a}$, $\id{b}$)}}
 
-\algnewcommand{\Non-Leaf-Node-Similarity}{\Statex \textbf{\func{Non-Leaf-Node-Similarity}($\id{astA}$, $\id{astB}$)}}
+\algnewcommand{\ComputeBestMatches}{\Statex \textbf{\func{Compute-Best-Matches}($\id{a}$,$\id{b}$)}}
+\algnewcommand{\ComputeMatches}{\Statex \textbf{\func{Determine-Matches}($\id{a}$,$\id{b}$)}}
 
-
-\algnewcommand{\AntiUnify}{\Statex \textbf{\func{Antiunify}($\id{auastA}$, $\id{auastB}$)}}
-
-\algnewcommand{\ComputeMatch}{\Statex \textbf{\func{Compute-Matches}($\id{antiunifier}$)}}
 \algnewcommand{\AntiUnifyProperty}{\Statex \textbf{\func{Antiunify-Properties}($\id{propA}$, $\id{propB}$)}}
 
 \algnewcommand{\RemoveOtherCEs}{\Statex \textbf{\func{Remove-Other-Correspondences}($\id{corr}$, $\id{list}$)}}
@@ -208,10 +206,6 @@ Department of  Computer Science \\
 \include{chapter3}
 \addtocontents{toc}{\protect\addvspace{10pt}}
 \include{chapter3-1}
-\addtocontents{toc}{\protect\addvspace{10pt}}
-%\include{chapter3-1-1}
-\addtocontents{toc}{\protect\addvspace{10pt}}
-%\include{chapter3-2}
 \addtocontents{toc}{\protect\addvspace{10pt}}
 \include{chapter4}
 \addtocontents{toc}{\protect\addvspace{10pt}}

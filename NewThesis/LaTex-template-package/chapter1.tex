@@ -74,7 +74,11 @@ In the third step, I employ a hierarchical clustering algorithm to group the AUA
 The last step involves analyzing the structural generalizations to extract logging usage schemas that represent the structural commonalities of the set of LMs within each cluster.
 %create a generalization hierarchy from a set of LMs using a measure of similarity.
 
-To evaluate the approach, I implemented it in a tool written in the Java programming language.  I use the Eclipse JDT framework to extract the AST of LMs from a Java program. My correspondence tool (Section~\ref{corr-tool}) is employed to create AUASTs, and my anti-unifier tool (built atop the Jigsaw framework) is applied to find potential correspondence connections between AUAST nodes (Section~\ref{antiunifierTool}).
+To evaluate the approach, I implemented it in a tool written in the Java programming language. I use the Eclipse JDT framework to extract the AST of LMs from a Java program, and employ the Jigsaw framework developed by \citet{2008:fse:cottrell} to find potential structural correspondences. My anti-unifier building tool (built atop Jigsaw) is applied to construct a detailed view of structural generalizations (Section~\ref{antiunifierTool}), and my clustering tool is developed atop of it to perform the clustering algorithm described in Section~\ref{clustering-alg}. 
+%atop the anti-unifier building tool
+
+%My correspondence tool (Section~\ref{corr-tool}) is employed to create AUASTs, and
+
 %use the Jigsaw framework that relies on structural correspondences along with a simple knowledge of semantic equivalences in the Java language specifications to determine potential correspondence connections between AUASTs of the two LMs and measure the similarity between the nodes involved in each connection.
 
 
@@ -102,7 +106,7 @@ Chapter~\ref{ch2} motivates the problem of understanding where to use logging ca
 
 Chapter~\ref{background} provides background information that I build atop: abstract syntax trees (ASTs), which are the basic structure I will use for describing software source code; the Eclipse JDT, an industrial framework for producing and manipulating ASTs for source code written in the Java programming language; anti-unification, which is a theoretical approach for determining similarities and differences in tree structures; and on Jigsaw, a research tool based on the Eclipse JDT for performing anti-unification.
 
-Chapters~\ref{background2},~\ref{methodology}, and~\ref{clustering} present the first three steps of my approach. Determining structural correspondences between anti-unifying ASTs (AUASTs); constructing structural generalizations from an AUAST pair; and classifying a set of AUASTs into separate clusters, respectively. In each chapter, I discuss the implementation of my approach as an Eclipse plug-in, and conduct an experimental study to assess the effectiveness of my approach through the application of its tool support on a sample test suite extracted from a real software system.
+Chapters~\ref{background2},~\ref{methodology}, and~\ref{clustering} present the first three steps of my approach. Determining structural correspondences between AUASTs; constructing structural generalizations from an AUAST pair; and classifying a set of AUASTs into separate clusters, respectively. In each chapter, I discuss the implementation of my approach as an Eclipse plug-in, and conduct an experimental study to assess the effectiveness of my approach through the application of its tool support on a sample test suite extracted from a real software system.
 
 
 
