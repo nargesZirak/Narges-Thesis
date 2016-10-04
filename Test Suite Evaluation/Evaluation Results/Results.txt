@@ -1,0 +1,38 @@
+
+=========================== ANTI-UNIFIER 1 ===============================
+============================= CONSTRAINED METRICS =============================
+TP: 1, TN: 9,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+============================= UNCONSTRAINED METRICS =============================
+TP: 1, TN: 9,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+=========================== ANTI-UNIFIER 2 ================================
+============================= CONSTRAINED METRICS =============================
+TP: 3, TN: 7,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+Similarity: 0.26 
+============================= UNCONSTRAINED METRICS =============================
+TP: 3, TN: 7,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+=========================== ANTI-UNIFIER 3 ===============================
+============================= CONSTRAINED METRICS =============================
+TP: 3, TN: 7,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+Similarity: 0.13 
+============================= UNCONSTRAINED METRICS =============================
+TP: 3, TN: 7,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+=========================== ANTI-UNIFIER 4 ===============================
+============================= CONSTRAINED METRICS =============================
+TP: 3, TN: 7,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+Similarity: 0.11 
+============================= UNCONSTRAINED METRICS =============================
+TP: 3, TN: 7,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+====================================== CONSTRAINED EVALUATION RESULTS ======================================
+TP: 10, TN: 0,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
+====================================== UNCONSTRAINED EVALUATION RESULTS ======================================
+TP: 10, TN: 0,  FP: 0,  FN: 0
+Precision: 100.0%,  Recall: 100.0%
