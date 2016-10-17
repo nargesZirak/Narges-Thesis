@@ -50,24 +50,29 @@
 \contentsline {subsection}{\numberline {6.2.2}Results}{65}{subsection.6.2.2}
 \contentsline {section}{\numberline {6.3}Summary}{66}{section.6.3}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {7}Discovering logging usage schemas}{67}{chapter.7}
+\contentsline {chapter}{\numberline {7}Empirical Study}{67}{chapter.7}
+\contentsline {section}{\numberline {7.1}Experiment}{67}{section.7.1}
+\contentsline {section}{\numberline {7.2}Results}{68}{section.7.2}
+\contentsline {section}{\numberline {7.3}Evaluation}{70}{section.7.3}
+\contentsline {section}{\numberline {7.4}Analysis}{70}{section.7.4}
+\contentsline {section}{\numberline {7.5}Summary}{71}{section.7.5}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {8}Discussion}{68}{chapter.8}
-\contentsline {section}{\numberline {8.1}Threats to validity}{68}{section.8.1}
-\contentsline {section}{\numberline {8.2}The pitfalls of my tool}{69}{section.8.2}
-\contentsline {subsection}{\numberline {8.2.1}Inaccurate node ordering}{69}{subsection.8.2.1}
-\contentsline {subsection}{\numberline {8.2.2}Conflict resolution}{70}{subsection.8.2.2}
-\contentsline {section}{\numberline {8.3}Applications of anti-unification}{70}{section.8.3}
-\contentsline {section}{\numberline {8.4}Summary}{71}{section.8.4}
+\contentsline {chapter}{\numberline {8}Discussion}{73}{chapter.8}
+\contentsline {section}{\numberline {8.1}Threats to validity}{73}{section.8.1}
+\contentsline {section}{\numberline {8.2}The pitfalls of my tool}{74}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Inaccurate node ordering}{74}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Conflict resolution}{75}{subsection.8.2.2}
+\contentsline {section}{\numberline {8.3}Applications of anti-unification}{75}{section.8.3}
+\contentsline {section}{\numberline {8.4}Summary}{76}{section.8.4}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {9}Related Work}{72}{chapter.9}
-\contentsline {section}{\numberline {9.1}Usage of logging}{72}{section.9.1}
-\contentsline {section}{\numberline {9.2}Correspondence}{74}{section.9.2}
-\contentsline {section}{\numberline {9.3}API usages patterns}{74}{section.9.3}
-\contentsline {section}{\numberline {9.4}Anti-unification}{75}{section.9.4}
-\contentsline {section}{\numberline {9.5}Clustering}{76}{section.9.5}
-\contentsline {section}{\numberline {9.6}Summary}{77}{section.9.6}
+\contentsline {chapter}{\numberline {9}Related Work}{77}{chapter.9}
+\contentsline {section}{\numberline {9.1}Usage of logging}{77}{section.9.1}
+\contentsline {section}{\numberline {9.2}Correspondence}{79}{section.9.2}
+\contentsline {section}{\numberline {9.3}API usages patterns}{79}{section.9.3}
+\contentsline {section}{\numberline {9.4}Anti-unification}{80}{section.9.4}
+\contentsline {section}{\numberline {9.5}Clustering}{81}{section.9.5}
+\contentsline {section}{\numberline {9.6}Summary}{82}{section.9.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {10}Conclusion}{79}{chapter.10}
-\contentsline {section}{\numberline {10.1}Future Work}{80}{section.10.1}
+\contentsline {chapter}{\numberline {10}Conclusion}{84}{chapter.10}
+\contentsline {section}{\numberline {10.1}Future Work}{85}{section.10.1}
 \addvspace {10pt}

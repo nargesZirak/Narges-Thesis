@@ -48,6 +48,8 @@
 \contentsline {figure}{\numberline {6.2}{\ignorespaces The agglomerative hierarchical clustering process on a sample set of 5 AUASTs using the initial similarity matrix shown in Figure\nobreakspace {}\ref {matrix}. The threshold value indicates the number of clusters we will come up with.\relax }}{64}{figure.caption.51}
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Results from applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{66}{figure.caption.52}
 \addvspace {10pt}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Histograms of the number of LMS per cluster.\relax }}{69}{figure.caption.54}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Histograms of the number of LMS per cluster.\relax }}{69}{figure.caption.55}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

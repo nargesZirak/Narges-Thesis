@@ -284,16 +284,16 @@ As a subject for my study, I used \name{jEdit}, a programmer's text editor tool 
     \toprule
     Case & Logged methods & Size (LOC)\\
     \midrule
-    1& \code{PluginJAR.generateCache()} &104\\
-    2& \code{MiscUtilities.isSupportedEncoding(..)} &9\\
-    3& \code{EditBus.send(..)} &14\\
-    4& \code{EditBus.send(..)}* &14\\
-    5& \code{EditAction.Wrapper.actionPerformed(..)} &5\\
-    6& \code{EBPlugin.handleMessage(..)} &6\\
-    7& \code{BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
-    8& \code{JARClassLoader.loadClass(..)} &32\\
-    9& \code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
-    10& \code{ServiceManager.loadServices(..)} &20\\
+    1& {PluginJAR.generateCache()} &104\\
+    2& {MiscUtilities.isSupportedEncoding(..)} &9\\
+    3& {EditBus.send(..)} &14\\
+    4& {EditBus.send(..)}* &14\\
+    5& {EditAction.Wrapper.actionPerformed(..)} &5\\
+    6& {EBPlugin.handleMessage(..)} &6\\
+    7& {BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
+    8& {JARClassLoader.loadClass(..)} &32\\
+    9& {VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
+    10& {ServiceManager.loadServices(..)} &20\\
     \bottomrule
   \end{tabular}
   \caption[Logged methods used as our test suite.]{Logged methods used as our test suite; all are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of case 9 that is in the \protect\name{org.gjt.sp.jedit.io} package.}
@@ -316,27 +316,27 @@ I examined the generated CASTs of these test cases and selected a subset of 4 ca
     \shortstack{Test\\case} & \name{Java} source code fragment & \shortstack{Jigsaw\\similarity}\\
     \midrule
 
-    \multirow{2}{*}{{1}}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
+    \multirow{2}{*}{{1}}&{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
 
-                         &\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
+                         &{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
     \midrule
 
-       \multirow{2}{*}{2}&\code{return entry;}& \multirow{2}{*}{0}\\
-       &\code{int i=0;}\\
+       \multirow{2}{*}{2}&{return entry;}& \multirow{2}{*}{0}\\
+       &{int i=0;}\\
     \midrule
 
 
  \multirow{2}{*}{3}&
- \code/for (int i=0; i < comps.length; i++) {...}/&\multirow{2}{*}{\RW{???}}\\
+ /for (int i=0; i < comps.length; i++) {...}/&\multirow{2}{*}{\RW{???}}\\
 
 
       &
-\code/while (entries.hasMoreElements())  { ...}/
+/while (entries.hasMoreElements())  { ...}/
       \\
     \midrule
 
-    \multirow{2}{*}{4}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{0.33}\\
-      &\code{EditBus.removeFromBus(this);}\\
+    \multirow{2}{*}{4}&{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{0.33}\\
+      &{EditBus.removeFromBus(this);}\\
     \bottomrule
 
   \end{tabular}

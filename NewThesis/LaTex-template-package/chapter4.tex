@@ -439,43 +439,43 @@ We also ran the anti-unifier-building tool on each pair of LMs to construct the 
     Test case & Logged methods \\
     \midrule
 
-    \multirow{2}{*}{{1}}&\code{PluginJAR.generateCache()}\\
-                         &\code{PluginJAR.generateCache()}\\
+    \multirow{2}{*}{{1}}&{PluginJAR.generateCache()}\\
+                         &{PluginJAR.generateCache()}\\
     \midrule
 
-    \multirow{2}{*}{2}&\code{PluginJAR.generateCache()}\\
-                         &\code{EditBus.send(..)}*\\
+    \multirow{2}{*}{2}&{PluginJAR.generateCache()}\\
+                         &{EditBus.send(..)}*\\
     \midrule
 
-    \multirow{2}{*}{3}&\code{MiscUtilities.isSupportedEncoding(..)}\\
-                         &\code{EditBus.send(..)}\\
+    \multirow{2}{*}{3}&{MiscUtilities.isSupportedEncoding(..)}\\
+                         &{EditBus.send(..)}\\
     \midrule
 
-    \multirow{2}{*}{4}&\code{EditBus.send(..)}\\
-                         &\code{EditBus.send(..)}*\\
+    \multirow{2}{*}{4}&{EditBus.send(..)}\\
+                         &{EditBus.send(..)}*\\
     \midrule
-    \multirow{2}{*}{5}&\code{EditBus.send(..)}*\\
-                         &\code{EditAction.Wrapper.actionPerformed(..)}\\
-    \midrule
-
-    \multirow{2}{*}{6}&\code{EditBus.send(..)}*\\
-                         &\code{BufferHistory.RecentHandler.doctypeDecl(..)}\\
+    \multirow{2}{*}{5}&{EditBus.send(..)}*\\
+                         &{EditAction.Wrapper.actionPerformed(..)}\\
     \midrule
 
-    \multirow{2}{*}{7}&\code{EditAction.Wrapper.actionPerformed(..)}\\
-                         &\code{JARClassLoader.loadClass(..)}\\
+    \multirow{2}{*}{6}&{EditBus.send(..)}*\\
+                         &{BufferHistory.RecentHandler.doctypeDecl(..)}\\
     \midrule
 
-    \multirow{2}{*}{8}&\code{EditAction.Wrapper.actionPerformed(..)}\\
-                         &\code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)}\\
+    \multirow{2}{*}{7}&{EditAction.Wrapper.actionPerformed(..)}\\
+                         &{JARClassLoader.loadClass(..)}\\
     \midrule
 
-    \multirow{2}{*}{9}&\code{PluginJAR.generateCache()}\\
-                         &\code{BufferHistory.RecentHandler.doctypeDecl(..)}\\
+    \multirow{2}{*}{8}&{EditAction.Wrapper.actionPerformed(..)}\\
+                         &{VFS.DirectoryEntry.RootsEntry.rootEntry(..)}\\
     \midrule
 
-    \multirow{2}{*}{10}&\code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)}\\
-                         &\code{ServiceManager.loadServices(..)}\\
+    \multirow{2}{*}{9}&{PluginJAR.generateCache()}\\
+                         &{BufferHistory.RecentHandler.doctypeDecl(..)}\\
+    \midrule
+
+    \multirow{2}{*}{10}&{VFS.DirectoryEntry.RootsEntry.rootEntry(..)}\\
+                         &{ServiceManager.loadServices(..)}\\
     \bottomrule
 
   \end{tabular}
