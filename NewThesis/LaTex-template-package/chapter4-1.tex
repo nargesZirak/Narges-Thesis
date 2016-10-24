@@ -1,7 +1,7 @@
 \chapter{Clustering}  \label{clustering}
-In Chapter~\ref{ch4}, I described our anti-unification algorithm to construct an anti-unifier from AUASTs of a pair of LMs with special attention to logging calls. Recall that the general point of this study is to provide a concise description of where logging calls happen in source code by constructing structural generalizations that represent the detailed commonalities and differences between AUASTs of LMs. To this end, we should develop an algorithm that:
+In Chapter~\ref{ch4}, I described my anti-unification algorithm to construct an anti-unifier from the AUASTs of a pair of LMs, paying special attention to logging calls. Recall that the general point of this study is to provide a concise description of where logging calls happen in source code by constructing structural generalizations that represent the detailed commonalities and differences between AUASTs of LMs. To this end, we should develop an algorithm that:
 \begin{itemize} [leftmargin=.5in]
-\item clustering Java methods showing different usages of logging calls into separate clusters.
+\item clusters Java methods showing different usages of logging calls into separate clusters; and
 % using a measure of similarity.
 %classifies AUASTs of LMs into clusters using a measure of similarity such that AUASTs in each group has maximum similarity with each other and minimum similarity to other ones.
 
@@ -37,10 +37,10 @@ To anti-unify a set of AUASTs, I have developed a modified version of an agglome
 \end{itemize}
 
 
-The hierarchical algorithms use a similarity matrix. It employs a $n \times n$ similarity matrix for a set of $n$ AUASTs, where an element in row $i$ and column $j$ represents the similarity between the $i^{\text{th}}$ and the $j^{\text{th}}$ clusters. In this algorithm, the similarity between a pair of clusters is defined as the similarity between their AUASTs, which is computed through the algorithm described in Section~\ref{meth-similarity}. However, to prevent the combination of a cluster pair when the usage of logging is different, I adjusted the similarity between them to zero. That is, if the anti-unification of AUASTs of a cluster pair does not allow the anti-unification of log statements with each other (as the structures enclosing them are not corresponded), they should be in separate clusters. I also used the anti-unification algorithm described in Section~\ref{meth-antiUnifier} to construct structural generalizations.
+The hierarchical algorithm uses a similarity matrix. It employs a $n \times n$ similarity matrix for a set of $n$ AUASTs, where an element in row $i$ and column $j$ represents the similarity between the $i^{\text{th}}$ and the $j^{\text{th}}$ clusters. In this algorithm, the similarity between a pair of clusters is defined as the similarity between their AUASTs, which is computed through the algorithm described in Section~\ref{meth-similarity}. However, to prevent the combination of a cluster pair when the usage of logging is different, I adjusted the similarity between them to zero. That is, if the anti-unification of AUASTs of a cluster pair does not allow the anti-unification of log statements with each other (as the structures enclosing them are not corresponded), they should be in separate clusters. I also used the anti-unification algorithm described in Section~\ref{meth-antiUnifier} to construct structural generalizations.
 
 %threshold????
-Figure~\ref{fig:overview2} illustrates the clustering process for a sample set of 5 AUASTs using the initial similarity matrix depicted in Figure~\ref{matrix}. In the first and second iterations, clusters 1 and 2, and then clusters 4 and 5 are selected as the closest clusters, merged, and replaced by clusters 6 and 7, respectively. If threshold value is determined as $Threshold A = 0.20$, the process will be terminated as the similarity between the closest clusters, which are clusters 3 and 6 is below this threshold; otherwise, these clusters will be merged and replaced by cluster 8. However, the similarity between AUASTs of clusters 7 and 8 is zero, and thus they should not be merged with each other. In this study, the similarity threshold is determined through informal experimentation.
+Figure~\ref{fig:overview2} illustrates the clustering process for a sample set of 5 AUASTs using the initial similarity matrix depicted in Figure~\ref{matrix}. In the first and second iterations, clusters 1 and 2, and then clusters 4 and 5 are selected as the closest clusters, merged, and replaced by clusters 6 and 7, respectively. If threshold value is determined as Threshold $A = 0.20$, the process will be terminated as the similarity between the closest clusters, which are clusters 3 and 6 is below this threshold; otherwise, these clusters will be merged and replaced by cluster 8. However, the similarity between AUASTs of clusters 7 and 8 is zero, and thus they should not be merged with each other. In this study, the similarity threshold is determined through informal experimentation.
 
 
 \begin{figure} [H]
@@ -68,7 +68,7 @@ Figure~\ref{fig:overview2} illustrates the clustering process for a sample set o
 \end{figure}
 
 
-\section{Evaluaton} \label{evaluation}
+\section{Evaluation} \label{evaluation}
 To evaluate the clustering approach, I have implemented a tool, and conducted an experiment on the set of AUASTs of LMs described in Table~\ref{table:ljms}. The clustering tool is an Eclipse plug-in built atop the anti-unifier building tool that inputs a set of AUASTs of LMs extracted from the source code, applies the clustering algorithm on them, and outputs a structural generalization for each cluster.
 
 %\section{An assessment of the Clustering tool} \label{clustering-assessment}
@@ -87,19 +87,20 @@ I present the results of my analysis in Table~\ref{results_clustering}. The anal
 
 \begin{figure} [H]
   \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
+  \begin{tabular}{ccccccc}
+    \toprule
 
-    \multirow{2}{*}{Cluster}&\multicolumn{2}{c|}{Correspondence}&\multicolumn{2}{c|}{Similarity}&\multirow{2}{*}{Separateness}\\
-    \cline{2-5}
+    \multirow{2}{*}{Cluster}&\multicolumn{2}{c}{Correspondence}&\multicolumn{2}{c}{Similarity}&\multirow{2}{*}{Separateness}\\
+    \cmidrule(lr){2-3}
+    \cmidrule(lr){4-5}
     &Correct (\%)&Incorrect&human&tool&\\
-    \hline
+    \midrule
     1&28(100)&0&0.09&0.09  &\cmark \\
-    \hline
+    \midrule
     3&24(92)&2&0.19&0.2& \cmark\\
-    \hline
+    \midrule
       2&9(100)&0&0.25&0.25& \cmark\\
- 	\hline
+ 	\bottomrule
   \end{tabular}
   \caption{Results from applying the clustering tool to the test suite described in Table~\ref{table:ljms}}
   \label{results_clustering}

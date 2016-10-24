@@ -59,21 +59,21 @@
 
 \algnewcommand{\ApplyConstraints}{\Statex \textbf{\func{Apply-Constraints}($\id{list}$)}}
 
-\algnewcommand{\DeterminePotentialCorrespondences}{\Statex \textbf{\func{Create-Correspondence-Connection}($\id{a}$,$\id{b}$, $\id{matches}$)}}
+\algnewcommand{\DeterminePotentialCorrespondences}{\Statex \textbf{\func{Create-Correspondence-Connection}($\id{A}$,$\id{B}$, $\id{matches}$)}}
 
-\algnewcommand{\DetermineBest}{\Statex \textbf{\func{Determine-Best-Correspondences}($\id{a}$)}}
-\algnewcommand{\Determine}{\Statex \textbf{\func{Determine-Correspondences}($\id{auastA}$, $\id{auastB}$)}}
+\algnewcommand{\DetermineBest}{\Statex \textbf{\func{Determine-Best-Correspondences}($\id{A}$)}}
+\algnewcommand{\Determine}{\Statex \textbf{\func{Determine-Correspondences}($\id{AuastA}$, $\id{AuastB}$)}}
 
 \algnewcommand{\DetermineLocations}{\Statex \textbf{\func{Determine-Locations}($\id{antiUnifier}$,$\id{methods}$)}}
 
 
 
-\algnewcommand{\AntiUnify}{\Statex \textbf{\func{Antiunify}($\id{a}$, $\id{b}$)}}
+\algnewcommand{\AntiUnify}{\Statex \textbf{\func{Antiunify}($\id{A}$, $\id{B}$)}}
 
-\algnewcommand{\CreateAntiunifier}{\Statex \textbf{\func{Construct-Antiunifier}($\id{a}$, $\id{b}$)}}
+\algnewcommand{\CreateAntiunifier}{\Statex \textbf{\func{Construct-Antiunifier}($\id{A}$, $\id{B}$)}}
 
-\algnewcommand{\ComputeBestMatches}{\Statex \textbf{\func{Compute-Best-Matches}($\id{a}$,$\id{b}$)}}
-\algnewcommand{\ComputeMatches}{\Statex \textbf{\func{Determine-Matches}($\id{a}$,$\id{b}$)}}
+\algnewcommand{\ComputeBestMatches}{\Statex \textbf{\func{Compute-Best-Matches}($\id{A}$,$\id{B}$)}}
+\algnewcommand{\ComputeMatches}{\Statex \textbf{\func{Determine-Matches}($\id{A}$,$\id{B}$)}}
 
 \algnewcommand{\AntiUnifyProperty}{\Statex \textbf{\func{Antiunify-Properties}($\id{propA}$, $\id{propB}$)}}
 
@@ -171,7 +171,7 @@ Department of  Computer Science \\
 \phantomsection
 \altchapter{{Abstract}}
 
-Understanding the similarities and differences between a set of source code fragments has many applications in various software engineering research areas.  As a specific application, it can be employed to study where developers log in practice. Logging tasks are mostly performed by developers to monitor, troubleshoot or debug a software system. Several logging frameworks have been especially created to help developers perform logging practices, but they do not support locating log statements in source code. This leaves  developers with the burden of deciding where to log manually. If logging is properly done, it can provide valuable information for software development and maintenance. On the other hand, the costs of logging inappropriately may outweigh its benefits. So far, few studies have been conducted to characterize logging usage in real-world applications. This work presents an automated approach to characterize the location of log statements in source code through the approximation of a generalization technique (higher-order anti-unification modulo theories) and through a hierarchical clustering approach to construct a set of logging usage schemas, each describes the commonalities and differences amongst source code fragments containing log statements This approach has been refined in a prototype tool, called ELUS, that greedily identifies the best structural correspondences with respect to the highest similarity and some constraints. A characterization study has been conducted through the application of the tool on the source code of five software systems to perform a per-system method-granularity analysis. Our experimental results show that …. Two empirical evaluations were conducted in this study:  (1) an experiment was conducted to validate the effectiveness of the proposed approach through the application of its supporting tool on a test suite. (2) an  empirical experiment has been performed to assess the accuracy of the characterization study. 
+Understanding the similarities and differences between a set of source code fragments has many applications in various software engineering research areas.  As a specific application, it can be employed to study where developers log in practice. Logging tasks are mostly performed by developers to monitor, troubleshoot or debug a software system. Several logging frameworks have been especially created to help developers perform logging practices, but they do not support locating log statements in source code. This leaves  developers with the burden of deciding where to log manually. If logging is properly done, it can provide valuable information for software development and maintenance. On the other hand, the costs of logging inappropriately may outweigh its benefits. So far, few studies have been conducted to characterize logging usage in real-world applications. This work presents an automated approach to characterize the location of log statements in source code through the approximation of a generalization technique (higher-order anti-unification modulo theories) and through a hierarchical clustering approach to construct a set of logging usage schemas, each describes the commonalities and differences amongst source code fragments containing log statements This approach has been refined in a prototype tool, called ELUS, that greedily identifies the best structural correspondences with respect to the highest similarity and some constraints. A characterization study has been conducted through the application of the tool on the source code of five software systems to perform a per-system method-granularity analysis. Our experimental results show that …. Two empirical evaluations were conducted in this study:  (1) an experiment was conducted to validate the effectiveness of the proposed approach through the application of its supporting tool on a test suite. (2) an  empirical experiment has been performed to assess the accuracy of the characterization study.
 
 % automated or semi-automated?
 \newpage

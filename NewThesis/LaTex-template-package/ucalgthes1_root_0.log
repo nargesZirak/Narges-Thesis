@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  21 OCT 2016 16:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  24 OCT 2016 13:12
 entering extended mode
 **C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucal
 gthes1_root_0.tex
@@ -1170,11 +1170,13 @@ ls.tex) [9
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er1.tex
 Chapter \bf {1}.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.14 
+l.16 
       [1
 
 
@@ -1185,7 +1187,7 @@ l.14
 File: Drawing4/SystemOverview.pdf Graphic file (type pdf)
 
 <use Drawing4/SystemOverview.pdf>
-Package pdftex.def Info: Drawing4/SystemOverview.pdf used on input line 86.
+Package pdftex.def Info: Drawing4/SystemOverview.pdf used on input line 88.
 (pdftex.def)             Requested size: 469.75502pt x 404.94331pt.
  [5 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/D
 rawing4/SystemOverview.pdf>] [6]) [7]
@@ -1239,10 +1241,7 @@ Overfull \hbox (2.20827pt too wide) in paragraph at lines 445--454
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]), 
  []
 
-[22]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 468.
- [23]
+[22] [23]
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 513.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
@@ -1297,143 +1296,149 @@ Chapter \bf {4}.
 
 ]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 31.
+put line 32.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 34.
+(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 35.
  [34]
-Overfull \hbox (2.92812pt too wide) in paragraph at lines 63--64
+Overfull \hbox (8.11711pt too wide) in paragraph at lines 64--65
 \OT1/ptm/m/n/12 date cor-re-spon-dence con-nec-tions. The \OT1/ptm/m/sc/12 Crea
-te-Correspondence-Connection\OT1/ptm/m/n/12 ($\OT1/cmr/m/it/12 a$\OT1/ptm/m/n/1
-2 ,$\OT1/cmr/m/it/12 b$\OT1/ptm/m/n/12 ,$[]$)
+te-Correspondence-Connection\OT1/ptm/m/n/12 ($\OT1/cmr/m/it/12 A$\OT1/ptm/m/n/1
+2 ,$\OT1/cmr/m/it/12 B$\OT1/ptm/m/n/12 ,$[]$)
  []
 
-<Drawing4/FirstCorr.pdf, id=1083, 1143.31143pt x 569.0058pt>
+<Drawing4/FirstCorr.pdf, id=1082, 1143.31143pt x 569.0058pt>
 File: Drawing4/FirstCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FirstCorr.pdf>
-Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 91.
-(pdftex.def)             Requested size: 469.75502pt x 233.78877pt.
+Package pdftex.def Info: Drawing4/FirstCorr.pdf used on input line 93.
+(pdftex.def)             Requested size: 650.43001pt x 323.72023pt.
  [35] [36 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
 kage/Drawing4/FirstCorr.pdf>] [37] [38] [39]
-<graphviz/jigsaw.pdf, id=1141, 1062.97125pt x 902.37125pt>
+<graphviz/jigsaw.pdf, id=1140, 1062.97125pt x 902.37125pt>
 File: graphviz/jigsaw.pdf Graphic file (type pdf)
 
 <use graphviz/jigsaw.pdf>
-Package pdftex.def Info: graphviz/jigsaw.pdf used on input line 356.
+Package pdftex.def Info: graphviz/jigsaw.pdf used on input line 358.
 (pdftex.def)             Requested size: 469.75502pt x 398.79324pt.
- [40] [41 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
-kage/graphviz/jigsaw.pdf>]) [42]
+ [40]) [41 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pa
+ckage/graphviz/jigsaw.pdf>]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4.tex
 Chapter \bf {5}.
-<Drawing4/auOverview.pdf, id=1177, 1084.05pt x 910.48157pt>
+<Drawing4/auOverview.pdf, id=1172, 1084.05pt x 910.48157pt>
 File: Drawing4/auOverview.pdf Graphic file (type pdf)
 
 <use Drawing4/auOverview.pdf>
-Package pdftex.def Info: Drawing4/auOverview.pdf used on input line 25.
+Package pdftex.def Info: Drawing4/auOverview.pdf used on input line 26.
 (pdftex.def)             Requested size: 469.75502pt x 394.54198pt.
- [43
+ [42
 
 
 
-] [44 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
-/Drawing4/auOverview.pdf>] [45] [46]
-<Drawing4/FinalCorr.pdf, id=1236, 1143.31143pt x 569.0058pt>
+] [43 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
+/Drawing4/auOverview.pdf>] [44] [45]
+<Drawing4/FinalCorr.pdf, id=1232, 1143.31143pt x 569.0058pt>
 File: Drawing4/FinalCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FinalCorr.pdf>
-Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 168.
-(pdftex.def)             Requested size: 469.75502pt x 233.78877pt.
- [47] [48 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
+Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 169.
+(pdftex.def)             Requested size: 650.43001pt x 323.72023pt.
+ [46] [47 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
 kage/Drawing4/FinalCorr.pdf>]
-Overfull \hbox (16.68504pt too wide) in paragraph at lines 199--200
+Overfull \hbox (16.68504pt too wide) in paragraph at lines 200--201
 [] $[] \OMS/cmsy/m/n/12   [] \OT1/cmr/m/n/12 + []([]\OML/cmm/m/it/12 ; []\OT1/c
 mr/m/n/12 [[][[]]])$ 
  []
 
-[49] [50] [51] <Drawing4/auMethod.pdf, id=1288, 963.6pt x 625.97867pt>
+[48] [49] [50] <Drawing4/auMethod.pdf, id=1282, 963.6pt x 625.97867pt>
 File: Drawing4/auMethod.pdf Graphic file (type pdf)
 
 <use Drawing4/auMethod.pdf>
-Package pdftex.def Info: Drawing4/auMethod.pdf used on input line 286.
+Package pdftex.def Info: Drawing4/auMethod.pdf used on input line 287.
 (pdftex.def)             Requested size: 481.79883pt x 312.98857pt.
 
-Overfull \hbox (12.04381pt too wide) in paragraph at lines 286--287
+Overfull \hbox (12.04381pt too wide) in paragraph at lines 287--288
  [][] 
  []
 
-[52] [53 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
+[51] [52 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
 age/Drawing4/auMethod.pdf>]
-<Drawing4/multipleLogging.pdf, id=1310, 1589.94pt x 768.23009pt>
+<Drawing4/multipleLogging.pdf, id=1305, 1589.94pt x 768.23009pt>
 File: Drawing4/multipleLogging.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging.pdf>
-Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 347.
+Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 348.
 (pdftex.def)             Requested size: 469.75502pt x 226.97757pt.
- [54]
-<Drawing4/multipleLogging2.pdf, id=1340, 1589.94pt x 768.23009pt>
+ [53]
+<Drawing4/multipleLogging2.pdf, id=1335, 1589.94pt x 768.23009pt>
 File: Drawing4/multipleLogging2.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging2.pdf>
-Package pdftex.def Info: Drawing4/multipleLogging2.pdf used on input line 354.
+Package pdftex.def Info: Drawing4/multipleLogging2.pdf used on input line 355.
 (pdftex.def)             Requested size: 469.75502pt x 226.97757pt.
- [55 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+ [54 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
 Drawing4/multipleLogging.pdf> <C:/Users/walker/Documents/Narges-Thesis/NewThesi
 s/LaTex-template-package/Drawing4/multipleLogging2.pdf
 
 pdfTeX warning: pdflatex.exe (file C:/Users/walker/Documents/Narges-Thesis/NewT
 hesis/LaTex-template-package/Drawing4/multipleLogging2.pdf): PDF inclusion: mul
 tiple pdfs with page group included in a single page
->] [56] [57] [58] <graphviz/au.pdf, id=1437, 1062.97125pt x 902.37125pt>
+>] [55] [56] [57] <graphviz/au.pdf, id=1432, 1062.97125pt x 902.37125pt>
 File: graphviz/au.pdf Graphic file (type pdf)
 
 <use graphviz/au.pdf>
 Package pdftex.def Info: graphviz/au.pdf used on input line 536.
 (pdftex.def)             Requested size: 469.75502pt x 398.79324pt.
- [59] [60 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
-kage/graphviz/au.pdf>]) [61]
+ [58] [59 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
+kage/graphviz/au.pdf>]) [60]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4-1.tex
 Chapter \bf {6}.
 
-Package natbib Warning: Citation `jain1999data' on page 62 undefined on input l
+Overfull \hbox (4.10797pt too wide) in paragraph at lines 2--3
+\OT1/ptm/m/n/12 In Chap-ter []5[], I de-scribed my anti-unification al-go-rithm
+ to con-struct an anti-unifier from the AUASTs
+ []
+
+
+Package natbib Warning: Citation `jain1999data' on page 61 undefined on input l
 ine 13.
 
 
-LaTeX Warning: Reference `clusteringTool' on page 62 undefined on input line 13
+LaTeX Warning: Reference `clusteringTool' on page 61 undefined on input line 13
 .
 
 
-LaTeX Warning: Reference `clustering-assessment' on page 62 undefined on input 
+LaTeX Warning: Reference `clustering-assessment' on page 61 undefined on input 
 line 13.
 
-[62
+[61
 
 
 
-] [63] <Drawing4/overview2.pdf, id=1482, 1445.4pt x 569.0058pt>
+] [62] <Drawing4/overview2.pdf, id=1476, 1445.4pt x 569.0058pt>
 File: Drawing4/overview2.pdf Graphic file (type pdf)
 
 <use Drawing4/overview2.pdf>
 Package pdftex.def Info: Drawing4/overview2.pdf used on input line 65.
 (pdftex.def)             Requested size: 469.75502pt x 184.92468pt.
- [64 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
-Drawing4/overview2.pdf>] [65]) [66]
+ [63 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
+Drawing4/overview2.pdf>] [64]) [65]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er5.tex
 Chapter \bf {7}.
-[67
+[66
 
 
 
-] <Histograms/Histograms.pdf, id=1527, 597.23125pt x 845.1575pt>
+] <Histograms/Histograms.pdf, id=1522, 597.23125pt x 845.1575pt>
 File: Histograms/Histograms.pdf Graphic file (type pdf)
 
 <use Histograms/Histograms.pdf>
 Package pdftex.def Info: Histograms/Histograms.pdf used on input line 45.
 (pdftex.def)             Requested size: 234.87854pt x 325.22545pt.
- [68]
-<Histograms/QUICK.png, id=1533, 406.1574pt x 203.8014pt>
+ [67]
+<Histograms/QUICK.png, id=1528, 406.1574pt x 203.8014pt>
 File: Histograms/QUICK.png Graphic file (type png)
 
 <use Histograms/QUICK.png>
@@ -1475,29 +1480,29 @@ Overfull \hbox (42.84436pt too wide) in paragraph at lines 216--246
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[69 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/H
+[68 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/H
 istograms/Histograms.pdf> <C:/Users/walker/Documents/Narges-Thesis/NewThesis/La
-Tex-template-package/Histograms/QUICK.png>] [70]) [71] [72]
+Tex-template-package/Histograms/QUICK.png>] [69]) [70] [71]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er6.tex
 Chapter \bf {8}.
-[73
+[72
 
 
 
-] [74] [75]) [76]
+] [73] [74]) [75]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er7.tex
 Chapter \bf {9}.
-[77
+[76
 
 
 
-] [78] [79] [80] [81] [82]) [83]
+] [77] [78] [79] [80] [81]) [82]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er8.tex
 Chapter \bf {10}.
-[84
+[83
 
 
 
@@ -1508,20 +1513,20 @@ Missing character: There is no ¦ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [85]
+ [84]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-) [86]
+) [85]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
-thes1_root_0.bbl [87
+thes1_root_0.bbl [86
 
 
-] [88] [89] [90] [91])
+] [87] [88] [89] [90])
 
 Package natbib Warning: There were undefined citations.
 
-[92]
+[91]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
 
@@ -1550,7 +1555,7 @@ er8.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 246.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 246.
 Package rerunfilecheck Info: File `ucalgthes1_root_0.out' has not changed.
-(rerunfilecheck)             Checksum: 3D2BCE02F4E61DEDA581D0B7F0EB3FF4;4439.
+(rerunfilecheck)             Checksum: FD8EB7A844E6424D978F32166FCB4C9A;4440.
 
 
 LaTeX Warning: There were undefined references.
@@ -1561,13 +1566,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 246.
  ) 
 Here is how much of TeX's memory you used:
- 24181 strings out of 493921
- 452178 string characters out of 3147279
- 703244 words of memory out of 3000000
- 26390 multiletter control sequences out of 15000+200000
+ 24182 strings out of 493921
+ 452181 string characters out of 3147279
+ 703250 words of memory out of 3000000
+ 26392 multiletter control sequences out of 15000+200000
  53504 words of font info for 106 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,16n,84p,2093b,1307s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,16n,84p,2092b,1307s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -1587,9 +1592,9 @@ m Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on ucalgthes1_root_0.pdf (102 pages, 1982444 bytes).
+Output written on ucalgthes1_root_0.pdf (101 pages, 1981036 bytes).
 PDF statistics:
- 1963 PDF objects out of 2073 (max. 8388607)
- 540 named destinations out of 1000 (max. 500000)
+ 1958 PDF objects out of 2073 (max. 8388607)
+ 539 named destinations out of 1000 (max. 500000)
  622 words of extra memory for PDF output out of 10000 (max. 10000000)
 
