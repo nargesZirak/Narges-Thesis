@@ -23,7 +23,7 @@
 \BOOKMARK [1][-]{section.4.1}{Computing similarity between nodes}{chapter.4}% 23
 \BOOKMARK [1][-]{section.4.2}{Determining potential correspondences}{chapter.4}% 24
 \BOOKMARK [1][-]{section.4.3}{Constructing the AUAST}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.4}{An assessment of the Jigsaw framework}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.4}{An Assessment of the Jigsaw framework}{chapter.4}% 26
 \BOOKMARK [2][-]{subsection.4.4.1}{Setup}{section.4.4}% 27
 \BOOKMARK [2][-]{subsection.4.4.2}{Results}{section.4.4}% 28
 \BOOKMARK [1][-]{section.4.5}{Summary}{chapter.4}% 29
@@ -44,12 +44,12 @@
 \BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 44
 \BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 45
 \BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 46
-\BOOKMARK [0][-]{chapter.7}{Empirical Study}{}% 47
+\BOOKMARK [0][-]{chapter.7}{Characterization Study}{}% 47
 \BOOKMARK [1][-]{section.7.1}{Experiment}{chapter.7}% 48
-\BOOKMARK [1][-]{section.7.2}{Results}{chapter.7}% 49
-\BOOKMARK [1][-]{section.7.3}{Evaluation}{chapter.7}% 50
-\BOOKMARK [1][-]{section.7.4}{Analysis}{chapter.7}% 51
-\BOOKMARK [1][-]{section.7.5}{Summary}{chapter.7}% 52
+\BOOKMARK [2][-]{subsection.7.1.1}{Results}{section.7.1}% 49
+\BOOKMARK [2][-]{subsection.7.1.2}{Analysis}{section.7.1}% 50
+\BOOKMARK [1][-]{section.7.2}{Evaluation}{chapter.7}% 51
+\BOOKMARK [1][-]{section.7.3}{Summary}{chapter.7}% 52
 \BOOKMARK [0][-]{chapter.8}{Discussion}{}% 53
 \BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 54
 \BOOKMARK [1][-]{section.8.2}{The pitfalls of my tool}{chapter.8}% 55

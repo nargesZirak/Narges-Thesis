@@ -248,7 +248,7 @@ To provide an example to demonstrate the structure, the anti-unified AUAST const
 
 
 %\section{Evaluation}\label{jigsaw-assessment}
-\section{An assessment of the Jigsaw framework}\label{jigsaw-assessment}
+\section{An Assessment of the Jigsaw framework}\label{jigsaw-assessment}
 %\section{The Correspondence tool} \label{correspondenceTool}
 %
 %\RW{Describe here the procedure you used to select the examples, etc., how you tested Jigsaw, and what your findings were. At some point, you complained that Cottrell had not done something right ... do you have any evidence to demonstrate it?  How does this affect your work?  Such points can go in a discussion section towards the end of this chapter if they don't fit otherwise.  Full details of examples can go in an appendix; here, just describe enough so people can get the point.}
@@ -260,7 +260,7 @@ To provide an example to demonstrate the structure, the anti-unified AUAST const
 %\name{Jigsaw} is a proof-of-concept implementation of the proposed approach to determining potential structural correspondences, which takes two AST nodes is an Eclipse plug-in that inputs a \name{Java} program, extracts ASTs of logged methods in it using the Eclipse JDT framework, applies a part of the implementation of Jigsaw to identify structural correspondences between ASTs in a pairwise manner and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection.
 
 
-To validate the effectiveness of the proposed approach by \citet{2008:fse:cottrell}, I applied the Jigsaw framework to compare the ASTs of a sample set of logged methods in a pairwise manner; I construct the CASTs of each pair. I selected the sample set from a real-world software system.
+To validate the effectiveness of the proposed approach by \citet{2008:fse:cottrell}, I applied the Jigsaw framework to compare the ASTs of a sample set of logged methods selected from a real-world software system in a pairwise manner and construct the CASTs of each pair.
 %Jigsaw or correspondence???
 
 
@@ -275,9 +275,7 @@ To validate the effectiveness of the proposed approach by \citet{2008:fse:cottre
 %Our tool is a plug-in to the Eclipse integrated development environment (IDE) that implements our algorithm. The tool consists of three main components: a correspondence tool, an antiunifier-building tool, and a clustering tool. The correspondence tool inputs a pair of LMs, uses the Jigsaw framework to determine potential correspondences between their AST nodes, and outputs the generated CASTs and the Jigsaw similarity between them. The antiunifier-building tool inputs a pair of LMs, applies our anti-unification algorithm to construct an anti-unifier with a special attention to logging calls, and outputs the detailed view of anti-unifier and similarity measure (as described in Section~\ref{meth-antiUnifier}). The clustering tool inputs a set of LMs, applies a hierarchical clustering algorithm to classify them based on the similarity measurement, and outputs the detailed view of the generated anti-unifier for each cluster (as described in Section~\ref{meth-clustering}).
 % figure of architecture?
 
-As the subject for my study, I used \name{jEdit}, a programmer's text editor tool written in the \name{Java} programming language. I chose this subject because it is a real program that is heavily used by many developers, and it employs real usage of logging calls. My tool extracts all LMs within the source code of this program using the Eclipse JDT framework. I selected a subset consisting of 9 LMs, showing varying levels of similarity on manual examination, as a test suite throughout this study (see Table~\ref{table:ljms}).
-
-The \code{EditBus.send(..)} method contains two logging calls. To handle this case we split it into two cases: case 3 contained the first logging call while the second one was removed; case 4 contained only the second logging call. We describe our approach for LMs containing multiple logging calls in details in Section~\ref{meth-multipleLogs}. The last three LMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates the addition of an \code{if}-statement that formed a nested \code{if}-statement enclosing a logging call. Cases 9 and 10 simulate the addition of statements to improve the test coverage.
+As a subject for my study, I used \name{jEdit}, a programmer's text editor tool written in \name{Java} programming language. I chose this subject because it is a real program that has been used constantly by many developers, and it employs real usage of logging calls. My tool extracts all LMs within the source code of this program using the Eclipse JDT framework. However, a subset of them was selected containing 9 LMs that showed varying levels of similarity on manual examination, and it has been used as a test suite throughout this study (see Table~\ref{table:ljms}). The \code{EditBus.send(..)} method contains two logging calls. To handle this case we split it into two cases: case 3 contained the first logging call while the second one was removed; case 4 contained only the second logging call. We will describe our approach for LMs containing multiple logging calls in details in Section~\ref{meth-multipleLogs}. The last three LMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates the addition of an \code{if}-statement that formed a nested \code{if}-statement enclosing a logging call. Cases 9 and 10 simulate the addition of statements to improve the test coverage.
 
 
 \begin{figure} [H]
@@ -286,26 +284,26 @@ The \code{EditBus.send(..)} method contains two logging calls. To handle this ca
     \toprule
     Case & Logged methods & Size (LOC)\\
     \midrule
-    1& \code{PluginJAR.generateCache()} &104\\
-    2& \code{MiscUtilities.isSupportedEncoding(..)} &9\\
-    3& \code{EditBus.send(..)} &14\\
-    4& \code{EditBus.send(..)}* &14\\
-    5& \code{EditAction.Wrapper.actionPerformed(..)} &5\\
-    6& \code{EBPlugin.handleMessage(..)} &6\\
-    7& \code{BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
-    8& \code{JARClassLoader.loadClass(..)} &32\\
-    9& \code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
-    10& \code{ServiceManager.loadServices(..)} &20\\
+    1& {PluginJAR.generateCache()} &104\\
+    2& {MiscUtilities.isSupportedEncoding(..)} &9\\
+    3& {EditBus.send(..)} &14\\
+    4& {EditBus.send(..)}* &14\\
+    5& {EditAction.Wrapper.actionPerformed(..)} &5\\
+    6& {EBPlugin.handleMessage(..)} &6\\
+    7& {BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
+    8& {JARClassLoader.loadClass(..)} &32\\
+    9& {VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
+    10& {ServiceManager.loadServices(..)} &20\\
     \bottomrule
   \end{tabular}
-  \caption[Logged methods used as our test suite.]{Logged methods used as our test suite. All are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of case 9 that is in the \protect\name{org.gjt.sp.jedit.io} package.}
+  \caption[Logged methods used as our test suite.]{Logged methods used as our test suite; all are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of case 9 that is in the \protect\name{org.gjt.sp.jedit.io} package.}
   \label{table:ljms}
 \end{figure}
 
 
 
 %\subsubsection{Setup}  \label{study1-setup}
-The Jigsaw framework was used to compare LMs of the test suite in a pairwise manner (55 test cases in total, including self-comparisons) and to produce the CASTs of each pair. The Jigsaw similarity was also measured for each of these test cases.
+The jigsaw framework was used to compare LMs of the test suite in a pairwise manner (55 test cases in total, including self-comparisons) and to produce the CASTs of each pair. The Jigsaw similarity was also measured for each of these test cases.
 I examined the generated CASTs of these test cases and selected a subset of 4 cases with various levels of correspondences as depicted in the Table~\ref{jigsaw_4_test_cases}. Case 1 contains the comparison of a \name{Java} element with itself. Case 2 contains the comparison of two \name{Java} elements that are both syntactically and semantically dissimilar.  Case 3 contains the correspondence between two \name{Java} elements that are syntactically dissimilar but are semantically relevant. Case 4 contains the comparison of a logging call with another \name{Java} element that is not logging call but is syntactically relevant.
 
 
@@ -318,27 +316,27 @@ I examined the generated CASTs of these test cases and selected a subset of 4 ca
     \shortstack{Test\\case} & \name{Java} source code fragment & \shortstack{Jigsaw\\similarity}\\
     \midrule
 
-    \multirow{2}{*}{{1}}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
+    \multirow{2}{*}{{1}}&{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
 
-                         &\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
+                         &{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
     \midrule
 
-       \multirow{2}{*}{2}&\code{return entry;}& \multirow{2}{*}{0}\\
-       &\code{int i=0;}\\
+       \multirow{2}{*}{2}&{return entry;}& \multirow{2}{*}{0}\\
+       &{int i=0;}\\
     \midrule
 
 
  \multirow{2}{*}{3}&
- \code/for (int i=0; i < comps.length; i++) {...}/&\multirow{2}{*}{\RW{???}}\\
+ /for (int i=0; i < comps.length; i++) {...}/&\multirow{2}{*}{\RW{???}}\\
 
 
       &
-\code/while (entries.hasMoreElements())  { ...}/
+/while (entries.hasMoreElements())  { ...}/
       \\
     \midrule
 
-    \multirow{2}{*}{4}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{0.33}\\
-      &\code{EditBus.removeFromBus(this);}\\
+    \multirow{2}{*}{4}&{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{0.33}\\
+      &{EditBus.removeFromBus(this);}\\
     \bottomrule
 
   \end{tabular}
