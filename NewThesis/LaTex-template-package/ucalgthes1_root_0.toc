@@ -6,9 +6,9 @@
 \contentsline {chapter}{List of Symbols}{ix}{chapter*.11}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Programmatic support for logging}{3}{section.1.1}
-\contentsline {section}{\numberline {1.2}Broad thesis overview}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Thesis statement}{6}{section.1.3}
-\contentsline {section}{\numberline {1.4}Thesis organization}{6}{section.1.4}
+\contentsline {section}{\numberline {1.2}Broad thesis overview}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}Thesis statement}{5}{section.1.3}
+\contentsline {section}{\numberline {1.4}Thesis organization}{5}{section.1.4}
 \addvspace {10pt}
 \contentsline {chapter}{\numberline {2}Motivational Scenario}{8}{chapter.2}
 \contentsline {section}{\numberline {2.1}Summary}{12}{section.2.1}
@@ -50,29 +50,39 @@
 \contentsline {subsection}{\numberline {6.2.2}Results}{64}{subsection.6.2.2}
 \contentsline {section}{\numberline {6.3}Summary}{65}{section.6.3}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {7}Empirical Study}{66}{chapter.7}
+\contentsline {chapter}{\numberline {7}Characterization Study}{66}{chapter.7}
 \contentsline {section}{\numberline {7.1}Experiment}{66}{section.7.1}
-\contentsline {section}{\numberline {7.2}Results}{67}{section.7.2}
-\contentsline {section}{\numberline {7.3}Evaluation}{69}{section.7.3}
-\contentsline {section}{\numberline {7.4}Analysis}{69}{section.7.4}
-\contentsline {section}{\numberline {7.5}Summary}{70}{section.7.5}
+\contentsline {subsection}{\numberline {7.1.1}Results}{67}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Analysis}{68}{subsection.7.1.2}
+\contentsline {subsubsection}{\emph {Categorizing logging usage}}{69}{section*.56}
+\contentsline {subsubsection}{\emph {A. Exception Catch-block Logging}}{70}{section*.58}
+\contentsline {subsubsection}{\emph {B. Conditional Logging}}{71}{section*.59}
+\contentsline {subsubsection}{\emph {C. Method Logging}}{71}{section*.60}
+\contentsline {subsubsection}{\emph {D. Exception Try-block Logging}}{71}{section*.61}
+\contentsline {subsubsection}{\emph {E. Control Flow Logging}}{71}{section*.62}
+\contentsline {subsubsection}{\emph {F. Loop Control Logging}}{72}{section*.63}
+\contentsline {section}{\numberline {7.2}Evaluation}{72}{section.7.2}
+\contentsline {subsubsection}{\emph {Calculating the precision and recall}}{72}{section*.64}
+\contentsline {subsubsection}{\emph {Precision Results}}{74}{section*.67}
+\contentsline {subsubsection}{\emph {Recall Results}}{75}{section*.68}
+\contentsline {section}{\numberline {7.3}Summary}{75}{section.7.3}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {8}Discussion}{72}{chapter.8}
-\contentsline {section}{\numberline {8.1}Threats to validity}{72}{section.8.1}
-\contentsline {section}{\numberline {8.2}The pitfalls of my tool}{73}{section.8.2}
-\contentsline {subsection}{\numberline {8.2.1}Inaccurate node ordering}{73}{subsection.8.2.1}
-\contentsline {subsection}{\numberline {8.2.2}Conflict resolution}{74}{subsection.8.2.2}
-\contentsline {section}{\numberline {8.3}Applications of anti-unification}{74}{section.8.3}
-\contentsline {section}{\numberline {8.4}Summary}{75}{section.8.4}
+\contentsline {chapter}{\numberline {8}Discussion}{77}{chapter.8}
+\contentsline {section}{\numberline {8.1}Threats to validity}{77}{section.8.1}
+\contentsline {section}{\numberline {8.2}The pitfalls of my tool}{78}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Inaccurate node ordering}{78}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Conflict resolution}{79}{subsection.8.2.2}
+\contentsline {section}{\numberline {8.3}Applications of anti-unification}{79}{section.8.3}
+\contentsline {section}{\numberline {8.4}Summary}{80}{section.8.4}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {9}Related Work}{76}{chapter.9}
-\contentsline {section}{\numberline {9.1}Usage of logging}{76}{section.9.1}
-\contentsline {section}{\numberline {9.2}Correspondence}{78}{section.9.2}
-\contentsline {section}{\numberline {9.3}API usages patterns}{78}{section.9.3}
-\contentsline {section}{\numberline {9.4}Anti-unification}{79}{section.9.4}
-\contentsline {section}{\numberline {9.5}Clustering}{80}{section.9.5}
-\contentsline {section}{\numberline {9.6}Summary}{81}{section.9.6}
+\contentsline {chapter}{\numberline {9}Related Work}{81}{chapter.9}
+\contentsline {section}{\numberline {9.1}Usage of logging}{81}{section.9.1}
+\contentsline {section}{\numberline {9.2}Correspondence}{83}{section.9.2}
+\contentsline {section}{\numberline {9.3}API usages patterns}{83}{section.9.3}
+\contentsline {section}{\numberline {9.4}Anti-unification}{84}{section.9.4}
+\contentsline {section}{\numberline {9.5}Clustering}{85}{section.9.5}
+\contentsline {section}{\numberline {9.6}Summary}{86}{section.9.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {10}Conclusion}{83}{chapter.10}
-\contentsline {section}{\numberline {10.1}Future Work}{84}{section.10.1}
+\contentsline {chapter}{\numberline {10}Conclusion}{88}{chapter.10}
+\contentsline {section}{\numberline {10.1}Future Work}{89}{section.10.1}
 \addvspace {10pt}

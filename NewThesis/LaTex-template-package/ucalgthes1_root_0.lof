@@ -1,8 +1,8 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Logging call examples from the \name {log4j} framework.\relax }}{3}{figure.caption.12}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Overview of the approach. \relax }}{5}{figure.caption.13}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces log statement examples from the \name {Apache Log4j} framework.\relax }}{3}{figure.caption.12}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Overview of the approach. \relax }}{6}{figure.caption.13}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {2.1}{\ignorespaces The \lstinline {EditBus} class.\relax }}{10}{figure.caption.14}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces The developer's initial determination of the usage of logging calls.}}{11}{figure.caption.15}
@@ -48,8 +48,11 @@
 \contentsline {figure}{\numberline {6.2}{\ignorespaces The agglomerative hierarchical clustering process on a sample set of 5 AUASTs using the initial similarity matrix shown in Figure\nobreakspace {}\ref {matrix}. The threshold value indicates the number of clusters we will come up with.\relax }}{63}{figure.caption.51}
 \contentsline {figure}{\numberline {6.3}{\ignorespaces Results from applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{65}{figure.caption.52}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Histograms of the number of LMS per cluster.\relax }}{68}{figure.caption.54}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Summary of the five software systems used in the characterization study.\relax }}{67}{figure.caption.53}
 \contentsline {figure}{\numberline {7.2}{\ignorespaces Histograms of the number of LMS per cluster.\relax }}{68}{figure.caption.55}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces The distribution of the categories of anti-unifiers in the logging usage.\relax }}{70}{figure.caption.57}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces The precision of \relax {ELUS}.\relax }}{74}{figure.caption.65}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces The recall of \relax {ELUS}.\relax }}{74}{figure.caption.66}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
