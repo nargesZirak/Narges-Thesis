@@ -1,14 +1,14 @@
 %\chapter{Background}  \label{background}
 \chapter{Background}  \label{background}
-A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which we represent and analyze source code, we need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences. The theoretical framework of anti-unification is presented as that means.
+A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which I represent and analyze source code, I need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences. The theoretical framework of anti-unification is presented as that means.
 
-In this chapter, ASTs are described in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. A specific, industrial framework for creating and manipulating ASTs for source code written in the Java programming language---the Eclipse JDT---is described in Section~\ref{JDT}.  Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that we will make use of, higher-order anti-unification modulo equational theories, in Section~\ref{HOAUMT}.  A research approach, built atop the Eclipse JDT, for performing anti-unification on Java ASTs---the Jigsaw framework---is described in Section~\ref{Jigsaw}.
+In this chapter, ASTs are described in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. A specific, industrial framework for creating and manipulating ASTs for source code written in the Java programming language---the Eclipse JDT---is described in Section~\ref{JDT}.  Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that I will make use of, higher-order anti-unification modulo equational theories, in Section~\ref{HOAUMT}.  A research approach, built atop the Eclipse JDT, for performing anti-unification on Java ASTs---the Jigsaw framework---is described in Section~\ref{Jigsaw}.
 
 \section{Concrete syntax trees and abstract syntax trees}\label{AST}
 
 A concrete syntax tree is a tree (i.e., a kind of graph) $T=(V,E)$ whose vertices $V$ (equivalently, nodes) represent the syntactic structures (equivalently, syntactic elements) of a specific program written in a specific programming language and whose directed edges $E$ represent the nesting relationships amongst those syntactic structures.  Non-leaf nodes in a concrete syntax tree (also called a parse tree) represent the grammar productions that were satisfied in parsing the program it represents; leaf nodes represent the concrete lexemes, such as literals and keywords.
 
-We focus on the Java programming language and we make use of the grammar in the language specification \cite[][Chapter 18]{2012:book:gosling} to determine the form of the concrete syntax trees.  Non-leaf node names are represented by names in ``camel-case'' written in italics.  Consider the trivial program in Figure~\ref{fig:java-example}; its concrete syntax tree is represented in Figure~\ref{fig:java-example-cst}.
+I focus on the Java programming language and I make use of the grammar in the language specification \cite[][Chapter 18]{2012:book:gosling} to determine the form of the concrete syntax trees.  Non-leaf node names are represented by names in ``camel-case'' written in italics.  Consider the trivial program in Figure~\ref{fig:java-example}; its concrete syntax tree is represented in Figure~\ref{fig:java-example-cst}.
 
 \begin{figure}
 \begin{lstlisting}
@@ -193,9 +193,9 @@ public class HelloWorld {
 \caption{The concrete syntax tree for the program of Figure~\ref{fig:java-example}.\label{fig:java-example-cst}}
 \end{sidewaysfigure}
 
-Beyond the fact that the concrete syntax tree is rather verbose and thus occupies a lot of space even for a trivial example, we can see two key problems with it: (1)~there are a multitude of redundant nodes such as \textit{expression1}, \textit{expression2}, and \textit{expression3} that are present solely for purposes of creating an unambiguous grammar; and (2)~there are no nodes that express key concepts, such as ``method declaration'' and ``method invocation'', that should be obviously present in the example program.
+Beyond the fact that the concrete syntax tree is rather verbose and thus occupies a lot of space even for a trivial example, I can see two key problems with it: (1)~there are a multitude of redundant nodes such as \textit{expression1}, \textit{expression2}, and \textit{expression3} that are present solely for purposes of creating an unambiguous grammar; and (2)~there are no nodes that express key concepts, such as ``method declaration'' and ``method invocation'', that should be obviously present in the example program.
 
-To address these problems, concrete syntax trees are converted to abstract syntax trees (ASTs). An AST is similar in concept to a concrete syntax tree but it does not generally represent the parsing steps followed to differentiate different kinds of syntactic structure.  The node types are chosen to represent syntactical concepts; we use the grammar presented for exposition by \citet{2012:book:gosling}, which differs markedly from the grammar they propose in their Chapter~18 for efficient parsing. Note that a given node type constrains the kinds and numbers of child nodes that it possesses.  The AST derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst} is shown in Figure~\ref{fig:java-example-ast}.  Note that, although we know that (for any normal program) \code{System} refers to the class \code{java.lang.System} and \code{out} is a static field on that class, non-normal programs can occur and a pure syntactic analysis cannot rule out that \code{System} is a package and that \code{out} is a class therein declaring a static method \code{println(String)}.
+To address these problems, concrete syntax trees are converted to abstract syntax trees (ASTs). An AST is similar in concept to a concrete syntax tree but it does not generally represent the parsing steps followed to differentiate different kinds of syntactic structure. The node types are chosen to represent syntactical concepts; I use the grammar presented for exposition by \citet{2012:book:gosling}, which differs markedly from the grammar they propose in their Chapter~18 for efficient parsing. Note that a given node type constrains the kinds and numbers of child nodes that it possesses. The AST derived from the concrete syntax tree of Figure~\ref{fig:java-example-cst} is shown in Figure~\ref{fig:java-example-ast}. Note that, although I know that (for any normal program) \code{System} refers to the class \code{java.lang.System} and \code{out} is a static field on that class, non-normal programs can occur and a pure syntactic analysis cannot rule out that \code{System} is a package and that \code{out} is a class therein declaring a static method \code{println(String)}.
 
 \begin{sidewaysfigure}
 \centering\resizebox{!}{0.4\textheight}{%
@@ -392,34 +392,37 @@ This is still verbose, so in practice we elide details that are implied or other
 \end{sidewaysfigure}
 
 \section{Eclipse JDT}\label{JDT}
-The Eclipse Java Development Tools (JDT) framework provides APIs to access and manipulate Java source code via ASTs. An AST represents Java source code in a tree form, where the typed nodes represent instances of certain syntactic structures from the Java programming language.  Each node type (in general) takes a set of child nodes, also typed and with certain constraints on their properties.  Groups of children are named on the basis of the conceptual purpose of those groups; optional groups can be empty, which we can represent with the \NIL{} element. %Thus, any Java source code can be represented as a tree of AST nodes.
-For example, the simple AST structure of two sample LMs in Figures~\ref{ch3-ex1} an~\ref{ch3-ex2} is shown in Figure~\ref{fig:ast}, with the LMs highlighted in yellow.
+The Eclipse Java Development Tools (JDT) framework provides APIs to access and manipulate Java source code via ASTs. An AST represents Java source code in a tree form, where the typed nodes represent instances of certain syntactic structures from the Java programming language. Each node type (in general) takes a set of child nodes, also typed and with certain constraints on their properties.  Groups of children are named on the basis of the conceptual purpose of those groups; optional groups can be empty, which we can represent with the \NIL{} element. %Thus, any Java source code can be represented as a tree of AST nodes.
+For example, the simple AST structure of two sample LMs in Figures~\ref{ch3-ex1} an~\ref{ch3-ex2} is shown in Figure~\ref{fig:ast}, with the log statements highlighted in yellow.
+
 
 \begin{figure}[p]
 \def\baselinestretch{1}
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=!]
 public void handleMessage(EBMessage message) {
-	if(seenWarning) return;
-	seenWarning = true;
-	Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin since it has an empty " + handleMessage());
-    }
+   if(seenWarning)
+      return;
+   seenWarning = true;
+   !\colorbox{green}{Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin}!  !\colorbox{green}{since it has an empty " + handleMessage());}!
+}
 \end{lstlisting}
-\caption[Example 1: A Java method that uses a logging call.]{A Java method that uses a logging call. This will be referred to as Example 1.\label{ch3-ex1}}
+\caption[Example 1: A Java method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 1.\label{ch3-ex1}}
 \end{figure}
 
 \begin{figure}[p]
 \def\baselinestretch{1}
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=!]
 public void actionPerformed(ActionEvent evt) {
-	EditAction action = context.getAction(actionName);
-	if(action == null) {
-		Log.log(Log.ERROR, this, "Unknown action: " + actionName);
-	}
-	else
-		context.invokeAction(evt, action);
-	}
+   EditAction action = context.getAction(actionName);
+   if(action == null) {
+      !\colorbox{green}{Log.log(Log.WARNING, this, "Unknown action: " + actionName);}!
+   }
+   else{
+      context.invokeAction(evt, action);
+   }
+}
 \end{lstlisting}
-\caption[Example 2: A Java method that uses a logging call.]{A Java method that uses a logging call. This will be referred to as Example 2.\label{ch3-ex2}}
+\caption[Example 2: A Java method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 2.\label{ch3-ex2}}
 \end{figure}
 
 \begin{figure} [p]
@@ -437,7 +440,7 @@ In the JDT framework, structural properties of each AST node can be used to obta
 \item \textit{Child list structural properties}: These involve situations where the value is a list of child nodes.  For example, the \textit{classDeclaration} node in Figure~\ref{fig:java-example-ast} can possess multiple \textit{modifier}s.
 \end{itemize}
 
-As an example, the ASTs of the logging calls at line~4 of Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2} can be represented respectively as:
+As an example, the ASTs of the log statements at line~4 of Figure~\ref{ch3-ex1} and Figure~\ref{ch3-ex2} can be represented respectively as:
 \begin{itemize} [leftmargin=0.7in]
 %\RW{These ASTs were messed up.  I fixed them according to what the code says.}
 %\item \textit{expression(expression(Log), name(log), arguments(leftoperand(message), +, rightoperand(" is empty"), qualifier(Log), name(WARNING)))}
@@ -454,7 +457,7 @@ As an example, the ASTs of the logging calls at line~4 of Figure~\ref{ch3-ex1} a
 \item \textit{methodInvocation}(\\
 \hspace*{1em}\textit{qualifiedName}(\code{Log}, \textit{identifier}(\code{log})),\\
 \hspace*{1em}\textit{arguments}(\\
-\hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{identifier}(\code{ERROR})}),\\
+\hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{identifier}(\code{WARNING})}),\\
 \hspace*{2em}\textit{thisExpression}(),\\
 \hspace*{2em}\textit{additionExpression}(\\
 \hspace*{3em}\textit{stringLiteral}(\code{"Unknown action: "}),\\
@@ -463,7 +466,7 @@ As an example, the ASTs of the logging calls at line~4 of Figure~\ref{ch3-ex1} a
 
 \section{First-order anti-unification}   \label{AU}
 
-This section defines terms, substitutions, applying a substitution to a term, and instances and anti-instances of a term, as the requirements needed  to describe anti-unification theory (and its dual, unification theory).
+This section defines terms, substitutions, applying a substitution to a term, and instances and anti-instances of a term, as the requirements needed to describe anti-unification theory (and its dual, unification theory).
 
 \begin{defn}[Term]\label{def:term}
 A (first-order) term is defined to be a variable, a constant, or a function symbol followed by a list of terms as the arguments of the function.  [Note that function symbols without the subsequent list of terms do not constitute first-order terms.]
@@ -593,7 +596,7 @@ Higher-order anti-unification would allow us to create the MSA by extending the 
 \caption{Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\label{fig:higher-anti-uni}}
 \end{figure}
 
-Applying higher-order anti-unification could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically equivalent structures, missing structures, and different ordering of arguments.
+Applying higher-order anti-unification could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve the problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically equivalent structures, missing structures, and different ordering of arguments.
 %In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
 
 \section{Higher-order anti-unification modulo equational theories}\label{HOAUMT}
@@ -728,7 +731,7 @@ and $f(g(a,e))$, creating multiple MSAs.}
 
 However, defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of the MSA. For example, consider the terms $f(g(a,e))$ and $f(g(a,b),$\linebreak$g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can anti-unify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and anti-unify $g(d,e)$ with the \NIL{} structure to create the anti-unifier $Y(Z,X_1)$; or we can anti-unify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and anti-unify $g(a,b)$ with the \NIL{} structure to create the anti-unifier $Y(Z,X_1)$.
 
-Despite having multiple potential MSAs, we need to determine one single MSA that is the most appropriate in our context. However, the complexity of finding an optimal MSA is undecidable in general \cite{2008:fse:cottrell} since an infinite number of possible substitutions can be applied to variables in a term. Therefore, we need to use an approximation technique to construct one of the best MSAs that can sufficiently solve our problem.
+Despite having multiple potential MSAs, I need to determine one single MSA that is the most appropriate in my context. However, the complexity of finding an optimal MSA is undecidable in general \cite{2008:fse:cottrell} since an infinite number of possible substitutions can be applied to variables in a term. Therefore, I need to use an approximation technique to construct one of the best MSAs that can sufficiently solve the problem.
 % reason, infinite number??? ever variable???
 %Our goal is to find an MSA that is an approximation of the best fit to our application
 
@@ -746,7 +749,7 @@ Underlying the Jigsaw tool is the Jigsaw framework for determining likely struct
 The Jigsaw similarity function returns a value in $[0, 1]$ where zero indicates complete lack of similarity and one indicates perfect similarity. In general, this function returns a value above zero if the compared nodes are of identical type, and thus it returns a similarity of 0 for the nodes of different types. However, it uses several heuristics to improve the utility of the similarity measurement by defining an arbitrary value for the nodes that are syntactically different but are semantically relevant. For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of the longest common substring. The comparison of the \code{int} and \code{long} nodes is another example, where an arbitrary value of 0.5 is defined as the similarity, since they are not of syntactically identical types but have a semantic equivalence. This function also detects the correspondence between \code{for}-, \code{enhanced-for}-, \code{while}-, and \code{do}-loop statements; and \code{if} and \code{switch} conditional statements.
 
 
-As I intend to construct a structural generalization from ASTs of two logged methods via structural correspondence, it could be helpful to use the first phase of the proposed approach to find candidate correspondences using the similarity measure. However, the second phase does not help determine the best correspondences needed in my context, as the CAST generated via thresholding neither resolves the conflicts that occur in constructing one single anti-unifier automatically, nor prevents the anti-unification of log statement nodes with any other nodes. There, the Jigsaw similarity function does not enable us to measure how similar are the usages of logging calls inside methods. In addition, as the problem of this study is different, the integration phase of the approach is not related to my work. Instead, I should develop an algorithm to construct a detailed view of the generalization describing the structural commonalities and differences between logged methods. However, the CAST structure does not suffice to construct an anti-unifier: it does not allow the insertion of \emph{structural variables} in place of nodes in the tree structure, and thus an extended form is required. In the following chapters, I will discuss my approach to create a structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
+As I intend to construct a structural generalization from ASTs of two logged methods via structural correspondence, it could be helpful to use the first phase of the proposed approach to find candidate correspondences using the similarity measure. However, the second phase does not help determine the best correspondences needed in my context, as the CAST generated via thresholding neither resolves the conflicts that occur in constructing one single anti-unifier automatically, nor prevents the anti-unification of log statement nodes with any other nodes. There, the Jigsaw similarity function does not enable us to measure how similar are the usages of log statements inside methods. In addition, as the problem of this study is different, the integration phase of the approach is not related to my work. Instead, I should develop an algorithm to construct a detailed view of the generalization describing the structural commonalities and differences between logged methods. However, the CAST structure does not suffice to construct an anti-unifier: it does not allow the insertion of \emph{structural variables} in place of nodes in the tree structure, and thus an extended form is required. In the following chapters, I will discuss my approach to create a structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
 
 
 \section{Summary}  \label{summary}

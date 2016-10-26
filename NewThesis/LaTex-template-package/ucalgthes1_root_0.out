@@ -19,50 +19,25 @@
 \BOOKMARK [1][-]{section.3.4}{Higher-order anti-unification modulo equational theories}{chapter.3}% 19
 \BOOKMARK [1][-]{section.3.5}{The Jigsaw Tool}{chapter.3}% 20
 \BOOKMARK [1][-]{section.3.6}{Summary}{chapter.3}% 21
-\BOOKMARK [0][-]{chapter.4}{Determining Structural Correspondences}{}% 22
-\BOOKMARK [1][-]{section.4.1}{Computing similarity between nodes}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.2}{Determining potential correspondences}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.3}{Constructing the AUAST}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.4}{An assessment of the Jigsaw framework}{chapter.4}% 26
-\BOOKMARK [2][-]{subsection.4.4.1}{Setup}{section.4.4}% 27
-\BOOKMARK [2][-]{subsection.4.4.2}{Results}{section.4.4}% 28
-\BOOKMARK [1][-]{section.4.5}{Summary}{chapter.4}% 29
-\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalizations}{}% 30
-\BOOKMARK [1][-]{section.5.1}{Determining the best correspondences}{chapter.5}% 31
-\BOOKMARK [1][-]{section.5.2}{Computing similarity between AUASTs}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.3}{Constructing the anti-unifier}{chapter.5}% 33
-\BOOKMARK [1][-]{section.5.4}{The anti-unifier building tool}{chapter.5}% 34
-\BOOKMARK [2][-]{subsection.5.4.1}{Constructing the detailed generalization view}{section.5.4}% 35
-\BOOKMARK [2][-]{subsection.5.4.2}{Java methods containing multiple logging calls}{section.5.4}% 36
-\BOOKMARK [1][-]{section.5.5}{Evaluation}{chapter.5}% 37
-\BOOKMARK [2][-]{subsection.5.5.1}{Setup}{section.5.5}% 38
-\BOOKMARK [2][-]{subsection.5.5.2}{Results}{section.5.5}% 39
-\BOOKMARK [1][-]{section.5.6}{Summary}{chapter.5}% 40
-\BOOKMARK [0][-]{chapter.6}{Clustering}{}% 41
-\BOOKMARK [1][-]{section.6.1}{The hierarchical clustering algorithm}{chapter.6}% 42
-\BOOKMARK [1][-]{section.6.2}{Evaluation}{chapter.6}% 43
-\BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 44
-\BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 45
-\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 46
-\BOOKMARK [0][-]{chapter.7}{Characterization Study}{}% 47
-\BOOKMARK [1][-]{section.7.1}{Experiment}{chapter.7}% 48
-\BOOKMARK [2][-]{subsection.7.1.1}{Results}{section.7.1}% 49
-\BOOKMARK [2][-]{subsection.7.1.2}{Analysis}{section.7.1}% 50
-\BOOKMARK [1][-]{section.7.2}{Evaluation}{chapter.7}% 51
-\BOOKMARK [1][-]{section.7.3}{Summary}{chapter.7}% 52
-\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 53
-\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 54
-\BOOKMARK [1][-]{section.8.2}{The pitfalls of my tool}{chapter.8}% 55
-\BOOKMARK [2][-]{subsection.8.2.1}{Inaccurate node ordering}{section.8.2}% 56
-\BOOKMARK [2][-]{subsection.8.2.2}{Conflict resolution}{section.8.2}% 57
-\BOOKMARK [1][-]{section.8.3}{Applications of anti-unification}{chapter.8}% 58
-\BOOKMARK [1][-]{section.8.4}{Summary}{chapter.8}% 59
-\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 60
-\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 61
-\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 62
-\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 63
-\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 64
-\BOOKMARK [1][-]{section.9.5}{Clustering}{chapter.9}% 65
-\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 66
-\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 67
-\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 68
+\BOOKMARK [0][-]{chapter.4}{Characterization Study}{}% 22
+\BOOKMARK [1][-]{section.4.1}{Experiment}{chapter.4}% 23
+\BOOKMARK [2][-]{subsection.4.1.1}{Results}{section.4.1}% 24
+\BOOKMARK [2][-]{subsection.4.1.2}{Analysis}{section.4.1}% 25
+\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.3}{Summary}{chapter.4}% 27
+\BOOKMARK [0][-]{chapter.5}{Discussion}{}% 28
+\BOOKMARK [1][-]{section.5.1}{Threats to validity}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.2}{The pitfalls of my tool}{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.2.1}{Inaccurate node ordering}{section.5.2}% 31
+\BOOKMARK [2][-]{subsection.5.2.2}{Conflict resolution}{section.5.2}% 32
+\BOOKMARK [1][-]{section.5.3}{Applications of anti-unification}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.4}{Summary}{chapter.5}% 34
+\BOOKMARK [0][-]{chapter.6}{Related Work}{}% 35
+\BOOKMARK [1][-]{section.6.1}{Usage of logging}{chapter.6}% 36
+\BOOKMARK [1][-]{section.6.2}{Correspondence}{chapter.6}% 37
+\BOOKMARK [1][-]{section.6.3}{API usages patterns}{chapter.6}% 38
+\BOOKMARK [1][-]{section.6.4}{Anti-unification}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.5}{Clustering}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.6}{Summary}{chapter.6}% 41
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 42
+\BOOKMARK [1][-]{section.7.1}{Future Work}{chapter.7}% 43
