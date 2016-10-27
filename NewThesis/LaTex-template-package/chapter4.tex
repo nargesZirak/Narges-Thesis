@@ -9,7 +9,7 @@ I now consider how these frameworks could help me (1)~to construct an approximat
 %To this end, first we should create an extended form of AST, called AUAST (Anti-unifier AST) that allows the insertion of variables in place of any node in the tree, which is a requirement for HOAUMT (see Section~\ref{AUAST}).
 %1) generates all possible candidate correspondence connections between the two AUASTs using the Jigsaw framework (line~1) (see Section~\ref{meth-CAST});
 
-To approximate the best anti-unifier for my problem, I should develop a greedy selection algorithm that determines the best correspondence for each node. My approach contains a sequence of 2 actions to find the best correspondences between two AUASTs: (1) it applies two constraints to prevent the anti-unification of log statement nodes with any other nodes; and (2) it determines the best correspondence for each AUAST node with the highest similarity and then removes the other correspondence connections involving those nodes (Section~\ref{best-corr}). However, to construct an anti-unifier, a further step should be taken, which is the anti-unification of each AUAST node with its best correspondence (Section~\ref{meth-antiUnifier}). Furthermore, I developed an algorithm to measure similarity between the usage of logging calls in methods based on the selected correspondences (Section~\ref{meth-similarity}). An overview of the proposed anti-unification approach is shown in Figure~\ref{fig:meth_overview}.
+To approximate the best anti-unifier for my problem, I should develop a greedy selection algorithm that determines the best correspondence for each node. My approach contains a sequence of 2 actions to find the best correspondences between two AUASTs: (1) it applies two constraints to prevent the anti-unification of log statement nodes with any other nodes; and (2) it determines the best correspondence for each AUAST node with the highest similarity and then removes the other correspondence connections involving those nodes (Section~\ref{best-corr}). However, to construct an anti-unifier, a further step should be taken, which is the anti-unification of each AUAST node with its best correspondence (Section~\ref{meth-antiUnifier}). Furthermore, I developed an algorithm to measure similarity between the usage of log statements in methods based on the selected correspondences (Section~\ref{meth-similarity}). An overview of the proposed anti-unification approach is shown in Figure~\ref{fig:meth_overview}.
 
 
 
@@ -68,7 +68,7 @@ To evaluate my approach, I developed the anti-unifier-building tool atop Jigsaw,
 %As described in Section~\ref{Jigsaw}, through the application of Jigsaw, each AUAST node will hold a list of candidate correspondence connections, each implicitly representing an anti-unifier. However, despite having multiple potential anti-unifiers, we need to determine one single anti-unifier that is helpful to solve our problem using the greedy selection algorithm discussed in Section~\ref{}.
 
 
-As discussed in Section~\ref{HOAUMT}, the complexity of determining the best anti-unifier is undecidable in general. Therefore, to find one single anti-unifier that is an approximation of the optimal fit to my problem, I developed the \func{Determine-Best-Correspondences} algorithm that greedily selects the most similar correspondence as the best fit for each AUAST node. Therefore, each AUAST node can either be anti-unified with its best correspondence in the other AUAST or with \nothing. This algorithm takes one of the AUASTs, visiting the AUAST nodes therein to store all candidate correspondence connections between the two AUAST nodes in a list, which is sorted in descending order based on the similarity measure (lines~1--9). However, to prevent the anti-unification of log statement nodes with any other nodes, some constraints should be applied on the selection of correspondence connections prior to determining the best ones via the \func{Apply-Constraints} algorithm (line~8). Then the correspondence connection with the highest similarity value is determined as the best fit for the two nodes involved, and all other correspondence connections involving these nodes are removed using \func{Remove-Other-Correspondences} algorithm (lines~10--14). This process terminates when no more correspondence connections are left in the list.
+As discussed in Section~\ref{HOAUMT}, the complexity of determining the best anti-unifier is undecidable in general. Therefore, to find one single anti-unifier that is an approximation of the optimal fit to my problem, I developed the \func{Determine-Best-Correspondences} algorithm that greedily selects the most similar correspondence as the best fit for each AUAST node. Hence, each AUAST node can either be anti-unified with its best correspondence in the other AUAST or with \nothing. This algorithm takes one of the AUASTs, visiting the AUAST nodes therein to store all candidate correspondence connections between the two AUAST nodes in a list, which is sorted in descending order based on the similarity measure (lines~1--9). However, to prevent the anti-unification of log statement nodes with any other nodes, some constraints should be applied on the selection of correspondence connections prior to determining the best ones via the \func{Apply-Constraints} algorithm (line~8). Then the correspondence connection with the highest similarity value is determined as the best fit for the two nodes involved, and all other correspondence connections involving these nodes are removed using \func{Remove-Other-Correspondences} algorithm (lines~10--14). This process terminates when no more correspondence connections are left in the list.
 
 %entire --> one single
 
@@ -95,15 +95,15 @@ As discussed in Section~\ref{HOAUMT}, the complexity of determining the best ant
   \end{algorithmic}
 \end{algorithm}
 
-To construct an anti-unifier of the AUASTs of logged methods with a focus on logging calls, some constraints should be applied in determining correspondences. The first constraint (as described below) should be applied to prevent the anti-unification of log statement nodes with any other types of nodes.
+To construct an anti-unifier of the AUASTs of logged methods with a focus on log statements, some constraints should be applied in determining correspondences. The first constraint (as described below) should be applied to prevent the anti-unification of log statement nodes with any other types of nodes.
 \begin{constraint}
-A logging call should either be anti-unified with another logging call or should be anti-unified with \nothing.
+A log statement should either be anti-unified with another log statement or should be anti-unified with \nothing.
 \end{constraint}	
 	
 This constraint creates a further constraint:
 
 \begin{constraint}
-A structure containing a logging call should be anti-unified with a corresponding structure containing another logging call or should be anti-unified with \nothing.
+A structure containing a log statement should be anti-unified with a corresponding structure containing another log statement or should be anti-unified with \nothing.
 \end{constraint}
 
 As an illustration, consider the CASTs of the two examples in Figure~\ref{fig:meth-ast-1}. There is a candidate correspondence connection between the two log method invocation nodes and another between the two \code{if} statements. The second \code{if} statement contains a logging call, while there is no corresponding logging call in the first one. According to the first constraint, two log method invocation nodes should be anti-unified together. On the other hand, a correspondence connection is created between the two \code{if} statements; however, anti-unification of these statements includes anti-unifying their children nodes as well. Thus, statements inside the body of the \code{if} statements must be anti-unified with each other, indicating that log method invocation inside the body of \code{if} statement in the second example should be anti-unified with \nothing, which is contrary to our first assumption. In order to comply with the first constraint, the correspondence connection between two \code{if} statements should be deleted, leading us to apply the second constraint. My approach applies these constraints by taking the following steps prior to determining the best correspondences:
@@ -112,7 +112,8 @@ As an illustration, consider the CASTs of the two examples in Figure~\ref{fig:me
 \item	Remove correspondence connections where one node is marked as ``logged'' and the corresponding node is not via the \func{Apply-Constraints} algorithm.
 \end{enumerate}
 
-The \func{Apply-Constraints} algorithm takes the list of correspondence connections, and removes the ones involving two nodes where one is ``logged'' and the corresponding node is not, using the \func{Remove-Other-Correspondences} algorithm (lines~1--9).
+The \func{Apply-Constraints} algorithm takes the list of correspondence connections, and removes the ones involving two nodes where one is ``logged'' and the corresponding node is not (lines~1--9).
+%, using the \func{Remove-Other-Correspondences} algorithm 
 
 \begin{algorithm}
   \caption{\func{Apply-Constraints}($\id{list}$) applies the constraints on the list of correspondence connections.}
@@ -122,11 +123,11 @@ The \func{Apply-Constraints} algorithm takes the list of correspondence connecti
       \For {$\id{corr} \in \id{list}$}
       \State $\id{nodeA} \gets \id{nodeA}[\id{corr}]$
 	  \State $\id{nodeB} \gets \id{nodeB}[\id{corr}]$
- 			\If {($\id{nodeA} \Instanceof \cons{Logged}) \And (\id{nodeB} \Instanceof \cons{Non-Logged}$)}	
- 		\State{$\func{Remove-Other-Correspondences}(\id{corr},\id{list})$ }
-	   	\ElsIf {$(\id{nodeA} \Instanceof \cons{Non-Logged}) \And (\id{nodeB} \Instanceof \cons{Logged}$) }	
-  		\State{$\func{Remove-Other-Correspondences}(\id{corr},\id{list})$ }
-	  \EndIf 		
+ 			\If {(($\id{nodeA} \Instanceof \cons{Logged}) \And (\id{nodeB} \Instanceof \cons{Non-Logged})) \ori $\\ $ ((\id{nodeA} \Instanceof \cons{Non-Logged}) \And (\id{nodeB} \Instanceof \cons{Logged}))$}	
+	   	\State{$\func{Remove}(\id{corr},\id{list})$ }
+	   	\State{$\func{Remove}(\id{corr},\id{corrs}[\id{nodeA}])$ }
+	   	\State{$\func{Remove}(\id{corr},\id{corrs}[\id{nodeB}])$ }
+ 	  \EndIf 		
  \EndFor 	
 	
   \end{algorithmic}
@@ -166,14 +167,14 @@ the list of correspondence connections of the first node involved in the connect
 
 
 \begin{sidewaysfigure}[p]
-  \centering\includegraphics [width = \textwidth]{Drawing4/FinalCorr.pdf}
+  \centering\includegraphics [width = \textwidth, height=0.5\textheight]{Drawing4/FinalCorr.pdf}
   \caption{Simple AUAST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \func{Determine-Best-Correspondences} algorithm.}
   \label{fig:AUASTs}
 \end{sidewaysfigure}
 %In general, higher order anti-unification modulo theories is undecidable [Cottrell et al., 2008]. That is, the complexity of determining the most optimal MSA is undecidable, but our desire is to create one of the best MSAs to approximate the optimal one that can sufficiently solve our problem, thus the anti-unification process should construct an anti-unifier that is the best approximate fit for our application. To this end, a greedy selection algorithm has been used, which is an approximation technique to determine the best correspondence for each node in the AUAST so constructing the anti-unifier that is approximately the best fit to our problem.
 
 \section{Computing similarity between AUASTs} \label{meth-similarity}
-Similarity computation is particularly important for the clustering phase that relies on accurate estimation of similarity between logged methods (see Chapter~\ref{clustering}). The notion of similarity can differ depending on the given context. That is, similarity between certain features could be highly important for a particular application, while it is not for another. The utility of a similarity function can be determined based on how well it enables us to produce accurate results for a particular task. In this study, a similarity measure is needed to classify logged methods based on the structural similarity in the usage of logging calls. The similarity for my application can be defined as the number of common elements over the total number of elements of the anti-unifier constructed based on the selected correspondences from the previous step.
+Similarity computation is particularly important for the clustering phase that relies on accurate estimation of similarity between logged methods (see Chapter~\ref{clustering}). The notion of similarity can differ depending on the given context. That is, similarity between certain features could be highly important for a particular application, while it is not for another. The utility of a similarity function can be determined based on how well it enables us to produce accurate results for a particular task. In this study, a similarity measure is needed to classify logged methods based on the structural similarity in the usage of log statements. The similarity for my application can be defined as the number of common elements over the total number of elements of the anti-unifier constructed based on the selected correspondences from the previous step.
 
 %computed the ratio of the number of common elements over the total number of elements of the anti-unifier to measure similarity between two AUASTs
 
@@ -197,7 +198,7 @@ The similarity between two AUAST nodes is computed by dividing the number of mat
 \For {$\id{childA} \in \id{children}[\id{root}[\id{A}]]$}
 \If {$ \id{bestCorr}[\id{childA}] \neq \cons{NULL}$}	 		
 	%\State $\id{childB}\gets \id{bestCorr}[\id{childA}]$ 		
- 		\State $\id{matches} \gets \id{matches}+\func{Compute-Best-Matches}(\id{childA},\id{node}[\id{bestCorr}[\id{childA}]])$		 
+ 		\State $\id{matches} \gets \id{matches}+\func{Compute-Best-Matches}(\id{childA},\id{nodeB}[\id{bestCorr}[\id{childA}]])$		 
  \EndIf
  \EndFor
 
@@ -214,7 +215,7 @@ The similarity between two AUAST nodes is computed by dividing the number of mat
 %The number of identical structural properties between $\id{auastA}$ and $\id{auastB}$ is computed via the \textsc{Compute-Matches} algorithm through a recursive traversal of $\id{antiunifier}$ nodes' structural properties. For simple structural properties, the number of matches is added by one (lines~3-4). For child structural properties, the number of matches is added by one and the number of matches computed recursively for the child node (lines~5-8). For child list structural properties, the number of matches is computed for each child node recursively and is propagated to the parent node (lines~9-13). All matches are summed up to compute total number of matches between the two AUASTs. Then the following equation is used to compute structural similarity between $\id{auastA}$ and $\id{auastB}$:
 
 \section{Constructing the anti-unifier} \label{meth-antiUnifier}
-Once the best correspondences have been determined between two AUASTs, I construct a new anti-unified AUAST by traversing the original AUAST structures recursively and anti-unifying each node with its best correspondence. The new anti-unified structure is a generalization of two original structures, called anti-unifier, where common structural properties are represented by copies and differences are represented by structural variables. The variables may be inserted in place of any node in AUAST, including both subtrees and leaves, and can be substituted with proper original substructures to regain original structures.
+Once the best correspondences have been determined between two AUASTs, I construct a new anti-unified AUAST by traversing the original AUAST structures recursively and anti-unifying each node with its best correspondence. The new anti-unified structure is a generalization of two original structures, called anti-unifier, where common structural nodes are represented by copies and differences are represented by structural variables. The variables may be inserted in place of any node in AUAST, including both subtrees and leaves, and can be substituted with proper original substructures to regain original structures.
 
 
 % anti-unify the same type nodes????????
@@ -236,7 +237,7 @@ Anti-unification of two AUASTs is performed via the \func{Antiunify} algorithm. 
 \If {$ bestCorr[childA]= \cons{NULL}$}	
   \State $\id{child} \gets   \func{Antiunify}(\id{childA},\cons{NIL})$
 \Else	
- \State $\id{child} \gets   \func{Antiunify}(\id{childA},\id{node}[bestCorr[childA]])$
+ \State $\id{child} \gets   \func{Antiunify}(\id{childA},\id{nodeB}[bestCorr[childA]])$
 \EndIf
 \State $\func{Append}(\id{child},\id{children[antiunifier]})$
 \EndFor
@@ -264,7 +265,7 @@ The anti-unifier building tool is a proof-of-concept implementation of my anti-u
 %to address the limitations of CAST to constructing an anti-unifier
 %It also creates an extended form of CAST, called AUAST,
 \begin{itemize} [leftmargin=.5in]
-\item \textit{Simple structural variable Properties}: an extension of simple structural properties referring to two simple values to allow the insertion of variables in place of leaves.
+\item \textit{Simple structural variable properties}: an extension of simple structural properties referring to two simple values to allow the insertion of variables in place of leaves.
 \end{itemize}
 \begin{itemize} [leftmargin=.5in]
 \item \textit{Child structural variable properties}: an extension of child structural properties referring to two child AST nodes to allow the insertion of variables in place of subtrees.
@@ -287,7 +288,7 @@ To figure out the structural commonalities and differences amongst LMs, I develo
 
 
 
-\begin{figure} [H]
+\begin{figure} [p]
   \centering\includegraphics [width = \textwidth]{Drawing4/SampleAntiUnifier.png}
   \caption{The detailed view of the anti-unifier generated by \tool{ELUS} from the AUASTs of Examples 1 and 2.}
   \label{fig:meth-anti-unifier}
@@ -298,7 +299,7 @@ To figure out the structural commonalities and differences amongst LMs, I develo
 % to create an anti-unifier description. For example, we supply the \func{Antiunify} algorithm with the AUASTs of LMs in Examples 1 and 2
 %explain in more details???
 
-To create the detailed view of the structural generalization from two given AUASTs, I applied the \func{Antiunify} algorithm presented in Section~\ref{meth-antiUnifier} on the two AUAST nodes $\id{a}$ and $\id{b}$ through the anti-unification of their structural properties, as the Eclipse JDT utilizes these properties to record structural information of each \name{Java} element (Section~ref{JDT}). That is, for each structural property of the two nodes, if the property is common between them, a copy of it will be created and added to the structural properties of the anti-unifier; otherwise, a variable structural property is constructed referring to two property values and and added to the anti-unifier's structural properties.
+To create the detailed view of the structural generalization from two given AUASTs, I applied the \func{Antiunify} algorithm presented in Section~\ref{meth-antiUnifier} on the two AUAST nodes $\id{a}$ and $\id{b}$ through the anti-unification of their structural properties, as the Eclipse JDT utilizes these properties to record structural information of each \name{Java} element (Section~\ref{JDT}). That is, for each structural property of the two nodes, if the property is common between them, a copy of it will be created and added to the structural properties of the anti-unifier; otherwise, a variable structural property is constructed referring to two property values and and added to the anti-unifier's structural properties.
 %property values???
 
 
@@ -308,8 +309,8 @@ To create the detailed view of the structural generalization from two given AUAS
 %if structural property is a child list property, for each child of $\id{propA}$ and $\id{propB}$, where there is no correspondence in the other AUAST, an anti-unified node is created through the anti-unification of the child node with the \NIL{} structure via the \func{Antiunify} algorithm and added to the value of the anti-unified child list property; otherwise, the child node is anti-unified with its best correspondence (lines~6-21).
 
 
-\subsection{Java methods containing multiple logging calls} \label{meth-multipleLogs}
-There might be some cases in which our approach is not able to anti-unify logging calls in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \code{if statement 1} with \code{if statement 3}, we should anti-unify their structural properties. Thus, \code{log1} should be anti-unified with \code{log3}, and \code{log4} should be anti-unified with \NIL{} since there is no corresponding logging call in the body of \code{if statement 1}, while there is a corresponding logging call for \code{log4} in the body of \code{if statement 2} (\code{log2}).
+\subsection{Java methods containing multiple log statements} \label{meth-multipleLogs}
+There might be some cases in which our approach is not able to anti-unify log statements in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \name{If Statement1} with \name{If Statement3}, we should anti-unify their structural properties. Thus, \name{Log1} should be anti-unified with \name{Log3}, and \name{Log4} should be anti-unified with \NIL{} since there is no corresponding log statement in the body of \name{If Statement1}, while there is a corresponding node for \name{Log4} in the body of \name{If Statement2} (\name{Log2}).
 
 %\code{if statement 1}???
 %In figures: If statement: if statement 1???
@@ -329,7 +330,7 @@ public void method1(){
 	...
 }
 \end{lstlisting}
-\caption{A \name{Java} method that utilizes multiple logging calls.\label{multiple1}}
+\caption{A \name{Java} method that utilizes multiple log statements.\label{multiple1}}
 \end{figure}
 
 
@@ -346,7 +347,7 @@ public void method2(){
 	...
 }
 \end{lstlisting}
-\caption{A \name{Java} method that utilizes multiple logging calls.\label{multiple2}}
+\caption{A \name{Java} method that utilizes multiple log statements.\label{multiple2}}
 \end{figure}
 
 \begin{figure} [H]
@@ -362,7 +363,7 @@ public void method2(){
   \label{m_ast2}
 \end{figure}
 
-To handle these cases, we can split them into more than one case, where each LM contains only one logging call. To do so, we need to create a copy of the LM for each logging call by maintaining that logging call and removing the other ones. For example, we need to create two copies for each logged \name{Java} method of examples in Figures~\ref{multiple1} and~\ref{multiple2} as depicted in Figures~\ref{multiple1-one} and~\ref{multiple2-one}, respectively.
+To handle these cases, we can split them into more than one case, where each LM contains only one log statement. To do so, we need to create a copy of the LM for each log statement by maintaining that logging call and removing the other ones. For example, we need to create two copies for each logged \name{Java} method of examples in Figures~\ref{multiple1} and~\ref{multiple2} as depicted in Figures~\ref{multiple1-one} and~\ref{multiple2-one}, respectively.
 % thus constructing four possible anti-unifier for  possible combination and compute the similarity for each combination.
 %We can split this case into more than one case, each with one logging statement in every seed. That is, for each case all the other logging statements should be deleted from seeds.  For example, imagine we have AST 1 and AST 2. AST 1 contains three logging calls and AST 2 contains two logging calls. As explained, we split AST 1 into AST 1a, AST 1b, and AST 1c. Also, we split AST 2 into AST 2a and AST 2b. We can split this case into 6 possible cases and create an anti-unifier for each possible combination and then compute a measure of similarity for each case. The best match for each log statement can be selected based on anti-unifier with the highest similarity amongst the other options.
 
@@ -396,7 +397,7 @@ public void method1(){
 }
 
 \end{lstlisting}
-\caption{Create multiple copies of the LM in Figure~\ref{multiple1} for each logging call.\label{multiple1-one}}
+\caption{Create multiple copies of the LM in Figure~\ref{multiple1} for each log statement.\label{multiple1-one}}
 \end{figure}
 
 
@@ -423,7 +424,7 @@ public void method2(){
 }
 
 \end{lstlisting}
-\caption{Create multiple copies of the LM in Figure~\ref{multiple2} for each logging call.\label{multiple2-one}}
+\caption{Create multiple copies of the LM in Figure~\ref{multiple2} for each log statement.\label{multiple2-one}}
 \end{figure}
 
 %\section{An assessment of the anti-unifier-building tool}\label{anti-unifier-assessment}

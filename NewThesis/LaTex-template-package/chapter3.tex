@@ -403,7 +403,7 @@ public void handleMessage(EBMessage message) {
    if(seenWarning)
       return;
    seenWarning = true;
-   !\colorbox{green}{Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin}!  !\colorbox{green}{since it has an empty " + handleMessage());}!
+   !\colorbox{yellowGreen}{Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin}!  !\colorbox{yellowGreen}{since it has an empty " + handleMessage());}!
 }
 \end{lstlisting}
 \caption[Example 1: A Java method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 1.\label{ch3-ex1}}
@@ -415,7 +415,7 @@ public void handleMessage(EBMessage message) {
 public void actionPerformed(ActionEvent evt) {
    EditAction action = context.getAction(actionName);
    if(action == null) {
-      !\colorbox{green}{Log.log(Log.WARNING, this, "Unknown action: " + actionName);}!
+      !\colorbox{yellowGreen}{Log.log(Log.ERROR, this, "Unknown action: " + actionName);}!
    }
    else{
       context.invokeAction(evt, action);
@@ -457,7 +457,7 @@ As an example, the ASTs of the log statements at line~4 of Figure~\ref{ch3-ex1} 
 \item \textit{methodInvocation}(\\
 \hspace*{1em}\textit{qualifiedName}(\code{Log}, \textit{identifier}(\code{log})),\\
 \hspace*{1em}\textit{arguments}(\\
-\hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{identifier}(\code{WARNING})}),\\
+\hspace*{2em}\textit{qualifiedName}(\code{Log}, \mbox{\textit{identifier}(\code{ERROR})}),\\
 \hspace*{2em}\textit{thisExpression}(),\\
 \hspace*{2em}\textit{additionExpression}(\\
 \hspace*{3em}\textit{stringLiteral}(\code{"Unknown action: "}),\\
