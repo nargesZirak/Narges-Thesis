@@ -1,6 +1,6 @@
 \chapter{Constructing Structural Generalizations} \label{ch4} \label{methodology}
 
-In Chapter~\ref{background}, I provided background information on higher-order anti-unification modulo theories, a theoretical framework that can be used to construct a generalization from two given ASTs. In Chapter~\ref{background2}, I presented and tested the Jigsaw framework proposed by \citet{2008:fse:cottrell} to construct the CAST structure, where each node holds a list of candidate structural correspondences. I next extended the CAST structure to an AUAST that would allow the creation of an anti-unifier.
+In Chapter~\ref{background}, I provided background information on higher-order anti-unification modulo theories, a theoretical framework that can be used to construct a generalization from two given ASTs. In Chapter~\ref{background2}, I presented and tested the Jigsaw framework proposed by \citet{2008:fse:cottrell} to construct the CAST structure, where each node holds a list of candidate structural correspondences. I next extended the CAST structure to an AUAST that would allow the creation of an anti-unifier. 
 I now consider how these frameworks could help me (1)~to construct an approximation of the best anti-unifier to my problem from the AUASTs of two logged methods with special attention to log statements and (2)~to develop a similarity measure between the two structures, which can provide us with useful information for clustering a set of logged methods in a later phase. The constructed anti-unifier can be viewed as a generalization that represents the structural commonalities and differences between the two logged methods.
 
 
@@ -9,7 +9,7 @@ I now consider how these frameworks could help me (1)~to construct an approximat
 %To this end, first we should create an extended form of AST, called AUAST (Anti-unifier AST) that allows the insertion of variables in place of any node in the tree, which is a requirement for HOAUMT (see Section~\ref{AUAST}).
 %1) generates all possible candidate correspondence connections between the two AUASTs using the Jigsaw framework (line~1) (see Section~\ref{meth-CAST});
 
-To approximate the best anti-unifier for my problem, I should develop a greedy selection algorithm that determines the best correspondence for each node. My approach contains a sequence of two actions to find the best correspondences between two AUASTs: (1) it applies two constraints to prevent the anti-unification of log statement nodes with any other nodes; and (2) it determines the best correspondence for each AUAST node with the highest similarity and then removes the other correspondence connections involving those nodes (Section~\ref{best-corr}). However, to construct an anti-unifier, a further step should be taken, which is the anti-unification of each AUAST node with its best correspondence (Section~\ref{meth-antiUnifier}) \RW{Note that this is a forward reference to a section in a later chapter; that is disorienting.  You can mention that additional steps are needed, and give a forward pointer to later chapters; in which case, you want to move such statements to the end of this paragraph.}. Furthermore, I developed an algorithm to measure similarity between the usage of log statements in methods based on the selected correspondences (Section~\ref{meth-similarity}). An overview of the proposed anti-unification approach is shown in Figure~\ref{fig:meth_overview}.
+To approximate the best anti-unifier for my problem, I should develop a greedy selection algorithm that determines the best correspondence for each node. My approach contains a sequence of 2 actions to find the best correspondences between two AUASTs: (1) it applies two constraints to prevent the anti-unification of log statement nodes with any other nodes; and (2) it determines the best correspondence for each AUAST node with the highest similarity and then removes the other correspondence connections involving those nodes (Section~\ref{best-corr}). However, to construct an anti-unifier, a further step should be taken, which is the anti-unification of each AUAST node with its best correspondence (Section~\ref{meth-antiUnifier}). Furthermore, I developed an algorithm to measure similarity between the usage of log statements in methods based on the selected correspondences (Section~\ref{meth-similarity}). An overview of the proposed anti-unification approach is shown in Figure~\ref{fig:meth_overview}.
 
 
 
@@ -23,8 +23,7 @@ To approximate the best anti-unifier for my problem, I should develop a greedy s
 
 
 \begin{figure}[t]
-  \centering\includegraphics[trim={3cm 5cm 3cm 0},clip,width=\textwidth]{Drawing4/auOverview.pdf}
-  %\centering\includegraphics[width=\textwidth]{Drawing4/auOverview.pdf}
+  \centering\includegraphics [width = \textwidth]{Drawing4/auOverview.pdf}
   \caption{Overview of the anti-unification process.}
   \label{fig:meth_overview}
 \end{figure}
@@ -114,7 +113,7 @@ As an illustration, consider the CASTs of the two examples in Figure~\ref{fig:me
 \end{enumerate}
 
 The \func{Apply-Constraints} algorithm takes the list of correspondence connections, and removes the ones involving two nodes where one is ``logged'' and the corresponding node is not (lines~1--9).
-%, using the \func{Remove-Other-Correspondences} algorithm
+%, using the \func{Remove-Other-Correspondences} algorithm 
 
 \begin{algorithm}
   \caption{\func{Apply-Constraints}($\id{list}$) applies the constraints on the list of correspondence connections.}
@@ -168,8 +167,8 @@ the list of correspondence connections of the first node involved in the connect
 
 
 \begin{sidewaysfigure}[p]
-  \centering\includegraphics[width=\textwidth, height=0.5\textheight]{Drawing4/FinalCorr.pdf}
-  \caption{Simple AUAST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \func{Determine-Best-Correspondences} algorithm.\protect\RW{This text needs to be bigger: try moving the two halves closer together.}}
+  \centering\includegraphics [width = \textwidth, height=0.5\textheight]{Drawing4/FinalCorr.pdf}
+  \caption{Simple AUAST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \func{Determine-Best-Correspondences} algorithm.}
   \label{fig:AUASTs}
 \end{sidewaysfigure}
 %In general, higher order anti-unification modulo theories is undecidable [Cottrell et al., 2008]. That is, the complexity of determining the most optimal MSA is undecidable, but our desire is to create one of the best MSAs to approximate the optimal one that can sufficiently solve our problem, thus the anti-unification process should construct an anti-unifier that is the best approximate fit for our application. To this end, a greedy selection algorithm has been used, which is an approximation technique to determine the best correspondence for each node in the AUAST so constructing the anti-unifier that is approximately the best fit to our problem.
@@ -290,8 +289,8 @@ To figure out the structural commonalities and differences amongst LMs, I develo
 
 
 \begin{figure} [p]
-  \centering\includegraphics[trim={3cm 11cm 17cm 0},clip,width=\textwidth]{Drawing4/SampleAntiUnifier.png}
-  \caption{The detailed view of the anti-unifier generated by \tool{ELUS} from the AUASTs of Examples 1 and 2.\protect\RW{This was illegible. I have cropped it to make it better. Move the descriptions of the substitutions into the main text.}}
+  \centering\includegraphics [width = \textwidth]{Drawing4/SampleAntiUnifier.png}
+  \caption{The detailed view of the anti-unifier generated by \tool{ELUS} from the AUASTs of Examples 1 and 2.}
   \label{fig:meth-anti-unifier}
 \end{figure}
 
@@ -436,8 +435,8 @@ To assess the effectiveness of my anti-unification algorithm and the supporting 
 
 
 \subsection{Setup}  \label{study2-setup}
-In this study, we manually attempted to create the detailed anti-unifier view for each pair of LMs in the test suite (55 test cases in total). We first identified corresponding and non-corresponding \name{Java} elements for each LM pair with a focus on preventing the correspondence of logging calls with anything else and then represented the anti-unifier in the detailed view (i.e., formatted as in Figure~\ref{fig:meth-anti-unifier}). We also computed the ratio of common \name{Java} elements in the detailed anti-unifier view to total number of \name{Java} elements of the two LMs to measure the similarity.
-We also ran the anti-unifier-building tool on each pair of LMs to construct the detailed anti-unifier view for each pair with special attention to logging calls and to measure the similarity between the two LMs. Furthermore, we used \name{EclEmma}, which is a \name{Java} code coverage tool for \name{Eclipse}, to measure the test coverage. Test coverage is defined as a measure of the completeness of the set of test cases.
+In this study, I manually attempted to create the detailed anti-unifier view for each pair of LMs in the test suite (55 test cases in total). I first identified corresponding and non-corresponding \name{Java} elements for each LM pair with a focus on preventing the correspondence of log statements with anything else and then represented the anti-unifier in the detailed view (i.e., formatted as in Figure~\ref{fig:meth-anti-unifier}). I also computed the ratio of common \name{Java} elements in the detailed anti-unifier view to total number of \name{Java} elements of the two LMs to measure the similarity.
+I also ran the anti-unifier-building tool on each pair of LMs to construct the detailed anti-unifier view for each pair with special attention to log statements and to measure the similarity between the LM pairs. Furthermore, I used \name{EclEmma}, which is a \name{Java} code coverage tool for \name{Eclipse}, to measure the test coverage. Test coverage is defined as a measure of the completeness of the set of test cases.
 
 
 \begin{figure}
@@ -498,11 +497,11 @@ We also ran the anti-unifier-building tool on each pair of LMs to construct the 
 %The view would be in the form depicted in ..
 
 \subsection{Results}  \label{study2-results}
-We present the results of our analysis for a subset of 10 test cases (see Table~\ref{study2_test_cases}) in Table~\ref{study2_test_cases_results}. The analysis of the output has been divided into two categories: correspondence and similarity. ``Correspondence'' refers to the number of corresponding lines-of-code (LOC) detected by our tool that were found to be corresponded by our manual examination as well, and the number of LOC detected as corresponded by our tool but were not found to be corresponded in our manual inspection. We also present the percentage of the correct corresponding LOC to the total number of LOC of the two LMs. ``Similarity'' refers to the similarity that is computed based on the the detected correspondences. It is calculated using both our tool and manual experiment.
+I present the results of my analysis for a subset of 10 test cases (see Table~\ref{study2_test_cases}) in Table~\ref{study2_test_cases_results}. The analysis of the output has been divided into two categories: correspondence and similarity. ``Correspondence'' refers to the number of corresponding lines-of-code (LOC) detected by my tool that were found to be corresponded by my manual examination as well, and the number of LOC were not detected as corresponded by my tool but were found to be corresponded in manual inspection. I also present the percentage of the correct corresponding LOC to the total number of LOC of the two LMs. ``Similarity'' refers to the similarity that is computed based on the detected correspondences. It is calculated using both my tool and manual experiment.
 
 
+In Case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement enclosing a log statement and the \code{actionPerformed(..)} method contains an \code{if}-statement enclosing another log statement. The analysis showed that a correct correspondence was detected between the inner \code{if}-statement inside the nested \code{if}- and the single \code{if}-statement. Cases~3 and~10 contain statements that are not found to correspond by my tool even though correspondences exist. For example, in Case 3, the \code{isSupportedEncoding(..)} method contains an assignment statement enclosed by an \code{if}-statement that does not have any correspondences and the \code{send(..)} method contains another assignment statement inside a \code{for}-statement without any correspondences. However, no correspondence was detected between the two assignment statements since their parent nodes do not correspond.
 
-In Case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement enclosing a logging call and the \code{actionPerformed(..)} method contains an \code{if}-statement enclosing another logging call. The analysis showed that a correct correspondence was detected between the inner \code{if}-statement inside the nested \code{if}- and the single \code{if}-statement. Cases~3 and~10 contain statements that are not found to correspond by our tool even though apparent correspondences exist. For example, in Case 3, the \code{isSupportedEncoding(..)} method contains an assignment statement enclosed by an \code{if}-statement that does not have any correspondences and the \code{send(..)} method contains another assignment statement inside a \code{for}-statement without any correspondences as well. However, no correspondence was detected between the two assignment statements since their parent nodes do not correspond. \RW{Unclear.  Are you saying that your tool has a bug, or that an apparent correspondence actually is incorrect and the tool is right, relative to the constraints?  Hence, is this a limitation of the constraints?}
 \begin{figure}
   \centering
   \begin{tabular}{cccccc}
@@ -533,15 +532,15 @@ In Case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement
     10&14 (87)&2&0.27 &0.22\\
     \bottomrule
   \end{tabular}
-  \caption{Results of constructing anti-unifiers with a focus on logging calls for the 55 test cases.}
+  \caption{Results of constructing anti-unifiers with a focus on log statements for the test cases presented in  Table~\ref{study2_test_cases}}
   \label{study2_test_cases_results}
 \end{figure}
 
-The results of the pairwise comparison between LMs of the test suite is visualized in Figure~\ref{fig:au_graph}. Our anti-unifier-building tool succeeded in detecting correspondences with special attention to anti-unifying logging calls and calculating pairwise similarities in 48 out of 55 test cases. In addition, the instruction coverage of our test cases is 82\% as measured with \name{EclEmma}.  \RW{This description does not suffice.  Describe what the reader should see in the figure.  What are the nodes, arcs, and labels?  What is the significance of this picture?  The reader can't see inside your head.}
+The results of the pairwise comparison between LMs of the test suite is visualized in Figure~\ref{fig:au_graph}. Our anti-unifier-building tool succeeded in detecting correspondences with special attention to anti-unifying log statements and calculating pairwise similarities in 48 out of 55 test cases. In addition, the instruction coverage of our test cases is 82\% as measured with \name{EclEmma}.
 
-\begin{figure} [H]
+\begin{figure} [t]
   \centering\includegraphics [width = \textwidth]{graphviz/au.pdf}
-  \caption{A similarity graph representing pairwise similarities calculated by our tool between LMs shown in Table~\ref{table:ljms}.}
+  \caption{A similarity graph representing pairwise similarities calculated by my tool between LMs shown in Table~\ref{table:ljms}.}
   \label{fig:au_graph}
 \end{figure}
 
@@ -549,9 +548,9 @@ The results of the pairwise comparison between LMs of the test suite is visualiz
 
 
 \section{Summary} \label{meth1-summary}
-I have presented an approach for constructing a generalization from AUASTs of two LMs with special attention to logging calls via structural correspondence. This approach proceeds in three steps. First, several constraints have been applied on the selection of correspondences to prevent anti-unifying log method invocation nodes with any other types of nodes. Second, an approximation technique is employed to find the best correspondence for each AUAST node. Third, the anti-unification of two AUASTs is performed through the application of higher-order modulo theories over the AUAST structures. Furthermore, a measure of similarity has been developed that would provide us with useful information for the clustering phase.
+I have presented an approach for constructing a generalization from AUASTs of two LMs with special attention to logging statements via structural correspondence. This approach proceeds in three steps. First, several constraints have been applied on the selection of correspondences to prevent anti-unifying log method invocation nodes with any other types of nodes. Second, an approximation technique is employed to find the best correspondence for each AUAST node. Third, the anti-unification of two AUASTs is performed through the application of higher-order modulo theories over the AUAST structures. Furthermore, a measure of similarity has been developed that would provide us with useful information for the clustering phase.
 
-An experimental study was conducted to evaluate the effectiveness of our anti-unification algorithm and the tool support in constructing an anti-unifier from AUASTs of each LM pair in our test suite with a focus on logging calls and measuring similarity between them.
+An experimental study was conducted to evaluate the effectiveness of my anti-unification algorithm and the tool support in constructing an anti-unifier from AUASTs of each LM pair in my test suite with a focus on log statements and measuring similarity between them.
 
 
 

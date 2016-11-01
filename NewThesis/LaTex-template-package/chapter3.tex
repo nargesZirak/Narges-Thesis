@@ -2,7 +2,9 @@
 \chapter{Background}  \label{background}
 A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which I represent and analyze source code, I need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences. The theoretical framework of anti-unification is presented as that means.
 
-In this chapter, ASTs are described in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. A specific, industrial framework for creating and manipulating ASTs for source code written in the Java programming language---the Eclipse JDT---is described in Section~\ref{JDT}.  Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that I will make use of, higher-order anti-unification modulo equational theories, in Section~\ref{HOAUMT}.  A research approach, built atop the Eclipse JDT, for performing anti-unification on Java ASTs---the Jigsaw framework---is described in Section~\ref{Jigsaw}.
+In this chapter, ASTs are described in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. A specific, industrial framework for creating and manipulating ASTs for source code written in the Java programming language---the Eclipse JDT---is described in Section~\ref{JDT}.  Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that I will make use of, higher-order anti-unification modulo equational theories, in Section~\ref{HOAUMT}.  A research approach, built atop the Eclipse JDT, for performing anti-unification on Java ASTs---the Jigsaw framework---is described in Section~\ref{Jigsaw}. In the last section of this chapter, I provide some background information about clustering, existing clustering techniques, and the agglomerative hierarchical clustering algorithm, as a technique I used to cluster logged methods into separate groups based on a similarity measurement.
+%AHC???
+% as a technique or the technique??
 
 \section{Concrete syntax trees and abstract syntax trees}\label{AST}
 
@@ -750,9 +752,81 @@ The Jigsaw similarity function returns a value in $[0, 1]$ where zero indicates 
 
 
 As I intend to construct a structural generalization from ASTs of two logged methods via structural correspondence, it could be helpful to use the first phase of the proposed approach to find candidate correspondences using the similarity measure. However, the second phase does not help determine the best correspondences needed in my context, as the CAST generated via thresholding neither resolves the conflicts that occur in constructing one single anti-unifier automatically, nor prevents the anti-unification of log statement nodes with any other nodes. There, the Jigsaw similarity function does not enable us to measure how similar are the usages of log statements inside methods. In addition, as the problem of this study is different, the integration phase of the approach is not related to my work. Instead, I should develop an algorithm to construct a detailed view of the generalization describing the structural commonalities and differences between logged methods. However, the CAST structure does not suffice to construct an anti-unifier: it does not allow the insertion of \emph{structural variables} in place of nodes in the tree structure, and thus an extended form is required. In the following chapters, I will discuss my approach to create a structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
+\section{Clustering}  \label{ch3-clustering}
+Clustering is the classification of a collection of data objects into meaningful groups (clusters) \cite{jain1999data}. The goal of clustering is to find groups of objects such that the objects in one cluster will be similar to one another and dissimilar from the objects in other clusters. The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters would be \cite{}.  In general, there are two major types of clustering: 
+%\cite[][Chapter 8]{tan2013data} ????
 
+\begin{itemize} [leftmargin=.4in]
+\item \emph{Partitional clustering:} which aims to divide the data objects into non-overlapping clusters such that each data object is in utterly one cluster.
+\item \emph{Hierarchical clustering:} which aims to generate a set of nested clusters organized as a hierarchical structure. Each cluster in the structure is the union of its subclusters, and the cluster at the top contains all the the data objects.
+\end{itemize}
+
+The following will introduce two popular techniques used to perform clustering on a data set:
+
+% supervised-unsupervisod?
+%dendogram?
+\subsubsection{K-means clustering algorithm}
+% indicate Lines ??? initial centroids???
+This algorithm is a partitional clustering approach that attempts to find a certain number of clusters, which are represented by centriod (the center of a cluster). In this algorithm, ${K}$ is the number of the resulting clusters that should be specified. Each cluster is associated with a centroid  which is mostly the average of all the
+data objects within the cluster or the most representative object of a
+cluster. The basic K-means clustering technique is described using the Algorithm~\ref{alg:k-means}. This algorithm repeatedly assigns each data object to a cluster with the nearest centroid and computes the new clusters centroids accordingly. This process terminates when it reaches a state in which no objects are moving from one cluster to another, and thus, the centroids don't change.
+%strength?
+The K-means clustering algorithm is not a good fit to this study, as it requires to specify the number of resulting clusters, which is not reasonable to my problem context. %??
+% representative object?
+
+%Each object is assigned to a centroid is a cluster. The centroid of each cluster is then updated based on the objects assigned to the cluster.  repeatedly perform the assignment and update opertaions util the centroids do not change.
+
+\begin{algorithm}
+\caption{Basic K-means clustering algorithm.} \label{alg:k-means}
+\begin{algorithmic}[1]
+\State Select K data objects as initial centroids.
+\Repeat
+\State Assigning each object to its closes centroid.
+\State Update the centroid of each cluster.
+\Until Centroids remain the same.
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\subsubsection{Agglomerative hierarchical clustering algorithm}
+%LINES???
+%dendogram?
+The agglomerative hierarchical clustering algorithm produce a nested grouping of clusters, with single point clusters at the bottom and an all-inclusive cluster at the top \cite{karypis1999chameleon}. Agglomerative hierarchical clustering is one of the main stream clustering methods \cite{day1984efficient} that has applications in document retrieval \cite{voorhees1986implementing} and information retrieval from a search engine query log \cite{beeferman2000agglomerative}. Algorithm~\ref{alg:agglomerative} describes the basic agglomerative hierarchical clustering appraoch. It starts with the individual objects as singleton clusters, and successively, merges the two closest clusters until only one all inclusive cluster remains. In general, hierarchical clustering algorithms work implicitly or explicitly with the $n \times n$ similarity matrix such that an element in row $i$ and column $j$ represents the similarity between the $i$th and the $j$th clusters \cite{karypis1999chameleon}.
+% dandogram ???
+%update???
+
+
+\begin{algorithm}
+\caption{Basic agglomerative hierarchical clustering algorithm.} \label{alg:agglomerative}
+\begin{algorithmic}[1]
+\State Start with singleton clusters.
+\State Compute the similarity matrix.
+\Repeat
+\State Merge the closest cluster pair.
+\State Update the similarity matrix by computing the similarity between new cluster and all remaining clusters.
+\Until Only one cluster remains.
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+%until a pre-determined number of clusters is obtained or the similarity between the closest clusters becomes below a pre-determined threshold value.
+
+%[Rasmussen, 1992] \RW{Put into bibtex}?????
+
+There are various versions of agglomerative hierarchical algorithms that mainly differ in how they update the similarity between clusters. There are various methods to measure the similarity between clusters, such as single linkage, complete linkage, average linkage, and centroids \cite{}. In the single linkage method, the similarity is measured by the similarity of the closest pair of data points of two clusters. In the complete linkage method, the similarity is computed by the similarity of the farthest pair of data points of two clusters. In the average linkage method, the similarity is measured by the average of all pairwise similarities between data points of two clusters. In the centroids methods, each cluster is represented by a centroid, and the similarity between two clusters is measured by the similarity of the clusters' centroids. However, I need to develop a modified version of the basic agglomerative hierarchical clustering algorithm to address my problem context. In the modified version, the merge and update operations should be terminated when the similarity between the closest clusters becomes below a pre-determined threshold value. Furthermore, I need to develop a measure of the similarity between the clusters based on the similarity between their anti-unifiers. In Chapter~\ref{clustering}, I describe how I modified the basic hierarchical algorithm to my problem context.  
+ 
+%in our application, each cluster is composed of one AUAST, and the similarity between two clusters is measured by the similarity between the clusters' AUASTs, which is the ratio of the number of common pieces over the total number of pieces of their anti-unifier.
+
+
+%optimal clusters
+%. Partitional clustering try to classify a data set into $k$ clusters such that the partition optimizes a pre-determined criterion \cite{karypis1999chameleon}. The most popular partitional clustering algorithm is $k$-means, which repeatedly assigns each data point to a cluster with the nearest centroid and computes the new cluster centroids accordingly until a pre-determined number of clusters is obtained \cite{bouguettaya2015efficient}. 
 
 \section{Summary}  \label{summary}
 I described abstract syntax trees (ASTs) as a standard syntactic representation of source code. Every AST can also be represented in a functional format (and vice versa) which constitute the standard theoretical concept of terms. I presented Eclipse JDT as a concrete framework that can be used to manipulate ASTs of a source code written in the \name{Java} programming language.
 
-I demonstrated how the theoretical framework of anti-unification can be used as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permitting substitution relative to function symbols as well as terms. A further extension allows for insertion and deletion by declaring equivalence with the \NIL{} structure, as well as other arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this approach of higher-order anti-unification modulo theories leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weaknesses, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice. I also introduced Jigsaw, an existing framework for determining structural correspondences between ASTs and why it does not adequately address my problem.  To address my problem, I describe in subsequent chapters how I extended the Jigsaw framework.
+I demonstrated how the theoretical framework of anti-unification can be used as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permitting substitution relative to function symbols as well as terms. A further extension allows for insertion and deletion by declaring equivalence with the \NIL{} structure, as well as other arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this approach of higher-order anti-unification modulo theories leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weaknesses, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice. I also introduced Jigsaw, an existing framework for determining structural correspondences between ASTs and why it does not adequately address my problem.  To address my problem, I describe in subsequent chapters how I extended the Jigsaw framework. Furthermore, I introduced a hierarchical clustering algorithm that can be applied to classify logged methods into different categories.
+
+%approximated or modified?

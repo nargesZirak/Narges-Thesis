@@ -66,7 +66,7 @@ Her first solution might be to simply log at the start and end of every method. 
 \def\baselinestretch{1}
 \begin{lstlisting}[escapechar=!]
 public static void send(EBMessage message){
-   !\colorbox{yellowGreen}{// log statement}!
+   !\colorbox{yellowGreen}{//log statement}!
    EBComponent[] comps = getComponents();
    for (int i = 0; i < comps.length; i++) {
        EBComponent comp = comps[i];
@@ -83,7 +83,7 @@ public static void send(EBMessage message){
 \def\baselinestretch{1}
 \begin{lstlisting}[escapechar=!]
 public static void send(EBMessage message) {
-    !\colorbox{yellowGreen}{// log statement}!
+    !\colorbox{yellowGreen}{//log statement}!
     EBComponent[] comps = getComponents();
     for(int i = 0; i < comps.length; i++) {
         EBComponent comp = comps[i];
@@ -91,7 +91,7 @@ public static void send(EBMessage message) {
         comp.handleMessage(message);
         long time = (System.currentTimeMillis() - start);
         if(time >= 1000000) {
-            !\colorbox{yellowGreen}{// log statement}!
+            !\colorbox{yellowGreen}{//log statement}!
         }
     }
 }
@@ -104,7 +104,7 @@ public static void send(EBMessage message) {
 \begin{lstlisting}[escapechar=!]
 public static void send(EBMessage message){
     try {
-        !\colorbox{yellowGreen}{// log statement}!
+        !\colorbox{yellowGreen}{//log statement}!
         EBComponent[] comps = getComponents();
         for(int i = 0; i < comps.length; i++) {
             EBComponent comp = comps[i];
@@ -112,11 +112,11 @@ public static void send(EBMessage message){
             comp.handleMessage(message);
             long time = (System.currentTimeMillis() - start);
             if(time >= 1000000) {
-                !\colorbox{yellowGreen}{// log statement}!
+                !\colorbox{yellowGreen}{//log statement}!
             }
         }
     } catch(Throwable t) {
-       !\colorbox{yellowGreen}{// log statement}!
+       !\colorbox{yellowGreen}{//log statement}!
     }
 }
 \end{lstlisting}
@@ -130,7 +130,7 @@ She also believes that it is important to log an error if any problems occur in 
 \def\baselinestretch{1}
 \begin{lstlisting}[escapechar=!]
 public static void send(EBMessage message) {
-    !\colorbox{yellowGreen}{// log statement}!
+    !\colorbox{yellowGreen}{//log statement}!
     EBComponent[] comps = getComponents();
     for (int i = 0; i < comps.length; i++) {
         try {
@@ -139,10 +139,10 @@ public static void send(EBMessage message) {
             comp.handleMessage(message);
             long time = (System.currentTimeMillis() - start);
             if(time >= 1000000) {
-                !\colorbox{yellowGreen}{// log statement}!
+                !\colorbox{yellowGreen}{//log statement}!
             }
         } catch(Throwable t) {
-            !\colorbox{yellowGreen}{// log statement}!
+            !\colorbox{yellowGreen}{//log statement}!
         }
     }
 }
@@ -185,7 +185,7 @@ public class EditBus {
     }
 
     public static void send(EBMessage message) {
-        !\colorbox{yellowGreen}{// log statement}!
+        !\colorbox{yellowGreen}{//log statement}!
         EBComponent[] comps = getComponents();
         for(int i = 0; i < comps.length; i++) {
             try {
@@ -194,10 +194,10 @@ public class EditBus {
                 comp.handleMessage(message);
                 long time = (System.currentTimeMillis() - start);
                 if(time >= 1000000) {
-                    !\colorbox{yellowGreen}{// log statement}!
+                    !\colorbox{yellowGreen}{//log statement}!
                 }
             } catch(Throwable t) {
-                 !\colorbox{yellowGreen}{// log statement}!
+                 !\colorbox{yellowGreen}{//log statement}!
             }
         }
     }

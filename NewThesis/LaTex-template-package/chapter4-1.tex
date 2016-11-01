@@ -1,53 +1,57 @@
 \chapter{Clustering}  \label{clustering}
-In Chapter~\ref{ch4}, I described my anti-unification algorithm to construct an anti-unifier from the AUASTs of a pair of LMs, paying special attention to logging calls. Recall that the general point of this study is to provide a concise description of where logging calls happen in source code by constructing structural generalizations that represent the detailed commonalities and differences between AUASTs of LMs. To this end, we should develop an algorithm that:
+In Chapter~\ref{ch4}, I described my anti-unification algorithm to construct an anti-unifier from the AUASTs of a pair of LMs, paying special attention to log statements. Recall that the general point of this study is to provide a description of where log statements happen in source code by constructing structural generalizations that represent the detailed commonalities and differences between the AUASTs of LMs. To this end, I should develop an algorithm that:
 \begin{itemize} [leftmargin=.5in]
-\item clusters Java methods showing different usages of logging calls into separate clusters; and
-% using a measure of similarity.
-%classifies AUASTs of LMs into clusters using a measure of similarity such that AUASTs in each group has maximum similarity with each other and minimum similarity to other ones.
-
-%such that entities
-\item abstracts AUASTs of LMs of each group into a structural generalization representing the commonalities and differences between them.
-%abstracts structural correspondences of ASTs
+\item classifies the methods showing different ways of locating log statements into separate clusters; and
+\item abstracts the AUASTs of LMs of each group into a structural generalization representing the similarities and differences between them.
 \end{itemize}
 
-Clustering is the classification of a collection of unlabelled data items into meaningful groups \cite{jain1999data} \RW{Add to bib}, where category labels are obtained from the similarities between data items. Therefore, before the use a clustering algorithm to classify a set of AUASTs, I need to first define a similarity metric. To develop a measure of similarity between AUASTs, I used the similarity function described in Section~\ref{meth-similarity}. To perform clustering on a set of AUASTs of LMs, I developed a modified version of an agglomerative hierarchical clustering algorithm suited to my application (Section~\ref{clustering-alg}). The clustering algorithm is a bottom-up approach that starts with singleton clusters, each contains one AUAST, and then it repeatedly merges the closest clusters that are the ones with maximum similarity between their AUASTs. To evaluate my approach, I have implemented it as an Eclipse plugin \RW{Note: you don't describe this tool in any detail.  I am assuming it is straightforward.} %(Section~\ref{clusteringTool})
-and conducted an experimental study through the application of it on the test suite introduced previously (see Section~\ref{study1_setup}). I describe my experimental study and discuss the results in Section~\ref{clustering-assessment}.
+In Section~\ref{m-clustering-alg}, I describe a modified version of an agglomerative hierarchical clustering algorithm I developed for my application. The clustering algorithm is a bottom-up approach that starts with singleton clusters, each contains one AUAST, and then it repeatedly merges the closest clusters that are the ones with maximum similarity between their AUASTs. To evaluate my approach, I have implemented the clustering tool (Section~\ref{clusteringTool}) and conducted an experimental study through the application of it on the test suite introduced in Section~\ref{study1_setup}. I will describe my experimental study and discuss the results in Section~\ref{clustering-assessment}.
+% I developed for my application.?
+
+%Therefore, before the use a clustering algorithm to classify a set of AUASTs, I need to first
+%Clustering is the classification of a collection of unlabelled data items into meaningful groups \cite{jain1999data}, where category labels are obtained from the similarities between data items.
+
+
+\section{Modified agglomerative hierarchical clustering algorithm} \label{m-clustering-alg}
+%To develop a measure of similarity between AUASTs, I used the similarity function described in Section~\ref{meth-similarity}.
+%unsupervised???
+%by computing pairwise similarities between cluster pairs?
+Clustering is an unsupervised machine mining technique that aims to organize a collection of data into clusters, such that intra-cluster similarity is maximized and the inter-cluster similarity is minimized \cite{karypis1999chameleon,grira2004unsupervised}. 
+To perform clustering on a set of AUASTs of LMs, I developed Algorithm~\ref{modified-agglomerative}, which is a modified version of the agglomerative hierarchical clustering algorithm. The clustering algorithm is a bottom-up approach that starts with singleton clusters, each contains one AUAST (Line~1), and then it creates a similarity matrix by computing pairwise similarities between cluster pairs (Line~2). This step requires defining a notion of cluster similarity. As I intend to construct an anti-unified AUAST for each cluster, the similarity between two clusters is measured based on the similarity between their AUASTs.
+\RW{Add to bib},
+\RW{Note: you don't describe this tool in any detail.  I am assuming it is straightforward.}\NZ{ Yes, It is straightforward. I just implemented the algorithm I described here.}
+\RW{Why did you do it manually?  You are assuming that your manual approach represents the ground truth, which may not be true; this is a point for discussion in threats to validity.}\NZ{ I changed the way I evaluated the clustering algorithm, and defined some measurements that can be calculated using equations.}
 
 
 
-%However, to cluster Java methods that use logging calls, a further step should be taken that is the application of a clustering algorithm on the set of AUASTs of LMs extracted from the source code. Therefore, I have developed a modified version of an agglomerative hierarchical clustering algorithm suited to my application.
-% when it is needed to merge two clusters.
-%Figure~\ref{fig:meth_overview} shows an overview of the general process of our anti-unification technique, as will be described in the following sections.
+In general, this hierarchical algorithm employs a $n \times n$ similarity matrix for a set of $n$ AUASTs, where an element in row $i$ and column $j$ represents the similarity between the $i^{\text{th}}$ and the $j^{\text{th}}$ clusters. The similarity between two clusters is defined as the similarity between their AUASTs, which is computed through the algorithm described in Section~\ref{meth-similarity}. However, there are some cases in which the anti-unification of the AUASTs of two clusters does not allow the anti-unification of log statements with one another, since the structures enclosing them are not corresponded. To handle these cases, I adjusted the similarity value between the two clusters to zero. Then the algorithm repeatedly merges the closest clusters that are the ones with maximum similarity between their AUASTs, and update the similarity matrix by computing the similarity between the new cluster and the old clusters (Lines~5--6). The merge and update steps are repeated until the similarity between closest clusters becomes below a predetermined threshold value (Line~7). Through informal examination, I have found that a threshold value of 0.05 gives the reasonable results, as it allows the classification of methods showing different ways of locating log statements in separate clusters. I also used the anti-unification algorithm described in Section~\ref{meth-antiUnifier} to construct an anti-unifier for each cluster.
+%threshold???
+%allows? the classification of methods showing different ways of locating log statements in separate clusters?
+
+ %to prevent the combination of a cluster pair when the usage of logging is different, I adjusted the similarity between them to zero. they should be in separate clusters.
+
+
+\begin{algorithm}
+\caption{Modified agglomerative hierarchical clustering algorithm.} \label{modified-agglomerative}
+\begin{algorithmic}[1]
+\State Start with singleton clusters.
+\State Compute a similarity matrix.
+\Repeat
+\State Find the closest clusters.
+\State Merge the closest cluster pair and replace the original clusters with a new cluster containing the anti-unifier of their AUASTs.
+\State Update the similarity matrix by computing the similarity between new cluster and all remaining clusters.
+\Until the similarity between closest clusters becomes below a predetermined threshold value.
+\end{algorithmic}
+\end{algorithm}
 
 
 
-\section{The hierarchical clustering algorithm} \label{clustering-alg}
-%\subsection{Anti-unifying a set of AUASTs} \label{meth-clustering}
-To anti-unify a set of AUASTs, I have developed a modified version of an agglomerative hierarchical clustering algorithm as described below:
-%agglomerative hierarchical clustering(AHC)???
-
-\begin{enumerate} [leftmargin=.5in]
-\item Start with singleton clusters, each containing one AUAST.
-\item Create a similarity matrix by computing pairwise similarities between clusters.
-\item Find the closest clusters (a cluster pair with maximum similarity).
-\item Merge the closest cluster pair and replace them with a new cluster containing the anti-unifier of AUASTs of the two clusters.
-\item Update the similarity matrix by computing the similarity between the new cluster and all remaining clusters.
-\end{enumerate}
-\begin{itemize} [leftmargin=.5in]
-\item Repeat steps 3, 4, and 5 until the similarity between closest clusters falls below a predetermined threshold value.
-\end{itemize}
+Figure~\ref{fig:overview2} illustrates the clustering process for a sample set of 5 AUASTs using the initial similarity matrix depicted in Figure~\ref{matrix}. In the first and second iterations, clusters 1 and 2, and clusters 4 and 5 are selected as the closest clusters, merged, and replaced by clusters 6 and 7, respectively. If threshold value is determined as Threshold $A = 0.20$, the process should be terminated at this step, as the similarity between the closest clusters (clusters 3 and 6) is below this threshold; otherwise, these clusters should be merged and replaced by cluster 8. However, the similarity between AUASTs of clusters 7 and 8 is zero, and thus they should not be merged with each other. 
+%THRESHOLD B??
 
 
-The hierarchical algorithm employs an $n \times n$ similarity matrix for a set of $n$ AUASTs, where the element in row $i$ and column $j$ represents the similarity between the $i$th and the $j$th clusters. In this algorithm, the similarity between a pair of clusters is defined as the similarity between their AUASTs, which is computed through the algorithm described in Section~\ref{meth-similarity}. However, to prevent the combination of a cluster pair when the usage of logging is different, I adjusted the similarity between them to zero. That is, if the anti-unification of AUASTs of a cluster pair does not allow the anti-unification of log statements with each other (as the structures enclosing them are not corresponded), they are defined to fall into separate clusters. I also used the anti-unification algorithm described in Section~\ref{meth-antiUnifier} to construct structural generalizations.
 
-%threshold????
-Figure~\ref{fig:overview2} illustrates the clustering process for a sample set of 5 AUASTs using the initial similarity matrix depicted in Figure~\ref{matrix}. In the first and second iterations, clusters 1 and 2, and then clusters 4 and 5, are selected as the closest clusters, merged, and replaced by clusters 6 and 7, respectively. If the threshold value were set to %determined as 
-%Threshold $A = 
-0.20%$
-, the process will terminate as the similarity between the closest clusters (clusters 3 and 6) is below this threshold; otherwise, these clusters will be merged and replaced by cluster 8. However, the similarity between AUASTs of clusters 7 and 8 is zero, and thus they should not be merged with each other. In this study, the similarity threshold is determined through informal experimentation.
-
-
-\begin{figure} [!h]
+\begin{figure} [H]
 \begin{displaymath}
     similarity = \left[
         \begin{matrix}
@@ -67,51 +71,94 @@ Figure~\ref{fig:overview2} illustrates the clustering process for a sample set o
 
 \begin{sidewaysfigure} [p]
   \centering\includegraphics [width = \textwidth]{Drawing4/overview2.pdf}
-  \caption{The agglomerative hierarchical clustering process on a sample set of  5 AUASTs (using the initial similarity matrix shown in Figure~\ref{matrix}). Two alternative threshold values are exemplified: at a threshold of 0.10, cluster 8 is formed; at a threshold of 0.2, clusters 6 and 7 are formed individually but are not merged, and so cluster 8 is not formed.}
+  \caption{The modified agglomerative hierarchical clustering process on a sample set of  5 AUASTs using the initial similarity matrix shown in Figure~\ref{matrix}. The threshold value indicates the number of resulting clusters.}
   \label{fig:overview2}
 \end{sidewaysfigure}
 
-
-\section{Evaluation} \label{clustering-assessment}
-To evaluate the clustering approach, I implemented the agglomerative hierarchical clustering process as a tool, and conducted an experiment on the set of AUASTs of LMs described in Table~\ref{table:ljms}. The clustering tool is an Eclipse plug-in built atop the anti-unifier building tool that: takes as input a set of AUASTs of LMs extracted from the source code; applies the clustering algorithm on them; and outputs a structural generalization for each cluster.
-
 %\section{An assessment of the Clustering tool} \label{clustering-assessment}
-%To assess the effectiveness of my clustering algorithm and the tool support, I conducted an experiment on the set of AUASTs of LMs described in Table~\ref{table:ljms}.
-%The tool is developed atop the anti-unifier-building tool.
+%To evaluate the quality of a clustering algorithm
+\section{Evaluation} \label{evaluation}
+To evaluate the clustering approach, I have implemented a tool and conducted an experiment on the set of AUASTs of LMs described in Table~\ref{table:ljms}. The clustering tool is an Eclipse plug-in built atop the anti-unifier building tool that inputs a set of AUASTs of LMs extracted from the source code, applies the clustering algorithm on them, and outputs an anti-unifier for each cluster. Then, I have developed some measurements to assess the goodness of the resulting clusters. Recall that the goal is that the objects within a cluster should be similar to one another and dissimilar from the other clusters \cite{}. The measures of cluster evaluation can be divided into two types:
+\begin{itemize} [leftmargin=0.4in]
+\item \emph{Cluster cohesion:} which determines how closely related the objects within a cluster are. In this experiment, the cohesion of each cluster can be defined as the sum of the similarities between the AUAST of each LM in the cluster and the AUAST of the cluster anti-unifier.
+\item \emph{Cluster separation:} which determines how isolated or well-separated a cluster is from the other clusters. In this experiment, the separation between two clusters can be defined as the similarity between the two cluster anti-unifiers.
+\end{itemize}
 
 \subsection{Setup}  \label{study3-setup}
-I manually attempted to perform the hierarchical clustering on the set AUASTs of LMs in the test suite and constructed the detailed anti-unifier view for each cluster \RW{Why did you do it manually?  You are assuming that your manual approach represents the ground truth, which may not be true; this is a point for discussion in threats to validity.}. I discarded anti-unifiers when the anti-unification of LMs did not allow the anti-unification of logging calls with one another, as the Java elements enclosing them were not found to be corresponding. I also measured the level of similarity between AUASTs in each cluster by computing the ratio of common Java elements in the detailed anti-unifier view to the total number of Java elements of all AUASTs in that cluster. I also ran the clustering tool on the set of AUASTs to classify them using the similarity measurement.
+%I manually attempted to perform the hierarchical clustering on the set AUASTs of LMs in the test suite and constructed the detailed anti-unifier view for each cluster. Anti-unifiers were discarded when the anti-unification of LMs did not allow the anti-unification of logging calls with one another, as the Java elements enclosing them were not found to be corresponded. I also measured the level of similarity between AUASTs in each cluster by computing the ratio of common Java elements in the detailed anti-unifier view to the total number of Java elements of all AUASTs in that cluster. I also ran the clustering tool on the set of AUASTs to classify them using the similarity measurement.
+
+I ran the clustering tool on the set of AUASTs of LMs of the test suite. To evaluate the quality of the resulting clusters, I computed the cohesion of each cluster and the separateness between each cluster pair using the following equations, respectively:
+
+
+\begin{tabular}{c}
+  $cohesion(C_i) = \frac{ \sum_{x \in C_i} similarity(x,antiUnifier[C_i] )}{N_i}$  \\  
+\end{tabular}
+
+\begin{tabular}{c}
+  $separateness(C_i,C_j) =  similarity(antiUnifier[C_i],antiUnifier[C_j])$ \\ \\
+\end{tabular}
+
+Where $C_i$ is the  $i^{\text{th}}$ cluster, and $N_i$ is the cluster size of cluster ${C_i}$. 
+
 
 \subsection{Results}  \label{study3-results}
-I present the results of my analysis in Table~\ref{results_clustering}. The analysis of the output has been divided into three categories: correspondence, similarity, and separateness. The analysis of correspondence and similarity was described in Section~\ref{study2-results}. ``Separateness'' refers to my tool's ability to cluster Java methods with different usages of logging calls into separate groups, and the ones with similar usages of logging calls into the same clusters. \RW{You are representing this by a binary measurement.  Is that really appropriate?} By ``similar usage of logging calls'', I mean the anti-unification of AUASTs of Java methods in each cluster allows the anti-unification of their log statement nodes with one another, as well.
 
-%the usage of logging in Java methods of each cluster is similar that they should be grouped in the same cluster, and dissimilar to the other Java methods in the other clusters that should be scattered in different clusters.
-% "Relevancy" refers to the number of LMs in each cluster that are detected to berelevant as their logging calls can be anti-unified with one another and cannot be anti-unified with logging calls of LMs in the other clusters.
-%AUASTs of all LMs in each cluster
+%I present the results of my analysis in Table~\ref{results_clustering}. The analysis of the output has been divided into three categories: correspondence, similarity, and separateness. The analysis of correspondence and similarity was described in Section~\ref{study2-results}. "Separateness" refers to my tools' ability to cluster Java method with different usages of log statements into separate groups, and the ones with similar usages of log statements into the same cluster.
+
+The cohesion and separateness for the resulting clusters are presented in Tables~\ref{results_clustering_cohesion} and~\ref{results_clustering_separateness}, respectively.
+
 
 \begin{figure} [H]
   \centering
-  \begin{tabular}{ccccccc}
+  \begin{tabular}{ccc}
     \toprule
-
-    \multirow{2}{*}{Cluster}&\multicolumn{2}{c}{Correspondence}&\multicolumn{2}{c}{Similarity}&\multirow{2}{*}{Separateness}\\
-    \cmidrule(lr){2-3}
-    \cmidrule(lr){4-5}
-    &Correct (\%)&Incorrect&human&tool&\\
+    {Cluster}&{$N_i$}&{Cohesion}\\
+    
     \midrule
-    1&28 (100)&0&0.09&0.09  &\cmark \\
+    1&4& \\
     \midrule
-    3&24 (92)&2&0.19&0.2& \cmark\\
+    2&3&\\
     \midrule
-      2&9 (100)&0&0.25&0.25& \cmark\\
+    3&3& \\
  	\bottomrule
   \end{tabular}
-  \caption{Results from applying the clustering tool to the test suite described in Table~\ref{table:ljms}. \protect\RW{Why are clusters 2 and 3 not in order in this table?}}
-  \label{results_clustering}
+  \caption{The cohesion of the clusters produced by applying the clustering tool to the test suite described in Table~\ref{table:ljms}}
+  \label{results_clustering_cohesion}
 \end{figure}
 
-The clustering tool succeeded in detecting the separateness amongst AUASTs of test cases correctly. Clusters 1, 2, and 3 contain logged Java methods of cases (1, 3, 5, 8), (4, 6, 7), and (2, 9, 10), respectively, as detected by my manual inspection. It also successfully calculated the similarity between LMs of 2 clusters out of 3. In Cluster 2, the error in detecting correspondences originated from the previous study and propagated to the clustering study. However, it is trivial (0.01 \RW{Not clear what this number means}) and would have a low impact on our final results.
+
+
+\begin{figure} [H]
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+    {Cluster}&{Separateness}\\
+    \midrule
+    1-2& \\
+    \midrule
+    1-3& \\
+    \midrule
+    2-3& \\
+ 	\bottomrule
+  \end{tabular}
+  \caption{The separateness between each cluster pair produced by applying the clustering tool to the test suite described in Table~\ref{table:ljms}}
+  \label{results_clustering_separateness}
+\end{figure}
+
+Clusters 1, 2, and 3 contain logged methods of cases (1, 3, 5, 8), (2, 9, 10), and (4, 6, 7), respectively. 
+The separation results show that our algorithm was able to generate well-separated clusters.
+The cohesion results are above...  for all the resulting clusters which indicates that the LMs in the same cluster are closely related to one another. In general, this experiment shows that our algorithm results in good quality clusters in terms of cohesion and separateness measurements.
+%, as detected by my manual inspection.
+%, as the LMs within each cluster used similar ways of locating log statements and dissimlar ways compared to the other Lms in the other clusters.   
+
+
+%?????
+%The clustering tool succeeded in detecting the separateness amongst AUASTs of test cases correctly. Clusters 1, 2, and 3 contain logged methods of cases (1, 3, 5, 8), (4, 6, 7), and (2, 9, 10), respectively, as detected by my manual inspection. It also successfully calculated the similarity between LMs of 2 clusters out of 3. In Cluster 2, the error in detecting correspondences originated from the previous study and propagated to the clustering study. However, it is trivial (0.01) and would have a low impact on our final results.
 %between the LMs of our test suite.
 
 \section{Summary} \label{meth2-summary}
-I have presented a modified version of the agglomerative hierarchical clustering algorithm to classify Java methods with different usages of logging calls into separate groups. This algorithm is implemented as an Eclipse plug-in that takes a set of AUASTs of LMs, clusters them via the application of the anti-unifier building tool to measure pairwise similarities between the AUASTs of cluster pairs, and generates a structural generalization for each cluster. Furthermore, an experimental study was conducted to validate the effectiveness of my clustering algorithm and the tool support on a test suite.
+I have presented a modified version of the agglomerative hierarchical clustering algorithm to classify logged methods showing different usages of log statements into separate clusters. This algorithm is implemented as an Eclipse plug-in that takes a set of AUASTs of LMs, clusters them by computing the pairwise similarities between AUASTs, and generates an anti-unifier for each cluster. Furthermore, an experimental study was conducted to validate the effectiveness of my clustering algorithm and the tool support on a test suite.
+
+
+
+
