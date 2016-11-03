@@ -22,8 +22,8 @@
 \contentsline {figure}{\numberline {3.9}{\ignorespaces First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{26}{figure.caption.28}
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{26}{figure.caption.29}
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Higher-order anti-unification modulo theories of the terms $f(a, b)$ and $b$.\relax }}{27}{figure.caption.30}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Complex anti-unification of two structures demonstrating a \NIL {}-theory.}}{28}{figure.caption.31}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Ambiguous higher-order anti-unification modulo theories of two terms.}}{28}{figure.caption.32}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Complex anti-unification of two structures demonstrating a \NIL {}-theory.}}{29}{figure.caption.31}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Ambiguous higher-order anti-unification modulo theories of two terms.}}{29}{figure.caption.32}
 \addvspace {10pt}
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Simple CAST structure of the examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.}}{38}{figure.caption.35}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Anti-unification of the AUASTs of the log statements in Examples 1 and 2.\relax }}{40}{figure.caption.36}
