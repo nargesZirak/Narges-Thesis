@@ -468,13 +468,13 @@ As an example, the ASTs of the log statements at line~4 of Figure~\ref{ch3-ex1} 
 
 \section{First-order anti-unification}   \label{AU}
 
-This section defines terms, substitutions, applying a substitution to a term, and instances and anti-instances of a term, as the requirements needed to describe anti-unification theory (and its dual, unification theory).
+This section defines terms, substitutions, applying a substitution to a term, and instances of a term, as the requirements needed to describe first-order anti-unification.
 
-\begin{defn}[Term]\label{def:term}
-A (first-order) term is defined to be a variable, a constant, or a function symbol followed by a list of terms as the arguments of the function. 
+\begin{defn}[First-Order Term]\label{def:term}
+Given a set $V$ of variable symbols, a set $C$ of constant symbols, and sets $F_n$ of $n$-ary function symbols for all $n\ge1$, the set $T$ of \emph{first-order terms} is defined as the smallest set satisfying the recursion: (1) $V\subseteq T$; (2) $C\subseteq T$; and (3) for all $n$ first-order terms $t_1, \ldots, t_n$ and $n$-ary function symbol $f\in F_n$,  $f(t_1, \ldots, t_n) \in T$.
 \end{defn}
 
-Function symbols taking $n$ arguments are called $n$-ary function symbols. 0-ary function symbols are called constants; a constant and the identical function symbol followed by an empty list are considered equivalent. For notational convenience, I use identifiers starting with a lowercase letter to represent function symbols (e.g., $f(a,b)$, $g(a,b)$) and constants (e.g., $a$, $b$), while variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$). The following are examples of a term:
+Constant symbols can equivalently be considered 0-ary function symbols, with the appropriate adjustments to the above definition. For notational convenience, I use identifiers starting with a lowercase letter to represent function symbols (e.g., $f(a,b)$, $g(a,b)$) and constants (e.g., $a$, $b$), while variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$). The following are examples of a first-order term:
 \begin{itemize} [leftmargin=0.7in]
 \item $Y$
 \item $a$
@@ -482,7 +482,7 @@ Function symbols taking $n$ arguments are called $n$-ary function symbols. 0-ary
 \item $h(g(X, b),Y, g(a, Z))$
 \end{itemize}
 %A term is called grounded if it does not contain any variables (e.g., $f(a,b)}), and
-Note that for any term there is a unique, equivalent tree and vice versa: constants and (first-order) variables are leaf nodes, while function symbols are non-leaf nodes; a function with given arguments is represented by a non-leaf node (representing the function symbol) with directed edges pointing to leaf nodes representing each argument.  For example:
+Note that for any first-order term there is a unique, equivalent tree and vice versa: constant symbols and variable symbols are leaf nodes, while function symbols are non-leaf nodes; a function with given arguments is represented by a non-leaf node (representing the function symbol) with directed edges pointing to leaf nodes representing each argument.  For example:
 \begin{itemize} [leftmargin=0.7in]
 \item $Y$
 \item $a$
@@ -494,7 +494,7 @@ Note that for any term there is a unique, equivalent tree and vice versa: consta
 \draw[->](f) -- (X) {};
 \draw[->](f) -- (c) {};
 \end{tikzpicture}
-%\item $X \leftarrow f \rightarrow c$
+%\item $X \leftarrow f \mapsto c$
 \item \begin{tikzpicture}
 \node(f) at (3,2) {$f$};
 \node(g1) at (1,1) {$g$};
@@ -515,36 +515,36 @@ Note that for any term there is a unique, equivalent tree and vice versa: consta
 \end{tikzpicture}
 \end{itemize}
 
-\begin{defn}[Substitution]\label{def:substitution}
-A substitution is a set of mappings, each from a variable to a term. \RW{Has to be fixed, from here down.}
+\begin{defn}[First-Order Substitution]\label{def:substitution}
+A first-order substitution $\sigma$ is a mapping from variables $V$ to first-order terms $T$: $\sigma: V\mapsto T$. The notation $\{v_1 \mapsto t_1, \ldots, v_n \mapsto t_n\}$ is used to express a substitution of each of a set of variables $v_i$ by a corresponding first-order term $t_i$.
 \end{defn}
 
-\begin{defn}[Applying a substitution]\label{def:substitution}
-Applying a substitution to a term results in the replacement of all occurrences of each variable in the term, by its corresponding term as defined in the substitution.
+\begin{defn}[Applying a First-Order Substitution]\label{def:substitution}
+Applying a first-order substitution $\sigma = \{v_1 \mapsto t_1, \ldots, v_n \mapsto t_n\}$ to a first-order term $t$ results in the simultaneous replacement of all occurrences in $t$ of each variable $v_i$ by its corresponding first-order term $t_i$ as defined by the first-order substitution. This is denoted with the postfix expression $t\sigma$.
 \end{defn}
 
-As an example, applying the substitution $\Theta$ = \{$X \rightarrow a, Y \rightarrow b $\}
-to the term $f(X,Y)$ results in the replacement of all occurrences of the variable $X$ by the term $a$ and all occurrences of the variable $Y$ by the term $b$, and thus $f(X,Y)\xrightarrow{\Theta} f(a,b)$.
+As an example, applying the first-order substitution $\sigma = \{X \mapsto a, Y \mapsto b\}$
+to the first-order term $f(X,Y)$ results in the replacement of all occurrences of the variable $X$ by the first-order term $a$ and all occurrences of the variable $Y$ by the first-order term $b$, and thus $f(X,Y)\sigma = f(a,b)$.
 
-\begin{defn}[Instance \& anti-instance]\label{def:instance}
-$a$ is an instance of a term $X$ and $X$ is an anti-instance of $a$, if there is a substitution $\Theta$ such that applying $\Theta$ to $X$ results in $a$ (i.e., $X\xrightarrow{\Theta}a$).
+\begin{defn}[(First-Order) Instance]\label{def:instance}
+For first-order terms $t_1$ and $t_2$, $t_2$ is called an \emph{instance} of $t_1$ if there exists a first-order substitution $\sigma$ such that $t_1\sigma = t_2$.
 \end{defn}
 
-\begin{defn}[Unifier]\label{def:unifier}
-A unifier is a common instance of two given terms.
+%\begin{defn}[Unifier]\label{def:unifier}
+%A unifier is a common instance of two given terms.
+%\end{defn}
+
+%Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\sigma$ such that $U\xrightarrow{\sigma}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification, called \emph{anti-unification}.
+
+\begin{defn}[First-Order Anti-unifier]\label{def:generalization}
+The term $t$ is a \emph{first-order anti-unifier} (or generalization) for first-order terms $t_1$ and $t_2$, if and only if there exist first-order substitutions $\sigma_1$ and $\sigma_2$ such that $t\sigma_1=t_1$ and $t\sigma_2=t_2$.
 \end{defn}
 
-Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\Theta$ such that $U\xrightarrow{\Theta}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification, called \emph{anti-unification}.
+A useful, first-order anti-unifier will contain only common pieces of the original terms, while the differences are abstracted away by replacing them with variable symbols. An anti-unifier for a pair of terms always exists since we can anti-unify any two terms by the term $X\in V$, i.e., a single variable. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is, $t$ is the MSA of two first-order terms $t_1$ and $t_2$ if and only if there exists no anti-unifier $t'$ for $t_1$ and $t_2$ such that $t\sigma = t'$ for some first-order substitution $\sigma$.
 
-\begin{defn}[Anti-unifier]\label{def:generalization}
-$X$ is an anti-unifier (or generalization) for $a$ and $b$, if $X$ is an anti-instance for $a$ and an anti-instance for $b$ under substitutions $\Theta_1$ and $\Theta_2$, respectively (i.e., $X\xrightarrow{\Theta_1}a$ and $X\xrightarrow{\Theta_2}b$).
-\end{defn}
-
-An anti-unifier contains common pieces of the original terms, while the differences are abstracted away using variables. An anti-unifier for a pair of terms always exists since we can anti-unify any two terms by the anti-instance $X$, i.e., a single variable. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is, $A$ is the MSA of two structures where there exists no anti-unifier $A'$ such that $A\xrightarrow{\Theta}A'$.
-
-As an example, the anti-unifier of two given terms $f(X,b)$ and $f(a,Y)$ is the new term $f(X,Y)$, containing common pieces of the two original terms. The variable $Y$ in the anti-unifier $f(X,Y)$ can be substituted by the term $b$ to re-create $f(X,b)$ (with $\Theta_1 = Y\xrightarrow{}b$) and the variable $X$ in the anti-unifier can be substituted by the term $a$ to re-create $f(a,Y)$
-(with $\Theta_2 = X\xrightarrow{\Theta}a$), as depicted in Figure~\ref{fig:uni-anti-uni}.
-In addition, the unifier $f(a,b)$ of the two terms can be instantiated by applying the substitutions $\Theta_1'=X\xrightarrow{\Theta}a$ and $\Theta_2'=Y\xrightarrow{\Theta}b$ on the terms $f(X,b)$ and $f(a,Y)$, respectively.
+As an example, an anti-unifier of the first-order terms $f(X,b)$ and $f(a,Y)$ is the first-order term $f(X,Y)$, containing common pieces of the two original, first-order terms. The variable $Y$ in the anti-unifier $f(X,Y)$ can be substituted by the first-order term $b$ to re-create $f(X,b)$ (with $\sigma_1 = \{Y\mapsto b\}$) and the variable $X$ in the anti-unifier can be substituted by the first-order term $a$ to re-create $f(a,Y)$
+(with $\sigma_2 = \{X\mapsto a\}$), as depicted in Figure~\ref{fig:uni-anti-uni}.
+%In addition, the unifier $f(a,b)$ of the two terms can be instantiated by applying the substitutions $\sigma_1'=X\xrightarrow{\sigma}a$ and $\sigma_2'=Y\xrightarrow{\sigma}b$ on the terms $f(X,b)$ and $f(a,Y)$, respectively.
 
 \begin{figure} [t]
 \centering\begin{tikzpicture}
@@ -553,21 +553,21 @@ In addition, the unifier $f(a,b)$ of the two terms can be instantiated by applyi
 \node(right) at (8,0) {\fbox{\mbox{$g(a,Y)$}}};
 \node(u) at (5,-2) {\parbox{2cm}{\begin{center}\fbox{$f(a,b)$}\\*[3pt]\text{unifier}\end{center}}};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = Y \rightarrow b$\hspace*{2cm}}};
-\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2 = X \rightarrow a$}};
-\draw[->](left) -- (u) node[pos=0.5, below]{\mbox{\scriptsize $\Theta_1' = X \rightarrow a$\hspace*{2cm}}};
-\draw[->](right) -- (u) node[pos=0.5, below]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2' = Y \rightarrow b$}};
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\sigma_1 = Y \mapsto b$\hspace*{2cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\sigma_2 = X \mapsto a$}};
+\draw[->](left) -- (u) node[pos=0.5, below]{\mbox{\scriptsize $\sigma_1' = X \mapsto a$\hspace*{2cm}}};
+\draw[->](right) -- (u) node[pos=0.5, below]{\mbox{\hspace*{2.5cm}\scriptsize $\sigma_2' = Y \mapsto b$}};
 \end{tikzpicture}
 %  {\makecell[l]{\hspace{0.4cm}f(X,Y)\\\text{anti-unifier}}}
-%  \arrow{dr}{\Theta_2 = X \rightarrow a}
-%  \arrow[->,swap]{dl}{\Theta_1 = Y \rightarrow b} % <-- reflect the direction of the hook
+%  \arrow{dr}{\sigma_2 = X \mapsto a}
+%  \arrow[->,swap]{dl}{\sigma_1 = Y \mapsto b} % <-- reflect the direction of the hook
 %\\
 %f(X,b)
-% \arrow[->,swap]{dr}{\Theta_1' = X \rightarrow a}
+% \arrow[->,swap]{dr}{\sigma_1' = X \mapsto a}
 % %\arrow{dr}
 %&&
 %f(a, Y)
-%  \arrow{dl}{\Theta_2' = Y \rightarrow b}
+%  \arrow{dl}{\sigma_2' = Y \mapsto b}
 %  \\
 %&
 %{\makecell[l]{f(a,b)\\\text{unifier}}}
@@ -577,7 +577,7 @@ In addition, the unifier $f(a,b)$ of the two terms can be instantiated by applyi
   \label{fig:uni-anti-uni}
 \end{figure}
 
-The MSA should preserve as much of common pieces of both original terms as possible; however, first-order anti-unification fails to capture complex commonalities as it restricts substitutions to only replace first-order variables by terms. That is, when two terms differ in function symbols, first-order anti-unification fails to capture common details of them. For example, the first-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ as depicted in Figure~\ref{fig:first-anti-uni}.
+The MSA should preserve as much of the common pieces of both original first-order terms as possible; however, first-order anti-unification fails to capture complex commonalities, as first-order substitutions only replace first-order variables by first-order terms. That is, when two first-order terms differ in function symbols, first-order anti-unification fails to retain common details of the arguments in both terms. For example, the first-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X$ as depicted in Figure~\ref{fig:first-anti-uni}.
 
 \begin{figure}[t]
 \centering\begin{tikzpicture}
@@ -585,41 +585,70 @@ The MSA should preserve as much of common pieces of both original terms as possi
 \node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
 \node(right) at (8,0) {\fbox{\mbox{$g(a,b)$}}};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = X \rightarrow f(a,b)$\hspace*{2cm}}};
-\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2 = X \rightarrow g(a,b)$}};
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\sigma_1 = X \mapsto f(a,b)$\hspace*{2cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\sigma_2 = X \mapsto g(a,b)$}};
 \end{tikzpicture}
 \caption{First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\label{fig:first-anti-uni}}
 \end{figure}
 
 \subsection{Higher-order anti-unification}
+ 
+Higher-order anti-unification generalizes first-order anti-unification to permit function symbols to be substituted for certain variable symbols (functional ones, to be precise).  The needed formal definitions follow.
 
-Higher-order anti-unification would allow us to create the MSA by extending the set of possible substitutions such that variables can be replaced not only by terms but also by function symbols in order to retain the detailed commonalities. For example, the higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $X(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.
+\begin{defn}[Higher-Order Term]\label{def:hterm}
+Given a set $V$ of variable symbols, a set $C$ of constant symbols, sets $F_n$ of $n$-ary function symbols for all $n\ge1$, and sets $\mathbf{V}_m$ of $m$-ary functional variable symbols, the set $\hat{T}$ of \emph{higher-order terms} is defined as the smallest set satisfying the recursion: (1) $V\subseteq \hat{T}$; (2) $C\subseteq \hat{T}$; (3) for all $n$ higher-order terms $\hat{t}_1, \ldots, \hat{t}_n$ and $n$-ary function symbol $f\in F_n$,  $f(\hat{t}_1, \ldots, \hat{t}_n) \in \hat{T}$; and (4) for all $m$ higher-order terms $\hat{t}_1, \ldots, \hat{t}_m$ and $m$-ary functional variable symbol $F\in \mathbf{V}_m$,  $F(\hat{t}_1, \ldots, \hat{t}_n) \in \hat{T}$.
+\end{defn}
+ 
+Note that any first-order term on $V$, $C$, and $F_n$ will also be (a degenerate case of) a higher-order term on $V$, $C$, $F_n$, and $\mathbf{V}_m$ for all $\mathbf{V}_m$.
+ 
+\begin{defn}[Higher-Order Substitution]\label{def:substitution}
+A higher-order substitution $\hat{\sigma}$ is a mapping from variables $V$ to higher-order terms $\hat{T}$: $\sigma: V\mapsto T$ and, for all natural numbers $m\ge1$, from $m$-ary functional variables $\mathbf{V}_m$ to $m$-ary functional symbols $F_m$. The notation $\{\hat{v}_1 \mapsto \hat{t}_1, \ldots, \hat{v}_n \mapsto \hat{t}_n\}$ is used to express a substitution of each of a set of variables and functional variables $\hat{v}_i$ by a corresponding higher-order term $\hat{t}_i$ or functional symbols, where it is to be understood that a $m$-ary functional variable may only be substituted by a $m$-ary functional symbol and that a variable may only be substituted by a higher-order term.
+\end{defn}
+
+Note that a first-order substitution constitutes (a degenerate case of) a higher-order substitution.
+
+\begin{defn}[Applying a Higher-Order Substitution]\label{def:substitution}
+Applying a higher-order substitution $\hat{\sigma} = \{\hat{v}_1 \mapsto \hat{t}_1, \ldots, \hat{v}_n \mapsto \hat{t}_n\}$ to a higher-order term $\hat{t}$ results in the simultaneous replacement of all occurrences in $\hat{t}$ of each variable (respectively functional variable) $\hat{v}_i$ by its corresponding higher-order term (respectively functional variable) $\hat{v}_i$ as defined by the higher-order substitution. This is denoted with the postfix expression $\hat{t}\hat{\sigma}$.
+\end{defn}
+
+As an example, a higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $F(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.   For simplicity, I henceforth drop the adjectival phrases ``first-order'' and ``higher-order'' in cases where the intent is clear from the context.
+
 \begin{figure}[t]
 \centering\begin{tikzpicture}
-\node(au) at (5,2) {\fbox{\mbox{$X(a,b)$}}};
+\node(au) at (5,2) {\fbox{\mbox{$F(a,b)$}}};
 \node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
 \node(right) at (8,0) {\fbox{\mbox{$g(a,b)$}}};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = X \rightarrow f$\hspace*{2cm}}};
-\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\Theta_2 = X \rightarrow g$}};
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\hat{\sigma}_1 = \{F \mapsto f\}$\hspace*{2cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\hat{\sigma}_2 = \{F \mapsto g\}$}};
 \end{tikzpicture}
-\caption{Higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\label{fig:higher-anti-uni}}
+\caption{A higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\label{fig:higher-anti-uni}}
 \end{figure}
 
 Applying higher-order anti-unification could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve the problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically equivalent structures, missing structures, and different ordering of arguments.
 %In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
 
+\section{Neutral elements and pumping}
+
+Sometimes it is desirable to anti-unify terms with differing numbers of arguments.  To permit this, we can utilize the notion of pumping transformations and neutral elements.  For example, with the binary function symbols ``$+$'' and ``$\times$'' we have the neutral elements ``0'' and ``1'' respectively, so that $+(x, 0)=x$ and $\times(x, 1)=x$ (also $+(0, x)=x$ and $\times(1, x)=x$ because of the commutativity of these functions).  We can generalize this notion to the special $n$-ary function symbols $\id{pump}_n$ and to the special constant symbols $\nu_{\id{pump}_n}$ (each representing the neutral symbol for the indicated function), so that for any term $t$,
+\begin{equation*}
+\id{pump}_n(\nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n}, t, \nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n}) = t,
+\end{equation*}
+where there are exactly $n$ arguments to $\id{pump}_n(\cdot)$.  Furthermore, we define $\id{pump}_n(\cdot)$ to be perfectly commutative, so that $t$ may equivalently appear as any argument therein.
+
+For simplicity of exposition, we use the label \NIL{} in place of both the functional symbols $\id{pump}_n$ and the neutral element of each of the functions thereby defined, as the precise meaning can be interpreted from the context.  Obviously, \NIL{} representing an $n$-ary functional symbol cannot be meaningfully anti-unified with \NIL{} representing an $n-k$-ary functional symbol---unless it is itself pumped.
+
 \section{Higher-order anti-unification modulo equational theories}\label{HOAUMT}
 
 %\begin{align}
-%\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
-%X &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
-%Y &\rightarrow \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
-%Z &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
-%\Theta_2 = (W &\rightarrow \text{ \textsf{\small ERROR}},\nonumber\\
-%X &\rightarrow \text{ \NIL{}},\nonumber\\
-%Y &\rightarrow \text{ \textsf{\small "Unknown action: "}},\nonumber\\
-%Z &\rightarrow \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
+%\sigma_1 = (W &\mapsto \text{ \textsf{\small WARNING}},\nonumber\\
+%X &\mapsto \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
+%Y &\mapsto \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
+%Z &\mapsto \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
+%\sigma_2 = (W &\mapsto \text{ \textsf{\small ERROR}},\nonumber\\
+%X &\mapsto \text{ \NIL{}},\nonumber\\
+%Y &\mapsto \text{ \textsf{\small "Unknown action: "}},\nonumber\\
+%Z &\mapsto \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
 %\end{align}
 %
 %%\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
@@ -660,8 +689,8 @@ Applying higher-order anti-unification could help to construct a structural gene
 %\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
 %};
 %
-%\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
-%\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
+%\draw[->](a) -- (b) node[pos=0.5,above]{$\sigma_1\qquad$};
+%\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\sigma_2$};
 %\end{tikzpicture}
 %\end{small}
 %\caption{The anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
@@ -671,10 +700,28 @@ Applying higher-order anti-unification could help to construct a structural gene
 %Applying higher-order anti-unification on AUAST structures could help to construct a structural generalization by maintaining the common pieces and abstracting the differences away using variables. However, it is not comprehensive enough to solve our problem as it does not consider background knowledge about AST structures, such as syntactically different but semantically relevant structures, missing structures, and different ordering of arguments. In the following section, we will look at an extension of anti-unification, higher-order anti-unification modulo theories, and how it can sufficiently address the limitations of anti-unification in our context.
 
 %anti-unification cannot incorporate any background knowledge such as sematic knowledge required to solve our problem, and we should apply an extended form of anti-unification, called higher-order anti-unification modulo theories, where a set of equivalence equations is defined to incorporate semantic knowledge of structural equivalences supported by the Java language specification. An equivalence equation $=_E$ determines which terms are considered equal, and the set of equivalence equations must be applied on higher-order extended structures to allow the anti-unification of AST structures that are not identical but are semantically equivalent.
-In higher-order anti-unification modulo (equational) theories, a set of equational theories, which treat different structures as equivalent, is defined to incorporate background knowledge. Each equational theory $=_E$ determines which terms are considered equal and a set of these equations can be applied on higher-order extended structures to determine structural equivalences. For example, we have introduced an equivalence equation $=_E$, such that $f(X,Y) =_E f(Y,X)$ to indicate that the ordering of arguments does not matter in our context.
+In higher-order anti-unification modulo (equational) theories, a set of equational theories, which treat different structures as equivalent, is defined to incorporate background knowledge. Each equational theory $=_E$ determines which terms are considered equal and a set of these equations can be applied on higher-order extended structures to determine structural equivalences. For example, we have introduced an equational theory $=_E$, such that $f(t,u) =_E f(u,t)$ to indicate that the ordering of arguments does not matter in our context.
 
 % nil restriction!!!!
-We have also introduced a theory, called \NIL{}-theory, that adds the concept of a \NIL{} structure, which permits a structure to be equated with nothing, and defines an equivalence equation $=_E$ for it. The \NIL{} structure can be used to anti-unify two structures when a substructure exists in one but is missing from the other. However, some requirements should be taken to avoid the overuse of \NIL{} structures such that the original structures must have common substructures but vary in the size for dissimilar substructures. For example, we can anti-unify the two structures $b$ and $f(a,b)$ through the application of \NIL{}-theory by creating the term $\NIL{}(\NIL{},b)$ which is $=_E$ to $f(b)$ and anti-unifying $\NIL{}(\NIL{},b)$ with $f(a,b)$ as depicted in Figure~\ref{fig:anti-nil}.
+The notion of pumping from the previous section is equivalent to defining an equational theory $=_{\id{pump}}$ such that 
+\begin{gather*}
+\id{pump}_n(\nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n}, t, \nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n})\\
+=_{\id{pump}} \id{pump}_{n-1}(\nu_{\id{pump}_{n-1}}, \ldots, \nu_{\id{pump}_{n-1}}, t, \nu_{\id{pump}_{n-1}}, \ldots, \nu_{\id{pump}_{n-1}})\\
+=_{\id{pump}} \ldots\\
+=_{\id{pump}} \id{pump}_1(t)\\
+=_{\id{pump}} t
+\end{gather*}
+Or equivalently:
+\begin{gather*}
+\NIL{}(\NIL{}, \ldots, \NIL{}, t, \NIL{}, \ldots, \NIL{})\\
+=_{\id{pump}} \NIL{}(\NIL{}, \ldots, \NIL{}, t, \NIL{}, \ldots, \NIL{})\\
+=_{\id{pump}} \ldots\\
+=_{\id{pump}} \NIL{}(t)\\
+=_{\id{pump}} t
+\end{gather*}
+For simplicity, I refer to this as the \NIL{}-theory. 
+
+For example, we can anti-unify the two terms $b$ and $f(a,b)$ through the application of the \NIL{}-theory by creating the term $\NIL{}(\NIL{},b)$---which is $=_{\id{pump}}$ to $b$---and anti-unifying $\NIL{}(\NIL{},b)$ with $f(a,b)$ as depicted in Figure~\ref{fig:anti-nil} to arrive at $F(X, b)$.
 
 %restrictions???
 
@@ -683,20 +730,25 @@ We have also introduced a theory, called \NIL{}-theory, that adds the concept of
 % should it be different?
 \begin{figure}[t]
 \centering\begin{tikzpicture}
-\node(au) at (5,2) {\fbox{\mbox{$X(Y,b)$}}};
+\node(au) at (5,2) {\fbox{\mbox{$F(X,b)$}}};
 \node(left) at (2,0) {\fbox{\mbox{$f(a,b)$}}};
-\node(right) at (8,0) {\fbox{\mbox{$\NIL{}(\NIL{},b) =_E  b$}}};
+\node(right) at (8,0) {\fbox{\mbox{$\NIL{}(\NIL{},b) =_{\id{pump}}  b$}}};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X \rightarrow f, Y \rightarrow a)$\hspace*{3cm}}};
-\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{3.5cm}\scriptsize $\Theta_2 = ( X \rightarrow \NIL{}, Y \rightarrow \NIL{})$}};
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\sigma_1 = ( F \mapsto f, X \mapsto a)$\hspace*{3cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{3.5cm}\scriptsize $\sigma_2 = ( F \mapsto \NIL{}, X \mapsto \NIL{})$}};
 \end{tikzpicture}
 \caption{Higher-order anti-unification modulo theories of the terms $f(a, b)$ and $b$.\label{fig:anti-nil}}
 \end{figure}
 
 
-We have also defined a set of equivalence equations to incorporate semantic knowledge of structural equivalences supported by the \name{Java} language specification, as it provides various ways to define the same language specifications. These theories should be applied on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. For example, consider \code{for}- and \code{while}-statements that are two types of looping structure in \name{Java} programming language: they have different syntax but semantically cover the same concept. Let us look at the code snippets \code{for(i=0;i<10;i++)} and \code{while(i<10)}, whose ASTs can be represented as \code{for(}\textit{initializer}(\code{i}, \code{0})\code{;} \textit{lessThanExpression}(\code{i}, \code{10})\code{;} \textit{updaters}(\textit{postIncrementExpression}(\code{i}))) and \code{while}(\textit{lessThanExpression}(\code{i}, \code{10})), respectively. We could define an equivalence equation $=_E$ that allows the anti-unification of \code{for}- and \code{while}-statements. We also need to utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}), \textit{lessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_E$ to \code{while}(\textit{lessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{lessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
+We have also defined a set of equational theories to incorporate semantic knowledge of structural equivalences supported by the \name{Java} language specification, as it provides various syntactic ways to define semantically equivalent structures. 
+%These theories should be applied on higher-order extended structures to anti-unify AST structures that are not identical but are semantically equivalent. 
+For example, consider \code{for}- and \code{while}-statements that are two kinds of looping structure in \name{Java}: they have different syntax but cover the same concept. To be able to anti-unify these structures meaningfully, we need an equational theory that can equate any \code{for}-loop---\code{for(}$\id{inits}$\code{; }$\id{test}$\code{; }$\id{updates}$\code/){...}/---to an equivalent \code{while}-loop---$\id{inits}$\code{; while(}$\id{test}$\code/) {...; /$\id{updates}$\code/;}/.  
 
-\begin{figure}[p]
+
+Most simply, we could treat the two loops as functions with differing arguments, defining an equivalence equation $=_{\id{loops}}$ that allows their direct anti-unification. We would then utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}), \textit{lessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_{\id{loops}}$ to \code{while}(\textit{lessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{lessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
+
+\begin{figure}[t]
 \centering\begin{tikzpicture}
 \node(au) at (5,5) {\fbox{\parbox{2in}{$V_0(V_1(V_2,V_3),$\\$\text{\quad\textit{lessThanExpression}(\textsf{\small i}, \textsf{\small 10})}$,\\ \mbox{$\quad V_4(V_5(V_2)))$}}}};
 %
@@ -706,40 +758,44 @@ We have also defined a set of equivalence equations to incorporate semantic know
 \node(right) at (10,0) {\fbox{\parbox{2in}{%
 \textsf{\small while}(\NIL{}(\NIL{}, \NIL{}),\\ \mbox{\quad\textit{lessThanExpression}}(\textsf{\small i}, \textsf{\small 10}),\\ \mbox{\quad\NIL{}}(\NIL{}(\NIL{})))}}};
 %
-\draw[->](au) -- (right) node[pos=0.5, above]{$\qquad\Theta_2$};
+\draw[->](au) -- (right) node[pos=0.5, above]{$\qquad\sigma_2$};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{$\Theta_1\qquad$};
+\draw[->](au) -- (left) node[pos=0.5, above]{$\sigma_1\qquad$};
 \end{tikzpicture}
-\caption[Complex anti-unification of two structures demonstrating a \protect\NIL{}-theory.]{Anti-unification of the structures \code{for}(\textit{initializer}(\code{i}, \code{0}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \textit{updater}(\textit{postIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\Theta_1 = (V_0 \rightarrow \text{ \textsf{\small for}}, V_1 \rightarrow \text{ \textit{initializer}}, V_2 \rightarrow \text{ \textsf{\small i}}, V_3 \rightarrow 0, V_4 \rightarrow \text{ \textit{updater}}, V_5 \rightarrow \text{ \textit{postIncrementExpression}})$; and $\Theta_2 = (V_0 \rightarrow \text{ \textsf{\small while}}, V_1 \rightarrow \text{ \NIL{}}, V_2 \rightarrow \text{ \NIL{}}, V_3 \rightarrow \text{ \NIL{}}, V_4 \rightarrow \text{ \NIL{}}, V_5 \rightarrow \text{ \NIL{}})$\label{fig:for-while}}
+\caption[Complex anti-unification of two structures demonstrating a \protect\NIL{}-theory.]{Anti-unification of the structures \code{for}(\textit{initializer}(\code{i}, \code{0}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \textit{updater}(\textit{postIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\sigma_1 = (V_0 \mapsto \text{ \textsf{\small for}}, V_1 \mapsto \text{ \textit{initializer}}, V_2 \mapsto \text{ \textsf{\small i}}, V_3 \mapsto 0, V_4 \mapsto \text{ \textit{updater}}, V_5 \mapsto \text{ \textit{postIncrementExpression}})$; and $\sigma_2 = (V_0 \mapsto \text{ \textsf{\small while}}, V_1 \mapsto \text{ \NIL{}}, V_2 \mapsto \text{ \NIL{}}, V_3 \mapsto \text{ \NIL{}}, V_4 \mapsto \text{ \NIL{}}, V_5 \mapsto \text{ \NIL{}})$\label{fig:for-while}}
 \end{figure}
 % higher-order extension and the equational theories
 % provide a better example
 
-\begin{figure}[p]
+In practice, this is more usefully accomplished by converting the \code{for}-loop to the equivalent \code{while}-loop and anti-unifying the result directly, which can find correspondences between the initialization expression and equivalent assignment statements prior to the \code{while}-loop, and between the update expression and equivalent statements, typically at the end of the block in the \code{while}-loop.
+
+\subsection{Loss of uniqueness}
+Defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of the MSA. For example, consider the terms $f_1(g(a,e))$ and $f_2(g(a,b),$\linebreak$g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can anti-unify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and anti-unify $g(d,e)$ with the \NIL{} structure to create the anti-unifier $G(Z,X_1)$; or we can anti-unify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and anti-unify $g(a,b)$ with the \NIL{} structure to create the anti-unifier $F(Z,X_1)$.
+
+\begin{figure}[t]
 \centering\begin{tikzpicture}
-\node(au) at (5,2) {\fbox{\mbox{$f(g(X_0,e),Y(Z,X_1))$}}};
-\node(left) at (2,0) {\fbox{\mbox{$f(g(a,b), g(d,e))$}}};
+\node(au) at (5,2) {\fbox{\mbox{$F(g(X,e),G(Y,Z))$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f_2(g(a,b), g(d,e))$}}};
 \node(right) at (8,0) {\fbox{\mbox{$f(g(a,e))$}}};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X_0 \rightarrow d, Y \rightarrow g, Z \rightarrow a, X_1 \rightarrow b)$\hspace*{5cm}}};
-\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{6cm}\scriptsize $\Theta_2 = ( X_0 \rightarrow a, Y \rightarrow \NIL{}, Z \rightarrow \NIL{}, X_1 \rightarrow \NIL{})$}};
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\sigma_1 = \{F\mapsto f_2, X\mapsto d, G\mapsto g, Y\mapsto a, Z\mapsto b\}$\hspace*{6cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{7cm}\scriptsize $\sigma_2 = \{F\mapsto f_1, X\mapsto a, G\mapsto \NIL{}, Y\mapsto \NIL{}, Z\mapsto \NIL{}\}$}};
 \end{tikzpicture}
 \vspace*{1em}
 
 \centering\begin{tikzpicture}
-\node(au) at (5,2) {\fbox{\mbox{$f(g(a,X_0),Y(Z,X_1))$}}};
-\node(left) at (2,0) {\fbox{\mbox{$f(g(a,b), g(d,e))$}}};
-\node(right) at (8,0) {\fbox{\mbox{$f(g(a,e))$}}};
+\node(au) at (5,2) {\fbox{\mbox{$F(g(a,X),G(Y,Z))$}}};
+\node(left) at (2,0) {\fbox{\mbox{$f_2(g(a,b), g(d,e))$}}};
+\node(right) at (8,0) {\fbox{\mbox{$f_1(g(a,e))$}}};
 %
-\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\Theta_1 = ( X_0 \rightarrow b, Y \rightarrow g, Z \rightarrow d, X_1 \rightarrow e)$\hspace*{5cm}}};
-\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{6cm}\scriptsize $\Theta_2 = ( X_0 \rightarrow e, Y \rightarrow \NIL{}, Z \rightarrow \NIL{}, X_1 \rightarrow \NIL{})$}};
+\draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\sigma_1 = \{F\mapsto f_1, X\mapsto b, G\mapsto g, Y\mapsto d, Z\mapsto e\}$\hspace*{6cm}}};
+\draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{7cm}\scriptsize $\sigma_2 = \{F\mapsto f_2, X\mapsto e, G\mapsto\NIL{}, Y\mapsto\NIL{}, Z\mapsto\NIL{})$}};
 \end{tikzpicture}
-\caption[Ambiguous higher-order anti-unification modulo theories of two terms.]{Ambiguous higher-order anti-unification modulo theories of the terms $f(g(a,b), g(d,e))$
-and $f(g(a,e))$, creating multiple MSAs.}
+\caption[Ambiguous higher-order anti-unification modulo theories of two terms.]{Ambiguous higher-order anti-unification modulo theories of the terms $f_2(g(a,b), g(d,e))$
+and $f_1(g(a,e))$, creating multiple MSAs.}
   \label{fig:multipleMSA}
 \end{figure}
 
-However, defining complex substitutions in higher-order anti-unification modulo theories results in losing the uniqueness of the MSA. For example, consider the terms $f(g(a,e))$ and $f(g(a,b),$\linebreak$g(d,e))$. As described in Figure~\ref{fig:multipleMSA}, two MSAs exist for these terms: we can anti-unify $g(a,e)$ and $g(a,b)$ to create the anti-unifier $g(a,X_0)$ and anti-unify $g(d,e)$ with the \NIL{} structure to create the anti-unifier $Y(Z,X_1)$; or we can anti-unify $g(a,e)$ and $g(d,e)$ to create the anti-unifier $g(X_0,e)$ and anti-unify $g(a,b)$ with the \NIL{} structure to create the anti-unifier $Y(Z,X_1)$.
 
 Despite having multiple potential MSAs, I need to determine one single MSA that is the most appropriate in my context. However, the complexity of finding an optimal MSA is undecidable in general \cite{2008:fse:cottrell} since an infinite number of possible substitutions can be applied to variables in a term. Therefore, I need to use an approximation technique to construct one of the best MSAs that can sufficiently solve the problem.
 % reason, infinite number??? ever variable???

@@ -16,7 +16,7 @@ To implement the approach, I needed a concrete framework for constructing and ma
 
 
 \section{Computing similarity between nodes}  \label{jigsaw-similarity}
-To compute similarity between AST nodes, I re-used a function developed by \citet{2008:fse:cottrell}, which first computes the number of common elements between the two nodes and then divides it by the size of the largest node, as described by the Equation~\ref{eq-jigsaw-sim}. 
+To compute similarity between AST nodes, I re-used a function developed by \citet{2008:fse:cottrell}, which first computes the number of common elements between the two nodes and then divides it by the size of the largest node, as described by the Equation~\ref{eq-jigsaw-sim}.
 %\RW{I changed the formula because it made no sense before.}
 
 
@@ -89,7 +89,7 @@ As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:c
 
 
 
-\begin{sidewaysfigure}[p]  
+\begin{sidewaysfigure}[p]
 \centering\includegraphics [width = \textwidth, height=0.5\textheight]{Drawing4/FirstCorr.pdf}
   \caption[Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.]{Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between the CAST nodes indicate the structural correspondence connections.}
   \label{fig:meth-ast-1}
@@ -97,14 +97,14 @@ As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:c
 
 
 %\begin{align}
-%\Theta_1 = (W &\rightarrow \text{ \textsf{\small WARNING}},\nonumber\\
-%X &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
-%Y &\rightarrow \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
-%Z &\rightarrow \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
-%\Theta_2 = (W &\rightarrow \text{ \textsf{\small ERROR}},\nonumber\\
-%X &\rightarrow \text{ \NIL{}},\nonumber\\
-%Y &\rightarrow \text{ \textsf{\small "Unknown action: "}},\nonumber\\
-%Z &\rightarrow \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
+%\sigma_1 = (W &\mapsto \text{ \textsf{\small WARNING}},\nonumber\\
+%X &\mapsto \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}())},\nonumber\\
+%Y &\mapsto \text{ \textsf{\small "should extend EditPlugin not EBPlugin since it has an empty "}},\nonumber\\
+%Z &\mapsto \text{ \textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}())})\label{eq:theta1}\\
+%\sigma_2 = (W &\mapsto \text{ \textsf{\small ERROR}},\nonumber\\
+%X &\mapsto \text{ \NIL{}},\nonumber\\
+%Y &\mapsto \text{ \textsf{\small "Unknown action: "}},\nonumber\\
+%Z &\mapsto \text{ \textit{simpleName}(\textsf{\small actionName})})\label{eq:theta2}
 %\end{align}
 %
 %%\item it can be mapped to our recursive definition of a term, where AST nodes and simple values may be viewed as function-symbols and constants, respectively
@@ -145,8 +145,8 @@ As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:c
 %\text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
 %};
 %
-%\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
-%\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
+%\draw[->](a) -- (b) node[pos=0.5,above]{$\sigma_1\qquad$};
+%\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\sigma_2$};
 %\end{tikzpicture}
 %\end{small}
 %\caption{The anti-unification of the AUASTs of the logging calls in Examples 1 and 2.\label{fig:logging-anti}}
@@ -186,14 +186,14 @@ To provide an example to demonstrate the structure, the anti-unified AUAST const
 % leaf- non leaf refer???
 
 \begin{align}
-\Theta_1 = (X \rightarrow \text{ \textsf{\small WARNING}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
+\sigma_1 = (X \mapsto \text{ \textsf{\small WARNING}}, Y \mapsto \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
 \text{\textit{methodCall}(\textit{simpleName}(\textsf{\small getClassName}), \textit{arguments}()),}\nonumber\\
 \text{\textit{stringLiteral}(\textsf{\small "should extend ..."}),}\hspace*{4cm}\nonumber\\
 \text{\textit{methodCall}(\textit{simpleName}(\textsf{\small handleMessage}), \textit{arguments}()))})\hspace*{-1em}\label{eq:theta1}
 \end{align}
 
 \begin{align}
-\Theta_2 = (X \rightarrow \text{ \textsf{\small ERROR}}, Y \rightarrow \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
+\sigma_2 = (X \mapsto \text{ \textsf{\small ERROR}}, Y \mapsto \text{ \textit{additionExpression}(}\hspace*{3cm}\nonumber\\
 \text{\textit{stringLiteral}(\textsf{\small "Unknown action: "})},\nonumber\\
 \text{ \textit{simpleName}(\textsf{\small actionName}))})\hspace*{-1cm}\label{eq:theta2}
 \end{align}
@@ -236,8 +236,8 @@ To provide an example to demonstrate the structure, the anti-unified AUAST const
 \text{\hspace*{3em}\textit{simpleName}(\textsf{\footnotesize actionName}))))}}}%
 };
 
-\draw[->](a) -- (b) node[pos=0.5,above]{$\Theta_1\qquad$};
-\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\Theta_2$};
+\draw[->](a) -- (b) node[pos=0.5,above]{$\sigma_1\qquad$};
+\draw[->](a) -- (c) node[pos=0.5,above]{$\qquad\sigma_2$};
 \end{tikzpicture}
 \end{small}
 \caption{Anti-unification of the AUASTs of the log statements in Examples 1 and 2.\label{fig:logging-anti}}
@@ -277,7 +277,7 @@ To validate the effectiveness of the proposed approach by \citet{2008:fse:cottre
 % figure of architecture?
 
 As the subject for my study, I used \name{jEdit} (version 4.2.15), a programmer's text editor tool written in the \name{Java} programming language. I chose this subject because it is a real program that is heavily used by many developers, and it employs real usage of log statements. My tool extracts all LMs within the source code of this program using the Eclipse JDT framework. I selected a subset consisting of 9 LMs, showing varying levels of similarity on manual examination, as a test suite throughout this study (see Table~\ref{table:ljms}).
-The \code{EditBus.send(..)} method contains two log statements. To handle this case I split it into two cases: Case 3 contained the first log statement while the second one was removed; Case 4 contained only the second log statement. 
+The \code{EditBus.send(..)} method contains two log statements. To handle this case I split it into two cases: Case 3 contained the first log statement while the second one was removed; Case 4 contained only the second log statement.
 
 I describe my approach for LMs containing multiple log statements in detail in Section~\ref{meth-multipleLogs}. The last three LMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates the addition of an \code{if}-statement that formed a nested \code{if}-statement enclosing a log statement. Cases 9 and 10 simulate the addition of statements to improve the test coverage.
 
