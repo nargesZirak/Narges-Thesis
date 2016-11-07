@@ -5,13 +5,13 @@ To characterize the location of log statements in source code, I conducted an ex
 \begin{itemize} [leftmargin=.5in]
 \item \textsc{RQ1: }\emph{``Is it possible to find patterns of where log statements occur in source code?''} I aim to investigate whether there are clusters containing a large number of LMs. This suggests that there might be common ways of locating log statements in source code.
 
-\item \textsc{RQ2: }\emph{``What common structural characteristics do logged methods have?''} I conducted a manual analysis on the detailed view of structural generalizations produced by \tool{ELUS} to identify the common structural characteristics of LMs in each cluster.
+\item \textsc{RQ2: }\emph{``What common structural characteristics do logged methods have?''} I conducted a manual analysis on the logging usage schemas (LUSs) produced by \tool{ELUS} to identify the common structural characteristics of LMs in each cluster.
 \end{itemize}
 
 
 \section{Experiment}  \label{setup-characterization}
 %\subsection{Setup}  \label{setup}
-In this experiment, I will analyze logging usage of four popular open-source software systems: \name{Apache Tomcat}, \name{Hibernate ORM}, \code{Apache Camel}, and \name{Apache Solr}. Each system is written in the Java programming language and they all utilize the same logging framework, \name{Apache Log4j}. I decided to study the usage of \name{log4j} statements in these systems, as \name{Apache Log4j} is ranked as the most commonly used logging package for Java\footnote{\url{https://en.wikipedia.org/wiki/Java_logging_framework}}. The studied systems are from different application domains: \code{Apache Tomcat} is a Java Servlet; \code{Hibernate ORM} is a object relational-mapping framework; \code{Apache Camel} is a rule-based routing and mediation engine; and \name{Apache Solr} is an enterprise search platform. I chose these systems as my study subject due to their popularity in their area of application (7000+ commits to the \name{GitHUb} repository) and long history of development (9 to 13 years). Table~\ref{table:ljms} represents the details about these software systems. I also decided to exclude the \name{log4j} statements at the \name{trace-} and \name{debug-} verbosity level, as they are usually used by developers only during the software development phase. I believe that studying these systems could give us an insight about logging usage in real-world applications.
+In this experiment, I will analyze logging usage of four popular open-source software systems: \name{Apache Tomcat}, \name{Hibernate ORM}, \code{Apache Camel}, and \name{Apache Solr}. Each system is written in the Java programming language and they all utilize the same logging framework, \name{Apache Log4j}. I decided to study the usage of \name{log4j} statements in these systems, as \name{Apache Log4j} is ranked as the most commonly used logging package for Java\footnote{\url{https://en.wikipedia.org/wiki/Java_logging_framework}}. The studied systems are from different application domains: \code{Apache Tomcat} is a Java Servlet; \code{Hibernate ORM} is an object relational-mapping framework; \code{Apache Camel} is a rule-based routing and mediation engine; and \name{Apache Solr} is an enterprise search platform. I chose these systems as my study subject due to their popularity in their area of application (7000+ commits to the \name{GitHUb} repository) and their long history of development (9 to 13 years). Table~\ref{table:ljms} represents the details about these software systems. I also decided to exclude the \name{log4j} statements at the \name{trace-} and \name{debug-} verbosity level, as they are usually used by developers only during the software development phase. I believe that studying these systems could give us an insight about logging usage in real-world applications.
 
 
 %I only examined the log statements from the \name{Apache Log4j} framework, and
@@ -38,14 +38,12 @@ In this experiment, I will analyze logging usage of four popular open-source sof
 \end{figure}
 
 
-My proof-of-concept implementation takes the source code of these systems as input, extracts the ASTs of their LMs, applies the proposed algorithm to construct AUASTs, classifies the AUASTs into clusters, and outputs the detailed view of structural generalization (LUS) for each cluster.
+My proof-of-concept implementation takes the source code of these systems as inputs, extracts the ASTs of their LMs, applies the proposed algorithm to construct AUASTs, categorizes the AUASTs into clusters, and outputs the structural generalization view for each cluster.
 %, called LUS.
 
 
 \subsection{Results}  \label{results-characterization}
 The experimental results for each software system are presented in Table~\ref{tab_results_1}. This table describes the total number of detected \name{log4j} statements (debug- and trace-level log statements are excluded), the number of logged methods (LMs); the number of generated clusters; the number of generalized clusters containing more than one LM; the number of singleton clusters that only contain one LM; and the reduction percentage calculated by the Equation~\ref{reduction_eq}. In addition, Figure~\ref{fig:histograms} shows the histograms of the number of LMs per cluster for each system.
-
-
 
 
 \begin{equation}\label{reduction_eq}
@@ -114,17 +112,17 @@ The experimental results for each software system are presented in Table~\ref{ta
 
 
 \subsection{Analysis}  \label{analysis}
-The first research question is : \emph{"Is it possible to find patterns of where log statements occur in source code?"}. As it is shown in Table~\ref{tab_results_1}, the number of clusters has been reduced by more than 90\% in all the studied systems, indicating that developers follow some patterns for locating the log statements in source code. Furthermore, histograms depicted in Figure~\ref{fig:histograms} show that in all the studied systems, a few clusters contain a large number of LMs; however, the other clusters contain a very few number of LMs (only one or two). This indicates that in these cases developers follow a more complex or rare way of locating log statements. These exceptions might also happen due to the poor usage of logging calls in source code, which impacts the quality of the entire system negatively.
+The first research question is: \emph{"Is it possible to find patterns of where log statements occur in source code?"}. As it is shown in Table~\ref{tab_results_1}, the number of clusters has been reduced by more than 90\% in all the studied systems, indicating that developers follow some patterns for locating the log statements in source code. Furthermore, histograms depicted in Figure~\ref{fig:histograms} show that in all the studied systems, a few clusters contain a large number of LMs; however, the other clusters contain a very few number of LMs. This indicates that in these cases, developers follow a more complex or rare way of locating log statements. These exceptions might also happen due to the poor usage of logging statements in source code, which impacts the quality of the entire system negatively.
 
 The second research question is : \emph{``What common structural characteristics do logged methods have?''}
-To address this question, I have manually went through the LUSs of anti-unifiers to identify the common structural characteristics of locating the log statements in source code.
+To address this question, I manually went through the LUSs to identify the common structural characteristics of locating log statements in source code.
 
 %a few rare exception
 %ADD-> THE USEAGE WITH AN EXCEPTION
 
 \subsubsection{\emph{Categorizing logging usage}} \label{categories}
-In this section, I will describe the anti-unifiers of logging usage by examining the LUSs produced by \tool{ELUS}. In general, there are five categories of anti-unifiers in the logging usage. Each category represents one cluster of each software system where their anti-unifiers are corresponded, as they have common structural characteristics. Also, these clusters contain a large number of LMs, that is, their anti-unifier represents a common way of locating log statements in source code. In the following sections, I will describe the common structural characteristics of each category represented by the anti-unifiers. In addition, Figure~\ref{fig:categories} presents the number of LMs in each category and its percentage to the total number of LMs for each of the software systems.
-
+In this section, I will describe the anti-unifiers of logging usage by examining the LUSs produced by \tool{ELUS}. In general, there are five main categories of anti-unifiers in the logging usage. Each category represents one cluster of each software system that contains a large number of LMs, that is, the cluster anti-unifier represents a common way of locating log statements in source code. In the following sections, I will describe the common structural characteristics of each category represented by the anti-unifier. In addition, Figure~\ref{fig:categories} presents the number of LMs in each category and its percentage of the total number of LMs for each of the software systems.
+% that their anti-unifiers are corresponded, as they have common structural characteristics. Also, these clusters
 \begin{sidewaysfigure} [p]
    \centering\includegraphics [width = 1\textwidth, height = 0.7\textheight]{Charts/Categories.png}
   \caption{The distribution of the categories of anti-unifiers in the logging usage.}
@@ -140,10 +138,10 @@ The main common structural characteristics of the anti-unifiers of this category
 %a large portion of LMs are described by the anti-unifiers of this category.
 
 \subsubsection{\emph{B. Conditional Logging}}  \label{conditional logging}
-In this category, \code{log statements} are enclosed by \code{if} statements that their expressions are mostly among \code{Infix} \code{Expression}, \code{Method} \code{Invocation}, or \code{Binary} \code{Expression} nodes. The \code{Infix} \code{Expressions} mostly either checks the equality of an expression to the \code{Null} \code{Literal} or tests the validity of the value of a variable; the \code{if} \code{statements} with \code{Method} \code{Invocations} mostly check if the return value of an invoked method is an indicator of a potential problem within the system; and the \code{if} \code{statements} with \code{Binary Expressions} mostly checks if a \code{Boolean} \code{Literal} is incorrect. As shown in Figure~\ref{fig:categories}, 16\% to 37\% of the total LMs are described by the anti-unifiers of this category, and it is the most commonly used logging category in the \name{Solr} system.
+In this category, \code{log statements} are enclosed by \code{if} statements that their expressions are mostly among \code{Infix} \code{Expression}, \code{Method} \code{Invocation}, or \code{Binary} \code{Expression} nodes. The \code{Infix} \code{Expressions} mostly either checks the equality of an expression to the \code{Null} \code{Literal} or tests the validity of the value of a variable; the \code{if} \code{statements} with \code{Method} \code{Invocations} mostly check if the return value of an invoked method is an indicator of a potential problem within a system; and the \code{if} \code{statements} with \code{Binary Expressions} mostly checks if a \code{Boolean} \code{Literal} is incorrect. As shown in Figure~\ref{fig:categories}, 16\% to 37\% of the total LMs are described by the anti-unifiers of this category, and it is the most commonly used logging category in the \name{Solr} system.
 
 \subsubsection{\emph{C. Method Logging}}  \label{method logging}
-In this category, the \code{log statements} are located inside the body of \code{Method Declaration} nodes. A common structural characteristic of the anti-unifiers in this category is that they mostly use the \code{Throw Statements} to throw an exception if an error occurs. The percentage of LMs that are described by the anti-unifiers of this category ranges from 3\% to 51\%, and it is the most common logging usage category in the \name{Camel} software system. This suggests that developers use logging to record important method granularity information about the state of a software system. This information might be used later to detect the root causes of an application problem.
+In this category, the \code{log statements} are located inside the body of \code{Method Declaration} nodes. A common structural characteristic of the anti-unifiers in this category is that they mostly use the \code{Throw Statement} to throw an exception if an error occurs. The percentage of LMs that are described by the anti-unifiers of this category ranges from 3\% to 51\%, and it is the most common logging usage category in the \name{Camel} software system. This suggests that developers use logging to record important method granularity information about the state of a software system. This information might be used later to detect the root causes of an application problem.
 % %?
 % throw exception
 
@@ -160,9 +158,10 @@ In this category, the \code{log statements} are located inside the body of the \
 %CATEGORIES FIGURE CHNAGE???
 
 \section{Evaluation}  \label{evaluation}
-\RW{For constrained variables, the precision should be 100\%.  The fact that it is not means that there are some bugs.  There is no point in pretending otherwise; you are better off pointing this out.  It's OK: all software contains bugs.  Later, in the Discussion, you should point out that intermediate forms of constraint are possible: instead of constraining to only the exactly desired substitutions, you can constrain to the legal types of nodes (like methodInvocation) that can be used to substitute a variable.  The (still open) question is if that would yield better results than unconstrained variables.}
+%\RW{For constrained variables, the precision should be 100\%.  The fact that it is not means that there are some bugs.  There is no point in pretending otherwise; you are better off pointing this out.  It's OK: all software contains bugs.  Later, in the Discussion, you should point out that intermediate forms of constraint are possible: instead of constraining to only the exactly desired substitutions, you can constrain to the legal types of nodes (like methodInvocation) that can be used to substitute a variable.  The (still open) question is if that would yield better results than unconstrained variables.}
+%\NZ{I added it to the discussion chapter}
 
-An empirical study is conducted to evaluate the quality of the anti-unifiers generated by \code{ELUS} in describing the location of log statements in source code. Section~\ref{precision} describe the process of evaluating the precision and recall of \tool{ELUS}.
+An empirical study is conducted to evaluate the quality of the anti-unifiers generated by \code{ELUS} in describing the location of log statements in source code. Section~\ref{precision} describes the process of evaluating the precision and recall of \tool{ELUS}.
 
 
 \subsubsection{\emph{Calculating the precision and recall}}  \label{precision}
@@ -195,7 +194,7 @@ To find the locations in source code that are described by an anti-unifier using
 \end{equation}
 
 
-Where TP is the number of correct locations obtained, FP is the number of incorrect locations retrieved, and FN is the number of correct locations that are not retrieved. Figures~\ref{fig:precision} and \ref{fig:recall} show the precision and recall results for each software system where the experiment was run once with constrained variables and once with unconstrained variables.
+Where TP is the number of correct locations obtained, FP is the number of incorrect locations retrieved, and FN is the number of correct locations that were not retrieved. Figures~\ref{fig:precision} and \ref{fig:recall} show the precision and recall results for each software system where the experiment was run once with constrained variables and once with unconstrained variables.
 
 
 \begin{figure} [H]
@@ -211,17 +210,20 @@ Where TP is the number of correct locations obtained, FP is the number of incorr
 \end{figure}
 
 \subsubsection{\emph{Precision Results}}  \label{precision-results}
-The green and yellow bars in Figure~\ref{fig:precision}  show the precision results when the experiment was run with constrained and unconstrained variables, respectively. I have also calculated the overall average precision of \tool{ELUS}, by averaging the precision values between the four software systems. The average precision for \tool{ELUS} is 84\% and 32\% for constrained and unconstrained variable experiments, respectively. In general, the precision for constrained variables are fairly high. The main reason behind the high precision is that in these cases the variables can only be substituted with some particular nodes, which makes the anti-unifier very specific. Furthermore, according to the Figure~\ref{fig:precision}, the precision is fairly low for unconstrained variables. The main reason for the low precision for these cases is the fact that the unconstrained variables can be substituted by any nodes, which makes the anti-unifiers too general. As a result, the tool finds many incorrect locations the matches the anti-unifiers.
+The green and yellow bars in Figure~\ref{fig:precision}  show the precision results when the experiment was run with constrained and unconstrained variables, respectively. I have also calculated the overall average precision of \tool{ELUS}, by averaging the precision values between the four software systems. The average precision for \tool{ELUS} is 84\% and 32\% for constrained and unconstrained variable experiments, respectively. In general, the precision for constrained variables are fairly high. The main reason behind the high precision of constrained variables is that in these cases, the variables can only be substituted with some particular nodes, which makes the anti-unifier very specific. Furthermore, according to the Figure~\ref{fig:precision}, the precision is fairly low for unconstrained variables. The main reason for the low precision for these cases is the fact that the unconstrained variables can be substituted by any nodes, which makes the anti-unifiers too general. As a result, the tool finds many incorrect locations the matches the anti-unifiers.
+
+The fact that precision for constrained variables is not 100\% indicates that the \tool{ELUS} has some bugs. In the further work, I aim to improve these results by fixing the software bugs. 
+
 
 \subsubsection{\emph{Recall Results}}  \label{recall-results}
 The green and yellow bars in Figure~\ref{fig:recall}  show the recall results when the experiment was run with constrained and unconstrained variables, respectively. I have also calculated the overall average recall of \tool{ELUS}, by averaging the recall values between the studied systems. The average recall for \tool{ELUS} is 80\% and 97\% for the constrained and unconstrained variable experiments, respectively. In general, when variables are constrained, \tool{ELUS} can detect many correct locations, as the recalls for all the studied systems are fairly high. Also, \tool{ELUS} can detect most of the correct locations in source code when no constraints are taken on variable nodes.
 
 The main reason behind \tool{ELUS}`s failure in detecting the correct locations is the potential complexities in constructing anti-unifiers from a large set of source code fragments. As in some cases, the anti-unifier might not maintain the correct locations of nodes in the AST hierarchy, and thus \tool{ELUS} would not be able to detect correct locations of log statements in the source code.
 
+%\RW{Ah, I see that you have a note in here about the intermediate constraints.}
 
 %ADDDDD
 % assess the generalizability of the anti-unifiers --> in between
-\RW{Ah, I see that you have a note in here about the intermediate constraints.}
 %In general,  the tool retrieved some locations matching the anti-unifiers, while in fact they do not match.
 %the tool failed to retrieve the correct locations, and in other cases
 
@@ -251,25 +253,24 @@ public void setUp() throws Exception {
 
 \begin{figure}[p]
 \def\baselinestretch{1}
-\begin{lstlisting}[escapechar=!]
+\begin{lstlisting}[escapechar=*]
 public void setUp() throws Exception {
     SolrZkClient zkClient=new SolrZkClient(zkServer.getZkAddress(),AbstractZkTestCase.TIMEOUT);
     for (int i=0; i < 30; i++) {
        List<String> liveNodes=zkClient.getChildren("/live_nodes",null,true);
        Thread.sleep(1000);
-       if (liveNodes \neq null) {
-          !\colorbox{yellowGreen}{log.info("Waiting for more nodes to come up, now: " + liveNodes.size());}! 
-       }
+       *\colorbox{yellowGreen}{if (liveNodes != null) }* 
+         *\colorbox{yellowGreen}{log.info("Waiting for more nodes to come up, now: " + liveNodes.size()); }*
     }
 }
 \end{lstlisting}
 \caption[Example 1: An example  for the purpose of enhancing the logging usage in the Java method of Example.]{Modified Java methed of Figure~\ref{inapproprate-ex1} for the purpose of enhancing the logging usage.\label{approprate-ex1}}
 \end{figure}
-
-
+   % !\colorbox{yellowGreen}{}}!
+  %!\colorbox{yellowGreen}{if (liveNodes  null) { }! 
 
 \section{Summary}
-I conducted an experimental study to characterize the location of log statements by applying my tool on the source code of four full software systems that make use of the \code{Apache Log4j} logging framework. My tool inputs the source code of these systems, extracts ASTs of LMs, applies the proposed anti-unification and clustering algorithms, and outputs the anti-unifier for each cluster. I also conducted an experimental study to evaluate the precision and the recall of \tool{ELUS} in constructing the anti-unifiers that describe the location of log statements in source code. This experiment shows that \tool{ELUS} has achieved promising results in terms of precision and recall. Furthermore, The results taken from the characterization experiment shows that there are common ways of locating log statements. I manually examined the detailed view of structural generalizations and categorized the anti-unifiers of logging usage. In the last section of this chapter, I provided an example to demonstrate the usage of the findings of my characterization study in practice.
+I conducted an experimental study to characterize the location of log statements by applying my tool on the source code of four full software systems that make use of the \code{Apache Log4j} logging framework. My tool inputs the source code of these systems, extracts ASTs of LMs, applies the proposed anti-unification and clustering algorithms, and outputs the anti-unifier for each cluster. I also conducted an experimental study to evaluate the precision and the recall of \tool{ELUS} in constructing the anti-unifiers that describe the location of log statements in source code. This experiment shows that \tool{ELUS} has achieved promising results in terms of precision and recall. Furthermore, the results taken from the characterization experiment shows that there are common ways of locating log statements. I manually examined the detailed view of structural generalizations and categorized the anti-unifiers of logging usage. In the last section of this chapter, I provided an example to demonstrate the usage of the findings of my characterization study in practice.
 
 
 % In summary, this experiment shows that \tool{ELUS} has achieved promising results in terms of precision and recall metrics.

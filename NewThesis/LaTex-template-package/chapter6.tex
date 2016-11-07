@@ -1,13 +1,21 @@
 \chapter{Discussion}  \label{diss}
 
-In this chapter, I discuss the validity of my evaluation and the characterization study (Section~\ref{threads}), and a number of remaining issues, including the limitations and pitfalls of my approach and the tool support (Section~\ref{limitations}), and the usage of anti-unification theory for other applications (Section~\ref{auTheory}).
+In this chapter, I discuss the validity of my evaluation and the characterization study (Section~\ref{threads}), and a number of remaining issues, including the limitations and pitfalls of my approach and the tool support (Section~\ref{limitations}), the usage of anti-unification theory for other applications (Section~\ref{auTheory}), and the definition of an intermediate form of structural variable constraints (Section~\ref{intC}).
 
 \section{Threats to validity}  \label{threads}
-Prior to applying our tool for characterizing logging usage in real-world software systems, I have conducted three experiments to investigate the effectiveness of the proposed approach. However, there are several potential threats regarding the validity of these experiments. First, the results of my manual examination might be biased, as I determined the correct correspondences between AUASTs and the correct way of classifying the set of AUASTs in our test suite based on a similarity measurement. To limit the bias, other people can be involved to double check the accuracy of my manual inspection in a future work. Secondly, the experiments have examined one test suite containing a set of LMs from a real-world software system, though different test suites may generate different results. Although I cannot claim that the LMs in my test suite are a good representative of all LMs in real-world software systems, the results are still promising, as logging calls are used in various ways in Java methods of my test suite, and have sufficed to indicate the effectiveness of my approach in constructing structural generalizations. Another potential thread is that the successful rate of detecting correspondences by our tool might happened accidentally only for our test suite. To resolve this doubt, I examined the cases where our tool fails to detect correct correspondences, and I found that the failures are due to the fundamental limitations and complexities in the construction of structural generalization through the use of structural correspondence. That is, our tool creates structural generalizations successfully with regard to what our algorithm should generate.
+Prior to applying my tool for characterizing logging usage in real-world software systems, I have conducted three experiments to investigate the effectiveness of the proposed approach. However, there are several potential threats regarding the validity of these experiments. First, the results of my manual examination might be biased, as I determined the correct correspondences between the AUASTs of my test suite based on a similarity measurement. To limit the bias, other people can be involved to double check the accuracy of my manual inspection in a future work. Secondly, the experiments have examined one test suite containing a set of LMs from a real-world software system, though different test suites may generate different results. In spite of the fact that I cannot claim that the set of tested LMs is a good representative of all LMs in real-world software systems, the experimental results are still promising, as the locations of log statements in the tested methods are different. Hence, these experiments have sufficed to indicate the effectiveness of my approach in constructing structural generalizations. Another potential thread is that the successful rate of detecting correspondences by my tool might happened accidentally only for my test suite. To resolve this doubt, I examined the cases where my tool fails to detect correct correspondences, and I found that the failures are due to the fundamental limitations and complexities in the construction of structural generalizations through the use of structural correspondence. That is, my tool creates structural generalizations successfully with regard to what my algorithm should generate.
+
+%these experiments have sufficed to indicate???
+
+%and the correct way of classifying the set of AUASTs in our
 %, and the assumptions taken in developing the algorithms.
 %CITATION POPULARITY!!!
 %There are several threats to the validity of our characterization study.
-A potential thread to the validity of our characterization study is the degree to which our sample set of software systems is a good representation of all real-world logging usage. To address this issue, we selected various open-source software projects in terms of application, including a programming text editor, a web server, and an application server. These software systems are among the most popular applications in their own product category, and they all have at least 10 years of history in software development. However, our findings might not be able to reflect the characteristics of logging usage in other types of systems such as commercial software systems, or software written in other programming languages.
+
+A potential thread to the validity of the characterization study is the degree to which my selected set of software systems is a good representation of all real-world logging practices. To address this issue, I selected various open-source software projects in terms of application. The studied software systems are widely used by many developers for a long period of time.  However, the fact that I only studied \name{Apache Log4j} statements might limit the generalizability of findings. To improve the generalizability of this study, I have chosen one system not from Apache Software Foundation. However, my findings might not be able to reflect the characteristics of logging usage in other types of systems such as industry systems, or software written in other programming languages.
+%In addition, these systems are widely used by many developers for a long period of time. 
+
+
 %application??
 %citation??? 10 years
 %application of softwares???
@@ -17,16 +25,27 @@ A potential thread to the validity of our characterization study is the degree t
 %title?? choose a name for our tool????
 There are some issues that the approximation approach and my tool support is not able to handle perfectly, including inaccurate node ordering, and the resolution of conflicts happened in constructing the anti-unifiers.
 
-\subsection{Inaccurate node ordering}  \label{mismatch}
-Our anti-unification algorithm does not guarantee to maintain the correct sequence of statements in the body of methods when anti-unifying two method declaration nodes, since the order of statement nodes is not considered in determining the best correspondences. For example, consider we have two corresponding methods $\id{method_1}$ and $\id{method_2}$ embodying {$\id{a_1}$, $\id{a_2}$, $\id{a_3}$} and {$\id{b_1}$, $\id{b_2}$} sequences of statements, respectively. If our tool finds that the $\id{b_1}$ and $\id{b_2}$ nodes are the best correspondences for the $\id{a_3}$ and $\id{a_1}$ nodes respectively, the output generalization view for the set of statement nodes would be {$\id{a_1}$-or-$\id{b_2}$, $\id{a_2}$-or-$\NIL{}$, $\id{a_3}$-or-$\id{b_1}$}. Therefore, the generalization view does not preserve the correct ordering of nodes in the original structures.
-%{}does not print in PDF, why??
 
+\subsubsection{Inaccurate node ordering}  \label{mismatch}
+My anti-unification algorithm does not guarantee to maintain the correct sequence of statements in the body of methods in case of anti-unifying two method declaration nodes, as the order of statement nodes is not considered in determining the best correspondences. For example, consider we have two corresponding methods $\id{method_1}$ and $\id{method_2}$ embodying {$\id{a_1}$, $\id{a_2}$} and {$\id{b_1}$, $\id{b_2}$} sequences of statements, respectively. If the $\id{b_1}$ and $\id{b_2}$ nodes are found to be the best correspondences of the $\id{a_2}$ and $\id{a_1}$ nodes, respectively, $\id{a_1}$ will be anti-unified with $\id{b_2}$  and $\id{a_2}$ will be anti-unified with $\id{b_1}$ to construct the structural generalization. Therefore, the anti-unification algorithm does not preserve the correct ordering of nodes in the original structures.
+%????
+%% IIf the $\id{b_1}$ and $\id{b_2}$ nodes are found to be the best correspondences of the $\id{a_2}$ and $\id{a_1}$ nodes, respectively, $\id{a_1}$ will be anti-unified with $\id{b_2}$  and $\id{a_2}$  will be anti-unified with $\id{b_1}$ to construct the structural generalization.??
+
+%%%??????
+%f methods in case of anti-unifying two method declaration node??
 
 %\subsection{handling conflicts in constructing anti-unifiers}  \label{conflicts}
-\subsection{Conflict resolution}  \label{conflicts}
+\subsubsection{Conflict resolution}  \label{conflicts}
 The decisions I have made to resolve the conflicts occurred in constructing structural generalizations might affect the accuracy of our results.
-For example, in situations where I have two correspondences with the same similarity value in the ordered list of correspondence connections, my approach picks the one which involves two subtrees with higher number of leaves, though it might be not the best choice for all cases.
-In addition, I consider AST hierarchies to perform anti-unification. That is, my algorithm does not anti-unify two nodes if their parent nodes are not found to be corresponded. As a result, situations can occur where in fact two nodes should be anti-unified with each other, while they are not anti-unified by the tool. Though these decisions led me to get approximate results, they helped to limit the complexity of my approach allowing the implementation of it as a practical solution.
+For example, in situations where I have two correspondences with the same similarity value in the ordered list of correspondence connections, my approach picks the one which involves two subtrees with higher number of nodes, though it might be not the best choice for all cases.
+In addition, I consider AST hierarchies to perform anti-unification. That is, my algorithm does not anti-unify two nodes if their parent nodes are not found to be corresponded. As a result, situations can occur where in fact two nodes should be anti-unified with each other, while they are not anti-unified by the tool. Though these decisions led me to get approximate results, they helped to limit the complexity of my approach, allowing the implementation of it as a practical solution.
+%%%????
+
+
+
+
+%%%WHY PRECISON AND RECALL IS NOT 100%???
+
 
  % add semantic to structural information to detect correspondences??
 %limited typing information to determine correspondences by %Jigsaw
@@ -45,18 +64,29 @@ In addition, I consider AST hierarchies to perform anti-unification. That is, my
 %Furthermore, understanding the commonalities and differences between source code fragments has application in several areas of software engineering, such as code clone detection, API usage pattern collation, recommending replacements for API migration, and merging different branches of version control systems. Our tool`s functionality to construct a detailed view of structural generalizations of a set of source code fragments via structural correspondence could be used to improve the results of these studies as well.
 %edit!!!
 \section{Applications of anti-unification}  \label{auTheory}
-Our study demonstrates the application of an extended from of anti-unification (HOAUMT) to infer usage patters of log statements in source code via the creation of structural generalizations. Anti-unification and its extensions have been already applied to solve several theoretical and practical problems, such as analogy making \cite{2010:bsc:schmidt}, determining lemma generation in equational inductive proofs \cite{2005:aij:burghardt}, and detecting the construction laws for a sequence of structures \cite{2005:aij:burghardt}.
+My study demonstrates the application of an extended from of anti-unification (HOAUMT) to infer usage patters of log statements in source code via the creation of structural generalizations. Anti-unification and its extensions have been already applied to solve several theoretical and practical problems, such as analogy making \cite{2010:bsc:schmidt}, determining lemma generation in equational inductive proofs \cite{2005:aij:burghardt}, and detecting the construction laws for a sequence of structures \cite{2005:aij:burghardt}.
 %CITATION???
 
 
-Higher-order anti-unification modulo theories can be used to create generalizations in different contexts, and therefore the set of equational theories should be developed particularly for the higher-order structure used in each problem context. That is, the utility of these theories are highly dependent on how well they allow the incorporation of semantic knowledge of structures. In addition, these theories should ensure that only a finite number of anti-instances exist for each structure. Taking all these considerations into account enables HOAUMT to anti-unify sets of structures in a particular context. The practical tests I have conducted through the application of my tool on a test suite demonstrate that our approximation of HOAUMT was successful in constructing structural generalizations required to solve our problem.
-%
-%?????????
+Higher-order anti-unification modulo theories can be used to create generalizations in different contexts, and therefore the set of equational theories should be developed particularly for the higher-order structure used in each problem context. That is, the utility of these theories are highly dependent on how well they allow the incorporation of semantic knowledge of structures. In addition, these theories should ensure that only a finite number of anti-instances exist for each structure. The practical experiments I have conducted through the application of my tool on a test suite demonstrate that an approximation of HOAUMT can be successfully used to construct structural generalizations required to solve a problem.
+%finite?
+%%%Taking all these considerations into account enables HOAUMT to anti-unify sets of structures in a particular context.????
+
+
+
+\section{intermediate constrainted variables}  \label{intC}
+%The fact that precision for constrained variables is not 100\% indicates that the \tool{ELUS} has some bugs. In the further work, I aim to improve these results by fixing the software bugs. 
+
+As the anti-unifiers with constrained variables are too specific and the anti-unifiers with constrained variables are too general, an intermediate form of constraints can be defined for the structural variables of anti-unifiers. That is, instead of constraining to only the specific substitutions, the intermediate constraint could be defined as the types of nodes (e.g., \code{Infix} \code{Expression}) that can be used to substitute a variable. A future experiment can be run to see whether considering intermediate constrained variables would yield to more reasonable results than the unconstrained variables. 
+
 
 \section{Summary}  \label{diss-summary}
-I discussed the potential threads to validity of my evaluation and characterization study. To limit the bias of the experiments I conducted to evaluate the effectiveness of my approach and the tool support, I selected the test cases form a real system with various levels of similarity in the usage of logging calls. Furthermore, I examined the failed test cases to assure that our tool works when it should work with regard to the proposed algorithm. I will also make our test suite available for public examination to further check the accuracy of our manual inspection. For the characterization study, I selected various software systems in terms of functionality that are widely used by many developers for a long period of time. I also discussed the remaining issues with the tool support, including inaccurate node ordering and handling the conflicts happened in the construction of anti-unifiers.
-%in future as the extensions of my work.
+I discussed the potential threads to validity of my evaluation and characterization study. To limit the bias of my experiments, I selected the test cases form a real system with various levels of similarity in the usage of log statements. Furthermore, I examined the failed test cases to assure that my tool works when it should work with regard to the proposed algorithm. I will also make my test suite available for public examination to further check the accuracy of my manual inspection. For the characterization study, I selected various software systems in terms of functionality. I also discussed the remaining issues with the tool support, including inaccurate node ordering and handling the conflicts happened in the construction of anti-unifiers.
+% I conducted to evaluate the effectiveness of my approach and the tool support
 
-This work aims to provide a detailed view of structural generalizations constructed from a set of source code fragments that use log statements via the application of an approximated anti-unification and clustering. However, I argued how higher-order anti-unification modulo theories can be effectively approximated for various applications by means of developing an appropriate set of equational theories particularly for the higher-order structure used in each problem context.
+This work aims to provide a detailed view of structural generalizations constructed from a set of source code fragments that use log statements via the application of anti-unification and clustering. However, I argued how higher-order anti-unification modulo theories can be effectively approximated for various applications by means of developing an appropriate set of equational theories particularly for the higher-order structure used in each problem context. I also explained how the definition an intermediate form of variable constraints may yield to better experimental results.
+%I also explained how the definition an intermediate form of constraints for structural variables of anti-unifiers may yield to better experimental results.?
+
+%in future as the extensions of my work.
 
 % I discussed that any other applications involved in the inference of structural usage patterns of a particular statement or understanding the commonalities and differences between a set of source code fragments could benefit from our tool’s underlying framework.

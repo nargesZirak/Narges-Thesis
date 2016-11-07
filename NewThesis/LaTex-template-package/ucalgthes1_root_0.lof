@@ -37,25 +37,23 @@
 \contentsline {figure}{\numberline {5.4}{\ignorespaces A \textsf {\fontsize 10.95{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \belowdisplayskip \abovedisplayskip \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini {\parsep 4.5\p@ plus 2\p@ minus 1\p@ \itemsep \parsep \topsep 9\p@ plus 3\p@ minus 5\p@ }Java} method that utilizes multiple log statements.\relax }}{57}{figure.caption.43}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces A \textsf {\fontsize 10.95{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \belowdisplayskip \abovedisplayskip \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini {\parsep 4.5\p@ plus 2\p@ minus 1\p@ \itemsep \parsep \topsep 9\p@ plus 3\p@ minus 5\p@ }Java} method that utilizes multiple log statements.\relax }}{57}{figure.caption.44}
 \contentsline {figure}{\numberline {5.6}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate candidate structural correspondences detected by the Jigsaw framework.\relax }}{58}{figure.caption.45}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.\relax }}{58}{figure.caption.46}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using the greedy algorithm.\relax }}{58}{figure.caption.46}
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Create multiple copies of the LM in Figure\nobreakspace {}\ref {multiple1} for each log statement.\relax }}{59}{figure.caption.47}
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Create multiple copies of the LM in Figure\nobreakspace {}\ref {multiple2} for each log statement.\relax }}{60}{figure.caption.48}
 \contentsline {figure}{\numberline {5.10}{\ignorespaces 10 sample logged \textsf {\fontsize 10.95{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \belowdisplayskip \abovedisplayskip \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini {\parsep 4.5\p@ plus 2\p@ minus 1\p@ \itemsep \parsep \topsep 9\p@ plus 3\p@ minus 5\p@ }Java} method pairs used as test cases; all are contained in the \name {org.gjt.sp.jedit} package with the exception of cases 8 and 10 that are in the \name {org.gjt.sp.jedit.io} package.\relax }}{61}{figure.caption.49}
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Results of constructing anti-unifiers with a focus on log statements for the test cases presented in Table\nobreakspace {}\ref {study2_test_cases}\relax }}{62}{figure.caption.50}
 \contentsline {figure}{\numberline {5.12}{\ignorespaces A similarity graph representing pairwise similarities calculated by my tool between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{63}{figure.caption.51}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {6.1}{\ignorespaces The similarity matrix for a sample set of 5 AUASTs.\relax }}{67}{figure.caption.52}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces The modified agglomerative hierarchical clustering process on a sample set of 5 AUASTs using the initial similarity matrix shown in Figure\nobreakspace {}\ref {matrix}. The threshold value indicates the number of resulting clusters.\relax }}{68}{figure.caption.53}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces The cohesion of the clusters produced by applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{70}{figure.caption.54}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces The separateness between each cluster pair produced by applying the clustering tool to the test suite described in Table\nobreakspace {}\ref {table:ljms}\relax }}{70}{figure.caption.55}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces The initial similarity matrix for a sample set of 3 AUASTs.\relax }}{67}{figure.caption.52}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Diagram of the modified agglomerative hierarchical clustering process for the sample set.\relax }}{68}{figure.caption.53}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{73}{figure.caption.56}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Histograms of the number of LMs per cluster.\relax }}{74}{figure.caption.58}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces The distribution of the categories of anti-unifiers in the logging usage.\relax }}{77}{figure.caption.60}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces The precision of \relax {ELUS}.\relax }}{80}{figure.caption.67}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces The recall of \relax {ELUS}.\relax }}{81}{figure.caption.68}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Example 1: An example of an inappropriate usage of a log statement in a Java method.}}{83}{figure.caption.71}
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Example 1: An example for the purpose of enhancing the logging usage in the Java method of Example.}}{83}{figure.caption.72}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{71}{figure.caption.54}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Histograms of the number of LMs per cluster.\relax }}{72}{figure.caption.56}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces The distribution of the categories of anti-unifiers in the logging usage.\relax }}{75}{figure.caption.58}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces The precision of \relax {ELUS}.\relax }}{78}{figure.caption.65}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces The recall of \relax {ELUS}.\relax }}{78}{figure.caption.66}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Example 1: An example of an inappropriate usage of a log statement in a Java method.}}{81}{figure.caption.69}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Example 1: An example for the purpose of enhancing the logging usage in the Java method of Example.}}{81}{figure.caption.70}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

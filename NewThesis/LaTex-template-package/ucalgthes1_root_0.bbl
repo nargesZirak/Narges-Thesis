@@ -1,4 +1,4 @@
-\begin{thebibliography}{44}
+\begin{thebibliography}{50}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -121,6 +121,14 @@ William~HE Day and Herbert Edelsbrunner.
 \newblock \emph{Journal of classification}, 1\penalty0 (1):\penalty0 7--24,
   1984.
 
+\bibitem[Ding et~al.(2015)Ding, Zhou, Lou, Zhang, Lin, Fu, Zhang, and
+  Xie]{ding2015log2}
+Rui Ding, Hucheng Zhou, Jian-Guang Lou, Hongyu Zhang, Qingwei Lin, Qiang Fu,
+  Dongmei Zhang, and Tao Xie.
+\newblock Log2: A cost-aware logging mechanism for performance diagnosis.
+\newblock In \emph{2015 USENIX Annual Technical Conference (USENIX ATC 15)},
+  pages 139--150, 2015.
+
 \bibitem[Fu et~al.(2009)Fu, Lou, Wang, and Li]{fu2009execution}
 Qiang Fu, Jian-Guang Lou, Yi~Wang, and Jiang Li.
 \newblock Execution anomaly detection in distributed systems through
@@ -133,6 +141,15 @@ Qiang Fu, Jian-Guang Lou, Qingwei Lin, Rui Ding, Dongmei Zhang, and Tao Xie.
   behaviors.
 \newblock In \emph{Proceedings of the 10th Working Conference on Mining
   Software Repositories}, pages 397--400. IEEE Press, 2013.
+
+\bibitem[Fu et~al.(2014)Fu, Zhu, Hu, Lou, Ding, Lin, Zhang, and
+  Xie]{fu2014developers}
+Qiang Fu, Jieming Zhu, Wenlu Hu, Jian-Guang Lou, Rui Ding, Qingwei Lin, Dongmei
+  Zhang, and Tao Xie.
+\newblock Where do developers log? an empirical study on logging practices in
+  industry.
+\newblock In \emph{Companion Proceedings of the 36th International Conference
+  on Software Engineering}, pages 24--33. ACM, 2014.
 
 \bibitem[Gosling et~al.(2012)Gosling, Joy, Steele, Bracha, and
   Buckley]{2012:book:gosling}
@@ -174,6 +191,22 @@ Weihang Jiang, Chongfeng Hu, Shankar Pasupathy, Arkady Kanevsky, Zhenmin Li,
 \newblock Understanding customer problem troubleshooting from storage system
   logs.
 \newblock In \emph{FAST}, volume~9, pages 43--56, 2009.
+
+\bibitem[Kabinna et~al.(2016{\natexlab{a}})Kabinna, Bezemer, Shang, and
+  Hassan]{kabinna2016logging}
+Suhas Kabinna, Cor-Paul Bezemer, Weiyi Shang, and Ahmed~E Hassan.
+\newblock Logging library migrations: a case study for the apache software
+  foundation projects.
+\newblock In \emph{Proceedings of the 13th International Workshop on Mining
+  Software Repositories}, pages 154--164. ACM, 2016{\natexlab{a}}.
+
+\bibitem[Kabinna et~al.(2016{\natexlab{b}})Kabinna, Shang, Bezemer, and
+  Hassan]{kabinna2016examining}
+Suhas Kabinna, Weiyi Shang, Cor-Paul Bezemer, and Ahmed~E Hassan.
+\newblock Examining the stability of logging statements.
+\newblock In \emph{2016 IEEE 23rd International Conference on Software
+  Analysis, Evolution, and Reengineering (SANER)}, volume~1, pages 326--337.
+  IEEE, 2016{\natexlab{b}}.
 
 \bibitem[Karypis et~al.(1999)Karypis, Han, and Kumar]{karypis1999chameleon}
 George Karypis, Eui-Hong Han, and Vipin Kumar.
@@ -220,6 +253,14 @@ Gordon~D Plotkin.
 \newblock A note on inductive generalization.
 \newblock \emph{Machine intelligence}, 5\penalty0 (1):\penalty0 153--163, 1970.
 
+\bibitem[Rasmussen(1992)]{Rasmussen:1992:CA:129687.129703}
+Edie Rasmussen.
+\newblock Information retrieval.
+\newblock chapter Clustering Algorithms, pages 419--442. Prentice-Hall, Inc.,
+  Upper Saddle River, NJ, USA, 1992.
+\newblock ISBN 0-13-463837-9.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=129687.129703}.
+
 \bibitem[Reynolds(1970)]{reynolds1970transformational}
 John~C Reynolds.
 \newblock Transformational systems and the algebraic structure of atomic
@@ -241,13 +282,16 @@ Tobias Sager, Abraham Bernstein, Martin Pinzger, and Christoph Kiefer.
 \newblock In \emph{Proceedings of the 2006 international workshop on Mining
   software repositories}, pages 65--71. ACM, 2006.
 
-\bibitem[Schmidt(2010)]{2010:bsc:schmidt}
-Martin Schmidt.
-\newblock Restricted higher-order anti-unification for heuristic-driven theory
-  projection.
-\newblock Bachelor's thesis, University of Osnabr{\"u}ck, Osnabr{\"u}ck,
-  Austria, 2010.
-\newblock URL \url{http://ikw.uni-osnabrueck.de/en/system/files/31-2010.pdf}.
+\bibitem[Shang et~al.(2015)Shang, Nagappan, and Hassan]{shang2015studying}
+Weiyi Shang, Meiyappan Nagappan, and Ahmed~E Hassan.
+\newblock Studying the relationship between logging characteristics and the
+  code quality of platform software.
+\newblock \emph{Empirical Software Engineering}, 20\penalty0 (1):\penalty0
+  1--27, 2015.
+
+\bibitem[Tan et~al.(2013)Tan, Steinbach, and Kumar]{tan2013data}
+Pang-Ning Tan, Michael Steinbach, and Vipin Kumar.
+\newblock Data mining cluster analysis: Basic concepts and algorithms, 2013.
 
 \bibitem[Voorhees(1986)]{voorhees1986implementing}
 Ellen~M Voorhees.

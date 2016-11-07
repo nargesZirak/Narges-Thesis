@@ -79,8 +79,8 @@ As discussed in Section~\ref{HOAUMT}, the complexity of determining the best ant
 \DetermineBest
     \State $\id{list} \gets \func{()}$
     \State $\id{nodes} \gets \func{visitor}(\id{A})$
-	  \For {$\id{nodeA} \in \id{A}$}
-		\For {$\id{corr} \in  \id{corrs}[\id{nodeA}]$}		
+	  \For {$\id{node} \in \id{A}$}
+		\For {$\id{corr} \in  \id{corrs}[\id{node}]$}		
 				 	\State{$\func{Append}(\id{corr},\id{list})$ }
 			 	\EndFor  	
 	   \EndFor	
@@ -191,11 +191,11 @@ The similarity between two AUAST nodes is computed by dividing the number of mat
   \begin{algorithmic}[1]
   \ComputeBestMatches
   \State $\id{matches} \gets 0$
-\If {$\id{root}[\id{A}] \Instanceof \cons{Leaf-Node}$ }	
-  \State $\id{matches} \gets   \func{matches}(\id{root}[\id{A}],\id{root}[\id{B}])$
-  \ElsIf {$\id{root}[\id{A}] \Instanceof \cons{Non-Leaf-Node}$ }	
+\If {$A\Instanceof \cons{Leaf-Node}$ }	
+  \State $\id{matches} \gets   \func{matches}(\id{A},\id{B})$
+  \ElsIf {$A \Instanceof \cons{Non-Leaf-Node}$ }	
     	\State \func{Determine-Best-Correspondences}($\id{A}$, $\id{B}$)
-\For {$\id{childA} \in \id{children}[\id{root}[\id{A}]]$}
+\For {$\id{childA} \in \id{children}[\id{A}]$}
 \If {$ \id{bestCorr}[\id{childA}] \neq \cons{NULL}$}	 		
 	%\State $\id{childB}\gets \id{bestCorr}[\id{childA}]$ 		
  		\State $\id{matches} \gets \id{matches}+\func{Compute-Best-Matches}(\id{childA},\id{nodeB}[\id{bestCorr}[\id{childA}]])$		 
@@ -229,9 +229,9 @@ Anti-unification of two AUASTs is performed via the \func{Antiunify} algorithm. 
   \begin{algorithmic}[1]
 \AntiUnify
 \State{$ \id{antiunifier} \gets \cons{NULL}$}
-\If {$\id{root}[\id{A}] \Instanceof \cons{Leaf-Node}$ }	
-  \State $\id{antiunifier} \gets   \func{construct-antiunifier}(\id{root}[\id{A}],\id{root}[\id{B}])$
-  \ElsIf {$\id{root}[\id{A}] \Instanceof \cons{Non-Leaf-Node}$ }	
+\If {$A \Instanceof \cons{Leaf-Node}$ }	
+  \State $\id{antiunifier} \gets   \func{construct-antiunifier}(\id{A},\id{B})$
+  \ElsIf {$A \Instanceof \cons{Non-Leaf-Node}$ }	
  % \State \func{Determine-Best-Correspondences}($\id{a}$, $\id{b}$)
         \For {$\id{childA} \in \id{children}[\id{A}]$}
 \If {$ bestCorr[childA]= \cons{NULL}$}	
@@ -244,7 +244,7 @@ Anti-unification of two AUASTs is performed via the \func{Antiunify} algorithm. 
 %	\EndIf	
   %\If {$\id{b} \Instanceof \cons{Non-Leaf-Node}$ }	
 \EndIf
-  \If {$\id{root}[\id{B}] \Instanceof \cons{Non-Leaf-Node}$ }	
+  \If {$B \Instanceof \cons{Non-Leaf-Node}$ }	
 
   \For {$\id{childB} \in \id{children}[\id{B}]$}
 \If {$ bestCorr[childB]= \cons{NULL}$}	
@@ -257,7 +257,7 @@ Anti-unification of two AUASTs is performed via the \func{Antiunify} algorithm. 
 \end{algorithmic}
 \end{algorithm}
 
-
+%$\id{root}[\id{B}] ?????
 
 \section{The anti-unifier building tool} \label{antiunifierTool}
 The anti-unifier building tool is a proof-of-concept implementation of my anti-unification approach, which is developed atop the Jigsaw framework to construct a detailed view of structural generalization. To create the AUAST structure using Eclipse JDT framework that addresses the limitations of CAST to constructing an anti-unifier, I added the following structural properties:
@@ -310,7 +310,7 @@ To create the detailed view of the structural generalization from two given AUAS
 
 
 \subsection{Java methods containing multiple log statements} \label{meth-multipleLogs}
-There might be some cases in which our approach is not able to anti-unify log statements in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \name{If Statement1} with \name{If Statement3}, we should anti-unify their structural properties. Thus, \name{Log1} should be anti-unified with \name{Log3}, and \name{Log4} should be anti-unified with \NIL{} since there is no corresponding log statement in the body of \name{If Statement1}, while there is a corresponding node for \name{Log4} in the body of \name{If Statement2} (\name{Log2}).
+There might be some cases in which our approach is not able to anti-unify log statements in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \name{If Statement 1} with \name{If Statement3}, we should anti-unify their structural properties. Thus, \name{Log Statement 1} should be anti-unified with \name{Log Statement 3}, and \name{Log Statement 4} should be anti-unified with \NIL{} since there is no corresponding log statement in the body of \name{If Statement 1}, while there is a corresponding node for \name{Log Statement 4} in the body of \name{If Statement 2} (\name{Log Statement 2}).
 
 %\code{if statement 1}???
 %In figures: If statement: if statement 1???
@@ -359,7 +359,7 @@ public void method2(){
 
 \begin{figure} [H]
   \centering\includegraphics [width = \textwidth]{Drawing4/multipleLogging2.pdf}
-  \caption{Simple AUAST structure of examples in Figures~\ref{multiple1} and~\ref{multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using our greedy algorithm.}
+  \caption{Simple AUAST structure of examples in Figures~\ref{multiple1} and~\ref{multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using the greedy algorithm.}
   \label{m_ast2}
 \end{figure}
 
@@ -371,7 +371,6 @@ To handle these cases, we can split them into more than one case, where each LM 
 \begin{figure}[H]
 \def\baselinestretch{1}
 \begin{lstlisting}
-
 public void method1(){
 	...
 	if(condition1){
@@ -383,7 +382,8 @@ public void method1(){
 	}
 	...
 }
-
+\end{lstlisting}
+\begin{lstlisting}
 public void method1(){
 	...
 	if(condition1){
@@ -413,7 +413,8 @@ public void method2(){
 	}
 	...
 }
-
+\end{lstlisting}
+\begin{lstlisting}
 public void method2(){
 	...
 	if(condition3){
@@ -536,7 +537,7 @@ In Case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement
   \label{study2_test_cases_results}
 \end{figure}
 
-The results of the pairwise comparison between LMs of the test suite is visualized in Figure~\ref{fig:au_graph}. Our anti-unifier-building tool succeeded in detecting correspondences with special attention to anti-unifying log statements and calculating pairwise similarities in 48 out of 55 test cases. In addition, the instruction coverage of our test cases is 82\% as measured with \name{EclEmma}.
+The results of the pairwise comparison between LMs of the test suite is visualized in Figure~\ref{fig:au_graph}. My anti-unifier-building tool succeeded in detecting correspondences with special attention to anti-unifying log statements and calculating pairwise similarities in 48 out of 55 test cases. In addition, the instruction coverage of our test cases is 82\% as measured with \name{EclEmma}.
 
 \begin{figure} [t]
   \centering\includegraphics [width = \textwidth]{graphviz/au.pdf}
@@ -550,7 +551,7 @@ The results of the pairwise comparison between LMs of the test suite is visualiz
 \section{Summary} \label{meth1-summary}
 I have presented an approach for constructing a generalization from AUASTs of two LMs with special attention to logging statements via structural correspondence. This approach proceeds in three steps. First, several constraints have been applied on the selection of correspondences to prevent anti-unifying log method invocation nodes with any other types of nodes. Second, an approximation technique is employed to find the best correspondence for each AUAST node. Third, the anti-unification of two AUASTs is performed through the application of higher-order modulo theories over the AUAST structures. Furthermore, a measure of similarity has been developed that would provide us with useful information for the clustering phase.
 
-An experimental study was conducted to evaluate the effectiveness of my anti-unification algorithm and the tool support in constructing an anti-unifier from AUASTs of each LM pair in my test suite with a focus on log statements and measuring similarity between them.
+An experimental study was conducted to evaluate the effectiveness of my anti-unification algorithm and the tool support in constructing an anti-unifier from AUASTs of each LM pair of my test suite with a focus on log statements and measuring similarity between them.
 
 
 

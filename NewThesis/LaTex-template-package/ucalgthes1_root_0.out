@@ -44,28 +44,27 @@
 \BOOKMARK [0][-]{chapter.6}{Clustering}{}% 44
 \BOOKMARK [1][-]{section.6.1}{Modified agglomerative hierarchical clustering algorithm}{chapter.6}% 45
 \BOOKMARK [1][-]{section.6.2}{Evaluation}{chapter.6}% 46
-\BOOKMARK [2][-]{subsection.6.2.1}{Setup}{section.6.2}% 47
-\BOOKMARK [2][-]{subsection.6.2.2}{Results}{section.6.2}% 48
-\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 49
-\BOOKMARK [0][-]{chapter.7}{Characterization Study}{}% 50
-\BOOKMARK [1][-]{section.7.1}{Experiment}{chapter.7}% 51
-\BOOKMARK [2][-]{subsection.7.1.1}{Results}{section.7.1}% 52
-\BOOKMARK [2][-]{subsection.7.1.2}{Analysis}{section.7.1}% 53
-\BOOKMARK [1][-]{section.7.2}{Evaluation}{chapter.7}% 54
-\BOOKMARK [1][-]{section.7.3}{Usage}{chapter.7}% 55
-\BOOKMARK [1][-]{section.7.4}{Summary}{chapter.7}% 56
-\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 57
-\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 58
-\BOOKMARK [1][-]{section.8.2}{The pitfalls of my tool}{chapter.8}% 59
-\BOOKMARK [2][-]{subsection.8.2.1}{Inaccurate node ordering}{section.8.2}% 60
-\BOOKMARK [2][-]{subsection.8.2.2}{Conflict resolution}{section.8.2}% 61
-\BOOKMARK [1][-]{section.8.3}{Applications of anti-unification}{chapter.8}% 62
-\BOOKMARK [1][-]{section.8.4}{Summary}{chapter.8}% 63
-\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 64
-\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 65
-\BOOKMARK [1][-]{section.9.2}{Correspondence}{chapter.9}% 66
-\BOOKMARK [1][-]{section.9.3}{API usages patterns}{chapter.9}% 67
-\BOOKMARK [1][-]{section.9.4}{Anti-unification}{chapter.9}% 68
-\BOOKMARK [1][-]{section.9.5}{Summary}{chapter.9}% 69
-\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 70
-\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 71
+\BOOKMARK [2][-]{subsection.6.2.1}{Results}{section.6.2}% 47
+\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 48
+\BOOKMARK [0][-]{chapter.7}{Characterization Study}{}% 49
+\BOOKMARK [1][-]{section.7.1}{Experiment}{chapter.7}% 50
+\BOOKMARK [2][-]{subsection.7.1.1}{Results}{section.7.1}% 51
+\BOOKMARK [2][-]{subsection.7.1.2}{Analysis}{section.7.1}% 52
+\BOOKMARK [1][-]{section.7.2}{Evaluation}{chapter.7}% 53
+\BOOKMARK [1][-]{section.7.3}{Usage}{chapter.7}% 54
+\BOOKMARK [1][-]{section.7.4}{Summary}{chapter.7}% 55
+\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 56
+\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 57
+\BOOKMARK [1][-]{section.8.2}{The pitfalls of my tool}{chapter.8}% 58
+\BOOKMARK [1][-]{section.8.3}{Applications of anti-unification}{chapter.8}% 59
+\BOOKMARK [1][-]{section.8.4}{intermediate constrainted variables}{chapter.8}% 60
+\BOOKMARK [1][-]{section.8.5}{Summary}{chapter.8}% 61
+\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 62
+\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 63
+\BOOKMARK [1][-]{section.9.2}{Understanding the existing logging practices}{chapter.9}% 64
+\BOOKMARK [1][-]{section.9.3}{Correspondence}{chapter.9}% 65
+\BOOKMARK [1][-]{section.9.4}{API usages patterns}{chapter.9}% 66
+\BOOKMARK [1][-]{section.9.5}{Anti-unification}{chapter.9}% 67
+\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 68
+\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 69
+\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 70
