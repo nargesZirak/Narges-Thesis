@@ -2,6 +2,8 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: ucalgthes1_root_0.aux
 A level-1 auxiliary file: chapter1.aux
 A level-1 auxiliary file: chapter2.aux
 A level-1 auxiliary file: chapter3.aux
+A level-1 auxiliary file: chapter3-1.aux
+A level-1 auxiliary file: chapter4.aux
 A level-1 auxiliary file: chapter4-1.aux
 A level-1 auxiliary file: chapter5.aux
 A level-1 auxiliary file: chapter6.aux
@@ -12,31 +14,7 @@ Database file #1: ../../../../workspace/bibtex/full.bib
 Database file #2: ../../../../workspace/bibtex/references.bib
 Database file #3: ../../../../workspace/bibtex/lsmr.bib
 Database file #4: mybiblio.bib
-Repeated entry---line 127 of file mybiblio.bib
- : @inproceedings{yuan2012conservative
- :                                    ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 154 of file mybiblio.bib
- : @article{yuan2012improving
- :                           ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 175 of file mybiblio.bib
- : @inproceedings{yuan2012characterizing
- :                                      ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 222 of file mybiblio.bib
- : @inproceedings{fu2014developers
- :                                ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 231 of file mybiblio.bib
- : @inproceedings{zhu2015learning
- :                               ,
-I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "jain1999data"
-Warning--I didn't find a database entry for "2010:bsc:schmidt"
-Warning--can't use both volume and number fields in holmes2005strathcona
-Warning--can't use both volume and number fields in li2005pr
-Warning--empty booktitle in Rasmussen:1992:CA:129687.129703
-Warning--empty journal in yaghmour2000measuringandcharacter
-Warning--can't use both volume and number fields in yuan2010sherlog
-(There were 5 error messages)
+Warning--I didn't find a database entry for "tan2013data"
+Warning--I didn't find a database entry for "2008:etx:holmes"
+Warning--empty booktitle in beeferman2000agglomerative
+(There were 3 warnings)

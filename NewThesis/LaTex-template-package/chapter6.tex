@@ -13,7 +13,7 @@ Prior to applying my tool for characterizing logging usage in real-world softwar
 %There are several threats to the validity of our characterization study.
 
 A potential thread to the validity of the characterization study is the degree to which my selected set of software systems is a good representation of all real-world logging practices. To address this issue, I selected various open-source software projects in terms of application. The studied software systems are widely used by many developers for a long period of time.  However, the fact that I only studied \name{Apache Log4j} statements might limit the generalizability of findings. To improve the generalizability of this study, I have chosen one system not from Apache Software Foundation. However, my findings might not be able to reflect the characteristics of logging usage in other types of systems such as industry systems, or software written in other programming languages.
-%In addition, these systems are widely used by many developers for a long period of time. 
+%In addition, these systems are widely used by many developers for a long period of time.
 
 
 %application??
@@ -59,7 +59,7 @@ In addition, I consider AST hierarchies to perform anti-unification. That is, my
 
 
 %\section{Other applications}  \label{other_applications}
-%Any applications that are involved in the inference of structural patterns in source code even infrequently-used patterns might benefit from our tool’s underlying framework.
+%Any applications that are involved in the inference of structural patterns in source code even infrequently-used patterns might benefit from our tool's underlying framework.
 %% EXAMPLE???
 %Furthermore, understanding the commonalities and differences between source code fragments has application in several areas of software engineering, such as code clone detection, API usage pattern collation, recommending replacements for API migration, and merging different branches of version control systems. Our tool`s functionality to construct a detailed view of structural generalizations of a set of source code fragments via structural correspondence could be used to improve the results of these studies as well.
 %edit!!!
@@ -74,10 +74,10 @@ Higher-order anti-unification modulo theories can be used to create generalizati
 
 
 
-\section{intermediate constrainted variables}  \label{intC}
-%The fact that precision for constrained variables is not 100\% indicates that the \tool{ELUS} has some bugs. In the further work, I aim to improve these results by fixing the software bugs. 
+\section{intermediate constrained variables}  \label{intC}
+%The fact that precision for constrained variables is not 100\% indicates that the \tool{ELUS} has some bugs. In the further work, I aim to improve these results by fixing the software bugs.
 
-As the anti-unifiers with constrained variables are too specific and the anti-unifiers with constrained variables are too general, an intermediate form of constraints can be defined for the structural variables of anti-unifiers. That is, instead of constraining to only the specific substitutions, the intermediate constraint could be defined as the types of nodes (e.g., \code{Infix} \code{Expression}) that can be used to substitute a variable. A future experiment can be run to see whether considering intermediate constrained variables would yield to more reasonable results than the unconstrained variables. 
+As the anti-unifiers with constrained variables are too specific and the anti-unifiers with constrained variables are too general, an intermediate form of constraints can be defined for the structural variables of anti-unifiers. That is, instead of constraining to only the specific substitutions, the intermediate constraint could be defined as the types of nodes (e.g., \code{Infix} \code{Expression}) that can be used to substitute a variable. A future experiment can be run to see whether considering intermediate constrained variables would yield to more reasonable results than the unconstrained variables.
 
 
 \section{Summary}  \label{diss-summary}
