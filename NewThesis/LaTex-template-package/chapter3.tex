@@ -840,12 +840,12 @@ The Jigsaw similarity function returns a value in $[0, 1]$ where zero indicates 
 As I intend to construct a structural generalization from ASTs of two logged methods via structural correspondence, it could be helpful to use the first phase of the proposed approach to find candidate correspondences using the similarity measure. However, the second phase does not help determine the best correspondences needed in my context, as the CAST generated via thresholding neither resolves the conflicts that occur in constructing one single anti-unifier automatically, nor prevents the anti-unification of log statement nodes with any other nodes. There, the Jigsaw similarity function does not enable us to measure how similar are the usages of log statements inside methods. In addition, as the problem of this study is different, the integration phase of the approach is not related to my work. Instead, I should develop an algorithm to construct a detailed view of the generalization describing the structural commonalities and differences between logged methods. However, the CAST structure does not suffice to construct an anti-unifier: it does not allow the insertion of \emph{structural variables} in place of nodes in the tree structure, and thus an extended form is required. In the following chapters, I will discuss my approach to create a structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
 
 \section{Clustering}  \label{ch3-clustering}
-Clustering is the grouping of a collection of data objects into meaningful groups (clusters) \cite{jain1999data}. The goal of clustering is to find groups of objects such that the objects in one cluster will be similar to one another and dissimilar from the objects in other clusters. The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters are \cite{tan2013data}.  In general, there are two major types of clustering:
+Clustering is the division of a collection of data objects into meaningful groups (clusters) \cite{jain1999data}. The goal of clustering is to find groups of objects such that the objects in one cluster will be similar to one another and dissimilar from the objects in other clusters. The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters are \cite{tan2013data}.  In general, there are two major types of clustering:
 %The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters are\cite{tan2013data}. ?
 %\cite[][Chapter 8]{tan2013data} ??
 
 \begin{itemize} [leftmargin=.4in]
-\item \emph{Partitional clustering:} which aims to divide the data objects into non-overlapping clusters such that each data object is clearly in one cluster.
+\item \emph{Partitional clustering:} which aims to divide the data objects into non-overlapping clusters such that each data object is clearly in exactly one cluster.
 \item \emph{Hierarchical clustering:} which aims to generate a set of nested clusters organized as a hierarchical structure. Each cluster in the structure is the union of its subclusters, and the cluster at the top contains all the data objects.
 \end{itemize}
 
@@ -855,9 +855,9 @@ The following will introduce two popular techniques used to perform clustering o
 %dendogram?
 \subsection{K-means clustering algorithm}
 % indicate Lines ??? initial centroids???
-This algorithm is a partitional clustering approach that attempts to find a certain number of clusters, which are represented by centroid (the center of a cluster). In this algorithm, ${K}$ is the number of the resulting clusters that should be specified. Each cluster is associated with a centroid  which is mostly the average of all the
-data objects within the cluster or the most representative object of a
-cluster. The basic K-means clustering technique is described using Algorithm~\ref{alg:k-means}. This algorithm repeatedly assigns each data object to a cluster with the nearest centroid and computes the new clusters centroids accordingly. This process terminates when it reaches a state in which no objects are moving from one cluster to another, and thus, the centroids don't change.
+%or the most representative object of a cluster
+This algorithm is a partitional clustering approach that attempts to find a certain number of clusters, which are represented by centroids (the center of a cluster). In this algorithm, ${K}$ is the number of the resulting clusters that has to be specified. Each cluster is associated with a centroid which is mostly the average of all the
+data objects within the cluster. The basic K-means clustering technique is described using Algorithm~\ref{alg:k-means}. This algorithm starts with $K$ randomly selected data objects as initial centroids and then repeatedly assigns each data object to a cluster with the nearest centroid and computes the new clusters centroids accordingly. This process terminates when it reaches a state in which no objects are moving from one cluster to another, and thus, the centroids don't change.
 %strength?
 The K-means clustering algorithm is not a good fit to my purposes, as it requires one to specify the number of resulting clusters, which is not known here a priori. %??
 % representative object?
@@ -867,7 +867,7 @@ The K-means clustering algorithm is not a good fit to my purposes, as it require
 \begin{algorithm}
 \caption{Basic K-means clustering algorithm.} \label{alg:k-means}
 \begin{algorithmic}[1]
-\State Select K data objects as initial centroids.
+\State Start with K randomly selected data objects as initial centroids.
 \Repeat
 \State Assign each object to its closest centroid.
 \State Update the centroid of each cluster.

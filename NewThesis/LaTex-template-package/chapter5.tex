@@ -210,16 +210,28 @@ Where $\id{TP}$ is the number of correct locations obtained, $\id{FP}$ is the nu
 \end{figure}
 
 \subsubsection{\emph{Precision Results}}  \label{precision-results}
-The green and yellow bars in Figure~\ref{fig:precision}  show the precision results when the experiment was run with constrained and unconstrained variables, respectively. I have also calculated the overall average precision of \tool{ELUS}, by averaging the precision values between the four software systems. The average precision for \tool{ELUS} is 84\% and 32\% for constrained and unconstrained variable experiments, respectively. In general, the precision for constrained variables are fairly high. The main reason behind the high precision of constrained variables is that in these cases, the variables can only be substituted with some particular nodes, which makes the anti-unifier very specific. Furthermore, according to the Figure~\ref{fig:precision}, the precision is fairly low for unconstrained variables. The main reason for the low precision for these cases is the fact that the unconstrained variables can be substituted by any nodes, which makes the anti-unifiers too general. As a result, the tool finds many incorrect locations the matches the anti-unifiers.
+The green and yellow bars in Figure~\ref{fig:precision} show the precision results when the experiment was run with constrained and unconstrained variables, respectively. I have also calculated the overall average precision of \tool{ELUS}, by averaging the precision values between the four software systems. The average precision for \tool{ELUS} is 84\% and 32\% for constrained and unconstrained variable experiments, respectively. In general, the precision for constrained variables is fairly high. The main reason behind the high precision of constrained variables is that in these cases, the variables can only be substituted with some particular nodes, which makes the anti-unifier very specific. However, there are two main reasons for the fact that precision of constrained experiment is not 100\%:
+\begin{enumerate} [leftmargin=.5in]
 
-The fact that precision for constrained variables is not 100\% indicates that the \tool{ELUS} has some bugs \RW{Rewrite this according to the discussion we had in the meeting}. In the further work, I aim to improve these results by fixing the software bugs.
+\item \emph{Split cases}: To handle the cases containing multiple log statements, I split them into more than one case, where each contains only one logging statement (see Section~\ref{meth-multipleLogs}). However, to find the locations in source code that are described by anti-unifiers using the \func{Determine-Locations} algorithm, I compared them with all the methods in source code without splitting them into multiple cases, which results in retrieving a number of incorrect locations. 
 
+\item \emph{Software bugs}: The fact that precision results are not ideal indicates that \tool{ELUS} has some bugs. In the further work, I aim to improve these results by fixing the software bugs.
+\end{enumerate}
+
+According to the Figure~\ref{fig:precision}, the precision is fairly low for unconstrained variables. The main reason of the low precision for these cases is the fact that the unconstrained variables can be substituted by any nodes, which makes the anti-unifiers too general. As a result, the tool finds many incorrect locations the matches the anti-unifiers.
+
+
+
+
+
+%\RW{Rewrite this according to the discussion we had in the meeting}
 
 \subsubsection{\emph{Recall Results}}  \label{recall-results}
 The green and yellow bars in Figure~\ref{fig:recall}  show the recall results when the experiment was run with constrained and unconstrained variables, respectively. I have also calculated the overall average recall of \tool{ELUS}, by averaging the recall values between the studied systems. The average recall for \tool{ELUS} is 80\% and 97\% for the constrained and unconstrained variable experiments, respectively. In general, when variables are constrained, \tool{ELUS} can detect many correct locations, as the recalls for all the studied systems are fairly high. Also, \tool{ELUS} can detect most of the correct locations in source code when no constraints are taken on variable nodes.
 
-The main reason behind \tool{ELUS}'s failure in detecting the correct locations is the potential complexities in constructing anti-unifiers from a large set of source code fragments. As in some cases, the anti-unifier might not maintain the correct locations of nodes in the AST hierarchy, and thus \tool{ELUS} would not be able to detect correct locations of log statements in the source code.
-
+The main reason behind \tool{ELUS}'s failure in detecting the correct locations is the potential complexities in constructing anti-unifiers from a large set of source code fragments. As in some cases, the anti-unifier might not maintain the correct locations of nodes in the AST hierarchy, and thus \tool{ELUS} would not be able to successfully construct the anti-unifiers of logging usage in source code.
+%detect correct locations of log statements in the source code.
+%?
 %\RW{Ah, I see that you have a note in here about the intermediate constraints.}
 
 %ADDDDD

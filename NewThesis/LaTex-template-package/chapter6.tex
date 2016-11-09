@@ -64,7 +64,7 @@ In addition, I consider AST hierarchies to perform anti-unification. That is, my
 %Furthermore, understanding the commonalities and differences between source code fragments has application in several areas of software engineering, such as code clone detection, API usage pattern collation, recommending replacements for API migration, and merging different branches of version control systems. Our tool`s functionality to construct a detailed view of structural generalizations of a set of source code fragments via structural correspondence could be used to improve the results of these studies as well.
 %edit!!!
 \section{Applications of anti-unification}  \label{auTheory}
-My study demonstrates the application of an extended from of anti-unification (HOAUMT) to infer usage patters of log statements in source code via the creation of structural generalizations. Anti-unification and its extensions have been already applied to solve several theoretical and practical problems, such as analogy making \cite{2010:bsc:schmidt}, determining lemma generation in equational inductive proofs \cite{2005:aij:burghardt}, and detecting the construction laws for a sequence of structures \cite{2005:aij:burghardt}.
+My study demonstrates the application of an extended from of anti-unification (HOAUMT) to infer usage patters of log statements in source code via the creation of structural generalizations. Anti-unification and its extensions have been already applied to solve several theoretical and practical problems, such as analogy making \cite{guhe2010mathematical}, determining lemma generation in equational inductive proofs \cite{2005:aij:burghardt}, and detecting the construction laws for a sequence of structures \cite{2005:aij:burghardt}.
 %CITATION???
 
 
@@ -74,17 +74,16 @@ Higher-order anti-unification modulo theories can be used to create generalizati
 
 
 
-\section{intermediate constrained variables}  \label{intC}
-%The fact that precision for constrained variables is not 100\% indicates that the \tool{ELUS} has some bugs. In the further work, I aim to improve these results by fixing the software bugs.
-
-As the anti-unifiers with constrained variables are too specific and the anti-unifiers with constrained variables are too general, an intermediate form of constraints can be defined for the structural variables of anti-unifiers. That is, instead of constraining to only the specific substitutions, the intermediate constraint could be defined as the types of nodes (e.g., \code{Infix} \code{Expression}) that can be used to substitute a variable. A future experiment can be run to see whether considering intermediate constrained variables would yield to more reasonable results than the unconstrained variables.
+\section{Defining intermediate constrained variables}  \label{intC}
+As explained in Section~\ref{evaluation}, I conducted an empirical experiment to evaluate the quality of the anti-unifiers for both considered and unconstrained variables. As shown in Figures~\ref{fig:precision} and~\ref{fig:recall}, the average precision and recall values for the unconstrained experiment is lower and higher than the average precision and recall values for the constrained experiment. However, to keep the balance between the exactness (precision) and completeness (recall) of the anti-unifiers, an intermediate form of constraints can be defined for structural variables. That is, instead of constraining to only the specific substitutions, intermediate constraints could be defined as the types of nodes (e.g., \code{Infix} \code{Expression}) that can be used to substitute a structural variable. A future experiment can be run to see whether considering intermediate constrained variables would yield to more reasonable results than the unconstrained experiment.
+% the precision (exactness) and recall (completeness)
 
 
 \section{Summary}  \label{diss-summary}
 I discussed the potential threads to validity of my evaluation and characterization study. To limit the bias of my experiments, I selected the test cases form a real system with various levels of similarity in the usage of log statements. Furthermore, I examined the failed test cases to assure that my tool works when it should work with regard to the proposed algorithm. I will also make my test suite available for public examination to further check the accuracy of my manual inspection. For the characterization study, I selected various software systems in terms of functionality. I also discussed the remaining issues with the tool support, including inaccurate node ordering and handling the conflicts happened in the construction of anti-unifiers.
 % I conducted to evaluate the effectiveness of my approach and the tool support
 
-This work aims to provide a detailed view of structural generalizations constructed from a set of source code fragments that use log statements via the application of anti-unification and clustering. However, I argued how higher-order anti-unification modulo theories can be effectively approximated for various applications by means of developing an appropriate set of equational theories particularly for the higher-order structure used in each problem context. I also explained how the definition an intermediate form of variable constraints may yield to better experimental results.
+This work aims to provide a detailed view of structural generalizations constructed from a set of source code fragments that use log statements via the application of anti-unification and clustering. However, I argued how higher-order anti-unification modulo theories can be effectively approximated for various applications by means of developing an appropriate set of equational theories particularly for the higher-order structure used in each problem context. I also explained how the definition of an intermediate form of structural variable constraints may yield to better experimental results.
 %I also explained how the definition an intermediate form of constraints for structural variables of anti-unifiers may yield to better experimental results.?
 
 %in future as the extensions of my work.

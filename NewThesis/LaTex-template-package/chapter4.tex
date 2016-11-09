@@ -167,7 +167,7 @@ the list of correspondence connections of the first node involved in the connect
 
 
 \begin{sidewaysfigure}[p]
-  \centering\includegraphics [width = \textwidth, height=0.5\textheight]{Drawing4/FinalCorr.pdf}
+  \centering\includegraphics [width = \textwidth, height=0.5\textheight]{Drawing4/FirstCorr.pdf}
   \caption{Simple AUAST structure of examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \func{Determine-Best-Correspondences} algorithm.}
   \label{fig:AUASTs}
 \end{sidewaysfigure}
@@ -311,7 +311,7 @@ To create the detailed view of the structural generalization from two given AUAS
 %if structural property is a child list property, for each child of $\id{propA}$ and $\id{propB}$, where there is no correspondence in the other AUAST, an anti-unified node is created through the anti-unification of the child node with the \NIL{} structure via the \func{Antiunify} algorithm and added to the value of the anti-unified child list property; otherwise, the child node is anti-unified with its best correspondence (lines~6-21).
 
 
-\subsection{Java methods containing multiple log statements} \label{meth-multipleLogs}
+\subsection{Methods containing multiple log statements} \label{meth-multipleLogs}
 There might be some cases in which our approach is not able to anti-unify log statements in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \name{If Statement 1} with \name{If Statement3}, we should anti-unify their structural properties. Thus, \name{Log Statement 1} should be anti-unified with \name{Log Statement 3}, and \name{Log Statement 4} should be anti-unified with \NIL{} since there is no corresponding log statement in the body of \name{If Statement 1}, while there is a corresponding node for \name{Log Statement 4} in the body of \name{If Statement 2} (\name{Log Statement 2}).
 
 %\code{if statement 1}???

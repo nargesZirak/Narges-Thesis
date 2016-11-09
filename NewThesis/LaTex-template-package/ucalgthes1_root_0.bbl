@@ -1,4 +1,4 @@
-\begin{thebibliography}{51}
+\begin{thebibliography}{53}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -167,12 +167,26 @@ Nizar Grira, Michel Crucianu, and Nozha Boujemaa.
 \newblock \emph{A review of machine learning techniques for processing
   multimedia content}, 1:\penalty0 9--16, 2004.
 
+\bibitem[Guhe et~al.(2010)Guhe, Pease, Smaill, Schmidt, Gust, K{\"u}hnberger,
+  and Krumnack]{guhe2010mathematical}
+Markus Guhe, Alison Pease, Alan Smaill, Martin Schmidt, Helmar Gust, Kai-Uwe
+  K{\"u}hnberger, and Ulf Krumnack.
+\newblock Mathematical reasoning with higher-order anti-unifcation.
+\newblock In \emph{Proceedings of the 32nd Annual Conference of the Cognitive
+  Science Society}, pages 1992--1997, 2010.
+
 \bibitem[Gupta(2005)]{gupta2005pro}
 Samudra Gupta.
 \newblock \emph{Pro Apache log4j: Java application logging using the open
   source Apache log4j API}.
 \newblock Apress, 2 edition, 2005.
 \newblock \doi{10.1007/978-1-4302-0034-5}.
+
+\bibitem[Holmes and Walker(2007)]{holmes2007informing}
+Reid Holmes and Robert~J Walker.
+\newblock Informing eclipse api production and consumption.
+\newblock In \emph{Proceedings of the 2007 OOPSLA workshop on eclipse
+  technology eXchange}, pages 70--74. ACM, 2007.
 
 \bibitem[Holmes et~al.(2006)Holmes, Walker, and Murphy]{2006:tse:holmes}
 Reid Holmes, Robert~J. Walker, and Gail~C. Murphy.
@@ -290,14 +304,6 @@ Tobias Sager, Abraham Bernstein, Martin Pinzger, and Christoph Kiefer.
 \newblock In \emph{Proceedings of the International Workshop on Mining Software
   Repositories}, pages 65--71, 2006.
 
-\bibitem[Schmidt(2010)]{2010:bsc:schmidt}
-Martin Schmidt.
-\newblock Restricted higher-order anti-unification for heuristic-driven theory
-  projection.
-\newblock Bachelor's thesis, University of Osnabr{\"u}ck, Osnabr{\"u}ck,
-  Austria, 2010.
-\newblock URL \url{http://ikw.uni-osnabrueck.de/en/system/files/31-2010.pdf}.
-
 \bibitem[Shang et~al.(2015)Shang, Nagappan, and Hassan]{shang2015studying}
 Weiyi Shang, Meiyappan Nagappan, and Ahmed~E. Hassan.
 \newblock Studying the relationship between logging characteristics and the
@@ -310,6 +316,10 @@ Pang-Ning Tan, Michael Steinbach, and Vipin Kumar.
 \newblock \emph{Introduction to Data Mining}.
 \newblock Pearson, 2005.
 \newblock ISBN 978-0321321367.
+
+\bibitem[Tan et~al.(2013)Tan, Steinbach, and Kumar]{tan2013data}
+Pang-Ning Tan, Michael Steinbach, and Vipin Kumar.
+\newblock Data mining cluster analysis: Basic concepts and algorithms, 2013.
 
 \bibitem[Voorhees(1986)]{voorhees1986implementing}
 Ellen~M. Voorhees.

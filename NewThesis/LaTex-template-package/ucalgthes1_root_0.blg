@@ -2,8 +2,6 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: ucalgthes1_root_0.aux
 A level-1 auxiliary file: chapter1.aux
 A level-1 auxiliary file: chapter2.aux
 A level-1 auxiliary file: chapter3.aux
-A level-1 auxiliary file: chapter3-1.aux
-A level-1 auxiliary file: chapter4.aux
 A level-1 auxiliary file: chapter4-1.aux
 A level-1 auxiliary file: chapter5.aux
 A level-1 auxiliary file: chapter6.aux
@@ -14,7 +12,5 @@ Database file #1: ../../../../workspace/bibtex/full.bib
 Database file #2: ../../../../workspace/bibtex/references.bib
 Database file #3: ../../../../workspace/bibtex/lsmr.bib
 Database file #4: mybiblio.bib
-Warning--I didn't find a database entry for "tan2013data"
-Warning--I didn't find a database entry for "2008:etx:holmes"
 Warning--empty booktitle in beeferman2000agglomerative
-(There were 3 warnings)
+(There was 1 warning)
