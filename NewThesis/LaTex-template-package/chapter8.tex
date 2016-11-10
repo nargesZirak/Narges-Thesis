@@ -2,25 +2,25 @@
 \chapter{Conclusion}  \label{conc}
 %Understanding the detailed structural similarities and differences between a set of source code fragments is a complex problem that can be applied to solve several source code analysis problems. As a specific application, the focus of this study is on detecting usage patterns of logging statements in source code via structural generalization and clustering.
 
-Logging is a common programming practice to gain valuable information about the execution of a software system. In practice, effective usage of log statements in source code is needed to record important run-time information without causing unintentional consequences (e.g., performance overhead). However, it is a challenging task to write a high quality logging code as the current logging practices are not well-supported, and developers are not provided with enough guidance on how to make effective logging decisions. In this study, I proposed an approach that automatically characterize the location of log statements in source code from the point of view of methods containing them (logged methods). This approach aims to construct structural generalizations that describe the structural similarities and differences between logged methods.
+Logging is a common programming practice to gain valuable information about the execution of a software system. In practice, effective usage of log statements in source code is needed to record important run-time information without causing unintentional consequences (e.g., performance overhead). However, it is a challenging task to write high-quality logging code as the current logging practices are not well-supported, and developers are not provided with enough guidance on how to make effective logging decisions. In this study, I proposed an approach that automatically characterize the location of log statements in source code from the point of view of methods containing them (logged methods). My approach aims to construct structural generalizations that describe the structural similarities and differences between logged methods.
 
 %(logged methods)?
 %I have developed a prototype tool, called \tool{ELUS}, to implement the proposed approach that proceeds in four steps.
 
-I have developed a prototype tool, called \tool{ELUS}, to implement the proposed approach that proceeds in four steps. First, it extracts the ASTs of logged methods using the Eclipse JDT framework, extends the AST structures to AUAST, and determines potential structural correspondences via the Jigsaw framework. Second, it constructs an anti-unifier from the AUASTs of two given logged methods with a focus on log statements through the application of higher-order anti-unification modulo theories. Due to the problem of undecidability of HOAUMT, it employs an approximation technique which greedily determines the best correspondence for each node with the highest similarity. It applies several constraints prior to determining the best correspondences to prevent the anti-unification of log statements with any other types of nodes. It also develops a measure of structural similarity that determines how similar is the usage of logging statements in different methods. Third, it categorizes a set of logged methods via a hierarchical clustering algorithm suited to my application. Forth, it generates a detailed view of the anti-unifier constructed from each cluster to describe the structural similarities and differences between logged methods of the cluster. 
+I have developed a prototype tool, called \tool{ELUS}, to implement the proposed approach that proceeds in four steps. First, it extracts the ASTs of logged methods using the Eclipse JDT framework, extends the AST structures to AUAST, and determines potential structural correspondences via the Jigsaw framework. Second, it constructs an anti-unifier from the AUASTs of two given logged methods with a focus on log statements through the application of higher-order anti-unification modulo theories. Due to the problem of undecidability of HOAUMT, it employs an approximation technique which greedily determines the best correspondence for each node with the highest similarity. It applies several constraints prior to determining the best correspondences to prevent the anti-unification of log statements with any other types of nodes. It also uses a measure of structural similarity that determines how similar is the usage of logging statements in different methods. Third, it categorizes a set of logged methods via a hierarchical clustering algorithm suited to my application. Fourth, it generates a detailed view of the anti-unifier constructed from each cluster to describe the structural similarities and differences between logged methods of the cluster.
 % prceeds in four..?
 %logged method ????
 
-To evaluate the effectiveness of this approach in constructing generalizations and clustering logged methods, three experiments were conducted on a sample test suite. I found that my tool was successful in determining correct correspondences in 87\% of test cases. It was also successful in creating well-separated clusters of logged methods of my test suite. This work also shows how the Jigsaw framework could be effectively used to construct structural generalizations for a particular problem context by determining structural correspondences. To characterize the location of log statements in source code, I applied my tool on the source code of four software systems from various application domains: \name{Tomcat}, \name{Hibernate}, \name{Camel}, and \name{Solr}. My characterization study results in five main categories of locating log statements in source code. Furthermore, an empirical experiment has been conducted to evaluate the performance of \tool{ELUS}. This experiment shows that \tool{ELUS} has an average precision of 84\% and recall of 80\% for the studied software systems.  
+To evaluate the effectiveness of this approach in constructing generalizations and clustering logged methods, three experiments were conducted on a sample test suite. I found that my tool was successful in determining correct correspondences in 87\% of test cases. It was also successful in creating well-separated clusters of logged methods of my test suite. This work also shows how the Jigsaw framework could be effectively used to construct structural generalizations for a particular problem context by determining structural correspondences. To characterize the location of log statements in source code, I applied my tool on the source code of four software systems from various application domains: \name{Tomcat}, \name{Hibernate}, \name{Camel}, and \name{Solr}. My characterization study resulted in five main categories of locations of log statements in source code. Furthermore, an empirical experiment has been conducted to evaluate the performance of \tool{ELUS}. This experiment shows that \tool{ELUS} has an average precision of 84\% and recall of 80\% for the studied software systems.
 %which are satisfactory.
 %an average precision value of 84\%  and an average recall value of 80\%?
 
 In summary, this study makes the following contributions:
 \begin{itemize} [leftmargin=.5in]
 \item An approach to automatically construct the anti-unifiers of logging usage in source code.
-\item An approach to categorizing logging usage in source code via structural generalization and clustering.
-\item An approach to developing a similarity measure that indicates the level of similarity between the usage of log statements in different code snippets.
-\item I found five popular categories of logging usage in source code, including \name{exception catch-block logging}, \name{conditional logging}, \name{method logging}, \name{control flow logging}, and \name{exception try-block logging}. 
+\item An approach to categorize logging usage in source code via structural generalization and clustering.
+\item A similarity measure that indicates the level of similarity between the usage of log statements in different code snippets.
+\item Five common categories of logging usage in source code, including \name{exception catch-block logging}, \name{conditional logging}, \name{method logging}, \name{control flow logging}, and \name{exception try-block logging}.
 %\item An approach to automatically constructing structural generalizations from the ASTs of a set of source code fragments with special attention to log statements by determining structural correspondences and developing an approximation of higher-order anti-unification modulo theories.
 
 \end{itemize}
@@ -30,34 +30,34 @@ In summary, this study makes the following contributions:
 Future work could be directed to address the remaining issues of this study as described in the following sections.
 
 
-\subsubsection{ \emph{Improving logging practices} }
-characterizing logging usage could be a huge step towards improving logging practices through the provision of some policies and guidelines that might help developers for making informed decisions about where and what to log. Further studies could be conducted to investigate the feasibility of predicting the location of log statements based on the detected usage patterns. Future work can also be done to develop recommendation tool supports that not only save developers’ time and effort for making decisions about where and what to log, but also improve the quality of logging practices.
+\subsection{Improving logging practices}
+Characterizing logging usage could be used to improve logging practices through the provision of policies and guidelines that might help developers in making informed decisions about where and what to log. Further studies could be conducted to investigate the feasibility of predicting the location of log statements based on the detected usage patterns. Future work can also be done to develop recommendation tool support that not only saves developers' time and effort for making decisions about where and what to log, but also improve the quality of logging practices.
 %policies and guidelines
 %patterns?
-\subsubsection{\emph{Further extensions to my approach and the tool support} }
-In the future, I aim to improve the precision and recall of \tool{ELUS} by fixing the software bugs. Additional work can also be done to improve the accuracy of my approach and the tool support by incorporating additional data flow analysis and natural language processing techniques. The data flow analysis can be performed to detect the problems related to node ordering in the  construction of anti-unifiers. This approach can also be extended to examine more advanced semantical and contextual information of source code fragments enclosing log statements in addition to structural information. Furthermore, further analyses can be done to detect and resolve all the conflicts happen in deciding the best correspondences to construct an approximation of the best anti-unifier to my problem. However, the complexity of applying all these extensions must be kept restricted to maintain the approach as a practical one.
+\subsection{Further extensions to my approach and the tool support}
+In the future, I aim to improve the precision and recall of \tool{ELUS} by repairing software bugs and by either (1) altering the way in which I calculate precision and recall or (2) replacing my approach for splitting complex cases. Additional work can also be done to improve the accuracy of my approach and the tool support by incorporating additional data flow analysis and natural language processing techniques. The data flow analysis can be performed to detect the problems related to node ordering in the  construction of anti-unifiers. My approach can be extended to examine more advanced semantical and contextual information of source code fragments enclosing log statements in addition to structural information. Furthermore, further analyses can be done to detect and resolve all the conflicts happen in deciding the best correspondences to construct an approximation of the best anti-unifier to my problem. However, the complexity of applying all these extensions must be controlled to maintain the approach as a practical one.
 %This approach?
 % conflict resolution????
 % class-level analysis???????
 % futhur studies to incorporate contextual info to strcutural one
 
-\subsubsection{\emph{Further validation of this study}} 
+\subsection{Further validation of this study}
 The characterization study can be conducted on more software systems to further validate the findings of this study. In addition, a survey can be performed to gain more feedback from developers to investigate the factors they consider when they want to decide on the location of log statements. It might also be helpful to recognize important structural and semantic information that should be taken into account for characterizing logging usage.
 % In addition, a survey can be performed to gain more feedback from developers to investigate the factors they consider when they want to decide on the location of log statements. ?
 
-\subsubsection{\emph{Other applications} }
-Any applications that are involved in the inference of structural patterns in source code even infrequently-used patterns might benefit from my tool’s underlying framework.
-Furthermore, understanding the commonalities and differences amongst source code fragments has application in several areas of software engineering, such as API usage pattern collation, code clone detection, recommending replacements for API migration, and merging different branches of a version control system. My tool`s functionality to construct the detailed view of structural generalizations from a set of source code fragments could be used to improve the results of these studies as well.
-% patterns of a statement??? 
+\subsection{Other applications}
+Any applications that are involved in the inference of structural patterns in source code even infrequently-used patterns might benefit from my tool's underlying framework.
+Furthermore, understanding the commonalities and differences amongst source code fragments has application in several areas of software engineering, such as API usage pattern summarization, code clone detection, recommendation of replacements for API migration, and merge of different branches in a version control system. My tool's functionality to construct the detailed view of structural generalizations from a set of source code fragments could be used to improve the results of such studies as well.
+% patterns of a statement???
 %% EXAMPLE???
 
 
-% classifies? 
+% classifies?
 % on a method-granularity basis analysis.
-%The application of HOAUMT to construct generalizations via determining structural correspondences is novel to the problem of extracting usage patterns of log statements in source code. 
+%The application of HOAUMT to construct generalizations via determining structural correspondences is novel to the problem of extracting usage patterns of log statements in source code.
 
 %Finally, we made a comparison between our tool and the Jigsaw tool, which were developed for various applications, but part of the implementation of Jigsaw was successfully applied to solve our problem context.
 %In this study, I investigate the logging statements
 %. My tool that generate a detailed view of structural generalizations describing the commonalities and differences between the usage of log statements in  methods.
 %logging usage in source code.
-%enough guidance? 
+%enough guidance?

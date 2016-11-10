@@ -427,11 +427,12 @@ public void actionPerformed(ActionEvent evt) {
 \caption[Example 2: A Java method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 2.\label{ch3-ex2}}
 \end{figure}
 
-%\begin{figure} [p]
 \begin{figure} [p]
+%\begin{sidewaysfigure} [p]
   \centering\includegraphics[width = \textwidth]{Drawing4/AST.pdf}
   \caption{Simple AST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.}
   \label{fig:ast}
+%\end{sidewaysfigure}
 \end{figure}
 
 In the JDT framework, structural properties of each AST node can be used to obtain specific information about the Java element that it represents. These properties are stored in a map data structure that associates each property to its value; this data is divided into three types:
@@ -749,7 +750,7 @@ Despite having multiple potential MSAs, I need to determine one single MSA that 
 % reason, infinite number??? ever variable???
 %Our goal is to find an MSA that is an approximation of the best fit to our application
 
-\section{Practical Matters}
+\section{Practical matters}
 
 One must be particularly careful about the equational theories that are introduced to avoid having the resulting framework be undecidable.  Furthermore, searching through a large space of possible anti-unifiers to find the most specific one can have unacceptably poor runtime performance.  Since our goal is to be able to extract commonalities out of Java source code, we approximate the notion of higher-order anti-unification modulo equational theories as follows.
 
@@ -824,7 +825,7 @@ For simplicity, we treat \code{for}- and \code{while}-loops as functions with di
 
 %In practice, anti-unification of \code{for}- and \code{while}-loops is siby converting the \code{for}-loop to the equivalent \code{while}-loop and anti-unifying the result directly, which can find correspondences between the initialization expression and equivalent assignment statements prior to the \code{while}-loop, and between the update expression and equivalent statements, typically at the end of the block in the \code{while}-loop.
 
-\section{The Jigsaw Tool}\label{Jigsaw}
+\section{The Jigsaw tool}\label{Jigsaw}
 
 \name{Jigsaw} is a plug-in to the Eclipse integrated development environment (IDE), which was developed by \citet{2008:fse:cottrell} to support small-scale source code reuse via structural correspondence. A small-scale reuse task can be divided into two phases. The first phase involves the developer identifying a source code snippet that implements functionality that is missing within a target system. The second phase involves integrating the source code snippet within the target system.
 \name{Jigsaw} supports the small scale reuse task by identifying structural correspondences between the code snippet and the context into which the code should be pasted, in order to suggest to developers what parts already exist within the target system, what parts are missing, and what parts need to be modified to fit into the context. In summary, the \name{Jigsaw} tool determines the structural correspondences between two \name{Java} source code fragments through the application of higher-order anti-unification modulo equational theories such that one fragment can be integrated to the other one for small-scale code reuse.
@@ -840,7 +841,7 @@ The Jigsaw similarity function returns a value in $[0, 1]$ where zero indicates 
 As I intend to construct a structural generalization from ASTs of two logged methods via structural correspondence, it could be helpful to use the first phase of the proposed approach to find candidate correspondences using the similarity measure. However, the second phase does not help determine the best correspondences needed in my context, as the CAST generated via thresholding neither resolves the conflicts that occur in constructing one single anti-unifier automatically, nor prevents the anti-unification of log statement nodes with any other nodes. There, the Jigsaw similarity function does not enable us to measure how similar are the usages of log statements inside methods. In addition, as the problem of this study is different, the integration phase of the approach is not related to my work. Instead, I should develop an algorithm to construct a detailed view of the generalization describing the structural commonalities and differences between logged methods. However, the CAST structure does not suffice to construct an anti-unifier: it does not allow the insertion of \emph{structural variables} in place of nodes in the tree structure, and thus an extended form is required. In the following chapters, I will discuss my approach to create a structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
 
 \section{Clustering}  \label{ch3-clustering}
-Clustering is the division of a collection of data objects into meaningful groups (clusters) \cite{jain1999data}. The goal of clustering is to find groups of objects such that the objects in one cluster will be similar to one another and dissimilar from the objects in other clusters. The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters are \cite{tan2013data}.  In general, there are two major types of clustering:
+Clustering is the division of a collection of data objects into meaningful groups (clusters) \cite{jain1999data}. The goal of clustering is to find groups of objects such that the objects in one cluster will be similar to one another and dissimilar from the objects in other clusters. The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters are \cite{tan2005data}.  In general, there are two major types of clustering:
 %The greater the similarity amongst the objects within a cluster and the greater the dissimilarity between the objects from various clusters are, the more distinct the clusters are\cite{tan2013data}. ?
 %\cite[][Chapter 8]{tan2013data} ??
 

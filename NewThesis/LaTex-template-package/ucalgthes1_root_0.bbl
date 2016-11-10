@@ -1,4 +1,4 @@
-\begin{thebibliography}{53}
+\begin{thebibliography}{52}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -225,8 +225,7 @@ Suhas Kabinna, Cor-Paul Bezemer, Weiyi Shang, and Ahmed~E. Hassan.
 Suhas Kabinna, Weiyi Shang, Cor-Paul Bezemer, and Ahmed~E. Hassan.
 \newblock Examining the stability of logging statements.
 \newblock In \emph{Proceedings of the IEEE International Conference on Software
-  Analysis, Evolution, and Reengineering (SANER)}, pages 326--337,
-  2016{\natexlab{b}}.
+  Analysis, Evolution, and Reengineering}, pages 326--337, 2016{\natexlab{b}}.
 
 \bibitem[Karypis et~al.(1999)Karypis, Han, and Kumar]{karypis1999chameleon}
 George Karypis, Eui-Hong Han, and Vipin Kumar.
@@ -313,13 +312,10 @@ Weiyi Shang, Meiyappan Nagappan, and Ahmed~E. Hassan.
 
 \bibitem[Tan et~al.(2005)Tan, Steinbach, and Kumar]{tan2005data}
 Pang-Ning Tan, Michael Steinbach, and Vipin Kumar.
-\newblock \emph{Introduction to Data Mining}.
+\newblock \emph{Introduction to Data Mining}, chapter 8. Cluster Analysis:
+  Basic Concepts and Algorithms.
 \newblock Pearson, 2005.
 \newblock ISBN 978-0321321367.
-
-\bibitem[Tan et~al.(2013)Tan, Steinbach, and Kumar]{tan2013data}
-Pang-Ning Tan, Michael Steinbach, and Vipin Kumar.
-\newblock Data mining cluster analysis: Basic concepts and algorithms, 2013.
 
 \bibitem[Voorhees(1986)]{voorhees1986implementing}
 Ellen~M. Voorhees.
