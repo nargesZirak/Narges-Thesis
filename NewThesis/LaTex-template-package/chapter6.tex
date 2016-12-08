@@ -3,23 +3,25 @@
 In this chapter, I discuss the validity of my evaluation and the characterization study (Section~\ref{threads}), and a number of remaining issues including: the limitations and pitfalls of my approach and the tool support (Section~\ref{limitations}); the usage of anti-unification theory for other applications (Section~\ref{auTheory}); and the definition of an intermediate form of structural variable constraints (Section~\ref{intC}).
 
 \section{Threats to validity}  \label{threads}
-Prior to applying my tool for characterizing logging usage in real-world software systems, I have conducted three experiments to investigate the effectiveness of the proposed approach. However, there are several potential threats regarding the validity of these experiments. First, the results of my manual examination might be biased, as I determined the correct correspondences between the AUASTs of my test suite based on a similarity measurement. To limit the bias, other people can be involved to double check the accuracy of my manual inspection in future work. Second, the experiments have examined one set of LMs from a real-world software system; different sets and different systems may generate different results. Despite the fact that I cannot claim that the set of tested LMs is a good representative of all LMs in real-world software systems, the experimental results are still promising, as the log statements in the tested methods differ markedly from each other with respect to their location and details. Hence, these experiments have sufficed to indicate the effectiveness of my approach in constructing structural generalizations. Another potential threat is that the rate of detecting correspondences by my tool might happened accidentally only for my test suite. To resolve this doubt, I examined the cases where my tool fails to detect correct correspondences, and I found that the failures are due to the fundamental limitations and complexities in the construction of structural generalizations through the use of structural correspondence. That is, my tool creates structural generalizations successfully with regard to what my algorithm should generate.
 
-%these experiments have sufficed to indicate???
+\subsubsection{Threads to internal validity}  \label{internal_threads}
+\begin{itemize} [leftmargin=.5in]
+\item \textit{Researcher bias:} The results of my manual analysis might be biased, as I determined the correct correspondences for my test suite. To limit the bias, third-party people can be involved to double-check the accuracy of my manual inspection in future work.
+\item \textit{Limited sample size:} Another potential threat is that the rate of detecting correct best correspondences by my tool might happened accidentally only for my test suite, as the test suite size is limited in my experiments. To reduce this doubt, I manually examined the cases where my tool fails to detect correct correspondences, and I found that the failures are due to the fundamental limitations and complexities in the construction of structural generalizations through the use of structural correspondence. That is, my tool creates structural generalization successfully with regard to what my algorithm should generate.
+\end{itemize} 
+ 
+\subsubsection{Threads to external validity}  \label{external_threads}
+\begin{itemize} [leftmargin=.5in]
+\item \textit{Representativeness of the studied systems:} A potential threat to the validity of the exploratory study is the degree to which my selected set of software systems is a good representation of all real-world logging practices. To address this issue, I selected various open-source software projects in terms of application. The studied software systems are widely used by many developers for a long period of time. However, the fact that I only studied Apache log4j statements might limit the generalizability of findings. To improve the generalizability of this study, I have chosen one system not from Apache Software Foundation. However, my findings might not be able to reflect the characteristics of logging usage in systems that are closed source, from other domains, or software written in other programming languages. In addition, the evaluation experiments have examined one set of logged methods (LMs) from a real-world software system; different sets and different systems may generate different results. Despite the fact that I cannot claim that the set of tested LMs is a good representative of all LMs in real-world software systems, the experimental results are still promising, as the location of logging statements in the tested methods differ markedly from each other with respect to their location and details. Hence, these experiments have sufficed to indicate the effectiveness of my approach in constructing structural generalizations.
+\item \textit{The number of software systems under study:}	 My study was conducted on four large open-source software systems written in Java. The studied systems are limited in number; however, I believe that my findings of the logging practices in these systems could be generalizable to many other software systems. This thread could be reduced by more experiments on wider range of software systems in future work.
+\item \textit{The number of researchers who performed the manual examination: }Due to the limitations during the course of my research, the manual examination was conducted only by the first author. Future work can reduce this thread by involving other people to verify the results.
+\end{itemize}
+ 
+ 
+\subsubsection{Threads to construct validity}  \label{construct_threads} 
+As there is no existing benchmarking dataset to assess the quality attributes of the anti-unifiers in terms of accuracy, reliability, and performance, I have applied DETERMINE-LOCATION Algorithm to measure the performance of ELUS in terms of exactness (precision) and completeness (recall) for the studied systems. However, I acknowledge that these metrics may not perfectly measure all the quality attributes of the anti-unifiers of logging code. Another potential construct thread is the degree to which my similarity metric perfectly represent how similar logged methods are. To reduce this thread, I conducted an experimental study in which I manually estimated the similarity between the usages of logging statements in different methods of a sample test suite and compared the similarity values with the results extracted by automated approach.
 
-%and the correct way of classifying the set of AUASTs in our
-%, and the assumptions taken in developing the algorithms.
-%CITATION POPULARITY!!!
-%There are several threats to the validity of our characterization study.
 
-A potential threat to the validity of the characterization study is the degree to which my selected set of software systems is a good representation of all real-world logging practices. To address this issue, I selected various open-source software projects in terms of application. The studied software systems are widely used by many developers for a long period of time.  However, the fact that I only studied \name{Apache log4j} statements might limit the generalizability of findings. To improve the generalizability of this study, I have chosen one system not from Apache Software Foundation. However, my findings might not be able to reflect the characteristics of logging usage in systems that are closed source, from other domains, or software written in other programming languages.
-%In addition, these systems are widely used by many developers for a long period of time.
-
-
-%application??
-%citation??? 10 years
-%application of softwares???
-%other threads?
 
 \section{The pitfalls of my tool}  \label{limitations}
 %title?? choose a name for our tool????

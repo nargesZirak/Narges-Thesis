@@ -3,7 +3,7 @@ In order to construct a structural generalization describing the commonalities a
 
 %To construct an anti-unified structure, I first need to create an extended form of the CAST structure, called \emph{anti-unifier ASTs} (AUASTs), to allow the insertion of variables in place of any nodes in the tree structure (Section~\ref{auast})
 
-To implement the approach, I needed a concrete framework for constructing and manipulating ASTs. The \name{Eclipse} integrated development environment provides such a framework in its \name{Java Development Tools} (JDT) component (as explained in Section~\ref{JDT}). I also utilized \name{Jigsaw} \cite{2008:fse:cottrell}, which is an existing framework for constructing an extended form of the AST structure, called CAST, where each node holds a list of candidate correspondence connections (as described in Section~\ref{Jigsaw}). Then, I extended the CAST structure to \emph{anti-unifier ASTs} (AUASTs) structure that would allow the creation of anti-unifier in a later step. To evaluate the effectiveness of Jigsaw to determining correspondences, I applied it on the ASTs of a sample set of logged Java methods and compared them in a pairwise manner. Section~\ref{jigsaw-assessment} describes my experimental setup, present my study, and discuss the results. I built atop this work in order to create anti-unifiers in a later phase.
+To implement the approach, I needed a concrete framework for constructing and manipulating ASTs. The \name{Eclipse} integrated development environment provides such a framework in its \name{Java Development Tools} (JDT) component (as explained in Section~\ref{JDT}). I also utilized \name{Jigsaw} \cite{2008:fse:cottrell}, which is an existing framework for constructing an extended form of the AST structure, called CAST, where each node holds a list of candidate correspondence connections (as described in Section~\ref{Jigsaw}). Then, I extended the CAST structure to \emph{anti-unifier ASTs} (AUASTs) structure that would allow the creation of an anti-unifier in a later step. To evaluate the effectiveness of Jigsaw to determining correspondences, I applied it on the ASTs of a sample set of logged Java methods and compared them in a pairwise manner. Section~\ref{jigsaw-assessment} describes my experimental setup, present my study, and discusses the results. I built atop this work in order to create anti-unifiers in a later phase.
 
 %\RW{This goes later.} I built atop this work in order to create anti-unifiers.
 %we or I???
@@ -21,7 +21,7 @@ To compute similarity between AST nodes, I re-used a function developed by \cite
 
 
 \begin{equation}\label{eq-jigsaw-sim}
-\id{similarity} = \frac{\id{matches}}{\max\{|\id{A}|, |\id{B}|\}}
+\id{similarity(\id{A},\id{B})} = \frac{\id{matches}(\id{A},\id{B})}{\max\{|\id{A}|, |\id{B}|\}}
 \end{equation}
 
 
@@ -290,16 +290,16 @@ I describe my approach for LMs containing multiple log statements in detail in S
     \toprule
     Case & Logged methods & Size (LOC)\\
     \midrule
-    1& \code{PluginJAR.generateCache()} &104\\
-    2& \code{MiscUtilities.isSupportedEncoding(..)} &9\\
-    3& \code{EditBus.send(..)} &14\\
-    4& \code{EditBus.send(..)}* &14\\
-    5& \code{EditAction.Wrapper.actionPerformed(..)} &5\\
-    6& \code{EBPlugin.handleMessage(..)} &6\\
-    7& \code{BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
-    8& \code{JARClassLoader.loadClass(..)} &32\\
-    9& \code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
-    10& \code{ServiceManager.loadServices(..)} &20\\
+    1& {PluginJAR.generateCache()} &104\\
+    2& {MiscUtilities.isSupportedEncoding(..)} &9\\
+    3& {EditBus.send(..)} &14\\
+    4& {EditBus.send(..)}* &14\\
+    5& {EditAction.Wrapper.actionPerformed(..)} &5\\
+    6& {EBPlugin.handleMessage(..)} &6\\
+    7& {BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
+    8& {JARClassLoader.loadClass(..)} &32\\
+    9& {VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
+    10& {ServiceManager.loadServices(..)} &20\\
     \bottomrule
   \end{tabular}
   \caption[Logged methods used as our test suite.]{Logged methods used as our test suite. All are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of Case 9 that is in the \protect\name{org.gjt.sp.jedit.io} package.}
@@ -322,13 +322,13 @@ I examined the generated CASTs of these test cases and selected, for the sake of
     \shortstack{Test\\case} & \name{Java} source code fragment & \shortstack{Jigsaw\\similarity}\\
     \midrule
 
-    \multirow{2}{*}{{TC1}}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
+    \multirow{2}{*}{{TC1}}&{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{1}\\
 
-                         &\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
+                         &{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}\\
     \midrule
 
-       \multirow{2}{*}{TC2}&\code{return entry;}& \multirow{2}{*}{0}\\
-       &\code{int i=0;}\\
+       \multirow{2}{*}{TC2}&{return entry;}& \multirow{2}{*}{0}\\
+       &{int i=0;}\\
     \midrule
 
 
@@ -341,8 +341,8 @@ I examined the generated CASTs of these test cases and selected, for the sake of
       \\
     \midrule
 
-    \multirow{2}{*}{TC4}&\code{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{0.33}\\
-      &\code{EditBus.removeFromBus(this);}\\
+    \multirow{2}{*}{TC4}&{Log.log(Log.WARNING,this,"Unknown action: " + actionName);}& \multirow{2}{*}{0.33}\\
+      &{EditBus.removeFromBus(this);}\\
     \bottomrule
 
   \end{tabular}

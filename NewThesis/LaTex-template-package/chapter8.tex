@@ -15,15 +15,18 @@ To evaluate the effectiveness of this approach in constructing generalizations a
 %which are satisfactory.
 %an average precision value of 84\%  and an average recall value of 80\%?
 
-In summary, this study makes the following contributions:
+In summary, my study makes the following main contributions:
 \begin{itemize} [leftmargin=.5in]
-\item An approach to automatically construct the anti-unifiers of logging usage in source code.
-\item An approach to categorize logging usage in source code via structural generalization and clustering.
-\item A similarity measure that indicates the level of similarity between the usage of log statements in different code snippets.
-\item Five common categories of logging usage in source code, including \name{exception catch-block logging}, \name{conditional logging}, \name{method logging}, \name{control flow logging}, and \name{exception try-block logging}.
-%\item An approach to automatically constructing structural generalizations from the ASTs of a set of source code fragments with special attention to log statements by determining structural correspondences and developing an approximation of higher-order anti-unification modulo theories.
-
+\item I proposed a novel approach to automatically characterize logging usage in source code, inspired by anti-unification and clustering.
+\item I implemented the proposed approach as an Eclipse plug-in tool, named ELUS, and conducted a within-project evaluation using four large open-source software systems.
+\item I conducted an exploratory experimental study by applying ELUS on the source code four large open-source software systems.
+\item My analysis has found the feasibility of finding common patterns of where log statements occur in source code.
+\item My analysis has resulted in five main categories of logging usage in source code, including exception catch-block logging, conditional logging, method logging, control flow logging, and exception try-block logging.
+\item My analysis showed that the distribution of logging categories vary from application to application.
+\item I illustrated the potential applicability of my findings to enhance existing logging practices using an example. 
 \end{itemize}
+
+
 
 
 \section{Future Work}  \label{fw}
