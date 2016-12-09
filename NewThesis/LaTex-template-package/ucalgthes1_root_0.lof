@@ -1,59 +1,59 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Log statement examples from the \name {Apache Log4j} framework.\relax }}{3}{figure.caption.12}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Overview of the approach. \relax }}{6}{figure.caption.13}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Log statement examples from the \name {Apache log4j} framework.\relax }}{3}{figure.caption.11}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Overview of the approach. \relax }}{6}{figure.caption.12}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {2.1}{\ignorespaces The \lstinline {EditBus} class.\relax }}{10}{figure.caption.14}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces The developer's initial determination of the usage of logging calls.}}{12}{figure.caption.15}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces The developer's second determination of the usage of log statements.}}{12}{figure.caption.16}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces The developer's third determination of the usage of log statements.}}{13}{figure.caption.17}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces The developer's fourth determination of the usage of log statements.}}{13}{figure.caption.18}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces The developer's final determination of the usage of log statements.}}{14}{figure.caption.19}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The \lstinline {EditBus} class.\relax }}{10}{figure.caption.13}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The developer's initial determination of the usage of logging calls.}}{12}{figure.caption.14}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces The developer's second determination of the usage of log statements.}}{12}{figure.caption.15}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces The developer's third determination of the usage of log statements.}}{13}{figure.caption.16}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces The developer's fourth determination of the usage of log statements.}}{13}{figure.caption.17}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces The developer's final determination of the usage of log statements.}}{14}{figure.caption.18}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A simple example Java program.\relax }}{16}{figure.caption.20}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces The concrete syntax tree for the program of Figure\nobreakspace {}\ref {fig:java-example}.\relax }}{17}{figure.caption.21}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces The abstract syntax tree derived from the concrete syntax tree of Figure\nobreakspace {}\ref {fig:java-example-cst}.\relax }}{19}{figure.caption.22}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces A more abstract AST derived from the concrete syntax tree of Figure\nobreakspace {}\ref {fig:java-example-cst}.\relax }}{20}{figure.caption.23}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Example 1: A Java method that uses a log statement.}}{21}{figure.caption.24}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Example 2: A Java method that uses a log statement.}}{21}{figure.caption.25}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Simple AST structure of the examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.\relax }}{21}{figure.caption.26}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{25}{figure.caption.27}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{26}{figure.caption.28}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces A higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{27}{figure.caption.29}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Ambiguous higher-order anti-unification modulo theories of two terms.}}{29}{figure.caption.30}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Higher-order anti-unification modulo theories of the terms $f(a, b)$ and $b$.\relax }}{31}{figure.caption.31}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Complex anti-unification of two structures demonstrating a \NIL {}-theory.}}{32}{figure.caption.32}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A simple example \tool {Java} program.\relax }}{16}{figure.caption.19}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The concrete syntax tree for the program of Figure\nobreakspace {}\ref {fig:java-example}.\relax }}{17}{figure.caption.20}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The abstract syntax tree derived from the concrete syntax tree of Figure\nobreakspace {}\ref {fig:java-example-cst}.\relax }}{19}{figure.caption.21}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces A more abstract AST derived from the concrete syntax tree of Figure\nobreakspace {}\ref {fig:java-example-cst}.\relax }}{20}{figure.caption.22}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Example 1: A \tool {Java} method that uses a log statement.}}{21}{figure.caption.23}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Example 2: A \tool {Java} method that uses a log statement.}}{21}{figure.caption.24}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Simple AST structure of the examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.\relax }}{21}{figure.caption.25}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Unification and anti-unification of the terms $f(X,b)$ and $f(a,Y)$.\relax }}{25}{figure.caption.26}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces First-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{26}{figure.caption.27}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces A higher-order anti-unification of the terms $f(a,b)$ and $g(a,b)$.\relax }}{27}{figure.caption.28}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Ambiguous higher-order anti-unification modulo theories of two terms.}}{29}{figure.caption.29}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Higher-order anti-unification modulo theories of the terms $f(a, b)$ and $b$.\relax }}{31}{figure.caption.30}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Complex anti-unification of two structures demonstrating a \NIL {}-theory.}}{32}{figure.caption.31}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Simple CAST structure of the examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.}}{41}{figure.caption.33}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Anti-unification of the AUASTs of the log statements in Examples 1 and 2.\relax }}{43}{figure.caption.34}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Logged methods used as our test suite.}}{44}{figure.caption.35}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample \name {Java} source code fragment pairs.\relax }}{45}{figure.caption.36}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{46}{figure.caption.37}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Simple CAST structure of the examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}.}}{41}{figure.caption.32}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Anti-unification of the AUASTs of the log statements in Examples 1 and 2.\relax }}{43}{figure.caption.33}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Logged methods used as our test suite.}}{44}{figure.caption.34}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample \name {Java} source code fragment pairs.\relax }}{45}{figure.caption.35}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces A similarity graph representing pairwise Jigsaw similarities between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{46}{figure.caption.36}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Overview of the generalization process.\relax }}{48}{figure.caption.38}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \textsc {Determine-Best-Correspondences} algorithm.\relax }}{52}{figure.caption.39}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces The detailed view of the anti-unifier generated by \relax {ELUS} from the AUASTs of Examples 1 and 2.\relax }}{57}{figure.caption.40}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces A \name {Java} method that utilizes multiple log statements.\relax }}{58}{figure.caption.41}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces A \name {Java} method that utilizes multiple log statements.\relax }}{58}{figure.caption.42}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate candidate structural correspondences detected by the Jigsaw framework.\relax }}{58}{figure.caption.43}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using the greedy algorithm.\relax }}{59}{figure.caption.44}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Create multiple copies of the LM in Figure\nobreakspace {}\ref {multiple1} for each log statement.\relax }}{60}{figure.caption.45}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Create multiple copies of the LM in Figure\nobreakspace {}\ref {multiple2} for each log statement.\relax }}{60}{figure.caption.46}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces 10 sample logged \name {Java} method pairs used as test cases.}}{62}{figure.caption.47}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Results of constructing anti-unifiers with a focus on log statements for the test cases presented in Table\nobreakspace {}\ref {study2_test_cases}\relax }}{63}{figure.caption.48}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces A similarity graph representing pairwise similarities calculated by my tool between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{64}{figure.caption.49}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Overview of the generalization process.\relax }}{48}{figure.caption.37}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {ch3-ex1} and\nobreakspace {}\ref {ch3-ex2}. The links between AUAST nodes indicate structural correspondences selected as the best fit using the \textsc {Determine-Best-Correspondences} algorithm.\relax }}{52}{figure.caption.38}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces The detailed view of the anti-unifier generated by \relax {ELUS} from the AUASTs of Examples 1 and 2.\relax }}{57}{figure.caption.39}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces A Java method that utilizes multiple log statements.\relax }}{58}{figure.caption.40}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Another Java method that utilizes multiple log statements.\relax }}{58}{figure.caption.41}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate candidate structural correspondences detected by the Jigsaw framework.\relax }}{58}{figure.caption.42}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Simple AUAST structure of examples in Figures\nobreakspace {}\ref {multiple1} and\nobreakspace {}\ref {multiple2}. Links between AUAST nodes indicate structural correspondences selected as the best match using the greedy algorithm.\relax }}{59}{figure.caption.43}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Creating multiple copies of the LM in Figure\nobreakspace {}\ref {multiple1} for each log statement.\relax }}{60}{figure.caption.44}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Creating multiple copies of the LM in Figure\nobreakspace {}\ref {multiple2} for each log statement.\relax }}{60}{figure.caption.45}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces 10 sample logged Java method pairs used as test cases.}}{62}{figure.caption.46}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Results of constructing anti-unifiers with a focus on log statements for the test cases presented in Table\nobreakspace {}\ref {study2_test_cases}\relax }}{63}{figure.caption.47}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces A similarity graph representing pairwise similarities calculated by my tool between LMs shown in Table\nobreakspace {}\ref {table:ljms}.\relax }}{64}{figure.caption.48}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {6.1}{\ignorespaces The initial similarity matrix for a sample set of 3 AUASTs.\relax }}{68}{figure.caption.50}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Diagram of the modified agglomerative hierarchical clustering process for the sample set.\relax }}{69}{figure.caption.51}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces The initial similarity matrix for a sample set of 3 AUASTs.\relax }}{68}{figure.caption.49}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Diagram of the modified agglomerative hierarchical clustering process for the sample set.\relax }}{69}{figure.caption.50}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{72}{figure.caption.52}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Histograms of the number of LMs per cluster.\relax }}{73}{figure.caption.54}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces The distribution of the categories of anti-unifiers in the logging usage.\relax }}{76}{figure.caption.56}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces The precision of \relax {ELUS}.\relax }}{79}{figure.caption.63}
-\contentsline {figure}{\numberline {7.5}{\ignorespaces The recall of \relax {ELUS}.\relax }}{79}{figure.caption.64}
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Example 1: An example of an inappropriate usage of a log statement in a Java method.}}{82}{figure.caption.67}
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Example 1: An example for the purpose of enhancing the logging usage in the Java method of Example.}}{82}{figure.caption.68}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{72}{figure.caption.51}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Histograms of the number of LMs per cluster.\relax }}{73}{figure.caption.53}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces The distribution of the categories of anti-unifiers in the logging usage.\relax }}{76}{figure.caption.55}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces The precision of \relax {ELUS}.\relax }}{79}{figure.caption.61}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces The recall of \relax {ELUS}.\relax }}{79}{figure.caption.62}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces An example of an inappropriate usage of a log statement in a Java method.}}{82}{figure.caption.63}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Modified Java method of Figure\nobreakspace {}\ref {inapproprate-ex1} for the purpose of enhancing the logging usage.}}{82}{figure.caption.64}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}

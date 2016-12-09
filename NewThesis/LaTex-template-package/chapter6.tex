@@ -1,34 +1,34 @@
 \chapter{Discussion}  \label{diss}
 
-In this chapter, I discuss the validity of my evaluation and the characterization study (Section~\ref{threads}), and a number of remaining issues including: the limitations and pitfalls of my approach and the tool support (Section~\ref{limitations}); the usage of anti-unification theory for other applications (Section~\ref{auTheory}); and the definition of an intermediate form of structural variable constraints (Section~\ref{intC}).
+In this chapter, I discuss the validity of my evaluation and the characterization study (Section~\ref{threats}), and a number of remaining issues including: the limitations and pitfalls of my approach and the tool support (Section~\ref{limitations}); the usage of anti-unification theory for other applications (Section~\ref{auTheory}); and the definition of an intermediate form of structural variable constraints (Section~\ref{intC}).
 
-\section{Threats to validity}  \label{threads}
+\section{Threats to validity}  \label{threats}
 
-\subsubsection{Threads to internal validity}  \label{internal_threads}
+\subsection{Threats to internal validity}  \label{internal_threats}
 \begin{itemize} [leftmargin=.5in]
-\item \textit{Researcher bias:} The results of my manual analysis might be biased, as I determined the correct correspondences for my test suite. To limit the bias, third-party people can be involved to double-check the accuracy of my manual inspection in future work.
-\item \textit{Limited sample size:} Another potential threat is that the rate of detecting correct best correspondences by my tool might happened accidentally only for my test suite, as the test suite size is limited in my experiments. To reduce this doubt, I manually examined the cases where my tool fails to detect correct correspondences, and I found that the failures are due to the fundamental limitations and complexities in the construction of structural generalizations through the use of structural correspondence. That is, my tool creates structural generalization successfully with regard to what my algorithm should generate.
-\end{itemize} 
- 
-\subsubsection{Threads to external validity}  \label{external_threads}
-\begin{itemize} [leftmargin=.5in]
-\item \textit{Representativeness of the studied systems:} A potential threat to the validity of the exploratory study is the degree to which my selected set of software systems is a good representation of all real-world logging practices. To address this issue, I selected various open-source software projects in terms of application. The studied software systems are widely used by many developers for a long period of time. However, the fact that I only studied Apache log4j statements might limit the generalizability of findings. To improve the generalizability of this study, I have chosen one system not from Apache Software Foundation. However, my findings might not be able to reflect the characteristics of logging usage in systems that are closed source, from other domains, or software written in other programming languages. In addition, the evaluation experiments have examined one set of logged methods (LMs) from a real-world software system; different sets and different systems may generate different results. Despite the fact that I cannot claim that the set of tested LMs is a good representative of all LMs in real-world software systems, the experimental results are still promising, as the location of logging statements in the tested methods differ markedly from each other with respect to their location and details. Hence, these experiments have sufficed to indicate the effectiveness of my approach in constructing structural generalizations.
-\item \textit{The number of software systems under study:}	 My study was conducted on four large open-source software systems written in Java. The studied systems are limited in number; however, I believe that my findings of the logging practices in these systems could be generalizable to many other software systems. This thread could be reduced by more experiments on wider range of software systems in future work.
-\item \textit{The number of researchers who performed the manual examination: }Due to the limitations during the course of my research, the manual examination was conducted only by the first author. Future work can reduce this thread by involving other people to verify the results.
+\item \textit{Researcher bias:} The results of my manual analysis might be biased, as I determined the correct correspondences for my test suite myself. To limit the bias, third-parties could be involved to double-check the accuracy of my manual inspection in future work.
+\item \textit{Limited sample size:} Another potential threat is that the rate of detecting correct best correspondences by my tool might have happened coincidentally for my test suite, as the test suite size is limited in my experiments. To reduce this doubt, I manually examined the cases where my tool fails to detect correct correspondences, and I found that the failures are due to the fundamental limitations and complexities in the construction of structural generalizations through the use of structural correspondence. That is, my tool creates structural generalization successfully with regard to what my algorithm should generate.
 \end{itemize}
- 
- 
-\subsubsection{Threads to construct validity}  \label{construct_threads} 
-As there is no existing benchmarking dataset to assess the quality attributes of the anti-unifiers in terms of accuracy, reliability, and performance, I have applied DETERMINE-LOCATION Algorithm to measure the performance of ELUS in terms of exactness (precision) and completeness (recall) for the studied systems. However, I acknowledge that these metrics may not perfectly measure all the quality attributes of the anti-unifiers of logging code. Another potential construct thread is the degree to which my similarity metric perfectly represent how similar logged methods are. To reduce this thread, I conducted an experimental study in which I manually estimated the similarity between the usages of logging statements in different methods of a sample test suite and compared the similarity values with the results extracted by automated approach.
+
+\subsection{Threats to external validity}  \label{external_threats}
+\begin{itemize} [leftmargin=.5in]
+\item \textit{Representativeness of the studied systems:} A potential threat to the validity of the exploratory study is the degree to which my selected set of software systems is representative of all real-world logging practices. To address this issue, I selected various open-source software projects in terms of application domain. The studied software systems have been widely used by many developers for a long period of time. However, the fact that I only studied Apache log4j statements might limit the generalizability of the findings. To improve the generalizability of this study, I have chosen one system not from the Apache Software Foundation. However, my findings might reflect the characteristics of logging usage in systems that are closed source, from other domains, or written in programming languages other than Java\@. In addition, the experiments have examined one set of logged methods (LMs) from a real-world software system; different sets and different systems may generate different results. Despite the fact that I cannot claim that the set of tested LMs is representative of all LMs in real-world software systems, the experimental results are still promising, as the location of logging statements in the tested methods differ markedly from each other with respect to their location and details. Hence, these experiments have sufficed to indicate the effectiveness of my approach in constructing structural generalizations.
+\item \textit{The number of software systems under study:}	 My study was conducted on four large open-source software systems written in Java\@. While the studied systems are limited in number, I believe that my findings of the logging practices in these systems could be generalizable to many other software systems. This threat could be reduced by more experiments on wider range of software systems in future work.
+\item \textit{The number of researchers who performed the manual examination:} Due to the limitations during the course of my research, the manual examination was conducted only by the first author. Future work can reduce this thread by involving other people to verify the results.
+\end{itemize}
+
+
+\subsection{Threats to construct validity}  \label{construct_threats}
+As there is no existing benchmark dataset to assess the quality attributes of the anti-unifiers in terms of accuracy, reliability, and performance, I have applied the \func{Determine-Locations} algorithm (Algorithm~\ref{alg-determine-locations}) to measure the performance of ELUS in terms of exactness (precision) and completeness (recall) for the studied systems. However, I acknowledge that these metrics may not perfectly measure all the quality attributes of the anti-unifiers of logging code. Another potential construct threat is the degree to which my similarity metric perfectly represents how similar logged methods are. To reduce this threat, I conducted an experimental study in which I manually estimated the similarity between the usages of logging statements in different methods of a sample test suite and compared the similarity values with the results extracted by the automated approach.
 
 
 
 \section{The pitfalls of my tool}  \label{limitations}
 %title?? choose a name for our tool????
-There are some issues that the approximation approach and my tool support is not able to handle perfectly, including inaccurate node ordering, and the resolution of conflicts happened in constructing the anti-unifiers.
+There are some issues that the approximation approach and my tool support are not able to handle perfectly, including inaccurate node ordering, and the resolution of conflicts that happened in constructing the anti-unifiers.
 
 
-\subsubsection{Inaccurate node ordering}  \label{mismatch}
+\subsection{Inaccurate node ordering}  \label{mismatch}
 My anti-unification algorithm does not guarantee to maintain the correct sequence of statements in the body of methods in the case of anti-unifying two method declaration nodes, as the order of statement nodes is not considered in determining the best correspondences. For example, consider that we have two corresponding methods $\id{method_1}$ and $\id{method_2}$ involved in two sequences of statements $\{\id{a_1}$, $\id{a_2}\}$ and $\{\id{b_1}$, $\id{b_2}\}$. If the $\id{b_1}$ and $\id{b_2}$ nodes are found to be the best correspondences of the $\id{a_2}$ and $\id{a_1}$ nodes, respectively, $\id{a_1}$ will be anti-unified with $\id{b_2}$  and $\id{a_2}$ will be anti-unified with $\id{b_1}$ to construct the structural generalization. Therefore, the anti-unification algorithm does not preserve the correct ordering of nodes in the original structures.
 %????
 %% IIf the $\id{b_1}$ and $\id{b_2}$ nodes are found to be the best correspondences of the $\id{a_2}$ and $\id{a_1}$ nodes, respectively, $\id{a_1}$ will be anti-unified with $\id{b_2}$  and $\id{a_2}$  will be anti-unified with $\id{b_1}$ to construct the structural generalization.??
@@ -37,9 +37,9 @@ My anti-unification algorithm does not guarantee to maintain the correct sequenc
 %f methods in case of anti-unifying two method declaration node??
 
 %\subsection{handling conflicts in constructing anti-unifiers}  \label{conflicts}
-\subsubsection{Conflict resolution}  \label{conflicts}
-The decisions that I made to resolve these conflicts, occurred in constructing structural generalizations that might affect the accuracy of our results.
-For example, in situations where I have two correspondences with the same similarity value in the ordered list of correspondence connections, my approach picks the one which involves two subtrees with the higher number of nodes, though this might be not the best choice for all cases.
+\subsection{Conflict resolution}  \label{conflicts}
+The decisions that I made, to resolve these conflicts, occurred in constructing structural generalizations that might affect the accuracy of our results.
+For example, in situations where I have two correspondences with the same similarity value in the ordered list of correspondence connections, my approach picks the one which involves two subtrees with the higher number of nodes, though this might not be the best choice for all cases.
 In addition, I consider AST hierarchies to perform anti-unification. That is, my algorithm does not anti-unify two nodes if their parent nodes are not found to also correspond. As a result, situations can occur where in fact two nodes should be anti-unified with each other, while they are not anti-unified by the tool. Though these decisions led to results that represent suboptimal anti-unifiers, they helped to limit the complexity of my approach, allowing the implementation of it to be a practical solution.
 %%%????
 

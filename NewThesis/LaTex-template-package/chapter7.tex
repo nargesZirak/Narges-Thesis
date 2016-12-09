@@ -2,6 +2,7 @@
 In this chapter, I review related work to the topics of my study including: the application of logging in real-world software systems (Section~\ref{logging}), understanding the existing logging practices (Section~\ref{understand-logging}),
  determining correspondences in source code (Section~\ref{ch7-corr}), data mining approaches to extract API usage patterns (Section~\ref{ch7-usage-patterns}), and anti-unification and its application to detect structural correspondences and construct generalizations (Section~\ref{ch7-au}). %, and clustering (Section~\ref{ch7-clustering}).
 % constructing the structural generalizations (Section~\ref{ch7-generalization}
+
 \section{Usage of logging}  \label{logging}
 Logging is a conventional programming practice used to record a software system's runtime information, and it can be used in system analysis to trace the root causes of systems' activities. Log analysis is most often performed for failure diagnosis, system behavioural understanding, system security monitoring, and performance diagnosis purposes as described below:
 \begin{itemize} [leftmargin=0.5in]
@@ -15,7 +16,7 @@ Logging is a conventional programming practice used to record a software system'
 
 
 
-\section{Understanding the existing logging practices}  \label{understand-logging}
+\section{Understanding existing logging practices}  \label{understand-logging}
 
 Despite the importance of logging for software development and maintenance, few studies have been conducted in pursuit of understanding logging usage in real-world software.
 
@@ -63,11 +64,11 @@ Several studies have been conducted to find the similarities and differences bet
 %Holmes?
 
 
-\citet{2014:uofc:cossette} present a new approach, called matching via structural generalization (MSG), to recommend replacements for API migration. They applied \tool{Jigsaw} to find structural correspondences; however, the proposed algorithm does not suffice to construct structural generalizations that represent the detailed commonalities and differences of a set of source code fragments with special attention to log statements, which is required to solve my problem.
+\citet{2014:uofc:cossette} present a new approach, called matching via structural generalization (MSG), to recommend replacements for API migration. They applied \tool{Jigsaw} to find structural correspondences; however, their algorithm does not suffice to construct structural generalizations that represent the detailed commonalities and differences of a set of source code fragments with special attention to log statements, which is required to solve my problem.
 %. It also does not take the required constraints in determining correspondences needed to solve our problem.
 
-\section{API usages patterns}  \label{ch7-usage-patterns}
-Various data mining approaches have been used to extract API usages patterns out of source code such as unordered pattern mining and sequential pattern mining \cite{robillard2013automated}. Unordered pattern mining, such as association rule mining and itemset mining, extracts a set of API usage rules without considering their order \cite{agrawal1994fast}. \tool{CodeWeb} \cite{2000:icse:michail} uses data mining association rules to identify reuse patterns between a source code under development and a specific library. \tool{PR-Miner} \cite{li2005pr} uses frequent itemset mining to extract implicit programming rules from source code and detect violations. The sequential pattern mining technique is different from the unordered one in the way that it considers the order of API usage. As an example, \tool{MAPO} \cite{2006:msr:xie} combines frequent subsequence mining with clustering to extract API usage patterns from source code.
+\section{API usage patterns}  \label{ch7-usage-patterns}
+Various data mining approaches have been used to extract API usage patterns out of source code such as unordered pattern mining and sequential pattern mining \cite{robillard2013automated}. Unordered pattern mining, such as association rule mining and itemset mining, extracts a set of API usage rules without considering their order \cite{agrawal1994fast}. \tool{CodeWeb} \cite{2000:icse:michail} uses data mining association rules to identify reuse patterns between a source code under development and a specific library. \tool{PR-Miner} \cite{li2005pr} uses frequent itemset mining to extract implicit programming rules from source code and detect violations. The sequential pattern mining technique is different from the unordered one in the way that it considers the order of API usage. As an example, \tool{MAPO} \cite{2006:msr:xie} combines frequent subsequence mining with clustering to extract API usage patterns from source code.
 
 Another technique for extracting API usage patterns is through statistical source code analysis. For example, \tool{PopCon} \cite{holmes2007informing} is a tool developed to help developers understanding how to use APIs in their source code, by calculating popularity statistics for each API of a library. \citet{acharya2007mining} present a framework to extract API usage scenarios as partial orders, as specifications were extracted from frequent partial orders. They adapted a compile time model checker to generate control-flow-sensitive static traces of APIs, from which API usage scenarios were extracted. However, none of these approaches suffice to construct the detailed structural generalizations needed in my context.
 %However, none of these approaches suffice to determine the detailed structural correspondences.

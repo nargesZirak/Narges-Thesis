@@ -117,7 +117,7 @@ The \func{Apply-Constraints} algorithm takes the list of correspondence connecti
 
 \begin{algorithm}
   \caption{\func{Apply-Constraints}($\id{list}$) applies the constraints on the list of correspondence connections.}
-  \label{computeMatches}
+  \label{applyConstraints}
   \begin{algorithmic}[1]
   \ApplyConstraints
       \For {$\id{corr} \in \id{list}$}
@@ -193,7 +193,7 @@ The similarity between two AUAST nodes is computed by dividing the number of mat
 
 \begin{algorithm}
  \caption{\func{Compute-Best-Matches}($\id{A}$,$\id{B}$) computes the matches between the two ASTs based on the best correspondences.}
-  \label{simi}
+  \label{alg:cbm}
   \begin{algorithmic}[1]
   \ComputeBestMatches
   \State $\id{matches} \gets 0$
@@ -318,7 +318,7 @@ To create the detailed view of the structural generalization from two given AUAS
 
 
 \subsection{Methods containing multiple log statements} \label{meth-multipleLogs}
-There might be some cases in which our approach is not able to anti-unify log statements in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \name{If Statement 1} with \name{If Statement3}, we should anti-unify their structural properties. Thus, \name{Log Statement 1} should be anti-unified with \name{Log Statement 3}, and \name{Log Statement 4} should be anti-unified with \NIL{} since there is no corresponding log statement in the body of \name{If Statement 1}, while there is a corresponding node for \name{Log Statement 4} in the body of \name{If Statement 2} (\name{Log Statement 2}).
+There might be some cases in which our approach is not able to anti-unify log statements in two input seeds, when there is more than one logging call in an LM. For example, consider the LMs in Figures~\ref{multiple1} and~\ref{multiple2}. Figure~\ref{mast_1} shows the simple AUASTs for these examples and potential correspondence connections between the AUAST nodes. Figure~\ref{m_ast2} shows the correspondence connections selected as the best match using our greedy algorithm. To anti-unify \name{If Statement 1} with \name{If Statement 3}, we should anti-unify their structural properties. Thus, \name{Log Statement 1} should be anti-unified with \name{Log Statement 3}, and \name{Log Statement 4} should be anti-unified with \NIL{} since there is no corresponding log statement in the body of \name{If Statement 1}, while there is a corresponding node for \name{Log Statement 4} in the body of \name{If Statement 2} (\name{Log Statement 2}).
 
 %\code{if statement 1}???
 %In figures: If statement: if statement 1???
@@ -338,7 +338,7 @@ public void method1(){
 	...
 }
 \end{lstlisting}
-\caption{A \protect\name{Java} method that utilizes multiple log statements.\label{multiple1}}
+\caption{A Java method that utilizes multiple log statements.\label{multiple1}}
 \end{figure}
 
 
@@ -355,7 +355,7 @@ public void method2(){
 	...
 }
 \end{lstlisting}
-\caption{A \protect\name{Java} method that utilizes multiple log statements.\label{multiple2}}
+\caption{Another Java method that utilizes multiple log statements.\label{multiple2}}
 \end{figure}
 
 \begin{figure} [H]
@@ -405,7 +405,7 @@ public void method1(){
 }
 
 \end{lstlisting}
-\caption{Create multiple copies of the LM in Figure~\ref{multiple1} for each log statement.\label{multiple1-one}}
+\caption{Creating multiple copies of the LM in Figure~\ref{multiple1} for each log statement.\label{multiple1-one}}
 \end{figure}
 
 
@@ -433,7 +433,7 @@ public void method2(){
 }
 
 \end{lstlisting}
-\caption{Create multiple copies of the LM in Figure~\ref{multiple2} for each log statement.\label{multiple2-one}}
+\caption{Creating multiple copies of the LM in Figure~\ref{multiple2} for each log statement.\label{multiple2-one}}
 \end{figure}
 
 %\section{An assessment of the anti-unifier-building tool}\label{anti-unifier-assessment}
@@ -495,7 +495,7 @@ I also ran the anti-unifier-building tool on each pair of LMs to construct the d
     \bottomrule
 
   \end{tabular}
-  \caption[10 sample logged \protect\name{Java} method pairs used as test cases.]{10 sample logged \protect\name{Java} method pairs used as test cases; all are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of cases 8 and 10 that are in the \protect\name{org.gjt.sp.jedit.io} package.}
+  \caption[10 sample logged Java method pairs used as test cases.]{10 sample logged Java method pairs used as test cases; all are contained in the \protect\code{org.gjt.sp.jedit} package with the exception of cases 8 and 10 that are in the \protect\code{org.gjt.sp.jedit.io} package.}
   \label{study2_test_cases}
 \end{figure}
 

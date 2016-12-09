@@ -1,5 +1,5 @@
 \chapter{Determining Structural Correspondences}\label{background2}
-In order to construct a structural generalization describing the commonalities and differences between ASTs of two given logged methods (LMs), I first needed to find structural correspondences between their nodes. The approach to determining correspondences proceeds in three steps: (1) computing similarities between AST nodes (Section~\ref{jigsaw-similarity}); (2) determining potential structural correspondences between nodes (Section~\ref{jigsaw-corr}); and (3) creating an extended form of AST to allow the insertion of variables in place of any nodes in the tree structure (Section~\ref{auast}).
+In order to construct a structural generalization describing the commonalities and differences between ASTs of two given logged methods (LMs), I first needed to find structural correspondences between their nodes. The approach to determining correspondences proceeds in three steps: (1)~computing similarities between AST nodes (Section~\ref{jigsaw-similarity}); (2)~determining potential structural correspondences between nodes (Section~\ref{jigsaw-corr}); and (3)~creating an extended form of AST to allow the insertion of variables in place of any nodes in the tree structure (Section~\ref{auast}).
 
 %To construct an anti-unified structure, I first need to create an extended form of the CAST structure, called \emph{anti-unifier ASTs} (AUASTs), to allow the insertion of variables in place of any nodes in the tree structure (Section~\ref{auast})
 
@@ -25,12 +25,12 @@ To compute similarity between AST nodes, I re-used a function developed by \cite
 \end{equation}
 
 
-They compute the number of matched elements between the two ASTs $\id{A}$ and $\id{B}$ via the \func{Determine-Matches} algorithm. As mentioned in Section~\ref{Jigsaw}, their approach only compares the nodes of identical or semantically equivalent types, thus the roots of both input ASTs are either leaf nodes or non-leaf nodes (line~2). If they are leaf nodes, the number of matches will be computed using the heuristics described in Section~\ref{Jigsaw} (lines~3--4). If they are  non-leaf nodes, the children of the two subtrees $\id{A}$ and $\id{B}$ are compared exhaustively in a pairwise manner (lines~5--16). For each child node of the subtree $\id{A}$, the highest matches with any child node of the subtree $\id{B}$ is determined (lines~6--14). All these maximum matches are summed up and returned as the number of common elements, which can be used to determine a potential structural correspondence between the two nodes (line~15--19) as will be described in the following section.
+They compute the number of matched elements between the two ASTs $\id{A}$ and $\id{B}$ via the \func{Determine-Matches} algorithm. As mentioned in Section~\ref{Jigsaw}, their approach only compares the nodes of identical or semantically equivalent types, thus the roots of both input ASTs are either leaf nodes or non-leaf nodes (line~2). If they are leaf nodes, the number of matches will be computed using the heuristics described in Section~\ref{Jigsaw} (lines~3--4). If they are  non-leaf nodes, the children of the two subtrees $\id{A}$ and $\id{B}$ are compared exhaustively in a pairwise manner (lines~5--16). For each child node of the subtree $\id{A}$, the highest matches with any child node of the subtree $\id{B}$ is determined (lines~6--14). All these maximum matches are summed up and returned as the number of common elements, which can be used to determine a potential structural correspondence between the two nodes (lines~15--19) as will be described in the following section.
 %with a comparable type
 
 \begin{algorithm}
  \caption{\func{Determine-Matches}($\id{A}$,$\id{B}$) computes the common elements ($\id{matches}$) between the two ASTs.}
-  \label{simi}
+  \label{alg:dm}
   \begin{algorithmic}[1]
   \ComputeMatches
   \State $\id{matches} \gets 0$
@@ -61,12 +61,12 @@ They compute the number of matched elements between the two ASTs $\id{A}$ and $\
 
 \section{Determining potential correspondences}  \label{jigsaw-corr}
 
-As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:cottrell} generates an augmented form of AST, called a \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections. The \func{Create-Correspondence-Connection}($\id{A}$,$\id{B}$,$\id{matches}$) algorithm is used to create the CAST structure, which computes similarity between the two AST nodes using the Equation~\ref{eq-jigsaw-sim} (line~1). If the similarity value is above a pre-determined threshold, a correspondence connection will be created and added to the list of correspondence connections of the corresponding nodes (lines~2--6). As an example, Figure~\ref{fig:meth-ast-1} shows potential structural correspondence connections created via the application of \func{Create-Correspondence-Connection} algorithm on the ASTs of Examples 1 and 2.
+As discussed in Section~\ref{Jigsaw}, the approach of \citet{2008:fse:cottrell} generates an augmented form of AST, called a \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections. The \func{Create-Correspondence-Connection}($\id{A}$,$\id{B}$,$\id{matches}$) algorithm is used to create the CAST structure, which computes similarity between the two AST nodes using the Equation~\ref{eq-jigsaw-sim} (line~1). If the similarity value is above a pre-determined threshold, a correspondence connection will be created and added to the list of correspondence connections of the corresponding nodes (lines~2--6). As an example, Figure~\ref{fig:meth-ast-1} shows potential structural correspondence connections created via the application of \func{Create-Correspondence-Connection} algorithm on the ASTs of Examples 1 and 2.
 
 
 \begin{algorithm}
   \caption{\func{Create-Correspondence-Connection}($\id{A}$,$\id{B}$,$\id{matches}$) creates a candidate correspondence connection between the two AST nodes.}
-  \label{computeMatches}
+  \label{alg:ccc}
   \begin{algorithmic}[1]
   \DeterminePotentialCorrespondences
       %\For {$\id{nodeA} \in \id{a}$}
@@ -180,7 +180,7 @@ As discussed in Section~\ref{Jigsaw}, the proposed approach by \citet{2008:fse:c
 %\RW{This is a concrete implementation, not a generic idea, at least not the way it is described. I strongly suggest that you give a generic description of your assumptions about ASTs then relate AUASTs to those, then talk about implementation details.}
 %\NZ{I tried to explain the concept.}
 %
-As described in Section~\ref{HOAUMT}, an anti-unified structure utilizes variables that must be substituted with proper substructures to regain original structures. However, the CAST structure presented by \citet{2008:fse:cottrell} would not allow the creation of an anti-unifier, as it does not contain any variables. Therefore, an extended form of it is required, the anti-unifier AST (AUAST), that would allow the insertion of variables in place of any node in the tree structure---including both subtrees and leaves---to indicate variations between the original structures.
+As described in Section~\ref{HOAUMT}, an anti-unified structure utilizes variables that must be substituted with proper substructures to regain the original structures. However, the CAST structure presented by \citet{2008:fse:cottrell} would not allow the creation of an anti-unifier, as it does not contain any variables. Therefore, an extended form of it is required, the anti-unifier AST (AUAST), that would allow the insertion of variables in place of any node in the tree structure---including both subtrees and leaves---to indicate variations between the original structures.
 %namely?
 
 To provide an example to demonstrate the structure, the anti-unified AUAST constructed from the AUASTs of log statements in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2} is depicted in Figure~\ref{fig:logging-anti}. The structural variables $X$ and $Y$ are used to indicate the structural variations, where the $X$ structural variable refers to two simple names and the $Y$ structural variable refers to two subtrees. The substitutions are defined in Equations~\ref{eq:theta1} and~\ref{eq:theta2}.
@@ -261,10 +261,10 @@ To provide an example to demonstrate the structure, the anti-unified AUAST const
 %
 %
 
-%\name{Jigsaw} is a proof-of-concept implementation of the proposed approach to determining potential structural correspondences, which takes two AST nodes is an Eclipse plug-in that inputs a \name{Java} program, extracts ASTs of logged methods in it using the Eclipse JDT framework, applies a part of the implementation of Jigsaw to identify structural correspondences between ASTs in a pairwise manner and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection.
+%\name{Jigsaw} is a proof-of-concept implementation of the approach to determining potential structural correspondences, which takes two AST nodes is an Eclipse plug-in that inputs a \name{Java} program, extracts ASTs of logged methods in it using the Eclipse JDT framework, applies a part of the implementation of Jigsaw to identify structural correspondences between ASTs in a pairwise manner and reuses the Jigsaw similarity function to measure the similarity between nodes involved in each correspondence connection.
 
 
-To validate the effectiveness of the proposed approach by \citet{2008:fse:cottrell}, I applied the Jigsaw framework to compare the ASTs of a sample set of LMs in a pairwise manner: I constructed the CASTs of each pair. I selected the sample set from a real-world software system. %Jigsaw or correspondence???
+To validate the effectiveness of the approach of \citet{2008:fse:cottrell}, I applied the Jigsaw framework to compare the ASTs of a sample set of LMs in a pairwise manner: I constructed the CASTs of each pair. I selected the sample set from a real-world software system. %Jigsaw or correspondence???
 
 
 %chapter{Experimental Studies}  \label{studies}
@@ -290,19 +290,19 @@ I describe my approach for LMs containing multiple log statements in detail in S
     \toprule
     Case & Logged methods & Size (LOC)\\
     \midrule
-    1& {PluginJAR.generateCache()} &104\\
-    2& {MiscUtilities.isSupportedEncoding(..)} &9\\
-    3& {EditBus.send(..)} &14\\
-    4& {EditBus.send(..)}* &14\\
-    5& {EditAction.Wrapper.actionPerformed(..)} &5\\
-    6& {EBPlugin.handleMessage(..)} &6\\
-    7& {BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
-    8& {JARClassLoader.loadClass(..)} &32\\
-    9& {VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
-    10& {ServiceManager.loadServices(..)} &20\\
+    1& \code{PluginJAR.generateCache()} &104\\
+    2& \hspace*{-3pt}\code{MiscUtilities.isSupportedEncoding(..)} &9\\
+    3& \code{EditBus.send(..)} &14\\
+    4& \code{EditBus.send(..)}* &14\\
+    5& \code{EditAction.Wrapper.actionPerformed(..)} &5\\
+    6& \code{EBPlugin.handleMessage(..)} &6\\
+    7& \code{BufferHistory.RecentHandler.doctypeDecl(..)} &3\\
+    8& \code{JARClassLoader.loadClass(..)} &32\\
+    9& \code{VFS.DirectoryEntry.RootsEntry.rootEntry(..)} &36\\
+    10& \code{ServiceManager.loadServices(..)} &20\\
     \bottomrule
   \end{tabular}
-  \caption[Logged methods used as our test suite.]{Logged methods used as our test suite. All are contained in the \protect\name{org.gjt.sp.jedit} package with the exception of Case 9 that is in the \protect\name{org.gjt.sp.jedit.io} package.}
+  \caption[Logged methods used as our test suite.]{Logged methods used as our test suite. All are contained in the \protect\code{org.gjt.sp.jedit} package with the exception of Case 9 that is in the \protect\code{org.gjt.sp.jedit.io} package.}
   \label{table:ljms}
 \end{figure}
 
@@ -310,7 +310,7 @@ I describe my approach for LMs containing multiple log statements in detail in S
 
 %\subsubsection{Setup}  \label{study1-setup}
 The Jigsaw framework was used to compare LMs of the test suite in a pairwise manner (55 test cases in total, including self-comparisons), producing the CASTs of each pair and measuring their Jigsaw similarity.
-I examined the generated CASTs of these test cases and selected, for the sake of this presentation, a subset of 4 test cases with various levels of correspondence as depicted in the Table~\ref{jigsaw_4_test_cases}. Case TC1 contains the comparison of a \name{Java} element with itself. Case TC2 contains the comparison of two \name{Java} elements that are both syntactically and semantically dissimilar.  Case TC3 contains the correspondence between two \name{Java} elements that are syntactically dissimilar but are semantically relevant. Case TC4 contains the comparison of a log statement with another \name{Java} element that is not a log statement but is syntactically relevant (they are both \code{Method Invocation}  AST nodes).
+I examined the generated CASTs of these test cases and selected, for the sake of this presentation, a subset of 4 test cases with various levels of correspondence as depicted in the Table~\ref{jigsaw_4_test_cases}. Case TC1 contains the comparison of a \name{Java} element with itself. Case TC2 contains the comparison of two \name{Java} elements that are both syntactically and semantically dissimilar.  Case TC3 contains the correspondence between two \name{Java} elements that are syntactically dissimilar but are semantically relevant. Case TC4 contains the comparison of a log statement with another \name{Java} element that is not a log statement but is syntactically relevant (they are both \textit{methodInvocation} AST nodes).
 
 
 

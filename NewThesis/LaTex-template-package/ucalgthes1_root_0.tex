@@ -48,7 +48,7 @@
 \newcommand{\func}{\textsc}
 \newcommand{\cons}{\textrm}
 %\newcommand{\bold}{\textbf}
-\newcommand{\name}[1]{\textsf{\small #1}}
+\newcommand{\name}[1]{#1}%{\textsf{\small #1}}
 \let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}
 \algnewcommand\And{\textbf{and}}
@@ -135,59 +135,59 @@ xrightmargin=0em}
 \setcounter{page}{1}
 
 
-\chapter*{UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
-\thispagestyle{empty}
-The undersigned certify that they have read, and recommend
-to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
-``\thestitle'' submitted by \Author\
-in partial fulfillment of the requirements for the degree of
-\Degree.\\
-
+%\chapter*{UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
+%\thispagestyle{empty}
+%The undersigned certify that they have read, and recommend
+%to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
+%``\thestitle'' submitted by \Author\
+%in partial fulfillment of the requirements for the degree of
+%\Degree.\\
 %
-%                 Substitute  List of Examiners
+%%
+%%                 Substitute  List of Examiners
+%%
 %
-
-\begin{signing}{Department of Computer Science}
-
-% \newsigncolumn         use this command to start a new column if necessary
-\newsigncolumn
-
-\signline
-Dr.~Robert~J. Walker \\
-Supervisor \\
-Department of Computer Science  \\
-
-
-\signline
-Dr.~J{\"o}rg Denzinger \\
-Examiner \\
-Department of  Computer Science \\
-
-\signline
-Dr.~G\"{u}nther Ruhe\\
-Examiner \\
-Department of  Computer Science \\
-\end{signing}
+%\begin{signing}{Department of Computer Science}
+%
+%% \newsigncolumn         use this command to start a new column if necessary
+%\newsigncolumn
+%
+%\signline
+%Dr.~Robert~J. Walker \\
+%Supervisor \\
+%Department of Computer Science  \\
+%
+%
+%\signline
+%Dr.~J{\"o}rg Denzinger \\
+%Examiner \\
+%Department of  Computer Science \\
+%
+%\signline
+%Dr.~G\"{u}nther Ruhe\\
+%Examiner \\
+%Department of  Computer Science \\
+%\end{signing}
 
 \newpage
 \phantomsection
 \altchapter{{Abstract}}
-Logging has been a common practice to record the runtime behaviour of a software system, typically performed by inserting log statements in source code. So far, several logging frameworks have been specifically created to help developers perform logging tasks, but they do not support locating log statements in source code. Thus, developers usually rely on their common sense to decide where to log. If logging is properly done, it can provide valuable information for software development and maintenance. On the other hand, ineffective usage of log statements might impose system performance and maintenance overhead. So far, few studies have been conducted to characterize logging usage in real-world applications. This work tries to address the problem of where to log by proposing an automated approach that characterizes the location of log statements through the approximation of an anti-unification (higher-order anti-unification modulo theories) approach and a hierarchical clustering technique to construct a set of anti-unifiers, each describing the commonalities and differences between source code fragments that embody log statements. This approach has been refined in a prototype tool, called \tool{ELUS}, that greedily identifies the best structural correspondences with respect to the highest similarity and some constraints. I conducted an empirical study by applying the tool on the source code of four open source systems and manually examined the generated anti-unifiers. My analysis has resulted in five main categories of anti-unifiers in the logging usage. Two empirical evaluations were conducted in this study: (1) an experiment was conducted to validate the effectiveness of the proposed approach through the application of its supporting tool on a test suite. (2) An empirical experiment has been performed to evaluate the quality of the anti-unifiers in describing the location of log statements in source code.
+Logging has been a common practice to record the runtime behaviour of a software system, typically performed by inserting log statements in its source code. While several frameworks have been specifically created to help developers perform logging tasks, these do not provide guidance on where the log statements should be located in the source code. Thus, developers usually rely on their common sense to decide where to log. If logging is done properly, it can provide valuable information for software development and maintenance; if it is done poorly, system performance can degrade and maintenance can be made more difficult. Few studies have been conducted to characterize logging usage in real-world applications. This work tries to address the problem of where to log by proposing an automated approach that characterizes the location of log statements through the approximation of an anti-unification approach (specifically, higher-order anti-unification modulo theories) and a hierarchical clustering technique to construct a set of anti-unifiers, each describing the commonalities and differences between source code fragments that embody log statements. This approach has been reified in a prototype tool, called \tool{ELUS}, that greedily identifies the best structural correspondences with respect to the highest similarity and some constraints. An empirical study was conducted by applying the tool on the source code of four open source systems and manually examining the generated anti-unifiers. The analysis resulted in five main categories of anti-unifiers in the logging usage. Two empirical evaluations were conducted in this work: (1)~an experiment was conducted to evaluate the effectiveness of the proposed approach through the application of its supporting tool on a test suite; and (2)~an experiment was performed to evaluate the quality of the anti-unifiers in describing the location of log statements in source code.
 %, each describes?
 % automated or semi-automated?
 \newpage
 \phantomsection
 \altchapter{Acknowledgements}
 
-I would like to express my warmest gratitude to my supervisor, Dr.~Robert~J. Walker.  I would like to thank him for his great support, guidance, and insightful discussions during my study. He always encourages me to challenge myself by asking new research questions and to come up with new ways to solve a problem. I deeply appreciate his belief in me when I doubted myself, and his constant commitment and precious comments throughout the course of my research and thesis writing. I was always motivated by his support, understanding, and the freedom he gave me.
+I would like to express my warmest gratitude to my supervisor, Dr.~Robert~J. Walker.  I would like to thank him for his great support, guidance, and insightful discussions during my study. He always encouraged me to challenge myself by asking new research questions and to come up with new ways to solve a problem. I deeply appreciate his belief in me when I doubted myself, and his constant commitment and precious comments throughout the course of my research and thesis writing. I was always motivated by his support, understanding, and the freedom he gave me.
 
-I am truly grateful to Dr.~J{\"o}rg Denzinger, Dr.~G\"{u}nther Ruhe,  and Dr.~Christian Jacob for providing support and useful feedback for my work. Their technical knowledge and valuable feedback helped me a lot throughout the course of my research.
+I am truly grateful to Dr.~J{\"o}rg Denzinger, Dr.~G\"{u}nther Ruhe, and Dr.~Christian Jacob for providing support and useful feedback for my work. Their technical knowledge and valuable feedback helped me a lot throughout the course of my research.
 %I would also like to thank the members of my oral defense committee Dr.~G\"{u}nther Ruhe and ... for their time. ????	
 
 Many special thanks and love to my parents and my brothers for being such a great family. I am forever indebted to them for their support, patience, and encouragement throughout this work.
 
 
-I would like thank my fellow lab-mates, Hamid, Elham, Soha, Mostafa, May, and Hao for their academic and friendship support. Their precious comments helped me a lot over the course of my research.
+I would like thank my fellow labmates, Hamid, Elham, Soha, Mostafa, May, and Hao for their academic and friendship support. Their precious comments helped me a lot over the course of my research.
 
 
 \begin{singlespace}
@@ -210,7 +210,8 @@ I would like thank my fellow lab-mates, Hamid, Elham, Soha, Mostafa, May, and Ha
 \phantomsection
 %\chapter*{\bf{List of Symbols, Abbreviations and Nomenclature}\hfill}
 \chapter*{\bf{List of Abbreviations}\hfill}
- \addcontentsline{toc}{chapter}{List of Symbols}
+ \addcontentsline{toc}{chapter}{List of Abbreviations}
+\addtocontents{toc}{\protect\addvspace{10pt}}
 \listofsymbols
 \pagestyle{plain}
 \clearpage

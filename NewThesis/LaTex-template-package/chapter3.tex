@@ -2,7 +2,7 @@
 \chapter{Background}  \label{background}
 A programming language is described by the combination of its syntax and semantics. The syntax concerns the legal structures of programs written in the programming language, while the semantics is about the meaning of every construct in that language. Furthermore, the abstract syntactic structure of source code written in a programming language can be represented as an \emph{abstract syntax tree} (AST), in which nodes are occurrences of syntactic structures and edges represent nesting relationships. Since ASTs will be the form in which I represent and analyze source code, I need a means to generalize sets of ASTs in order to understand their commonalities while abstracting away their differences. The theoretical framework of anti-unification is presented as that means.
 
-In this chapter, ASTs are described in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. A specific, industrial framework for creating and manipulating ASTs for source code written in the Java programming language---the Eclipse JDT---is described in Section~\ref{JDT}.  Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that I will make use of, higher-order anti-unification modulo equational theories, in Section~\ref{HOAUMT}.  A research approach, built atop the Eclipse JDT, for performing anti-unification on Java ASTs---the Jigsaw framework---is described in Section~\ref{Jigsaw}. In the last section of this chapter, I provide some background information about clustering, existing clustering techniques, and the agglomerative hierarchical clustering algorithm, as a technique I used to cluster logged methods into separate groups based on a similarity measurement.
+In this chapter, ASTs are described in Section~\ref{AST}, along with their more concrete counterparts, concrete syntax trees. A specific, industrial framework for creating and manipulating ASTs for source code written in the Java programming language---the Eclipse JDT---is described in Section~\ref{JDT}.  Anti-unification is summarized in Section~\ref{AU}, starting with its most basic form, first-order anti-unification, and progressing to the form that I will make use of, higher-order anti-unification modulo equational theories, in Section~\ref{HOAUMT}.  A research approach, built atop the Eclipse JDT, for performing anti-unification on Java ASTs---the Jigsaw framework---is described in Section~\ref{Jigsaw}. In the Section~\ref{ch3-clustering}, I provide some background information about clustering, existing clustering techniques, and the agglomerative hierarchical clustering algorithm, as a technique I used to cluster logged methods into separate groups based on a similarity measurement.
 %AHC???
 % as a technique or the technique??
 
@@ -20,7 +20,7 @@ public class HelloWorld {
     }
 }
 \end{lstlisting}
-\caption{A simple example Java program.\label{fig:java-example}}
+\caption{A simple example \protect\tool{Java} program.\label{fig:java-example}}
 \end{figure}
 
 \begin{sidewaysfigure}
@@ -408,7 +408,7 @@ public void handleMessage(EBMessage message) {
    !\colorbox{yellowGreen}{Log.log(Log.WARNING, this, getClassName() + " should extend EditPlugin not EBPlugin}!  !\colorbox{yellowGreen}{since it has an empty " + handleMessage());}!
 }
 \end{lstlisting}
-\caption[Example 1: A Java method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 1.\label{ch3-ex1}}
+\caption[Example 1: A \protect\tool{Java} method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 1.\label{ch3-ex1}}
 \end{figure}
 
 \begin{figure}[p]
@@ -424,7 +424,7 @@ public void actionPerformed(ActionEvent evt) {
    }
 }
 \end{lstlisting}
-\caption[Example 2: A Java method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 2.\label{ch3-ex2}}
+\caption[Example 2: A \protect\tool{Java} method that uses a log statement.]{A Java method that uses a log statement. This will be referred to as Example 2.\label{ch3-ex2}}
 \end{figure}
 
 \begin{figure} [p]
@@ -473,7 +473,7 @@ As an example, the ASTs of the log statements at line~4 of Figure~\ref{ch3-ex1} 
 This section defines terms, substitutions, applying a substitution to a term, and instances of a term, as the requirements needed to describe first-order anti-unification.
 
 \begin{defn}[First-Order Term]\label{def:term}
-Given a set $V$ of variable symbols, a set $C$ of constant symbols, and sets $F_n$ of $n$-ary function symbols for all $n\in\mathbb{N}$, the set $T$ of \emph{first-order terms} is defined as the smallest set satisfying the recursion: (1) $V\subseteq T$; (2) $C\subseteq T$; and (3) for all $n$ first-order terms $t_1, \ldots, t_n$ and $n$-ary function symbol $f\in F_n$,  $f(t_1, \ldots, t_n) \in T$.
+Given a set $V$ of (structural) variable symbols, a set $C$ of constant symbols, and sets $F_n$ of $n$-ary function symbols for all $n\in\mathbb{N}$, the set $T$ of \emph{first-order terms} is defined as the smallest set satisfying the recursion: (1) $V\subseteq T$; (2) $C\subseteq T$; and (3) for all $n$ first-order terms $t_1, \ldots, t_n$ and $n$-ary function symbol $f\in F_n$,  $f(t_1, \ldots, t_n) \in T$.
 \end{defn}
 
 Constant symbols can equivalently be considered 0-ary function symbols, with the appropriate adjustments to the above definition. For notational convenience, I use identifiers starting with a lowercase letter to represent function symbols (e.g., $f(a,b)$, $g(a,b)$) and constants (e.g., $a$, $b$), while variables are represented by identifiers starting with an uppercase letter (e.g., $X$, $Y$). The following are examples of a first-order term:
@@ -521,7 +521,7 @@ Note that for any first-order term there is a unique, equivalent tree and vice v
 A first-order substitution $\sigma$ is a mapping from variables $V$ to first-order terms $T$: $\sigma: V\mapsto T$. The notation $\{v_1 \mapsto t_1, \ldots, v_n \mapsto t_n\}$ is used to express a substitution of each of a set of variables $v_i$ by a corresponding first-order term $t_i$.
 \end{defn}
 
-\begin{defn}[Applying a First-Order Substitution]\label{def:substitution}
+\begin{defn}[Applying a First-Order Substitution]\label{def:apply_substitution}
 Applying a first-order substitution $\sigma = \{v_1 \mapsto t_1, \ldots, v_n \mapsto t_n\}$ to a first-order term $t$ results in the simultaneous replacement of all occurrences in $t$ of each variable $v_i$ by its corresponding first-order term $t_i$ as defined by the first-order substitution. This is denoted with the expression $\sigma(t)$.
 \end{defn}
 
@@ -539,9 +539,10 @@ For first-order terms $t_1$ and $t_2$, $t_2$ is called an \emph{instance} of $t_
 %Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\sigma$ such that $U\xrightarrow{\sigma}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification, called \emph{anti-unification}.
 
 \begin{defn}[First-Order Anti-unifier (and Unifier)]\label{def:generalization}
-A first-order unifier of two terms $t_1$ and $t_2$ is a substitution such that $\sigma'(t_1)=\sigma'(t_2)$.  The term $t$ is a \emph{first-order anti-unifier} (or generalization) for first-order terms $t_1$ and $t_2$, if and only if there exist first-order substitutions $\sigma_1$ and $\sigma_2$ such that $\sigma_1(t)=t_1$ and $\sigma_2(t)=t_2$.
+A \emph{first-order unifier} of two terms $t_1$ and $t_2$ is a substitution $\sigma$ such that $\sigma'(t_1)=\sigma'(t_2)$.  The term $t$ is a \emph{first-order anti-unifier} (or generalization) for first-order terms $t_1$ and $t_2$, if and only if there exist first-order substitutions $\sigma_1$ and $\sigma_2$ such that $\sigma_1(t)=t_1$ and $\sigma_2(t)=t_2$. 
 \end{defn}
 
+Note that this terminology (and the corresponding higher-order terminology) is not symmetrical between unification and anti-unification.  Fortunately, I do not need to make further use of unification beyond this chapter, so this point of confusion remains as a mere curiosity from a practical perspective.
 
 A useful, first-order anti-unifier will contain only common pieces of the original terms, while the differences are abstracted away by replacing them with variable symbols. An anti-unifier for a pair of terms always exists since we can anti-unify any two terms by the term $X\in V$, i.e., a single variable. However, anti-unification usually aims to find the \emph{most specific anti-unifier} (MSA), that is, $t$ is the MSA of two first-order terms $t_1$ and $t_2$ if and only if there exists no anti-unifier $t'$ for $t_1$ and $t_2$ such that $\sigma(t)=t'$ for some first-order substitution $\sigma$.
 
@@ -554,12 +555,12 @@ As an example, an anti-unifier of the first-order terms $f(X,b)$ and $f(a,Y)$ is
 \node(au) at (5,2) {\parbox{2cm}{\begin{center}\fbox{$f(X,Y)$}\\*[3pt]\text{anti-unifier}\end{center}}};
 \node(left) at (2,0) {\fbox{\mbox{$f(X,b)$}}};
 \node(right) at (8,0) {\fbox{\mbox{$f(a,Y)$}}};
-\node(u) at (5,-2) {\parbox{2cm}{\begin{center}\fbox{$f(a,b)$}\\*[3pt]\text{unifier}\end{center}}};
+\node(u) at (5,-2) {\parbox{2cm}{\begin{center}\fbox{$f(a,b)$}\\*[3pt]\text{unified term}\end{center}}};
 %
 \draw[->](au) -- (left) node[pos=0.5, above]{\mbox{\scriptsize $\sigma_1 = Y \mapsto b$\hspace*{2cm}}};
 \draw[->](au) -- (right) node[pos=0.5, above]{\mbox{\hspace*{2.5cm}\scriptsize $\sigma_2 = X \mapsto a$}};
-\draw[->](left) -- (u) node[pos=0.5, below]{\mbox{\scriptsize $\sigma_1' = X \mapsto a$\hspace*{2cm}}};
-\draw[->](right) -- (u) node[pos=0.5, below]{\mbox{\hspace*{2.5cm}\scriptsize $\sigma_2' = Y \mapsto b$}};
+\draw[->](left) -- (u) node[pos=0.5, below]{\mbox{\scriptsize $\sigma' = \{X \mapsto a, Y \mapsto b\}$\hspace*{3cm}}};
+\draw[->](right) -- (u) node[pos=0.5, below]{\mbox{\hspace*{3cm}\scriptsize $\sigma' = \{X \mapsto a, Y \mapsto b\}$}};
 \end{tikzpicture}
 %  {\makecell[l]{\hspace{0.4cm}f(X,Y)\\\text{anti-unifier}}}
 %  \arrow{dr}{\sigma_2 = X \mapsto a}
@@ -604,18 +605,21 @@ Given a set $V$ of variable symbols, a set $C$ of constant symbols, sets $F_n$ o
 
 Note that any first-order term on $V$, $C$, and $F_n$ will also be (a degenerate case of) a higher-order term on $V$, $C$, $F_n$, and $\mathbf{V}_m$ for all $\mathbf{V}_m$.
 
-\begin{defn}[Higher-Order Substitution]\label{def:substitution}
+\begin{defn}[Higher-Order Substitution]\label{def:HOsubstitution}
 A higher-order substitution $\hat{\sigma}$ is a mapping from variables $V$ to higher-order terms $\hat{T}$ and, for all $m\in\mathbb{N}$, from $m$-ary functional variables $\mathbf{V}_m$ to $m$-ary functional symbols $F_m$; in other words, $\sigma: (V\mapsto T)\cup(\forall m\in \mathbb{N}, \mathbf{V}_m\mapsto F_m)$. The notation $\{\hat{v}_1 \mapsto \hat{t}_1, \ldots, \hat{v}_n \mapsto \hat{t}_n\}$ is used to express a substitution of each of a set of variables and functional variables $\hat{v}_i$ by a corresponding higher-order term $\hat{t}_i$ or functional symbols, where it is to be understood that a $m$-ary functional variable may only be substituted by a $m$-ary functional symbol and that a variable may only be substituted by a higher-order term.
 \end{defn}
 
 Note that a first-order substitution constitutes (a degenerate case of) a higher-order substitution.
 
-\begin{defn}[Applying a Higher-Order Substitution]\label{def:substitution}
+\begin{defn}[Applying a Higher-Order Substitution]\label{def:apply_HOsubstitution}
 Applying a higher-order substitution $\hat{\sigma} = \{\hat{v}_1 \mapsto \hat{t}_1, \ldots, \hat{v}_n \mapsto \hat{t}_n\}$ to a higher-order term $\hat{t}$ results in the simultaneous replacement of all occurrences in $\hat{t}$ of each variable (respectively functional variable) $\hat{v}_i$ by its corresponding higher-order term (respectively functional variable) $\hat{v}_i$ as defined by the higher-order substitution. This is denoted with the expression $\hat{\sigma}(\hat{t})$.
 \end{defn}
 
-\begin{defn}[Higher-Order Anti-unifier (and Unifier)]\label{def:generalization}
-The term $u$ is a \emph{higher-order unifier} for $t_1$ and $t_2$ if and only if there exist higher-order substitutions $\hat{\sigma}_1'$ and $\hat{\sigma}_2'$ such that $\hat{\sigma}_1'(t_1)=u$ and $\hat{\sigma}_2'(t_2)=u$.  The term $t$ is a \emph{higher-order anti-unifier} (or generalization) for higher-order terms $t_1$ and $t_2$, if and only if there exist higher-order substitutions $\hat{\sigma}_1$ and $\hat{\sigma}_2$ such that $\hat{\sigma}_1(t)=t_1$ and $\hat{\sigma}_2(t)=t_2$.
+\begin{defn}[Higher-Order Anti-unifier (and Unifier)]\label{def:HOgeneralization}
+The substitution $\hat{\sigma}$ is a \emph{higher-order unifier} for the higher-order terms $\hat{t}_1$ and $\hat{t}_2$ if and only if %there exist higher-order substitutions $\hat{\sigma}_1'$ and $\hat{\sigma}_2'$ such that
+%$\hat{\sigma}_1'(t_1)=u$ and $\hat{\sigma}_2'(t_2)=u$.
+$\hat{\sigma}(\hat{t}_1)=\hat{\sigma}(\hat{t}_2)$.
+The higher-order term $\hat{t}$ is a \emph{higher-order anti-unifier} (or generalization) for higher-order terms $\hat{t}_1$ and $\hat{t}_2$, if and only if there exist higher-order substitutions $\hat{\sigma}_1$ and $\hat{\sigma}_2$ such that $\hat{\sigma}_1(t)=\hat{t}_1$ and $\hat{\sigma}_2(t)=\hat{t}_2$.
 \end{defn}
 
 As an example, a higher-order anti-unifier of the terms $f(a,b)$ and $g(a,b)$ is $F(a,b)$ as depicted in Figure~\ref{fig:higher-anti-uni}.   For simplicity, I henceforth drop the adjectival phrases ``first-order'' and ``higher-order'' in cases where the intent is clear from the context.
@@ -761,11 +765,11 @@ Sometimes it is desirable to anti-unify terms with differing numbers of argument
 \begin{equation*}
 \id{pump}_n(\nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n}, t, \nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n}) = t,
 \end{equation*}
-where there are exactly $n$ arguments to $\id{pump}_n(\cdot)$.  Furthermore, we define $\id{pump}_n(\cdot)$ to be perfectly commutative, so that $t$ may equivalently appear as any argument therein.
+where there are exactly $n$ arguments to $\id{pump}_n(\cdot)$.  Furthermore, we define $\id{pump}_n(\cdot)$ to be perfectly commutative with respect to its argument order, so that $t$ may equivalently appear as any argument therein.
 
 For simplicity of exposition, we use the label \NIL{} in place of both the functional symbols $\id{pump}_n$ and the neutral element of each of the functions thereby defined, as the precise meaning can be interpreted from the context.  Obviously, \NIL{} representing an $n$-ary functional symbol cannot be meaningfully anti-unified with \NIL{} representing an $n-k$-ary functional symbol---unless it is itself pumped.
 
-The notion of pumping from the previous section is equivalent to defining an equational theory $=_{\id{pump}}$ such that
+This notion of pumping is equivalent to defining an equational theory $=_{\id{pump}}$ such that
 \begin{gather*}
 \id{pump}_n(\nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n}, t, \nu_{\id{pump}_n}, \ldots, \nu_{\id{pump}_n})\\
 =_{\id{pump}} \id{pump}_{n-1}(\nu_{\id{pump}_{n-1}}, \ldots, \nu_{\id{pump}_{n-1}}, t, \nu_{\id{pump}_{n-1}}, \ldots, \nu_{\id{pump}_{n-1}})\\
@@ -797,13 +801,13 @@ For example, we can anti-unify the two terms $b$ and $f(a,b)$ through the applic
 \caption{Higher-order anti-unification modulo theories of the terms $f(a, b)$ and $b$.\label{fig:anti-nil}}
 \end{figure}
 
-\subsection{Variadic Functions and Overloading}
+\subsection{Variadic functions and overloading}
 
 I introduce an equational theory that treats two functions $f(\cdot)$ and $g(\cdot)$ as equivalent if their functional symbol is identical even if their arity differs.  This captures the fact that identically named functions will generally represent minor variations on the same concept.
 
 \subsection{Loops}
 
-For simplicity, we treat \code{for}- and \code{while}-loops as functions with differing arguments, defining an equivalence equation $=_{\id{loops}}$ that allows their direct anti-unification. We then utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}), \textit{lessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_{\id{loops}}$ to \code{while}(\textit{lessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{lessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
+For simplicity, we treat \code{for}- and \code{while}-loops as functions with differing arguments, defining an equivalence equation $=_{\id{loops}}$ that allows their direct anti-unification. We then utilize the \NIL{}-theory to handle the varying number of arguments as the \code{for}-loop has three arguments (actually, all three are optional in practice) whereas the \code{while}-loop only has one. Using the \NIL{}-theory we can create the structure \code{while}(\NIL{}(\NIL{}, \NIL{}), \textit{lessThanExpression}(\code{i}, \code{10}), \NIL{}(\NIL{}, \NIL{})) that is $=_{\id{loops}}$ to \code{while}(\textit{lessThanExpression}(\code{i}, \code{10})) and construct the anti-unifier, $V_0$($V_1$($V_2$, $V_3$), \textit{lessThanExpression}(\code{i}, \code{10}), $V_4$($V_5$($V_2$))), as depicted in Figure~\ref{fig:for-while}.
 
 \begin{figure}[!h]
 \centering\begin{tikzpicture}
@@ -819,7 +823,7 @@ For simplicity, we treat \code{for}- and \code{while}-loops as functions with di
 %
 \draw[->](au) -- (left) node[pos=0.5, above]{$\sigma_1\qquad$};
 \end{tikzpicture}
-\caption[Complex anti-unification of two structures demonstrating a \protect\NIL{}-theory.]{Anti-unification of the structures \code{for}(\textit{initializer}(\code{i}, \code{0}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \textit{updater}(\textit{postIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\sigma_1 = (V_0 \mapsto \text{ \textsf{\small for}}, V_1 \mapsto \text{ \textit{initializer}}, V_2 \mapsto \text{ \textsf{\small i}}, V_3 \mapsto 0, V_4 \mapsto \text{ \textit{updater}}, V_5 \mapsto \text{ \textit{postIncrementExpression}})$; and $\sigma_2 = (V_0 \mapsto \text{ \textsf{\small while}}, V_1 \mapsto \text{ \NIL{}}, V_2 \mapsto \text{ \NIL{}}, V_3 \mapsto \text{ \NIL{}}, V_4 \mapsto \text{ \NIL{}}, V_5 \mapsto \text{ \NIL{}})$\label{fig:for-while}}
+\caption[Complex anti-unification of two structures demonstrating a \protect\NIL{}-theory.]{Anti-unification of the structures \code{for}(\textit{initializer}(\code{i}, \code{0}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \textit{updater}(\textit{postIncrementExpression}(\code{i}))) and \code{while}(\NIL{}(\NIL{}, \NIL{}), \mbox{\textit{lessThanExpression}(\code{i}, \code{10}),} \NIL{}(\NIL{}, \NIL{})). The substitutions are defined as follows: $\sigma_1 = (V_0 \mapsto \text{ \textsf{\small for}}, V_1 \mapsto \text{ \textit{initializer}}, V_2 \mapsto \text{ \textsf{\small i}}, V_3 \mapsto 0, V_4 \mapsto \text{ \textit{updater}}, V_5 \mapsto \text{ \textit{postIncrementExpression}})$; and $\sigma_2 = (V_0 \mapsto \text{ \textsf{\small while}}, V_1 \mapsto \text{ \NIL{}}, V_2 \mapsto \text{ \NIL{}}, V_3 \mapsto \text{ \NIL{}}, V_4 \mapsto \text{ \NIL{}}, V_5 \mapsto \text{ \NIL{}})$.\label{fig:for-while}}
 \end{figure}
 % higher-order extension and the equational theories
 % provide a better example
@@ -833,11 +837,10 @@ For simplicity, we treat \code{for}- and \code{while}-loops as functions with di
 
 %To perform a reuse task, developers mostly copy and paste the reused code snippet and then fit it to the hole of the target context by performing some modifications.
 
-In general, the proposed approach by \citeauthor{2008:fse:cottrell} proceeds in three steps. First, it generates an augmented form of AST, called a \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections, each implicitly representing an anti-unifier. To find candidate correspondences amongst the CASTs of the original system and the target system, it uses a similarity measure that relies on syntactic similarity along with simple knowledge of semantic equivalences supported by the Java language specifications. Although the CAST structure may represent many anti-unifiers, they used a greedy selection algorithm to select the best fit for each node via thresholding in order to approximate the optimal generalization. That is, the correspondence connections with a similarity value below a threshold are removed. Second, when there is more than one candidate correspondence connection for a node, the developer is prompted to resolve the conflict by selecting the best fit for his functionality. Third, the best correspondences are used to semi-automatically perform the integration task by replacing the developer’s original source code with the integrated version. The Jigsaw tool is a proof-of-concept implementation of this approach.
-
+In general, the approach of \citeauthor{2008:fse:cottrell} proceeds in three steps. First, it generates an augmented form of AST, called a \emph{correspondence AST} (CAST), where each node holds a list of candidate correspondence connections, each implicitly representing an anti-unifier. To find candidate correspondences amongst the CASTs of the original system and the target system, it uses a similarity measure that relies on syntactic similarity along with simple knowledge of semantic equivalences supported by the Java language specifications. Although the CAST structure may represent many anti-unifiers, they used a greedy selection algorithm to select the best fit for each node via thresholding in order to approximate the optimal generalization. That is, the correspondence connections with a similarity value below a threshold are removed. Second, when there is more than one candidate correspondence connection for a node, the developer is prompted to resolve the conflict by selecting the best fit for his functionality. Third, the best correspondences are used to semi-automatically perform the integration task by replacing the developer's original source code with the integrated version. The Jigsaw tool is a proof-of-concept implementation of this approach.
 
 Underlying the Jigsaw tool is the Jigsaw framework for determining likely structural correspondences between two ASTs; I simply refer to ``Jigsaw'' henceforth to intend the Jigsaw framework.
-The Jigsaw similarity function returns a value in $[0, 1]$ where zero indicates complete lack of similarity and one indicates perfect similarity. In general, this function returns a value above zero if the compared nodes are of identical type, and thus it returns a similarity of 0 for the nodes of different types. However, it uses several heuristics to improve the utility of the similarity measurement by defining an arbitrary value for the nodes that are syntactically different but are semantically relevant. For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of the longest common substring. The comparison of the \code{int} and \code{long} nodes is another example, where an arbitrary value of 0.5 is defined as the similarity, since they are not of syntactically identical types but have a semantic equivalence. This function also detects the correspondence between \code{for}-, \code{enhanced-for}-, \code{while}-, and \code{do}-loop statements; and \code{if} and \code{switch} conditional statements.
+The Jigsaw similarity function returns a value in $[0, 1]$ where zero indicates complete lack of similarity and one indicates perfect similarity. In general, this function returns a value above zero if the compared nodes are of identical type, and thus it returns a similarity of 0 for the nodes of different types. However, it uses several heuristics to improve the utility of the similarity measurement by defining an arbitrary value for the nodes that are syntactically different but are semantically relevant. For example, the similarity between names of AST nodes is measured using a normalized computation based on the length of the longest common substring. The comparison of the \code{int} and \code{long} nodes is another example, where an arbitrary value of 0.5 is defined as the similarity, since they are not of syntactically identical types but have a semantic equivalence. This function also detects the correspondence between \code{for}-, enhanced-\code{for}-, \code{while}-, and \code{do}-loop statements; and \code{if} and \code{switch} conditional statements.
 
 
 As I intend to construct a structural generalization from ASTs of two logged methods via structural correspondence, it could be helpful to use the first phase of the proposed approach to find candidate correspondences using the similarity measure. However, the second phase does not help determine the best correspondences needed in my context, as the CAST generated via thresholding neither resolves the conflicts that occur in constructing one single anti-unifier automatically, nor prevents the anti-unification of log statement nodes with any other nodes. There, the Jigsaw similarity function does not enable us to measure how similar are the usages of log statements inside methods. In addition, as the problem of this study is different, the integration phase of the approach is not related to my work. Instead, I should develop an algorithm to construct a detailed view of the generalization describing the structural commonalities and differences between logged methods. However, the CAST structure does not suffice to construct an anti-unifier: it does not allow the insertion of \emph{structural variables} in place of nodes in the tree structure, and thus an extended form is required. In the following chapters, I will discuss my approach to create a structural generalization and its implementation by means of the higher-order anti-unification modulo theories.
@@ -860,7 +863,7 @@ The following will introduce two popular techniques used to perform clustering o
 % indicate Lines ??? initial centroids???
 %or the most representative object of a cluster
 This algorithm is a partitional clustering approach that attempts to find a certain number of clusters, which are represented by centroids (the center of a cluster). In this algorithm, ${K}$ is the number of the resulting clusters that has to be specified. Each cluster is associated with a centroid which is mostly the average of all the
-data objects within the cluster. The basic K-means clustering technique is described using Algorithm~\ref{alg:k-means}. This algorithm starts with $K$ randomly selected data objects as initial centroids and then repeatedly assigns each data object to a cluster with the nearest centroid and computes the new clusters centroids accordingly. This process terminates when it reaches a state in which no objects are moving from one cluster to another, and thus, the centroids don't change.
+data objects within the cluster. The basic K-means clustering technique is described using Algorithm~\ref{alg:k-means}. This algorithm starts with $K$ randomly selected data objects as initial centroids and then repeatedly assigns each data object to a cluster with the nearest centroid and computes the new clusters centroids accordingly. This process terminates when it reaches a state in which no objects are moving from one cluster to another, and thus, the centroids do not change.
 %strength?
 The K-means clustering algorithm is not a good fit to my purposes, as it requires one to specify the number of resulting clusters, which is not known here a priori. %??
 % representative object?
@@ -884,7 +887,7 @@ The K-means clustering algorithm is not a good fit to my purposes, as it require
 %LINES???
 %dendogram?
 The agglomerative hierarchical clustering algorithm produces a nested grouping of clusters, with single-point clusters at the bottom and an all-inclusive cluster at the top \cite{karypis1999chameleon}. Agglomerative hierarchical clustering is one of the mainstream clustering methods \cite{day1984efficient} that has applications in document retrieval \cite{voorhees1986implementing} and information retrieval from a search engine query log \cite{beeferman2000agglomerative}. Algorithm~\ref{alg:agglomerative} describes the basic agglomerative hierarchical clustering approach. It starts with the individual objects as singleton clusters, and successively merges the two closest clusters until only one all inclusive cluster remains. In general, hierarchical clustering algorithms work implicitly or explicitly with the $n \times n$ similarity matrix such that an element in row $i$ and column $j$ represents the similarity between the $i$th and the $j$th clusters \cite{karypis1999chameleon}.
-% dandogram ???
+% dendogram ???
 %update???
 
 
@@ -907,7 +910,7 @@ The agglomerative hierarchical clustering algorithm produces a nested grouping o
 
 %[Rasmussen, 1992] \RW{Put into bibtex}?????
 
-There are various versions of agglomerative hierarchical algorithms that mainly differ in how they update the similarity between clusters. There are various methods to measure the similarity between clusters, such as single linkage, complete linkage, average linkage, and centroids \cite{Rasmussen:1992:CA:129687.129703}. In the single linkage method, the similarity is measured by the similarity of the closest pair of data points of two clusters. In the complete linkage method, the similarity is computed by the similarity of the farthest pair of data points of two clusters. In the average linkage method, the similarity is measured by the average of all pairwise similarities between data points of two clusters. In the centroids methods, each cluster is represented by a centroid, and the similarity between two clusters is measured by the similarity of the clusters' centroids. However, I need to develop a modified version of the basic agglomerative hierarchical clustering algorithm to address my problem context. In the modified version, the merge and update operations should be terminated when the similarity between the closest clusters becomes below a pre-determined threshold value. Furthermore, I need to develop a measure of similarity between clusters based on the similarity between their anti-unifiers. In Chapter~\ref{clustering}, I describe in detail the clustering algorithm that I applied to solve my problem.
+There are various versions of agglomerative hierarchical clustering algorithms that mainly differ in how they update the similarity between clusters. There are various methods to measure the similarity between clusters, such as single linkage, complete linkage, average linkage, and centroids \cite{Rasmussen:1992:CA:129687.129703}. In the single linkage method, the similarity is measured by the similarity of the closest pair of data points of two clusters. In the complete linkage method, the similarity is computed by the similarity of the farthest pair of data points of two clusters. In the average linkage method, the similarity is measured by the average of all pairwise similarities between data points of two clusters. In the centroids methods, each cluster is represented by a centroid, and the similarity between two clusters is measured by the similarity of the clusters' centroids. However, I need a modified version of the basic agglomerative hierarchical clustering algorithm to address my problem context: the merge and update operations should be terminated when the similarity between the closest clusters becomes below a pre-determined threshold value. Furthermore, I need a measure of similarity between clusters based on the similarity between their anti-unifiers. In Chapter~\ref{clustering}, I describe in detail the clustering algorithm that I applied to solve my problem.
 
 %in our application, each cluster is composed of one AUAST, and the similarity between two clusters is measured by the similarity between the clusters' AUASTs, which is the ratio of the number of common pieces over the total number of pieces of their anti-unifier.
 
@@ -915,9 +918,9 @@ There are various versions of agglomerative hierarchical algorithms that mainly 
 %optimal clusters
 %. Partitional clustering try to classify a data set into $k$ clusters such that the partition optimizes a pre-determined criterion \cite{karypis1999chameleon}. The most popular partitional clustering algorithm is $k$-means, which repeatedly assigns each data point to a cluster with the nearest centroid and computes the new cluster centroids accordingly until a pre-determined number of clusters is obtained \cite{bouguettaya2015efficient}.
 
-\section{Summary}  \label{summary}
+\section{Summary}  \label{ch3:summary}
 I described abstract syntax trees (ASTs) as a standard syntactic representation of source code. Every AST can also be represented in a functional format (and vice versa) which constitute the standard theoretical concept of terms. I presented Eclipse JDT as a concrete framework that can be used to manipulate ASTs of a source code written in the \name{Java} programming language.
 
-I demonstrated how the theoretical framework of anti-unification can be used as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permitting substitution relative to function symbols as well as terms. A further extension allows for arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this approach of higher-order anti-unification modulo theories leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weaknesses, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice. I also introduced Jigsaw, an existing framework for determining structural correspondences between ASTs and why it does not adequately address my problem.  To address my problem, I describe in subsequent chapters how I extended the Jigsaw framework. Furthermore, I introduced a hierarchical clustering algorithm that can be applied to classify logged methods into different categories.
+I demonstrated how the theoretical framework of anti-unification can be used as a technique to construct a common generalization of two given terms, and hence of two ASTs.  First-order anti-unification permits terms to be replaced with variables and vice versa, but it is limited in that low-level commonality can be discarded due to high-level differences.  Higher-order anti-unification overcomes this by permitting substitution relative to function symbols as well as terms. A further extension allows for arbitrary equational theories to embed knowledge of semantic equivalence.  Unfortunately, this approach of higher-order anti-unification modulo theories leads to ambiguity and the potential for an infinite number of possible substitutions for every structural variable.  To make use of that technique despite its weaknesses, we must apply an approximation technique to select amongst the best MSAs in order to reach a solution that is reasonable in practice. I also introduced Jigsaw, an existing framework for determining structural correspondences between ASTs and why it does not adequately address my problem.  To address my problem, I describe in subsequent chapters how I extended the Jigsaw framework. Furthermore, I introduced the requirements on a hierarchical clustering algorithm that can be applied to classify logged methods into different categories.
 
 %approximated or modified? 

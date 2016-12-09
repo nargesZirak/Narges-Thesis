@@ -177,8 +177,8 @@ Markus Guhe, Alison Pease, Alan Smaill, Martin Schmidt, Helmar Gust, Kai-Uwe
 
 \bibitem[Gupta(2005)]{gupta2005pro}
 Samudra Gupta.
-\newblock \emph{Pro Apache log4j: Java application logging using the open
-  source Apache log4j API}.
+\newblock \emph{Pro Apache Log4J: {J}ava Application Logging Using the Open
+  Source {Apache Log4J API}}.
 \newblock Apress, 2 edition, 2005.
 \newblock \doi{10.1007/978-1-4302-0034-5}.
 

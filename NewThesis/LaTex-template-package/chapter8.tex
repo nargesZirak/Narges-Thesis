@@ -8,7 +8,7 @@ Logging is a common programming practice to gain valuable information about the 
 %I have developed a prototype tool, called \tool{ELUS}, to implement the proposed approach that proceeds in four steps.
 
 I have developed a prototype tool, called \tool{ELUS}, to implement the proposed approach that proceeds in four steps. First, it extracts the ASTs of logged methods using the Eclipse JDT framework, extends the AST structures to AUAST, and determines potential structural correspondences via the Jigsaw framework. Second, it constructs an anti-unifier from the AUASTs of two given logged methods with a focus on log statements through the application of higher-order anti-unification modulo theories. Due to the problem of undecidability of HOAUMT, it employs an approximation technique which greedily determines the best correspondence for each node with the highest similarity. It applies several constraints prior to determining the best correspondences to prevent the anti-unification of log statements with any other types of nodes. It also uses a measure of structural similarity that determines how similar is the usage of logging statements in different methods. Third, it categorizes a set of logged methods via a hierarchical clustering algorithm suited to my application. Fourth, it generates a detailed view of the anti-unifier constructed from each cluster to describe the structural similarities and differences between logged methods of the cluster.
-% prceeds in four..?
+% proceeds in four..?
 %logged method ????
 
 To evaluate the effectiveness of this approach in constructing generalizations and clustering logged methods, three experiments were conducted on a sample test suite. I found that my tool was successful in determining correct correspondences in 87\% of test cases. It was also successful in creating well-separated clusters of logged methods of my test suite. This work also shows how the Jigsaw framework could be effectively used to construct structural generalizations for a particular problem context by determining structural correspondences. To characterize the location of log statements in source code, I applied my tool on the source code of four software systems from various application domains: \name{Tomcat}, \name{Hibernate}, \name{Camel}, and \name{Solr}. My characterization study resulted in five main categories of locations of log statements in source code. Furthermore, an empirical experiment has been conducted to evaluate the performance of \tool{ELUS}. This experiment shows that \tool{ELUS} has an average precision of 84\% and recall of 80\% for the studied software systems.
@@ -21,9 +21,9 @@ In summary, my study makes the following main contributions:
 \item I implemented the proposed approach as an Eclipse plug-in tool, named ELUS, and conducted a within-project evaluation using four large open-source software systems.
 \item I conducted an exploratory experimental study by applying ELUS on the source code four large open-source software systems.
 \item My analysis has found the feasibility of finding common patterns of where log statements occur in source code.
-\item My analysis has resulted in five main categories of logging usage in source code, including exception catch-block logging, conditional logging, method logging, control flow logging, and exception try-block logging.
+\item My analysis has resulted in five main categories of logging usage in source code, including exception catch-block logging, conditional logging, outer method logging, control flow logging, and exception try-block logging.
 \item My analysis showed that the distribution of logging categories vary from application to application.
-\item I illustrated the potential applicability of my findings to enhance existing logging practices using an example. 
+\item I illustrated the potential applicability of my findings to enhance existing logging practices using an example.
 \end{itemize}
 
 
@@ -42,7 +42,7 @@ In the future, I aim to improve the precision and recall of \tool{ELUS} by repai
 %This approach?
 % conflict resolution????
 % class-level analysis???????
-% futhur studies to incorporate contextual info to strcutural one
+% future studies to incorporate contextual info to structural one
 
 \subsection{Further validation of this study}
 The characterization study can be conducted on more software systems to further validate the findings of this study. In addition, a survey can be performed to gain more feedback from developers to investigate the factors they consider when they want to decide on the location of log statements. It might also be helpful to recognize important structural and semantic information that should be taken into account for characterizing logging usage.
