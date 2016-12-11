@@ -2,95 +2,314 @@
 %\fancyfoot{} 
 
 \chapter{First Appendix}
+\section{Java source code of logged methods in each cluster}
 
-%Start the body text
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
+\subsubsection {\textbf{1) The cluster $C_1$}}
 
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+private PluginCacheEntry generateCache() throws IOException {
+  properties=new Properties();
+  LinkedList classes=new LinkedList();
+  ZipFile zipFile=getZipFile();
+  List plugins=new LinkedList();
+  PluginCacheEntry cache=new PluginCacheEntry();
+  cache.modTime=file.lastModified();
+  cache.cachedProperties=new Properties();
+  Enumeration entries=zipFile.entries();
+  while (entries.hasMoreElements()) {
+    ZipEntry entry=(ZipEntry)entries.nextElement();
+    String name=entry.getName();
+    String lname=name.toLowerCase();
+    if (lname.equals("actions.xml")) {
+      cache.actionsURI=classLoader.getResource(name);
+    }
+    else if (lname.equals("browser.actions.xml")) {
+      cache.browserActionsURI=classLoader.getResource(name);
+    }
+    else if (lname.equals("dockables.xml")) {
+      dockablesURI=classLoader.getResource(name);
+      cache.dockablesURI=dockablesURI;
+    }
+    else if (lname.equals("services.xml")) {
+      servicesURI=classLoader.getResource(name);
+      cache.servicesURI=servicesURI;
+    }
+    else if (lname.endsWith(".props")) {
+      InputStream in=classLoader.getResourceAsStream(name);
+      properties.load(in);
+      in.close();
+    }
+    else if (name.endsWith(".class")) {
+      String className=MiscUtilities.fileToClass(name);
+      if (className.endsWith("Plugin")) {
+        plugins.add(className);
+      }
+      classes.add(className);
+    }
+  }
+  cache.cachedProperties=properties;
+  jEdit.addPluginProps(properties);
+  this.classes=cache.classes=(String[])classes.toArray(new String[classes.size()]);
+  String label=null;
+  Iterator iter=plugins.iterator();
+  while (iter.hasNext()) {
+    String className=(String)iter.next();
+    String _label=jEdit.getProperty("plugin." + className + ".name");
+    String version=jEdit.getProperty("plugin." + className + ".version");
+    if (_label == null || version == null) {
+      Log.log(Log.WARNING,this,"Ignoring: " + className);
+    }
+    else {
+      cache.pluginClass=className;
+      if (jEdit.getPlugin(className) != null) {
+        jEdit.pluginError(path,"plugin-error.already-loaded",null);
+        return null;
+      }else {
+        plugin=new EditPlugin.Deferred(className);
+        plugin.jar=(EditPlugin.JAR)this;
+        label=_label;
+      }
+      break;
+    }
+  }
+  if (cache.actionsURI != null) {
+    actions=new ActionSet(this,null,null,cache.actionsURI);
+    actions.load();
+    cache.cachedActionNames=actions.getCacheableActionNames();
+    cache.cachedActionToggleFlags=new boolean[cache.cachedActionNames.length];
+    for (int i=0; i < cache.cachedActionNames.length; i++) {
+      cache.cachedActionToggleFlags[i]=jEdit.getBooleanProperty(cache.cachedActionNames[i] + ".toggle");
+    }
+  }
+  if (cache.browserActionsURI != null) {
+    browserActions=new ActionSet(this,null,null,cache.browserActionsURI);
+    browserActions.load();
+    VFSBrowser.getActionContext().addActionSet(browserActions);
+    cache.cachedBrowserActionNames=browserActions.getCacheableActionNames();
+    cache.cachedBrowserActionToggleFlags=new boolean[cache.cachedBrowserActionNames.length];
+    for (int i=0; i < cache.cachedBrowserActionNames.length; i++) {
+      cache.cachedBrowserActionToggleFlags[i]=jEdit.getBooleanProperty(cache.cachedBrowserActionNames[i] + ".toggle");
+    }
+  }
+  if (dockablesURI != null) {
+    DockableWindowManager.loadDockableWindows(this,dockablesURI,cache);
+  }
+  if (actions.size() != 0) {
+    if (label != null) {
+      actions.setLabel(jEdit.getProperty("action-set.plugin",new String[]{label}));
+    }else     actionsPresentButNotCoreClass();
+    jEdit.addActionSet(actions);
+  }
+  if (servicesURI != null) {
+    ServiceManager.loadServices(this,servicesURI,cache);
+  }
+  return cache;
+}
 
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-\begin{figure}
-Place the figure here
-\caption{Figure in the appendix}
+\end{lstlisting}
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public static void send(EBMessage message){
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+          Log.log(Log.DEBUG,EditBus.class,comp + ": " + time+ " ms");
+        }
+      }
+      else       comps[i].handleMessage(message);
+    }
+    catch (    Throwable t) {
+    }
+  }
+}
+\end{lstlisting}
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public void actionPerformed(ActionEvent evt){
+  EditAction action=context.getAction(actionName);
+  if (action == null) {
+    Log.log(Log.WARNING,this,"Unknown action: " + actionName);
+  }
+  else   context.invokeAction(evt,action);
+}
+
+\end{lstlisting}
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+private synchronized Class _loadClass(String clazz,boolean resolveIt) throws ClassNotFoundException {
+  jar.activatePlugin();
+  synchronized (this) {
+    Class cls=findLoadedClass(clazz);
+    if (cls != null) {
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    String name=MiscUtilities.classToFile(clazz);
+    try {
+      ZipFile zipFile=jar.getZipFile();
+      ZipEntry entry=zipFile.getEntry(name);
+      if (entry == null)       throw new ClassNotFoundException(clazz);
+      InputStream in=zipFile.getInputStream(entry);
+      int len=(int)entry.getSize();
+      byte[] data=new byte[len];
+      int success=0;
+      int offset=0;
+      while (success < len) {
+        len-=success;
+        offset+=success;
+        success=in.read(data,offset,len);
+        if (success == -1) {
+          Log.log(Log.ERROR,this,"Failed to load class " + clazz + " from "+ zipFile.getName());
+          throw new ClassNotFoundException(clazz);
+        }
+      }
+      cls=defineClass(clazz,data,0,data.length);
+      if (resolveIt)       resolveClass(cls);
+      return cls;
+    }
+    catch (    IOException io) {
+      throw new ClassNotFoundException(clazz);
+    }
+  }
+}
+\end{lstlisting} 
+
+\subsubsection {\textbf{2) The cluster $C_2$}}
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public static boolean isSupportedEncoding(String encoding){
+  if (OperatingSystem.hasJava14()) {
+    try {
+      Class clazz=Class.forName("java.nio.charset.Charset");
+      Method method=clazz.getMethod("isSupported",new Class[]{String.class});
+      return ((Boolean)method.invoke(null,new Object[]{encoding})).booleanValue();
+    }
+    catch (    Exception e) {
+      Log.log(Log.ERROR,MiscUtilities.class,e);
+    }
+  }
+  return true;
+}
+
+\end{lstlisting}
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+RootsEntry(File file){
+  this.path=this.deletePath=this.symlinkPath=file.getPath();
+  if (isFloppy(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    name=path;
+  }
+  else   if (isDrive(file)) {
+    type=VFS.DirectoryEntry.FILESYSTEM;
+    if (getSystemDisplayName != null) {
+      try {
+        name=path + " " + (String)getSystemDisplayName.invoke(fsView,new Object[]{file});
+      }
+      catch (      Exception e) {
+        Log.log(Log.ERROR,this,e);
+        name=path;
+      }
+    }
+   }
+   else   if (file.isDirectory()) {
+   type=VFS.DirectoryEntry.FILESYSTEM;
+   if (isFileSystemRoot != null) {
+      try {
+        if (Boolean.FALSE.equals(isFileSystemRoot.invoke(fsView,new Object[]{file}))) {
+          type=VFS.DirectoryEntry.DIRECTORY;
+        }
+      }
+      catch (      Exception e) {
+      }
+    }
+    if (OperatingSystem.isMacOS())     name=MiscUtilities.getFileName(path);
+    else     name=path;
+  }
+  else   type=VFS.DirectoryEntry.FILE;
+}
+
+\end{lstlisting}
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public static void loadServices(PluginJAR plugin,URL uri,PluginJAR.PluginCacheEntry cache){
+  Reader in=null;
+  try {
+    ServiceListHandler dh=new ServiceListHandler(plugin,uri);
+    XmlParser parser=new XmlParser();
+    parser.setHandler(dh);
+    in=new BufferedReader(new InputStreamReader(uri.openStream()));
+    parser.parse(null,null,in);
+    if (cache != null)     cache.cachedServices=dh.getCachedServices();
+  }
+  catch (  XmlException xe) {
+    int line=xe.getLine();
+    String message=xe.getMessage();
+    Log.log(Log.ERROR,ServiceManager.class,uri + ":" + line+ ": "+ message);
+  }
+  catch (  Exception e) {
+  }
+  finally {
+    try {
+      if (in != null)       in.close();
+    }
+    catch (    IOException io) {
+    }
+  }
+}
+\end{lstlisting}
+
+
+
+
+\subsubsection {\textbf{3) The cluster $C_3$}}
+
+\begin{figure}[p]
+\def\baselinestretch{1}
+
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public static void send(EBMessage message){
+  Log.log(Log.DEBUG,EditBus.class,message.toString());
+  EBComponent[] comps=getComponents();
+  for (int i=0; i < comps.length; i++) {
+    try {
+      EBComponent comp=comps[i];
+      if (Debug.EB_TIMER) {
+        long start=System.currentTimeMillis();
+        comp.handleMessage(message);
+        long time=(System.currentTimeMillis() - start);
+        if (time != 0) {
+        }
+      }else       comps[i].handleMessage(message);
+    }catch (    Throwable t) {
+    }
+  }
+}
+\end{lstlisting}
+
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public void handleMessage(EBMessage message){
+  EditBus.removeFromBus(this);
+  if (seenWarning)   return;
+  seenWarning=true;
+  Log.log(Log.WARNING,this,getClassName() + " should extend" + " EditPlugin not EBPlugin since it has an empty"+ " handleMessage()");
+}
+\end{lstlisting}
+
+========================== LOGGED METHOD ==========================
+\begin{lstlisting}
+public void doctypeDecl(String name,String publicId,String systemId) throws Exception {
+  if ("RECENT".equals(name))   return;
+  Log.log(Log.ERROR,this,"recent.xml: DOCTYPE must be RECENT");
+}
+\end{lstlisting}
 \end{figure}
-
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-\begin{table}
-Place the table here
-\caption{Table in the appendix}
-\end{table}
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-
-
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-Lorem ipson dolor sic amet sec in consetum epsom nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem epsom ipson dolor sic amet sec in consetum nunc ad valorem. 
-Lorem ipson dolor sic amet sec in consetum nunc ad valorem. Lorem ipson dolor sic amet
-sec in consetum nunc ad valorem. Lorem ipson dolor sic amet sec in epsom consetum nunc ad valorem.
-
-
