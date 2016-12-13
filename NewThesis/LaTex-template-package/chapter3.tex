@@ -539,7 +539,7 @@ For first-order terms $t_1$ and $t_2$, $t_2$ is called an \emph{instance} of $t_
 %Unification usually aims to create the \emph{most general unifier} (MGU); that is, $U$ is the MGU of two terms such that for all unifiers $U'$ there exists a substitution $\sigma$ such that $U\xrightarrow{\sigma}U'$. Unification aims to make a more concrete structure in essence, whereas what we need is a more generalized structure, which leads to the use of the dual of unification, called \emph{anti-unification}.
 
 \begin{defn}[First-Order Anti-unifier (and Unifier)]\label{def:generalization}
-A \emph{first-order unifier} of two terms $t_1$ and $t_2$ is a substitution $\sigma$ such that $\sigma'(t_1)=\sigma'(t_2)$.  The term $t$ is a \emph{first-order anti-unifier} (or generalization) for first-order terms $t_1$ and $t_2$, if and only if there exist first-order substitutions $\sigma_1$ and $\sigma_2$ such that $\sigma_1(t)=t_1$ and $\sigma_2(t)=t_2$. 
+A \emph{first-order unifier} of two terms $t_1$ and $t_2$ is a substitution $\sigma$ such that $\sigma'(t_1)=\sigma'(t_2)$.  The term $t$ is a \emph{first-order anti-unifier} (or generalization) for first-order terms $t_1$ and $t_2$, if and only if there exist first-order substitutions $\sigma_1$ and $\sigma_2$ such that $\sigma_1(t)=t_1$ and $\sigma_2(t)=t_2$.
 \end{defn}
 
 Note that this terminology (and the corresponding higher-order terminology) is not symmetrical between unification and anti-unification.  Fortunately, I do not need to make further use of unification beyond this chapter, so this point of confusion remains as a mere curiosity from a practical perspective.
@@ -857,7 +857,7 @@ Clustering is the division of a collection of data objects into meaningful group
 
 The following will introduce two popular techniques used to perform clustering on a data set:
 
-% supervised-unsupervisod?
+% supervised-unsupervised?
 %dendogram?
 \subsection{K-means clustering algorithm}
 % indicate Lines ??? initial centroids???
@@ -908,7 +908,7 @@ The agglomerative hierarchical clustering algorithm produces a nested grouping o
 
 %until a pre-determined number of clusters is obtained or the similarity between the closest clusters becomes below a pre-determined threshold value.
 
-%[Rasmussen, 1992] \RW{Put into bibtex}?????
+%[Rasmussen, 1992] \RW{Put into BibTeX}?????
 
 There are various versions of agglomerative hierarchical clustering algorithms that mainly differ in how they update the similarity between clusters. There are various methods to measure the similarity between clusters, such as single linkage, complete linkage, average linkage, and centroids \cite{Rasmussen:1992:CA:129687.129703}. In the single linkage method, the similarity is measured by the similarity of the closest pair of data points of two clusters. In the complete linkage method, the similarity is computed by the similarity of the farthest pair of data points of two clusters. In the average linkage method, the similarity is measured by the average of all pairwise similarities between data points of two clusters. In the centroids methods, each cluster is represented by a centroid, and the similarity between two clusters is measured by the similarity of the clusters' centroids. However, I need a modified version of the basic agglomerative hierarchical clustering algorithm to address my problem context: the merge and update operations should be terminated when the similarity between the closest clusters becomes below a pre-determined threshold value. Furthermore, I need a measure of similarity between clusters based on the similarity between their anti-unifiers. In Chapter~\ref{clustering}, I describe in detail the clustering algorithm that I applied to solve my problem.
 

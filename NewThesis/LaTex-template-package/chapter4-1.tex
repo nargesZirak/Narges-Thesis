@@ -89,7 +89,7 @@ To evaluate the clustering approach, I have implemented a tool and conducted an 
 %. Recall that clustering should be performed in such a way that the objects within a cluster are similar to one another and dissimilar from the other clusters \cite{tan2013data} ?
 \begin{itemize} [leftmargin=0.4in]
 \item \emph{Cluster cohesion:} which determines how closely related the objects within a cluster are. In this experiment, the cohesion of each cluster can be defined as the average of the similarities between the AUAST pairs in each cluster.
-\item \emph{Cluster separateness:} which determines how distinct or well-separated a cluster is from the other clusters. A well-separated cluster is a set of data objects in which each object is more similar to every other object in the cluster than to any other object in the other clusters.  In this experiment, the separation between two clusters can be measured by the similarity between the two clusters anti-unifiers (representatives). 
+\item \emph{Cluster separateness:} which determines how distinct or well-separated a cluster is from the other clusters. A well-separated cluster is a set of data objects in which each object is more similar to every other object in the cluster than to any other object in the other clusters.  In this experiment, the separation between two clusters can be measured by the similarity between the two clusters' anti-unifiers (representatives).
 \end{itemize}
 % and the AUAST of the cluster anti-unifier
 %\subsection{Setup}  \label{study3-setup}
@@ -117,16 +117,17 @@ To evaluate the clustering approach, I have implemented a tool and conducted an 
 %I present the results of my analysis in Table~\ref{results_clustering}. The analysis of the output has been divided into three categories: correspondence, similarity, and separateness. The analysis of correspondence and similarity was described in Section~\ref{study2-results}. "Separateness" refers to my tools' ability to cluster Java method with different usages of log statements into separate groups, and the ones with similar usages of log statements into the same cluster.
 %To evaluate the quality of the resulting clusters, I computed the cohesion of each cluster and the separateness between each cluster pair
 
-I ran the clustering tool on the set of AUASTs of the test suite described in Table~\ref{table:ljms}. The cohesion of the clusters produced by applying the clustering tool to the test suite is presented in Table~\ref{tab:cohesion}, where $C_i$ is the  $i$th cluster, and $N_i$ is the cluster size of cluster ${C_i}$. In addition, Table~\ref{tab:separateness} shows the separateness between each cluster pair. 
+I ran the clustering tool on the set of AUASTs from the test suite of Table~\ref{table:ljms}; the 3 clusters that were produced are described in detail in Appendix~\ref{append}. The cohesion of the clusters produced by applying the clustering tool to the test suite is presented in Table~\ref{tab:cohesion}, where $C_i$ is the  $i$th cluster, and $N_i$ is the cluster size of cluster ${C_i}$. In addition, Table~\ref{tab:separateness} shows the separateness between each cluster pair.
 %\RW{What is separateness? The table shows straight zeroes.  What does this mean?}
 %\NZ{Separateness measures  how distinct or well-separated a cluster is from the other clusters. A well-separated cluster is a set of data objects in which each object is more similar to every other object in the cluster than to any other object in the other clusters. In this experiment, the separation between two clusters can be measured by the similarity between the two clusters anti-unifiers, which are representatives of the clusters.
-%As I explained in Section~\ref{{m-clustering-alg}}, I adjusted the similarity to zero to handle the cases in which the anti-unification of the AUASTs of two clusters does not allow the anti-unification of log statements with one another, since the structures enclosing them are not corresponded. This is the reason why I got straight zero. This results implies that that logged methods in each cluster should be located in that cluster and not the other clusters.}
+%As I explained in Section~\ref{{m-clustering-alg}}, I adjusted the similarity to zero to handle the cases in which the anti-unification of the AUASTs of two clusters does not allow the anti-unification of log statements with one another, since the structures enclosing them are not corresponded. This is the reason why I got straight zero. This results implies that logged methods in each cluster should be located in that cluster and not the other clusters.}
 
 
 %The cohesion of the clusters produced by applying the clustering tool to the test suite described in Table~\ref{table:ljms}
 
 %The separateness between each cluster pair produced by applying the clustering tool to the test suite described in Table~\ref{table:ljms}
-\begin{minipage}[b]{.40\textwidth}
+\begin{table}[t]
+\centering\begin{minipage}[b]{.40\textwidth}
    \centering
    \begin{tabular}{ ccc}\toprule
      {Cluster}&{$N_i$}&{Cohesion}\\
@@ -144,7 +145,7 @@ I ran the clustering tool on the set of AUASTs of the test suite described in Ta
 \begin{minipage}[b]{.40\textwidth}
    \centering
    \begin{tabular}{ cc}\toprule
-     {Cluster}&{Separateness}\\
+     {Cluster pair}&{Separateness}\\
     \toprule
     $C_1$--$C_2$& 0\\
     \midrule
@@ -158,6 +159,7 @@ I ran the clustering tool on the set of AUASTs of the test suite described in Ta
 
    %\caption{The separateness of the resulting cluster pairs.}
 \end{minipage}
+\end{table}
 
 %        \caption{The cohesion and separateness of the resulting clusters.}
 

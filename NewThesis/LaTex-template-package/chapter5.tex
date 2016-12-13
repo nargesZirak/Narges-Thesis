@@ -22,11 +22,11 @@ In this experiment, I will analyze logging usage of four popular open-source sof
   \begin{tabular}{llcccc}
     \toprule
     \textbf{Software system}  & \textbf{Description}   & \textbf{Version} & \textbf{Start time} & \textbf{LOC} & \textbf{Log statements} \\ \hline
-    {Tomcat} & Server  & 9.0.11& 2003 &306,704 &  3,117 \\ \hline
-{Hibernate ORM} & Framework & 4.2.23 & 2004 & 509,734 & 1,939 \\ \hline
-    {Camel} &  Middleware & 2.18.0 &  2007 &120,528 & 2,177 \\
+    {Tomcat} & server  & 9.0.11& 2003 &306,704 &  3,117 \\ \hline
+{Hibernate ORM} & framework & 4.2.23 & 2004 & 509,734 & 1,939 \\ \hline
+    {Camel} &  middleware & 2.18.0 &  2007 &120,528 & 2,177 \\
     \hline
-    {Solr} &  Platform  & 6.2.1 &  2007 & 128,824 & 2,319 \\
+    {Solr} &  platform  & 6.2.1 &  2007 & 128,824 & 2,319 \\
 %{OpenMeetings} & Web Conferencing & & 2.0 &38K &3506 \\ \hline
  %   {QuickFIX/J} & Engine & 1.6 & 48K & 2958 \\
    % \bottomrule
@@ -54,7 +54,7 @@ The experimental results for each software system are presented in Table~\ref{ta
 \begin{table}[h]
 \vspace*{1em}
 \let\A\relax
-\newlength{\A} 
+\newlength{\A}
 \settowidth{\A}{1098}
 \let\B\relax
 \newlength{\B}
@@ -72,9 +72,9 @@ The experimental results for each software system are presented in Table~\ref{ta
   \toprule
    & \multicolumn{1}{c}{Tomcat}  & \multicolumn{1}{c}{Hibernate} & \multicolumn{1}{c}{Camel}  & \multicolumn{1}{c}{Solr} \\
   \midrule
-  
+
   log4j statements               & \makebox[\A][r]{1098} & \makebox[\B][r]{128} & \makebox[\C][r]{632} & \makebox[\D][r]{1471}   \\
-  
+
   LMs                            & \makebox[\A][r]{658}  & \makebox[\B][r]{81}  & \makebox[\C][r]{490} & \makebox[\D][r]{818}    \\\midrule
 
   Primitive clusters at start    & \makebox[\A][r]{1098} & \makebox[\B][r]{128} & \makebox[\C][r]{632} & \makebox[\D][r]{1471}   \\
@@ -126,7 +126,7 @@ In this section, I will describe the anti-unifiers of logging usage by examining
 
 % how to compare?
 
-\subsubsection{\emph{A. Exception Catch-block Logging}}  \label{Exception catch-block logging}
+\subsubsection{\emph{A. Exception Catch-Block Logging}}  \label{Exception catch-block logging}
 The main common structural characteristics of the anti-unifiers of this category are the \code{try} statements, where the log statements are located inside the body of a \code{catch} clause. As shown in Figure~\ref{fig:categories}, 14\% to 52\% of the total LMs are described by the anti-unifiers of this category, and it is the most commonly used logging usage category in the \name{Tomcat} and \name{Hibernate} software systems. The popularity of this category among all the studied systems is due to the fact that exception handling using the \code{try}/\code{catch} blocks is a common technique in the Java programming language.
 
 %a large portion of LMs are described by the anti-unifiers of this category.
