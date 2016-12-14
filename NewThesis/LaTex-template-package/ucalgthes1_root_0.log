@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  13 DEC 2016 16:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  14 DEC 2016 06:44
 entering extended mode
 **C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucal
 gthes1_root_0.tex
@@ -980,28 +980,28 @@ er8.aux)
 dix1.aux)
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\appen
 dix2.aux))
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 132.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 132.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 133.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 133.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 133.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 132.
+LaTeX Font Info:    ... okay on input line 133.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 133.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
@@ -1064,7 +1064,7 @@ Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count177
 \AtBeginShipoutBox=\box46
-Package hyperref Info: Link coloring OFF on input line 132.
+Package hyperref Info: Link coloring OFF on input line 133.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1073,9 +1073,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count178
 )
-LaTeX Info: Redefining \ref on input line 132.
-LaTeX Info: Redefining \pageref on input line 132.
-LaTeX Info: Redefining \nameref on input line 132.
+LaTeX Info: Redefining \ref on input line 133.
+LaTeX Info: Redefining \pageref on input line 133.
+LaTeX Info: Redefining \nameref on input line 133.
 
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
 thes1_root_0.out)
@@ -1083,7 +1083,7 @@ thes1_root_0.out)
 thes1_root_0.out)
 \@outlinefile=\write4
  ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 133.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 134.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1ptm.fd"
@@ -1093,7 +1093,7 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 {C:/Users/walker/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 {Abstract}
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 174.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 175.
 [1
 
 ]
@@ -1130,11 +1130,11 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 [7
 
-])
+] [8])
 \tf@lof=\write7
- [8]
+ [9]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\symbo
-ls.tex) [9
+ls.tex) [10
 
 
 
@@ -1154,7 +1154,7 @@ l.11 T
 
 
 ] [2] [3] [4]
-<Drawing4/SystemOverview.pdf, id=755, 767.86874pt x 568.1225pt>
+<Drawing4/SystemOverview.pdf, id=899, 767.86874pt x 568.1225pt>
 File: Drawing4/SystemOverview.pdf Graphic file (type pdf)
 
 <use Drawing4/SystemOverview.pdf>
@@ -1202,7 +1202,7 @@ Overfull \hbox (4.94255pt too wide) in paragraph at lines 408--409
 [][][][][][][][][][][][] 
  []
 
-<Drawing4/AST.pdf, id=1165, 1806.75pt x 867.24pt>
+<Drawing4/AST.pdf, id=1309, 1806.75pt x 867.24pt>
 File: Drawing4/AST.pdf Graphic file (type pdf)
  <use Drawing4/AST.pdf>
 Package pdftex.def Info: Drawing4/AST.pdf used on input line 432.
@@ -1265,7 +1265,7 @@ Chapter \bf {4}.
 ]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 35.
- [39] <Drawing4/FinalCorr.pdf, id=1433, 1806.75pt x 939.51pt>
+ [39] <Drawing4/FinalCorr.pdf, id=1574, 1806.75pt x 939.51pt>
 File: Drawing4/FinalCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FinalCorr.pdf>
@@ -1273,7 +1273,7 @@ Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 95.
 (pdftex.def)             Requested size: 650.42952pt x 325.20648pt.
  [40] [41 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
 kage/Drawing4/FinalCorr.pdf>] [42] [43] [44]
-<graphviz/jigsaw.pdf, id=1545, 1062.97125pt x 902.37125pt>
+<graphviz/jigsaw.pdf, id=1687, 1062.97125pt x 902.37125pt>
 File: graphviz/jigsaw.pdf Graphic file (type pdf)
 
 <use graphviz/jigsaw.pdf>
@@ -1284,7 +1284,7 @@ ckage/graphviz/jigsaw.pdf>]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4.tex
 Chapter \bf {5}.
-<Drawing4/auOverview.pdf, id=1574, 995.88057pt x 654.40488pt>
+<Drawing4/auOverview.pdf, id=1715, 995.88057pt x 654.40488pt>
 File: Drawing4/auOverview.pdf Graphic file (type pdf)
 
 <use Drawing4/auOverview.pdf>
@@ -1296,7 +1296,7 @@ Package pdftex.def Info: Drawing4/auOverview.pdf used on input line 26.
 
 ] [48 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
 /Drawing4/auOverview.pdf>] [49] [50]
-<Drawing4/FirstCorr.pdf, id=1642, 1806.75pt x 939.51pt>
+<Drawing4/FirstCorr.pdf, id=1784, 1806.75pt x 939.51pt>
 File: Drawing4/FirstCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FirstCorr.pdf>
@@ -1309,7 +1309,7 @@ Overfull \hbox (25.28653pt too wide) in paragraph at lines 207--208
 mr/m/n/12 [[][[]]])$ 
  []
 
-[53] [54] [55] <Drawing4/SampleAntiUnifier.png, id=1750, 1606.0pt x 1204.5pt>
+[53] [54] [55] <Drawing4/SampleAntiUnifier.png, id=1891, 1606.0pt x 1204.5pt>
 File: Drawing4/SampleAntiUnifier.png Graphic file (type png)
 
 <use Drawing4/SampleAntiUnifier.png>
@@ -1324,14 +1324,14 @@ Package pdftex.def Info: Drawing4/SampleAntiUnifier.png used on input line 300.
 
 [56] [57 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
 age/Drawing4/SampleAntiUnifier.png>]
-<Drawing4/multipleLogging.pdf, id=1772, 1589.94pt x 722.7pt>
+<Drawing4/multipleLogging.pdf, id=1913, 1589.94pt x 722.7pt>
 File: Drawing4/multipleLogging.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging.pdf>
 Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 362.
 (pdftex.def)             Requested size: 469.75502pt x 213.52547pt.
 
-<Drawing4/multipleLogging2.pdf, id=1777, 1589.94pt x 722.7pt>
+<Drawing4/multipleLogging2.pdf, id=1918, 1589.94pt x 722.7pt>
 File: Drawing4/multipleLogging2.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging2.pdf>
@@ -1343,7 +1343,7 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 389.
  [59 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
 Drawing4/multipleLogging2.pdf>] [60] [61] [62]
-<graphviz/au.pdf, id=1979, 1062.97125pt x 902.37125pt>
+<graphviz/au.pdf, id=2121, 1062.97125pt x 902.37125pt>
 File: graphviz/au.pdf Graphic file (type pdf)
  <use graphviz/au.pdf>
 Package pdftex.def Info: graphviz/au.pdf used on input line 551.
@@ -1358,7 +1358,7 @@ Chapter \bf {6}.
 
 
 
-] [67] <Drawing4/clustering.pdf, id=2028, 1011.78pt x 722.7pt>
+] [67] <Drawing4/clustering.pdf, id=2169, 1011.78pt x 722.7pt>
 File: Drawing4/clustering.pdf Graphic file (type pdf)
 
 <use Drawing4/clustering.pdf>
@@ -1387,7 +1387,7 @@ Chapter \bf {7}.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Charts/Histograms.png, id=2079, 899.61093pt x 482.55281pt>
+<Charts/Histograms.png, id=2220, 899.61093pt x 482.55281pt>
 File: Charts/Histograms.png Graphic file (type png)
 
 <use Charts/Histograms.png>
@@ -1395,7 +1395,7 @@ Package pdftex.def Info: Charts/Histograms.png used on input line 102.
 (pdftex.def)             Requested size: 650.45103pt x 325.22311pt.
  [72] [73 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
 kage/Charts/Histograms.png>]
-<Charts/Categories.png, id=2093, 989.94844pt x 655.69969pt>
+<Charts/Categories.png, id=2234, 989.94844pt x 655.69969pt>
 File: Charts/Categories.png Graphic file (type png)
 
 <use Charts/Categories.png>
@@ -1411,14 +1411,14 @@ OT1/ptm/m/n/12 s mostly
 
 [75] [76 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
 age/Charts/Categories.png>] [77] [78]
-<Charts/Precision.png, id=2135, 397.9668pt x 204.2832pt>
+<Charts/Precision.png, id=2276, 397.9668pt x 204.2832pt>
 File: Charts/Precision.png Graphic file (type png)
 
 <use Charts/Precision.png>
 Package pdftex.def Info: Charts/Precision.png used on input line 195.
 (pdftex.def)             Requested size: 328.84889pt x 195.13086pt.
 
-<Charts/Recall.png, id=2136, 397.9668pt x 203.8014pt>
+<Charts/Recall.png, id=2277, 397.9668pt x 203.8014pt>
 File: Charts/Recall.png Graphic file (type png)
  <use Charts/Recall.png>
 Package pdftex.def Info: Charts/Recall.png used on input line 201.
@@ -1459,20 +1459,184 @@ thes1_root_0.bbl [100
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\appen
 dix1.tex
 \bf {Appendix} \bf {A}.
-) [107
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 9.
+See the caption package documentation for explanation.
 
 
-]
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 21.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 33.
+See the caption package documentation for explanation.
+
+[107
+
+
+]) [108]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\appen
 dix2.tex
 \bf {Appendix} \bf {B}.
-[108
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 13.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 25.
+See the caption package documentation for explanation.
+
+[109
 
 
 
-]) [109] [110]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 260.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 260.
+]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 37.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 51.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 65.
+See the caption package documentation for explanation.
+
+[110]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 79.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 93.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 109.
+See the caption package documentation for explanation.
+
+[111]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 121.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 133.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 147.
+See the caption package documentation for explanation.
+
+[112]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 161.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 175.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 189.
+See the caption package documentation for explanation.
+
+[113]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 205.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 217.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 229.
+See the caption package documentation for explanation.
+
+[114]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 243.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 257.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 271.
+See the caption package documentation for explanation.
+
+[115]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 285.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 301.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 313.
+See the caption package documentation for explanation.
+
+[116]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 325.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 339.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 353.
+See the caption package documentation for explanation.
+
+[117]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 367.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 381.
+See the caption package documentation for explanation.
+
+) [118]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 261.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 261.
 
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\ucalg
 thes1_root_0.aux
@@ -1500,20 +1664,20 @@ er8.aux)
 dix1.aux)
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\appen
 dix2.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 260.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 260.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 261.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 261.
 Package rerunfilecheck Info: File `ucalgthes1_root_0.out' has not changed.
-(rerunfilecheck)             Checksum: 85277F0039BB4AB49CEC20046D3C04A9;6741.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 260.
+(rerunfilecheck)             Checksum: F420D865438C841359850591CF94FAE0;8520.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 261.
  ) 
 Here is how much of TeX's memory you used:
- 24463 strings out of 493921
- 457601 string characters out of 3147279
- 721571 words of memory out of 3000000
- 26557 multiletter control sequences out of 15000+200000
+ 24535 strings out of 493921
+ 458528 string characters out of 3147279
+ 721743 words of memory out of 3000000
+ 26580 multiletter control sequences out of 15000+200000
  53574 words of font info for 110 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,17n,84p,2043b,1306s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,16n,84p,2043b,1306s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -1534,9 +1698,9 @@ gram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ucalgthes1_root_0.pdf (120 pages, 1859648 bytes).
+Output written on ucalgthes1_root_0.pdf (129 pages, 1892131 bytes).
 PDF statistics:
- 2632 PDF objects out of 2984 (max. 8388607)
- 635 named destinations out of 1000 (max. 500000)
- 852 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2824 PDF objects out of 2984 (max. 8388607)
+ 684 named destinations out of 1000 (max. 500000)
+ 1004 words of extra memory for PDF output out of 10000 (max. 10000000)
 

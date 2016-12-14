@@ -3,96 +3,389 @@
 
 \chapter{Categorization of and Logged Methods in Each Cluster of the Characterization Study}\label{appendB}
 
-\section{Clusters classified as Exception Catch-Block Logging}
+In the characterization study of Chapter~\ref{eval}, four systems were studied: Tomcat (Section~\ref{tomcat}), Hibernate (Section~\ref{hibernate}), Camel (Section~\ref{camel}), and Solr (Section~\ref{solr}). In each section below, the clusters that were created for the given system are presented relative to their categorization, as described in Section~\ref{analysis}, in order of descending size.
 
-\begin{table}[!tbh]
-\centering\caption{LMs in the cluster $C_1$ of Tomcat}
+\section{Tomcat}\label{tomcat}
+
+\subsection{Clusters classified as Exception Catch-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{CB},1}$}
 \begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\begin{table}[!tbh]
-\caption{LMs in the cluster $C_2$ of Tomcat}
-\centering\begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{CB},2}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\begin{table}[!tbh]
-\caption{LMs in the cluster $C_3$ of Tomcat}
-\centering\begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{CB},3}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\section{Clusters classified as Conditional Logging}
+\subsection{Clusters classified as Conditional Logging}
 
-\begin{table}[!tbh]
-\caption{LMs in the cluster $C_4$ of Tomcat}
-\centering\begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{K},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\section{Clusters classified as Outer Method Logging}
+\subsection{Clusters classified as Outer Method Logging}
 
-\begin{table}[!tbh]
-\caption{LMs in the cluster $C_5$ of Tomcat}
-\centering\begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{OM},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\section{Clusters classified as Control Flow Logging}
+\subsection{Clusters classified as Control Flow Logging}
 
-\begin{table}[!tbh]
-\caption{LMs in the cluster $C_6$ of Tomcat}
-\centering\begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{CF},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
 
-\section{Clusters classified as Exception Try-Block Logging}
+\subsection{Clusters classified as Exception Try-Block Logging}
 
-\begin{table}[!tbh]
-\caption{LMs in the cluster $C_7$ of Tomcat}
-\centering\begin{tabular}{ll}\toprule
-Class&Method\\\midrule
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{-2pt}{\lstinline/foo(int)/}\\
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{TB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{center}
+
+\section{Hibernate}\label{hibernate}
+
+\subsection{Clusters classified as Exception Catch-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{CB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{CB},2}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{CB},3}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Conditional Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{K},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Outer Method Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{OM},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Control Flow Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{CF},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Exception Try-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{H}_{\id{TB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Camel}\label{camel}
+
+\subsection{Clusters classified as Exception Catch-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{CB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{CB},2}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{CB},3}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Conditional Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{K},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Outer Method Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{OM},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Control Flow Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{CF},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Exception Try-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{C}_{\id{TB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Solr}\label{solr}
+
+\subsection{Clusters classified as Exception Catch-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{CB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{CB},2}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{CB},3}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Conditional Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{K},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Outer Method Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{OM},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Control Flow Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{CF},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Clusters classified as Exception Try-Block Logging}
+
+\begin{center}
+\captionof{figure}{LMs in the cluster $\id{S}_{\id{TB},1}$}
+\begin{tabular}{ll}\toprule
+\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+

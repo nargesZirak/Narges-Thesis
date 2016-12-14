@@ -87,8 +87,27 @@
 \BOOKMARK [2][-]{subsection.10.1.4}{Other applications}{section.10.1}% 87
 \BOOKMARK [0][-]{appendix.A}{Logged Methods in Each Cluster of the Clustering Evaluation}{}% 88
 \BOOKMARK [0][-]{appendix.B}{Categorization of and Logged Methods in Each Cluster of the Characterization Study}{}% 89
-\BOOKMARK [1][-]{section.B.1}{Clusters classified as Exception Catch-Block Logging}{appendix.B}% 90
-\BOOKMARK [1][-]{section.B.2}{Clusters classified as Conditional Logging}{appendix.B}% 91
-\BOOKMARK [1][-]{section.B.3}{Clusters classified as Outer Method Logging}{appendix.B}% 92
-\BOOKMARK [1][-]{section.B.4}{Clusters classified as Control Flow Logging}{appendix.B}% 93
-\BOOKMARK [1][-]{section.B.5}{Clusters classified as Exception Try-Block Logging}{appendix.B}% 94
+\BOOKMARK [1][-]{section.B.1}{Tomcat}{appendix.B}% 90
+\BOOKMARK [2][-]{subsection.B.1.1}{Clusters classified as Exception Catch-Block Logging}{section.B.1}% 91
+\BOOKMARK [2][-]{subsection.B.1.2}{Clusters classified as Conditional Logging}{section.B.1}% 92
+\BOOKMARK [2][-]{subsection.B.1.3}{Clusters classified as Outer Method Logging}{section.B.1}% 93
+\BOOKMARK [2][-]{subsection.B.1.4}{Clusters classified as Control Flow Logging}{section.B.1}% 94
+\BOOKMARK [2][-]{subsection.B.1.5}{Clusters classified as Exception Try-Block Logging}{section.B.1}% 95
+\BOOKMARK [1][-]{section.B.2}{Hibernate}{appendix.B}% 96
+\BOOKMARK [2][-]{subsection.B.2.1}{Clusters classified as Exception Catch-Block Logging}{section.B.2}% 97
+\BOOKMARK [2][-]{subsection.B.2.2}{Clusters classified as Conditional Logging}{section.B.2}% 98
+\BOOKMARK [2][-]{subsection.B.2.3}{Clusters classified as Outer Method Logging}{section.B.2}% 99
+\BOOKMARK [2][-]{subsection.B.2.4}{Clusters classified as Control Flow Logging}{section.B.2}% 100
+\BOOKMARK [2][-]{subsection.B.2.5}{Clusters classified as Exception Try-Block Logging}{section.B.2}% 101
+\BOOKMARK [1][-]{section.B.3}{Camel}{appendix.B}% 102
+\BOOKMARK [2][-]{subsection.B.3.1}{Clusters classified as Exception Catch-Block Logging}{section.B.3}% 103
+\BOOKMARK [2][-]{subsection.B.3.2}{Clusters classified as Conditional Logging}{section.B.3}% 104
+\BOOKMARK [2][-]{subsection.B.3.3}{Clusters classified as Outer Method Logging}{section.B.3}% 105
+\BOOKMARK [2][-]{subsection.B.3.4}{Clusters classified as Control Flow Logging}{section.B.3}% 106
+\BOOKMARK [2][-]{subsection.B.3.5}{Clusters classified as Exception Try-Block Logging}{section.B.3}% 107
+\BOOKMARK [1][-]{section.B.4}{Solr}{appendix.B}% 108
+\BOOKMARK [2][-]{subsection.B.4.1}{Clusters classified as Exception Catch-Block Logging}{section.B.4}% 109
+\BOOKMARK [2][-]{subsection.B.4.2}{Clusters classified as Conditional Logging}{section.B.4}% 110
+\BOOKMARK [2][-]{subsection.B.4.3}{Clusters classified as Outer Method Logging}{section.B.4}% 111
+\BOOKMARK [2][-]{subsection.B.4.4}{Clusters classified as Control Flow Logging}{section.B.4}% 112
+\BOOKMARK [2][-]{subsection.B.4.5}{Clusters classified as Exception Try-Block Logging}{section.B.4}% 113

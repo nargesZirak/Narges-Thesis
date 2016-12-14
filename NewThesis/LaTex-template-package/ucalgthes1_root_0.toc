@@ -3,7 +3,7 @@
 \contentsline {chapter}{Table of Contents}{iii}{chapter*.4}
 \contentsline {chapter}{List of Tables}{vi}{chapter*.6}
 \contentsline {chapter}{List of Figures}{vii}{chapter*.8}
-\contentsline {chapter}{List of Abbreviations}{ix}{chapter*.10}
+\contentsline {chapter}{List of Abbreviations}{x}{chapter*.10}
 \addvspace {10pt}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Programmatic support for logging}{3}{section.1.1}
@@ -103,9 +103,28 @@
 \contentsline {subsection}{\numberline {10.1.4}Other applications}{99}{subsection.10.1.4}
 \addvspace {10pt}
 \contentsline {chapter}{\numberline {A}Logged Methods in Each Cluster of the Clustering Evaluation}{107}{appendix.A}
-\contentsline {chapter}{\numberline {B}Categorization of and Logged Methods in Each Cluster of the Characterization Study}{108}{appendix.B}
-\contentsline {section}{\numberline {B.1}Clusters classified as Exception Catch-Block Logging}{108}{section.B.1}
-\contentsline {section}{\numberline {B.2}Clusters classified as Conditional Logging}{109}{section.B.2}
-\contentsline {section}{\numberline {B.3}Clusters classified as Outer Method Logging}{109}{section.B.3}
-\contentsline {section}{\numberline {B.4}Clusters classified as Control Flow Logging}{109}{section.B.4}
-\contentsline {section}{\numberline {B.5}Clusters classified as Exception Try-Block Logging}{109}{section.B.5}
+\contentsline {chapter}{\numberline {B}Categorization of and Logged Methods in Each Cluster of the Characterization Study}{109}{appendix.B}
+\contentsline {section}{\numberline {B.1}Tomcat}{109}{section.B.1}
+\contentsline {subsection}{\numberline {B.1.1}Clusters classified as Exception Catch-Block Logging}{109}{subsection.B.1.1}
+\contentsline {subsection}{\numberline {B.1.2}Clusters classified as Conditional Logging}{110}{subsection.B.1.2}
+\contentsline {subsection}{\numberline {B.1.3}Clusters classified as Outer Method Logging}{110}{subsection.B.1.3}
+\contentsline {subsection}{\numberline {B.1.4}Clusters classified as Control Flow Logging}{111}{subsection.B.1.4}
+\contentsline {subsection}{\numberline {B.1.5}Clusters classified as Exception Try-Block Logging}{111}{subsection.B.1.5}
+\contentsline {section}{\numberline {B.2}Hibernate}{111}{section.B.2}
+\contentsline {subsection}{\numberline {B.2.1}Clusters classified as Exception Catch-Block Logging}{111}{subsection.B.2.1}
+\contentsline {subsection}{\numberline {B.2.2}Clusters classified as Conditional Logging}{112}{subsection.B.2.2}
+\contentsline {subsection}{\numberline {B.2.3}Clusters classified as Outer Method Logging}{113}{subsection.B.2.3}
+\contentsline {subsection}{\numberline {B.2.4}Clusters classified as Control Flow Logging}{113}{subsection.B.2.4}
+\contentsline {subsection}{\numberline {B.2.5}Clusters classified as Exception Try-Block Logging}{113}{subsection.B.2.5}
+\contentsline {section}{\numberline {B.3}Camel}{114}{section.B.3}
+\contentsline {subsection}{\numberline {B.3.1}Clusters classified as Exception Catch-Block Logging}{114}{subsection.B.3.1}
+\contentsline {subsection}{\numberline {B.3.2}Clusters classified as Conditional Logging}{115}{subsection.B.3.2}
+\contentsline {subsection}{\numberline {B.3.3}Clusters classified as Outer Method Logging}{115}{subsection.B.3.3}
+\contentsline {subsection}{\numberline {B.3.4}Clusters classified as Control Flow Logging}{115}{subsection.B.3.4}
+\contentsline {subsection}{\numberline {B.3.5}Clusters classified as Exception Try-Block Logging}{116}{subsection.B.3.5}
+\contentsline {section}{\numberline {B.4}Solr}{116}{section.B.4}
+\contentsline {subsection}{\numberline {B.4.1}Clusters classified as Exception Catch-Block Logging}{116}{subsection.B.4.1}
+\contentsline {subsection}{\numberline {B.4.2}Clusters classified as Conditional Logging}{117}{subsection.B.4.2}
+\contentsline {subsection}{\numberline {B.4.3}Clusters classified as Outer Method Logging}{117}{subsection.B.4.3}
+\contentsline {subsection}{\numberline {B.4.4}Clusters classified as Control Flow Logging}{118}{subsection.B.4.4}
+\contentsline {subsection}{\numberline {B.4.5}Clusters classified as Exception Try-Block Logging}{118}{subsection.B.4.5}
