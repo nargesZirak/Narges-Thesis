@@ -7,384 +7,2163 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 
 \section{Tomcat}\label{tomcat}
 
-\subsection{Clusters classified as Exception Catch-Block Logging}
+\subsection{Cluster classified as Exception Catch-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{T}_{\id{CB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/ loadDescriptors(String,ClassLoader)/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/ loadDescriptors(String,ClassLoader)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ SAXExceptioncreateSAXException(String,Exception)/}\\ 
+\lstinline/BasicDataSource/&\raisebox{0pt}{\lstinline/ ObjectNamepreRegister(MBeanServer,ObjectName)/}\\ 
+\lstinline/BasicDataSource/&\raisebox{0pt}{\lstinline/ ObjectNamepreRegister(MBeanServer,ObjectName)/}\\ 
+\lstinline/CoyoteAdapter/&\raisebox{0pt}{\lstinline/ convertURI(MessageBytes)/}\\ 
+\lstinline/HostConfig/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/OpenSSLContext/&\raisebox{0pt}{\lstinline/ init(KeyManager[])/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/HostConfig/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ copy(File,File)/}\\ 
+\lstinline/RewriteValveextendsValveBase/&\raisebox{0pt}{\lstinline/ parse(BufferedReader)/}\\ 
+\lstinline/SocketProcessorextendsSocketProcessorBase<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+\lstinline/SocketProcessorextendsSocketProcessorBase<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+\lstinline/WebappClassLoaderBaseextendsURLClassLoader/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/WebappClassLoaderBaseextendsURLClassLoader/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/SocketProcessor<NioChannel>/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+\lstinline/SocketProcessor<NioChannel>/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+\lstinline/JAASRealm/&\raisebox{0pt}{\lstinline/ authenticate(Stringu)/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/BlockPoller/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/IntrospectionUtils/&\raisebox{0pt}{\lstinline/ ObjectgetProperty(Object,String)/}\\ 
+\lstinline/SecurityClassLoad/&\raisebox{0pt}{\lstinline/ securityClassLoad(ClassLoader)/}\\ 
+\lstinline/WebappClassLoader/&\raisebox{0pt}{\lstinline/publishEntryInfo(Object)/}\\ 
+\lstinline/LazyReplicatedMap/&\raisebox{0pt}{\lstinline/publishEntryInfo(Object)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/SocketProcessor<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+\lstinline/Acceptor/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/Acceptor/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/SimpleTcpCluster/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/ContextConfig/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/Acceptor/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/Acceptor/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/Sendfile/&\raisebox{0pt}{\lstinline/ SendfileStateadd(SendfileData)/}\\ 
+\lstinline/Sendfile/&\raisebox{0pt}{\lstinline/ SendfileStateadd(SendfileData)/}\\ 
+\lstinline/CoyoteAdapter/&\raisebox{0pt}{\lstinline/ convertURI(MessageBytes)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ copy(File,File)/}\\ 
+\lstinline/AbstractReplicatedMap</&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap</&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap</&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/TcpFailureDetector/&\raisebox{0pt}{\lstinline/ memberAlive(Member)/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ copy(File,File)/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal()/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int,boolean)/}\\ 
+\lstinline/CGIEnvironment/&\raisebox{0pt}{\lstinline/ expandCGIScript()/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ booleancopy(Filefrom,Fileto)/}\\ 
+\lstinline/StoreConfig/&\raisebox{0pt}{\lstinline/ booleanstore(Context)/}\\ 
+\lstinline/ContextConfig/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/JDBCRealm/&\raisebox{0pt}{\lstinline/ startInternal()/}\\ 
+\lstinline/AprSocketWrapper/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage,Member)/}\\ 
+\lstinline/ReplicatedCont/&\raisebox{0pt}{\lstinline/ startInternal()/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/ loadDescriptors(Strng,ClassLoader)/}\\ 
+\lstinline/Response/&\raisebox{0pt}{\lstinline/ sendRedirect(int)/}\\ 
+\lstinline/AbstractReplicatedMap</&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap</&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/StoreConfig/&\raisebox{0pt}{\lstinline/ booleanstore(Context)/}\\ 
+\lstinline/NioReplicationTask/&\raisebox{0pt}{\lstinline/ sendAck()/}\\ 
+\lstinline/TwoPhaseCommitInterceptor/&\raisebox{0pt}{\lstinline/ heartbeat()/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage)/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/NamingContext/&\raisebox{0pt}{\lstinline/ Objectlookup(Name,boolean)/}\\ 
+\lstinline/ThreadLocalLeakPreventionListener,ContainerListener/&\raisebox{0pt}{\lstinline/ containerEvent(ContainerEvent)/}\\ 
+\lstinline/RewriteValve/&\raisebox{0pt}{\lstinline/ parse(BufferedReaderreader)/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage)/}\\ 
+\lstinline/StandardHost/&\raisebox{0pt}{\lstinline/ startInternal()/}\\ 
+\lstinline/WebappLoader/&\raisebox{0pt}{\lstinline/ booleanbuildClassPath(StringBuilder,ClassLoader)/}\\ 
+\lstinline/GlobalResourcesLifecycleListener/&\raisebox{0pt}{\lstinline/ createMBeans(String)/}\\ 
+\lstinline/GlobalResourcesLifecycleListener/&\raisebox{0pt}{\lstinline/ createMBeans(String)/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/ AccessLogElementgetServletRequestElement(String)/}\\ 
+\lstinline/NamingContextListener,ContainerListener,PropertyChangeListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/JAASRealm/&\raisebox{0pt}{\lstinline/ Principalauthenticate(String,CallbackHandler)/}\\ 
+\lstinline/JAASRealm/&\raisebox{0pt}{\lstinline/ Principalauthenticate(String,CallbackHandler)/}\\ 
+\lstinline/NioReplicationTask/&\raisebox{0pt}{\lstinline/ sendAck(Selection)/}\\ 
+\lstinline/NioSender/&\raisebox{0pt}{\lstinline/ disconnect()/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal()/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal()/}\\ 
+\lstinline/AprLifecycleListener/&\raisebox{0pt}{\lstinline/ initializeSSL())/}\\ 
+\lstinline/ReplicatedMap/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/AbstractReplicatedMap</&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/ReplicatedMap/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/MultiCastSender/&\raisebox{0pt}{\lstinline/ intsend(String)/}\\ 
+\lstinline/TcpSender/&\raisebox{0pt}{\lstinline/ intsend(String)/}\\ 
+\lstinline/NonBlockingCoordinator/&\raisebox{0pt}{\lstinline/ fireInterceptorEvent(InterceptorEvent)/}\\ 
+\lstinline/NioReplicationTask/&\raisebox{0pt}{\lstinline/ sendAck(SelectionKey)/}\\ 
+\lstinline/BaseModelMBean/&\raisebox{0pt}{\lstinline/ setAttribute(Attribute)/}\\ 
+\lstinline/BaseModelMBean/&\raisebox{0pt}{\lstinline/ setAttribute(Attribute)/}\\ 
+\lstinline/BaseModelMBean/&\raisebox{0pt}{\lstinline/ setAttribute(Attribute)/}\\ 
+\lstinline/FormAuthenticator/&\raisebox{0pt}{\lstinline/ forwardToErrorPage(Request)/}\\ 
+\lstinline/FormAuthenticator/&\raisebox{0pt}{\lstinline/ forwardToErrorPage(Request)/}\\ 
+\lstinline/ThreadLocalLeakPreventionListener,ContainerListener/&\raisebox{0pt}{\lstinline/ containerEvent(ContainerEvent)/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage,Member)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/Http11Processorlog.warn(sm.getString("byteBufferUtils.cleaner"),e)/&\raisebox{0pt}{\lstinline/ sslReHandShake()/}\\ 
+\lstinline/Http11Processor/&\raisebox{0pt}{\lstinline/ sslReHandShake()/}\\ 
+\lstinline/Tool/&\raisebox{0pt}{\lstinline/ usage()/}\\ 
+\lstinline/BlockPoller/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/ContextConfig/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File,boolean)/}\\ 
+\lstinline/ContextConfig/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File,boolean)/}\\ 
+\lstinline/ContextConfig/&\raisebox{0pt}{\lstinline/ processAnnotationsFile((File,boolean)/}\\ 
+\lstinline/WebXmlParser/&\raisebox{0pt}{\lstinline/ booleanparseWebXml(InputSource)/}\\ 
+\lstinline/WebXmlParser/&\raisebox{0pt}{\lstinline/ booleanparseWebXml(InputSource)/}\\ 
+\lstinline/WebXmlParser/&\raisebox{0pt}{\lstinline/ booleanparseWebXml(InputSource)/}\\ 
+\lstinline/SSLUtilBase/&\raisebox{0pt}{\lstinline/ KeyStoregetStore(String)/}\\ 
+\lstinline/SSLUtilBase/&\raisebox{0pt}{\lstinline/ KeyStoregetStore(String)/}\\ 
+\lstinline/JspReader/&\raisebox{0pt}{\lstinline/ JspReader(JspCompilationContext)/}\\ 
+\lstinline/BioReplicationTask/&\raisebox{0pt}{\lstinline/ sendAck(byte[])/}\\ 
+\lstinline/JspCompilationContext/&\raisebox{0pt}{\lstinline/ CompilercreateCompiler(String)/}\\ 
+\lstinline/JspCompilationContext/&\raisebox{0pt}{\lstinline/ CompilercreateCompiler(String)/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PasswdUserDatabase/&\raisebox{0pt}{\lstinline/ init()/}\\ 
+\lstinline/AuthenticatorBase/&\raisebox{0pt}{\lstinline/ JaspicStategetJaspicState(AuthConfigProvider)/}\\ 
+\lstinline/LifecycleMBeanBase/&\raisebox{0pt}{\lstinline/ unregister(ObjectNameon)/}\\ 
+\lstinline/LifecycleMBeanBase/&\raisebox{0pt}{\lstinline/ unregister(ObjectNameon)/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/@SuppressWarnings("deprecation")StandardWrapper/&\raisebox{0pt}{\lstinline/ unload()/}\\ 
+\lstinline/JreMemoryLeakPreventionListenerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/JreMemoryLeakPreventionListenerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ SslRmiServerBindSocketFactory(String[])/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/StandardServer/&\raisebox{0pt}{\lstinline/ storeContext(Context)}\ 
+\lstinline/StandardServer/&\raisebox{0pt}{\lstinline/ storeContext(Context)}\ 
+\lstinline/StandardServer/&\raisebox{0pt}{\lstinline/ storeContext(Context)}\ 
+\lstinline/MBeanDumper/&\raisebox{0pt}{\lstinline/ StringdumpBeans(MBeanServer))/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/SessionIdGeneratorBase/&\raisebox{0pt}{\lstinline/ SecureRandomcreateSecureRandom()/}\\ 
+\lstinline/SessionIdGeneratorBase/&\raisebox{0pt}{\lstinline/ SecureRandomcreateSecureRandom()/}\\ 
+\lstinline/JSSESupport/&\raisebox{0pt}{\lstinline/ getPeerCertificateChain()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput(/}\\ 
+\lstinline/SSLValv/&\raisebox{0pt}{\lstinline/ invoke(Requeste)/}\\ 
+\lstinline/SSLValv/&\raisebox{0pt}{\lstinline/ invoke(Request)/}\\ 
+\lstinline/PojoEndpointBase/&\raisebox{0pt}{\lstinline/ onError(Session)/}\\ 
+\lstinline/StoreConfigLifecycleListenerListener/&\raisebox{0pt}{\lstinline/ createMBean(Server)/}\\ 
+\lstinline/WebappLoader/&\raisebox{0pt}{\lstinline/ booleanbuildClassPath(StringBuilder)/}\\ 
+\lstinline/CompilationUnit/&\raisebox{0pt}{\lstinline/ cgetContents()/}\\ 
+\lstinline/JspServlet/&\raisebox{0pt}{\lstinline/ handleMissingResource(HttpServletRequest)/}\\ 
+\lstinline/MemoryUserDatabase/&\raisebox{0pt}{\lstinline/ save())/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage,Member)/}\\ 
+\lstinline/SimpleTcpClusterr/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/GzipInterceptor/&\raisebox{0pt}{\lstinline/ messageReceived(ChannelMessage)/}\\ 
+\lstinline/GzipInterceptor/&\raisebox{0pt}{\lstinline/ messageReceived(ChannelMessage)/}\\ 
+\lstinline/BackupManager/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/BioReceiver/&\raisebox{0pt}{\lstinline/ listen())/}\\ 
+\lstinline/Http11Processor/&\raisebox{0pt}{\lstinline/ sslReHandShake()/}\\ 
+\lstinline/Http11Processor/&\raisebox{0pt}{\lstinline/ sslReHandShake()/}\\ 
+\lstinline/@SuppressWarnings("deprecation")StandardWrapper/&\raisebox{0pt}{\lstinline/ unload()/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/@SuppressWarnings("deprecation")JspServletWrapper/&\raisebox{0pt}{\lstinline/ destroy()/}\\ 
+\lstinline/TagHandlerPool/&\raisebox{0pt}{\lstinline/ doRelease(Taghandler)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardServer/&\raisebox{0pt}{\lstinline/ storeContext(Context)}\ 
+\lstinline/StandardServer/&\raisebox{0pt}{\lstinline/ storeContext(Context)}\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/WebappLoader/&\raisebox{0pt}{\lstinline/ booleanbuildClassPath(StringBuilder)/}\\ 
+\lstinline/BioReplicationTask/&\raisebox{0pt}{\lstinline/ sendAck(byte[])/}\\ 
+\lstinline/AuthenticatorBase/&\raisebox{0pt}{\lstinline/ JaspicStategetJaspicState(AuthConfigProvider)/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/JreMemoryLeakPreventionListenerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/JreMemoryLeakPreventionListenerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/DataSourceRealm/&\raisebox{0pt}{\lstinline/ getRoles(ConnectiondbConnection,String)/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ booleancopy(File,File)/}\\ 
+\lstinline/JDBCRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/JAASRealm/&\raisebox{0pt}{\lstinline/ authenticate(String)/}\\ 
+\lstinline/UserDatabaseRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/HeartbeatThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/DeltaManager/&\raisebox{0pt}{\lstinline/ messageReceived(SessionMessage,Member)/}\\ 
+\lstinline/JreMemoryLeakPreventionListenerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/NonBlockingCoordinator/&\raisebox{0pt}{\lstinline/ fireInterceptorEvent(InterceptorEvent)/}\\ 
+\lstinline/NonBlockingCoordinator/&\raisebox{0pt}{\lstinline/ fireInterceptorEvent(InterceptorEvent)/}\\ 
+\lstinline/MbeansDescriptorsIntrospectionSource/&\raisebox{0pt}{\lstinline/ createManagedBean(Registry)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/JAASRealm/&\raisebox{0pt}{\lstinline/ authenticate(String,CallbackHandler)/}\\ 
+\lstinline/RealmBase/&\raisebox{0pt}{\lstinline/ StringDigest(Stringc,String,String)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/StoreConfigLifecycleListenerListener/&\raisebox{0pt}{\lstinline/ createMBean(Server)/}\\ 
+\lstinline/MbeansDescriptorsDigesterSource/&\raisebox{0pt}{\lstinline/ execute())/}\\ 
+\lstinline/JAASMemoryLoginModule/&\raisebox{0pt}{\lstinline/ load()/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/MBeanFactory/&\raisebox{0pt}{\lstinline/ removeContext(String))/}\\ 
+\lstinline/HeartbeatListenerListener,ContainerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/HeartbeatListenerListener,ContainerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/BaseModelMBean/&\raisebox{0pt}{\lstinline/ setAttribute(Attribute))}\ 
+\lstinline/MultiCastSender/&\raisebox{0pt}{\lstinline/ intsend(String))/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/PollerEvent/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/PollerEvent/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/DeltaRequest/&\raisebox{0pt}{\lstinline/ readExternal(j))/}\\ 
+\lstinline/HeartbeatThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/NonBlockingCoordinator/&\raisebox{0pt}{\lstinline/ fireInterceptorEvent(InterceptorEvent)/}\\ 
+\lstinline/NonBlockingCoordinator/&\raisebox{0pt}{\lstinline/ fireInterceptorEvent(InterceptorEvent)/}\\ 
+\lstinline/DeltaRequest/&\raisebox{0pt}{\lstinline/ readExternal(java.io.ObjectInput))/}\\ 
+\lstinline/DeltaRequest/&\raisebox{0pt}{\lstinline/ readExternal(java.io.ObjectInput))/}\\ 
+\lstinline/McastService/&\raisebox{0pt}{\lstinline/ setDomain(byte[])/}\\ 
+\lstinline/McastService/&\raisebox{0pt}{\lstinline/ setDomain(byte[])/}\\ 
+\lstinline/SimpleTcpCluster/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/PingThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/PingThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/McastService/&\raisebox{0pt}{\lstinline/ setDomain(byte[])/}\\ 
+\lstinline/McastService/&\raisebox{0pt}{\lstinline/ setDomain(byte[])/}\\ 
+\lstinline/ReplicationValve/&\raisebox{0pt}{\lstinline/ updateStats(long,long)/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/HeartbeatThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/HeartbeatThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/StandardEngine/&\raisebox{0pt}{\lstinline/ logAccess(Request)/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/BioReceiver/&\raisebox{0pt}{\lstinline/ listen())/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/ParallelNioSender/&\raisebox{0pt}{\lstinline/ booleankeepalive()/}\\ 
+\lstinline/PojoEndpointBase/&\raisebox{0pt}{\lstinline/ onError(Session,Throwable)/}\\ 
+\lstinline/PojoEndpointBase/&\raisebox{0pt}{\lstinline/ onError(Session,Throwable)/}\\ 
+\lstinline/ObjectReader/&\raisebox{0pt}{\lstinline/ ObjectReader(Socketsocket)/}\\ 
+\lstinline/SimpleTcpCluster/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/SimpleTcpCluster/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ booleancopy(File,File)/}\\ 
+\lstinline/ApplicationFilterConfig/&\raisebox{0pt}{\lstinline/ unregisterJMX()/}\\ 
+\lstinline/LifecycleMBeanBase/&\raisebox{0pt}{\lstinline/ unregister(ObjectNameon)/}\\ 
+\lstinline/LifecycleMBeanBase/&\raisebox{0pt}{\lstinline/ unregister(ObjectNameon)/}\\ 
+\lstinline/StandardJarScanner/&\raisebox{0pt}{\lstinline/ scan(JarScanType)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/ApplicationFilterConfig/&\raisebox{0pt}{\lstinline/ unregisterJMX()/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ExpandWar/&\raisebox{0pt}{\lstinline/ booleandeleteDir(Filedir,booleanlogFailure)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ booleancopy(Filefrom,Fileto)/}\\ 
+\lstinline/DeltaSession/&\raisebox{0pt}{\lstinline/ doWriteObject(ObjectOutputstream)/}\\ 
+\lstinline/SpnegoAuthenticator/&\raisebox{0pt}{\lstinline/ doAuthenticate(Requestrequest)/}\\ 
+\lstinline/CombinedRealm/&\raisebox{0pt}{\lstinline/ PrincipalgetPrincipal(String)/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardJarScanner/&\raisebox{0pt}{\lstinline/ scan()/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/NioSocketWrapper<NioChannel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/NioSocketWrapper<NioChannel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/Nio2SocketWrapper<Nio2Channel>/&\raisebox{0pt}{\lstinline/ doClientAuth(SSLSupport)/}\\ 
+\lstinline/SingleSignOn/&\raisebox{0pt}{\lstinline/ expire(SingleSignOnSessionKeykey)/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/AprSocketWrapper<Long>/&\raisebox{0pt}{\lstinline/ populateLocalPort()/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/UpgradeServletOutputStream/&\raisebox{0pt}{\lstinline/ onError(Throwablet)/}\\ 
+\lstinline/UpgradeServletInputStream/&\raisebox{0pt}{\lstinline/ onError(Throwablet)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/WsSession/&\raisebox{0pt}{\lstinline/ onClose(CloseReasoncloseReason)/}\\ 
+\lstinline/WsSession/&\raisebox{0pt}{\lstinline/ onClose(CloseReasoncloseReason)/}\\ 
+\lstinline/DirResourceSet/&\raisebox{0pt}{\lstinline/ initInternal())/}\\ 
+\lstinline/MemoryRealm/&\raisebox{0pt}{\lstinline/ DigestergetDigester()/}\\ 
+\lstinline/MemoryUserDatabase/&\raisebox{0pt}{\lstinline/ save())/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/StandardJarScanner/&\raisebox{0pt}{\lstinline/ scan()/}\\ 
+\lstinline/CGIEnvironment/&\raisebox{0pt}{\lstinline/ expandCGIScript()/}\\ 
+\lstinline/WsHttpUpgradeHandler/&\raisebox{0pt}{\lstinline/ destroy()/}\\ 
+\lstinline/DataSourceRealm/&\raisebox{0pt}{\lstinline/ getRoles(Connection,String)/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/PojoEndpointBase/&\raisebox{0pt}{\lstinline/ onError(Session,Throwable)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(intkeyCount,booleanhasEvents)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(intkeyCount,booleanhasEvents)/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/AsyncChannelWrapperSecure/&\raisebox{0pt}{\lstinline/ close()/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/Connector/&\raisebox{0pt}{\lstinline/ resume()/}\\ 
+\lstinline/Connector/&\raisebox{0pt}{\lstinline/ resume()/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/MessageDispatchInterceptor/&\raisebox{0pt}{\lstinline/ sendAsyncData()/}\\ 
+\lstinline/MessageDispatchInterceptor/&\raisebox{0pt}{\lstinline/ sendAsyncData()/}\\ 
+\lstinline/ExtensionValidator/&\raisebox{0pt}{\lstinline/ addFolderList(Stringproperty)/}\\ 
+\lstinline/ExtensionValidator/&\raisebox{0pt}{\lstinline/ addFolderList(Stringproperty)/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ serverBindSocketFactory(String)/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/LifecycleBase/&\raisebox{0pt}{\lstinline/ handleSubClassException(Throwable))/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/JreMemoryLeakPreventionListenerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/Request/&\raisebox{0pt}{\lstinline/ PrincipalgetUserPrincipal()/}\\ 
+\lstinline/CombinedRealm/&\raisebox{0pt}{\lstinline/ PrincipalgetPrincipal(String)/}\\ 
+\lstinline/LockOutRealm/&\raisebox{0pt}{\lstinline/ PrincipalfilterLockedAccounts(String)/}\\ 
+\lstinline/RealmBase/&\raisebox{0pt}{\lstinline/ StringDigest(String,String,String)/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/JDBCRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/JDBCRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/BioReceiver/&\raisebox{0pt}{\lstinline/ listen())/}\\ 
+\lstinline/RmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ RmiServerBindSocketFactory(String)/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ SslRmiServerBindSocketFactory(String[])/}\\ 
+\lstinline/RmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ RmiServerBindSocketFactory(String)/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ SslRmiServerBindSocketFactory(String[])/}\\ 
+\lstinline/SessionIdGeneratorBase/&\raisebox{0pt}{\lstinline/ SecureRandomcreateSecureRandom()/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ sslRmiServerBindSocketFactory()/}\\ 
+\lstinline/StaticMembershipInterceptor/&\raisebox{0pt}{\lstinline/ sendShutdown(Member[]members)/}\\ 
+\lstinline/StaticMembershipInterceptor/&\raisebox{0pt}{\lstinline/ sendShutdown(Member[]members)/}\\ 
+\lstinline/PingThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/BasicDataSource/&\raisebox{0pt}{\lstinline/ ObjectNamepreRegister(MBeanServer)/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/RewriteValv/&\raisebox{0pt}{\lstinline/ parse(BufferedReaderreader))/}\\ 
+\lstinline/GlobalResourcesLifecycleListenerListener/&\raisebox{0pt}{\lstinline/ createMBeans(String))/}\\ 
+\lstinline/CatalinaProperties/&\raisebox{0pt}{\lstinline/ loadProperties()/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/StandardPipeline/&\raisebox{0pt}{\lstinline/ removeValve(Valvevalve)/}\\ 
+\lstinline/StandardPipeline/&\raisebox{0pt}{\lstinline/ removeValve(Valvevalve)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/StandardPipeline/&\raisebox{0pt}{\lstinline/ removeValve(Valvevalve)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/StandardPipeline/&\raisebox{0pt}{\lstinline/ removeValve(Valvevalve)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/StandardPipeline/&\raisebox{0pt}{\lstinline/ removeValve(Valvevalve)/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/DataSourceRealm/&\raisebox{0pt}{\lstinline/ getRoles(ConnectiondbConnection,String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/HeartbeatListenerListener,ContainerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/ loadDescriptors(StringpackageName,ClassLoaderclassLoader)/}\\ 
+\lstinline/StandardService/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/GlobalResourcesLifecycleListenerListener/&\raisebox{0pt}{\lstinline/ createMBeans(String,Context))/}\\ 
+\lstinline/ReplicationValve/&\raisebox{0pt}{\lstinline/ updateStats(long,long/}\\ 
+\lstinline/PersistentManagerBase/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/BasicDataSource/&\raisebox{0pt}{\lstinline/ NamepreRegister(MBeanServer,ObjectName)/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReaderrdr)/}\\ 
+\lstinline/SecurityListenerListener/&\raisebox{0pt}{\lstinline/ checkUmask()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/JspServlet/&\raisebox{0pt}{\lstinline/ handleMissingResource(HttpServletRequest)/}\\ 
+\lstinline/StandardManager/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/StandardManager/&\raisebox{0pt}{\lstinline/ stopInternal())/}\\ 
+\lstinline/BackgroundProcessManager/&\raisebox{0pt}{\lstinline/ process()/}\\ 
+\lstinline/Request/&\raisebox{0pt}{\lstinline/ getUserPrincipal()/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/@SuppressWarnings("deprecation")JspServletWrapper/&\raisebox{0pt}{\lstinline/ destroy()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/AprLifecycleListenerListener/&\raisebox{0pt}{\lstinline/ initializeSSL())/}\\ 
+\lstinline/AprLifecycleListenerListener/&\raisebox{0pt}{\lstinline/ initializeSSL())/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/AsyncContextImpl/&\raisebox{0pt}{\lstinline/ setErrorState(Throwable)/}\\ 
+\lstinline/AsyncContextImpl/&\raisebox{0pt}{\lstinline/ setErrorState(Throwable)/}\\ 
+\lstinline/AsyncContextImpl/&\raisebox{0pt}{\lstinline/ setErrorState(Throwable)/}\\ 
+\lstinline/AsyncContextImpl/&\raisebox{0pt}{\lstinline/ setErrorState(Throwable)/}\\ 
+\lstinline/TagHandlerPool/&\raisebox{0pt}{\lstinline/ doRelease(Taghandler)/}\\ 
+\lstinline/CoyoteAdapter/&\raisebox{0pt}{\lstinline/ convertURI(MessageBytesuri,Requestrequest)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/MessageDigestCredentialHandler/&\raisebox{0pt}{\lstinline/ setEncoding(StringencodingName)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/SimpleTcpCluster/&\raisebox{0pt}{\lstinline/ memberDisappeared(Member)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ booleancopy(Filefrom,Fileto)/}\\ 
+\lstinline/SocketProcessor/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+\lstinline/Http11Processor/&\raisebox{0pt}{\lstinline/ sslReHandShake()/}\\ 
+\lstinline/DefaultInstanceManager/&\raisebox{0pt}{\lstinline/ loadProperties()/}\\ 
+\lstinline/AntCompiler&\raisebox{0pt}{\lstinline/ generateClass(String[])/}\\ 
+\lstinline/AntCompiler/&\raisebox{0pt}{\lstinline/ generateClass(String[])/}\\ 
+\lstinline/TcpFailureDetector/&\raisebox{0pt}{\lstinline/ booleanmemberAlive(Member)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/McastService/&\raisebox{0pt}{\lstinline/ setDomain(byte[])/}\\ 
+\lstinline/Parameters/&\raisebox{0pt}{\lstinline/ processParameters(int)/}\\ 
+\lstinline/CoyoteAdapter/&\raisebox{0pt}{\lstinline/ convertURI(MessageByte)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int)/}\\ 
+\lstinline/Poller/&\raisebox{0pt}{\lstinline/ timeout(int)/}\\ 
+\lstinline/FarmWarDeployer/&\raisebox{0pt}{\lstinline/ booleancopy(File,File)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NioReceiver/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/ createSAXException(String,Exception)/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/BioReplicationTask/&\raisebox{0pt}{\lstinline/ sendAck(byte[])/}\\ 
+\lstinline/ReplicationValve/&\raisebox{0pt}{\lstinline/ updateStats(long)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/ processChildren(Container)/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/ loadDescriptors(String)/}\\ 
+\lstinline/Compiler/&\raisebox{0pt}{\lstinline/ removeGeneratedClassFiles()/}\\ 
+\lstinline/Compiler/&\raisebox{0pt}{\lstinline/ removeGeneratedClassFiles()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/AbstractReplicatedMap/&\raisebox{0pt}{\lstinline/ Vput()/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/ findClassInternal(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/NamingContextListener/&\raisebox{0pt}{\lstinline/ removeResourceLink(String)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/ open()/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/StoreLoader/&\raisebox{0pt}{\lstinline/ load()/}\\ 
+\lstinline/StoreLoader/&\raisebox{0pt}{\lstinline/ load()/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/ SslRmiServerBindSocketFactory(String[])/}\\ 
+\lstinline/SessionIdGeneratorBase/&\raisebox{0pt}{\lstinline/ SecureRandomcreateSecureRandom()/}\\ 
+\lstinline/Connector/&\raisebox{0pt}{\lstinline/ resume()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/HostConfigListener/&\raisebox{0pt}{\lstinline/ checkUndeploy()/}\\ 
+\lstinline/UserConfigListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/ContextConfigListener/&\raisebox{0pt}{\lstinline/ processAnnotationsFile(File)/}\\ 
+\lstinline/EngineConfigListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/DataSourceRealm/&\raisebox{0pt}{\lstinline/ getRoles(ConnectiondbConnection,String)/}\\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/StoreRegistry/&\raisebox{0pt}{\lstinline/ StoreDescriptionfindDescription(Stringid)/}\\ 
+\lstinline/StandardServer/&\raisebox{0pt}{\lstinline/ storeContext(Context)}\ 
+\lstinline/StandardContext/&\raisebox{0pt}{\lstinline/ checkUnusualURLPattern(String)/}\\ 
+\lstinline/RealmBase/&\raisebox{0pt}{\lstinline/ StringDigest(String)/}\\ 
+\lstinline/RealmBase/&\raisebox{0pt}{\lstinline/ StringDigest(String)/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/JNDIRealm/&\raisebox{0pt}{\lstinline/ startInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/Bootstrap/&\raisebox{0pt}{\lstinline/ main(Stringargs[])/}\\ 
+\lstinline/ReceiverBase/&\raisebox{0pt}{\lstinline/ intbindUdp(DatagramSocket)/}\\ 
+\lstinline/NamingResourcesImpl/&\raisebox{0pt}{\lstinline/ destroyInternal())/}\\ 
+\lstinline/DataSourceRealm/&\raisebox{0pt}{\lstinline/ getRoles(Connection,String)/}\\ 
+\lstinline/Tool/&\raisebox{0pt}{\lstinline/ usage()/}\\ 
+\lstinline/Tool/&\raisebox{0pt}{\lstinline/ usage()/}\\ 
+\lstinline/Tool/&\raisebox{0pt}{\lstinline/ usage()/}\\ 
+\lstinline/NonBlockingCoordinator/&\raisebox{0pt}{\lstinline/ fireInterceptorEvent(InterceptorEvent)/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/CatalinaShutdownHook/&\raisebox{0pt}{\lstinline/ run()/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/ loadDescriptors(String)/}\\ 
+\lstinline/RewriteValv/&\raisebox{0pt}{\lstinline/ parse(BufferedReader))/}\\ 
+\lstinline/StoreLoader/&\raisebox{0pt}{\lstinline/ load()/}\\ 
+\lstinline/CatalinaProperties/&\raisebox{0pt}{\lstinline/ loadProperties()/}\\ 
+\lstinline/CGIRunner/&\raisebox{0pt}{\lstinline/ sendToLog(BufferedReader)/}\\ 
+\lstinline/HeartbeatListenerListener,ContainerListener/&\raisebox{0pt}{\lstinline/ lifecycleEvent(LifecycleEvent)/}\\ 
+\lstinline/TcpSender/&\raisebox{0pt}{\lstinline/ intsend(String))/}\\ 
+\lstinline/SocketProcessor/&\raisebox{0pt}{\lstinline/ doRun()/}\\ 
+
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{T}_{\id{CB},2}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{T}_{\id{CB},3}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Clusters classified as Conditional Logging}
-
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{T}_{\id{K},1}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Clusters classified as Outer Method Logging}
+\subsection{Cluster classified as Outer Method Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{T}_{\id{OM},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/log()/}\\ 
+\lstinline/LifecycleListener/&\raisebox{0pt}{\lstinline/initializeSSL()throwsException/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/SAXExceptioncreateSAXException(String,Exception)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/RequestDumperFilter/&\raisebox{0pt}{\lstinline/doLog(String,String)/}\\ 
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/findClassInternal(String)/}\\ 
+\lstinline/CombinedRealm/&\raisebox{0pt}{\lstinline/getPrincipal(String)/}\\ 
+\lstinline/CombinedRealm/&\raisebox{0pt}{\lstinline/getPrincipal(String)/}\\ 
+\lstinline/AccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/PortElement/&\raisebox{0pt}{\lstinline/PortElement(String)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/createSAXException(String,Exception)/}\\ 
+\lstinline/Digester/&\raisebox{0pt}{\lstinline/createSAXException(String,Exception)/}\\ 
+\lstinline/JAASRealm/&\raisebox{0pt}{\lstinline/authenticate(String,CallbackHandler)/}\\ 
+\lstinline/Tool/&\raisebox{0pt}{\lstinline/usage()/}\\ 
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Control Flow Logging}
+\subsection{Cluster classified as Control Flow Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{T}_{\id{CF},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/ Parameters/&\raisebox{0pt}{\lstinline/  lstinlineprocessParameters(byte[],int)/}\\ 
+\lstinline/ Parameters/&\raisebox{0pt}{\lstinline/  lstinlineprocessParameters(byte[],int)/}\\ 
+\lstinline/ Parameters/&\raisebox{0pt}{\lstinline/  lstinlineprocessParameters(byte[],int)/}\\ 
+\lstinline/ Parameters/&\raisebox{0pt}{\lstinline/  lstinlineprocessParameters(byte[],int)/}\\ 
+\lstinline/ LegacyCookieProcessor/&\raisebox{0pt}{\lstinline/  lstinlineprocessCookieHeader(byte[],int)/}\\ 
+\lstinline/ LegacyCookieProcessor/&\raisebox{0pt}{\lstinline/  lstinlineprocessCookieHeader(byte[],int)/}\\ 
+\lstinline/ Cookie/&\raisebox{0pt}{\lstinline/  lstinlinelogInvalidVersion(ByteBuffer)/}\\ 
+\lstinline/ Cookie/&\raisebox{0pt}{\lstinline/  lstinlinelogInvalidVersion(ByteBuffer)/}\\ 
+\lstinline/ ConnectionSettingsBase<TextendsThrowable>/&\raisebox{0pt}{\lstinline/  lstinlineset(Setting,long)/}\\ 
+\lstinline/ Http11Processor/&\raisebox{0pt}{\lstinline/  lstinlinesslReHandShake()/}\\ 
+\lstinline/ WebXmlextendsXmlEncodingBase/&\raisebox{0pt}{\lstinline/  orderWebFragments(WebXml)/}\\ 
+\lstinline/ WebXmlextendsXmlEncodingBase/&\raisebox{0pt}{\lstinline/  orderWebFragments(WebXml)/}\\ 
+\lstinline/ PortElementt/&\raisebox{0pt}{\lstinline/  lstinlinePortElement(String)/}\\ 
+\lstinline/WebappLoader\/&\raisebox{0pt}{\lstinline/buildClassPath(String)/}\\ 
+\lstinline/JAASMemoryLoginModule/&\raisebox{0pt}{\lstinline/load()/}\\ 
+\lstinline/Tool/&\raisebox{0pt}{\lstinline/usage()/}\\ 
+\lstinline/NioSelectorPool/&\raisebox{0pt}{\lstinline/getSharedSelector()/}\\ 
+\lstinline/CatalinaProperties/&\raisebox{0pt}{\lstinline/loadProperties()/}\\ 
+\lstinline/TcpSender/&\raisebox{0pt}{\lstinline/intsend(String)/}\\ 
+\lstinline/TcpSender/&\raisebox{0pt}{\lstinline/intsend(String)/}\\ 
+\lstinline/Diagnostics/&\raisebox{0pt}{\lstinline/setVerboseGarbageCollection(boolean)/}\\ 
+\lstinline/Diagnostics/&\raisebox{0pt}{\lstinline/setVerboseGarbageCollection(boolean)/}\\ 
+\lstinline/Diagnostics/&\raisebox{0pt}{\lstinline/setVerboseGarbageCollection(boolean)/}\\ 
+\lstinline/Diagnostics/&\raisebox{0pt}{\lstinline/setVerboseGarbageCollection(boolean)/}\\ 
+\lstinline/Mapper/&\raisebox{0pt}{\lstinline/find(String)/}\\ 
+\lstinline/Mapper/&\raisebox{0pt}{\lstinline/find(String)/}\\ 
+\lstinline/Mapper/&\raisebox{0pt}{\lstinline/find(String)/}\\ 
+\lstinline/Mapper/&\raisebox{0pt}{\lstinline/find(String)/}\\ 
+\lstinline/ContainerBackgroundProcessor/&\raisebox{0pt}{\lstinline/processChildren(Container)/}\\ 
+\lstinline/DigesterextendsDefaultHandler2/&\raisebox{0pt}{\lstinline/createSAXException(String)/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/loadDescriptors(String)/}\\ 
+\lstinline/Mapper/&\raisebox{0pt}{\lstinline/find(String)/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/TcpSender/&\raisebox{0pt}{\lstinline/intsend(Stringmess)/}\\ 
+\lstinline/Registry/&\raisebox{0pt}{\lstinline/loadDescriptors(String)/}\\ 
+\lstinline/StoreLoader/&\raisebox{0pt}{\lstinline/load()/}\\ 
+\lstinline/CatalinaShutdownHookextendsThread/&\raisebox{0pt}{\lstinline/run()/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/ManagerBaseextendsLifecycleMBeanBase/&\raisebox{0pt}{\lstinline/getCreationTime(String)/}\\ 
+\lstinline/ExtendedAccessLogValve/&\raisebox{0pt}{\lstinline/getServletRequestElement(String)/}\\ 
+\lstinline/JspCextendsTask/&\raisebox{0pt}{\lstinline/locateUriRoot(File)/}\\ 
+\lstinline/ContextConfig/&\raisebox{0pt}{\lstinline/processAnnotationsFile(File))/}\\ 
+\lstinline/LoaderSFextendsStoreFactoryBase/&\raisebox{0pt}{\lstinline/store(PrintWriter)/}\\ 
+\lstinline/JspCextendsTask/&\raisebox{0pt}{\lstinline/locateUriRoot(File)/}\\ 
+\lstinline/SSLHostConfig/&\raisebox{0pt}{\lstinline/adjustRelativePath(String)/}\\ 
+\lstinline/JAASMemoryLoginModule/&\raisebox{0pt}{\lstinline/load()/}\\ 
+\lstinline/JspCextendsTask/&\raisebox{0pt}{\lstinline/locateUriRoot(File)/}\\ 
+\lstinline/StandardEngine/&\raisebox{0pt}{\lstinline/logAccess(Request,long,boolean)/}\\ 
+\lstinline/Diagnostics/&\raisebox{0pt}{\lstinline/setVerboseGarbageCollection(boolean)/}\\ 
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Exception Try-Block Logging}
+\subsection{Cluster classified as Exception Try-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{T}_{\id{TB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/WebappClassLoaderBase/&\raisebox{0pt}{\lstinline/findClassInternal(String)/}\\ 
+\lstinline/ReceiverBase/&\raisebox{0pt}{\lstinline/intbindUdp(DatagramSocket)/}\\ 
+\lstinline/ReceiverBase/&\raisebox{0pt}{\lstinline/intbindUdp(DatagramSocket)/}\\ 
+\lstinline/RecoveryThread/&\raisebox{0pt}{\lstinline/run()/}\\ 
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{0pt}{\lstinline/miServerBindSocketFactory(String[],String[],boolean,String)/}\\ 
+\lstinline/SocketProcessor/&\raisebox{0pt}{\lstinline/doRun()/}\\ 
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section{Hibernate}\label{hibernate}
 
-\subsection{Clusters classified as Exception Catch-Block Logging}
+\subsection{Cluster classified as Exception Catch-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{H}_{\id{CB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/SessionFactoryOptionsStateStandardImpl/&\raisebox{0pt}{\lstinline/SessionFactoryOptionsStateStandardImpl(StandardServiceRegistry)/}\\
+\lstinline/AbstractLazyInitializer/&\raisebox{0pt}{\lstinline/permissiveInitialization()/}\\
+\lstinline/AbstractPersistentCollection/&\raisebox{0pt}{\lstinline/twithTemporarySessionIfNeeded(LazyInitializationWork<T>)/}\\
+\lstinline/Helper/&\raisebox{0pt}{\lstinline/performWork(LazyInitializationWork<T>)/}\\
+\lstinline/JdbcConnectionAccessConnectionProviderImplim/&\raisebox{0pt}{\lstinline/releaseConnection(Connection)/}\\
+\lstinline/JdbcConnectionAccessProvidedConnectionImpl/&\raisebox{0pt}{\lstinline/releaseConnection(Connection)/}\\
+\lstinline/ScriptSourceInputFromFile/&\raisebox{0pt}{\lstinline/release()/}\\
+\lstinline/ScriptSourceInputFromUrl/&\raisebox{0pt}{\lstinline/release()/}\\
+\lstinline/Helper/&\raisebox{0pt}{\lstinline/performWork(LazyInitializationWork<T>))/}\\
+\lstinline/OracleTypesHelper/&\raisebox{0pt}{\lstinline/OracleTypesHelper()/}\\
+\lstinline/MultiTenantConnectionProviderInitiator<MultiTenantConnectionProvider>/&\raisebox{0pt}{\lstinline/)initiateService(Mapcon)/}\\
+\lstinline/MultiTenantConnectionProviderInitiator<MultiTenantConnectionProvider>/&\raisebox{0pt}{\lstinline/initiateService(Mapcon)/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testDeleteCopyToNewOwnerInNewSessionBeforeFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testDeleteCopyToNewOwnerNewCollectionRoleInNewSessionBeforeFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testCopyInitializedCollectionReferenceToNewEntityCollectionRoleAfterGet()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testSaveOrUpdateOwnerWithCollectionInNewSessionAfterFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testCopyPersistentCollectionReferenceAfterFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testSaveOrUpdateOwnerWithCollectionInNewSessionBeforeFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testCopyUninitializedCollectionReferenceAfterGet()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testSaveOrUpdateOwnerWithUninitializedCollectionInNewSession()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testCopyPersistentCollectionReferenceBeforeFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testSaveOrUpdateOwnerWithInitializedCollectionInNewSession()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{0pt}{\lstinline/testCopyInitializedCollectionReferenceAfterGet()/}\\
+\lstinline/MultipleHiLoPerTableGenerator/&\raisebox{0pt}{\lstinline/IntegralDataTypeHolderexecute(Connection)/}\\
+\lstinline/CascadeTest/&\raisebox{0pt}{\lstinline/cleanupData()/}\\
+\lstinline/BeforeCompletionFailureTest/&\raisebox{0pt}{\lstinline/testUniqueConstraintViolationDuringManagedFlush()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/testFindWithPessimisticWriteLockTimeoutException()/}\\
+\lstinline/IdTableHelper/&\raisebox{0pt}{\lstinline/executeIdTableCreationStatements(List<String>,JdbcServices,JdbcConnectionAccess)/}\\
+\lstinline/IdTableHelper/&\raisebox{0pt}{\lstinline/executeIdTableDropStatements(String[],JdbcServices,JdbcConnectionAccess)/}\\
+\lstinline/IdTableHelper/&\raisebox{0pt}{\lstinline/executeIdTableDropStatements(String[],JdbcServices,JdbcConnectionAccess)/}\\
+\lstinline/IdTableHelper/&\raisebox{0pt}{\lstinline/executeIdTableCreationStatements(List<String>,JdbcServices,JdbcConnectionAccess)/}\\
+\lstinline/TemporaryTableDropWork/&\raisebox{0pt}{\lstinline/execute(Connectionconnection)/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/AbstractServiceRegistryImpl/&\raisebox{0pt}{\lstinline/applyInjections(Rservice)/}\\
+\lstinline/TableStructure/&\raisebox{0pt}{\lstinline/integralDataTypeHolderexecute(Connection)/}\\
+\lstinline/JavassistProxyFactory/&\raisebox{0pt}{\lstinline/hibernateProxygetProxy(Serializableid,SharedSession)/}\\
+\lstinline/JavassistProxyFactory/&\raisebox{0pt}{\lstinline/hibernateProxydeserializeProxy(Serializable)/}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{H}_{\id{CB},2}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{H}_{\id{CB},3}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
-\subsection{Clusters classified as Conditional Logging}
+\subsection{Cluster classified as Conditional Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{H}_{\id{K},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/ConfigHelper/&\raisebox{0pt}{\lstinline/getConfigStream(String)/}\\
+\lstinline/DriverManagerConnectionProviderImpl/&\raisebox{0pt}{\lstinline/buildCreator(MapconfigurationValues)/}\\
+\lstinline/TableStructure/&\raisebox{0pt}{\lstinline/erexecute(Connection)/}\\
+\lstinline/BaseEntityManagerFunctionalTestCase/&\raisebox{0pt}{\lstinline/releaseUnclosedEntityManager(EntityManager)/}\\
+\lstinline/BaseEntityManagerFunctionalTestCase/&\raisebox{0pt}{\lstinline/releaseUnclosedEntityManager(EntityManager)/}\\
+\lstinline/SequenceGenerator/&\raisebox{0pt}{\lstinline/configure(Type,Properties,ServiceRegistry)/}\\
+\lstinline/BatchFetchQueue/&\raisebox{0pt}{\lstinline/getCollectionBatch(CollectionPersister,Serializable,int)/}\\
+\lstinline/CommandLineArgs/&\raisebox{0pt}{\lstinline/parseCommandLineArgs(String[])/}\\
+\lstinline/CommandLineArgs/&\raisebox{0pt}{\lstinline/parseCommandLineArgs(String[])/}\\
+\lstinline/CommandLineArgs/&\raisebox{0pt}{\lstinline/parseCommandLineArgs(String[])/}\\
+\lstinline/CommandLineArgs/&\raisebox{0pt}{\lstinline/parseCommandLineArgs(String[])/}\\
+\lstinline/SQLFunctionsTest/&\raisebox{0pt}{\lstinline/testSqlFunctionAsAlias()/}\\
+\lstinline/SQLFunctionsInterSystemsTest/&\raisebox{0pt}{\lstinline/testSqlFunctionAsAlias()/}\\ 
+\lstinline/IntegratorImpl/&\raisebox{0pt}{\lstinline/integrate(SessionFactory)/}\\
+\lstinline/CacheableHbmXmlTest/&\raisebox{0pt}{\lstinline/deleteBinFile(/}\\
+\lstinline/CacheableFileXmlSource/&\raisebox{0pt}{\lstinline/writeSerFile(Serializable,File,File)/}\\
+\lstinline/SessionImpl/&\raisebox{0pt}{\lstinline/shouldCloseJdbcCoordinatorOnClose(boolean)/}\\
+\lstinline/InFlightMetadataCollectorImpl/&\raisebox{0pt}{\lstinline/addFetchProfile(FetchProfile)/}\\
+\lstinline/SqlExceptionHelper/&\raisebox{0pt}{\lstinline/logExceptions(SQLExceptionsql,String)/}\\
+\lstinline/PooledConnections/&\raisebox{0pt}{\lstinline/close(/}\\
+\lstinline/CacheableHbmXmlTest/&\raisebox{0pt}{\lstinline/createBinFile()/}\\
+\lstinline/BeforeCompletionFailureTest/&\raisebox{0pt}{\lstinline/testUniqueConstraintViolationDuringManagedFlush()/}\\ 
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Outer Method Logging}
+\subsection{Cluster classified as Outer Method Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{H}_{\id{OM},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ queryWithFilters()/}\\ 
+\lstinline/StandardWarningHandle/&\raisebox{0pt}{\lstinline/ logWarning(String,String)/}\\ 
+\lstinline/StandardWarningHandle/&\raisebox{0pt}{\lstinline/ logWarning(String,String)/}\\ 
+\lstinline/ErrorCounter/&\raisebox{0pt}{\lstinline/ reportError(String)/}\\ 
+\lstinline/ErrorCounter/&\raisebox{0pt}{\lstinline/ reportError(RecognitionException)/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ getFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ getFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ inStyleFilterParameter()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ oneToManyFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ oneToManyFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ filtersWithCustomerReadAndWrite()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ filtersWithCustomerReadAndWrite()/}\\ 
+\lstinline/)NaturalIdOnSingleManyToOneTest/&\raisebox{0pt}{\lstinline/ mappingProperties()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ criteriaQueryFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ criteriaQueryFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ criteriaQueryFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ hqlFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ hqlFilters()/}\\ 
+\lstinline/DynamicFilterTest/&\raisebox{0pt}{\lstinline/ hqlFilters()/}\\ 
+\lstinline/SQLFunctionsTest/&\raisebox{0pt}{\lstinline/ sqlFunctionAsAlias()/}\\ 
+\lstinline/SQLFunctionsInterSystemsTest/&\raisebox{0pt}{\lstinline/ testSqlFunctionAsAlias()/}\\ 
+\lstinline/SessionImpl/&\raisebox{0pt}{\lstinline/ naturalIdLoadAccess(CriteriaImpl)/}\\ 
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Control Flow Logging}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{H}_{\id{CF},1}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
-\subsection{Clusters classified as Exception Try-Block Logging}
+\subsection{Cluster classified as Exception Try-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{H}_{\id{TB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ testContendedPessimisticWriteLockNoWait()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ testContendedPessimisticWriteLockTimeout()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ testQueryTimeoutEMProps()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ testQueryTimeout()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ testContendedPessimisticReadLockTimeout()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ testLockTimeoutEMProps()/}\\ 
+\lstinline/UpgradeLockTest/&\raisebox{0pt}{\lstinline/ UpgradeReadLockToOptimisticForceIncrement()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+\lstinline/LockTest/&\raisebox{0pt}{\lstinline/ call()/}\\ 
+
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section{Camel}\label{camel}
 
-\subsection{Clusters classified as Exception Catch-Block Logging}
+\subsection{Cluster classified as Exception Catch-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{C}_{\id{CB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/MainSupport/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/TempFileManager/&\raisebox{0pt}{\lstinline/cleanUpTempFile()/}\\
+\lstinline/DefaultShutdownStrategy/&\raisebox{0pt}{\lstinline/shutdownNow(Consumer)/}\\
+\lstinline/DefaultShutdownStrategy/&\raisebox{0pt}{\lstinline/suspendNow(Consumer)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{0pt}{\lstinline/doneUow(UnitOfWork,Exchange)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{0pt}{\lstinline/doneUow(UnitOfWorkuow,Exchange)/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/createNewDefaultComponentEndpoint()/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/configureAnExistingSedaEndpoint()/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/createNewSedaUriEndpoint()/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/configureAnExistingDefaultEndpoint()/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/createNewSedaUriEndpoint()/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/createNewDefaultComponentEndpoint()/}\\
+\lstinline/DefaultAsyncProcessorAwaitManager/&\raisebox{0pt}{\lstinline/doStop()/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/WireTapProcessor/&\raisebox{0pt}{\lstinline/Exchangecall()/}\\
+\lstinline/DefaultExecutorServiceManager/&\raisebox{0pt}{\lstinline/doShutdown()/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onRoutesAdd(Collection<Route>)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onRoutesAdd(Collection<Route>)/}\\
+\lstinline/ProcessorDefinitionHelper/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/EndpointHelper/&\raisebox{0pt}{\lstinline/pollEndpoint(long)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onErrorHandlerRemove(RouteContext,Processo,ErrorHandlerFactory)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onErrorHandlerAdd(RouteContext,Processo,ErrorHandlerFactory)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onServiceAdd(CamelContext,Service,Route)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onServiceRemove(CamelContext,Service,Route)/}\\
+\lstinline/ProducerCache/&\raisebox{0pt}{\lstinline/doInProducer(Endpoint,Exchange,ExchangePattern,ProducerCallback)/}\\
+\lstinline/LRUCache<K,V>/&\raisebox{0pt}{\lstinline/onRemoval(Kkey,Vvalue,RemovalCausecause)/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/doStop()/}\\
+\lstinline/CamelContextTrackerRegistry/&\raisebox{0pt}{\lstinline/contextCreated(CamelContext)/}\\
+\lstinline/DefaultTraceEventHandler/&\raisebox{0pt}{\lstinline/traceExchange(ProcessorDefinition,Processor,TraceInterceptor,Exchange)/}\\
+\lstinline/TempFileManager/&\raisebox{0pt}{\lstinline/onDone(Exchange)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onThreadPoolAdd(CamelContext)/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/createMBeanServer()/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/doForceCompletionOnStop()/}\\
+\lstinline/DefaultDebugger/&\raisebox{0pt}{\lstinline/onBeforeProcess(Exchange,Processor,ProcessorDefinition,Breakpoint)/}\\
+\lstinline/DefaultDebugger/&\raisebox{0pt}{\lstinline/onAfterProcess(Exchange,Processor,ProcessorDefinition,long,Breakpoint)/}\\
+\lstinline/DefaultDebugger/&\raisebox{0pt}{\lstinline/onEvent(Exchange,EventObject,Breakpoint)/}\\
+\lstinline/EventHelper/&\raisebox{0pt}{\lstinline/doNotifyEvent(EventNotifier,EventObject)/}\\
+\lstinline/RoutingSlip/&\raisebox{0pt}{\lstinline/done(boolean)/}\\
+\lstinline/RoutingSlip/&\raisebox{0pt}{\lstinline/doInAsyncProducer(Producer,AsyncProcessor,Exchange,ExchangePattern,AsyncCallback)/}\\
+\lstinline/RoutePolicyAdvice/&\raisebox{0pt}{\lstinline/Objectbefore(Exchange)/}\\
+\lstinline/RoutePolicyAdvice/&\raisebox{0pt}{\lstinline/after(Exchange,Object)/}\\
+\lstinline/DefaultUnitOfWork/&\raisebox{0pt}{\lstinline/DefaultUnitOfWork(Exchange,Logger)/}\\
+\lstinline/HangupInterceptor/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onThreadPoolRemove(CamelContext,ThreadPoolExecutor)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onRoutesRemove(Collection)/}\\
+\lstinline/NIOConverter/&\raisebox{0pt}{\lstinline/ByteBuffertoByteBuffer(String,Exchange)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onComponentAdd(String,Component)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onComponentRemove(String,Component)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onEndpointRemove(Endpoint)/}\\
+\lstinline/ScheduledPollConsumer/&\raisebox{0pt}{\lstinline/doRun()/}\\
+\lstinline/FlexibleAggregationStrategy/&\raisebox{0pt}{\lstinline/safeInsertIntoCollection(Exchange,Collection,EtoInsert)/}\\
+\lstinline/MockEndpoint/&\raisebox{0pt}{\lstinline/assertIsNotSatisfied(long)/}\\
+\lstinline/MockEndpoint/&\raisebox{0pt}{\lstinline/assertIsNotSatisfied()/}\\
+\lstinline/DavidSiefertTest/&\raisebox{0pt}{\lstinline/testHeaderPredicateFails()/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/createDocumentBuilderFactory()/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/createSAXParserFactory()/}\\
+\lstinline/ReduceStacksNeededDuringRoutingTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MyProducer/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback=)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onEndpointAdd(Endpointendpoint)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{0pt}{\lstinline/onContextStop(CamelContextcontext)/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/setupFeatures(DocumentBuilderFactory)/}\\
+\lstinline/TempFileManager/&\raisebox{0pt}{\lstinline/onDone(Exchange)/}\\
+\lstinline/ManagedRoute/&\raisebox{0pt}{\lstinline/updateRouteFromXml(String)/}\\
+\lstinline/ManagedCamelContext/&\raisebox{0pt}{\lstinline/addOrUpdateRoutesFromXml(String,boolean)/}\\
+\lstinline/Instance/&\raisebox{0pt}{\lstinline/manageCamelContext(Container,CamelContext)/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/createTransformerFactory()/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/createSAXParserFactory()/}\\
+\lstinline/ManagementStrategyFactory/&\raisebox{0pt}{\lstinline/ManagementStrategycreate(CamelContext,boolean)/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/configureSaxonTransformerFactory(TransformerFactory)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{0pt}{\lstinline/doneSynchronizations(Exchange,List<Synchronization>,Logger)/}\\
+\lstinline/RedeliveryErrorHandler/&\raisebox{0pt}{\lstinline/onExceptionOccurred(Exchange,RedeliveryData)/}\\
+\lstinline/DefaultUnitOfWork/&\raisebox{0pt}{\lstinline/done(Exchange)/}\\
+\lstinline/DefaultConsumerTemplate/&\raisebox{0pt}{\lstinline/doneUoW(Exchange)/}\\
+\lstinline/DefaultPackageScanClassResolver/&\raisebox{0pt}{\lstinline/find(PackageScanFilter,String,ClassLoader,Set<Class<?>>)/}\\
+\lstinline/DefaultPackageScanClassResolver/&\raisebox{0pt}{\lstinline/DefaultPackageScanClassResolver()/}\\
+\lstinline/DefaultUnitOfWork/&\raisebox{0pt}{\lstinline/done(Exchange)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{0pt}{\lstinline/beforeRouteSynchronizations(Route,Exchange,List<Synchronization>,Logger)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{0pt}{\lstinline/afterRouteSynchronizations(Route,Exchange,List<Synchronization>,Logger)/}\\
+\lstinline/TimerConsumer/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DefaultExecutorServiceManager/&\raisebox{0pt}{\lstinline/doShutdown(ExecutorService,long,boolean)/}\\
+\lstinline/DefaultTimeoutMap/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DefaultTimeoutMap/&\raisebox{0pt}{\lstinline/purge()/}\\
+\lstinline/ReduceStacksNeededDuringRoutingTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MyProducer/&\raisebox{0pt}{\lstinline/process(Exchange,AsyncCall)/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/toSAXSourceFromStream(StreamSource,Exchange)/}\\
+\lstinline/DefaultPackageScanClassResolver/&\raisebox{0pt}{\lstinline/doLoadJarClassEntries(InputStream,String)/}\\
+\lstinline/XmlConverter/&\raisebox{0pt}{\lstinline/createDocumentBuilderFactory()/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/createMBeanServer()/}\\
+\lstinline/ManagedManagementStrategy/&\raisebox{0pt}{\lstinline/isManaged(Object,Object)/}\\
+\lstinline/XPathBuilder/&\raisebox{0pt}{\lstinline/logNamespaces(Exchange)/}\\
 \bottomrule
 \end{tabular}
 \end{center}
+
+
+\subsection{Cluster classified as Conditional Logging}
 
 \begin{center}
-\captionof{figure}{LMs in the cluster $\id{C}_{\id{CB},2}$}
+\captionof{figure}{LMs in the cluster $\id{T}_{\id{K},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/MainSupport/&\raisebox{0pt}{\lstinline/waitUntilCompleted()/}\\
+\lstinline/BaseTypeConverterRegistry/&\raisebox{0pt}{\lstinline/doStop()/}\\
+\lstinline/AdviceWithTasks/&\raisebox{0pt}{\lstinline/task()/}\\
+\lstinline/AdviceWithTasks/&\raisebox{0pt}{\lstinline/task()/}\\
+\lstinline/AdviceWithTasks/&\raisebox{0pt}{\lstinline/task()/}\\
+\lstinline/AdviceWithTasks/&\raisebox{0pt}{\lstinline/task()/}\\
+\lstinline/MockEndpoint/&\raisebox{0pt}{\lstinline/assertIsSatisfied(long)/}\\
+\lstinline/TestSupportJmxCleanup/&\raisebox{0pt}{\lstinline/traceMBeans(String)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/ThroughputLogger,IdAware/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback)/}\\
+\lstinline/TwoSchedulerConcurrentTasksOneRouteTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TwoSchedulerConcurrentTasksOneRouteTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/UnitOfWorkTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/UnitOfWorkSynchronizationAdapterTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/DefaultTimeoutMapTest/&\raisebox{0pt}{\lstinline/testDefaultTimeoutMapPurge()/}\\
+\lstinline/DefaultTimeoutMapTest/&\raisebox{0pt}{\lstinline/testDefaultTimeoutMapStopStart()/}\\
+\lstinline/DefaultTimeoutMapTest/&\raisebox{0pt}{\lstinline/testExecutor()/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/doStop()/}\\
+\lstinline/RoutingSlip,Traceable,IdAware/&\raisebox{0pt}{\lstinline/EndpointresolveEndpoint(RoutingSlipIterator,Exchange)/}\\
+\lstinline/GenericFileOnCompletion/&\raisebox{0pt}{\lstinline/processStrategyRollback()/}\\
+\lstinline/CamelLogProcessor,IdAware/&\raisebox{0pt}{\lstinline/process(Exchange,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/process(Exchange,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/process(Exchange,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/process(Exchange,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/process(Exchange,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/process(Exchange,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/process(Exchange,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback)/}\\
+\lstinline/CamelLogProcessor,IdAware/&\raisebox{0pt}{\lstinline/process(Exchange,Throwable)/}\\
+\lstinline/CamelLogProcessor,IdAware/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/log(String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/log(String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/log(String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/log(String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/log(String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/log(String,Throwable)/}\\
+\lstinline/MockEndpoint/&\raisebox{0pt}{\lstinline/doAssertIsSatisfied(long)/}\\
+\lstinline/XMLTokenIterator/&\raisebox{0pt}{\lstinline/XMLTokenIterator(String/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/registerMBeanWithServer(Object/}\\
+\lstinline/DefaultShutdownStrategy/&\raisebox{0pt}{\lstinline/prepareShutdown(Service)/}\\
+\lstinline/AnnotationTypeConverterLoader/&\raisebox{0pt}{\lstinline/loadConverterMethods(TypeConverterRegistry)/}\\
+\lstinline/XPathBuilder/&\raisebox{0pt}{\lstinline/XPathFactorycreateDefaultXPathFactory()/}\\
+\lstinline/ProducerCache/&\raisebox{0pt}{\lstinline/<T>TdoInProducer(Endpoint))/}\\
+\lstinline/ValidationBean/&\raisebox{0pt}{\lstinline/someMethod(String)n/}\\
+\lstinline/DefaultShutdownStrategy/&\raisebox{0pt}{\lstinline/booleandoShutdown(CamelContext)/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/XPathBuilder/&\raisebox{0pt}{\lstinline/XPathFactorycreateDefaultXPathFactory()/}\\
+\lstinline/SSLContextClientParameters/&\raisebox{0pt}{\lstinline/configureSSLContext(SSLContext)/}\\
+\lstinline/DefaultStreamCachingStrategy/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/ConfigurationHelperTest/&\raisebox{0pt}{\lstinline/logConfigurationField(EndpointConfiguration)/}\\
+\lstinline/LogComponent/&\raisebox{0pt}{\lstinline/EndpointcreateEndpoint(String)/}\\
+\lstinline/MarkerFileExclusiveReadLockStrategy/&\raisebox{0pt}{\lstinline/prepareOnStartup()/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/doForceCompletionOnStop()/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/intforceCompletionOfAllGroups()/}\\
+\lstinline/XPathBuilder/&\raisebox{0pt}{\lstinline/XPathExpressioncreateXPathExpression()}\\
+\lstinline/DefaultExecutorServiceManager/&\raisebox{0pt}{\lstinline/doShutdown()/}\\
+\lstinline/DefaultComponent/&\raisebox{0pt}{\lstinline/StringpreProcessUri(Stringuri)/}\\
+\lstinline/CamelContextHelper/&\raisebox{0pt}{\lstinline/ComponentlookupPropertiesComponent(CamelContext)/}\\
+\lstinline/RedeliveryOnExceptionBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerNonBlockedRedeliveryHeaderTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerNonBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelay2Test/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/FileIdempotentRepository/&\raisebox{0pt}{\lstinline/appendToStore(StringId)/}\\
+\lstinline/)FileEndpointe<File>/&\raisebox{0pt}{\lstinline/FileConsumercreateConsumer(Processorprocessor)/}\\
+\lstinline/IOHelper/&\raisebox{0pt}{\lstinline/force(FileOutputStreamo,String,Logger)/}\\
+\lstinline/IOHelper/&\raisebox{0pt}{\lstinline/close(Closeable,String,Logger)/}\\
+\lstinline/IOHelper/&\raisebox{0pt}{\lstinline/force(FileChannel,String,Logger)/}\\
+\lstinline/IOHelper/&\raisebox{0pt}{\lstinline/close(Writer)/}\\
+\lstinline/DefaultPackageScanClassResolver/&\raisebox{0pt}{\lstinline/addIfMatching(PackageScanFilter)/}\\
+\lstinline/ValidatorEndpointClearCachedSchemaTest/&\raisebox{0pt}{\lstinline/clearCachedSchema()/}\\
+\lstinline/ActiveMQUuidGenerator/&\raisebox{0pt}{\lstinline/StringsanitizeHostName(StringhostName)/}\\
+\lstinline/MyLoggingSentEventNotifer/&\raisebox{0pt}{\lstinline/notify(EventObjectevent)/}\\
+\lstinline/FileEndpoint/&\raisebox{0pt}{\lstinline/FileConsumercreateConsumer(Processorprocessor)/}\\
+\lstinline/ThroughputLogger,IdAware/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/ShutdownTask/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ShutdownTask/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ShutdownTask/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/UriEndpointComponent/&\raisebox{0pt}{\lstinline/doWith(Field)/}\\
+\lstinline/Activator/&\raisebox{0pt}{\lstinline/extenderCapabilityWired(Bundlebundle)/}\\
+\lstinline/DefaultCamelBeanPostProcessor/&\raisebox{0pt}{\lstinline/setterPropertyInjection(Method)/}\\
+\lstinline/DefaultCamelBeanPostProcessor/&\raisebox{0pt}{\lstinline/setterInjection(Method)/}\\
+\lstinline/DefaultCamelBeanPostProcessor/&\raisebox{0pt}{\lstinline/setterBeanInjection(Method,String,Object,String)/}\\
+\lstinline/MarkerFileExclusiveReadLockStrategy/&\raisebox{0pt}{\lstinline/deleteLockFiles()/}\\
+\lstinline/DynamicRouterConvertBodyToIssueTest/&\raisebox{0pt}{\lstinline/Stringslip(String))/}\\
+\lstinline/UnitOfWorkTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/UnitOfWorkSynchronizationAdapterTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{C}_{\id{CB},3}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
-\subsection{Clusters classified as Conditional Logging}
-
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{C}_{\id{K},1}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Clusters classified as Outer Method Logging}
+\subsection{Cluster classified as Outer Method Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{C}_{\id{OM},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithTo()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithTo()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithTo()/}\\
+\lstinline/ManagedProducerRouteAddRemoveRegisterAlwaysTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\lstinline/ManagedProducerRouteAddRemoveRegisterAlwaysTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\lstinline/ManagedProducerRouteAddRemoveRegisterAlwaysTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRoutingSlip()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRoutingSlip()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRoutingSlip()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\lstinline/ManagedRouteStopTest/&\raisebox{0pt}{\lstinline/testStopRoute()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{0pt}{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnException()/}\\
+\lstinline/BacklogDebuggerTest/&\raisebox{0pt}{\lstinline/logDebugger()/}\\
+\lstinline/BacklogDebuggerTest/&\raisebox{0pt}{\lstinline/logDebuggerSuspendOnlyOneAtBreakpoint()/}\\
+\lstinline/ManagedFromRestPlaceholderTest/&\raisebox{0pt}{\lstinline/testFromRestModelPlaceholder()/}\\
+\lstinline/ManagedFromRestPlaceholderTest/&\raisebox{0pt}{\lstinline/testFromRestModelPlaceholder()/}\\
+\lstinline/ManagedFromRestGetTest/&\raisebox{0pt}{\lstinline/testFromRestModel()/}\\
+\lstinline/ManagedFromRestGetTest/&\raisebox{0pt}{\lstinline/testFromRestModel()/}\\
+\lstinline/RuntimepointRegistryTest/&\raisebox{0pt}{\lstinline/testRuntimepointRegistry()/}\\
+\lstinline/ManagedResourceTest/&\raisebox{0pt}{\lstinline/ManagedResource()/}\\
+\lstinline/ManagedResourceTest/&\raisebox{0pt}{\lstinline/ManagedResource()/}\\
+\lstinline/ManagedRouteDumpStatsAsXmlAndResetWithCustomDomainTest/&\raisebox{0pt}{\lstinline/testPerformanceCounterStats()/}\\
+\lstinline/ManagedRouteDumpStatsAsXmlAndResetWithCustomDomainTest/&\raisebox{0pt}{\lstinline/testPerformanceCounterStats()/}\\
+\lstinline/BacklogTracerTest/&\raisebox{0pt}{\lstinline/testBacklogTracerEventMessageAsXml()/}\\
+\lstinline/RouteDefinition/&\raisebox{0pt}{\lstinline/routeDefinitionadviceWith(ModelCamelContextc,RouteBuilder)/}\\
+\lstinline/ManagedFromRestGetEmbeddedRouteTest/&\raisebox{0pt}{\lstinline/testFromRestModel()/}\\
+\lstinline/ManagedFromRestGetEmbeddedRouteTest/&\raisebox{0pt}{\lstinline/testFromRestModel()/}\\
+\lstinline/BacklogTracerTest/&\raisebox{0pt}{\lstinline/testBacklogTracerEventMessageDumpAllAsXml()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXml()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXml()/}\\
+\lstinline/ManagedRouteAddSecondRouteTest/&\raisebox{0pt}{\lstinline/testRouteAddSecondRoute()/}\\
+\lstinline/ManagedRouteAddSecondRouteTest/&\raisebox{0pt}{\lstinline/testRouteAddSecondRoute()/}\\
+\lstinline/ManagedRouteAddSecondRouteNotRegisterNewRoutesTest/&\raisebox{0pt}{\lstinline/testRouteAddSecondRoute()/}\\
+\lstinline/ManagedRouteAddSecondRouteNotRegisterNewRoutesTest/&\raisebox{0pt}{\lstinline/testRouteAddSecondRoute()/}\\
+\lstinline/ManagedCamelContextDumpRoutesCoverageAsXml/&\raisebox{0pt}{\lstinline/testRouteCoverageStats()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlAllIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlAll()/}\\
+\lstinline/ManagedRouteDumpStatsAsXmlCustomDomainTest/&\raisebox{0pt}{\lstinline/testPerformanceCounterStats()/}\\
+\lstinline/ManagedRouteDumpStatsAsXmlTest/&\raisebox{0pt}{\lstinline/testPerformanceCounterStats()/}\\
+\lstinline/ManagedCamelContextDumpRoutesAsXmlTest/&\raisebox{0pt}{\lstinline/testDumpAsXml()/}\\
+\lstinline/ManagedRouteDumpRouteAsXmlTest/&\raisebox{0pt}{\lstinline/testDumpAsXml()/}\\
+\lstinline/ManagedCamelContextDumpStatsAsXmlTest/&\raisebox{0pt}{\lstinline/testPerformanceCounterStats()/}\\
+\lstinline/ManagedRouteDumpRouteAsXmlPlaceholderTest/&\raisebox{0pt}{\lstinline/testDumpAsXml()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlRange()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlRangeIncludeBody()/}\\
+\lstinline/DumpModelAsXmlTransformRouteLanguageTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/DumpModelAsXmlSplitBodyRouteTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/DumpModelAsXmlTransformRouteConstantTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/DumpModelAsXmlTransformRouteTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/ProxyReturnFutureListTest/&\raisebox{0pt}{\lstinline/testFutureListCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureListTest/&\raisebox{0pt}{\lstinline/testFutureListCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureListTest/&\raisebox{0pt}{\lstinline/testFutureListCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureListTest/&\raisebox{0pt}{\lstinline/testFutureListCallTwoTimes()/}\\
+\lstinline/DefaultCamelContextSuspendResumeRouteTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/DefaultCamelContextSuspendResumeRouteTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/TwoRouteSuspendResumeTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/TwoRouteSuspendResumeTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/RouteSedaSuspendResumeTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/RouteSedaSuspendResumeTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/RouteSedaStopStartTest/&\raisebox{0pt}{\lstinline/testStopStart()/}\\
+\lstinline/RouteSedaStopStartTest/&\raisebox{0pt}{\lstinline/testStopStart()/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/CreateNewDefaultComponentEndpoint()/}\\
+\lstinline/BacklogDebuggerTest/&\raisebox{0pt}{\lstinline/logDebuggerUpdateBodyAndHeader()/}\\
+\lstinline/BacklogDebuggerTest/&\raisebox{0pt}{\lstinline/logDebuggerUpdateBodyAndHeaderType()/}\\
+\lstinline/BacklogDebuggerTest/&\raisebox{0pt}{\lstinline/logDebuggerRemoveBodyAndHeader()/}\\
+\lstinline/BacklogDebuggerTest/&\raisebox{0pt}{\lstinline/logDebuggerConditional()/}\\
+\lstinline/ManagedRouteStopAndStartCleanupTest/&\raisebox{0pt}{\lstinline/testStopAndStartRoute()/}\\
+\lstinline/ManagedRouteStopAndStartCleanupTest/&\raisebox{0pt}{\lstinline/testStopAndStartRoute()/}\\
+\lstinline/ManagedRouteStopAndStartCleanupTest/&\raisebox{0pt}{\lstinline/testStopAndStartRoute()/}\\
+\lstinline/ManagedRouteStopAndStartCleanupTest/&\raisebox{0pt}{\lstinline/testStopAndStartRoute()/}\\
+\lstinline/ConfigurationHelperTest/&\raisebox{0pt}{\lstinline/logConfigurationObject(EndpointConfiguration)/}\\
+\lstinline/ConfigurationHelperTest/&\raisebox{0pt}{\lstinline/logConfigurationObject(EndpointConfiguration)/}\\
+\lstinline/ConfigurationHelperTest/&\raisebox{0pt}{\lstinline/logConfigurationObject(EndpointConfiguration)/}\\
+\lstinline/ConfigurationHelperTest/&\raisebox{0pt}{\lstinline/logConfigurationObject(EndpointConfiguration)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/createDataFile(Logger,int)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/createDataFile(Logger,int)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/createDataFile(Logger,int)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/createDataFile(Logger,int)/}\\
+\lstinline/TypeConverterRegistryStatsPerformanceTest/&\raisebox{0pt}{\lstinline/testTransform()/}\\
+\lstinline/TypeConverterRegistryStatsPerformanceTest/&\raisebox{0pt}{\lstinline/testTransform()/}\\
+\lstinline/TypeConverterRegistryStatsPerformanceTest/&\raisebox{0pt}{\lstinline/testTransform()/}\\
+\lstinline/TypeConverterRegistryStatsPerformanceTest/&\raisebox{0pt}{\lstinline/testTransform()/}\\
+\lstinline/TypeConverterRegistryStatsPerformanceTest/&\raisebox{0pt}{\lstinline/testTransform()/}\\
+\lstinline/ResequencerBatchOrderTest/&\raisebox{0pt}{\lstinline/testIteration(inti)/}\\
+\lstinline/ResequencerBatchOrderTest/&\raisebox{0pt}{\lstinline/testIteration(inti)/}\\
+\lstinline/TypeConverterConcurrencyIssueTest/&\raisebox{0pt}{\lstinline/testTypeConverter()/}\\
+\lstinline/XPathRouteConcurrentBigTest/&\raisebox{0pt}{\lstinline/doSendMessages(int)/}\\
+\lstinline/XPathRouteConcurrentBigTest/&\raisebox{0pt}{\lstinline/doSendMessages(int)/}\\
+\lstinline/XPathRouteConcurrentBigTest/&\raisebox{0pt}{\lstinline/doSendMessages(int)/}\\
+\lstinline/AggregateSimpleExpressionIssueTest/&\raisebox{0pt}{\lstinline/xxxtestAggregateSimpleExpression()/}\\
+\lstinline/AggregateSimpleExpressionIssueTest/&\raisebox{0pt}{\lstinline/xxxtestAggregateSimpleExpression()/}\\
+\lstinline/AggregateSimpleExpressionIssueTest/&\raisebox{0pt}{\lstinline/xxxtestAggregateSimpleExpression()/}\\
+\lstinline/AggregateSimpleExpressionIssueTest/&\raisebox{0pt}{\lstinline/xxxtestAggregateSimpleExpression()/}\\
+\lstinline/AggregateSimpleExpressionIssueTest/&\raisebox{0pt}{\lstinline/xxxtestAggregateSimpleExpression()/}\\
+\lstinline/TypeConverterRegistryPerformanceTest/&\raisebox{0pt}{\lstinline/disbledtestPerformance()/}\\
+\lstinline/ResequencerEngineTest/&\raisebox{0pt}{\lstinline/testRandom()/}\\
+\lstinline/ResequencerEngineTest/&\raisebox{0pt}{\lstinline/testRandom()/}\\
+\lstinline/ResequencerEngineTest/&\raisebox{0pt}{\lstinline/testRandom()/}\\
+\lstinline/StAX2SAXSourceTest/&\raisebox{0pt}{\lstinline/testDefaultPrefixInRootElementWithCopyTransformer()/}\\
+\lstinline/FileConcurrentWriteAppendSameFileTest/&\raisebox{0pt}{\lstinline/testConcurrentAppend()/}\\
+\lstinline/XPathBuilder/&\raisebox{0pt}{\lstinline/logDiscoveredNamespaces(NodeListnamespaces)/}\\
+\lstinline/TestEndpoint/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/EventNotifierExchangeCompletedTest/&\raisebox{0pt}{\lstinline/testExchangeCompleted()/}\\
+\lstinline/AggregateProcessor/&\raisebox{0pt}{\lstinline/restoreTimeoutMapFromAggregationRepository()/}\\
+\lstinline/FileConsumerRestartNotLeakThreadTest/&\raisebox{0pt}{\lstinline/testLeak()/}\\
+\lstinline/ThroughputLogger/&\raisebox{0pt}{\lstinline/createGroupIntervalLogMessage()/}\\
+\lstinline/UnitOfWorkSynchronizationAdapterTestt/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/ThrottlerTest/&\raisebox{0pt}{\lstinline/assertThrottlerTiming(longelapsedTimeMs,intthrottle,intintervalMs,int)/}\\
+\lstinline/DumpModelAsXmlSplitNestedChoiceRouteTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/ManagedBrowsablepointAsXmlFileTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlAllIncludeBody()/}\\
+\lstinline/ProxyReturnFutureExceptionTest/&\raisebox{0pt}{\lstinline/testFutureEchoException()/}\\
+\lstinline/ProxyReturnFutureExceptionTest/&\raisebox{0pt}{\lstinline/testFutureEchoException()/}\\
+\lstinline/ProxyReturnFutureListTest/&\raisebox{0pt}{\lstinline/testFutureList()/}\\
+\lstinline/ProxyReturnFutureListTest/&\raisebox{0pt}{\lstinline/testFutureList()/}\\
+\lstinline/AsyncProcessorAwaitManagerTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncProcessorAwaitManagerInterruptTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncProcessorAwaitManagerTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/ComponentConfigurationTest/&\raisebox{0pt}{\lstinline/IntrospectSedaEndpointParameters()/}\\
+\lstinline/RedeliveryPolicyPerExceptionTest/&\raisebox{0pt}{\lstinline/testUsingCustomExceptionHandlerAndOneRedelivery()/}\\
+\lstinline/RedeliveryPolicyPerExceptionTest/&\raisebox{0pt}{\lstinline/testUsingCustomExceptionHandlerWithNoRedeliveries()/}\\
+\lstinline/ProxyReturnFutureTest/&\raisebox{0pt}{\lstinline/testFutureEchoCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureTest/&\raisebox{0pt}{\lstinline/testFutureEchoCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureTest/&\raisebox{0pt}{\lstinline/testFutureEchoCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureTest/&\raisebox{0pt}{\lstinline/testFutureEchoCallTwoTimes()/}\\
+\lstinline/ProxyReturnFutureTest/&\raisebox{0pt}{\lstinline/testFutureEcho()/}\\
+\lstinline/ProxyReturnFutureTest/&\raisebox{0pt}{\lstinline/testFutureEcho()/}\\
+\lstinline/AsyncEndpointEventNotifierTest/&\raisebox{0pt}{\lstinline/testAsyncEndpointEventNotifier()/}\\
+\lstinline/XmlParseTest/&\raisebox{0pt}{\lstinline/assertChildTo(Stringmessage,ProcessorDefinition<?>route,String)/}\\
+\lstinline/XmlParseTest/&\raisebox{0pt}{\lstinline/assertTo(Stringmessage,ProcessorDefinition<?>processor,String)/}\\
+\lstinline/GenerateXmlTest/&\raisebox{0pt}{\lstinline/dump(RouteContainercontext)/}\\
+\lstinline/GenerateXmFromCamelContextTest/&\raisebox{0pt}{\lstinline/dump(Objectobject)/}\\
+\lstinline/PropertyEditorTypeConverterIssueTest/&\raisebox{0pt}{\lstinline/testPropertyEditorTypeConverter()/}\\
+\lstinline/ResequencerEngineTest/&\raisebox{0pt}{\lstinline/testReverse(intcapacity)/}\\
+\lstinline/SplitterParallelBigFileTest/&\raisebox{0pt}{\lstinline/xxxtestSplitParallelBigFile()/}\\
+\lstinline/BeanInfoTest/&\raisebox{0pt}{\lstinline/assertMethodPattern(BeanInfo)/}\\
+\lstinline/UnitOfWorkTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/FileConsumePollEnrichFileTest/&\raisebox{0pt}{\lstinline/testPollEnrich()/}\\
+\lstinline/FileConsumePollEnrichFileTest/&\raisebox{0pt}{\lstinline/testPollEnrich()/}\\
+\lstinline/PollEnrichFileCustomAggregationStrategyTest/&\raisebox{0pt}{\lstinline/PollEnrichCustomAggregationStrategyBody()/}\\
+\lstinline/PollEnrichFileCustomAggregationStrategyTest/&\raisebox{0pt}{\lstinline/PollEnrichCustomAggregationStrategyBody()/}\\
+\lstinline/PollEnrichFileDefaultAggregationStrategyTest/&\raisebox{0pt}{\lstinline/PollEnrichDefaultAggregationStrategyBody()/}\\
+\lstinline/PollEnrichFileDefaultAggregationStrategyTest/&\raisebox{0pt}{\lstinline/PollEnrichDefaultAggregationStrategyBody()/}\\
+\lstinline/EndpointCompletionTest/&\raisebox{0pt}{\lstinline/assertParameterJsonSchema(MBeanServer)/}\\
+\lstinline/EndpointCompletionTest/&\raisebox{0pt}{\lstinline/assertParameterJsonSchema(MBeanServer)/}\\
+\lstinline/EndpointCompletionTest/&\raisebox{0pt}{\lstinline/assertCompletion(MBeanServermbean)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxTestXPatPerformanceRoute()/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxxtestTokenPairPerformanceRoute()/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxxtestTokenPairPerformanceRoute()/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxxtestTokenPairPerformanceRoute()/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxxtestTokenPairPerformanceRoute()/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxxtestTokenPairPerformanceRoute()/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxTestXPatPerformanceRoute()/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxTestXPatPerformanceRoute()/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxTestXPatPerformanceRoute()/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/xxTestXPatPerformanceRoute()/}\\
+\lstinline/ConfigurationHelperTest/&\raisebox{0pt}{\lstinline/logConfigurationField(EndpointConfig,Fieldfield)/}\\
+\lstinline/RedeliveryErrorHandlerNonBlockedRedeliveryHeaderTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerNonBlockedRedeliveryHeaderTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryOnExceptionBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryOnExceptionBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerNonBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/RedeliveryErrorHandlerNonBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelay2Test/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelay2Test/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MyAsyncProducer/&\raisebox{0pt}{\lstinline/Objectcall()/}\\
+\lstinline/MyAsyncProducer/&\raisebox{0pt}{\lstinline/Objectcall()/}\\
+\lstinline/MyAsyncProducer/&\raisebox{0pt}{\lstinline/booleanprocess(Exchange,AsyncCallback)/}\\
+\lstinline/RoutePerformanceTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/RoutePerformanceCountTest/&\raisebox{0pt}{\lstinline/testSendMessages()/}\\
+\lstinline/RouteDirectSuspendResumeTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/RouteDirectSuspendResumeTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/DefaultCamelContextSuspendResumeRouteStartupOrderTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/DefaultCamelContextSuspendResumeRouteStartupOrderTest/&\raisebox{0pt}{\lstinline/testSuspendResume()/}\\
+\lstinline/Activator/&\raisebox{0pt}{\lstinline/start(BundleContext)/}\\
+\lstinline/Activator/&\raisebox{0pt}{\lstinline/start(BundleContext)/}\\
+\lstinline/MySlowFileProcessor/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MySlowFileProcessor/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/DynamicRouterConvertBodyToIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/FileIdempotentRepository/&\raisebox{0pt}{\lstinline/trunkStore()/}\\
+\lstinline/ActiveMQUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/JavaUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/SimpleUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/ActiveMQUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/ActiveMQUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/SimpleUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/SimpleUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/JavaUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/JavaUuidGeneratorTest/&\raisebox{0pt}{\lstinline/testPerformance()/}\\
+\lstinline/BeanPerformanceTest/&\raisebox{0pt}{\lstinline/testBeanPerformance()/}\\
+\lstinline/BeanOgnlPerformanceTest/&\raisebox{0pt}{\lstinline/testBeanOgnlPerformance()/}\\
+\lstinline/BeanPerformanceTest/&\raisebox{0pt}{\lstinline/testBeanPerformance()/}\\
+\lstinline/BeanVsProcessorPerformanceTest/&\raisebox{0pt}{\lstinline/testProcessor()/}\\
+\lstinline/BeanVsProcessorPerformanceTest/&\raisebox{0pt}{\lstinline/testBean()/}\\
+\lstinline/PrimitiveTypeConverterIssueTest/&\raisebox{0pt}{\lstinline/testPrimitiveTypeConverter()/}\\
+\lstinline/AsyncMDCTest/&\raisebox{0pt}{\lstinline/testThreeMessagesMDC()/}\\
+\lstinline/AsyncMDCTest/&\raisebox{0pt}{\lstinline/testThreeMessagesMDC()/}\\
+\lstinline/AsyncMDCTest/&\raisebox{0pt}{\lstinline/testThreeMessagesMDC()/}\\
+\lstinline/RedeliveryDeadLetterErrorHandlerNoRedeliveryOnShutdownTest/&\raisebox{0pt}{\lstinline/testRedeliveryErrorHandlerNoRedeliveryOnShutdown()/}\\
+\lstinline/RedeliveryDeadLetterErrorHandlerNoRedeliveryOnShutdownTest/&\raisebox{0pt}{\lstinline/testRedeliveryErrorHandlerNoRedeliveryOnShutdown()/}\\
+\lstinline/SSLContextParameters/&\raisebox{0pt}{\lstinline/createSSLContext(CamelContext)/}\\
+\lstinline/DefaultShutdownStrategy/&\raisebox{0pt}{\lstinline/doShutdown(CamelContext,long,TimeUnit,boolean,boolean,boolean)/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/ManagedBrowsablepointAsXmlTest/&\raisebox{0pt}{\lstinline/testBrowseablepointAsXmlIncludeBody()/}\\
+\lstinline/UnitOfWorkTest/&\raisebox{0pt}{\lstinline/testFail()/}\\
+\lstinline/UnitOfWorkTest/&\raisebox{0pt}{\lstinline/testException()/}\\
+\lstinline/UnitOfWorkTest/&\raisebox{0pt}{\lstinline/testSuccess()/}\\
+\lstinline/MDCOnCompletionTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MyOnCompletion/&\raisebox{0pt}{\lstinline/onDone(Exchange)/}\\
+\lstinline/MDCOnCompletionOnCompletionTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MDCOnCompletionTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/MockEndpoint/&\raisebox{0pt}{\lstinline/assertIsSatisfied(long)/}\\
+\lstinline/DataSetEndpoint/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/DefaultManagementStrategy/&\raisebox{0pt}{\lstinline/setLoadStatisticsEnabled(boolean)/}\\
+\lstinline/DefaultManagementStrategy/&\raisebox{0pt}{\lstinline/onlyManageProcessorWithCustomId(boolean)/}\\
+\lstinline/DefaultManagementStrategy/&\raisebox{0pt}{\lstinline/setStatisticsLevel(ManagementStatisticsLevel)/}\\
+\lstinline/LimitedPollingConsumerPollStrategy/&\raisebox{0pt}{\lstinline/onSuspend(Consumer,Endpoint)/}\\
+\lstinline/Activator/&\raisebox{0pt}{\lstinline/stop(BundleContext)/}\\
+\lstinline/Activator/&\raisebox{0pt}{\lstinline/stop(BundleContext)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/invoke(List<String>strList)/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/SameRouteAndContextScopedErrorHandlerIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/OnExceptionContinuedIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/OnExceptionContinuedIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/ManagedRedeliverTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/ManagedRedeliverRouteOnlyTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/OnExceptionContinuedIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/OnExceptionContinuedIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/TracingWithDelayTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/SetHeaderInDoCatchIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/SetHeaderInDoCatchIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/LoggingEventNotifier/&\raisebox{0pt}{\lstinline/notify(event)/}\\
+\lstinline/FileRenameFileOnCommitIssueTest/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/ContainerWideInterceptor/&\raisebox{0pt}{\lstinline/process(Exchange)/}\\
+\lstinline/XsltErrorListener/&\raisebox{0pt}{\lstinline/fatalError(TransformerException)/}\\
+\lstinline/XsltErrorListener/&\raisebox{0pt}{\lstinline/error(TransformerException)/}\\
+\lstinline/XsltErrorListener/&\raisebox{0pt}{\lstinline/warning(TransformerException)/}\\
+\lstinline/XmlErrorListener/&\raisebox{0pt}{\lstinline/fatalError(TransformerException)/}\\
+\lstinline/XmlErrorListener/&\raisebox{0pt}{\lstinline/error(TransformerException)/}\\
+\lstinline/XmlErrorListener/&\raisebox{0pt}{\lstinline/warning(TransformerException)/}\\
+\lstinline/MainLifecycleStrategy/&\raisebox{0pt}{\lstinline/onContextStop(CamelContext)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/read(String)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/foo(String)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/foo(String)/}\\
+\lstinline/MyOtherBean/&\raisebox{0pt}{\lstinline/foo(String)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/intread(String)/}\\
+\lstinline/ManagedManagementStrategyext/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/DefaultManagementStrategy/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/UriEndpointConfiguration/&\raisebox{0pt}{\lstinline/warnMissingUriParamOnProperty(String)/}\\
+\lstinline/DefaultTypeConverter/&\raisebox{0pt}{\lstinline/doStart()/}\\
+\lstinline/DefaultExecutorServiceManagerTest/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DefaultExecutorServiceManagerTest/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/HangupInterceptor/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/myMethod(Stringfoo,intbar,Stringx)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/myMethod(HeadersMap,Object)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/myMethod(PropertiesMap,HeadersMap)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/read(String,String)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/read(String,String)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/Stringread(String,String)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/myMethod(List<User>,Object)/}\\
+\lstinline/MyBean/&\raisebox{0pt}{\lstinline/myMethod(List<User>,Object)/}\\
+\lstinline/MyRepo/&\raisebox{0pt}{\lstinline/confirm(CamelContext,String)/}\\
+\lstinline/FileIdempotentRepositoryReadLockStrategy/&\raisebox{0pt}{\lstinline/prepareOnStartup(GenericFileOperations<File>)/}\\
+\lstinline/DefaultExecutorServiceManager/&\raisebox{0pt}{\lstinline/set(ThreadPoolProfile)/}\\
+\lstinline/MyPredicate/&\raisebox{0pt}{\lstinline/booleanmatches(Exchange)/}\\
+\lstinline/XmlTestSupport/&\raisebox{0pt}{\lstinline/RouteContainerassertParseAsJaxb(String)/}\\
+\lstinline/XmlTestSupport/&\raisebox{0pt}{\lstinline/RestContainerassertParseRestAsJaxb(String)/}\\
+\lstinline/JndiTest/&\raisebox{0pt}{\lstinline/testLookupOfTypedObject()/}\\
+\lstinline/DirectRequestReplyAndSedaInOnlyTest/&\raisebox{0pt}{\lstinline/testInOut()/}\\
+\lstinline/AdviceWithTasks/&\raisebox{0pt}{\lstinline/task()/}\\
+\lstinline/AdviceWithTasks/&\raisebox{0pt}{\lstinline/task()/}\\
+\lstinline/DumpModelAsXmlRouteExpressionTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmlXPath()/}\\
+\lstinline/DumpModelAsXmlRouteExpressionTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmlHeader()/}\\
+\lstinline/DumpModelAsXmlRoutePredicateTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/DumpModelAsXmlRoutePredicateTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmlHeader()/}\\
+\lstinline/DumpModelAsXmlRoutePredicateTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmlXPath()/}\\
+\lstinline/DumpModelAsXmlRoutePredicateTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmlBean()/}\\
+\lstinline/DumpModelAsXmlRouteExpressionTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/ComponentDiscoveryTest/&\raisebox{0pt}{\lstinline/ComponentDocumentation()/}\\
+\lstinline/DumpModelAsXmlChoiceFilterRouteTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/DumpModelAsXmlAggregateRouteTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/DumpModelAsXmlRouteExpressionTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmlBean()/}\\
+\lstinline/DumpModelAsXmlChoiceFilterRouteTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXmAl()/}\\
+\lstinline/DumpModelAsXmlPlaceholdersTest/&\raisebox{0pt}{\lstinline/testDumpModelAsXml()/}\\
+\lstinline/EipDocumentationTest/&\raisebox{0pt}{\lstinline/testFailOverDocumentation()/}\\
+\lstinline/EipDocumentationTest/&\raisebox{0pt}{\lstinline/testSimpleDocumentation()/}\\
+\lstinline/StringDataFormatConfigurationAndDocumentationTest/&\raisebox{0pt}{\lstinline/DataFormatJsonSchema()/}\\
+\lstinline/SimpleLanguageConfigurationAndDocumentationTest/&\raisebox{0pt}{\lstinline/LanguageJsonSchema()/}\\
+\lstinline/EipDocumentationTest/&\raisebox{0pt}{\lstinline/testDocumentation()/}\\
+\lstinline/EipDocumentationTest/&\raisebox{0pt}{\lstinline/testSplitDocumentation()/}\\
+\lstinline/GenerateXmFromCamelContextTest/&\raisebox{0pt}{\lstinline/testCreateRouteFromCamelContext()/}\\
+\lstinline/LogBodyWithNewLineTest/&\raisebox{0pt}{\lstinline/testNoSkip()/}\\
+\lstinline/LogBodyWithNewLineTest/&\raisebox{0pt}{\lstinline/testSkip()/}\\
+\lstinline/StreamResequencerTest/&\raisebox{0pt}{\lstinline/booleanuseJmx()/}\\
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Control Flow Logging}
+\subsection{Cluster classified as Control Flow Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{C}_{\id{CF},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,Marker,String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,Marker,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,Marker,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,Marker,String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,Marker,String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,Marker,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(Logger,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(String,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ booleanprocess(exchange,AsyncCallback)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ process(exchange,String)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ process(exchange,Throwable)/}\\
+\lstinline/CamelLogger/&\raisebox{0pt}{\lstinline/ log(String)/}\\
+\lstinline/ApiMethodParser/&\raisebox{0pt}{\lstinline/ intcompare(ApiMethodModel)/}\\
+\lstinline/RecoverTask/&\raisebox{0pt}{\lstinline/ run()/}\\
+\lstinline/BeanInfo/&\raisebox{0pt}{\lstinline/ createParameterUnmarshalExpressionForAnnotation()/}\\
+\lstinline/DefaultExecutorServiceManager/&\raisebox{0pt}{\lstinline/ awaitTermination(ExecutorService)/}\\
+\lstinline/DefaultExecutorServiceManager/&\raisebox{0pt}{\lstinline/ doShutdown(ExecutorService,long)/}\\
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Exception Try-Block Logging}
+\subsection{Cluster classified as Exception Try-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{C}_{\id{TB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/DirectVmProducerBlockingTest/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DirectProducerBlockingTest/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DefaultManagementAgent/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ShutDown/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ShutDown/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DefaultAsyncProcessorAwaitManager/&\raisebox{0pt}{\lstinline/interrupt(Exchange)/}\\
+\lstinline/ShutdownTask/&\raisebox{0pt}{\lstinline/run()/}\\
+
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section{Solr}\label{solr}
 
-\subsection{Clusters classified as Exception Catch-Block Logging}
+\subsection{Cluster classified as Exception Catch-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{S}_{\id{CB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/ ChangedSchemaMergeTest/&\raisebox{0pt}{\lstinline/   optimizeDiffSchemas()/}\\ 
+\lstinline/ HealthcheckTool/&\raisebox{0pt}{\lstinline/   runCloudTool(CloudSolrClient)/}\\ 
+\lstinline/ HealthcheckTool/&\raisebox{0pt}{\lstinline/   runCloudTool(CloudSolrClient)/}\\ 
+\lstinline/ SolrDispatchFilter/&\raisebox{0pt}{\lstinline/   authenticateRequest())/}\\ 
+\lstinline/ TestStressUserVersions/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ TestStressUserVersions/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/  sendBootstrapCommand()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ SplitOp/&\raisebox{0pt}{\lstinline/   execute(CoreAdminHandler.CallInfoit)/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ TestStressReorder/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ MergeIndexesOp/&\raisebox{0pt}{\lstinline/   execute(CoreAdminHandler.CallInfoit)/}\\ 
+\lstinline/ LocalFsFileStream/&\raisebox{0pt}{\lstinline/   write(out)/}\\ 
+\lstinline/ ZkContainer/&\raisebox{0pt}{\lstinline/   publishCoresAsDown(List<SolrCore>)/}\\ 
+\lstinline/ ZkContainer/&\raisebox{0pt}{\lstinline/   publishCoresAsDown(List<SolrCore>)/}\\ 
+\lstinline/ ZkContainer/&\raisebox{0pt}{\lstinline/   publishCoresAsDown(List<SolrCore>)/}\\ 
+\lstinline/ SyncShardRequest/&\raisebox{0pt}{\lstinline/   handleUpdates(ShardResponse)/}\\ 
+\lstinline/ SyncShardRequest/&\raisebox{0pt}{\lstinline/   handleUpdates(ShardResponse)/}\\ 
+\lstinline/ CoreContainer/&\raisebox{0pt}{\lstinline/   swap(String,String)/}\\ 
+\lstinline/ CoreContainer/&\raisebox{0pt}{\lstinline/   swap(String,String)/}\\ 
+\lstinline/ MoreLikeThisHandler/&\raisebox{0pt}{\lstinline/   handleRequestBody(SolrQueryRequestr,SolrQueryResponser)/}\\ 
+\lstinline/ LocalFsFileStream/&\raisebox{0pt}{\lstinline/   write(out)/}\\ 
+\lstinline/ LocalFsFileStream/&\raisebox{0pt}{\lstinline/   write(out)/}\\ 
+\lstinline/ ManagedIndexSchema/&\raisebox{0pt}{\lstinline/   newFieldType(StringtypeName,StringclassName)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ ManagedIndexSchemaFactoryFactory/&\raisebox{0pt}{\lstinline/   zkUgradeToManagedSchema()/}\\ 
+\lstinline/ HttpSolrCall/&\raisebox{0pt}{\lstinline/   writeResponse(SolrQueryResponse,QueryResponseWriter,Method)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ SystemIdResolver2/&\raisebox{0pt}{\lstinline/   solveEntity(Stringname,StringId,String)/}\\ 
+\lstinline/ ShardSplitTest/&\raisebox{0pt}{\lstinline/   logDebugHelp(int[]))/}\\ 
+\lstinline/ PKIAuthenticationPlugin/&\raisebox{0pt}{\lstinline/   PublicKeygetRemotePublicKey(String)/}\\ 
+\lstinline/ RestoreCore/&\raisebox{0pt}{\lstinline/   booleandoRestore()/}\\ 
+\lstinline/ ZKPrinter/&\raisebox{0pt}{\lstinline/   booleanprintZnode(J)/}\\ 
+\lstinline/ ZKPrinter/&\raisebox{0pt}{\lstinline/   printZnode(JSONWriter)/}\\ 
+\lstinline/ ConfigSetDownloadTool/&\raisebox{0pt}{\lstinline/   runImpl(CommandLine)/}\\ 
+\lstinline/ ConfigSetDownloadTool/&\raisebox{0pt}{\lstinline/   runImpl(CommandLine)/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ DeleteExpiredDocsRunnable/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ DeleteExpiredDocsRunnable/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ TransformerProvider/&\raisebox{0pt}{\lstinline/   getTemplates()/}\\ 
+\lstinline/ URLClassifyProcessor/&\raisebox{0pt}{\lstinline/   processAdd(AddUpdateCommand)/}\\ 
+\lstinline/ Req/&\raisebox{0pt}{\lstinline/   trackRequestResult(HttpResponser,boolean)/}\\ 
+\lstinline/ Req/&\raisebox{0pt}{\lstinline/   trackRequestResult(HttpResponser,boolean)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ AddSchemaFieldsUpdateProcessor/&\raisebox{0pt}{\lstinline/   processAdd(AddUpdateCommand)/}\\ 
+\lstinline/ LukeRequestHandler/&\raisebox{0pt}{\lstinline/   longgetFileLength(Directory,String)/}\\ 
+\lstinline/ LeaderInitiatedRecoveryThread/&\raisebox{0pt}{\lstinline/   publishDownState()/}\\ 
+\lstinline/ TestReloadDeadlock/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ RetryNode/&\raisebox{0pt}{\lstinline/   checkRetry()/}\\ 
+\lstinline/ DirectoryFileStream/&\raisebox{0pt}{\lstinline/   write(out)/}\\ 
+\lstinline/ DirectoryFileStream/&\raisebox{0pt}{\lstinline/   write(out)/}\\ 
+\lstinline/ RecentUpdates/&\raisebox{0pt}{\lstinline/   update()/}\\ 
+\lstinline/ RecentUpdates/&\raisebox{0pt}{\lstinline/   update()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFloatSource/&\raisebox{0pt}{\lstinline/   getFloats(FileFloatSource,IndexReader)/}\\ 
+\lstinline/ TestStressReorder/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ ManagedIndexSchema/&\raisebox{0pt}{\lstinline/   newFieldType(String,String)/}\\ 
+\lstinline/ SolrConfigHandler/&\raisebox{0pt}{\lstinline/   waitForAllReplicasState()/}\\ 
+\lstinline/ ExactStatsCache/&\raisebox{0pt}{\lstinline/   returnLocalStats(ResponseBuild)/}\\ 
+\lstinline/ FileBasedSpellChecker/&\raisebox{0pt}{\lstinline/   loadExternalFileDictionary(SolrCore)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ManagedIndexSchema/&\raisebox{0pt}{\lstinline/  enewFieldType(String,String,Map<String,?>)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ UpdateLogSynchronisation/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ GetDirThread/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ RecentUpdates/&\raisebox{0pt}{\lstinline/   update()/}\\ 
+\lstinline/ RecentUpdates/&\raisebox{0pt}{\lstinline/   update()/}\\ 
+\lstinline/ RecentUpdates/&\raisebox{0pt}{\lstinline/   update()/}\\ 
+\lstinline/ RecentUpdates/&\raisebox{0pt}{\lstinline/   update()/}\\ 
+\lstinline/ Runner/&\raisebox{0pt}{\lstinline/   resetTaskWithException(OverseerMessageHandler)/}\\ 
+\lstinline/ Runner/&\raisebox{0pt}{\lstinline/   resetTaskWithException(OverseerMessageHandler)/}\\ 
+\lstinline/ ZkCpTool/&\raisebox{0pt}{\lstinline/   runImpl(CommandLine)/}\\ 
+\lstinline/ ZkCpTool/&\raisebox{0pt}{\lstinline/   runImpl(CommandLine)/}\\ 
+\lstinline/ ZkMvTool/&\raisebox{0pt}{\lstinline/   runImpl(CommandLine)/}\\ 
+\lstinline/ ZkMvTool/&\raisebox{0pt}{\lstinline/   runImpl(CommandLine)/}\\ 
+\lstinline/ SpellCheckerListenerr/&\raisebox{0pt}{\lstinline/   buildSpellIndex(SolrIndexSearch)/}\\ 
+\lstinline/ SpellCheckerListenerr/&\raisebox{0pt}{\lstinline/   buildSpellIndex(SolrIndexSearch)/}\\ 
+\lstinline/ LocalFsFileStreamext/&\raisebox{0pt}{\lstinline/   write(out)/}\\ 
+\lstinline/ RegexpBoostProcessor/&\raisebox{0pt}{\lstinline/  initBoostEntries(InputStream)/}\\ 
+\lstinline/ Command/&\raisebox{0pt}{\lstinline/   handleCommands(List<CommandOperation>)/}\\ 
+\lstinline/ Command/&\raisebox{0pt}{\lstinline/   handleCommands(List<CommandOperation>)/}\\ 
+\lstinline/ Worker/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ Worker/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ SearchHandler/&\raisebox{0pt}{\lstinline/   handleRequestBody()/}\\ 
+\lstinline/ RecoveryStrategy/&\raisebox{0pt}{\lstinline/   replay(SolrCore)/}\\ 
+\lstinline/ RecoveryStrategy/&\raisebox{0pt}{\lstinline/   replay(SolrCore)/}\\ 
+\lstinline/ CommitVersionInfo/&\raisebox{0pt}{\lstinline/   CommitVersionInfobuild(IndexCommit)/}\\ 
+\lstinline/ CommitVersionInfo/&\raisebox{0pt}{\lstinline/   CommitVersionInfobuild(IndexCommit)/}\\ 
+\lstinline/ ZkIndexSchemaReader/&\raisebox{0pt}{\lstinline/   command()/}\\ 
+\lstinline/ ZkIndexSchemaReader/&\raisebox{0pt}{\lstinline/   command()/}\\ 
+\lstinline/ OverseerElectionContext/&\raisebox{0pt}{\lstinline/   runLeaderProcess(boolean)/}\\ 
+\lstinline/ RetryNode/&\raisebox{0pt}{\lstinline/   booleancheckRetry()/}\\ 
+\lstinline/ IncRefThread/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ CoreContainer/&\raisebox{0pt}{\lstinline/   swap(String,String)/}\\ 
+\lstinline/ BootstrapCallable/&\raisebox{0pt}{\lstinline/   Booleancall()/}\\ 
+\lstinline/ MultiThreadedOCPTest/&\raisebox{0pt}{\lstinline/   testLongAndShortRunningParallelApiCalls()/}\\ 
+\lstinline/ ShardSplitTest/&\raisebox{0pt}{\lstinline/   logDebugHelp(int[]))/}\\ 
+\lstinline/ HttpSolrCall/&\raisebox{0pt}{\lstinline/   writeResponse()/}\\ 
+\lstinline/ SolrDynamicMBean/&\raisebox{0pt}{\lstinline/   getAttributes(String[])/}\\ 
+\lstinline/ SolrDynamicMBean/&\raisebox{0pt}{\lstinline/   getAttributes(String[])/}\\ 
+\lstinline/ SystemInfoHandler/&\raisebox{0pt}{\lstinline/   getJvmInfo()/}\\ 
+\lstinline/ RunExampleExecutor/&\raisebox{0pt}{\lstinline/   close()/}\\ 
+\lstinline/ RunExampleExecutor/&\raisebox{0pt}{\lstinline/   close()/}\\ 
+\lstinline/ HdfsTestUtil/&\raisebox{0pt}{\lstinline/   teardownClass(MiniDFSClusterdfsCluster)/}\\ 
+\lstinline/ ManagedResource/&\raisebox{0pt}{\lstinline/   doPut(BaseSolrResource)/}\\ 
+\lstinline/ Suggester/&\raisebox{0pt}{\lstinline/   SgetSuggestions(SpellingOptions)/}\\ 
+\lstinline/ SolrSuggester/&\raisebox{0pt}{\lstinline/   getSuggestions(SuggesterOptions)/}\\ 
+\lstinline/ ClientThread/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ MultiThreadedOCPTest/&\raisebox{0pt}{\lstinline/   testLongAndShortRunningParallelApiCalls()/}\\ 
+\lstinline/ Diagnostics/&\raisebox{0pt}{\lstinline/   logThreadDumps(Stringmessage)/}\\ 
+\lstinline/ SolrZkServer/&\raisebox{0pt}{\lstinline/   start()/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ConfigSetsAPIThread/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ ZkController/&\raisebox{0pt}{\lstinline/   publishNodeAsDown(String)/}\\ 
+\lstinline/ HdfsTransactionLog/&\raisebox{0pt}{\lstinline/   closeOutput()/}\\ 
+\lstinline/ BaseCdcrDistributedZkTest/&\raisebox{0pt}{\lstinline/   waitForReplicationToComplete(String)/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ RestManager/&\raisebox{0pt}{\lstinline/   attachManagedResource(ManagedResourcere)/}\\ 
+\lstinline/ UpdateLog/&\raisebox{0pt}{\lstinline/   seedBucketsWithHighestVersion(SolrIndex)/}\\ 
+\lstinline/ MMapDirectoryFactory/&\raisebox{0pt}{\lstinline/   Directorycreate(String)/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ FileFetcher/&\raisebox{0pt}{\lstinline/   cleanup()/}\\ 
+\lstinline/ CoreContainer/&\raisebox{0pt}{\lstinline/   swap(String,String)/}\\ 
+\lstinline/ CoreContainer/&\raisebox{0pt}{\lstinline/   swap(String,String)/}\\ 
+\lstinline/ CdcrReplicatorState/&\raisebox{0pt}{\lstinline/   shutdown()/}\\ 
+\lstinline/ UpdateLogSynchronisation/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ DefaultSolrCoreState/&\raisebox{0pt}{\lstinline/   run()/}\\ 
+\lstinline/ HttpPartitionTest/&\raisebox{0pt}{\lstinline/   waitToSeeReplicasActive(String)/}\\ 
+\lstinline/ SolrDynamicMBean/&\raisebox{0pt}{\lstinline/   getAttributes(String[])/}\\ 
+\lstinline/ SolrDynamicMBean/&\raisebox{0pt}{\lstinline/   getAttributes(String[])/}\\ 
+\lstinline/ RuleBasedAuthorizationPlugin/&\raisebox{0pt}{\lstinline/   init(Map<String,Object>)/}\\ 
+\lstinline/ Config/&\raisebox{0pt}{\lstinline/   parseLuceneVersionString(StringmatchVersion)/}\\ 
+\lstinline/ CommitVersionInfo/&\raisebox{0pt}{\lstinline/   fobuild(IndexCommit)/}\\ 
+\lstinline/ CommitVersionInfo/&\raisebox{0pt}{\lstinline/   fobuild(IndexCommit)/}\\ 
+\lstinline/ Resolver/&\raisebox{0pt}{\lstinline/   resolve(Objecto,JavaBinCodeccodec)/}\\ 
+\lstinline/ RestoreCore/&\raisebox{0pt}{\lstinline/   booleandoRestore()/}\\ 
+\lstinline/ ZkIndexSchemaReader/&\raisebox{0pt}{\lstinline/   command()/}\\ 
+\lstinline/ RuntimeLib/&\raisebox{0pt}{\lstinline/   verify()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ BootstrapStatusRunnable/&\raisebox{0pt}{\lstinline/   sendBootstrapCommand()/}\\ 
+\lstinline/ Suggester/&\raisebox{0pt}{\lstinline/   getSuggestions(SpellingOptionsoptions)/}\\ 
+\lstinline/ SolrSuggester/&\raisebox{0pt}{\lstinline/   getSuggestions(SuggesterOptionsoptions)/}\\ 
+\lstinline/ ClusterStateUpdater/&\raisebox{0pt}{\lstinline/  amILeader()/}\\ 
+\lstinline/ ClusterStateUpdater/&\raisebox{0pt}{\lstinline/   amILeader()/}\\ 
+\lstinline/ PKIAuthenticationPlugin/&\raisebox{0pt}{\lstinline/   getRemotePublicKey(String)/}\\ 
+\lstinline/ ShardSplitTest/&\raisebox{0pt}{\lstinline/   logDebugHelp(int[]))/}\\ 
+\lstinline/ StatsUtil/&\raisebox{0pt}{\lstinline/   termFromString(Stringdata)/}\\ 
+\lstinline/ RunExampleExecutor/&\raisebox{0pt}{\lstinline/   close()/}\\ 
+\lstinline/ SolrIndexWriter/&\raisebox{0pt}{\lstinline/   rollback()/}\\ 
+\lstinline/ SolrIndexWriter/&\raisebox{0pt}{\lstinline/   rollback()/}\\ 
+\lstinline/ ManagedResource/&\raisebox{0pt}{\lstinline/   doPut()/}\\ 
+
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{S}_{\id{CB},2}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
 
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{S}_{\id{CB},3}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Clusters classified as Conditional Logging}
-
-\begin{center}
-\captionof{figure}{LMs in the cluster $\id{S}_{\id{K},1}$}
-\begin{tabular}{ll}\toprule
-\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Clusters classified as Outer Method Logging}
+\subsection{Cluster classified as Outer Method Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{S}_{\id{OM},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/TestDistribDocBasedVersion/&\raisebox{0pt}{\lstinline/vdeleteFail(String)/}\\
+\lstinline/TestDistribDocBasedVersion/&\raisebox{0pt}{\lstinline/vdeleteFail(String)/}\\
+\lstinline/ManagedIndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/ManagedIndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/TestMiniSolrCloudClusterSSL/&\raisebox{0pt}{\lstinline/before()/}\\
+\lstinline/BackupCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/BackupCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/BackupCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/ActionThrottle/&\raisebox{0pt}{\lstinline/minimumWaitBetweenActions()/}\\
+\lstinline/OverriddenZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/OverriddenZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/OverriddenZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/ClusterStateUpdater/&\raisebox{0pt}{\lstinline/LeaderStatusamILeader()/}\\
+\lstinline/Overseer/&\raisebox{0pt}{\lstinline/createOverseerNode(SolrZkClientzkClient)/}\\
+\lstinline/Overseer/&\raisebox{0pt}{\lstinline/createOverseerNode(SolrZkClientzkClient)/}\\
+\lstinline/AutoCommitTest/&\raisebox{0pt}{\lstinline/verbose(Object)/}\\
+\lstinline/TestWriterPerf/&\raisebox{0pt}{\lstinline/doPerf()/}\\
+\lstinline/SolrXmlInZkTest/&\raisebox{0pt}{\lstinline/setUpZkAndDiskXml(boolean)/}\\
+\lstinline/SolrXmlInZkTest/&\raisebox{0pt}{\lstinline/setUpZkAndDiskXml(boolean)/}\\
+\lstinline/LeaderFailureAfterFreshStartTest/&\raisebox{0pt}{\lstinline/waitForNewLeader()/}\\
+\lstinline/BufferStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEvent)/}\\
+\lstinline/LeaderElectionIntegrationTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/LeaderElectionIntegrationTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/Diagnostics/&\raisebox{0pt}{\lstinline/logThreadDumps(String)/}\\
+\lstinline/BufferStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEvent)/}\\
+\lstinline/ZkCLITest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/ZkCLITest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/ZkCLITest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/TestIndexingPerformance/&\raisebox{0pt}{\lstinline/testIndexingPerf()/}\\
+\lstinline/TestIndexingPerformance/&\raisebox{0pt}{\lstinline/testIndexingPerf()/}\\
+\lstinline/HdfsDirectory/&\raisebox{0pt}{\lstinline/close()/}\\
+\lstinline/VMParamsZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/VMParamsZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/VMParamsZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/FileStorageIO/&\raisebox{0pt}{\lstinline/configure(SolrResourceLoader)/}\\
+\lstinline/ZooKeeperStorageIO/&\raisebox{0pt}{\lstinline/delete(String)/}\\
+\lstinline/JsonStoragStorage/&\raisebox{0pt}{\lstinline/store(String)/}\\
+\lstinline/ManagedResourceStorage/&\raisebox{0pt}{\lstinline/Objectload(StringresourceId)/}\\
+\lstinline/JaspellLookupFactory/&\raisebox{0pt}{\lstinline/Lookupcreate(NamedList)/}\\
+\lstinline/LeaderElectionTest/&\raisebox{0pt}{\lstinline/ParallelElection()/}\\
+\lstinline/SolrSnapshotMetaDataManager/&\raisebox{0pt}{\lstinline/release(String)/}\\
+\lstinline/SolrSnapshotMetaDataManager/&\raisebox{0pt}{\lstinline/release(String)/}\\
+\lstinline/TestJmxIntegration/&\raisebox{0pt}{\lstinline/JmxUpdate()/}\\
+\lstinline/ZkIndexSchemaReader/&\raisebox{0pt}{\lstinline/command()/}\\
+\lstinline/ZkIndexSchemaReader/&\raisebox{0pt}{\lstinline/command()/}\\
+\lstinline/QueryElevationComponentTest/&\raisebox{0pt}{\lstinline/writeFile(File)/}\\
+\lstinline/HttpPartitionTest/&\raisebox{0pt}{\lstinline/waitToSeeReplicasActive(String)/}\\
+\lstinline/HttpPartitionTest/&\raisebox{0pt}{\lstinline/waitToSeeReplicasActive(String)/}\\
+\lstinline/HttpPartitionTest/&\raisebox{0pt}{\lstinline/waitToSeeReplicasActive(String)/}\\
+\lstinline/SolrIndexSearcher/&\raisebox{0pt}{\lstinline/getStoredHighlightFieldNames()/}\\
+\lstinline/OutOfBoxZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/assertOpenACLUnsafeAllover()/}\\
+\lstinline/OutOfBoxZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/assertOpenACLUnsafeAllover()/}\\
+\lstinline/OutOfBoxZkACLAndCredentialsProvidersTest/&\raisebox{0pt}{\lstinline/assertOpenACLUnsafeAllover()/}\\
+\lstinline/BasicAuthIntegrationTeste/&\raisebox{0pt}{\lstinline/setBasicAuthHeader(String)/}\\
+\lstinline/RequestSyncShardOp/&\raisebox{0pt}{\lstinline/execute(CallInfoit)/}\\
+\lstinline/TriLevelCompositeIdRoutingTest/&\raisebox{0pt}{\lstinline/doTriLevelHashingTestWithBitMask()/}\\
+\lstinline/TriLevelCompositeIdRoutingTest/&\raisebox{0pt}{\lstinline/doTriLevelHashingTestWithBitMask()/}\\
+\lstinline/CreateShardCmd/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/CreateShardCmd/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/LogReplayer/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/MemClassLoader/&\raisebox{0pt}{\lstinline/loadFromRuntimeLibs(String)/}\\
+\lstinline/BlobHandler/&\raisebox{0pt}{\lstinline/indexMap()/}\\
+\lstinline/BlobHandler/&\raisebox{0pt}{\lstinline/indexMap()/}\\
+\lstinline/MockAuthenticationPlugin/&\raisebox{0pt}{\lstinline/doAuthenticate(ServletRequest)/}\\
+\lstinline/MockAuthenticationPlugin/&\raisebox{0pt}{\lstinline/doAuthenticate(ServletRequest)/}\\
+\lstinline/MockAuthenticationPlugin/&\raisebox{0pt}{\lstinline/doAuthenticate(ServletRequest)/}\\
+\lstinline/ShardLeaderElectionContext/&\raisebox{0pt}{\lstinline/rejoinLeaderElection(SolrCorecore)/}\\
+\lstinline/AddBlockUpdateTest/&\raisebox{0pt}{\lstinline/ExceptionThrown()/}\\
+\lstinline/CollectionsHandler/&\raisebox{0pt}{\lstinline/waitForActiveCollection(String)/}\\
+\lstinline/CollectionsHandler/&\raisebox{0pt}{\lstinline/waitForActiveCollection(String)/}\\
+\lstinline/LeaderInitiatedRecoveryOnShardRestartTest/&\raisebox{0pt}{\lstinline/RestartWithAllInLIR()/}\\
+\lstinline/RestoreCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/RestoreCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/call(ClusterState)/}\\
+\lstinline/BlockDirectory/&\raisebox{0pt}{\lstinline/closeOnShutdown()/}\\
+\lstinline/DistribJoinFromCollectionTeste/&\raisebox{0pt}{\lstinline/Classshutdown()/}\\
+\lstinline/DistribJoinFromCollectionTeste/&\raisebox{0pt}{\lstinline/Classshutdown()/}\\
+\lstinline/SolrSuggester/&\raisebox{0pt}{\lstinline/SuggesterResultgetSuggestions(SuggesterOptions)/}\\
+\lstinline/SolrSuggester/&\raisebox{0pt}{\lstinline/SuggesterResultgetSuggestions(SuggesterOptions)/}\\
+\lstinline/SolrSuggester/&\raisebox{0pt}{\lstinline/SuggesterResultgetSuggestions(SuggesterOptions)/}\\
+\lstinline/SolrSuggester/&\raisebox{0pt}{\lstinline/SuggesterResultgetSuggestions(SuggesterOptions)/}\\
+\lstinline/RulesTeste/&\raisebox{0pt}{\lstinline/ModifyColl()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/LeaderInitiatedRecoveryOnCommitTest/&\raisebox{0pt}{\lstinline/oneShardTest()/}\\
+\lstinline/SplitOp/&\raisebox{0pt}{\lstinline/execute(CoreAdminHandler.CallInfoit)/}\\
+\lstinline/OneIndexer/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/OneIndexer/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/OverseerRolesTest/&\raisebox{0pt}{\lstinline/setOverseerRole(CloudSolr)/}\\
+\lstinline/ProcessStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEventevent)/}\\
+\lstinline/ZooKeeperStorageIO/&\raisebox{0pt}{\lstinline/delete(String)/}\\
+\lstinline/TestManagedSchema/&\raisebox{0pt}{\lstinline/testPersistUniqueKey()/}\\
+\lstinline/TestManagedSchema/&\raisebox{0pt}{\lstinline/testPersistUniqueKey()/}\\
+\lstinline/StartupLoggingUtils/&\raisebox{0pt}{\lstinline/logNotSupported(String)/}\\
+\lstinline/OverseerCollectionSetProcessorTest/&\raisebox{0pt}{\lstinline/testTemplate(Integer)/}\\
+\lstinline/TestSolrCloudWithKerberosAl/&\raisebox{0pt}{\lstinline/setupMiniKdc()/}\\
+\lstinline/DirectoryFactory/&\raisebox{0pt}{\lstinline/cleanupOldIndexDirectories(String)/}\\
+\lstinline/ManagedResource/&\raisebox{0pt}{\lstinline/doPut(BaseSolrResource)/}\\
+\lstinline/ManagedResource/&\raisebox{0pt}{\lstinline/doPut(BaseSolrResource)/}\\
+\lstinline/TestDistribIDF/&\raisebox{0pt}{\lstinline/addDocsRandomly()=/}\\
+\lstinline/SolrCores/&\raisebox{0pt}{\lstinline/waitForLoadingCoreToFinish(String)/}\\
+\lstinline/SaslZkACLProviderTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/SaslZkACLProviderTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/SaslZkACLProviderTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/OverseerElectionContext/&\raisebox{0pt}{\lstinline/runLeaderProcess()/}\\ 
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(int[])/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(int[])/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(int[])/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(int[])/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(int[])/}\\
+\lstinline/TestCloudPivotFacet/&\raisebox{0pt}{\lstinline/assertPivotCountsAreCorrect()/}\\
+\lstinline/TestCloudPivotFacet/&\raisebox{0pt}{\lstinline/assertPivotCountsAreCorrect()/}\\
+\lstinline/TestCloudPivotFacet/&\raisebox{0pt}{\lstinline/assertPivotCountsAreCorrect()/}\\
+\lstinline/SchemaManager/&\raisebox{0pt}{\lstinline/ManagedIndexSchemagetFreshManagedSchema(SolrCore)/}\\
+\lstinline/SolrConfig/&\raisebox{0pt}{\lstinline/HttpCachingConfig(SolrConfigconf)/}\\
+\lstinline/ManagedWordSetResourc/&\raisebox{0pt}{\lstinline/applyUpdatesToManagedData(Object)/}\\
+\lstinline/ManagedWordSetResourc/&\raisebox{0pt}{\lstinline/applyUpdatesToManagedData(Object)/}\\
+\lstinline/ManagedWordSetResourc/&\raisebox{0pt}{\lstinline/applyUpdatesToManagedData(Object)/}\\
+\lstinline/ClusterStateUpdateTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/ClusterStateUpdateTest/&\raisebox{0pt}{\lstinline/setUp()/}\\
+\lstinline/BasicDistributedZkTest/&\raisebox{0pt}{\lstinline/testMultipleCollections()/}\\
+\lstinline/BasicDistributedZkTest/&\raisebox{0pt}{\lstinline/testMultipleCollections()/}\\
+\lstinline/BasicDistributedZkTest/&\raisebox{0pt}{\lstinline/testMultipleCollections()/}\\
+\lstinline/BasicDistributedZkTest/&\raisebox{0pt}{\lstinline/testMultipleCollections()/}\\
+\lstinline/AbstractSpatialPrefixTree/&\raisebox{0pt}{\lstinline/TnewSpatialStrategy(String)/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/IndexSchema/&\raisebox{0pt}{\lstinline/new()/}\\
+\lstinline/SolrConfigHandler/new()/&\raisebox{0pt}{\lstinline/wait()/}\\
+\lstinline/SolrConfigHandler/new()/&\raisebox{0pt}{\lstinline/wait()/}\\
+\lstinline/ResourceSharingTestComponent/&\raisebox{0pt}{\lstinline/inform(SolrCorecore)/}\\
+\lstinline/CoreContainer/&\raisebox{0pt}{\lstinline/swap(Stringn0,Stringn1)/}\\
+\lstinline/CoreContainer/&\raisebox{0pt}{\lstinline/swap(Stringn0,Stringn1)/}\\
+\lstinline/CoreContainer/&\raisebox{0pt}{\lstinline/swap(Stringn0,Stringn1)/}\\
+\lstinline/BootstrapCallable/&\raisebox{0pt}{\lstinline/call()/}\\
+\lstinline/SolrIndexWriter/&\raisebox{0pt}{\lstinline/rollback()/}\\
+\lstinline/MockAuthenticationPlugin/&\raisebox{0pt}{\lstinline/doAuthenticate(ServletRequest)/}\\
+\lstinline/TestReplicationHandler/&\raisebox{0pt}{\lstinline/RateLimitedReplication()/}\\
+\lstinline/TestReplicationHandler/&\raisebox{0pt}{\lstinline/RateLimitedReplication()/}\\
+\lstinline/TestTolerantUpdateProcessorRandomCloude/&\raisebox{0pt}{\lstinline/createMiniSolrCloudCluster()/}\\
+\lstinline/RegisterCoreAsync/&\raisebox{0pt}{\lstinline/Objectcall()/}\\
+\lstinline/ZkController/&\raisebox{0pt}{\lstinline/publishNodeAsDown(String)/}\\
+\lstinline/ZkController/&\raisebox{0pt}{\lstinline/publishNodeAsDown(String)/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/Runner/&\raisebox{0pt}{\lstinline/resetTaskWithException(String)/}\\
+\lstinline/KerberosPlugin/&\raisebox{0pt}{\lstinline/doAuthenticate(ServletRequest)/}\\
+\lstinline/RestManagerManagedResourc/&\raisebox{0pt}{\lstinline/applyUpdatesToManagedData(Object)/}\\
+\lstinline/ShardRoutingTest/&\raisebox{0pt}{\lstinline/doAtomicUpdate()/}\\
+\lstinline/ShardRoutingTest/&\raisebox{0pt}{\lstinline/doAtomicUpdate()/}\\
+\lstinline/ShardRoutingTest/&\raisebox{0pt}{\lstinline/doAtomicUpdate()/}\\
+\lstinline/TestSolrConfigHandler/&\raisebox{0pt}{\lstinline/MapgetRespMap(String)/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdateCommand)/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdateCommand)/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdateCommand)/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdateCommand)/}\\
+\lstinline/HdfsUpdateLog/&\raisebox{0pt}{\lstinline/clearLog(SolrCore,Plugino)/}\\
+\lstinline/OverseerNodePrioritizer/&\raisebox{0pt}{\lstinline/prioritizeOverseerNodes(Stringoverse)/}\\
+\lstinline/OverseerNodePrioritizer/&\raisebox{0pt}{\lstinline/prioritizeOverseerNodes(Stringoverse)/}\\
+\lstinline/SolrCloudExampleTest/&\raisebox{0pt}{\lstinline/doTestConfigUpdate(Stringt))/}\\
+\lstinline/HighlighterConfigTest/&\raisebox{0pt}{\lstinline/testConfig()/}\\
+\lstinline/TestAuthorizationFramework/&\raisebox{0pt}{\lstinline/authorizationFrameworkTest()/}\\
+\lstinline/TestAuthorizationFramework/&\raisebox{0pt}{\lstinline/authorizationFrameworkTest()/}\\
+\lstinline/SolrZkServerProps/&\raisebox{0pt}{\lstinline/parseProperties()/}\\
+\lstinline/SnapShooter/&\raisebox{0pt}{\lstinline/deleteNamedSnapshot(ReplicationHandler)/}\\
+\lstinline/SnapShooter/&\raisebox{0pt}{\lstinline/deleteNamedSnapshot(ReplicationHandler)/}\\
+\lstinline/TransformerProvider/&\raisebox{0pt}{\lstinline/TemplatesgetTemplates()/}\\
+\lstinline/FSHDFSUtils/&\raisebox{0pt}{\lstinline/booleansFileClosed(DistributedFileSystemd)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/Future<RecoveryInfo>replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/Future<RecoveryInfo>replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/Future<RecoveryInfo>replay(SolrCore)/}\\
+\lstinline/UnInvertedField/&\raisebox{0pt}{\lstinline/UnInvertedField(Stringfield)/}\\
+\lstinline/MockAuthorizationPlugin/&\raisebox{0pt}{\lstinline/AuthorizationResponseauthorize(AuthorizationContext)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/MigrateCmdHttpPartitionTest/&\raisebox{0pt}{\lstinline/migrateKey(ClusterState)/}\\
+\lstinline/LazyPluginHolder/&\raisebox{0pt}{\lstinline/createInst()/}\\
+\lstinline/InvokeOp/&\raisebox{0pt}{\lstinline/Map<String,Object>invokeAClass(SolrQueryRequestreq,Stringc)/}\\
+\lstinline/RollingRestartTest/&\raisebox{0pt}{\lstinline/waitUntilOverseerDesignateIsLeader()/}\\
+\lstinline/RollingRestartTest/&\raisebox{0pt}{\lstinline/waitUntilOverseerDesignateIsLeader()/}\\
+\lstinline/ManagedEndpoint/&\raisebox{0pt}{\lstinline/ObjectparseJsonFromRequestBody()/}\\
+\lstinline/LazyPluginHolder/&\raisebox{0pt}{\lstinline/createInst()/}\\
+\lstinline/LoggingInfoStream/&\raisebox{0pt}{\lstinline/message(Stringcomponent,String)/}\\
+\lstinline/FullThrottleStoppableIndexingThread/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/TestDistributedStatsComponentCardinality/&\raisebox{0pt}{\lstinline/buildIndex()/}\\
+\lstinline/SynonymManager/&\raisebox{0pt}{\lstinline/doDeleteChild(BaseSolrResourcepoint,StringchildId)/}\\
+\lstinline/SynonymManager/&\raisebox{0pt}{\lstinline/doDeleteChild(BaseSolrResourcepoint,StringchildId)/}\\
+\lstinline/Runner/&\raisebox{0pt}{\lstinline/resetTaskWithException()/}\\
+\lstinline/Runner/&\raisebox{0pt}{\lstinline/resetTaskWithException()/}\\
+\lstinline/ReplicaMutator/&\raisebox{0pt}{\lstinline/DocCollectioncheckAndCompleteShardSplit()/}\\
+\lstinline/ReplicaMutator/&\raisebox{0pt}{\lstinline/DocCollectioncheckAndCompleteShardSplit()/}\\
+\lstinline/FileStorageIO/&\raisebox{0pt}{\lstinline/configure()/}\\
+\lstinline/TestManagedSchemaAPIe/&\raisebox{0pt}{\lstinline/addStringField(String)/}\\
+\lstinline/XSLTResponseWriter/&\raisebox{0pt}{\lstinline/init(NamedListn)/}\\
+\lstinline/Suggester/&\raisebox{0pt}{\lstinline/SpellingResultgetSuggestions(SpellingOptionsoptions)/}\\
+\lstinline/Suggester/&\raisebox{0pt}{\lstinline/SpellingResultgetSuggestions(SpellingOptionsoptions)/}\\
+\lstinline/OneQuery/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/OneQuery/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/CollectionMutator/&\raisebox{0pt}{\lstinline/checkKeyExistence(ZkNodeProp)/}\\
+\lstinline/BaseCdcrDistributedZkTest/&\raisebox{0pt}{\lstinline/waitForReplicationToComplete(String)/}\\
+\lstinline/BaseCdcrDistributedZkTest/&\raisebox{0pt}{\lstinline/waitForReplicationToComplete(String)/}\\
+\lstinline/ManagedEndpoint/&\raisebox{0pt}{\lstinline/ObjectparseJsonFromRequestBody()/}\\
+\lstinline/RestManagerManagedResourc/&\raisebox{0pt}{\lstinline/applyUpdatesToManagedData(Objectupdates)/}\\
+\lstinline/RestManager/&\raisebox{0pt}{\lstinline/attachManagedResource(ManagedResource)/}\\
+\lstinline/RestManager/&\raisebox{0pt}{\lstinline/attachManagedResource(ManagedResource)/}\\
+\lstinline/ProcessStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEventevent)/}\\
+\lstinline/LeaderInitiatedRecoveryThread/&\raisebox{0pt}{\lstinline/booleanpublishDownState(String)/}\\
+\lstinline/HdfsDirectoryFactory/&\raisebox{0pt}{\lstinline/initKerberos()/}\\
+\lstinline/FileFloatSource/&\raisebox{0pt}{\lstinline/getFloats()/}\\
+\lstinline/FileFloatSource/&\raisebox{0pt}{\lstinline/getFloats()/}\\
+\lstinline/FileFloatSource/&\raisebox{0pt}{\lstinline/getFloats()/}\\
+\lstinline/UpdateLog/&\raisebox{0pt}{\lstinline/highestVersion(SolrIndex)/}\\
+\lstinline/LogReplayer/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/SolrDispatchFilter/&\raisebox{0pt}{\lstinline/authenticateRequest(ServletRequest)/}\\
+\lstinline/SolrDispatchFilter/&\raisebox{0pt}{\lstinline/authenticateRequest(ServletRequest)/}\\
+\lstinline/SolrDispatchFilter/&\raisebox{0pt}{\lstinline/authenticateRequest(ServletRequest)/}\\
+\lstinline/SolrDispatchFilter/&\raisebox{0pt}{\lstinline/authenticateRequest(ServletRequest)/}\\
+\lstinline/SyncShardRequest/&\raisebox{0pt}{\lstinline/booleanhandleUpdates(ShardResponsesrsp)/}\\
+\lstinline/SyncShardRequest/&\raisebox{0pt}{\lstinline/booleanhandleUpdates(ShardResponsesrsp)/}\\
+\lstinline/SuggesterListener)/&\raisebox{0pt}{\lstinline/buildSuggesterIndex(SolrIndexSearch)/}\\
+\lstinline/SuggesterListener)/&\raisebox{0pt}{\lstinline/buildSuggesterIndex(SolrIndexSearch)/}\\
+\lstinline/SuggesterListener)/&\raisebox{0pt}{\lstinline/buildSuggesterIndex(SolrIndexSearch)/}\\
+\lstinline/SuggesterListener)/&\raisebox{0pt}{\lstinline/buildSuggesterIndex(SolrIndexSearch)/}\\
+\lstinline/DirectSolrSpellChecker/&\raisebox{0pt}{\lstinline/Stringinit(NamedList)/}\\
+\lstinline/SliceMutator/&\raisebox{0pt}{\lstinline/ZkWriteCommandremoveRoutingRule(ClusterState)/}\\
+\lstinline/SliceMutator/&\raisebox{0pt}{\lstinline/ZkWriteCommandremoveRoutingRule(ClusterState)/}\\
+\lstinline/SliceMutator/&\raisebox{0pt}{\lstinline/ZkWriteCommandremoveRoutingRule(ClusterState)/}\\
+\lstinline/TestConfigReload/&\raisebox{0pt}{\lstinline/checkConfReload()/}\\
+\lstinline/TestConfigReload/&\raisebox{0pt}{\lstinline/checkConfReload()/}\\
+\lstinline/CreateCollectionCmd/&\raisebox{0pt}{\lstinline/StringgetConfigName(String)/}\\
+\lstinline/ErrorLoggingConcurrentUpdateSolrClient/&\raisebox{0pt}{\lstinline/handleError(Throwable)/}\\
+\lstinline/Worker/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/JsonStorage/&\raisebox{0pt}{\lstinline/store(String)/}\\
+\lstinline/TestRandomFlRTGCloude/&\raisebox{0pt}{\lstinline/addRandomDocument(int)/}\\
+\lstinline/TestRandomFlRTGCloude/&\raisebox{0pt}{\lstinline/addRandomDocument(int)/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/RegisterCoreAsync/&\raisebox{0pt}{\lstinline/Objectcall()/}\\
+\lstinline/TestLogWatcher/&\raisebox{0pt}{\lstinline/Log4jWatcher()/}\\
+\lstinline/SolrXmlConfig/&\raisebox{0pt}{\lstinline/PropertiesloadProperties(Config)/}\\
+\lstinline/OverseerCollectionMessageHandler/&\raisebox{0pt}{processResponse(NamedList)/}\\
+\lstinline/OverseerCollectionMessageHandler/&\raisebox{0pt}{\lstinline/processResponse(NamedList)/}\\
+\lstinline/OverseerCollectionMessageHandler/&\raisebox{0pt}{\lstinline/processResponse(NamedList)/}\\
+\lstinline/DirectUpdateHandlerTest/&\raisebox{0pt}{\lstinline/PrepareCommit()/}\\
+\lstinline/DirectUpdateHandlerTest/&\raisebox{0pt}{\lstinline/PrepareCommit()/}\\
+\lstinline/DirectUpdateHandlerTest/&\raisebox{0pt}{\lstinline/PrepareCommit()/}\\
+\lstinline/BackupRestoreUtils/&\raisebox{0pt}{\lstinline/intindexDocs(SolrClient)/}\\ 
+\lstinline/ErrorReportingConcurrentUpdateSolrClient/&\raisebox{0pt}{\lstinline/handleError(Throwable)/}\\
+\lstinline/ClusterStateUpdater/&\raisebox{0pt}{\lstinline/LeaderStatusamILeader()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/ReplicationDistributedZkTest/&\raisebox{0pt}{\lstinline/testBatchBoundaries()/}\\
+\lstinline/OpenCloseCoreStressTest/&\raisebox{0pt}{\lstinline/checkResults(HttpSolrClient)/}\\
+\lstinline/OpenCloseCoreStressTest/&\raisebox{0pt}{\lstinline/checkResults(HttpSolrClient)/}\\
+\lstinline/OpenCloseCoreStressTest/&\raisebox{0pt}{\lstinline/checkResults(HttpSolrClient)/}\\
+\lstinline/OpenCloseCoreStressTest/&\raisebox{0pt}{\lstinline/checkResults(HttpSolrClient)/}\\
+\lstinline/SolrCore/&\raisebox{0pt}{\lstinline/checkStale()/}\\
+\lstinline/IndexFingerprint/&\raisebox{0pt}{\lstinline/getFingerprint(long)/}\\
+\lstinline/DocExpirationUpdateProcessorFactory/&\raisebox{0pt}{\lstinline/amInChargeOfPeriodicDeletes()/}\\
+\lstinline/DocExpirationUpdateProcessorFactory/&\raisebox{0pt}{\lstinline/amInChargeOfPeriodicDeletes()/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/TestStressUserVersions/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/TestStressReorder/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ReplicationFactorTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/ReplicationFactorTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/ReplicationFactorTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/ReplicationFactorTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/SolrSchemaRestApi/&\raisebox{0pt}{\lstinline/RestletcreateInboundRoot()/}\\
+\lstinline/SolrSchemaRestApi/&\raisebox{0pt}{\lstinline/RestletcreateInboundRoot()/}\\
+\lstinline/SolrCoreCheckLockOnStartupTest/&\raisebox{0pt}{\lstinline/NativeLockErrorOnStartup()/}\\
+\lstinline/CommitTracker/&\raisebox{0pt}{\lstinline/commitTracker(oolean)/}\\
+\lstinline/QuerySenderListener/&\raisebox{0pt}{\lstinline/newSearcher(SolrIndex)/}\\
+\lstinline/QuerySenderListener/&\raisebox{0pt}{\lstinline/newSearcher(SolrIndex)/}\\
+
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Control Flow Logging}
+\subsection{Cluster classified as Control Flow Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{S}_{\id{CF},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/OpenExchangeRates/&\raisebox{0pt}{\lstinline/ OpenExchangeRates(InputStream}/}\\ 
+\lstinline/SolrIndexSplitter/&\raisebox{0pt}{\lstinline/ split(LeafReaderContext)}/}\\
+\lstinline/SolrIndexSplitter/&\raisebox{0pt}{\lstinline/ split(LeafReaderContext)}/}\\
+\lstinline/SolrIndexSplitter/&\raisebox{0pt}{\lstinline/ split(LeafReaderContext)/}\\ 
+\lstinline/SingleThreadedJsonLoader/&\raisebox{0pt}{\lstinline/ processUpdate(Reader)/}\\ 
+\lstinline/SingleThreadedJsonLoader/&\raisebox{0pt}{\lstinline/ processUpdate(Reader)/}\\
+\lstinline/AtomicUpdateDocumentMerger/&\raisebox{0pt}{\lstinline/ merge(SolrInputDocument)/}\\ 
+\lstinline/Config/&\raisebox{0pt}{\stinline/parseLuceneVersionString(String)/}\\ 
+\lstinline/XMLLoader/&\raisebox{0pt}{\stinline/SolrInputDocumentreadDoc(XMLStreamReader)/}\\ 
+\lstinline/OverseerTest/&\raisebox{0pt}{\stinline/removalOfLastReplica()/}\\ 
+\lstinline/RequestHandlers/&\raisebox{0pt}{\stinline/applyInitParams(SolrConfigc,PluginInfo)/}\\ 
+\lstinline/SolrDynamicMBean/&\raisebox{0pt}{\stinline/get(String[])/}\\ 
+\lstinline/SolrDynamicMBean/&\raisebox{0pt}{\stinline/Aget(String[])/}\\ 
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Clusters classified as Exception Try-Block Logging}
+\subsection{Cluster classified as Exception Try-Block Logging}
 
 \begin{center}
 \captionof{figure}{LMs in the cluster $\id{S}_{\id{TB},1}$}
 \begin{tabular}{ll}\toprule
 \multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
-\lstinline/SomeClass/&\raisebox{0pt}{\lstinline/foo(int)/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/OverseerTest/&\raisebox{0pt}{\lstinline/RemovalOfLastReplica()/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(QueryResponser,long)/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(QueryResponser,long)/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(QueryResponser,long)/}\\
+\lstinline/TestMiniSolrCloudCluster/&\raisebox{0pt}{\lstinline/createSearchDelete()/}\\
+\lstinline/TestMiniSolrCloudCluster/&\raisebox{0pt}{\lstinline/createSearchDelete()/}\\
+\lstinline/TestMiniSolrCloudCluster/&\raisebox{0pt}{\lstinline/createSearchDelete()/}\\
+\lstinline/TestMiniSolrCloudCluster/&\raisebox{0pt}{\lstinline/createSearchDelete()/}\\
+\lstinline/TestMiniSolrCloudCluster/&\raisebox{0pt}{\lstinline/createSearchDelete()/}\\
+\lstinline/TestMiniSolrCloudCluster/&\raisebox{0pt}{\lstinline/createSearchDelete()/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdatecommand))/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdatecommand))/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdatecommand))/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdatecommand))/}\\
+\lstinline/SolrCore/&\raisebox{0pt}{\lstinline/checkStale(String,int)/}\\
+\lstinline/SolrCore/&\raisebox{0pt}{\lstinline/checkStale(String,int)/}\\
+\lstinline/SolrDynamicMBean/&\raisebox{0pt}{\lstinline/AttributeListgetAttributes(String[]attributes)/}\\
+\lstinline/DeleteTool/&\raisebox{0pt}{\lstinline/deleteCollection(CloudSolrClient,CommandLine)/}\\
+\lstinline/SyncStrategy/&\raisebox{0pt}{\lstinline/requestRecoveries()/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/SolrCore/&\raisebox{0pt}{\lstinline/checkStale(String,int)/}\\
+\lstinline/LeaderStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEventevent)/}\\
+\lstinline/SyncShardRequest/&\raisebox{0pt}{\lstinline/handleUpdates(ShardResponsesrsp)/}\\
+\lstinline/SolrZkServer/&\raisebox{0pt}{\lstinline/start()/}\\
+\lstinline/StartupLoggingUtils/&\raisebox{0pt}{\lstinline/logNotSupported(Stringmsg)/}\\
+\lstinline/MigrateCmd/&\raisebox{0pt}{\lstinline/migrateKey(ClusterStatecluster)/}\\
+\lstinline/FSHDFSUtils/&\raisebox{0pt}{\lstinline/booleanisFileClosed(Method,Path)/}\\
+\lstinline/CryptoKeys/&\raisebox{0pt}{\lstinline/Stringverify(String,Byte)/}\\
+\lstinline/LeaderInitiatedRecoveryThrea/&\raisebox{0pt}{\lstinline/publishDownState(String,boolean))/}\\
+\lstinline/ManagedIndexSchema/&\raisebox{0pt}{\lstinline/newFieldType(String))/}\\
+\lstinline/ProcessStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEventevent)/}\\
+\lstinline/BufferStateWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEventevent)/}\\
+\lstinline/BootstrapCallable/&\raisebox{0pt}{\lstinline/Booleancall()/}\\
+\lstinline/RuntimeLib/&\raisebox{0pt}{\lstinline/verify()/}\\
+\lstinline/ShardSplitTest/&\raisebox{0pt}{\lstinline/logDebugHelp(QueryResponser,long)/}\\
+\lstinline/ClusterStateUpdater,Closeable/&\raisebox{0pt}{\lstinline/LeaderStatusamILeader()/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/ManagedIndexSchema/&\raisebox{0pt}{\lstinline/newFieldType(String))/}\\
+\lstinline/ElectionWatcher/&\raisebox{0pt}{\lstinline/process(WatchedEventevent)/}\\
+\lstinline/SpellCheckerListener/&\raisebox{0pt}{\lstinline/buildSpellIndex(sendBootstrapCommand)/}\\
+\lstinline/SpellCheckerListener/&\raisebox{0pt}{\lstinline/buildSpellIndex(sendBootstrapCommand)/}\\
+\lstinline/OverseerRestarter/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/OverseerRestarter/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/OverseerRestarter/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/OverseerRestarter/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/StatusRunnable/&\raisebox{0pt}{\lstinline/sendBootstrapCommand())/}\\
+\lstinline/StatusRunnable/&\raisebox{0pt}{\lstinline/sendBootstrapCommand())/}\\
+\lstinline/RunExampleExecutor/&\raisebox{0pt}{\lstinline/close())/}\\
+\lstinline/RunExampleExecutor/&\raisebox{0pt}{\lstinline/close())/}\\
+\lstinline/SyncStrategy/&\raisebox{0pt}{\lstinline/requestRecoveries()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/RequestReplicationTracker/&\raisebox{0pt}{\lstinline/doLocalCommit(CommitUpdateCommand))/}\\
+\lstinline/CoreContainer/&\raisebox{0pt}{\lstinline/swap(Stringn0,Stringn1)/}\\
+\lstinline/UpdateThread/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ZkController/&\raisebox{0pt}{\lstinline/publishNodeAsDown(StringnodeName)/}\\
+\lstinline/RestoreCore/&\raisebox{0pt}{\lstinline/booleandoRestore()/}\\
+\lstinline/LeaderFailureAfterFreshStartTest/&\raisebox{0pt}{\lstinline/waitForNewLeader(CloudSolrClient,String)/}\\
+\lstinline/LeaderFailureAfterFreshStartTest/&\raisebox{0pt}{\lstinline/waitForNewLeader(CloudSolrClient,String)/}\\
+\lstinline/LeaderFailureAfterFreshStartTest/&\raisebox{0pt}{\lstinline/waitForNewLeader(CloudSolrClient,String)/}\\
+\lstinline/PeerSyncReplicationTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/PeerSyncReplicationTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/PeerSyncReplicationTest/&\raisebox{0pt}{\lstinline/()/}\\
+\lstinline/OverseerRestarter/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ForceLeaderTest/&\raisebox{0pt}{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
+\lstinline/SnapShooter/&\raisebox{0pt}{\lstinline/deleteNamedSnapshot(ReplicationHandle)/}\\
+\lstinline/LeaderElectionTest/&\raisebox{0pt}{\lstinline/ParallelElection()/}\\
+\lstinline/LeaderElectionTest/&\raisebox{0pt}{\lstinline/ParallelElection()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/FileFetcher/&\raisebox{0pt}{\lstinline/cleanup()/}\\
+\lstinline/CdcrReplicator/&\raisebox{0pt}{\lstinline/handleException(Exceptione)/}\\
+\lstinline/CoreContainer/&\raisebox{0pt}{\lstinline/swap(Stringn0,Stringn1)/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdatecommand))/}\\
+\lstinline/DirectUpdateHandler2/&\raisebox{0pt}{\lstinline/rollback(RollbackUpdatecommand))/}\\
+\lstinline/DeleteExpiredDocsRunnable/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/DeleteExpiredDocsRunnable/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/ManagedIndexSchema/&\raisebox{0pt}{\lstinline/newFieldType(String))/}\\
+\lstinline/StatusRunnable/&\raisebox{0pt}{\lstinline/sendBootstrapCommand())/}\\
+\lstinline/OpenCloseCoreStressTest/&\raisebox{0pt}{\lstinline/checkResults(HttpSolrClient))/}\\
+\lstinline/OverseerConfigSetMessageHandler/&\raisebox{0pt}{\lstinline/createConfigSet(ZkNodeProps))/}\\
+\lstinline/DefaultSolrCoreState/&\raisebox{0pt}{\lstinline/run()/}\\
+\lstinline/RecoveryStrategy/&\raisebox{0pt}{\lstinline/replay(SolrCore)/}\\
+\lstinline/StatusRunnable/&\raisebox{0pt}{\lstinline/sendBootstrapCommand())/}\\
+\lstinline/StatusRunnable/&\raisebox{0pt}{\lstinline/sendBootstrapCommand())/}\\
+\lstinline/SolrIndexSplitterTest/&\raisebox{0pt}{\lstinline/SplitAlternately()/}\\
+\lstinline/SSLTestCloudPivotFacet/&\raisebox{0pt}{\lstinline/assertPivotCountsAreCorrect(SolrParams)()/}\\
+\lstinline/TestJmxMonitoredMap/&\raisebox{0pt}{\lstinline/beforesetUp()/}\\
+
 \bottomrule
 \end{tabular}
 \end{center}
