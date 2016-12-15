@@ -27,84 +27,76 @@
 \BOOKMARK [2][-]{subsection.3.7.1}{K-means clustering algorithm}{section.3.7}% 27
 \BOOKMARK [2][-]{subsection.3.7.2}{Agglomerative hierarchical clustering algorithm}{section.3.7}% 28
 \BOOKMARK [1][-]{section.3.8}{Summary}{chapter.3}% 29
-\BOOKMARK [0][-]{chapter.4}{Determining Structural Correspondences}{}% 30
-\BOOKMARK [1][-]{section.4.1}{Computing similarity between nodes}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.2}{Determining potential correspondences}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.3}{Constructing the AUAST}{chapter.4}% 33
-\BOOKMARK [1][-]{section.4.4}{An assessment of the Jigsaw framework}{chapter.4}% 34
-\BOOKMARK [2][-]{subsection.4.4.1}{Setup}{section.4.4}% 35
-\BOOKMARK [2][-]{subsection.4.4.2}{Results}{section.4.4}% 36
-\BOOKMARK [1][-]{section.4.5}{Summary}{chapter.4}% 37
-\BOOKMARK [0][-]{chapter.5}{Constructing Structural Generalizations}{}% 38
-\BOOKMARK [1][-]{section.5.1}{Determining the best correspondences}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.2}{Computing similarity between AUASTs}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.3}{Constructing the anti-unifier}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.4}{The anti-unifier building tool}{chapter.5}% 42
-\BOOKMARK [2][-]{subsection.5.4.1}{Constructing the detailed generalization view}{section.5.4}% 43
-\BOOKMARK [2][-]{subsection.5.4.2}{Methods containing multiple log statements}{section.5.4}% 44
-\BOOKMARK [1][-]{section.5.5}{Evaluation}{chapter.5}% 45
-\BOOKMARK [2][-]{subsection.5.5.1}{Setup}{section.5.5}% 46
-\BOOKMARK [2][-]{subsection.5.5.2}{Results}{section.5.5}% 47
-\BOOKMARK [1][-]{section.5.6}{Summary}{chapter.5}% 48
-\BOOKMARK [0][-]{chapter.6}{Clustering}{}% 49
-\BOOKMARK [1][-]{section.6.1}{Modified agglomerative hierarchical clustering algorithm}{chapter.6}% 50
-\BOOKMARK [1][-]{section.6.2}{Evaluation}{chapter.6}% 51
-\BOOKMARK [2][-]{subsection.6.2.1}{Results}{section.6.2}% 52
-\BOOKMARK [1][-]{section.6.3}{Summary}{chapter.6}% 53
-\BOOKMARK [0][-]{chapter.7}{Characterization Study}{}% 54
-\BOOKMARK [1][-]{section.7.1}{Experiment}{chapter.7}% 55
-\BOOKMARK [2][-]{subsection.7.1.1}{Results}{section.7.1}% 56
-\BOOKMARK [2][-]{subsection.7.1.2}{Analysis}{section.7.1}% 57
-\BOOKMARK [1][-]{section.7.2}{Evaluation}{chapter.7}% 58
-\BOOKMARK [2][-]{subsection.7.2.1}{Calculating the precision and recall}{section.7.2}% 59
-\BOOKMARK [2][-]{subsection.7.2.2}{Precision results}{section.7.2}% 60
-\BOOKMARK [2][-]{subsection.7.2.3}{Recall results}{section.7.2}% 61
-\BOOKMARK [1][-]{section.7.3}{Usage}{chapter.7}% 62
-\BOOKMARK [1][-]{section.7.4}{Summary}{chapter.7}% 63
-\BOOKMARK [0][-]{chapter.8}{Discussion}{}% 64
-\BOOKMARK [1][-]{section.8.1}{Threats to validity}{chapter.8}% 65
-\BOOKMARK [2][-]{subsection.8.1.1}{Threats to internal validity}{section.8.1}% 66
-\BOOKMARK [2][-]{subsection.8.1.2}{Threats to external validity}{section.8.1}% 67
-\BOOKMARK [2][-]{subsection.8.1.3}{Threats to construct validity}{section.8.1}% 68
-\BOOKMARK [1][-]{section.8.2}{The pitfalls of ELUS}{chapter.8}% 69
-\BOOKMARK [2][-]{subsection.8.2.1}{Inaccurate node ordering}{section.8.2}% 70
-\BOOKMARK [2][-]{subsection.8.2.2}{Conflict resolution}{section.8.2}% 71
-\BOOKMARK [1][-]{section.8.3}{Applications of anti-unification}{chapter.8}% 72
-\BOOKMARK [1][-]{section.8.4}{Defining intermediate constrained variables}{chapter.8}% 73
-\BOOKMARK [1][-]{section.8.5}{Summary}{chapter.8}% 74
-\BOOKMARK [0][-]{chapter.9}{Related Work}{}% 75
-\BOOKMARK [1][-]{section.9.1}{Usage of logging}{chapter.9}% 76
-\BOOKMARK [1][-]{section.9.2}{Understanding existing logging practices}{chapter.9}% 77
-\BOOKMARK [1][-]{section.9.3}{Correspondence}{chapter.9}% 78
-\BOOKMARK [1][-]{section.9.4}{API usage patterns}{chapter.9}% 79
-\BOOKMARK [1][-]{section.9.5}{Anti-unification}{chapter.9}% 80
-\BOOKMARK [1][-]{section.9.6}{Summary}{chapter.9}% 81
-\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 82
-\BOOKMARK [1][-]{section.10.1}{Future Work}{chapter.10}% 83
-\BOOKMARK [2][-]{subsection.10.1.1}{Improving logging practices}{section.10.1}% 84
-\BOOKMARK [2][-]{subsection.10.1.2}{Further extensions to my approach and the tool support}{section.10.1}% 85
-\BOOKMARK [2][-]{subsection.10.1.3}{Further validation of this study}{section.10.1}% 86
-\BOOKMARK [2][-]{subsection.10.1.4}{Other applications}{section.10.1}% 87
-\BOOKMARK [0][-]{appendix.A}{Logged Methods in Each Cluster of the Clustering Evaluation}{}% 88
-\BOOKMARK [0][-]{appendix.B}{Categorization of and Logged Methods in Each Cluster of the Characterization Study}{}% 89
-\BOOKMARK [1][-]{section.B.1}{Tomcat}{appendix.B}% 90
-\BOOKMARK [2][-]{subsection.B.1.1}{Cluster classified as Exception Catch-Block Logging}{section.B.1}% 91
-\BOOKMARK [2][-]{subsection.B.1.2}{Cluster classified as Outer Method Logging}{section.B.1}% 92
-\BOOKMARK [2][-]{subsection.B.1.3}{Cluster classified as Control Flow Logging}{section.B.1}% 93
-\BOOKMARK [2][-]{subsection.B.1.4}{Cluster classified as Exception Try-Block Logging}{section.B.1}% 94
-\BOOKMARK [1][-]{section.B.2}{Hibernate}{appendix.B}% 95
-\BOOKMARK [2][-]{subsection.B.2.1}{Cluster classified as Exception Catch-Block Logging}{section.B.2}% 96
-\BOOKMARK [2][-]{subsection.B.2.2}{Cluster classified as Conditional Logging}{section.B.2}% 97
-\BOOKMARK [2][-]{subsection.B.2.3}{Cluster classified as Outer Method Logging}{section.B.2}% 98
-\BOOKMARK [2][-]{subsection.B.2.4}{Cluster classified as Exception Try-Block Logging}{section.B.2}% 99
-\BOOKMARK [1][-]{section.B.3}{Camel}{appendix.B}% 100
-\BOOKMARK [2][-]{subsection.B.3.1}{Cluster classified as Exception Catch-Block Logging}{section.B.3}% 101
-\BOOKMARK [2][-]{subsection.B.3.2}{Cluster classified as Conditional Logging}{section.B.3}% 102
-\BOOKMARK [2][-]{subsection.B.3.3}{Cluster classified as Outer Method Logging}{section.B.3}% 103
-\BOOKMARK [2][-]{subsection.B.3.4}{Cluster classified as Control Flow Logging}{section.B.3}% 104
-\BOOKMARK [2][-]{subsection.B.3.5}{Cluster classified as Exception Try-Block Logging}{section.B.3}% 105
-\BOOKMARK [1][-]{section.B.4}{Solr}{appendix.B}% 106
-\BOOKMARK [2][-]{subsection.B.4.1}{Cluster classified as Exception Catch-Block Logging}{section.B.4}% 107
-\BOOKMARK [2][-]{subsection.B.4.2}{Cluster classified as Outer Method Logging}{section.B.4}% 108
-\BOOKMARK [2][-]{subsection.B.4.3}{Cluster classified as Control Flow Logging}{section.B.4}% 109
-\BOOKMARK [2][-]{subsection.B.4.4}{Cluster classified as Exception Try-Block Logging}{section.B.4}% 110
+\BOOKMARK [0][-]{chapter.4}{Constructing Structural Generalizations}{}% 30
+\BOOKMARK [1][-]{section.4.1}{Determining the best correspondences}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.2}{Computing similarity between AUASTs}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.3}{Constructing the anti-unifier}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.4}{The anti-unifier building tool}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.4.1}{Constructing the detailed generalization view}{section.4.4}% 35
+\BOOKMARK [2][-]{subsection.4.4.2}{Methods containing multiple log statements}{section.4.4}% 36
+\BOOKMARK [1][-]{section.4.5}{Evaluation}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.5.1}{Setup}{section.4.5}% 38
+\BOOKMARK [2][-]{subsection.4.5.2}{Results}{section.4.5}% 39
+\BOOKMARK [1][-]{section.4.6}{Summary}{chapter.4}% 40
+\BOOKMARK [0][-]{chapter.5}{Clustering}{}% 41
+\BOOKMARK [1][-]{section.5.1}{Modified agglomerative hierarchical clustering algorithm}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.2}{Evaluation}{chapter.5}% 43
+\BOOKMARK [2][-]{subsection.5.2.1}{Results}{section.5.2}% 44
+\BOOKMARK [1][-]{section.5.3}{Summary}{chapter.5}% 45
+\BOOKMARK [0][-]{chapter.6}{Characterization Study}{}% 46
+\BOOKMARK [1][-]{section.6.1}{Experiment}{chapter.6}% 47
+\BOOKMARK [2][-]{subsection.6.1.1}{Results}{section.6.1}% 48
+\BOOKMARK [2][-]{subsection.6.1.2}{Analysis}{section.6.1}% 49
+\BOOKMARK [1][-]{section.6.2}{Evaluation}{chapter.6}% 50
+\BOOKMARK [2][-]{subsection.6.2.1}{Calculating the precision and recall}{section.6.2}% 51
+\BOOKMARK [2][-]{subsection.6.2.2}{Precision results}{section.6.2}% 52
+\BOOKMARK [2][-]{subsection.6.2.3}{Recall results}{section.6.2}% 53
+\BOOKMARK [1][-]{section.6.3}{Usage}{chapter.6}% 54
+\BOOKMARK [1][-]{section.6.4}{Summary}{chapter.6}% 55
+\BOOKMARK [0][-]{chapter.7}{Discussion}{}% 56
+\BOOKMARK [1][-]{section.7.1}{Threats to validity}{chapter.7}% 57
+\BOOKMARK [2][-]{subsection.7.1.1}{Threats to internal validity}{section.7.1}% 58
+\BOOKMARK [2][-]{subsection.7.1.2}{Threats to external validity}{section.7.1}% 59
+\BOOKMARK [2][-]{subsection.7.1.3}{Threats to construct validity}{section.7.1}% 60
+\BOOKMARK [1][-]{section.7.2}{The pitfalls of ELUS}{chapter.7}% 61
+\BOOKMARK [2][-]{subsection.7.2.1}{Inaccurate node ordering}{section.7.2}% 62
+\BOOKMARK [2][-]{subsection.7.2.2}{Conflict resolution}{section.7.2}% 63
+\BOOKMARK [1][-]{section.7.3}{Applications of anti-unification}{chapter.7}% 64
+\BOOKMARK [1][-]{section.7.4}{Defining intermediate constrained variables}{chapter.7}% 65
+\BOOKMARK [1][-]{section.7.5}{Summary}{chapter.7}% 66
+\BOOKMARK [0][-]{chapter.8}{Related Work}{}% 67
+\BOOKMARK [1][-]{section.8.1}{Usage of logging}{chapter.8}% 68
+\BOOKMARK [1][-]{section.8.2}{Understanding existing logging practices}{chapter.8}% 69
+\BOOKMARK [1][-]{section.8.3}{Correspondence}{chapter.8}% 70
+\BOOKMARK [1][-]{section.8.4}{API usage patterns}{chapter.8}% 71
+\BOOKMARK [1][-]{section.8.5}{Anti-unification}{chapter.8}% 72
+\BOOKMARK [1][-]{section.8.6}{Summary}{chapter.8}% 73
+\BOOKMARK [0][-]{chapter.9}{Conclusion}{}% 74
+\BOOKMARK [1][-]{section.9.1}{Future Work}{chapter.9}% 75
+\BOOKMARK [2][-]{subsection.9.1.1}{Improving logging practices}{section.9.1}% 76
+\BOOKMARK [2][-]{subsection.9.1.2}{Further extensions to my approach and the tool support}{section.9.1}% 77
+\BOOKMARK [2][-]{subsection.9.1.3}{Further validation of this study}{section.9.1}% 78
+\BOOKMARK [2][-]{subsection.9.1.4}{Other applications}{section.9.1}% 79
+\BOOKMARK [0][-]{appendix.A}{Logged Methods in Each Cluster of the Clustering Evaluation}{}% 80
+\BOOKMARK [0][-]{appendix.B}{Categorization of and Logged Methods in Each Cluster of the Characterization Study}{}% 81
+\BOOKMARK [1][-]{section.B.1}{Tomcat}{appendix.B}% 82
+\BOOKMARK [2][-]{subsection.B.1.1}{Cluster classified as Exception Catch-Block Logging}{section.B.1}% 83
+\BOOKMARK [2][-]{subsection.B.1.2}{Cluster classified as Outer Method Logging}{section.B.1}% 84
+\BOOKMARK [2][-]{subsection.B.1.3}{Cluster classified as Control Flow Logging}{section.B.1}% 85
+\BOOKMARK [2][-]{subsection.B.1.4}{Cluster classified as Exception Try-Block Logging}{section.B.1}% 86
+\BOOKMARK [1][-]{section.B.2}{Hibernate}{appendix.B}% 87
+\BOOKMARK [2][-]{subsection.B.2.1}{Cluster classified as Exception Catch-Block Logging}{section.B.2}% 88
+\BOOKMARK [2][-]{subsection.B.2.2}{Cluster classified as Conditional Logging}{section.B.2}% 89
+\BOOKMARK [2][-]{subsection.B.2.3}{Cluster classified as Outer Method Logging}{section.B.2}% 90
+\BOOKMARK [2][-]{subsection.B.2.4}{Cluster classified as Exception Try-Block Logging}{section.B.2}% 91
+\BOOKMARK [1][-]{section.B.3}{Camel}{appendix.B}% 92
+\BOOKMARK [2][-]{subsection.B.3.1}{Cluster classified as Exception Catch-Block Logging}{section.B.3}% 93
+\BOOKMARK [2][-]{subsection.B.3.2}{Cluster classified as Conditional Logging}{section.B.3}% 94
+\BOOKMARK [2][-]{subsection.B.3.3}{Cluster classified as Outer Method Logging}{section.B.3}% 95
+\BOOKMARK [2][-]{subsection.B.3.4}{Cluster classified as Control Flow Logging}{section.B.3}% 96
+\BOOKMARK [2][-]{subsection.B.3.5}{Cluster classified as Exception Try-Block Logging}{section.B.3}% 97
+\BOOKMARK [1][-]{section.B.4}{Solr}{appendix.B}% 98
+\BOOKMARK [2][-]{subsection.B.4.1}{Cluster classified as Exception Catch-Block Logging}{section.B.4}% 99
+\BOOKMARK [2][-]{subsection.B.4.2}{Cluster classified as Outer Method Logging}{section.B.4}% 100
+\BOOKMARK [2][-]{subsection.B.4.3}{Cluster classified as Control Flow Logging}{section.B.4}% 101
+\BOOKMARK [2][-]{subsection.B.4.4}{Cluster classified as Exception Try-Block Logging}{section.B.4}% 102
