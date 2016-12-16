@@ -31,89 +31,80 @@
 \contentsline {subsection}{\numberline {3.7.2}Agglomerative hierarchical clustering algorithm}{35}{subsection.3.7.2}
 \contentsline {section}{\numberline {3.8}Summary}{37}{section.3.8}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {4}Constructing Structural Generalizations}{38}{chapter.4}
-\contentsline {section}{\numberline {4.1}Determining the best correspondences}{39}{section.4.1}
-\contentsline {section}{\numberline {4.2}Computing similarity between AUASTs}{42}{section.4.2}
-\contentsline {section}{\numberline {4.3}Constructing the anti-unifier}{45}{section.4.3}
-\contentsline {section}{\numberline {4.4}The anti-unifier building tool}{45}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Constructing the detailed generalization view}{47}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Methods containing multiple log statements}{47}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Evaluation}{52}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Setup}{52}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Results}{52}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Summary}{55}{section.4.6}
+\contentsline {chapter}{\numberline {4}Determining Structural Correspondences}{38}{chapter.4}
+\contentsline {section}{\numberline {4.1}Computing similarity between nodes}{38}{section.4.1}
+\contentsline {section}{\numberline {4.2}Determining potential correspondences}{40}{section.4.2}
+\contentsline {section}{\numberline {4.3}Constructing the AUAST}{40}{section.4.3}
+\contentsline {section}{\numberline {4.4}An assessment of the Jigsaw framework}{42}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Setup}{42}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Results}{45}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Summary}{46}{section.4.5}
 \addvspace {10pt}
+\contentsline {chapter}{\numberline {5}Constructing Structural Generalizations}{47}{chapter.5}
+\contentsline {section}{\numberline {5.1}Determining the best correspondences}{48}{section.5.1}
+\contentsline {section}{\numberline {5.2}Computing similarity between AUASTs}{51}{section.5.2}
+\contentsline {section}{\numberline {5.3}Constructing the anti-unifier}{54}{section.5.3}
+\contentsline {section}{\numberline {5.4}The anti-unifier building tool}{54}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Constructing the detailed generalization view}{56}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Methods containing multiple log statements}{56}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}Evaluation}{61}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Setup}{61}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Results}{61}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}Summary}{64}{section.5.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {5}Clustering}{57}{chapter.5}
-\contentsline {section}{\numberline {5.1}Modified agglomerative hierarchical clustering algorithm}{57}{section.5.1}
-\contentsline {section}{\numberline {5.2}Evaluation}{59}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Results}{60}{subsection.5.2.1}
-\contentsline {section}{\numberline {5.3}Summary}{61}{section.5.3}
-\addvspace {10pt}
-\contentsline {chapter}{\numberline {6}Characterization Study}{62}{chapter.6}
-\contentsline {section}{\numberline {6.1}Experiment}{62}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Results}{63}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Analysis}{65}{subsection.6.1.2}
-\contentsline {subsubsection}{\emph {Categorizing logging usage}}{65}{section*.50}
-\contentsline {subsubsection}{\emph {A. Exception Catch-Block Logging}}{66}{section*.52}
-\contentsline {subsubsection}{\emph {B. Conditional Logging}}{66}{section*.53}
-\contentsline {subsubsection}{\emph {C. Outer Method Logging}}{66}{section*.54}
-\contentsline {subsubsection}{\emph {D. Control Flow Logging}}{68}{section*.55}
-\contentsline {subsubsection}{\emph {E. Exception Try-Block Logging}}{68}{section*.56}
+\contentsline {chapter}{\numberline {6}Clustering}{66}{chapter.6}
+\contentsline {section}{\numberline {6.1}Modified agglomerative hierarchical clustering algorithm}{66}{section.6.1}
 \contentsline {section}{\numberline {6.2}Evaluation}{68}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}{Calculating the precision and recall}}{68}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}{Precision results}}{70}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}{Recall results}}{71}{subsection.6.2.3}
-\contentsline {section}{\numberline {6.3}Usage}{72}{section.6.3}
-\contentsline {section}{\numberline {6.4}Summary}{72}{section.6.4}
+\contentsline {subsection}{\numberline {6.2.1}Results}{69}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.3}Summary}{70}{section.6.3}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {7}Discussion}{75}{chapter.7}
-\contentsline {section}{\numberline {7.1}Threats to validity}{75}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}Threats to internal validity}{75}{subsection.7.1.1}
-\contentsline {subsection}{\numberline {7.1.2}Threats to external validity}{75}{subsection.7.1.2}
-\contentsline {subsection}{\numberline {7.1.3}Threats to construct validity}{76}{subsection.7.1.3}
-\contentsline {section}{\numberline {7.2}The pitfalls of ELUS}{77}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}Inaccurate node ordering}{77}{subsection.7.2.1}
-\contentsline {subsection}{\numberline {7.2.2}Conflict resolution}{77}{subsection.7.2.2}
-\contentsline {section}{\numberline {7.3}Applications of anti-unification}{78}{section.7.3}
-\contentsline {section}{\numberline {7.4}Defining intermediate constrained variables}{79}{section.7.4}
-\contentsline {section}{\numberline {7.5}Summary}{79}{section.7.5}
+\contentsline {chapter}{\numberline {7}Characterization Study}{71}{chapter.7}
+\contentsline {section}{\numberline {7.1}Experiment}{71}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Results}{72}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Analysis}{74}{subsection.7.1.2}
+\contentsline {subsubsection}{\emph {Categorizing logging usage}}{74}{section*.55}
+\contentsline {subsubsection}{\emph {A. Exception Catch-Block Logging}}{75}{section*.57}
+\contentsline {subsubsection}{\emph {B. Conditional Logging}}{75}{section*.58}
+\contentsline {subsubsection}{\emph {C. Outer Method Logging}}{75}{section*.59}
+\contentsline {subsubsection}{\emph {D. Control Flow Logging}}{77}{section*.60}
+\contentsline {subsubsection}{\emph {E. Exception Try-Block Logging}}{77}{section*.61}
+\contentsline {section}{\numberline {7.2}Evaluation}{77}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}{Calculating the precision and recall}}{77}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}{Precision results}}{79}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}{Recall results}}{80}{subsection.7.2.3}
+\contentsline {section}{\numberline {7.3}Usage}{81}{section.7.3}
+\contentsline {section}{\numberline {7.4}Summary}{81}{section.7.4}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {8}Related Work}{81}{chapter.8}
-\contentsline {section}{\numberline {8.1}Usage of logging}{81}{section.8.1}
-\contentsline {section}{\numberline {8.2}Understanding existing logging practices}{82}{section.8.2}
-\contentsline {section}{\numberline {8.3}Correspondence}{83}{section.8.3}
-\contentsline {section}{\numberline {8.4}API usage patterns}{84}{section.8.4}
-\contentsline {section}{\numberline {8.5}Anti-unification}{85}{section.8.5}
-\contentsline {section}{\numberline {8.6}Summary}{86}{section.8.6}
+\contentsline {chapter}{\numberline {8}Discussion}{84}{chapter.8}
+\contentsline {section}{\numberline {8.1}Threats to validity}{84}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Threats to internal validity}{84}{subsection.8.1.1}
+\contentsline {subsection}{\numberline {8.1.2}Threats to external validity}{84}{subsection.8.1.2}
+\contentsline {subsection}{\numberline {8.1.3}Threats to construct validity}{85}{subsection.8.1.3}
+\contentsline {section}{\numberline {8.2}The pitfalls of ELUS}{86}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Inaccurate node ordering}{86}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}Conflict resolution}{86}{subsection.8.2.2}
+\contentsline {section}{\numberline {8.3}Applications of anti-unification}{87}{section.8.3}
+\contentsline {section}{\numberline {8.4}Defining intermediate constrained variables}{88}{section.8.4}
+\contentsline {section}{\numberline {8.5}Summary}{88}{section.8.5}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {9}Conclusion}{87}{chapter.9}
-\contentsline {section}{\numberline {9.1}Future Work}{89}{section.9.1}
-\contentsline {subsection}{\numberline {9.1.1}Improving logging practices}{89}{subsection.9.1.1}
-\contentsline {subsection}{\numberline {9.1.2}Further extensions to my approach and the tool support}{89}{subsection.9.1.2}
-\contentsline {subsection}{\numberline {9.1.3}Further validation of this study}{90}{subsection.9.1.3}
-\contentsline {subsection}{\numberline {9.1.4}Other applications}{90}{subsection.9.1.4}
+\contentsline {chapter}{\numberline {9}Related Work}{90}{chapter.9}
+\contentsline {section}{\numberline {9.1}Usage of logging}{90}{section.9.1}
+\contentsline {section}{\numberline {9.2}Understanding existing logging practices}{91}{section.9.2}
+\contentsline {section}{\numberline {9.3}Correspondence}{92}{section.9.3}
+\contentsline {section}{\numberline {9.4}API usage patterns}{93}{section.9.4}
+\contentsline {section}{\numberline {9.5}Anti-unification}{94}{section.9.5}
+\contentsline {section}{\numberline {9.6}Summary}{95}{section.9.6}
 \addvspace {10pt}
-\contentsline {chapter}{\numberline {A}Logged Methods in Each Cluster of the Clustering Evaluation}{98}{appendix.A}
-\contentsline {chapter}{\numberline {B}Categorization of and Logged Methods in Each Cluster of the Characterization Study}{99}{appendix.B}
-\contentsline {section}{\numberline {B.1}Tomcat}{99}{section.B.1}
-\contentsline {subsection}{\numberline {B.1.1}Cluster classified as Exception Catch-Block Logging}{99}{subsection.B.1.1}
-\contentsline {subsection}{\numberline {B.1.2}Cluster classified as Outer Method Logging}{107}{subsection.B.1.2}
-\contentsline {subsection}{\numberline {B.1.3}Cluster classified as Control Flow Logging}{108}{subsection.B.1.3}
-\contentsline {subsection}{\numberline {B.1.4}Cluster classified as Exception Try-Block Logging}{109}{subsection.B.1.4}
-\contentsline {section}{\numberline {B.2}Hibernate}{110}{section.B.2}
-\contentsline {subsection}{\numberline {B.2.1}Cluster classified as Exception Catch-Block Logging}{110}{subsection.B.2.1}
-\contentsline {subsection}{\numberline {B.2.2}Cluster classified as Conditional Logging}{112}{subsection.B.2.2}
-\contentsline {subsection}{\numberline {B.2.3}Cluster classified as Outer Method Logging}{113}{subsection.B.2.3}
-\contentsline {subsection}{\numberline {B.2.4}Cluster classified as Exception Try-Block Logging}{113}{subsection.B.2.4}
-\contentsline {section}{\numberline {B.3}Camel}{114}{section.B.3}
-\contentsline {subsection}{\numberline {B.3.1}Cluster classified as Exception Catch-Block Logging}{114}{subsection.B.3.1}
-\contentsline {subsection}{\numberline {B.3.2}Cluster classified as Conditional Logging}{118}{subsection.B.3.2}
-\contentsline {subsection}{\numberline {B.3.3}Cluster classified as Outer Method Logging}{121}{subsection.B.3.3}
-\contentsline {subsection}{\numberline {B.3.4}Cluster classified as Control Flow Logging}{131}{subsection.B.3.4}
-\contentsline {subsection}{\numberline {B.3.5}Cluster classified as Exception Try-Block Logging}{132}{subsection.B.3.5}
-\contentsline {section}{\numberline {B.4}Solr}{132}{section.B.4}
-\contentsline {subsection}{\numberline {B.4.1}Cluster classified as Exception Catch-Block Logging}{132}{subsection.B.4.1}
-\contentsline {subsection}{\numberline {B.4.2}Cluster classified as Outer Method Logging}{136}{subsection.B.4.2}
-\contentsline {subsection}{\numberline {B.4.3}Cluster classified as Control Flow Logging}{144}{subsection.B.4.3}
-\contentsline {subsection}{\numberline {B.4.4}Cluster classified as Exception Try-Block Logging}{144}{subsection.B.4.4}
+\contentsline {chapter}{\numberline {10}Conclusion}{96}{chapter.10}
+\contentsline {section}{\numberline {10.1}Future Work}{98}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Improving logging practices}{98}{subsection.10.1.1}
+\contentsline {subsection}{\numberline {10.1.2}Further extensions to my approach and the tool support}{98}{subsection.10.1.2}
+\contentsline {subsection}{\numberline {10.1.3}Further validation of this study}{99}{subsection.10.1.3}
+\contentsline {subsection}{\numberline {10.1.4}Other applications}{99}{subsection.10.1.4}
+\addvspace {10pt}
+\contentsline {chapter}{\numberline {A}Logged Methods in Each Cluster of the Clustering Evaluation}{107}{appendix.A}
+\contentsline {chapter}{\numberline {B}Categorization of and Logged Methods in Each Cluster of the Characterization Study}{108}{appendix.B}
+\contentsline {section}{\numberline {B.1}Tomcat}{108}{section.B.1}
+\contentsline {section}{\numberline {B.2}Hibernate}{119}{section.B.2}
+\contentsline {section}{\numberline {B.3}Camel}{123}{section.B.3}
+\contentsline {section}{\numberline {B.4}Solr}{141}{section.B.4}

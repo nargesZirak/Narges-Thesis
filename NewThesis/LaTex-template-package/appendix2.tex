@@ -7,11 +7,9 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 
 \section{Tomcat}\label{tomcat}
 
-\subsection{Cluster classified as Exception Catch-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{T}_{\id{CB},1}$}\\
+\caption{LMs within the cluster classified as Exception Catch-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -23,19 +21,19 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \bottomrule
 \endlastfoot
 \lstinline/StoreRegistry/&{\lstinline/findDescription(String)/}\\
-\lstinline/BasicDataSource/&{\lstinline/preRegister(MBeanServer,ObjectName)/}\\
+\lstinline/BasicDataSource/&{\lstinline/preRegister(MBeanServer, ObjectName)/}\\
 \lstinline/DefaultInstanceManager/&{\lstinline/loadProperties()/}\\
 \lstinline/AprLifecycleListener/&{\lstinline/initializeSSL()/}\\
 \lstinline/Tool/&{\lstinline/usage()/}\\
 \lstinline/UserDatabaseRealm/&{\lstinline/startInternal()/}\\
-\lstinline/DeltaManager/&{\lstinline/messageReceived(SessionMessage,Member)/}\\
+\lstinline/DeltaManager/&{\lstinline/messageReceived(SessionMessage, Member)/}\\
 \lstinline/HostConfig/&{\lstinline/checkUndeploy()/}\\
 \lstinline/SslRmiServerBindSocketFactory/&{\lstinline/sslRmiServerBindSocketFactory()/}\\
 \lstinline/StandardEngine/&{\lstinline/logAccess(Request)/}\\
 \lstinline/HostConfigListener/&{\lstinline/checkUndeploy()/}\\
 \lstinline/WebappClassLoader/&{\lstinline/publishEntryInfo(Object)/}\\
 \lstinline/MemoryUserDatabase/&{\lstinline/save()/}\\
-\lstinline/FarmWarDeployer/&{\lstinline/copy(File,File)/}\\
+\lstinline/FarmWarDeployer/&{\lstinline/copy(File, File)/}\\
 \lstinline/UpgradeServletInputStream/&{\lstinline/onError(Throwable)/}\\
 \lstinline/Request/&{\lstinline/getUserPrincipal()/}\\
 \lstinline/StandardJarScanner/&{\lstinline/scan()/}\\
@@ -45,7 +43,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ExtensionValidator/&{\lstinline/addFolderList(String)/}\\
 \lstinline/BackgroundProcessManager/&{\lstinline/process()/}\\
 \lstinline/StaticMembershipInterceptor/&{\lstinline/sendShutdown(Member[])/}\\
-\lstinline/TagHandlerPool/&{\lstinline/doRelease(Taghandler)/}\\
+\lstinline/TagHandlerPool/&{\lstinline/doRelease(Tag)/}\\
 \lstinline/ReplicationValve/&{\lstinline/updateStats(long)/}\\
 \lstinline/NonBlockingCoordinator/&{\lstinline/fireInterceptorEvent(InterceptorEvent)/}\\
 \lstinline/SimpleTcpCluster/&{\lstinline/memberDisappeared(Member)/}\\
@@ -53,17 +51,17 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/JNDIRealm/&{\lstinline/startInternal()/}\\
 \lstinline/Registry/&{\lstinline/loadDescriptors(String)/}\\
 \lstinline/BaseModelMBean/&{\lstinline/setAttribute(Attribute)/}\\
-\lstinline/RealmBase/&{\lstinline/stringDigest(String,String,String)/}\\
+\lstinline/RealmBase/&{\lstinline/stringDigest(String, String, String)/}\\
 \lstinline/CombinedRealm/&{\lstinline/getPrincipal(String)/}\\
 \lstinline/StandardPipeline/&{\lstinline/removeValve(Valve)/}\\
 \lstinline/AbstractReplicatedMap/&{\lstinline/put()/}\\
 \lstinline/Http11Processor/&{\lstinline/sslReHandShake()/}\\
 \lstinline/Parameters/&{\lstinline/processParameters(int)/}\\
-\lstinline/NamingContext/&{\lstinline/lookup(Name,boolean)/}\\
+\lstinline/NamingContext/&{\lstinline/lookup(Name, boolean)/}\\
 \lstinline/JreMemoryLeakPreventionListenerListener/&{\lstinline/lifecycleEvent(LifecycleEvent)/}\\
 \lstinline/CGIRunner/&{\lstinline/sendToLog(BufferedReader)/}\\
 \lstinline/ApplicationFilterConfig/&{\lstinline/unregisterJMX()/}\\
-\lstinline/PojoEndpointBase/&{\lstinline/onError(Session,Throwable)/}\\
+\lstinline/PojoEndpointBase/&{\lstinline/onError(Session, Throwable)/}\\
 \lstinline/JspServletWrapper/&{\lstinline/destroy()/}\\
 \lstinline/GlobalResourcesLifecycleListenerListener/&{\lstinline/createMBeans(String)/}\\
 \lstinline/AprLifecycleListenerListener/&{\lstinline/initializeSSL()/}\\
@@ -71,12 +69,12 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/BackupManager/&{\lstinline/startInternal()/}\\
 \lstinline/JAASMemoryLoginModule/&{\lstinline/load()/}\\
 \lstinline/SocketProcessor/&{\lstinline/doRun()/}\\
-\lstinline/ReplicationValve/&{\lstinline/updateStats(long,long)/}\\
+\lstinline/ReplicationValve/&{\lstinline/updateStats(long, long)/}\\
 \lstinline/JspReader/&{\lstinline/JspReader(JspCompilationContext)/}\\
 \lstinline/SimpleTcpClusterr/&{\lstinline/memberDisappeared(Member)/}\\
 \lstinline/ThreadLocalLeakPreventionListener/&{\lstinline/containerEvent(ContainerEvent)/}\\
 \lstinline/ContainerBackgroundProcessor/&{\lstinline/processChildren(Container)/}\\
-\lstinline/ContextConfig/&{\lstinline/processAnnotationsFile(File,boolean)/}\\
+\lstinline/ContextConfig/&{\lstinline/processAnnotationsFile(File, boolean)/}\\
 \lstinline/WebappClassLoaderBase/&{\lstinline/findClassInternal(String)/}\\
 \lstinline/PojoEndpointBase/&{\lstinline/onError(Session)/}\\
 \lstinline/SSLUtilBase/&{\lstinline/getStore(String)/}\\
@@ -86,7 +84,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/StandardContext/&{\lstinline/checkUnusualURLPattern(String)/}\\
 \lstinline/NioReceiver/&{\lstinline/run()/}\\
 \lstinline/DeltaRequest/&{\lstinline/readExternal(ObjectInput)/}\\
-\lstinline/IntrospectionUtils/&{\lstinline/getProperty(Object,String)/}\\
+\lstinline/IntrospectionUtils/&{\lstinline/getProperty(Object, String)/}\\
 \lstinline/TcpFailureDetector/&{\lstinline/memberAlive(Member)/}\\
 \lstinline/WebappLoader/&{\lstinline/buildClassPath(StringBuilder)/}\\
 \lstinline/CoyoteAdapter/&{\lstinline/convertURI(MessageBytes)/}\\
@@ -99,14 +97,14 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/SessionIdGeneratorBase/&{\lstinline/createSecureRandom()/}\\
 \lstinline/NamingResourcesImpl/&{\lstinline/destroyInternal()/}\\
 \lstinline/LockOutRealm/&{\lstinline/filterLockedAccounts(String)/}\\
-\lstinline/Poller/&{\lstinline/timeout(int,boolean)/}\\
+\lstinline/Poller/&{\lstinline/timeout(int, boolean)/}\\
 \lstinline/Poller/&{\lstinline/timeout(int)/}\\
 \lstinline/JspCompilationContext/&{\lstinline/createCompiler(String)/}\\
 \lstinline/DeltaManager/&{\lstinline/messageReceived(SessionMessage)/}\\
 \lstinline/WsSession/&{\lstinline/onClose(CloseReason)/}\\
-\lstinline/JAASRealm/&{\lstinline/authenticate(String,CallbackHandler)/}\\
+\lstinline/JAASRealm/&{\lstinline/authenticate(String, CallbackHandler)/}\\
 \lstinline/JreMemoryLeakPreventionListener/&{\lstinline/lifecycleEvent(LifecycleEvent)/}\\
-\lstinline//HeartbeatListener/&{\lstinline/lifecycleEvent(LifecycleEvent)/}\\
+\lstinline/HeartbeatListener/&{\lstinline/lifecycleEvent(LifecycleEvent)/}\\
 \lstinline/DirResourceSet/&{\lstinline/initInternal()/}\\
 \lstinline/RmiServerBindSocketFactory/&{\lstinline/RmiServerBindSocketFactory(String)/}\\
 \lstinline/PersistentManagerBase/&{\lstinline/startInternal()/}\\
@@ -120,19 +118,19 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ReplicatedCont/&{\lstinline/startInternal()/}\\
 \lstinline/BioReplicationTask/&{\lstinline/sendAck(byte[])/}\\
 \lstinline/RewriteValve/&{\lstinline/parse(BufferedReader)/}\\
-\lstinline/GlobalResourcesLifecycleListener/&{\lstinline/createMBeans(String,Context)/}\\
+\lstinline/GlobalResourcesLifecycleListener/&{\lstinline/createMBeans(String, Context)/}\\
 \lstinline/ObjectReader/&{\lstinline/ObjectReader(Socket)/}\\
-\lstinline/Registry/&{\lstinline/loadDescriptors(String,ClassLoader)/}\\
+\lstinline/Registry/&{\lstinline/loadDescriptors(String, ClassLoader)/}\\
 \lstinline/HeartbeatListener/&{\lstinline/lifecycleEvent(LifecycleEvent)/}\\
 \lstinline/NioReplicationTask/&{\lstinline/sendAck(SelectionKey)/}\\
 \lstinline/AsyncContextImpl/&{\lstinline/setErrorState(Throwable)/}\\
-\lstinline/DataSourceRealm/&{\lstinline/getRoles(Connection,String)/}\\
-\lstinline/Digester/&{\lstinline/createSAXException(String,Exception)/}\\
+\lstinline/DataSourceRealm/&{\lstinline/getRoles(Connection, String)/}\\
+\lstinline/Digester/&{\lstinline/createSAXException(String, Exception)/}\\
 \lstinline/NioReplicationTask/&{\lstinline/sendAck()/}\\
 \lstinline/StoreConfigLifecycleListener/&{\lstinline/createMBean(Server)/}\\
 \lstinline/OpenSSLContext/&{\lstinline/init(KeyManager[])/}\\
 \lstinline/MultiCastSender/&{\lstinline/send(String)/}\\
-\lstinline/WebappLoader/&{\lstinline/buildClassPath(StringBuilder,ClassLoader)/}\\
+\lstinline/WebappLoader/&{\lstinline/buildClassPath(StringBuilder, ClassLoader)/}\\
 \lstinline/JspServlet/&{\lstinline/handleMissingResource(HttpServletRequest)/}\\
 \lstinline/Bootstrap/&{\lstinline/main(String[])/}\\
 \lstinline/SpnegoAuthenticator/&{\lstinline/doAuthenticate(Request)/}\\
@@ -146,8 +144,8 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ParallelNioSender/&{\lstinline/keepalive()/}\\
 \lstinline/StandardJarScanner/&{\lstinline/scan(JarScanType)/}\\
 \lstinline/ContextConfig/&{\lstinline/processAnnotationsFile(File)/}\\
-\lstinline/ContextConfig/&{\lstinline/processAnnotationsFile(File,boolean)/}\\
-\lstinline/CoyoteAdapter/&{\lstinline/convertURI(MessageBytes,Request)/}\\
+\lstinline/ContextConfig/&{\lstinline/processAnnotationsFile(File, boolean)/}\\
+\lstinline/CoyoteAdapter/&{\lstinline/convertURI(MessageBytes, Request)/}\\
 \lstinline/WebXmlParser/&{\lstinline/parseWebXml(InputSource)/}\\
 \lstinline/UserConfigListener/&{\lstinline/lifecycleEvent(LifecycleEvent)/}\\
 \lstinline/Sendfile/&{\lstinline/add(SendfileData)/}\\
@@ -179,14 +177,14 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/CompilationUnit/&{\lstinline/getContents()/}\\
 \lstinline/StoreConfig/&{\lstinline/store(Context)/}\\
 \lstinline/MbeansDescriptorsIntrospectionSource/&{\lstinline/createManagedBean(Registry)/}\\
-\lstinline/ReplicationValve/&{\lstinline/updateStats(long,long)/}\\
+\lstinline/ReplicationValve/&{\lstinline/updateStats(long, long)/}\\
 \lstinline/CatalinaProperties/&{\lstinline/loadProperties()/}\\
 \lstinline/StandardWrapper/&{\lstinline/unload()/}\\
 \lstinline/MessageDispatchInterceptor/&{\lstinline/sendAsyncData()/}\\
 \lstinline/RecoveryThread/&{\lstinline/run()/}\\
 \lstinline/NioSender/&{\lstinline/disconnect()/}\\
 \lstinline/MemoryRealm/&{\lstinline/getDigester()/}\\
-\lstinline/ExpandWar/&{\lstinline/deleteDir(File,boolean)/}\\
+\lstinline/ExpandWar/&{\lstinline/deleteDir(File, boolean)/}\\
 \lstinline/Nio2SocketWrapper/&{\lstinline/doClientAuth(SSLSupport)/}\\
 \lstinline/SslRmiServerBindSocketFactory/&{\lstinline/serverBindSocketFactory(String[])/}\\
 \lstinline/ReceiverBase/&{\lstinline/bindUdp(DatagramSocket)/}\\
@@ -199,16 +197,12 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/Acceptor/&{\lstinline/run()/}\\
 \lstinline/ReplicatedMap/&{\lstinline/memberDisappeared(Member)/}\\
 \lstinline/RealmBase/&{\lstinline/digest(String)/}\\
-
 \end{longtable}
 \end{center}
 
-
-\subsection{Cluster classified as Outer Method Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{T}_{\id{OM},1}$}\\
+\caption{LMs within the cluster classified as Outer Method Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -224,20 +218,18 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/CombinedRealm/&{\lstinline/getPrincipal(String)/}\\
 \lstinline/LifecycleListener/&{\lstinline/initializeSSL()/}\\
 \lstinline/PortElement/&{\lstinline/portElement(String)/}\\
-\lstinline/RequestDumperFilter/&{\lstinline/doLog(String,String)/}\\
+\lstinline/RequestDumperFilter/&{\lstinline/doLog(String, String)/}\\
 \lstinline/Tool/&{\lstinline/usage()/}\\
-\lstinline/JAASRealm/&{\lstinline/authenticate(String,CallbackHandler)/}\\
-\lstinline/Digester/&{\lstinline/createSAXException(String,Exception)/}\\
+\lstinline/JAASRealm/&{\lstinline/authenticate(String, CallbackHandler)/}\\
+\lstinline/Digester/&{\lstinline/createSAXException(String, Exception)/}\\
 \lstinline/LifecycleListener/&{\lstinline/log()/}\\
 \lstinline/AccessLogValve/&{\lstinline/getServletRequestElement(String)/}\\
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Control Flow Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{T}_{\id{CF},1}$}\\
+\caption{LMs within the cluster classified as Control Flow Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -252,7 +244,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/JAASMemoryLoginModule/&{\lstinline/load()/}\\
 \lstinline/StoreLoader/&{\lstinline/load()/}\\
 \lstinline/Digester/&{\lstinline/createSAXException(String)/}\\
-\lstinline/Parameters/&{\lstinline/processParameters(byte[],int)/}\\
+\lstinline/Parameters/&{\lstinline/processParameters(byte[], int)/}\\
 \lstinline/Tool/&{\lstinline/usage()/}\\
 \lstinline/WebXml/&{\lstinline/orderWebFragments(WebXml)/}\\
 \lstinline/TcpSender/&{\lstinline/send(String)/}\\
@@ -260,7 +252,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ContainerBackgroundProcessor/&{\lstinline/processChildren(Container)/}\\
 \lstinline/WebappLoader\/&{\lstinline/buildClassPath(String)/}\\
 \lstinline/SSLHostConfig/&{\lstinline/adjustRelativePath(String)/}\\
-\lstinline/LegacyCookieProcessor/&{\lstinline/processCookieHeader(byte[],int)/}\\
+\lstinline/LegacyCookieProcessor/&{\lstinline/processCookieHeader(byte[], int)/}\\
 \lstinline/PortElement/&{\lstinline/PortElement(String)/}\\
 \lstinline/CatalinaProperties/&{\lstinline/loadProperties()/}\\
 \lstinline/JspC/&{\lstinline/locateUriRoot(File)/}\\
@@ -269,22 +261,19 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/Mapper/&{\lstinline/find(String)/}\\
 \lstinline/Registry/&{\lstinline/loadDescriptors(String)/}\\
 \lstinline/ContextConfig/&{\lstinline/processAnnotationsFile(File)/}\\
-\lstinline/ConnectionSettingsBase/&{\lstinline/set(Setting,long)/}\\
+\lstinline/ConnectionSettingsBase/&{\lstinline/set(Setting, long)/}\\
 \lstinline/Diagnostics/&{\lstinline/setVerboseGarbageCollection(boolean)/}\\
 \lstinline/ExtendedAccessLogValve/&{\lstinline/getServletRequestElement(String)/}\\
 \lstinline/Http11Processor/&{\lstinline/sslReHandShake()/}\\
 \lstinline/CatalinaShutdownHook/&{\lstinline/run()/}\\
 \lstinline/ManagerBase/&{\lstinline/getCreationTime(String)/}\\
-\lstinline/StandardEngine/&{\lstinline/logAccess(Request,long,boolean)/}\\
-
+\lstinline/StandardEngine/&{\lstinline/logAccess(Request, long, boolean)/}\\
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Exception Try-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{T}_{\id{TB},1}$}\\
+\caption{LMs within the cluster classified as Exception Try-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -299,19 +288,17 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/RecoveryThread/&{\lstinline/run()/}\\
 \lstinline/WebappClassLoaderBase/&{\lstinline/findClassInternal(String)/}\\
 \lstinline/ReceiverBase/&{\lstinline/bindUdp(DatagramSocket)/}\\
-\lstinline/SslRmiServerBindSocketFactory/&{\lstinline/SslRmiServerBindSocketFactory(String[],String[],boolean,String)/}\\
+\lstinline/SslRmiServerBindSocketFactory/&\raisebox{-13pt}{\shortstack{\lstinline/SslRmiServerBindSocketFactory(String[],/\\\lstinline/String[], boolean, String)/}}\\
 \lstinline/SocketProcessor/&{\lstinline/doRun()/}\\
-
 \end{longtable}
 \end{center}
+\newpage
 
 \section{Hibernate}\label{hibernate}
 
-\subsection{Cluster classified as Exception Catch-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{H}_{\id{CB},1}$}\\
+\caption{LMs within the cluster classified as Exception Catch-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -324,47 +311,44 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \endlastfoot
 
 \lstinline/OracleTypesHelper/&{\lstinline/OracleTypesHelper()/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testCopyInitializedCollectionReferenceToNewEntityCollectionRoleAfterGet()/}\\
-\lstinline/AbstractPersistentCollection/&{\lstinline/withTemporarySessionIfNeeded(LazyInitializationWork)/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testCopyPersistentCollectionReferenceAfterFlush()/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testDeleteCopyToNewOwnerInNewSessionBeforeFlush()/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testDeleteCopyToNewOwnerNewCollectionRoleInNewSessionBeforeFlush()/}\\
-\lstinline/LockTest/&{\lstinline/testFindWithPessimisticWriteLockTimeoutException()/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testSaveOrUpdateOwnerWithInitializedCollectionInNewSession()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testCopyInitializedCollectionReference/-\\\lstinline/ToNewEntityCollectionRoleAfterGet()/}}\\
+\lstinline/AbstractPersistentCollection/&\raisebox{-13pt}{\shortstack{\lstinline/withTemporarySessionIfNeeded/\\\lstinline/(LazyInitializationWork)/}}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testCopyPersistentCollectionReference/-\\\lstinline/AfterFlush()/}}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testDeleteCopyToNewOwnerInNew/-\\\lstinline/SessionBeforeFlush()/}}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testDeleteCopyToNewOwnerNewCollection/-\\\lstinline/RoleInNewSessionBeforeFlush()/}}\\
+\lstinline/LockTest/&\raisebox{-13pt}{\shortstack{\lstinline/testFindWithPessimisticWriteLock/-\\\lstinline/TimeoutException()/}}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testSaveOrUpdateOwnerWithInitialized/-\\\lstinline/CollectionInNewSession()/}}\\
 \lstinline/ScriptSourceInputFromFile/&{\lstinline/release()/}\\
 \lstinline/MultiTenantConnectionProviderInitiator/&{\lstinline/initiateService(Map)/}\\
 \lstinline/JdbcConnectionAccessConnectionProviderImpl/&{\lstinline/releaseConnection(Connection)/}\\
 \lstinline/CascadeTest/&{\lstinline/cleanupData()/}\\
-\lstinline/IdTableHelper/&{\lstinline/executeIdTableCreationStatements(List,JdbcServices,JdbcConnectionAccess)/}\\
+\lstinline/IdTableHelper/&\raisebox{-13pt}{\shortstack{\lstinline/executeIdTableCreationStatements(List,/\\\lstinline/JdbcServices, JdbcConnectionAccess)/}}\\
 \lstinline/AbstractServiceRegistryImpl/&{\lstinline/applyInjections(Rservice)/}\\
-\lstinline/BeforeCompletionFailureTest/&{\lstinline/testUniqueConstraintViolationDuringManagedFlush()/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testSaveOrUpdateOwnerWithCollectionInNewSessionBeforeFlush()/}\\
+\lstinline/BeforeCompletionFailureTest/&\raisebox{-13pt}{\shortstack{\lstinline/testUniqueConstraintViolationDuring/-\\\lstinline/ManagedFlush()/}}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testSaveOrUpdateOwnerWithCollection/-\\\lstinline/InNewSessionBeforeFlush()/}}\\
 \lstinline/TemporaryTableDropWork/&{\lstinline/execute(Connection)/}\\
 \lstinline/AbstractLazyInitializer/&{\lstinline/permissiveInitialization()/}\\
 \lstinline/SessionFactoryOptionsStateStandardImpl/&{\lstinline/stateStandardImpl(StandardServiceRegistry)/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testCopyInitializedCollectionReferenceAfterGet()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testCopyInitializedCollectionReference/-\\\lstinline/AfterGet()/}}\\
 \lstinline/JavassistProxyFactory/&{\lstinline/deserializeProxy(Serializable)/}\\
-\lstinline/MultipleHiLoPerTableGenerator/&{\lstinline/IntegralDataTypeHolderexecute(Connection)/}\\
-\lstinline/IdTableHelper/&{\lstinline/executeIdTableDropStatements(String[],JdbcServices,JdbcConnectionAccess)/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testSaveOrUpdateOwnerWithUninitializedCollectionInNewSession()/}\\
+\lstinline/MultipleHiLoPerTableGenerator/&{\lstinline/execute(Connection)/}\\
+\lstinline/IdTableHelper/&\raisebox{-13pt}{\shortstack{\lstinline/executeIdTableDropStatements(String[],/\\\lstinline/JdbcServices, JdbcConnectionAccess)/}}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testSaveOrUpdateOwnerWithUninitialized/-\\\lstinline/CollectionInNewSession()/}}\\
 \lstinline/ScriptSourceInputFromUrl/&{\lstinline/release()/}\\
 \lstinline/Helper/&{\lstinline/performWork(LazyInitializationWork)/}\\
 \lstinline/LockTest/&{\lstinline/call()/}\\
 \lstinline/JdbcConnectionAccessProvidedConnectionImpl/&{\lstinline/releaseConnection(Connection)/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testCopyPersistentCollectionReferenceBeforeFlush()/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testCopyPersistentCollectionReference/-\\\lstinline/BeforeFlush()/}}\\
 \lstinline/TableStructure/&{\lstinline/integralDataTypeHolderexecute(Connection)/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testSaveOrUpdateOwnerWithCollectionInNewSessionAfterFlush()/}\\
-\lstinline/JavassistProxyFactory/&{\lstinline/getProxy(Serializable,SharedSession)/}\\
-\lstinline/MultipleSessionCollectionTest/&{\lstinline/testCopyUninitializedCollectionReferenceAfterGet()/}\\
-
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testSaveOrUpdateOwnerWithCollection/-\\\lstinline/InNewSessionAfterFlush()/}}\\
+\lstinline/JavassistProxyFactory/&{\lstinline/getProxy(Serializable, SharedSession)/}\\
+\lstinline/MultipleSessionCollectionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testCopyUninitializedCollectionReference/-\\\lstinline/AfterGet()/}}\\
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Conditional Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{H}_{\id{K},1}$}\\
+\caption{LMs within the cluster classified as Conditional Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -378,10 +362,10 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/SQLFunctionsTest/&{\lstinline/testSqlFunctionAsAlias()/}\\
 \lstinline/BaseEntityManagerFunctionalTestCase/&{\lstinline/releaseUnclosedEntityManager(EntityManager)/}\\
 \lstinline/CommandLineArgs/&{\lstinline/parseCommandLineArgs(String[])/}\\
-\lstinline/CacheableFileXmlSource/&{\lstinline/writeSerFile(Serializable,File,File)/}\\
+\lstinline/CacheableFileXmlSource/&{\lstinline/writeSerFile(Serializable, File, File)/}\\
 \lstinline/DriverManagerConnectionProviderImpl/&{\lstinline/buildCreator(MapconfigurationValues)/}\\
 \lstinline/IntegratorImpl/&{\lstinline/integrate(SessionFactory)/}\\
-\lstinline/SqlExceptionHelper/&{\lstinline/logExceptions(SQLExceptionsql,String)/}\\
+\lstinline/SqlExceptionHelper/&{\lstinline/logExceptions(SQLException, String)/}\\
 \lstinline/PooledConnections/&{\lstinline/close()/}\\
 \lstinline/CacheableHbmXmlTest/&{\lstinline/createBinFile()/}\\
 \lstinline/CacheableHbmXmlTest/&{\lstinline/deleteBinFile()/}\\
@@ -390,17 +374,15 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/SessionImpl/&{\lstinline/shouldCloseJdbcCoordinatorOnClose(boolean)/}\\
 \lstinline/ConfigHelper/&{\lstinline/getConfigStream(String)/}\\
 \lstinline/InFlightMetadataCollectorImpl/&{\lstinline/addFetchProfile(FetchProfile)/}\\
-\lstinline/SequenceGenerator/&{\lstinline/configure(Type,Properties,ServiceRegistry)/}\\
-\lstinline/BeforeCompletionFailureTest/&{\lstinline/testUniqueConstraintViolationDuringManagedFlush()/}\\
-\lstinline/BatchFetchQueue/&{\lstinline/getCollectionBatch(CollectionPersister,Serializable,int)/}\\
+\lstinline/SequenceGenerator/&{\lstinline/configure(Type, Properties, ServiceRegistry)/}\\
+\lstinline/BeforeCompletionFailureTest/&\raisebox{-13pt}{\shortstack{\lstinline/testUniqueConstraintViolationDuring/-\\\lstinline/ManagedFlush()/}}\\
+\lstinline/BatchFetchQueue/&\raisebox{-13pt}{\shortstack{\lstinline/getCollectionBatch(CollectionPersister,/\\\lstinline/Serializable, int)/}}\\
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Outer Method Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{H}_{\id{OM},1}$}\\
+\caption{LMs within the cluster classified as Outer Method Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -414,7 +396,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 
 \lstinline/DynamicFilterTest/&{\lstinline/queryWithFilters()/}\\
 \lstinline/ErrorCounter/&{\lstinline/reportError(RecognitionException)/}\\
-\lstinline/StandardWarningHandle/&{\lstinline/logWarning(String,String)/}\\
+\lstinline/StandardWarningHandle/&{\lstinline/logWarning(String, String)/}\\
 \lstinline/NaturalIdOnSingleManyToOneTest/&{\lstinline/mappingProperties()/}\\
 \lstinline/SessionImpl/&{\lstinline/naturalIdLoadAccess(CriteriaImpl)/}\\
 \lstinline/DynamicFilterTest/&{\lstinline/criteriaQueryFilters()/}\\
@@ -429,13 +411,9 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \end{longtable}
 \end{center}
 
-
-
-\subsection{Cluster classified as Exception Try-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{H}_{\id{TB},1}$}\\
+\caption{LMs within the cluster classified as Exception Try-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -455,17 +433,14 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/LockTest/&{\lstinline/call()/}\\
 \lstinline/LockTest/&{\lstinline/testContendedPessimisticWriteLockNoWait()/}\\
 \lstinline/LockTest/&{\lstinline/testContendedPessimisticWriteLockTimeout()/}\\
-
 \end{longtable}
 \end{center}
 
 \section{Camel}\label{camel}
 
-\subsection{Cluster classified as Exception Catch-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{C}_{\id{CB},1}$}\\
+\caption{LMs within the cluster classified as Exception Catch-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -477,97 +452,93 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \bottomrule
 \endlastfoot
 
-\lstinline/RoutePolicyAdvice/&{\lstinline/after(Exchange,Object)/}\\
+\lstinline/RoutePolicyAdvice/&{\lstinline/after(Exchange, Object)/}\\
 \lstinline/DefaultManagementAgent/&{\lstinline/run()/}\\
 \lstinline/DefaultConsumerTemplate/&{\lstinline/doneUoW(Exchange)/}\\
 \lstinline/DefaultAsyncProcessorAwaitManager/&{\lstinline/doStop()/}\\
-\lstinline/EventHelper/&{\lstinline/doNotifyEvent(EventNotifier,EventObject)/}\\
+\lstinline/EventHelper/&{\lstinline/doNotifyEvent(EventNotifier, EventObject)/}\\
 \lstinline/DefaultTimeoutMap/&{\lstinline/run()/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onComponentRemove(String,Component)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onComponentRemove(String, Component)/}\\
 \lstinline/ManagedRoute/&{\lstinline/updateRouteFromXml(String)/}\\
 \lstinline/XmlConverter/&{\lstinline/createSAXParserFactory()/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onThreadPoolRemove(CamelContext,ThreadPoolExecutor)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{-13pt}{\shortstack{\lstinline/onThreadPoolRemove(CamelContext,/\\\lstinline/ThreadPoolExecutor)/}}\\
 \lstinline/WireTapProcessor/&{\lstinline/call()/}\\
-\lstinline/DefaultDebugger/&{\lstinline/onEvent(Exchange,EventObject,Breakpoint)/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onComponentAdd(String,Component)/}\\
-\lstinline/RoutingSlip/&{\lstinline/doInAsyncProducer(Producer,AsyncProcessor,Exchange,ExchangePattern,AsyncCallback)/}\\
-\lstinline/UnitOfWorkHelper/&{\lstinline/doneSynchronizations(Exchange,List,Logger)/}\\
-\lstinline/DefaultPackageScanClassResolver/&{\lstinline/find(PackageScanFilter,String,ClassLoader,Set)/}\\
+\lstinline/DefaultDebugger/&{\lstinline/onEvent(Exchange, EventObject, Breakpoint)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onComponentAdd(String, Component)/}\\
+\lstinline/RoutingSlip/&\raisebox{-13pt}{\shortstack{\lstinline/doInAsyncProducer(Producer, AsyncProcessor,/\\\lstinline/Exchange, ExchangePattern, AsyncCallback)/}}\\
+\lstinline/UnitOfWorkHelper/&{\lstinline/doneSynchronizations(Exchange, List, Logger)/}\\
+\lstinline/DefaultPackageScanClassResolver/&{\lstinline/find(PackageScanFilter, String, ClassLoader, Set)/}\\
 \lstinline/TempFileManager/&{\lstinline/cleanUpTempFile()/}\\
 \lstinline/ScheduledPollConsumer/&{\lstinline/doRun()/}\\
-\lstinline/UnitOfWorkHelper/&{\lstinline/beforeRouteSynchronizations(Route,Exchange,List,Logger)/}\\
-\lstinline/MyProducer/&{\lstinline/process(Exchange,AsyncCall)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{-13pt}{\shortstack{\lstinline/beforeRouteSynchronizations(Route, Exchange,/\\\lstinline/List, Logger)/}}\\
+\lstinline/MyProducer/&{\lstinline/process(Exchange, AsyncCall)/}\\
 \lstinline/DefaultTimeoutMap/&{\lstinline/purge()/}\\
 \lstinline/RoutingSlip/&{\lstinline/done(boolean)/}\\
 \lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onContextStop(CamelContext)/}\\
 \lstinline/MainSupport/&{\lstinline/run()/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onErrorHandlerRemove(RouteContext,Processor,ErrorHandlerFactory)/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onErrorHandlerAdd(RouteContext,Processor,ErrorHandlerFactory)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{-13pt}{\shortstack{\lstinline/onErrorHandlerRemove(RouteContext, Processor,/\\\lstinline/ErrorHandlerFactory)/}}\\
+\lstinline/DefaultManagementLifecycleStrategy/&\raisebox{-13pt}{\shortstack{\lstinline/onErrorHandlerAdd(RouteContext, Processor,/\\\lstinline/ErrorHandlerFactory)/}}\\
 \lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onEndpointAdd(Endpoint)/}\\
-\lstinline/DefaultExecutorServiceManager/&{\lstinline/doShutdown(ExecutorService,long,boolean)/}\\
+\lstinline/DefaultExecutorServiceManager/&{\lstinline/doShutdown(ExecutorService, long, boolean)/}\\
 \lstinline/TimerConsumer/&{\lstinline/run()/}\\
 \lstinline/AggregateProcessor/&{\lstinline/doForceCompletionOnStop()/}\\
 \lstinline/ProcessorDefinitionHelper/&{\lstinline/run()/}\\
 \lstinline/MockEndpoint/&{\lstinline/assertIsNotSatisfied()/}\\
 \lstinline/DefaultManagementAgent/&{\lstinline/createMBeanServer()/}\\
-\lstinline/NIOConverter/&{\lstinline/toByteBuffer(String,Exchange)/}\\
+\lstinline/NIOConverter/&{\lstinline/toByteBuffer(String, Exchange)/}\\
 \lstinline/DefaultExecutorServiceManager/&{\lstinline/doShutdown()/}\\
-\lstinline/ProducerCache/&{\lstinline/doInProducer(Endpoint,Exchange,ExchangePattern,ProducerCallback)/}\\
-\lstinline/Instance/&{\lstinline/manageCamelContext(Container,CamelContext)/}\\
+\lstinline/ProducerCache/&\raisebox{-13pt}{\shortstack{\lstinline/doInProducer(Endpoint, Exchange, Exchange/-\\\lstinline/Pattern, ProducerCallback)/}}\\
+\lstinline/Instance/&{\lstinline/manageCamelContext(Container, CamelContext)/}\\
 \lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onEndpointRemove(Endpoint)/}\\
-\lstinline/DefaultDebugger/&{\lstinline/onBeforeProcess(Exchange,Processor,ProcessorDefinition,Breakpoint)/}\\
+\lstinline/DefaultDebugger/&\raisebox{-13pt}{\shortstack{\lstinline/onBeforeProcess(Exchange, Processor, Processor/-\\\lstinline/Definition, Breakpoint)/}}\\
 \lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onRoutesRemove(Collection)/}\\
-\lstinline/DefaultTraceEventHandler/&{\lstinline/traceExchange(ProcessorDefinition,Processor,TraceInterceptor,Exchange)/}\\
+\lstinline/DefaultTraceEventHandler/&\raisebox{-13pt}{\shortstack{\lstinline/traceExchange(ProcessorDefinition, Processor,/\\\lstinline/TraceInterceptor, Exchange)/}}\\
 \lstinline/RoutePolicyAdvice/&{\lstinline/before(Exchange)/}\\
 \lstinline/ReduceStacksNeededDuringRoutingTest/&{\lstinline/process(Exchange)/}\\
-\lstinline/MyProducer/&{\lstinline/process(Exchange,AsyncCallback)/}\\
-\lstinline/FlexibleAggregationStrategy/&{\lstinline/safeInsertIntoCollection(Exchange,Collection,E)/}\\
+\lstinline/MyProducer/&{\lstinline/process(Exchange, AsyncCallback)/}\\
+\lstinline/FlexibleAggregationStrategy/&{\lstinline/safeInsertIntoCollection(Exchange, Collection, E)/}\\
 \lstinline/DefaultShutdownStrategy/&{\lstinline/suspendNow(Consumer)/}\\
-\lstinline/ManagedManagementStrategy/&{\lstinline/isManaged(Object,Object)/}\\
-\lstinline/LRUCache/&{\lstinline/onRemoval(K,V,RemovalCause)/}\\
+\lstinline/ManagedManagementStrategy/&{\lstinline/isManaged(Object, Object)/}\\
+\lstinline/LRUCache/&{\lstinline/onRemoval(K, V, RemovalCause)/}\\
 \lstinline/XmlConverter/&{\lstinline/createDocumentBuilderFactory()/}\\
-\lstinline/UnitOfWorkHelper/&{\lstinline/doneUow(UnitOfWork,Exchange)/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onServiceAdd(CamelContext,Service,Route)/}\\
+\lstinline/UnitOfWorkHelper/&{\lstinline/doneUow(UnitOfWork, Exchange)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onServiceAdd(CamelContext, Service, Route)/}\\
 \lstinline/ComponentConfigurationTest/&{\lstinline/configureAnExistingSedaEndpoint()/}\\
-\lstinline/UnitOfWorkHelper/&{\lstinline/doneUow(UnitOfWorkuow,Exchange)/}\\
+\lstinline/UnitOfWorkHelper/&{\lstinline/doneUow(UnitOfWork, Exchange)/}\\
 \lstinline/ComponentConfigurationTest/&{\lstinline/createNewDefaultComponentEndpoint()/}\\
-\lstinline/RedeliveryErrorHandler/&{\lstinline/onExceptionOccurred(Exchange,RedeliveryData)/}\\
+\lstinline/RedeliveryErrorHandler/&{\lstinline/onExceptionOccurred(Exchange, RedeliveryData)/}\\
 \lstinline/XPathBuilder/&{\lstinline/logNamespaces(Exchange)/}\\
 \lstinline/ComponentConfigurationTest/&{\lstinline/configureAnExistingDefaultEndpoint()/}\\
 \lstinline/EndpointHelper/&{\lstinline/pollEndpoint(long)/}\\
 \lstinline/DefaultManagementAgent/&{\lstinline/doStop()/}\\
 \lstinline/CamelContextTrackerRegistry/&{\lstinline/contextCreated(CamelContext)/}\\
-\lstinline/XmlConverter/&{\lstinline/configureSaxonTransformerFactory(TransformerFactory)/}\\
+\lstinline/XmlConverter/&\raisebox{-13pt}{\shortstack{\lstinline/configureSaxonTransformerFactory/\\\lstinline/(TransformerFactory)/}}\\
 \lstinline/XmlConverter/&{\lstinline/createTransformerFactory()/}\\
 \lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onThreadPoolAdd(CamelContext)/}\\
 \lstinline/DefaultPackageScanClassResolver/&{\lstinline/defaultPackageScanClassResolver()/}\\
 \lstinline/MockEndpoint/&{\lstinline/assertIsNotSatisfied(long)/}\\
 \lstinline/DefaultUnitOfWork/&{\lstinline/done(Exchange)/}\\
 \lstinline/ComponentConfigurationTest/&{\lstinline/createNewSedaUriEndpoint()/}\\
-\lstinline/DefaultDebugger/&{\lstinline/onAfterProcess(Exchange,Processor,ProcessorDefinition,long,Breakpoint)/}\\
-\lstinline/DefaultPackageScanClassResolver/&{\lstinline/doLoadJarClassEntries(InputStream,String)/}\\
+\lstinline/DefaultDebugger/&\raisebox{-13pt}{\shortstack{\lstinline/onAfterProcess(Exchange, Processor, Processor/-\\\lstinline/Definition, long, Breakpoint)/}}\\
+\lstinline/DefaultPackageScanClassResolver/&{\lstinline/doLoadJarClassEntries(InputStream, String)/}\\
 \lstinline/TempFileManager/&{\lstinline/onDone(Exchange)/}\\
 \lstinline/DavidSiefertTest/&{\lstinline/testHeaderPredicateFails()/}\\
-\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onServiceRemove(CamelContext,Service,Route)/}\\
-\lstinline/DefaultUnitOfWork/&{\lstinline/defaultUnitOfWork(Exchange,Logger)/}\\
+\lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onServiceRemove(CamelContext, Service, Route)/}\\
+\lstinline/DefaultUnitOfWork/&{\lstinline/defaultUnitOfWork(Exchange, Logger)/}\\
 \lstinline/XmlConverter/&{\lstinline/setupFeatures(DocumentBuilderFactory)/}\\
 \lstinline/DefaultManagementLifecycleStrategy/&{\lstinline/onRoutesAdd(Collection)/}\\
-\lstinline/ManagedCamelContext/&{\lstinline/addOrUpdateRoutesFromXml(String,boolean)/}\\
+\lstinline/ManagedCamelContext/&{\lstinline/addOrUpdateRoutesFromXml(String, boolean)/}\\
 \lstinline/DefaultShutdownStrategy/&{\lstinline/shutdownNow(Consumer)/}\\
-\lstinline/ManagementStrategyFactory/&{\lstinline/create(CamelContext,boolean)/}\\
-\lstinline/UnitOfWorkHelper/&{\lstinline/afterRouteSynchronizations(Route,Exchange,List,Logger)/}\\
-\lstinline/XmlConverter/&{\lstinline/toSAXSourceFromStream(StreamSource,Exchange)/}\\
+\lstinline/ManagementStrategyFactory/&{\lstinline/create(CamelContext, boolean)/}\\
+\lstinline/UnitOfWorkHelper/&\raisebox{-13pt}{\shortstack{\lstinline/afterRouteSynchronizations(Route, Exchange,/\\\lstinline/List, Logger)/}}\\
+\lstinline/XmlConverter/&\raisebox{-13pt}{\shortstack{\lstinline/toSAXSourceFromStream(StreamSource,/\\\lstinline/Exchange)/}}\\
 \lstinline/HangupInterceptor/&{\lstinline/run()/}\\
-
 \end{longtable}
 \end{center}
 
-
-\subsection{Cluster classified as Conditional Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{T}_{\id{K},1}$}\\
+\caption{LMs within the cluster classified as Conditional Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -582,13 +553,13 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/AdviceWithTasks/&{\lstinline/task()/}\\
 \lstinline/RedeliveryErrorHandlerNonBlockedDelayTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/FileEndpoint/&{\lstinline/createConsumer(Processor)/}\\
-\lstinline/CamelLogger/&{\lstinline/log(String,Throwable)/}\\
+\lstinline/CamelLogger/&{\lstinline/log(String, Throwable)/}\\
 \lstinline/DefaultComponent/&{\lstinline/preProcessUri(String)/}\\
 \lstinline/GenericFileOnCompletion/&{\lstinline/processStrategyRollback()/}\\
 \lstinline/ValidatorEndpointClearCachedSchemaTest/&{\lstinline/clearCachedSchema()/}\\
-\lstinline/IOHelper/&{\lstinline/force(FileChannel,String,Logger)/}\\
+\lstinline/IOHelper/&{\lstinline/force(FileChannel, String, Logger)/}\\
 \lstinline/ValidationBean/&{\lstinline/someMethod(String)/}\\
-\lstinline/FileIdempotentRepository/&{\lstinline/appendToStore(StringId)/}\\
+\lstinline/FileIdempotentRepository/&{\lstinline/appendToStore(String)/}\\
 \lstinline/XPathBuilder/&{\lstinline/createXPathExpression()/}\\
 \lstinline/TwoSchedulerConcurrentTasksOneRouteTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/AnnotationTypeConverterLoader/&{\lstinline/loadConverterMethods(TypeConverterRegistry)/}\\
@@ -599,9 +570,9 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/AggregateProcessor/&{\lstinline/forceCompletionOfAllGroups()/}\\
 \lstinline/DefaultManagementAgent/&{\lstinline/registerMBeanWithServer(Object/}\\
 \lstinline/DefaultCamelBeanPostProcessor/&{\lstinline/setterInjection(Method)/}\\
-\lstinline/CamelLogger/&{\lstinline/process(Exchange,String)/}\\
-\lstinline/IOHelper/&{\lstinline/close(Closeable,String,Logger)/}\\
-\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelayTest/&{\lstinline/process(Exchange)/}\\
+\lstinline/CamelLogger/&{\lstinline/process(Exchange, String)/}\\
+\lstinline/IOHelper/&{\lstinline/close(Closeable, String, Logger)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/AsyncEndpointRedeliveryErrorHandler/-\\\lstinline/NonBlockedDelayTest/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/UriEndpointComponent/&{\lstinline/doWith(Field)/}\\
 \lstinline/DefaultTimeoutMapTest/&{\lstinline/testDefaultTimeoutMapStopStart()/}\\
 \lstinline/AggregateProcessor/&{\lstinline/doForceCompletionOnStop()/}\\
@@ -612,31 +583,31 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/DefaultExecutorServiceManager/&{\lstinline/doShutdown()/}\\
 \lstinline/MainSupport/&{\lstinline/waitUntilCompleted()/}\\
 \lstinline/LogComponent/&{\lstinline/createEndpoint(String)/}\\
-\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelay2Test/&{\lstinline/process(Exchange)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/AsyncEndpointRedeliveryErrorHandler/-\\\lstinline/NonBlockedDelay2Test/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/XMLTokenIterator/&{\lstinline/XMLTokenIterator(String/}\\
 \lstinline/CamelContextHelper/&{\lstinline/lookupPropertiesComponent(CamelContext)/}\\
 \lstinline/IOHelper/&{\lstinline/close(Writer)/}\\
 \lstinline/BaseTypeConverterRegistry/&{\lstinline/doStop()/}\\
-\lstinline/CamelLogger/&{\lstinline/process(Exchange,Throwable)/}\\
+\lstinline/CamelLogger/&{\lstinline/process(Exchange, Throwable)/}\\
 \lstinline/MarkerFileExclusiveReadLockStrategy/&{\lstinline/deleteLockFiles()/}\\
-\lstinline/RedeliveryErrorHandlerNonBlockedRedeliveryHeaderTest/&{\lstinline/process(Exchange)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/RedeliveryErrorHandlerNonBlocked/-\\\lstinline/RedeliveryHeaderTest/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/DefaultStreamCachingStrategy/&{\lstinline/doStart()/}\\
-\lstinline/ThroughputLogger,IdAware/&{\lstinline/doStart()/}\\
+\lstinline/ThroughputLogger/&{\lstinline/doStart()/}\\
 \lstinline/XPathSplitChoicePerformanceTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/MockEndpoint/&{\lstinline/doAssertIsSatisfied(long)/}\\
 \lstinline/DefaultTimeoutMapTest/&{\lstinline/testDefaultTimeoutMapPurge()/}\\
 \lstinline/FileEndpoint/&{\lstinline/FileConsumercreateConsumer(Processor)/}\\
 \lstinline/MarkerFileExclusiveReadLockStrategy/&{\lstinline/prepareOnStartup()/}\\
-\lstinline/IOHelper/&{\lstinline/force(FileOutputStream,String,Logger)/}\\
+\lstinline/IOHelper/&{\lstinline/force(FileOutputStream, String, Logger)/}\\
 \lstinline/UnitOfWorkTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/DefaultManagementAgent/&{\lstinline/doStop()/}\\
 \lstinline/SSLContextClientParameters/&{\lstinline/configureSSLContext(SSLContext)/}\\
 \lstinline/ActiveMQUuidGenerator/&{\lstinline/sanitizeHostName(String)/}\\
-\lstinline/CamelLogger/&{\lstinline/process(Exchange,AsyncCallback)/}\\
+\lstinline/CamelLogger/&{\lstinline/process(Exchange, AsyncCallback)/}\\
 \lstinline/Activator/&{\lstinline/extenderCapabilityWired(Bundle)/}\\
 \lstinline/DefaultShutdownStrategy/&{\lstinline/prepareShutdown(Service)/}\\
-\lstinline/RoutingSlip/&{\lstinline/resolveEndpoint(RoutingSlipIterator,Exchange)/}\\
-\lstinline/DefaultCamelBeanPostProcessor/&{\lstinline/setterBeanInjection(Method,String,Object,String)/}\\
+\lstinline/RoutingSlip/&{\lstinline/resolveEndpoint(RoutingSlipIterator, Exchange)/}\\
+\lstinline/DefaultCamelBeanPostProcessor/&\raisebox{-13pt}{\shortstack{\lstinline/setterBeanInjection(Method, String,/\\\lstinline/Object, String)/}}\\
 \lstinline/UnitOfWorkSynchronizationAdapterTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/MockEndpoint/&{\lstinline/assertIsSatisfied(long)/}\\
 \lstinline/ShutdownTask/&{\lstinline/run()/}\\
@@ -647,16 +618,12 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/DefaultCamelBeanPostProcessor/&{\lstinline/setterPropertyInjection(Method)/}\\
 \lstinline/AggregateProcessor/&{\lstinline/doStart()/}\\
 \lstinline/CamelLogger/&{\lstinline/log(String)/}\\
-
 \end{longtable}
 \end{center}
 
-
-\subsection{Cluster classified as Outer Method Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{C}_{\id{OM},1}$}\\
+\caption{LMs within the cluster classified as Outer Method Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -674,10 +641,10 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/UnitOfWorkTest/&{\lstinline/testSuccess()/}\\
 \lstinline/TracingWithDelayTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/ProxyReturnFutureTest/&{\lstinline/testFutureEchoCallTwoTimes()/}\\
-\lstinline/DumpModelAsXmlTransformRouteConstantTest/&{\lstinline/testDumpModelAsXml()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/DumpModelAsXmlTransform/-\\\lstinline/RouteConstantTest/}}&{\lstinline/testDumpModelAsXml()/}\\
 \lstinline/AsyncMDCTest/&{\lstinline/testThreeMessagesMDC()/}\\
 \lstinline/RedeliveryErrorHandlerBlockedDelayTest/&{\lstinline/process(Exchange)/}\\
-\lstinline/ManagedCamelContextDumpStatsAsXmlTest/&{\lstinline/testPerformanceCounterStats()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedCamelContextDumpStats/-\\\lstinline/AsXmlTest/}}&{\lstinline/testPerformanceCounterStats()/}\\
 \lstinline/BeanOgnlPerformanceTest/&{\lstinline/testBeanOgnlPerformance()/}\\
 \lstinline/MyPredicate/&{\lstinline/matches(Exchange)/}\\
 \lstinline/TokenPairIteratorSplitChoicePerformanceTest/&{\lstinline/process(Exchange)/}\\
@@ -685,15 +652,15 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/DefaultManagementStrategy/&{\lstinline/onlyManageProcessorWithCustomId(boolean)/}\\
 \lstinline/MySlowFileProcessor/&{\lstinline/process(Exchange)/}\\
 \lstinline/FileIdempotentRepository/&{\lstinline/trunkStore()/}\\
-\lstinline/RouteDefinition/&{\lstinline/routeDefinitionadviceWith(ModelCamelContext,RouteBuilder)/}\\
+\lstinline/RouteDefinition/&{\lstinline/adviceWith(ModelCamelContext, RouteBuilder)/}\\
 \lstinline/PrimitiveTypeConverterIssueTest/&{\lstinline/testPrimitiveTypeConverter()/}\\
 \lstinline/DumpModelAsXmlRouteExpressionTest/&{\lstinline/testDumpModelAsXmlBean()/}\\
-\lstinline/PollEnrichFileCustomAggregationStrategyTest/&{\lstinline/pollEnrichCustomAggregationStrategyBody()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/PollEnrichFileCustomAggregation/-\\\lstinline/StrategyTest/}}&{\lstinline/pollEnrichCustomAggregationStrategyBody()/}\\
 \lstinline/FileConsumerRestartNotLeakThreadTest/&{\lstinline/testLeak()/}\\
 \lstinline/UriEndpointConfiguration/&{\lstinline/warnMissingUriParamOnProperty(String)/}\\
 \lstinline/TypeConverterConcurrencyIssueTest/&{\lstinline/testTypeConverter()/}\\
 \lstinline/BacklogTracerTest/&{\lstinline/testBacklogTracerEventMessageDumpAllAsXml()/}\\
-\lstinline/ManagedRouteAddRemoveTest/&{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnException()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{-13pt}{\shortstack{\lstinline/testRouteAddRemoteRouteWithRecipientListAnd/-\\\lstinline/RouteScopedOnException()/}}\\
 \lstinline/MyAsyncProducer/&{\lstinline/call()/}\\
 \lstinline/XsltErrorListener/&{\lstinline/fatalError(TransformerException)/}\\
 \lstinline/ManagedRouteStopAndStartCleanupTest/&{\lstinline/testStopAndStartRoute()/}\\
@@ -703,29 +670,29 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/UnitOfWorkTest/&{\lstinline/testException()/}\\
 \lstinline/XmlErrorListener/&{\lstinline/error(TransformerException)/}\\
 \lstinline/JavaUuidGeneratorTest/&{\lstinline/testPerformance()/}\\
-\lstinline/RedeliveryPolicyPerExceptionTest/&{\lstinline/testUsingCustomExceptionHandlerAndOneRedelivery()/}\\
-\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&{\lstinline/testTokenPairPerformanceRoute()/}\\
+\lstinline/RedeliveryPolicyPerExceptionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testUsingCustomExceptionHandlerAnd/-\\\lstinline/OneRedelivery()/}}\\
+\raisebox{-13pt}{\shortstack{\lstinline/TokenPairIteratorSplitChoice/-\\\lstinline/PerformanceTest/}}&{\lstinline/testTokenPairPerformanceRoute()/}\\
 \lstinline/managedResourceTest/&{\lstinline/managedResource()/}\\
 \lstinline/MyBean/&{\lstinline/intread(String)/}\\
 \lstinline/ManagedFromRestPlaceholderTest/&{\lstinline/testFromRestModelPlaceholder()/}\\
 \lstinline/DumpModelAsXmlChoiceFilterRouteTest/&{\lstinline/testDumpModelAsXml()/}\\
 \lstinline/XmlTestSupport/&{\lstinline/assertParseRestAsJaxb(String)/}\\
 \lstinline/ThroughputLogger/&{\lstinline/createGroupIntervalLogMessage()/}\\
-\lstinline/RedeliveryDeadLetterErrorHandlerNoRedeliveryOnShutdownTest/&{\lstinline/testRedeliveryErrorHandlerNoRedeliveryOnShutdown()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/RedeliveryDeadLetterErrorHandler/-\\\lstinline/NoRedeliveryOnShutdownTest/}}&\raisebox{-13pt}{\shortstack{\lstinline/testRedeliveryErrorHandlerNo/-\\\lstinline/RedeliveryOnShutdown()/}}\\
 \lstinline/ComponentConfigurationTest/&{\lstinline/introspectSedaEndpointParameters()/}\\
 \lstinline/ManagedBrowsablepointAsXmlTest/&{\lstinline/testBrowseablepointAsXmlAllIncludeBody()/}\\
 \lstinline/ProxyReturnFutureListTest/&{\lstinline/testFutureListCallTwoTimes()/}\\
 \lstinline/BacklogDebuggerTest/&{\lstinline/logDebugger()/}\\
 \lstinline/DumpModelAsXmlRouteExpressionTest/&{\lstinline/testDumpModelAsXmlHeader()/}\\
-\lstinline/ManagedCamelContextDumpRoutesCoverageAsXml/&{\lstinline/testRouteCoverageStats()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedCamelContextDump/-\\\lstinline/RoutesCoverageAsXml/}}&{\lstinline/testRouteCoverageStats()/}\\
 \lstinline/MyBean/&{\lstinline/read(String)/}\\
-\lstinline/XmlParseTest/&{\lstinline/assertChildTo(String,ProcessorDefinition,String)/}\\
+\lstinline/XmlParseTest/&\raisebox{-13pt}{\shortstack{\lstinline/assertChildTo(String, ProcessorDefinition,/\\\lstinline/String)/}}\\
 \lstinline/EipDocumentationTest/&{\lstinline/testFailOverDocumentation()/}\\
-\lstinline/RedeliveryErrorHandlerNonBlockedDelayTest/&{\lstinline/process(Exchange)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/RedeliveryErrorHandlerNonBlocked/-\\\lstinline/DelayTest/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/UnitOfWorkTest/&{\lstinline/testFail()/}\\
 \lstinline/BacklogTracerTest/&{\lstinline/testBacklogTracerEventMessageAsXml()/}\\
 \lstinline/ActiveMQUuidGeneratorTest/&{\lstinline/testPerformance()/}\\
-\lstinline/SameRouteAndContextScopedErrorHandlerIssueTest/&{\lstinline/process(Exchange)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/SameRouteAndContextScoped/-\\\lstinline/ErrorHandlerIssueTest/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/ResequencerEngineTest/&{\lstinline/testReverse(int)/}\\
 \lstinline/MyOtherBean/&{\lstinline/foo(String)/}\\
 \lstinline/MDCOnCompletionOnCompletionTest/&{\lstinline/process(Exchange)/}\\
@@ -735,24 +702,24 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/RedeliveryOnExceptionBlockedDelayTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/DirectRequestReplyAndSedaInOnlyTest/&{\lstinline/testInOut()/}\\
 \lstinline/GenerateXmFromCamelContextTest/&{\lstinline/testCreateRouteFromCamelContext()/}\\
-\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelayTest/&{\lstinline/process(Exchange)/}\\
-\lstinline/StAX2SAXSourceTest/&{\lstinline/testDefaultPrefixInRootElementWithCopyTransformer()/}\\
-\lstinline/ManagedProducerRouteAddRemoveRegisterAlwaysTest/&{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/AsyncEndpointRedeliveryErrorHandler/-\\\lstinline/NonBlockedDelayTest/}}&{\lstinline/process(Exchange)/}\\
+\lstinline/StAX2SAXSourceTest/&\raisebox{-13pt}{\shortstack{\lstinline/testDefaultPrefixInRootElementWith/-\\\lstinline/CopyTransformer()/}}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedProducerRouteAddRemove/-\\\lstinline/RegisterAlwaysTest/}}&{\lstinline/testRouteAddRemoteRouteWithRecipientList()/}\\
 \lstinline/BacklogDebuggerTest/&{\lstinline/logDebuggerRemoveBodyAndHeader()/}\\
 \lstinline/ManagedRouteStopTest/&{\lstinline/testStopRoute()/}\\
 \lstinline/RouteDirectSuspendResumeTest/&{\lstinline/testSuspendResume()/}\\
 \lstinline/XmlErrorListener/&{\lstinline/warning(TransformerException)/}\\
 \lstinline/DumpModelAsXmlRoutePredicateTest/&{\lstinline/testDumpModelAsXmlBean()/}\\
 \lstinline/ManagedBrowsablepointAsXmlTest/&{\lstinline/testBrowseablepointAsXmlAll()/}\\
-\lstinline/RedeliveryErrorHandlerNonBlockedRedeliveryHeaderTest/&{\lstinline/process(Exchange)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/RedeliveryErrorHandlerNonBlocked/-\\\lstinline/RedeliveryHeaderTest/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/MyBean/&{\lstinline/foo(String)/}\\
 \lstinline/TestEndpoint/&{\lstinline/doStart()/}\\
 \lstinline/ProxyReturnFutureExceptionTest/&{\lstinline/testFutureEchoException()/}\\
 \lstinline/AsyncProcessorAwaitManagerTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/DumpModelAsXmlRoutePredicateTest/&{\lstinline/testDumpModelAsXmlHeader()/}\\
-\lstinline/ManagedRouteDumpStatsAsXmlAndResetWithCustomDomainTest/&{\lstinline/testPerformanceCounterStats()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedRouteDumpStatsAsXmlAndReset/-\\\lstinline/WithCustomDomainTest/}}&{\lstinline/testPerformanceCounterStats()/}\\
 \lstinline/ManagedRedeliverTest/&{\lstinline/process(Exchange)/}\\
-\lstinline/MyBean/&{\lstinline/myMethod(HeadersMap,Object)/}\\
+\lstinline/MyBean/&{\lstinline/myMethod(HeadersMap, Object)/}\\
 \lstinline/XmlTestSupport/&{\lstinline/assertParseAsJaxb(String)/}\\
 \lstinline/BeanVsProcessorPerformanceTest/&{\lstinline/testBean()/}\\
 \lstinline/MDCOnCompletionTest/&{\lstinline/process(Exchange)/}\\
@@ -760,37 +727,37 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/DefaultExecutorServiceManager/&{\lstinline/set(ThreadPoolProfile)/}\\
 \lstinline/FileConcurrentWriteAppendSameFileTest/&{\lstinline/testConcurrentAppend()/}\\
 \lstinline/JndiTest/&{\lstinline/testLookupOfTypedObject()/}\\
-\lstinline/ConfigurationHelperTest/&{\lstinline/logConfigurationField(EndpointConfig,Field)/}\\
-\lstinline/ManagedRouteAddSecondRouteNotRegisterNewRoutesTest/&{\lstinline/testRouteAddSecondRoute()/}\\
+\lstinline/ConfigurationHelperTest/&{\lstinline/logConfigurationField(EndpointConfig, Field)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedRouteAddSecondRoute/-\\\lstinline/NotRegisterNewRoutesTest/}}&{\lstinline/testRouteAddSecondRoute()/}\\
 \lstinline/ManagedBrowsablepointAsXmlTest/&{\lstinline/testBrowseablepointAsXmlRangeIncludeBody()/}\\
 \lstinline/DefaultExecutorServiceManagerTest/&{\lstinline/run()/}\\
 \lstinline/XPathSplitChoicePerformanceTest/&{\lstinline/testXPatPerformanceRoute()/}\\
 \lstinline/AggregateProcessor/&{\lstinline/restoreTimeoutMapFromAggregationRepository()/}\\
-\lstinline/MyRepo/&{\lstinline/confirm(CamelContext,String)/}\\
+\lstinline/MyRepo/&{\lstinline/confirm(CamelContext, String)/}\\
 \lstinline/ProxyReturnFutureTest/&{\lstinline/testFutureEcho()/}\\
 \lstinline/HangupInterceptor/&{\lstinline/run()/}\\
 \lstinline/DumpModelAsXmlSplitBodyRouteTest/&{\lstinline/testDumpModelAsXml()/}\\
-\lstinline/DumpModelAsXmlSplitNestedChoiceRouteTest/&{\lstinline/testDumpModelAsXml()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/DumpModelAsXmlSplitNestedChoice/-\\\lstinline/RouteTest/}}&{\lstinline/testDumpModelAsXml()/}\\
 \lstinline/OnExceptionContinuedIssueTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/DumpModelAsXmlChoiceFilterRouteTest/&{\lstinline/testDumpModelAsXmAl()/}\\
 \lstinline/ConfigurationHelperTest/&{\lstinline/logConfigurationObject(EndpointConfiguration)/}\\
 \lstinline/ManagedBrowsablepointAsXmlFileTest/&{\lstinline/testBrowseablepointAsXmlAllIncludeBody()/}\\
 \lstinline/ManagedRedeliverRouteOnlyTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/ManagedManagementStrategyext/&{\lstinline/doStart()/}\\
-\lstinline/DumpModelAsXmlTransformRouteLanguageTest/&{\lstinline/testDumpModelAsXml()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/DumpModelAsXmlTransformRoute/-\\\lstinline/LanguageTest/}}&{\lstinline/testDumpModelAsXml()/}\\
 \lstinline/ContainerWideInterceptor/&{\lstinline/process(Exchange)/}\\
 \lstinline/DumpModelAsXmlRouteExpressionTest/&{\lstinline/testDumpModelAsXml()/}\\
 \lstinline/ResequencerBatchOrderTest/&{\lstinline/testIteration(int)/}\\
 \lstinline/SplitterParallelBigFileTest/&{\lstinline/testSplitParallelBigFile()/}\\
-\lstinline/ManagedRouteAddRemoveTest/&{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{-13pt}{\shortstack{\lstinline/testRouteAddRemoteRouteWithRecipient/-\\\lstinline/ListAndContextScopedOnCompletion()/}}\\
 \lstinline/GenerateXmlTest/&{\lstinline/dump(RouteContainer)/}\\
-\lstinline/ManagedRouteAddRemoveTest/&{\lstinline/testRouteAddRemoteRouteWithRecipientListAndRouteScopedOnCompletion()/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{-13pt}{\shortstack{\lstinline/testRouteAddRemoteRouteWithRecipient/-\\\lstinline/ListAndRouteScopedOnCompletion()/}}\\
 \lstinline/DataSetEndpoint/&{\lstinline/doStart()/}\\
 \lstinline/LoggingEventNotifier/&{\lstinline/notify(event)/}\\
 \lstinline/BacklogDebuggerTest/&{\lstinline/logDebuggerUpdateBodyAndHeader()/}\\
 \lstinline/DefaultTypeConverter/&{\lstinline/doStart()/}\\
 \lstinline/DefaultManagementStrategy/&{\lstinline/setStatisticsLevel(ManagementStatisticsLevel)/}\\
-\lstinline/StringDataFormatConfigurationAndDocumentationTest/&{\lstinline/dataFormatJsonSchema()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/StringDataFormatConfigurationAnd/-\\\lstinline/DocumentationTest/}}&{\lstinline/dataFormatJsonSchema()/}\\
 \lstinline/ManagedRouteDumpStatsAsXmlTest/&{\lstinline/testPerformanceCounterStats()/}\\
 \lstinline/EipDocumentationTest/&{\lstinline/testSplitDocumentation()/}\\
 \lstinline/BeanVsProcessorPerformanceTest/&{\lstinline/testProcessor()/}\\
@@ -800,18 +767,18 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/XsltErrorListener/&{\lstinline/warning(TransformerException)/}\\
 \lstinline/ComponentConfigurationTest/&{\lstinline/createNewDefaultComponentEndpoint()/}\\
 \lstinline/ComponentDiscoveryTest/&{\lstinline/componentDocumentation()/}\\
-\lstinline/DefaultShutdownStrategy/&{\lstinline/doShutdown(CamelContext,long,TimeUnit,boolean,boolean,boolean)/}\\
-\lstinline/ManagedCamelContextDumpRoutesAsXmlTest/&{\lstinline/testDumpAsXml()/}\\
+\lstinline/DefaultShutdownStrategy/&\raisebox{-13pt}{\shortstack{\lstinline/doShutdown(CamelContext, long, TimeUnit,/\\\lstinline/boolean, boolean, boolean)/}}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedCamelContextDumpRoutes/-\\\lstinline/AsXmlTest/}}&{\lstinline/testDumpAsXml()/}\\
 \lstinline/BeanPerformanceTest/&{\lstinline/testBeanPerformance()/}\\
 \lstinline/RuntimepointRegistryTest/&{\lstinline/testRuntimepointRegistry()/}\\
-\lstinline/SimpleLanguageConfigurationAndDocumentationTest/&{\lstinline/languageJsonSchema()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/SimpleLanguageConfigurationAnd/-\\\lstinline/DocumentationTest/}}&{\lstinline/languageJsonSchema()/}\\
 \lstinline/TypeConverterRegistryPerformanceTest/&{\lstinline/disbledtestPerformance()/}\\
-\lstinline/EndpointCompletionTest/&{\lstinline/assertCompletion(MBeanServermbean)/}\\
+\lstinline/EndpointCompletionTest/&{\lstinline/assertCompletion(MBeanServer)/}\\
 \lstinline/EipDocumentationTest/&{\lstinline/testDocumentation()/}\\
-\lstinline/ManagedRouteAddRemoveTest/&{\lstinline/testRouteAddRemoteRouteWithRecipientListAndContextScopedOnException()/}\\
-\lstinline/XmlParseTest/&{\lstinline/assertTo(String,ProcessorDefinition,String)/}\\
+\lstinline/ManagedRouteAddRemoveTest/&\raisebox{-13pt}{\shortstack{\lstinline/testRouteAddRemoteRouteWithRecipientList/-\\\lstinline/AndContextScopedOnException()/}}\\
+\lstinline/XmlParseTest/&{\lstinline/assertTo(String, ProcessorDefinition, String)/}\\
 \lstinline/UnitOfWorkTest/&{\lstinline/process(Exchange)/}\\
-\lstinline/ManagedRouteDumpRouteAsXmlPlaceholderTest/&{\lstinline/testDumpAsXml()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedRouteDumpRouteAsXml/-\\\lstinline/PlaceholderTest/}}&{\lstinline/testDumpAsXml()/}\\
 \lstinline/ManagedBrowsablepointAsXmlTest/&{\lstinline/testBrowseablepointAsXmlRange()/}\\
 \lstinline/SSLContextParameters/&{\lstinline/createSSLContext(CamelContext)/}\\
 \lstinline/XmlErrorListener/&{\lstinline/fatalError(TransformerException)/}\\
@@ -824,7 +791,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/XsltErrorListener/&{\lstinline/error(TransformerException)/}\\
 \lstinline/EndpointCompletionTest/&{\lstinline/assertParameterJsonSchema(MBeanServer)/}\\
 \lstinline/ManagedFromRestGetEmbeddedRouteTest/&{\lstinline/testFromRestModel()/}\\
-\lstinline/ThrottlerTest/&{\lstinline/assertThrottlerTiming(long,int,int,int)/}\\
+\lstinline/ThrottlerTest/&{\lstinline/assertThrottlerTiming(long, int, int, int)/}\\
 \lstinline/FileConsumePollEnrichFileTest/&{\lstinline/testPollEnrich()/}\\
 \lstinline/DumpModelAsXmlRoutePredicateTest/&{\lstinline/testDumpModelAsXml()/}\\
 \lstinline/DefaultManagementStrategy/&{\lstinline/setLoadStatisticsEnabled(boolean)/}\\
@@ -833,40 +800,40 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/Activator/&{\lstinline/stop(BundleContext)/}\\
 \lstinline/XPathBuilder/&{\lstinline/logDiscoveredNamespaces(NodeList)/}\\
 \lstinline/LogBodyWithNewLineTest/&{\lstinline/testNoSkip()/}\\
-\lstinline/XPathSplitChoicePerformanceTest/&{\lstinline/createDataFile(Logger,int)/}\\
-\lstinline/ManagedRouteDumpStatsAsXmlCustomDomainTest/&{\lstinline/testPerformanceCounterStats()/}\\
+\lstinline/XPathSplitChoicePerformanceTest/&{\lstinline/createDataFile(Logger, int)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/ManagedRouteDumpStatsAsXml/-\\\lstinline/CustomDomainTest/}}&{\lstinline/testPerformanceCounterStats()/}\\
 \lstinline/MyBean/&{\lstinline/invoke(List)/}\\
-\lstinline/MyBean/&{\lstinline/myMethod(PropertiesMap,HeadersMap)/}\\
+\lstinline/MyBean/&{\lstinline/myMethod(PropertiesMap, HeadersMap)/}\\
 \lstinline/ManagedRouteAddRemoveTest/&{\lstinline/testRouteAddRemoteRouteWithTo()/}\\
 \lstinline/TwoRouteSuspendResumeTest/&{\lstinline/testSuspendResume()/}\\
-\lstinline/MyBean/&{\lstinline/read(String,String)/}\\
+\lstinline/MyBean/&{\lstinline/read(String, String)/}\\
 \lstinline/ManagedFromRestGetTest/&{\lstinline/testFromRestModel()/}\\
-\lstinline/TypeConverterRegistryStatsPerformanceTest/&{\lstinline/testTransform()/}\\
-\lstinline/MyAsyncProducer/&{\lstinline/process(Exchange,AsyncCallback)/}\\
-\lstinline/AsyncEndpointRedeliveryErrorHandlerNonBlockedDelay2Test/&{\lstinline/process(Exchange)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/TypeConverterRegistryStats/-\\\lstinline/PerformanceTest/}}&{\lstinline/testTransform()/}\\
+\lstinline/MyAsyncProducer/&{\lstinline/process(Exchange, AsyncCallback)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/AsyncEndpointRedeliveryErrorHandler/-\\\lstinline/NonBlockedDelay2Test/}}&{\lstinline/process(Exchange)/}\\
 \lstinline/ManagedRouteAddRemoveTest/&{\lstinline/testRouteAddRemoteRouteWithRoutingSlip()/}\\
 \lstinline/DumpModelAsXmlRoutePredicateTest/&{\lstinline/testDumpModelAsXmlXPath()/}\\
 \lstinline/ManagedRouteDumpRouteAsXmlTest/&{\lstinline/testDumpAsXml()/}\\
 \lstinline/FileIdempotentRepositoryReadLockStrategy/&{\lstinline/prepareOnStartup(GenericFileOperations)/}\\
 \lstinline/XPathRouteConcurrentBigTest/&{\lstinline/doSendMessages(int)/}\\
-\lstinline/TokenPairIteratorSplitChoicePerformanceTest/&{\lstinline/createDataFile(Logger,int)/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/TokenPairIteratorSplitChoice/-\\\lstinline/PerformanceTest/}}&{\lstinline/createDataFile(Logger, int)/}\\
 \lstinline/DynamicRouterConvertBodyToIssueTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/AggregateSimpleExpressionIssueTest/&{\lstinline/testAggregateSimpleExpression()/}\\
 \lstinline/PropertyEditorTypeConverterIssueTest/&{\lstinline/testPropertyEditorTypeConverter()/}\\
-\lstinline/MyBean/&{\lstinline/myMethod(List,Object)/}\\
+\lstinline/MyBean/&{\lstinline/myMethod(List, Object)/}\\
 \lstinline/MainLifecycleStrategy/&{\lstinline/onContextStop(CamelContext)/}\\
-\lstinline/LimitedPollingConsumerPollStrategy/&{\lstinline/onSuspend(Consumer,Endpoint)/}\\
+\lstinline/LimitedPollingConsumerPollStrategy/&{\lstinline/onSuspend(Consumer, Endpoint)/}\\
 \lstinline/RoutePerformanceCountTest/&{\lstinline/testSendMessages()/}\\
 \lstinline/SetHeaderInDoCatchIssueTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/AsyncProcessorAwaitManagerInterruptTest/&{\lstinline/process(Exchange)/}\\
 \lstinline/StreamResequencerTest/&{\lstinline/useJmx()/}\\
-\lstinline/DefaultCamelContextSuspendResumeRouteTest/&{\lstinline/testSuspendResume()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/DefaultCamelContextSuspendResume/-\\\lstinline/RouteTest/}}&{\lstinline/testSuspendResume()/}\\
 \lstinline/BacklogDebuggerTest/&{\lstinline/logDebuggerUpdateBodyAndHeaderType()/}\\
 \lstinline/MockEndpoint/&{\lstinline/assertIsSatisfied(long)/}\\
-\lstinline/DefaultCamelContextSuspendResumeRouteStartupOrderTest/&{\lstinline/testSuspendResume()/}\\
+\raisebox{-13pt}{\shortstack{\lstinline/DefaultCamelContextSuspendResume/-\\\lstinline/RouteStartupOrderTest/}}&{\lstinline/testSuspendResume()/}\\
 \lstinline/DumpModelAsXmlAggregateRouteTest/&{\lstinline/testDumpModelAsXml()/}\\
-\lstinline/MyBean/&{\lstinline/myMethod(String,int,String)/}\\
-\lstinline/RedeliveryPolicyPerExceptionTest/&{\lstinline/testUsingCustomExceptionHandlerWithNoRedeliveries()/}\\
+\lstinline/MyBean/&{\lstinline/myMethod(String, int, String)/}\\
+\lstinline/RedeliveryPolicyPerExceptionTest/&\raisebox{-13pt}{\shortstack{\lstinline/testUsingCustomExceptionHandler/-\\\lstinline/WithNoRedeliveries()/}}\\
 \lstinline/AsyncEndpointEventNotifierTest/&{\lstinline/testAsyncEndpointEventNotifier()/}\\
 \lstinline/BeanInfoTest/&{\lstinline/assertMethodPattern(BeanInfo)/}\\
 \lstinline/RoutePerformanceTest/&{\lstinline/testPerformance()/}\\
@@ -874,15 +841,12 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ManagedRouteAddSecondRouteTest/&{\lstinline/testRouteAddSecondRoute()/}\\
 \lstinline/PollEnrichFileDefaultAggregationStrategyTest/&{\lstinline/testPollEnrichDefaultAggregationStrategyBody() /}\\
 \lstinline/EipDocumentationTest/&{\lstinline/testSimpleDocumentation()/}\\
-
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Control Flow Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{C}_{\id{CF},1}$}\\
+\caption{LMs within the cluster classified as Control Flow Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -894,29 +858,26 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \bottomrule
 \endlastfoot
 
-\lstinline/CamelLogger/&{\lstinline/log(String,Throwable)/}\\
+\lstinline/CamelLogger/&{\lstinline/log(String, Throwable)/}\\
 \lstinline/RecoverTask/&{\lstinline/run()/}\\
-\lstinline/CamelLogger/&{\lstinline/process(exchange,Throwable)/}\\
-\lstinline/CamelLogger/&{\lstinline/log(Logger,Marker,String,Throwable)/}\\
-\lstinline/CamelLogger/&{\lstinline/log(Logger,Marker,String)/}\\
+\lstinline/CamelLogger/&{\lstinline/process(exchange, Throwable)/}\\
+\lstinline/CamelLogger/&{\lstinline/log(Logger, Marker, String, Throwable)/}\\
+\lstinline/CamelLogger/&{\lstinline/log(Logger, Marker, String)/}\\
 \lstinline/BeanInfo/&{\lstinline/createParameterUnmarshalExpressionForAnnotation()/}\\
 \lstinline/DefaultExecutorServiceManager/&{\lstinline/awaitTermination(ExecutorService)/}\\
 \lstinline/ApiMethodParser/&{\lstinline/compare(ApiMethodModel)/}\\
-\lstinline/CamelLogger/&{\lstinline/process(exchange,String)/}\\
-\lstinline/CamelLogger/&{\lstinline/log(Logger,String,Throwable)/}\\
-\lstinline/CamelLogger/&{\lstinline/log(Logger,String)/}\\
-\lstinline/DefaultExecutorServiceManager/&{\lstinline/doShutdown(ExecutorService,long)/}\\
+\lstinline/CamelLogger/&{\lstinline/process(exchange, String)/}\\
+\lstinline/CamelLogger/&{\lstinline/log(Logger, String, Throwable)/}\\
+\lstinline/CamelLogger/&{\lstinline/log(Logger, String)/}\\
+\lstinline/DefaultExecutorServiceManager/&{\lstinline/doShutdown(ExecutorService, long)/}\\
 \lstinline/CamelLogger/&{\lstinline/log(String)/}\\
-\lstinline/CamelLogger/&{\lstinline/process(exchange,AsyncCallback)/}\\
-
+\lstinline/CamelLogger/&{\lstinline/process(exchange, AsyncCallback)/}\\
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Exception Try-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{C}_{\id{TB},1}$}\\
+\caption{LMs within the cluster classified as Exception Try-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -939,11 +900,9 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 
 \section{Solr}\label{solr}
 
-\subsection{Cluster classified as Exception Catch-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{S}_{\id{CB},1}$}\\
+\caption{LMs within the cluster classified as Exception Catch-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -956,7 +915,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \endlastfoot
 
 \lstinline/ClusterStateUpdater/&{\lstinline/amILeader()/}\\
-\lstinline/HdfsTestUtil/&{\lstinline/teardownClass(MiniDFSClusterdfsCluster)/}\\
+\lstinline/HdfsTestUtil/&{\lstinline/teardownClass(MiniDFSCluster)/}\\
 \lstinline/BootstrapStatusRunnable/&{\lstinline/sendBootstrapCommand()/}\\
 \lstinline/CdcrReplicatorState/&{\lstinline/shutdown()/}\\
 \lstinline/SearchHandler/&{\lstinline/handleRequestBody()/}\\
@@ -968,21 +927,21 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/BootstrapCallable/&{\lstinline/call()/}\\
 \lstinline/MMapDirectoryFactory/&{\lstinline/create(String)/}\\
 \lstinline/SolrSuggester/&{\lstinline/getSuggestions(SuggesterOptions)/}\\
-\lstinline/SystemIdResolver/&{\lstinline/solveEntity(String,String,String)/}\\
+\lstinline/SystemIdResolver/&{\lstinline/solveEntity(String, String, String)/}\\
 \lstinline/SolrDynamicMBean/&{\lstinline/getAttributes(String[])/}\\
 \lstinline/ZKPrinter/&{\lstinline/printZnode(J)/}\\
-\lstinline/Req/&{\lstinline/trackRequestResult(HttpResponser,boolean)/}\\
-\lstinline/Resolver/&{\lstinline/resolve(Object,JavaBinCode)/}\\
-\lstinline/ManagedIndexSchema/&{\lstinline/newFieldType(String,String)/}\\
+\lstinline/Req/&{\lstinline/trackRequestResult(HttpResponser, boolean)/}\\
+\lstinline/Resolver/&{\lstinline/resolve(Object, JavaBinCode)/}\\
+\lstinline/ManagedIndexSchema/&{\lstinline/newFieldType(String, String)/}\\
 \lstinline/SolrIndexWriter/&{\lstinline/rollback()/}\\
 \lstinline/TestStressUserVersions/&{\lstinline/run()/}\\
-\lstinline/MoreLikeThisHandler/&{\lstinline/handleRequestBody(SolrQueryRequest,SolrQueryResponse)/}\\
-\lstinline/HttpSolrCall/&{\lstinline/writeResponse(SolrQueryResponse,QueryResponseWriter,Method)/}\\
+\lstinline/MoreLikeThisHandler/&\raisebox{-13pt}{\shortstack{\lstinline/handleRequestBody(SolrQueryRequest,/\\\lstinline/SolrQueryResponse)/}}\\
+\lstinline/HttpSolrCall/&\raisebox{-13pt}{\shortstack{\lstinline/writeResponse(SolrQueryResponse,/\\\lstinline/QueryResponseWriter, Method)/}}\\
 \lstinline/ConfigSetsAPIThread/&{\lstinline/run()/}\\
 \lstinline/SplitOp/&{\lstinline/execute(CoreAdminHandler.CallInfo)/}\\
 \lstinline/RecentUpdates/&{\lstinline/update()/}\\
 \lstinline/SyncShardRequest/&{\lstinline/handleUpdates(ShardResponse)/}\\
-\lstinline/FileFloatSource/&{\lstinline/getFloats(FileFloatSource,IndexReader)/}\\
+\lstinline/FileFloatSource/&{\lstinline/getFloats(FileFloatSource, IndexReader)/}\\
 \lstinline/ChangedSchemaMergeTest/&{\lstinline/optimizeDiffSchemas()/}\\
 \lstinline/ZKPrinter/&{\lstinline/printZnode(JSONWriter)/}\\
 \lstinline/LocalFsFileStream/&{\lstinline/write(out)/}\\
@@ -995,7 +954,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/HttpPartitionTest/&{\lstinline/waitToSeeReplicasActive(String)/}\\
 \lstinline/LeaderInitiatedRecoveryThread/&{\lstinline/publishDownState()/}\\
 \lstinline/URLClassifyProcessor/&{\lstinline/processAdd(AddUpdateCommand)/}\\
-\lstinline/ManagedIndexSchema/&{\lstinline/newFieldType(String,String,Map)/}\\
+\lstinline/ManagedIndexSchema/&{\lstinline/newFieldType(String, String, Map)/}\\
 \lstinline/ClientThread/&{\lstinline/run()/}\\
 \lstinline/ShardSplitTest/&{\lstinline/logDebugHelp(int[])/}\\
 \lstinline/DeleteExpiredDocsRunnable/&{\lstinline/run()/}\\
@@ -1007,7 +966,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/TestReloadDeadlock/&{\lstinline/run()/}\\
 \lstinline/HttpSolrCall/&{\lstinline/writeResponse()/}\\
 \lstinline/UpdateLogSynchronisation/&{\lstinline/run()/}\\
-\lstinline/LukeRequestHandler/&{\lstinline/getFileLength(Directory,String)/}\\
+\lstinline/LukeRequestHandler/&{\lstinline/getFileLength(Directory, String)/}\\
 \lstinline/DirectoryFileStream/&{\lstinline/write(out)/}\\
 \lstinline/ZkCpTool/&{\lstinline/runImpl(CommandLine)/}\\
 \lstinline/ZkMvTool/&{\lstinline/runImpl(CommandLine)/}\\
@@ -1020,7 +979,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/PKIAuthenticationPlugin/&{\lstinline/getRemotePublicKey(String)/}\\
 \lstinline/ManagedIndexSchemaFactoryFactory/&{\lstinline/zkUgradeToManagedSchema()/}\\
 \lstinline/TestStressReorder/&{\lstinline/run()/}\\
-\lstinline/CoreContainer/&{\lstinline/swap(String,String)/}\\
+\lstinline/CoreContainer/&{\lstinline/swap(String, String)/}\\
 \lstinline/ExactStatsCache/&{\lstinline/returnLocalStats(ResponseBuild)/}\\
 \lstinline/RunExampleExecutor/&{\lstinline/close()/}\\
 \lstinline/LocalFsFileStreamext/&{\lstinline/write(out)/}\\
@@ -1030,7 +989,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/RuleBasedAuthorizationPlugin/&{\lstinline/init(Map)/}\\
 \lstinline/MergeIndexesOp/&{\lstinline/execute(CoreAdminHandler.CallInfo)/}\\
 \lstinline/UpdateLog/&{\lstinline/seedBucketsWithHighestVersion(SolrIndex)/}\\
-\lstinline/RestManager/&{\lstinline/attachmanagedResource(managedResource)/}\\
+\lstinline/RestManager/&{\lstinline/attachManagedResource(ManagedResource)/}\\
 \lstinline/HealthcheckTool/&{\lstinline/runCloudTool(CloudSolrClient)/}\\
 \lstinline/managedResource/&{\lstinline/doPut()/}\\
 \lstinline/Config/&{\lstinline/parseLuceneVersionString(String)/}\\
@@ -1042,16 +1001,12 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/Diagnostics/&{\lstinline/logThreadDumps(String)/}\\
 \lstinline/FileBasedSpellChecker/&{\lstinline/loadExternalFileDictionary(SolrCore)/}\\
 \lstinline/IncRefThread/&{\lstinline/run()/}\\
-
 \end{longtable}
 \end{center}
 
-
-\subsection{Cluster classified as Outer Method Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{S}_{\id{OM},1}$}\\
+\caption{LMs within the cluster classified as Outer Method Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -1066,7 +1021,7 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/TestMiniSolrCloudClusterSSL/&{\lstinline/before()/}\\
 \lstinline/ErrorReportingConcurrentUpdateSolrClient/&{\lstinline/handleError(Throwable)/}\\
 \lstinline/ZkCLITest/&{\lstinline/setUp()/}\\
-\lstinline/SynonymManager/&{\lstinline/doDeleteChild(BaseSolrResource,String)/}\\
+\lstinline/SynonymManager/&{\lstinline/doDeleteChild(BaseSolrResource, String)/}\\
 \lstinline/TestAuthorizationFramework/&{\lstinline/authorizationFrameworkTest()/}\\
 \lstinline/TestDistribDocBasedVersion/&{\lstinline/deleteFail(String)/}\\
 \lstinline/TestLogWatcher/&{\lstinline/Log4jWatcher()/}\\
@@ -1103,8 +1058,8 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/CreateShardCmd/&{\lstinline/call(ClusterState)/}\\
 \lstinline/LeaderInitiatedRecoveryOnShardRestartTest/&{\lstinline/restartWithAllInLIR()/}\\
 \lstinline/JaspellLookupFactory/&{\lstinline/create(NamedList)/}\\
-\lstinline/InvokeOp/&{\lstinline/invokeAClass(SolrQueryRequest,String)/}\\
-\lstinline/LoggingInfoStream/&{\lstinline/message(String,String)/}\\
+\lstinline/InvokeOp/&{\lstinline/invokeAClass(SolrQueryRequest, String)/}\\
+\lstinline/LoggingInfoStream/&{\lstinline/message(String, String)/}\\
 \lstinline/SplitOp/&{\lstinline/execute(CoreAdminHandler.CallInfoit)/}\\
 \lstinline/ShardRoutingTest/&{\lstinline/doAtomicUpdate()/}\\
 \lstinline/managedResourceStorage/&{\lstinline/load(String)/}\\
@@ -1128,13 +1083,13 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ManagedEndpoint/&{\lstinline/parseJsonFromRequestBody()/}\\
 \lstinline/TestJmxIntegration/&{\lstinline/JmxUpdate()/}\\
 \lstinline/SolrSchemaRestApi/&{\lstinline/createInboundRoot()/}\\
-\lstinline/CoreContainer/&{\lstinline/swap(String,String)/}\\
+\lstinline/CoreContainer/&{\lstinline/swap(String, String)/}\\
 \lstinline/TestStressReorder/&{\lstinline/run()/}\\
 \lstinline/TestDistributedStatsComponentCardinality/&{\lstinline/buildIndex()/}\\
 \lstinline/CommitTracker/&{\lstinline/commitTracker()/}\\
 \lstinline/ManagedWordSetResourc/&{\lstinline/applyUpdatesToManagedData(Object)/}\\
 \lstinline/FileFetcher/&{\lstinline/cleanup()/}\\
-\lstinline/RestManager/&{\lstinline/attachmanagedResource(managedResource)/}\\
+\lstinline/RestManager/&{\lstinline/attachManagedResource(ManagedResource)/}\\
 \lstinline/ReplicationDistributedZkTest/&{\lstinline/testBatchBoundaries()/}\\
 \lstinline/ZooKeeperStorageIO/&{\lstinline/delete(String)/}\\
 \lstinline/LeaderInitiatedRecoveryThread/&{\lstinline/publishDownState(String)/}\\
@@ -1160,27 +1115,27 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/managedResource/&{\lstinline/doPut(BaseSolrResource)/}\\
 \lstinline/BootstrapCallable/&{\lstinline/call()/}\\
 \lstinline/TestSolrConfigHandler/&{\lstinline/getRespMap(String)/}\\
-\lstinline/Overseer/&{\lstinline/createOverseerNode(SolrZkClientzkClient)/}\\
+\lstinline/Overseer/&{\lstinline/createOverseerNode(SolrZkClient)/}\\
 \lstinline/BlobHandler/&{\lstinline/indexMap()/}\\
 \lstinline/ManagedIndexSchema/&{\lstinline/persistManagedSchema()/}\\
 \lstinline/AutoCommitTest/&{\lstinline/verbose(Object)/}\\
-\lstinline/MockAuthorizationPlugin/&{\lstinline/AuthorizationResponseauthorize(AuthorizationContext)/}\\
+\lstinline/MockAuthorizationPlugin/&{\lstinline/authorize(AuthorizationContext)/}\\
 \lstinline/TestCloudPivotFacet/&{\lstinline/assertPivotCountsAreCorrect()/}\\
 \lstinline/OverseerCollectionMessageHandler/&{processResponse(NamedList)/}\\
 \lstinline/TestStressUserVersions/&{\lstinline/run()/}\\
 \lstinline/ShardLeaderElectionContext/&{\lstinline/rejoinLeaderElection(SolrCore)/}\\
 \lstinline/TestManagedSchemaAPIe/&{\lstinline/addStringField(String)/}\\
-\lstinline/TestTolerantUpdateProcessorRandomCloude/&{\lstinline/createMiniSolrCloudCluster()/}\\
+\lstinline/TestTolerantUpdateProcessorRandomCloud/&{\lstinline/createMiniSolrCloudCluster()/}\\
 \lstinline/IndexFingerprint/&{\lstinline/getFingerprint(long)/}\\
 \lstinline/OneIndexer/&{\lstinline/run()/}\\
 \lstinline/SolrConfigHandler/&{\lstinline/wait()/}\\
-\RW{FINISHED UP TO HERE}\lstinline/SolrIndexWriter/&{\lstinline/rollback()/}\\
+\lstinline/SolrIndexWriter/&{\lstinline/rollback()/}\\
 \lstinline/SliceMutator/&{\lstinline/removeRoutingRule(ClusterState)/}\\
 \lstinline/VMParamsZkACLAndCredentialsProvidersTest/&{\lstinline/setUp()/}\\
 \lstinline/HighlighterConfigTest/&{\lstinline/testConfig()/}\\
 \lstinline/SolrSnapshotMetaDataManager/&{\lstinline/release(String)/}\\
-\lstinline/ClusterStateUpdater/&{\lstinline/LeaderStatusamILeader()/}\\
-\lstinline/DirectSolrSpellChecker/&{\lstinline/Stringinit(NamedList)/}\\
+\lstinline/ClusterStateUpdater/&{\lstinline/amILeader()/}\\
+\lstinline/DirectSolrSpellChecker/&{\lstinline/init(NamedList)/}\\
 \lstinline/TestReplicationHandler/&{\lstinline/RateLimitedReplication()/}\\
 \lstinline/RulesTeste/&{\lstinline/ModifyColl()/}\\
 \lstinline/LeaderFailureAfterFreshStartTest/&{\lstinline/waitForNewLeader()/}\\
@@ -1189,8 +1144,8 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/BufferStateWatcher/&{\lstinline/process(WatchedEvent)/}\\
 \lstinline/ShardSplitTest/&{\lstinline/logDebugHelp(int[])/}\\
 \lstinline/TestConfigReload/&{\lstinline/checkConfReload()/}\\
-\lstinline/HdfsUpdateLog/&{\lstinline/clearLog(SolrCore,Plugin)/}\\
-\lstinline/ClusterStateUpdater/&{\lstinline/statusamILeader()/}\\
+\lstinline/HdfsUpdateLog/&{\lstinline/clearLog(SolrCore, Plugin)/}\\
+\lstinline/ClusterStateUpdater/&{\lstinline/amILeader()/}\\
 \lstinline/TestDistribIDF/&{\lstinline/addDocsRandomly()/}\\
 \lstinline/OneQuery/&{\lstinline/run()/}\\
 \lstinline/RestoreCmdHttpPartitionTest/&{\lstinline/call(ClusterState)/}\\
@@ -1200,14 +1155,14 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/OverseerCollectionMessageHandler/&{\lstinline/processResponse(NamedList)/}\\
 \lstinline/Suggester/&{\lstinline/getSuggestions(SpellingOptions)/}\\
 \lstinline/OutOfBoxZkACLAndCredentialsProvidersTest/&{\lstinline/assertOpenACLUnsafeAllover()/}\\
-\lstinline/SolrConfig/&{\lstinline/HttpCachingConfig(SolrConfig)/}\\
+\lstinline/SolrConfig/&{\lstinline/getHttpCachingConfig(SolrConfig)/}\\
 \lstinline/KerberosPlugin/&{\lstinline/doAuthenticate(ServletRequest)/}\\
 \lstinline/OverseerNodePrioritizer/&{\lstinline/prioritizeOverseerNodes(String)/}\\
 \lstinline/SolrCoreCheckLockOnStartupTest/&{\lstinline/nativeLockErrorOnStartup()/}\\
 \lstinline/OverriddenZkACLAndCredentialsProvidersTest/&{\lstinline/setUp()/}\\
 \lstinline/FileFloatSource/&{\lstinline/getFloats()/}\\
 \lstinline/TestWriterPerf/&{\lstinline/doPerf()/}\\
-\lstinline/BackupRestoreUtils/&{\lstinline/intindexDocs(SolrClient)/}\\
+\lstinline/BackupRestoreUtils/&{\lstinline/indexDocs(SolrClient)/}\\
 \lstinline/OverseerRolesTest/&{\lstinline/setOverseerRole(CloudSolr)/}\\
 \lstinline/OpenCloseCoreStressTest/&{\lstinline/checkResults(HttpSolrClient)/}\\
 \lstinline/BackupCmdHttpPartitionTest/&{\lstinline/call(ClusterState)/}\\
@@ -1215,20 +1170,17 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/ZkController/&{\lstinline/publishNodeAsDown(String)/}\\
 \lstinline/SolrIndexSearcher/&{\lstinline/getStoredHighlightFieldNames()/}\\
 \lstinline/Worker/&{\lstinline/run()/}\\
-\lstinline/ForceLeaderTest/&{\lstinline/bringBackOldLeaderAndSendDoc(String,int)/}\\
+\lstinline/ForceLeaderTest/&{\lstinline/bringBackOldLeaderAndSendDoc(String, int)/}\\
 \lstinline/ReplicaMutator/&{\lstinline/checkAndCompleteShardSplit()/}\\
 \lstinline/LogReplayer/&{\lstinline/run()/}\\
 \lstinline/SolrCores/&{\lstinline/waitForLoadingCoreToFinish(String)/}\\
 \lstinline/DirectUpdateHandler2/&{\lstinline/rollback(RollbackUpdate)/}\\
-
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Control Flow Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{S}_{\id{CF},1}$}\\
+\caption{LMs within the cluster classified as Control Flow Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -1248,17 +1200,14 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/OverseerTest/&{\lstinline/removalOfLastReplica()/}\\
 \lstinline/SolrDynamicMBean/&{\lstinline/get(String[])/}\\
 \lstinline/SolrIndexSplitter/&{\lstinline/split(LeafReaderContext)/}\\
-\lstinline/RequestHandlers/&{\lstinline/applyInitParams(SolrConfig,PluginInfo)/}\\
+\lstinline/RequestHandlers/&{\lstinline/applyInitParams(SolrConfig, PluginInfo)/}\\
 \lstinline/XMLLoader/&{\lstinline/readDoc(XMLStreamReader)/}\\
-
 \end{longtable}
 \end{center}
 
-\subsection{Cluster classified as Exception Try-Block Logging}
-
 \begin{center}
 \begin{longtable}{ll}
-\caption{LMs in the cluster $\id{S}_{\id{TB},1}$}\\
+\caption{LMs within the cluster classified as Exception Try-Block Logging}\\
 \toprule\multicolumn{1}{c}{Class}&\multicolumn{1}{c}{Method}\\\midrule
 \endfirsthead
 
@@ -1270,10 +1219,10 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \bottomrule
 \endlastfoot
 
-\lstinline/SSLTestCloudPivotFacet/&{\lstinline/assertPivotCountsAreCorrect(SolrParams)()/}\\
+\lstinline/SSLTestCloudPivotFacet/&{\lstinline/assertPivotCountsAreCorrect(SolrParams)/}\\
 \lstinline/CdcrReplicator/&{\lstinline/handleException(Exception)/}\\
 \lstinline/BufferStateWatcher/&{\lstinline/process(WatchedEvent)/}\\
-\lstinline/ClusterStateUpdater,Closeable/&{\lstinline/statusamILeader()/}\\
+\lstinline/ClusterStateUpdater/&{\lstinline/amILeader()/}\\
 \lstinline/DeleteExpiredDocsRunnable/&{\lstinline/run()/}\\
 \lstinline/RestoreCore/&{\lstinline/doRestore()/}\\
 \lstinline/ProcessStateWatcher/&{\lstinline/process(WatchedEvent)/}\\
@@ -1283,24 +1232,24 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/SolrZkServer/&{\lstinline/start()/}\\
 \lstinline/BootstrapCallable/&{\lstinline/call()/}\\
 \lstinline/SnapShooter/&{\lstinline/deleteNamedSnapshot(ReplicationHandle)/}\\
-\lstinline/LeaderInitiatedRecoveryThrea/&{\lstinline/publishDownState(String,boolean)/}\\
+\lstinline/LeaderInitiatedRecoveryThrea/&{\lstinline/publishDownState(String, boolean)/}\\
 \lstinline/SpellCheckerListener/&{\lstinline/buildSpellIndex(BootstrapCommand)/}\\
 \lstinline/UpdateThread/&{\lstinline/run()/}\\
 \lstinline/SolrDynamicMBean/&{\lstinline/getAttributes(String[])/}\\
 \lstinline/ForceLeaderTest/&{\lstinline/bringBackOldLeaderAndSendDoc(String)/}\\
-\lstinline/TestJmxMonitoredMap/&{\lstinline/beforesetUp()/}\\
+\lstinline/TestJmxMonitoredMap/&{\lstinline/setUp()/}\\
 \lstinline/OverseerConfigSetMessageHandler/&{\lstinline/createConfigSet(ZkNodeProps)/}\\
-\lstinline/DeleteTool/&{\lstinline/deleteCollection(CloudSolrClient,CommandLine)/}\\
-\lstinline/SolrCore/&{\lstinline/checkStale(String,int)/}\\
+\lstinline/DeleteTool/&{\lstinline/deleteCollection(CloudSolrClient, CommandLine)/}\\
+\lstinline/SolrCore/&{\lstinline/checkStale(String, int)/}\\
 \lstinline/ElectionWatcher/&{\lstinline/process(WatchedEvent)/}\\
 \lstinline/RunExampleExecutor/&{\lstinline/close()/}\\
-\lstinline/CoreContainer/&{\lstinline/swap(String,String)/}\\
+\lstinline/CoreContainer/&{\lstinline/swap(String, String)/}\\
 \lstinline/TestMiniSolrCloudCluster/&{\lstinline/createSearchDelete()/}\\
 \lstinline/FileFetcher/&{\lstinline/cleanup()/}\\
 \lstinline/SyncShardRequest/&{\lstinline/handleUpdates(ShardResponse)/}\\
 \lstinline/DefaultSolrCoreState/&{\lstinline/run()/}\\
-\lstinline/ShardSplitTest/&{\lstinline/logDebugHelp(QueryResponser,long)/}\\
-\lstinline/LeaderFailureAfterFreshStartTest/&{\lstinline/waitForNewLeader(CloudSolrClient,String)/}\\
+\lstinline/ShardSplitTest/&{\lstinline/logDebugHelp(QueryResponser, long)/}\\
+\lstinline/LeaderFailureAfterFreshStartTest/&{\lstinline/waitForNewLeader(CloudSolrClient, String)/}\\
 \lstinline/OpenCloseCoreStressTest/&{\lstinline/checkResults(HttpSolrClient)/}\\
 \lstinline/StartupLoggingUtils/&{\lstinline/logNotSupported(String)/}\\
 \lstinline/ZkController/&{\lstinline/publishNodeAsDown(String)/}\\
@@ -1309,14 +1258,13 @@ In the characterization study of Chapter~\ref{eval}, four systems were studied: 
 \lstinline/RuntimeLib/&{\lstinline/verify()/}\\
 \lstinline/ManagedIndexSchema/&{\lstinline/newFieldType(String)/}\\
 \lstinline/RequestReplicationTracker/&{\lstinline/doLocalCommit(CommitUpdateCommand)/}\\
-\lstinline/CryptoKeys/&{\lstinline/verify(String,Byte)/}\\
+\lstinline/CryptoKeys/&{\lstinline/verify(String, Byte)/}\\
 \lstinline/RecoveryStrategy/&{\lstinline/replay(SolrCore)/}\\
 \lstinline/LeaderElectionTest/&{\lstinline/parallelElection()/}\\
 \lstinline/OverseerTest/&{\lstinline/removalOfLastReplica()/}\\
-\lstinline/FSHDFSUtils/&{\lstinline/isFileClosed(Method,Path)/}\\
+\lstinline/FSHDFSUtils/&{\lstinline/isFileClosed(Method, Path)/}\\
 \lstinline/MigrateCmd/&{\lstinline/migrateKey(ClusterState)/}\\
 \lstinline/DirectUpdateHandler2/&{\lstinline/rollback(RollbackUpdate)/}\\
 \lstinline/SyncStrategy/&{\lstinline/requestRecoveries()/}\\
-
 \end{longtable}
 \end{center}

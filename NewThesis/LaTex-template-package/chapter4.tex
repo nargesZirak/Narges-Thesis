@@ -29,7 +29,7 @@ To approximate the best anti-unifier for my problem, I develop a greedy selectio
 \end{figure}
 
 
-To evaluate my approach, I developed the anti-unifier-building tool atop Jigsaw, and conducted an experimental study on the test suite introduced in Section~\ref{study1_setup}. In Section~\ref{antiunifierTool}, I discuss the algorithms and decisions I made for implementing the anti-unifier-building tool and constructing a detailed view of the structural generalization. I also describe my experimental setup, present the study, and discuss the results in Section~\ref{anti-unifier-assessment}.
+To evaluate my approach, I developed the anti-unifier-building tool atop Jigsaw, and conducted an experimental study on a test suite. In Section~\ref{antiunifierTool}, I discuss the algorithms and decisions I made for implementing the anti-unifier-building tool and constructing a detailed view of the structural generalization. I also describe my experimental setup, present the study, and discuss the results in Section~\ref{anti-unifier-assessment}.
 
 
 
@@ -204,7 +204,7 @@ The similarity between two AUAST nodes is computed by dividing the number of mat
 \For {$\id{childA} \in \id{children}[\id{A}]$}
 \If {$ \id{bestCorr}[\id{childA}] \neq \cons{NULL}$}	 		
 	%\State $\id{childB}\gets \id{bestCorr}[\id{childA}]$ 		
- 		\State $\id{matches} \gets \id{matches}+\func{Compute-Best-Matches}(\id{childA},\id{nodeB}[\id{bestCorr}[\id{childA}]])$		 
+ 		\State $\id{matches} \gets \id{matches}+\func{Compute-Best-Matches}(\id{childA},\id{nodeB}[\id{bestCorr}[\id{childA}]])$		
  \EndIf
  \EndFor
 
@@ -440,7 +440,7 @@ public void method2(){
 
 \section{Evaluation} \label{anti-unifier-assessment}
 %\subsection{Study 2: Detailed anti-unifier view}  \label{study2}
-To assess the effectiveness of my anti-unification algorithm and the supporting tool, I conducted an experiment on the test suite described in Section~\ref{study1_setup}. %The anti-unifier-building tool is developed atop the correspondence tool to construct an anti-unifier from AUASTs of each LM pair in our test suite.
+To assess the effectiveness of my anti-unification algorithm and the supporting tool, I conducted an experiment on the test suite described in Section~\ref{study2-setup}. %The anti-unifier-building tool is developed atop the correspondence tool to construct an anti-unifier from AUASTs of each LM pair in our test suite.
 
 
 \subsection{Setup}  \label{study2-setup}
@@ -448,7 +448,7 @@ In this study, I manually attempted to create the detailed anti-unifier view for
 I also ran the anti-unifier-building tool on each pair of LMs to construct the detailed anti-unifier view for each pair with special attention to log statements and to measure the similarity between the LM pairs. Furthermore, I used \name{EclEmma}, which is a \name{Java} code coverage tool for \name{Eclipse}, to measure the test coverage. Test coverage is defined as a measure of the completeness of the set of test cases.
 
 
-\begin{figure}
+\begin{table}
   \centering
   \begin{tabular}{cl}
     \toprule
@@ -497,7 +497,7 @@ I also ran the anti-unifier-building tool on each pair of LMs to construct the d
   \end{tabular}
   \caption[10 sample logged Java method pairs used as test cases.]{10 sample logged Java method pairs used as test cases; all are contained in the \protect\code{org.gjt.sp.jedit} package with the exception of cases 8 and 10 that are in the \protect\code{org.gjt.sp.jedit.io} package.}
   \label{study2_test_cases}
-\end{figure}
+\end{table}
 
 
 
@@ -511,7 +511,7 @@ I present the results of my analysis for a subset of 10 test cases (see Table~\r
 
 In Case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement enclosing a log statement and the \code{actionPerformed(..)} method contains an \code{if}-statement enclosing another log statement. The analysis showed that a correct correspondence was detected between the inner \code{if}-statement inside the nested \code{if}- and the single \code{if}-statement. Cases~3 and~10 contain statements that are not found to correspond by my tool even though correspondences exist. For example, in Case 3, the \code{isSupportedEncoding(..)} method contains an assignment statement enclosed by an \code{if}-statement that does not have any correspondences and the \code{send(..)} method contains another assignment statement inside a \code{for}-statement without any correspondences. However, no correspondence was detected between the two assignment statements since their parent nodes do not correspond.
 
-\begin{figure}
+\begin{table}
   \centering
   \begin{tabular}{cccccc}
     \toprule
@@ -543,14 +543,13 @@ In Case 8, the \code{rootEntry(..)} method contains a nested \code{if}-statement
   \end{tabular}
   \caption{Results of constructing anti-unifiers with a focus on log statements for the test cases presented in  Table~\ref{study2_test_cases}}
   \label{study2_test_cases_results}
-\end{figure}
+\end{table}
 
 The results of the pairwise comparison between LMs of the test suite is visualized in Figure~\ref{fig:au_graph}. My anti-unifier-building tool succeeded in detecting correspondences with special attention to anti-unifying log statements and calculating pairwise similarities in 48 out of 55 test cases. In addition, the instruction coverage of our test cases is 82\% as measured with \name{EclEmma}.
 
 \begin{figure} [t]
   \centering\includegraphics [width = \textwidth]{graphviz/au.pdf}
-  \caption{A similarity graph representing pairwise similarities calculated by my tool between LMs shown in Table~\ref{table:ljms}.}
-  \label{fig:au_graph}
+  \caption{A similarity graph representing pairwise similarities calculated by my tool between LMs shown in Table~\ref{study2_test_cases}.\label{fig:au_graph}}
 \end{figure}
 
 

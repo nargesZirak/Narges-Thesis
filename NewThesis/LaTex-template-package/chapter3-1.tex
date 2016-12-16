@@ -91,10 +91,8 @@ As discussed in Section~\ref{Jigsaw}, the approach of \citet{2008:fse:cottrell} 
 
 \begin{sidewaysfigure}[p]
 %\begin{figure} [p]
-
 \centering\includegraphics [width = \textwidth, height=0.5\textheight]{Drawing4/FinalCorr.pdf}
-  \caption[Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.]{Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between the CAST nodes indicate the structural correspondence connections.}
-  \label{fig:meth-ast-1}
+\caption[Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}.]{Simple CAST structure of the examples in Figures~\ref{ch3-ex1} and~\ref{ch3-ex2}. The links between the CAST nodes indicate the structural correspondence connections.\label{fig:meth-ast-1}}
 \end{sidewaysfigure}
 
 
@@ -284,7 +282,7 @@ The \code{EditBus.send(..)} method contains two log statements. To handle this c
 I describe my approach for LMs containing multiple log statements in detail in Section~\ref{meth-multipleLogs}. The last three LMs were manually modified by adding some statements for the sake of dealing with important cases that we otherwise would have missed testing. Case 8 simulates the addition of an \code{if}-statement that formed a nested \code{if}-statement enclosing a log statement. Cases 9 and 10 simulate the addition of statements to improve the test coverage.
 
 
-\begin{figure}[t]
+\begin{table}[t]
   \centering
   \begin{tabular}{clc}
     \toprule
@@ -302,9 +300,8 @@ I describe my approach for LMs containing multiple log statements in detail in S
     10& \code{ServiceManager.loadServices(..)} &20\\
     \bottomrule
   \end{tabular}
-  \caption[Logged methods used as our test suite.]{Logged methods used as our test suite. All are contained in the \protect\code{org.gjt.sp.jedit} package with the exception of Case 9 that is in the \protect\code{org.gjt.sp.jedit.io} package.}
-  \label{table:ljms}
-\end{figure}
+  \caption[Logged methods used as our test suite.]{Logged methods used as our test suite. All are contained in the \protect\code{org.gjt.sp.jedit} package with the exception of Case 9 that is in the \protect\code{org.gjt.sp.jedit.io} package.\label{table:ljms}}
+\end{table}
 
 
 
@@ -315,7 +312,7 @@ I examined the generated CASTs of these test cases and selected, for the sake of
 
 
 
-\begin{figure}[t]
+\begin{table}[t]
   \centering
   \begin{tabular}{clc}
     \toprule
@@ -348,7 +345,7 @@ I examined the generated CASTs of these test cases and selected, for the sake of
   \end{tabular}
   \caption{Results from examining the Jigsaw similarity for 4 sample \protect\name{Java} source code fragment pairs.}
   \label{jigsaw_4_test_cases}
-\end{figure}
+\end{table}
 
 
 
@@ -357,9 +354,8 @@ I examined the generated CASTs of these test cases and selected, for the sake of
 The results of the pairwise comparison between LMs of the test suite is visualized in Figure~\ref{fig:jigsaw_graph}. As shown, the Jigsaw similarity for all self-comparisons is 1 as expected, while the level of Jigsaw similarity is different for pairs containing distinct LMs as per my manual examination.
 
 \begin{figure}[t]
-  \centering\includegraphics [width = \textwidth]{graphviz/jigsaw.pdf}
-  \caption{A similarity graph representing pairwise Jigsaw similarities between LMs shown in Table~\ref{table:ljms}.}
-  \label{fig:jigsaw_graph}
+  \centering\includegraphics[width=\textwidth]{graphviz/jigsaw.pdf}
+  \caption{A similarity graph representing pairwise Jigsaw similarities between LMs shown in Table~\protect\ref{table:ljms}.\label{fig:jigsaw_graph}}
 \end{figure}
 
 

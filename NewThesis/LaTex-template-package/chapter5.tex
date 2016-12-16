@@ -17,7 +17,7 @@ In this experiment, I will analyze logging usage of four popular open-source sof
 %I only examined the log statements from the \name{Apache log4j} framework, and
 
 
-\begin{figure} [H]
+\begin{table} [H]
   \centering
   \begin{tabular}{llcccc}
     \toprule
@@ -35,7 +35,7 @@ In this experiment, I will analyze logging usage of four popular open-source sof
    %\caption{Details of the four open-source software systems that make use of the {Apache log4j} logging framework.}
     \caption{Summary of the four software systems used in the characterization study.}
 \label{table:CSts}
-\end{figure}
+\end{table}
 
 
 My proof-of-concept implementation takes the source code of these systems as inputs, extracts the ASTs of their LMs, applies the proposed algorithm to construct AUASTs, categorizes the AUASTs into clusters, and outputs the structural generalization view for each cluster.

@@ -4,30 +4,39 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Logged methods used as our test suite.}}{44}{table.caption.34}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample \name {Java} source code fragment pairs.\relax }}{45}{table.caption.35}
 \addvspace {10pt}
-\contentsline {table}{\numberline {5.1}{\ignorespaces The cohesion of clusters.\relax }}{61}{table.caption.46}
-\contentsline {table}{\numberline {5.2}{\ignorespaces The separateness of clusters.\relax }}{61}{table.caption.46}
+\contentsline {table}{\numberline {5.1}{\ignorespaces 10 sample logged Java method pairs used as test cases.}}{62}{table.caption.46}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Results of constructing anti-unifiers with a focus on log statements for the test cases presented in Table\nobreakspace {}\ref {study2_test_cases}\relax }}{63}{table.caption.47}
 \addvspace {10pt}
-\contentsline {table}{\numberline {6.1}{\ignorespaces The experimental results.\relax }}{65}{table.caption.48}
+\contentsline {table}{\numberline {6.1}{\ignorespaces The cohesion of clusters.\relax }}{70}{table.caption.51}
+\contentsline {table}{\numberline {6.2}{\ignorespaces The separateness of clusters.\relax }}{70}{table.caption.51}
+\addvspace {10pt}
+\contentsline {table}{\numberline {7.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{72}{table.caption.52}
+\contentsline {table}{\numberline {7.2}{\ignorespaces The experimental results.\relax }}{74}{table.caption.53}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
+\contentsline {table}{\numberline {A.1}{\ignorespaces LMs in the cluster $C_1$\relax }}{107}{table.A.1}
+\contentsline {table}{\numberline {A.2}{\ignorespaces LMs in the cluster $C_2$\relax }}{107}{table.A.2}
+\contentsline {table}{\numberline {A.3}{\ignorespaces LMs in the cluster $C_3$\relax }}{107}{table.A.3}
 \addvspace {10pt}
-\contentsline {table}{\numberline {B.1}{\ignorespaces LMs in the cluster $\mathit {T}_{\mathit {CB},1}$}}{99}{table.B.1}
-\contentsline {table}{\numberline {B.2}{\ignorespaces LMs in the cluster $\mathit {T}_{\mathit {OM},1}$}}{107}{table.B.2}
-\contentsline {table}{\numberline {B.3}{\ignorespaces LMs in the cluster $\mathit {T}_{\mathit {CF},1}$}}{108}{table.B.3}
-\contentsline {table}{\numberline {B.4}{\ignorespaces LMs in the cluster $\mathit {T}_{\mathit {TB},1}$}}{110}{table.B.4}
-\contentsline {table}{\numberline {B.5}{\ignorespaces LMs in the cluster $\mathit {H}_{\mathit {CB},1}$}}{110}{table.B.5}
-\contentsline {table}{\numberline {B.6}{\ignorespaces LMs in the cluster $\mathit {H}_{\mathit {K},1}$}}{112}{table.B.6}
-\contentsline {table}{\numberline {B.7}{\ignorespaces LMs in the cluster $\mathit {H}_{\mathit {OM},1}$}}{113}{table.B.7}
-\contentsline {table}{\numberline {B.8}{\ignorespaces LMs in the cluster $\mathit {H}_{\mathit {TB},1}$}}{114}{table.B.8}
-\contentsline {table}{\numberline {B.9}{\ignorespaces LMs in the cluster $\mathit {C}_{\mathit {CB},1}$}}{114}{table.B.9}
-\contentsline {table}{\numberline {B.10}{\ignorespaces LMs in the cluster $\mathit {T}_{\mathit {K},1}$}}{118}{table.B.10}
-\contentsline {table}{\numberline {B.11}{\ignorespaces LMs in the cluster $\mathit {C}_{\mathit {OM},1}$}}{121}{table.B.11}
-\contentsline {table}{\numberline {B.12}{\ignorespaces LMs in the cluster $\mathit {C}_{\mathit {CF},1}$}}{131}{table.B.12}
-\contentsline {table}{\numberline {B.13}{\ignorespaces LMs in the cluster $\mathit {C}_{\mathit {TB},1}$}}{132}{table.B.13}
-\contentsline {table}{\numberline {B.14}{\ignorespaces LMs in the cluster $\mathit {S}_{\mathit {CB},1}$}}{132}{table.B.14}
-\contentsline {table}{\numberline {B.15}{\ignorespaces LMs in the cluster $\mathit {S}_{\mathit {OM},1}$}}{137}{table.B.15}
-\contentsline {table}{\numberline {B.16}{\ignorespaces LMs in the cluster $\mathit {S}_{\mathit {CF},1}$}}{144}{table.B.16}
-\contentsline {table}{\numberline {B.17}{\ignorespaces LMs in the cluster $\mathit {S}_{\mathit {TB},1}$}}{145}{table.B.17}
+\contentsline {table}{\numberline {B.1}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{108}{table.B.1}
+\contentsline {table}{\numberline {B.2}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{116}{table.B.2}
+\contentsline {table}{\numberline {B.3}{\ignorespaces LMs within the cluster classified as Control Flow Logging}}{117}{table.B.3}
+\contentsline {table}{\numberline {B.4}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{118}{table.B.4}
+\contentsline {table}{\numberline {B.5}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{119}{table.B.5}
+\contentsline {table}{\numberline {B.6}{\ignorespaces LMs within the cluster classified as Conditional Logging}}{120}{table.B.6}
+\contentsline {table}{\numberline {B.7}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{121}{table.B.7}
+\contentsline {table}{\numberline {B.8}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{122}{table.B.8}
+\contentsline {table}{\numberline {B.9}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{123}{table.B.9}
+\contentsline {table}{\numberline {B.10}{\ignorespaces LMs within the cluster classified as Conditional Logging}}{127}{table.B.10}
+\contentsline {table}{\numberline {B.11}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{130}{table.B.11}
+\contentsline {table}{\numberline {B.12}{\ignorespaces LMs within the cluster classified as Control Flow Logging}}{140}{table.B.12}
+\contentsline {table}{\numberline {B.13}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{141}{table.B.13}
+\contentsline {table}{\numberline {B.14}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{141}{table.B.14}
+\contentsline {table}{\numberline {B.15}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{145}{table.B.15}
+\contentsline {table}{\numberline {B.16}{\ignorespaces LMs within the cluster classified as Control Flow Logging}}{152}{table.B.16}
+\contentsline {table}{\numberline {B.17}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{153}{table.B.17}
