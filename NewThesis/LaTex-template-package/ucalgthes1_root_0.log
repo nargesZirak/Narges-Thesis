@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  17 DEC 2016 08:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  17 DEC 2016 08:52
 entering extended mode
 **C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucal
 gthes1_root_0.tex
@@ -1511,12 +1511,7 @@ dix2.tex
 
 
 
-] [109] [110] [111] [112] [113] [114] [115]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table B.2 on input line 217.
-
-[116] [117] [118] [119]
+] [109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119]
 Overfull \hbox (5.06201pt too wide) in alignment at lines 317--320
  [] [] 
  []
@@ -1707,15 +1702,6 @@ Overfull \hbox (16.67851pt too wide) in alignment at lines 855--861
  []
 
 [139] [140] [141] [142] [143] [144] [145]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table B.15 on input line 1021.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table B.16 on input line 1039.
-
-
 Overfull \hbox (4.4712pt too wide) in alignment at lines 1043--1046
  [] [] 
  []
@@ -1776,9 +1762,6 @@ Overfull \hbox (4.4712pt too wide) in alignment at lines 1196--1213
  []
 
 [152] [153] [154] [155]) [156]
-
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 262.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
 
@@ -1817,7 +1800,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
 Here is how much of TeX's memory you used:
  26127 strings out of 493921
  492590 string characters out of 3147279
- 724224 words of memory out of 3000000
+ 724228 words of memory out of 3000000
  28155 multiletter control sequences out of 15000+200000
  53887 words of font info for 111 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1842,7 +1825,7 @@ gram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ucalgthes1_root_0.pdf (166 pages, 1945962 bytes).
+Output written on ucalgthes1_root_0.pdf (166 pages, 1945944 bytes).
 PDF statistics:
  2864 PDF objects out of 2984 (max. 8388607)
  692 named destinations out of 1000 (max. 500000)
