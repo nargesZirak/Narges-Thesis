@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  16 DEC 2016 10:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.4.23)  17 DEC 2016 08:35
 entering extended mode
 **C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/ucal
 gthes1_root_0.tex
@@ -1177,7 +1177,7 @@ l.11 T
 
 
 ] [2] [3] [4]
-<Drawing4/SystemOverview.pdf, id=770, 767.86874pt x 568.1225pt>
+<Drawing4/SystemOverview.pdf, id=774, 767.86874pt x 568.1225pt>
 File: Drawing4/SystemOverview.pdf Graphic file (type pdf)
 
 <use Drawing4/SystemOverview.pdf>
@@ -1225,7 +1225,7 @@ Overfull \hbox (4.94255pt too wide) in paragraph at lines 408--409
 [][][][][][][][][][][][] 
  []
 
-<Drawing4/AST.pdf, id=1180, 1806.75pt x 867.24pt>
+<Drawing4/AST.pdf, id=1184, 1806.75pt x 867.24pt>
 File: Drawing4/AST.pdf Graphic file (type pdf)
  <use Drawing4/AST.pdf>
 Package pdftex.def Info: Drawing4/AST.pdf used on input line 432.
@@ -1288,7 +1288,7 @@ Chapter \bf {4}.
 ]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 35.
- [39] <Drawing4/FinalCorr.pdf, id=1448, 1806.75pt x 939.51pt>
+ [39] <Drawing4/FinalCorr.pdf, id=1452, 1806.75pt x 939.51pt>
 File: Drawing4/FinalCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FinalCorr.pdf>
@@ -1296,7 +1296,7 @@ Package pdftex.def Info: Drawing4/FinalCorr.pdf used on input line 94.
 (pdftex.def)             Requested size: 650.42952pt x 325.20648pt.
  [40] [41 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
 kage/Drawing4/FinalCorr.pdf>] [42] [43] [44]
-<graphviz/jigsaw.pdf, id=1560, 1062.97125pt x 902.37125pt>
+<graphviz/jigsaw.pdf, id=1564, 1062.97125pt x 902.37125pt>
 File: graphviz/jigsaw.pdf Graphic file (type pdf)
 
 <use graphviz/jigsaw.pdf>
@@ -1307,7 +1307,7 @@ ckage/graphviz/jigsaw.pdf>]
 (C:\Users\walker\Documents\Narges-Thesis\NewThesis\LaTex-template-package\chapt
 er4.tex
 Chapter \bf {5}.
-<Drawing4/auOverview.pdf, id=1589, 995.88057pt x 654.40488pt>
+<Drawing4/auOverview.pdf, id=1593, 995.88057pt x 654.40488pt>
 File: Drawing4/auOverview.pdf Graphic file (type pdf)
 
 <use Drawing4/auOverview.pdf>
@@ -1319,7 +1319,7 @@ Package pdftex.def Info: Drawing4/auOverview.pdf used on input line 26.
 
 ] [48 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package
 /Drawing4/auOverview.pdf>] [49] [50]
-<Drawing4/FirstCorr.pdf, id=1656, 1806.75pt x 939.51pt>
+<Drawing4/FirstCorr.pdf, id=1660, 1806.75pt x 939.51pt>
 File: Drawing4/FirstCorr.pdf Graphic file (type pdf)
 
 <use Drawing4/FirstCorr.pdf>
@@ -1332,7 +1332,7 @@ Overfull \hbox (25.28653pt too wide) in paragraph at lines 207--208
 mr/m/n/12 [[][[]]])$ 
  []
 
-[53] [54] [55] <Drawing4/SampleAntiUnifier.png, id=1764, 1606.0pt x 1204.5pt>
+[53] [54] [55] <Drawing4/SampleAntiUnifier.png, id=1768, 1606.0pt x 1204.5pt>
 File: Drawing4/SampleAntiUnifier.png Graphic file (type png)
 
 <use Drawing4/SampleAntiUnifier.png>
@@ -1347,14 +1347,14 @@ Package pdftex.def Info: Drawing4/SampleAntiUnifier.png used on input line 300.
 
 [56] [57 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
 age/Drawing4/SampleAntiUnifier.png>]
-<Drawing4/multipleLogging.pdf, id=1786, 1589.94pt x 722.7pt>
+<Drawing4/multipleLogging.pdf, id=1790, 1589.94pt x 722.7pt>
 File: Drawing4/multipleLogging.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging.pdf>
 Package pdftex.def Info: Drawing4/multipleLogging.pdf used on input line 362.
 (pdftex.def)             Requested size: 469.75502pt x 213.52547pt.
 
-<Drawing4/multipleLogging2.pdf, id=1791, 1589.94pt x 722.7pt>
+<Drawing4/multipleLogging2.pdf, id=1795, 1589.94pt x 722.7pt>
 File: Drawing4/multipleLogging2.pdf Graphic file (type pdf)
 
 <use Drawing4/multipleLogging2.pdf>
@@ -1366,7 +1366,7 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 389.
  [59 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-package/
 Drawing4/multipleLogging2.pdf>] [60] [61] [62]
-<graphviz/au.pdf, id=1993, 1062.97125pt x 902.37125pt>
+<graphviz/au.pdf, id=1997, 1062.97125pt x 902.37125pt>
 File: graphviz/au.pdf Graphic file (type pdf)
  <use graphviz/au.pdf>
 Package pdftex.def Info: graphviz/au.pdf used on input line 551.
@@ -1381,7 +1381,7 @@ Chapter \bf {6}.
 
 
 
-] [67] <Drawing4/clustering.pdf, id=2042, 1011.78pt x 722.7pt>
+] [67] <Drawing4/clustering.pdf, id=2046, 1011.78pt x 722.7pt>
 File: Drawing4/clustering.pdf Graphic file (type pdf)
 
 <use Drawing4/clustering.pdf>
@@ -1410,7 +1410,7 @@ Chapter \bf {7}.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Charts/Histograms.png, id=2094, 899.61093pt x 482.55281pt>
+<Charts/Histograms.png, id=2098, 899.61093pt x 482.55281pt>
 File: Charts/Histograms.png Graphic file (type png)
 
 <use Charts/Histograms.png>
@@ -1418,7 +1418,7 @@ Package pdftex.def Info: Charts/Histograms.png used on input line 102.
 (pdftex.def)             Requested size: 650.45103pt x 325.22311pt.
  [72] [73 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pac
 kage/Charts/Histograms.png>]
-<Charts/Categories.png, id=2108, 989.94844pt x 655.69969pt>
+<Charts/Categories.png, id=2112, 989.94844pt x 655.69969pt>
 File: Charts/Categories.png Graphic file (type png)
 
 <use Charts/Categories.png>
@@ -1434,14 +1434,14 @@ OT1/ptm/m/n/12 s mostly
 
 [75] [76 <C:/Users/walker/Documents/Narges-Thesis/NewThesis/LaTex-template-pack
 age/Charts/Categories.png>] [77] [78]
-<Charts/Precision.png, id=2150, 397.9668pt x 204.2832pt>
+<Charts/Precision.png, id=2154, 397.9668pt x 204.2832pt>
 File: Charts/Precision.png Graphic file (type png)
 
 <use Charts/Precision.png>
 Package pdftex.def Info: Charts/Precision.png used on input line 195.
 (pdftex.def)             Requested size: 328.84889pt x 195.13086pt.
 
-<Charts/Recall.png, id=2151, 397.9668pt x 203.8014pt>
+<Charts/Recall.png, id=2155, 397.9668pt x 203.8014pt>
 File: Charts/Recall.png Graphic file (type png)
  <use Charts/Recall.png>
 Package pdftex.def Info: Charts/Recall.png used on input line 201.
@@ -1511,257 +1511,274 @@ dix2.tex
 
 
 
-] [109] [110] [111] [112] [113] [114] [115] [116] [117] [118]
-Overfull \hbox (5.06201pt too wide) in alignment at lines 300--303
+] [109] [110] [111] [112] [113] [114] [115]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table B.2 on input line 217.
+
+[116] [117] [118] [119]
+Overfull \hbox (5.06201pt too wide) in alignment at lines 317--320
  [] [] 
  []
 
 
-Overfull \hbox (5.06201pt too wide) in alignment at lines 303--307
+Overfull \hbox (5.06201pt too wide) in alignment at lines 320--324
  [] [] 
  []
 
 
-Overfull \hbox (5.06201pt too wide) in alignment at lines 307--309
+Overfull \hbox (5.06201pt too wide) in alignment at lines 324--326
  [] [] 
  []
 
 
-Overfull \hbox (5.06201pt too wide) in alignment at lines 309--311
+Overfull \hbox (5.06201pt too wide) in alignment at lines 326--328
  [] [] 
  []
 
 
-Overfull \hbox (5.06201pt too wide) in alignment at lines 311--333
+Overfull \hbox (5.06201pt too wide) in alignment at lines 328--350
  [] [] 
  []
 
 
-Overfull \hbox (5.06201pt too wide) in alignment at lines 333--346
+Overfull \hbox (5.06201pt too wide) in alignment at lines 350--363
  [] [] 
  []
 
-[119] [120] [121] [122]
-Overfull \hbox (3.83519pt too wide) in alignment at lines 442--445
- [] [] 
- []
-
-
-Overfull \hbox (3.83519pt too wide) in alignment at lines 445--449
+[120] [121] [122] [123]
+Overfull \hbox (3.83519pt too wide) in alignment at lines 459--462
  [] [] 
  []
 
 
-Overfull \hbox (3.83519pt too wide) in alignment at lines 449--451
+Overfull \hbox (3.83519pt too wide) in alignment at lines 462--466
  [] [] 
  []
 
 
-Overfull \hbox (3.83519pt too wide) in alignment at lines 451--453
+Overfull \hbox (3.83519pt too wide) in alignment at lines 466--468
  [] [] 
  []
 
 
-Overfull \hbox (3.83519pt too wide) in alignment at lines 453--475
+Overfull \hbox (3.83519pt too wide) in alignment at lines 468--470
  [] [] 
  []
 
 
-Overfull \hbox (3.83519pt too wide) in alignment at lines 475--495
+Overfull \hbox (3.83519pt too wide) in alignment at lines 470--492
  [] [] 
  []
 
-[123]
-Overfull \hbox (3.83519pt too wide) in alignment at lines 495--515
+
+Overfull \hbox (3.83519pt too wide) in alignment at lines 492--512
  [] [] 
  []
 
 [124]
-Overfull \hbox (3.83519pt too wide) in alignment at lines 515--535
+Overfull \hbox (3.83519pt too wide) in alignment at lines 512--532
  [] [] 
  []
 
 [125]
-Overfull \hbox (3.83519pt too wide) in alignment at lines 535--536
+Overfull \hbox (3.83519pt too wide) in alignment at lines 532--552
  [] [] 
  []
 
 [126]
-Overfull \hbox (9.57455pt too wide) in alignment at lines 540--543
- [] [] 
- []
-
-
-Overfull \hbox (9.57455pt too wide) in alignment at lines 543--547
- [] [] 
- []
-
-
-Overfull \hbox (9.57455pt too wide) in alignment at lines 547--549
- [] [] 
- []
-
-
-Overfull \hbox (9.57455pt too wide) in alignment at lines 549--551
- [] [] 
- []
-
-
-Overfull \hbox (9.57455pt too wide) in alignment at lines 551--573
- [] [] 
- []
-
-
-Overfull \hbox (9.57455pt too wide) in alignment at lines 573--593
+Overfull \hbox (3.83519pt too wide) in alignment at lines 552--553
  [] [] 
  []
 
 [127]
-Overfull \hbox (9.57455pt too wide) in alignment at lines 593--613
+Overfull \hbox (9.57455pt too wide) in alignment at lines 557--560
  [] [] 
  []
 
 
-Overfull \hbox (9.57455pt too wide) in alignment at lines 613--621
- [] [] 
- []
-
-[128] [129]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 625--628
+Overfull \hbox (9.57455pt too wide) in alignment at lines 560--564
  [] [] 
  []
 
 
-Overfull \hbox (16.67851pt too wide) in alignment at lines 628--632
+Overfull \hbox (9.57455pt too wide) in alignment at lines 564--566
  [] [] 
  []
 
 
-Overfull \hbox (16.67851pt too wide) in alignment at lines 632--634
+Overfull \hbox (9.57455pt too wide) in alignment at lines 566--568
  [] [] 
  []
 
 
-Overfull \hbox (16.67851pt too wide) in alignment at lines 634--636
+Overfull \hbox (9.57455pt too wide) in alignment at lines 568--590
  [] [] 
  []
 
 
-Overfull \hbox (16.67851pt too wide) in alignment at lines 636--658
+Overfull \hbox (9.57455pt too wide) in alignment at lines 590--610
+ [] [] 
+ []
+
+[128]
+Overfull \hbox (9.57455pt too wide) in alignment at lines 610--630
  [] [] 
  []
 
 
-Overfull \hbox (16.67851pt too wide) in alignment at lines 658--678
+Overfull \hbox (9.57455pt too wide) in alignment at lines 630--638
  [] [] 
  []
 
-[130]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 678--698
+[129] [130]
+Overfull \hbox (16.67851pt too wide) in alignment at lines 642--645
+ [] [] 
+ []
+
+
+Overfull \hbox (16.67851pt too wide) in alignment at lines 645--649
+ [] [] 
+ []
+
+
+Overfull \hbox (16.67851pt too wide) in alignment at lines 649--651
+ [] [] 
+ []
+
+
+Overfull \hbox (16.67851pt too wide) in alignment at lines 651--653
+ [] [] 
+ []
+
+
+Overfull \hbox (16.67851pt too wide) in alignment at lines 653--675
+ [] [] 
+ []
+
+
+Overfull \hbox (16.67851pt too wide) in alignment at lines 675--695
  [] [] 
  []
 
 [131]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 698--718
+Overfull \hbox (16.67851pt too wide) in alignment at lines 695--715
  [] [] 
  []
 
 [132]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 718--738
+Overfull \hbox (16.67851pt too wide) in alignment at lines 715--735
  [] [] 
  []
 
 [133]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 738--758
+Overfull \hbox (16.67851pt too wide) in alignment at lines 735--755
  [] [] 
  []
 
 [134]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 758--778
+Overfull \hbox (16.67851pt too wide) in alignment at lines 755--775
  [] [] 
  []
 
 [135]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 778--798
+Overfull \hbox (16.67851pt too wide) in alignment at lines 775--795
  [] [] 
  []
 
 [136]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 798--818
- [] [] 
- []
-
-
-Overfull \hbox (16.67851pt too wide) in alignment at lines 818--838
+Overfull \hbox (16.67851pt too wide) in alignment at lines 795--815
  [] [] 
  []
 
 [137]
-Overfull \hbox (16.67851pt too wide) in alignment at lines 838--844
- [] [] 
- []
-
-[138] [139] [140] [141] [142] [143] [144]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1008--1011
+Overfull \hbox (16.67851pt too wide) in alignment at lines 815--835
  [] [] 
  []
 
 
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1011--1015
+Overfull \hbox (16.67851pt too wide) in alignment at lines 835--855
+ [] [] 
+ []
+
+[138]
+Overfull \hbox (16.67851pt too wide) in alignment at lines 855--861
+ [] [] 
+ []
+
+[139] [140] [141] [142] [143] [144] [145]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table B.15 on input line 1021.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table B.16 on input line 1039.
+
+
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1043--1046
  [] [] 
  []
 
 
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1015--1017
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1046--1050
  [] [] 
  []
 
 
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1017--1019
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1050--1052
  [] [] 
  []
 
 
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1019--1041
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1052--1054
  [] [] 
  []
 
 
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1041--1061
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1054--1076
  [] [] 
  []
 
-[145]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1061--1081
+
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1076--1096
  [] [] 
  []
 
 [146]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1081--1101
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1096--1116
  [] [] 
  []
 
 [147]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1101--1121
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1116--1136
  [] [] 
  []
 
 [148]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1121--1141
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1136--1156
  [] [] 
  []
 
 [149]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1141--1161
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1156--1176
  [] [] 
  []
 
 [150]
-Overfull \hbox (4.4712pt too wide) in alignment at lines 1161--1178
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1176--1196
  [] [] 
  []
 
-[151] [152] [153] [154]) [155]
+[151]
+Overfull \hbox (4.4712pt too wide) in alignment at lines 1196--1213
+ [] [] 
+ []
+
+[152] [153] [154] [155]) [156]
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 262.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
 
@@ -1798,10 +1815,10 @@ Package rerunfilecheck Info: File `ucalgthes1_root_0.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
  ) 
 Here is how much of TeX's memory you used:
- 26120 strings out of 493921
- 492530 string characters out of 3147279
- 725158 words of memory out of 3000000
- 28151 multiletter control sequences out of 15000+200000
+ 26127 strings out of 493921
+ 492590 string characters out of 3147279
+ 724224 words of memory out of 3000000
+ 28155 multiletter control sequences out of 15000+200000
  53887 words of font info for 111 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  56i,16n,84p,2043b,1365s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1825,9 +1842,9 @@ gram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ucalgthes1_root_0.pdf (165 pages, 1944413 bytes).
+Output written on ucalgthes1_root_0.pdf (166 pages, 1945962 bytes).
 PDF statistics:
- 2855 PDF objects out of 2984 (max. 8388607)
- 689 named destinations out of 1000 (max. 500000)
+ 2864 PDF objects out of 2984 (max. 8388607)
+ 692 named destinations out of 1000 (max. 500000)
  844 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -23,20 +23,22 @@
 \contentsline {table}{\numberline {A.2}{\ignorespaces LMs in the cluster $C_2$\relax }}{107}{table.A.2}
 \contentsline {table}{\numberline {A.3}{\ignorespaces LMs in the cluster $C_3$\relax }}{107}{table.A.3}
 \addvspace {10pt}
-\contentsline {table}{\numberline {B.1}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{108}{table.B.1}
-\contentsline {table}{\numberline {B.2}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{116}{table.B.2}
-\contentsline {table}{\numberline {B.3}{\ignorespaces LMs within the cluster classified as Control Flow Logging}}{117}{table.B.3}
-\contentsline {table}{\numberline {B.4}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{118}{table.B.4}
-\contentsline {table}{\numberline {B.5}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{119}{table.B.5}
-\contentsline {table}{\numberline {B.6}{\ignorespaces LMs within the cluster classified as Conditional Logging}}{120}{table.B.6}
-\contentsline {table}{\numberline {B.7}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{121}{table.B.7}
-\contentsline {table}{\numberline {B.8}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{122}{table.B.8}
-\contentsline {table}{\numberline {B.9}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{123}{table.B.9}
-\contentsline {table}{\numberline {B.10}{\ignorespaces LMs within the cluster classified as Conditional Logging}}{127}{table.B.10}
-\contentsline {table}{\numberline {B.11}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{130}{table.B.11}
-\contentsline {table}{\numberline {B.12}{\ignorespaces LMs within the cluster classified as Control Flow Logging}}{140}{table.B.12}
-\contentsline {table}{\numberline {B.13}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{141}{table.B.13}
-\contentsline {table}{\numberline {B.14}{\ignorespaces LMs within the cluster classified as Exception Catch-Block Logging}}{141}{table.B.14}
-\contentsline {table}{\numberline {B.15}{\ignorespaces LMs within the cluster classified as Outer Method Logging}}{145}{table.B.15}
-\contentsline {table}{\numberline {B.16}{\ignorespaces LMs within the cluster classified as Control Flow Logging}}{152}{table.B.16}
-\contentsline {table}{\numberline {B.17}{\ignorespaces LMs within the cluster classified as Exception Try-Block Logging}}{153}{table.B.17}
+\contentsline {table}{\numberline {B.1}{\ignorespaces The Tomcat cluster classified as Exception Catch-Block Logging}}{108}{table.B.1}
+\contentsline {table}{\numberline {B.2}{\ignorespaces The Tomcat cluster classified as Conditional Logging}}{116}{table.B.2}
+\contentsline {table}{\numberline {B.3}{\ignorespaces The Tomcat cluster classified as Outer Method Logging}}{116}{table.B.3}
+\contentsline {table}{\numberline {B.4}{\ignorespaces The Tomcat cluster classified as Control Flow Logging}}{117}{table.B.4}
+\contentsline {table}{\numberline {B.5}{\ignorespaces The Tomcat cluster classified as Exception Try-Block Logging}}{118}{table.B.5}
+\contentsline {table}{\numberline {B.6}{\ignorespaces The Hibernate cluster classified as Exception Catch-Block Logging}}{120}{table.B.6}
+\contentsline {table}{\numberline {B.7}{\ignorespaces The Hibernate cluster classified as Conditional Logging}}{121}{table.B.7}
+\contentsline {table}{\numberline {B.8}{\ignorespaces The Hibernate cluster classified as Outer Method Logging}}{122}{table.B.8}
+\contentsline {table}{\numberline {B.9}{\ignorespaces The Hibernate cluster classified as Exception Try-Block Logging}}{123}{table.B.9}
+\contentsline {table}{\numberline {B.10}{\ignorespaces The Camel cluster classified as Exception Catch-Block Logging}}{124}{table.B.10}
+\contentsline {table}{\numberline {B.11}{\ignorespaces The Camel cluster classified as Conditional Logging}}{128}{table.B.11}
+\contentsline {table}{\numberline {B.12}{\ignorespaces The Camel cluster classified as Outer Method Logging}}{131}{table.B.12}
+\contentsline {table}{\numberline {B.13}{\ignorespaces The Camel cluster classified as Control Flow Logging}}{141}{table.B.13}
+\contentsline {table}{\numberline {B.14}{\ignorespaces The Camel cluster classified as Exception Try-Block Logging}}{142}{table.B.14}
+\contentsline {table}{\numberline {B.15}{\ignorespaces The Solr cluster classified as Exception Catch-Block Logging}}{142}{table.B.15}
+\contentsline {table}{\numberline {B.16}{\ignorespaces The Solr cluster classified as Conditional Logging}}{146}{table.B.16}
+\contentsline {table}{\numberline {B.17}{\ignorespaces The Solr cluster classified as Outer Method Logging}}{146}{table.B.17}
+\contentsline {table}{\numberline {B.18}{\ignorespaces The Solr cluster classified as Control Flow Logging}}{154}{table.B.18}
+\contentsline {table}{\numberline {B.19}{\ignorespaces The Solr cluster classified as Exception Try-Block Logging}}{154}{table.B.19}

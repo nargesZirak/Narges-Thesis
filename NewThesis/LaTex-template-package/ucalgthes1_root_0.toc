@@ -105,6 +105,6 @@
 \contentsline {chapter}{\numberline {A}Logged Methods in Each Cluster of the Clustering Evaluation}{107}{appendix.A}
 \contentsline {chapter}{\numberline {B}Categorization of and Logged Methods in Each Cluster of the Characterization Study}{108}{appendix.B}
 \contentsline {section}{\numberline {B.1}Tomcat}{108}{section.B.1}
-\contentsline {section}{\numberline {B.2}Hibernate}{119}{section.B.2}
-\contentsline {section}{\numberline {B.3}Camel}{123}{section.B.3}
-\contentsline {section}{\numberline {B.4}Solr}{141}{section.B.4}
+\contentsline {section}{\numberline {B.2}Hibernate}{120}{section.B.2}
+\contentsline {section}{\numberline {B.3}Camel}{124}{section.B.3}
+\contentsline {section}{\numberline {B.4}Solr}{142}{section.B.4}
