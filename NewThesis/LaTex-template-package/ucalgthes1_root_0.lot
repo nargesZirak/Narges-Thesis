@@ -4,41 +4,38 @@
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {table}{\numberline {4.1}{\ignorespaces Logged methods used as our test suite.}}{44}{table.caption.34}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Results from examining the Jigsaw similarity for 4 sample \name {Java} source code fragment pairs.\relax }}{45}{table.caption.35}
+\contentsline {table}{\numberline {4.1}{\ignorespaces 10 sample logged Java method pairs used as test cases.}}{53}{table.caption.41}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Results of constructing anti-unifiers with a focus on log statements for the test cases presented in Table\nobreakspace {}\ref {study2_test_cases}\relax }}{54}{table.caption.42}
 \addvspace {10pt}
-\contentsline {table}{\numberline {5.1}{\ignorespaces 10 sample logged Java method pairs used as test cases.}}{62}{table.caption.46}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Results of constructing anti-unifiers with a focus on log statements for the test cases presented in Table\nobreakspace {}\ref {study2_test_cases}\relax }}{63}{table.caption.47}
+\contentsline {table}{\numberline {5.1}{\ignorespaces The cohesion of clusters.\relax }}{61}{table.caption.46}
+\contentsline {table}{\numberline {5.2}{\ignorespaces The separateness of clusters.\relax }}{61}{table.caption.46}
 \addvspace {10pt}
-\contentsline {table}{\numberline {6.1}{\ignorespaces The cohesion of clusters.\relax }}{70}{table.caption.51}
-\contentsline {table}{\numberline {6.2}{\ignorespaces The separateness of clusters.\relax }}{70}{table.caption.51}
-\addvspace {10pt}
-\contentsline {table}{\numberline {7.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{72}{table.caption.52}
-\contentsline {table}{\numberline {7.2}{\ignorespaces The experimental results.\relax }}{74}{table.caption.53}
+\contentsline {table}{\numberline {6.1}{\ignorespaces Summary of the four software systems used in the characterization study.\relax }}{63}{table.caption.47}
+\contentsline {table}{\numberline {6.2}{\ignorespaces The experimental results.\relax }}{65}{table.caption.48}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {table}{\numberline {A.1}{\ignorespaces LMs in the cluster $C_1$\relax }}{107}{table.A.1}
-\contentsline {table}{\numberline {A.2}{\ignorespaces LMs in the cluster $C_2$\relax }}{107}{table.A.2}
-\contentsline {table}{\numberline {A.3}{\ignorespaces LMs in the cluster $C_3$\relax }}{107}{table.A.3}
+\contentsline {table}{\numberline {A.1}{\ignorespaces LMs in the cluster $C_1$\relax }}{98}{table.A.1}
+\contentsline {table}{\numberline {A.2}{\ignorespaces LMs in the cluster $C_2$\relax }}{98}{table.A.2}
+\contentsline {table}{\numberline {A.3}{\ignorespaces LMs in the cluster $C_3$\relax }}{98}{table.A.3}
 \addvspace {10pt}
-\contentsline {table}{\numberline {B.1}{\ignorespaces The Tomcat cluster classified as Exception Catch-Block Logging}}{108}{table.B.1}
-\contentsline {table}{\numberline {B.2}{\ignorespaces The Tomcat cluster classified as Conditional Logging}}{116}{table.B.2}
-\contentsline {table}{\numberline {B.3}{\ignorespaces The Tomcat cluster classified as Outer Method Logging}}{116}{table.B.3}
-\contentsline {table}{\numberline {B.4}{\ignorespaces The Tomcat cluster classified as Control Flow Logging}}{117}{table.B.4}
-\contentsline {table}{\numberline {B.5}{\ignorespaces The Tomcat cluster classified as Exception Try-Block Logging}}{118}{table.B.5}
-\contentsline {table}{\numberline {B.6}{\ignorespaces The Hibernate cluster classified as Exception Catch-Block Logging}}{120}{table.B.6}
-\contentsline {table}{\numberline {B.7}{\ignorespaces The Hibernate cluster classified as Conditional Logging}}{121}{table.B.7}
-\contentsline {table}{\numberline {B.8}{\ignorespaces The Hibernate cluster classified as Outer Method Logging}}{122}{table.B.8}
-\contentsline {table}{\numberline {B.9}{\ignorespaces The Hibernate cluster classified as Exception Try-Block Logging}}{123}{table.B.9}
-\contentsline {table}{\numberline {B.10}{\ignorespaces The Camel cluster classified as Exception Catch-Block Logging}}{124}{table.B.10}
-\contentsline {table}{\numberline {B.11}{\ignorespaces The Camel cluster classified as Conditional Logging}}{128}{table.B.11}
-\contentsline {table}{\numberline {B.12}{\ignorespaces The Camel cluster classified as Outer Method Logging}}{131}{table.B.12}
-\contentsline {table}{\numberline {B.13}{\ignorespaces The Camel cluster classified as Control Flow Logging}}{141}{table.B.13}
-\contentsline {table}{\numberline {B.14}{\ignorespaces The Camel cluster classified as Exception Try-Block Logging}}{142}{table.B.14}
-\contentsline {table}{\numberline {B.15}{\ignorespaces The Solr cluster classified as Exception Catch-Block Logging}}{142}{table.B.15}
-\contentsline {table}{\numberline {B.16}{\ignorespaces The Solr cluster classified as Conditional Logging}}{146}{table.B.16}
-\contentsline {table}{\numberline {B.17}{\ignorespaces The Solr cluster classified as Outer Method Logging}}{146}{table.B.17}
-\contentsline {table}{\numberline {B.18}{\ignorespaces The Solr cluster classified as Control Flow Logging}}{154}{table.B.18}
-\contentsline {table}{\numberline {B.19}{\ignorespaces The Solr cluster classified as Exception Try-Block Logging}}{154}{table.B.19}
+\contentsline {table}{\numberline {B.1}{\ignorespaces The Tomcat cluster classified as Exception Catch-Block Logging}}{99}{table.B.1}
+\contentsline {table}{\numberline {B.2}{\ignorespaces The Tomcat cluster classified as Conditional Logging}}{107}{table.B.2}
+\contentsline {table}{\numberline {B.3}{\ignorespaces The Tomcat cluster classified as Outer Method Logging}}{114}{table.B.3}
+\contentsline {table}{\numberline {B.4}{\ignorespaces The Tomcat cluster classified as Control Flow Logging}}{115}{table.B.4}
+\contentsline {table}{\numberline {B.5}{\ignorespaces The Tomcat cluster classified as Exception Try-Block Logging}}{116}{table.B.5}
+\contentsline {table}{\numberline {B.6}{\ignorespaces The Hibernate cluster classified as Exception Catch-Block Logging}}{117}{table.B.6}
+\contentsline {table}{\numberline {B.7}{\ignorespaces The Hibernate cluster classified as Conditional Logging}}{118}{table.B.7}
+\contentsline {table}{\numberline {B.8}{\ignorespaces The Hibernate cluster classified as Outer Method Logging}}{119}{table.B.8}
+\contentsline {table}{\numberline {B.9}{\ignorespaces The Hibernate cluster classified as Exception Try-Block Logging}}{120}{table.B.9}
+\contentsline {table}{\numberline {B.10}{\ignorespaces The Camel cluster classified as Exception Catch-Block Logging}}{121}{table.B.10}
+\contentsline {table}{\numberline {B.11}{\ignorespaces The Camel cluster classified as Conditional Logging}}{125}{table.B.11}
+\contentsline {table}{\numberline {B.12}{\ignorespaces The Camel cluster classified as Outer Method Logging}}{128}{table.B.12}
+\contentsline {table}{\numberline {B.13}{\ignorespaces The Camel cluster classified as Control Flow Logging}}{138}{table.B.13}
+\contentsline {table}{\numberline {B.14}{\ignorespaces The Camel cluster classified as Exception Try-Block Logging}}{139}{table.B.14}
+\contentsline {table}{\numberline {B.15}{\ignorespaces The Solr cluster classified as Exception Catch-Block Logging}}{139}{table.B.15}
+\contentsline {table}{\numberline {B.16}{\ignorespaces The Solr cluster classified as Conditional Logging}}{143}{table.B.16}
+\contentsline {table}{\numberline {B.17}{\ignorespaces The Solr cluster classified as Outer Method Logging}}{151}{table.B.17}
+\contentsline {table}{\numberline {B.18}{\ignorespaces The Solr cluster classified as Control Flow Logging}}{158}{table.B.18}
+\contentsline {table}{\numberline {B.19}{\ignorespaces The Solr cluster classified as Exception Try-Block Logging}}{159}{table.B.19}
